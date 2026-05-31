@@ -1,0 +1,1014 @@
+/* ──────────────────────────────────────
+   PAGES STYLESHEET - Central University of South Bihar
+────────────────────────────────────── */
+
+/* ==========================================================================
+   1. HOMEPAGE STYLES
+   ========================================================================== */
+
+/* Hero Banner */
+.hero-banner {
+  position: relative;
+  background-image: linear-gradient(rgba(32, 56, 101, 0.353), rgba(71, 72, 73, 0.202)), url('../assets/drone.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll;
+  color: white;
+  padding: 120px 0 140px;
+  text-align: center;
+}
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.hero-eyebrow {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: var(--acc-coral);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-live-dot {
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(0.9); opacity: 0.4; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.4; }
+}
+.hero-title {
+  font-family: var(--ff-title);
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.hero-title span {
+  color: var(--acc-gold);
+}
+.hero-sub {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0.9;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+.hero-btns {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 30px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+}
+.btn-gold {
+  background-color: var(--acc-gold);
+  color: white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+.btn-gold:hover {
+  background-color: #b58312;
+  transform: translateY(-2px);
+  color: white;
+}
+.btn-white {
+  background-color: white;
+  color: var(--acc-navy);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.btn-white:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+  color: var(--acc-navy);
+}
+.btn-ghost-light {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.btn-ghost-light:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: white;
+  transform: translateY(-2px);
+  color: white;
+}
+
+/* Accolades (NAAC A++ badge layer inside hero bottom) */
+.hero-accolades {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1000px;
+}
+.accolade-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 24px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+.accolade-card span {
+  color: var(--acc-gold);
+}
+
+/* SECTION 1: LEADERS OF CUSB (Staggered Layout) */
+.sec-leaders {
+  background-color: var(--bg-light-green);
+}
+.leaders-container {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.leader-card-staggered {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #ffffff, var(--bg-light-green));
+  border: 1px solid #d0e7d2;
+  border-radius: 80px 20px 20px 80px;
+  padding: 15px 35px 15px 15px;
+  gap: 25px;
+  box-shadow: var(--shadow-md);
+  max-width: 85%;
+  transition: var(--transition);
+}
+.leader-card-staggered:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--acc-green);
+}
+.leader-card-staggered.right-align {
+  align-self: flex-end;
+  border-radius: 20px 80px 80px 20px;
+  padding: 15px 15px 15px 35px;
+  flex-direction: row-reverse;
+  background: linear-gradient(135deg, var(--bg-light-green), #ffffff);
+}
+.leader-avatar-box {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: var(--acc-dark-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2.2rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+  border: 4px solid white;
+}
+.leader-avatar-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.leader-info-box {
+  flex: 1;
+}
+.leader-role-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--acc-coral);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.leader-name-txt {
+  font-family: var(--ff-title);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--acc-dark-green);
+  margin-bottom: 6px;
+}
+.leader-desc-txt {
+  font-size: 0.8rem;
+  color: var(--tx-secondary);
+  line-height: 1.4;
+}
+
+/* SECTION 2: ABOUT THE UNIVERSITY (Teal/Blue Icon Card) */
+.sec-about-uni {
+  background-color: var(--bg-light-cyan);
+}
+.about-uni-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 50px;
+  align-items: center;
+}
+.about-uni-left {
+  display: flex;
+  justify-content: center;
+}
+.about-uni-icon-card {
+  background: linear-gradient(135deg, var(--acc-teal), var(--acc-blue));
+  width: 360px;
+  height: 360px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 6.5rem;
+  box-shadow: var(--shadow-lg);
+  border: 6px solid white;
+  transition: var(--transition);
+}
+.about-uni-icon-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.about-uni-icon-card:hover {
+  transform: scale(1.03) rotate(2deg);
+}
+.about-uni-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.about-uni-text {
+  font-size: 0.95rem;
+  color: var(--tx-secondary);
+  line-height: 1.7;
+}
+
+/* SECTION 3: PROGRAMS & COURSES (White-to-green horizontal gradient pills) */
+.sec-programs {
+  background-color: var(--bg-light-green);
+}
+.programs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.program-pill-card {
+  background: linear-gradient(90deg, #ffffff 40%, var(--bg-light-green) 100%);
+  border: 1px solid #d0e7d2;
+  padding: 20px 40px;
+  border-radius: 40px 0 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+.program-pill-card.right-pill {
+  border-radius: 0 40px 40px 0;
+  background: linear-gradient(-90deg, #ffffff 40%, var(--bg-light-green) 100%);
+  flex-direction: row-reverse;
+}
+.program-pill-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--acc-green);
+}
+.program-pill-title {
+  font-family: var(--ff-title);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--acc-dark-green);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.program-pill-action {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--acc-coral);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* SECTION 4: NEWS & HIGHLIGHTS (Parallel Orange Gradients) */
+.sec-news-events {
+  background-color: var(--bg-light-cyan);
+}
+.news-events-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 30px;
+}
+.column-gradient-card {
+  background: linear-gradient(to bottom, #ffe0b2 0%, #ffffff 60%);
+  border: 1px solid #ffe0b2;
+  border-radius: var(--border-radius);
+  padding: 30px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: var(--transition);
+  min-width: 0;
+}
+.column-gradient-card.events-card {
+  background: linear-gradient(to bottom, #ffe8d6 0%, #ffffff 60%);
+  border-color: #ffd8be;
+}
+.column-gradient-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+.column-card-title {
+  font-family: var(--ff-title);
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--acc-orange);
+  text-transform: uppercase;
+  border-bottom: 2px solid rgba(255, 110, 0, 0.15);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.news-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.news-item-row {
+  display: flex;
+  gap: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+  min-width: 0;
+}
+.news-item-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.news-date-badge {
+  background-color: var(--acc-orange);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  box-shadow: var(--shadow-sm);
+}
+.news-date-badge span {
+  font-size: 1.1rem;
+}
+.news-item-content {
+  flex: 1;
+  min-width: 0;
+}
+.news-item-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--tx-primary);
+  margin-bottom: 4px;
+  overflow-wrap: anywhere;
+}
+.news-item-title a {
+  color: var(--tx-primary);
+}
+.news-item-title a:hover {
+  color: var(--acc-coral);
+}
+.news-item-meta {
+  font-size: 0.7rem;
+  color: var(--tx-muted);
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+/* SECTION 5: GALLERY (Pastel Blocks Grid) */
+.sec-gallery {
+  background-color: var(--bg-light-green);
+}
+.gallery-grid-pastel {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 150px;
+  gap: 20px;
+}
+.gallery-block {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  border: 4px solid white;
+}
+.gallery-block:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
+  z-index: 5;
+}
+/* Individual Color Blocks */
+.gallery-block:nth-child(1) { background: linear-gradient(135deg, #d1f2f7, #a0e8f7); grid-column: span 2; }
+.gallery-block:nth-child(2) { background: linear-gradient(135deg, #ffe0b2, #ffcc80); grid-row: span 2; }
+.gallery-block:nth-child(3) { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
+.gallery-block:nth-child(4) { background: linear-gradient(135deg, #e1bee7, #ce93d8); }
+.gallery-block:nth-child(5) { background: linear-gradient(135deg, #e2e6ef, #b5b9c6); }
+.gallery-block:nth-child(6) { background: linear-gradient(135deg, #fff9c4, #fff59d); grid-column: span 2; }
+.gallery-block:nth-child(7) { background: linear-gradient(135deg, #d0e7d2, #94c9a9); }
+
+.gallery-block img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.95;
+  transition: var(--transition);
+}
+.gallery-block:hover img {
+  opacity: 1;
+  transform: scale(1.05);
+}
+.gallery-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  padding: 12px;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0;
+  transition: var(--transition);
+  pointer-events: none;
+}
+.gallery-block:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* SECTION 6: CAMPUS FACILITIES (Teal Carousel Cards) */
+.sec-facilities {
+  background-color: var(--bg-light-cyan);
+}
+.facilities-carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.carousel-btn {
+  background-color: var(--acc-blue);
+  color: white;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: var(--transition);
+}
+.carousel-btn:hover {
+  background-color: var(--acc-navy);
+  transform: scale(1.08);
+}
+.facilities-grid-scroll {
+  display: grid;
+  grid-template-columns: repeat(6, 260px);
+  gap: 25px;
+  overflow-x: auto;
+  padding: 15px 5px;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+.facilities-grid-scroll::-webkit-scrollbar {
+  display: none; /* Hide scrollbar Chrome/Safari */
+}
+.facility-card-teal {
+  background: linear-gradient(135deg, #138c9c, #0e6c7c);
+  border: 4px solid white;
+  border-radius: 24px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: white;
+  gap: 15px;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+.facility-card-teal:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  filter: brightness(1.05);
+}
+.facility-icon-wrap {
+  background-color: rgba(255,255,255,0.15);
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+}
+.facility-icon-wrap .icon-holder {
+  width: 58px;
+  height: 58px;
+  background: rgba(255,255,255,0.96);
+  color: var(--acc-teal);
+  border-color: rgba(255,255,255,0.5);
+}
+.facility-card-title {
+  font-family: var(--ff-title);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.facility-card-desc {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* SECTION 7: QUICK LINKS (Dark Green buttons) */
+.sec-quicklinks {
+  background-color: var(--bg-light-green);
+}
+.quicklinks-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.quicklink-btn-green {
+  background-color: var(--acc-dark-green);
+  color: white;
+  aspect-ratio: 1;
+  border-radius: 16px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  text-align: center;
+}
+.quicklink-btn-green:hover {
+  background-color: var(--acc-green);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  color: white;
+}
+.quicklink-btn-icon {
+  font-size: 2.2rem;
+  background: rgba(255,255,255,0.96);
+  color: var(--acc-dark-green);
+  border-color: rgba(255,255,255,0.6);
+}
+.quicklink-btn-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+/* ==========================================================================
+   2. ADMINISTRATION / LEADERSHIP PAGE
+   ========================================================================== */
+.admin-hero {
+  background: linear-gradient(rgba(13, 30, 61, 0.7), rgba(13, 30, 61, 0.9)), url('../assets/drone.png');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 60px 0;
+  text-align: center;
+}
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+}
+.admin-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 25px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+.admin-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.admin-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  object-fit: cover;
+  border: 4px solid var(--acc-navy);
+}
+.admin-name {
+  font-family: var(--ff-title);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--acc-navy);
+  margin-bottom: 5px;
+}
+.admin-role {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--acc-coral);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.admin-contact {
+  font-size: 0.75rem;
+  color: var(--tx-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* ==========================================================================
+   3. COMPUTER SCIENCE DEPARTMENT PAGE
+   ========================================================================== */
+.cs-header {
+  background: linear-gradient(135deg, var(--acc-navy), var(--acc-blue));
+  color: white;
+  padding: 50px 0;
+  text-align: center;
+  border-bottom: 3px solid var(--acc-gold);
+}
+.faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+.faculty-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+.faculty-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--acc-navy);
+}
+.faculty-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 15px;
+  border: 3px solid var(--acc-navy);
+}
+.faculty-name {
+  font-family: var(--ff-title);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--tx-primary);
+  margin-bottom: 5px;
+}
+.faculty-designation {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--acc-coral);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.faculty-specialization {
+  font-size: 0.75rem;
+  color: var(--tx-secondary);
+  font-style: italic;
+  margin-bottom: 10px;
+}
+.faculty-email {
+  font-size: 0.7rem;
+  color: var(--tx-muted);
+}
+
+/* ==========================================================================
+   4. Previous Year Questions (PYQs) Portal
+   ========================================================================== */
+.pyq-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 30px;
+  padding: 40px 0;
+}
+.pyq-sidebar {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  height: fit-content;
+  position: sticky;
+  top: calc(var(--nav-h) + 20px);
+}
+.pyq-sidebar-title {
+  font-family: var(--ff-title);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+  text-transform: uppercase;
+}
+.pyq-dept-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.pyq-dept-btn {
+  background: none;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--tx-secondary);
+  text-align: left;
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+}
+.pyq-dept-btn:hover, .pyq-dept-btn.active {
+  background-color: var(--acc-navy);
+  color: white;
+}
+
+.school-tab-bar {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 25px;
+  scrollbar-width: thin;
+}
+.btn-school-tab {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition);
+  color: var(--tx-secondary);
+}
+.btn-school-tab:hover, .btn-school-tab.active {
+  background-color: var(--acc-green);
+  color: white;
+  border-color: var(--acc-green);
+}
+
+.pyq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+.pyq-card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pyq-card-header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+}
+.pyq-course-code {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--acc-coral);
+  text-transform: uppercase;
+}
+.pyq-course-name {
+  font-family: var(--ff-title);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--tx-primary);
+}
+.pyq-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  font-size: 0.75rem;
+  color: var(--tx-secondary);
+}
+.pyq-download-btn {
+  background-color: var(--acc-navy);
+  color: white;
+  text-align: center;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.pyq-download-btn:hover {
+  background-color: var(--acc-coral);
+  color: white;
+}
+
+/* ==========================================================================
+   5. HOSTEL FACILITIES PAGE
+   ========================================================================== */
+.hostel-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  margin-top: 30px;
+}
+.hostel-tabs {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+.btn-hostel-tab {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--tx-secondary);
+}
+.btn-hostel-tab.active, .btn-hostel-tab:hover {
+  background-color: var(--acc-navy);
+  color: white;
+  border-color: var(--acc-navy);
+}
+.hostel-tab-content {
+  display: none;
+}
+.hostel-tab-content.active {
+  display: block;
+}
+.hostel-details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 0.85rem;
+}
+.hostel-details-table th, .hostel-details-table td {
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  text-align: left;
+}
+.hostel-details-table th {
+  background-color: var(--bg-secondary);
+  font-weight: 700;
+}
+.hostel-details-table tr:nth-child(even) {
+  background-color: rgba(0,0,0,0.02);
+}
+
+.wardens-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+.warden-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+.warden-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  object-fit: cover;
+  border: 3px solid var(--acc-green);
+}
+.warden-name {
+  font-family: var(--ff-title);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.warden-role {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--acc-coral);
+  margin-bottom: 8px;
+}
+
+/* Responsive fixes for layouts */
+@media (max-width: 991px) {
+  .hero-title { font-size: 2.2rem; }
+  .about-uni-grid, .hostel-grid { grid-template-columns: 1fr; }
+  .news-events-grid { grid-template-columns: 1fr; }
+  .admin-grid { grid-template-columns: 1fr 1fr; }
+  .faculty-grid, .wardens-grid { grid-template-columns: 1fr 1fr; }
+  .pyq-container { grid-template-columns: 1fr; }
+  .pyq-grid { grid-template-columns: 1fr; }
+  .gallery-grid-pastel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 190px;
+  }
+  .quicklinks-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 575px) {
+  .admin-grid, .faculty-grid, .wardens-grid, .gallery-grid-pastel, .quicklinks-grid { grid-template-columns: 1fr; }
+  .section { padding: 55px 0; }
+  .section-title {
+    font-size: 1.55rem;
+    margin-bottom: 28px;
+    overflow-wrap: anywhere;
+  }
+  .column-gradient-card {
+    padding: 20px 14px;
+  }
+  .news-item-row {
+    gap: 10px;
+  }
+  .news-date-badge {
+    width: 44px;
+    height: 44px;
+  }
+  .gallery-grid-pastel {
+    grid-auto-rows: 220px;
+  }
+  .gallery-block:nth-child(n) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .gallery-overlay {
+    opacity: 1;
+  }
+  .quicklink-btn-green { aspect-ratio: auto; height: 100px; }
+  .accolade-card { font-size: 0.8rem; padding: 8px 16px; }
+  .leader-card-staggered { max-width: 100%; border-radius: 20px; flex-direction: column; text-align: center; }
+  .leader-card-staggered.right-align { flex-direction: column; }
+}

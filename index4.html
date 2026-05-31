@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="Courses & Programmes — CUSB" data-hi="पाठ्यक्रम और कार्यक्रम — सीयूएसबी">Courses & Programmes — CUSB</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent">
+    <!-- ══════ HERO BANNER ══════ -->
+    <section class="admin-hero" aria-label="Academics Banner">
+      <div class="container hero-content">
+        <div class="hero-eyebrow">
+          <span data-en="Academics & Curricula" data-hi="शैक्षणिक पाठ्यक्रम">Academics & Curricula</span>
+        </div>
+        <h1 class="hero-title" data-en="Courses & <span>Programmes</span>" data-hi="पाठ्यक्रम और <span>कार्यक्रम</span>">Courses & <span>Programmes</span></h1>
+        <p class="hero-sub" data-en="Search across our diverse academic schools and departments. CUSB offers UG, PG, Integrated, and Doctoral degrees." data-hi="हमारी विविध अकादमिक अध्ययन शालाओं और विभागों में खोजें। सीयूएसबी यूजी, पीजी, एकीकृत और डॉक्टरेट डिग्री प्रदान करता है।">Search across our diverse academic schools and departments. CUSB offers UG, PG, Integrated, and Doctoral degrees.</p>
+      </div>
+    </section>
+
+    <!-- ══════ INTERACTIVE FILTER & SEARCH SECTION ══════ -->
+    <section class="section" id="courses-sec" aria-labelledby="titleCoursesList">
+      <div class="container">
+        <h2 class="sr-only" id="titleCoursesList">Course Filter</h2>
+        
+        <!-- Search bar -->
+        <div class="search-container" style="width: 100%; max-width: 500px; margin: 0 auto 30px;" role="search">
+          <input type="search" class="search-input" id="deptFilterInput" placeholder="Search department or school..." style="width:100%; padding:12px 20px; font-size:1rem; border-radius:30px;" aria-label="Filter departments by text query">
+          <span style="position:absolute; right:15px; top:50%; transform:translateY(-50%); color:var(--tx-muted); pointer-events:none;"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-search"></use></svg></span>
+        </div>
+
+        <!-- School Tabs -->
+        <div class="school-tab-bar" id="schoolTabBar" role="tablist" aria-label="Filter Departments by School">
+          <button class="btn-school-tab active" data-school="all" role="tab" aria-selected="true" data-en="All Schools" data-hi="सभी स्कूल">All Schools</button>
+          <button class="btn-school-tab" data-school="math" role="tab" aria-selected="false" data-en="Maths & CS" data-hi="गणित और कंप्यूटर">Maths & CS</button>
+          <button class="btn-school-tab" data-school="earth" role="tab" aria-selected="false" data-en="Earth & Bio" data-hi="जैविक और पर्यावरण">Earth & Bio</button>
+          <button class="btn-school-tab" data-school="human" role="tab" aria-selected="false" data-en="Human Science" data-hi="मानव विज्ञान">Human Science</button>
+          <button class="btn-school-tab" data-school="social" role="tab" aria-selected="false" data-en="Social Sciences" data-hi="सामाजिक विज्ञान">Social Sciences</button>
+          <button class="btn-school-tab" data-school="education" role="tab" aria-selected="false" data-en="Education" data-hi="शिक्षा">Education</button>
+          <button class="btn-school-tab" data-school="health" role="tab" aria-selected="false" data-en="Health Science" data-hi="स्वास्थ्य विज्ञान">Health Science</button>
+          <button class="btn-school-tab" data-school="lang" role="tab" aria-selected="false" data-en="Language & Lit." data-hi="भाषा और साहित्य">Language & Lit.</button>
+          <button class="btn-school-tab" data-school="media" role="tab" aria-selected="false" data-en="Media & Arts" data-hi="मीडिया और कला">Media & Arts</button>
+          <button class="btn-school-tab" data-school="agri" role="tab" aria-selected="false" data-en="Agriculture" data-hi="कृषि">Agriculture</button>
+          <button class="btn-school-tab" data-school="management" role="tab" aria-selected="false" data-en="Management" data-hi="कॉमर्स और प्रबंधन">Management</button>
+          <button class="btn-school-tab" data-school="law" role="tab" aria-selected="false" data-en="Law" data-hi="कानून">Law</button>
+          <button class="btn-school-tab" data-school="physical" role="tab" aria-selected="false" data-en="Physical & Chem." data-hi="भौतिक और रसायन">Physical & Chem.</button>
+        </div>
+
+        <!-- School List -->
+        <div class="programs-list" id="schoolGroupsContainer" style="max-width:100%; margin-top:20px;">
+          <!-- 1. Math -->
+          <div class="program-pill-card" data-school="math" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
+            <div class="program-pill-title" style="font-size:1.15rem;" data-en="School of Mathematics, Statistics & Computer Science" data-hi="गणित, सांख्यिकी और कंप्यूटर विज्ञान अध्ययन शाला">School of Mathematics, Statistics & Computer Science</div>
+            <div class="qa-grid" style="gap:10px;">
+              <a href="index3.html" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-laptop"></use></svg></span><span data-en="Computer Science" data-hi="कंप्यूटर विज्ञान">Computer Science</span></a>
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-chart"></use></svg></span><span data-en="Mathematics" data-hi="गणित">Mathematics</span></a>
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-chart"></use></svg></span><span data-en="Statistics" data-hi="सांख्यिकी">Statistics</span></a>
+            </div>
+          </div>
+
+          <!-- 2. Earth -->
+          <div class="program-pill-card" data-school="earth" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
+            <div class="program-pill-title" style="font-size:1.15rem;" data-en="School of Earth, Biological & Environmental Sciences" data-hi="पृथ्वी, जैविक और पर्यावरण विज्ञान अध्ययन शाला">School of Earth, Biological & Environmental Sciences</div>
+            <div class="qa-grid" style="gap:10px;">
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-medical"></use></svg></span><span data-en="Bioinformatics" data-hi="बायोइनफॉरमैटिक्स">Bioinformatics</span></a>
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-globe"></use></svg></span><span data-en="Geology" data-hi="भूविज्ञान">Geology</span></a>
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-map-pin"></use></svg></span><span data-en="Geography" data-hi="भूगोल">Geography</span></a>
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-book"></use></svg></span><span data-en="Life Science" data-hi="जीवन विज्ञान">Life Science</span></a>
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-search"></use></svg></span><span data-en="Biotechnology" data-hi="बायोटेक्नोलॉजी">Biotechnology</span></a>
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-book"></use></svg></span><span data-en="Environmental Sciences" data-hi="पर्यावरण विज्ञान">Environmental Sciences</span></a>
+            </div>
+          </div>
+
+          <!-- 3. Human -->
+          <div class="program-pill-card" data-school="human" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
+            <div class="program-pill-title" style="font-size:1.15rem;" data-en="School of Human Sciences" data-hi="मानव विज्ञान अध्ययन शाला">School of Human Sciences</div>
+            <div class="qa-grid" style="gap:10px;">
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-users"></use></svg></span><span data-en="Psychological Sciences" data-hi="मनोवैज्ञानिक विज्ञान">Psychological Sciences</span></a>
+            </div>
+          </div>
+
+          <!-- 4. Social -->
+          <div class="program-pill-card" data-school="social" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
+            <div class="program-pill-title" style="font-size:1.15rem;" data-en="School of Social Sciences & Policies" data-hi="सामाजिक विज्ञान और नीतियां अध्ययन शाला">School of Social Sciences & Policies</div>
+            <div class="qa-grid" style="gap:10px;">
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-building"></use></svg></span><span data-en="Historical Studies" data-hi="ऐतिहासिक अध्ययन">Historical Studies</span></a>
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-chart"></use></svg></span><span data-en="Economic Studies" data-hi="आर्थिक अध्ययन">Economic Studies</span></a>
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-globe"></use></svg></span><span data-en="Development Studies" data-hi="विकास अध्ययन">Development Studies</span></a>
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-file"></use></svg></span><span data-en="Political Studies" data-hi="राजनीतिक अध्ययन">Political Studies</span></a>
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-users"></use></svg></span><span data-en="Sociological Studies" data-hi="समाजशास्त्रीय अध्ययन">Sociological Studies</span></a>
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-book"></use></svg></span><span data-en="Library Science" data-hi="पुस्तकालय विज्ञान">Library Science</span></a>
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-users"></use></svg></span><span data-en="Social Work" data-hi="समाज कार्य">Social Work</span></a>
+            </div>
+          </div>
+
+          <!-- 5. Education -->
+          <div class="program-pill-card" data-school="education" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
+            <div class="program-pill-title" style="font-size:1.15rem;" data-en="School of Education" data-hi="शिक्षा अध्ययन शाला">School of Education</div>
+            <div class="qa-grid" style="gap:10px;">
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-file"></use></svg></span><span data-en="Teacher Education" data-hi="शिक्षक शिक्षा">Teacher Education</span></a>
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-users"></use></svg></span><span data-en="Physical Education" data-hi="शारीरिक शिक्षा">Physical Education</span></a>
+            </div>
+          </div>
+
+          <!-- 6. Health -->
+          <div class="program-pill-card" data-school="health" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
+            <div class="program-pill-title" style="font-size:1.15rem;" data-en="School of Pharmaceutical Sciences" data-hi="फार्मास्युटिकल विज्ञान अध्ययन शाला">School of Pharmaceutical Sciences</div>
+            <div class="qa-grid" style="gap:10px;">
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-medical"></use></svg></span><span data-en="Pharmacy" data-hi="फार्मेसी">Pharmacy</span></a>
+            </div>
+          </div>
+
+          <!-- 7. Languages -->
+          <div class="program-pill-card" data-school="lang" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
+            <div class="program-pill-title" style="font-size:1.15rem;" data-en="School of Languages & Literature" data-hi="भाषा और साहित्य अध्ययन शाला">School of Languages & Literature</div>
+            <div class="qa-grid" style="gap:10px;">
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-book"></use></svg></span><span data-en="English" data-hi="अंग्रेज़ी">English</span></a>
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-file"></use></svg></span><span data-en="Hindi" data-hi="हिन्दी">Hindi</span></a>
+            </div>
+          </div>
+
+          <!-- 8. Media -->
+          <div class="program-pill-card" data-school="media" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
+            <div class="program-pill-title" style="font-size:1.15rem;" data-en="School of Media & Arts" data-hi="मीडिया और कला अध्ययन शाला">School of Media & Arts</div>
+            <div class="qa-grid" style="gap:10px;">
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-globe"></use></svg></span><span data-en="Mass Communication" data-hi="जनसंचार">Mass Communication</span></a>
+            </div>
+          </div>
+
+          <!-- 9. Agriculture -->
+          <div class="program-pill-card" data-school="agri" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
+            <div class="program-pill-title" style="font-size:1.15rem;" data-en="School of Agriculture" data-hi="कृषि अध्ययन शाला">School of Agriculture</div>
+            <div class="qa-grid" style="gap:10px;">
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-book"></use></svg></span><span data-en="Agriculture" data-hi="कृषि विज्ञान">Agriculture</span></a>
+            </div>
+          </div>
+
+          <!-- 10. Management -->
+          <div class="program-pill-card" data-school="management" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
+            <div class="program-pill-title" style="font-size:1.15rem;" data-en="School of Commerce & Management" data-hi="कॉमर्स और प्रबंधन अध्ययन शाला">School of Commerce & Management</div>
+            <div class="qa-grid" style="gap:10px;">
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-briefcase"></use></svg></span><span data-en="Commerce & Business" data-hi="वाणिज्य एवं व्यवसाय">Commerce & Business</span></a>
+            </div>
+          </div>
+
+          <!-- 11. Law -->
+          <div class="program-pill-card" data-school="law" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
+            <div class="program-pill-title" style="font-size:1.15rem;" data-en="School of Law & Governance" data-hi="कानून और शासन अध्ययन शाला">School of Law & Governance</div>
+            <div class="qa-grid" style="gap:10px;">
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-shield"></use></svg></span><span data-en="Law & Governance" data-hi="कानून और शासन">Law & Governance</span></a>
+            </div>
+          </div>
+
+          <!-- 12. Physical -->
+          <div class="program-pill-card" data-school="physical" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
+            <div class="program-pill-title" style="font-size:1.15rem;" data-en="School of Physical & Chemical Sciences" data-hi="भौतिक और रासायनिक विज्ञान अध्ययन शाला">School of Physical & Chemical Sciences</div>
+            <div class="qa-grid" style="gap:10px;">
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-medical"></use></svg></span><span data-en="Chemistry" data-hi="रसायन शास्त्र">Chemistry</span></a>
+              <a href="#" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-globe"></use></svg></span><span data-en="Physics" data-hi="भौतिक विज्ञान">Physics</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <cusb-quick-actions></cusb-quick-actions>
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+  
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const tabButtons = document.querySelectorAll('.btn-school-tab');
+      const schoolCards = document.querySelectorAll('#schoolGroupsContainer > .program-pill-card');
+      const textInput = document.getElementById('deptFilterInput');
+
+      // Check URL query parameters for default filters
+      const urlParams = new URLSearchParams(window.location.search);
+      const activeSchoolParam = urlParams.get('school');
+      if (activeSchoolParam) {
+        const matchingBtn = document.querySelector(`.btn-school-tab[data-school="${activeSchoolParam}"]`);
+        if (matchingBtn) {
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          matchingBtn.classList.add('active');
+          filterSchools(activeSchoolParam);
+        }
+      }
+
+      // 1. Tab-based filtering
+      tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabButtons.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+          
+          const schoolType = btn.getAttribute('data-school');
+          filterSchools(schoolType, textInput.value.toLowerCase().trim());
+        });
+      });
+
+      // 2. Search filtering
+      textInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        const activeTab = document.querySelector('.btn-school-tab.active');
+        const schoolType = activeTab ? activeTab.getAttribute('data-school') : 'all';
+        filterSchools(schoolType, query);
+      });
+
+      function filterSchools(schoolType, query = '') {
+        schoolCards.forEach(card => {
+          const cardSchool = card.getAttribute('data-school');
+          const titleText = card.querySelector('.program-pill-title').textContent.toLowerCase();
+          const deptLinks = Array.from(card.querySelectorAll('.qa-card')).map(link => link.textContent.toLowerCase());
+          
+          // Matches school filter
+          const schoolMatch = (schoolType === 'all' || cardSchool === schoolType);
+          
+          // Matches search query
+          const textMatch = (!query || 
+            titleText.includes(query) || 
+            deptLinks.some(dept => dept.includes(query))
+          );
+
+          if (schoolMatch && textMatch) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

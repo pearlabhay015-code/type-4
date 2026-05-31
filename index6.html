@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="PYQ Portal — Central University of South Bihar" data-hi="पीवाईक्यू पोर्टल — दक्षिण बिहार केन्द्रीय विश्वविद्यालय">PYQ Portal — Central University of South Bihar</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent">
+    <!-- ══════ HERO BANNER ══════ -->
+    <section class="admin-hero" aria-label="PYQ Banner">
+      <div class="container hero-content">
+        <div class="hero-eyebrow">
+          <span data-en="Examination Archives" data-hi="परीक्षा अभिलेख">Examination Archives</span>
+        </div>
+        <h1 class="hero-title" data-en="Previous Year <span>Questions</span>" data-hi="गत वर्ष के <span>प्रश्न पत्र</span>">Previous Year <span>Questions</span></h1>
+        <p class="hero-sub" data-en="Download semester and mid-semester question papers to prepare for your exams." data-hi="अपनी परीक्षाओं की तैयारी के लिए सेमेस्टर और मध्य-सेमेस्टर परीक्षा के प्रश्न पत्र डाउनलोड करें।">Download semester and mid-semester question papers to prepare for your exams.</p>
+      </div>
+    </section>
+
+    <!-- ══════ PORTAL LAYOUT ══════ -->
+    <section class="container pyq-container">
+      
+      <!-- Left sidebar list -->
+      <aside class="pyq-sidebar" aria-label="Department Categories">
+        <h2 class="pyq-sidebar-title" data-en="Departments" data-hi="विभाग">Departments</h2>
+        
+        <!-- Local search -->
+        <input type="search" class="search-input" id="sidebarSearch" placeholder="Search department..." style="width:100%; padding:8px 14px; font-size:0.8rem; margin-bottom:15px; border-radius:15px;" aria-label="Search department list">
+        
+        <div class="pyq-dept-list" id="deptSidebarList">
+          <!-- Populated dynamically -->
+        </div>
+      </aside>
+
+      <!-- Right content pane -->
+      <section aria-labelledby="activeDeptTitle">
+        <!-- School tabs -->
+        <div class="school-tab-bar" id="pyqSchoolTabs" role="tablist" aria-label="Filter Departments by School">
+          <button class="btn-school-tab active" data-school="all" role="tab" aria-selected="true" data-en="All Dept" data-hi="सभी विभाग">All Dept</button>
+          <button class="btn-school-tab" data-school="math" role="tab" aria-selected="false" data-en="Maths & CS" data-hi="गणित और कंप्यूटर">Maths & CS</button>
+          <button class="btn-school-tab" data-school="earth" role="tab" aria-selected="false" data-en="Earth & Bio" data-hi="जैविक और पर्यावरण">Earth & Bio</button>
+          <button class="btn-school-tab" data-school="social" role="tab" aria-selected="false" data-en="Social Sciences" data-hi="सामाजिक विज्ञान">Social Sciences</button>
+          <button class="btn-school-tab" data-school="physical" role="tab" aria-selected="false" data-en="Phys & Chem" data-hi="भौतिक और रसायन">Phys & Chem</button>
+        </div>
+
+        <!-- Selected Department Detail Card -->
+        <div class="program-pill-card" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px; margin-bottom:30px;" id="activeDeptCard">
+          <div class="program-pill-title" id="activeDeptTitle">Loading Department...</div>
+          <div style="font-size:0.75rem; color:var(--tx-muted); text-transform:uppercase; font-weight:700;" id="activeDeptSchool">School</div>
+          <p style="font-size:0.85rem; color:var(--tx-secondary); line-height:1.6;" id="activeDeptDesc">Overview</p>
+          <div class="qa-grid" id="activeDeptProgs" style="gap:8px;">
+            <!-- Badges -->
+          </div>
+        </div>
+
+        <!-- Question Papers Grid -->
+        <h3 style="font-family:var(--ff-title); font-size:1.2rem; margin-bottom:15px;" data-en="Question Papers" data-hi="प्रश्न पत्र सूची">Question Papers</h3>
+        <div class="pyq-grid" id="pyqPapersGrid">
+          <!-- Download cards populated dynamically -->
+        </div>
+      </section>
+
+    </section>
+  </main>
+
+  <cusb-quick-actions></cusb-quick-actions>
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <!-- Scripts -->
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+  
+  <script>
+    // Local database representing the 12 primary CUSB departments
+    const departments = [
+      {
+        id: "computer-science",
+        name: "Computer Science",
+        nameHi: "कंप्यूटर विज्ञान",
+        school: "math",
+        schoolFull: "School of Mathematics, Statistics & Computer Science",
+        icon: "laptop",
+        desc: "Focuses on algorithms, programming, network architecture, databases, machine learning, and artificial intelligence paradigms.",
+        progs: ["B.Sc. CS", "M.Sc. CS", "M.Sc. AI", "Ph.D. CS"],
+        papers: [
+          { lvl: "ug", type: "End Sem", year: "2024", sem: "Sem VI", date: "May 2024", size: "1.2 MB" },
+          { lvl: "pg", type: "End Sem", year: "2024", sem: "Sem II", date: "May 2024", size: "1.4 MB" },
+          { lvl: "pg", type: "Mid Sem", year: "2024", sem: "Sem III", date: "Oct 2024", size: "0.9 MB" },
+          { lvl: "phd", type: "Coursework", year: "2023", sem: "Paper I", date: "Dec 2023", size: "0.8 MB" }
+        ]
+      },
+      {
+        id: "mathematics",
+        name: "Mathematics",
+        nameHi: "गणित",
+        school: "math",
+        schoolFull: "School of Mathematics, Statistics & Computer Science",
+        icon: "chart",
+        desc: "Covers pure and applied mathematics, discrete structures, numerical analysis, calculus, and advanced algebraic concepts.",
+        progs: ["B.Sc. Mathematics", "M.Sc. Mathematics", "Ph.D. Mathematics"],
+        papers: [
+          { lvl: "ug", type: "End Sem", year: "2024", sem: "Sem IV", date: "May 2024", size: "1.0 MB" },
+          { lvl: "pg", type: "End Sem", year: "2024", sem: "Sem IV", date: "May 2024", size: "1.3 MB" },
+          { lvl: "pg", type: "Mid Sem", year: "2024", sem: "Sem I", date: "Oct 2024", size: "0.7 MB" }
+        ]
+      },
+      {
+        id: "bioinformatics",
+        name: "Bioinformatics",
+        nameHi: "बायोइंफॉर्मेटिक्स",
+        school: "earth",
+        schoolFull: "School of Earth, Biological & Environmental Sciences",
+        icon: "medical",
+        desc: "Combines molecular biology methods with computing power to parse genetic sequences, protein metrics, and evolutionary models.",
+        progs: ["M.Sc. Bioinformatics", "Ph.D. Bioinformatics"],
+        papers: [
+          { lvl: "pg", type: "End Sem", year: "2024", sem: "Sem IV", date: "May 2024", size: "1.1 MB" },
+          { lvl: "pg", type: "Mid Sem", year: "2024", sem: "Sem III", date: "Oct 2024", size: "0.8 MB" }
+        ]
+      },
+      {
+        id: "biotechnology",
+        name: "Biotechnology",
+        nameHi: "जैव प्रौद्योगिकी",
+        school: "earth",
+        schoolFull: "School of Earth, Biological & Environmental Sciences",
+        icon: "search",
+        desc: "Examines genetic modifications, enzyme processes, cell lines, and agricultural/medical applications of biological sciences.",
+        progs: ["M.Sc. Biotechnology", "Ph.D. Biotechnology"],
+        papers: [
+          { lvl: "pg", type: "End Sem", year: "2024", sem: "Sem II", date: "May 2024", size: "1.5 MB" },
+          { lvl: "pg", type: "Mid Sem", year: "2024", sem: "Sem I", date: "Oct 2024", size: "0.9 MB" }
+        ]
+      },
+      {
+        id: "historical-studies",
+        name: "Historical Studies",
+        nameHi: "ऐतिहासिक अध्ययन",
+        school: "social",
+        schoolFull: "School of Social Sciences & Policies",
+        icon: "building",
+        desc: "Explores ancient cultures, archaeological artifacts, national archives, and modern socio-political histories.",
+        progs: ["M.A. History", "Ph.D. History"],
+        papers: [
+          { lvl: "pg", type: "End Sem", year: "2024", sem: "Sem IV", date: "May 2024", size: "1.0 MB" },
+          { lvl: "pg", type: "Mid Sem", year: "2024", sem: "Sem II", date: "Oct 2024", size: "0.6 MB" }
+        ]
+      },
+      {
+        id: "law",
+        name: "Law & Governance",
+        nameHi: "कानून और शासन",
+        school: "social",
+        schoolFull: "School of Law & Governance",
+        icon: "shield",
+        desc: "Administers corporate laws, constitutional provisions, legal jurisprudence, and judicial mechanisms.",
+        progs: ["B.A. LL.B. (Hons)", "LL.M.", "Ph.D. Law"],
+        papers: [
+          { lvl: "ug", type: "End Sem", year: "2024", sem: "Sem VIII", date: "May 2024", size: "1.6 MB" },
+          { lvl: "pg", type: "End Sem", year: "2024", sem: "Sem II", date: "May 2024", size: "1.2 MB" }
+        ]
+      },
+      {
+        id: "chemistry",
+        name: "Chemistry",
+        nameHi: "रसायन शास्त्र",
+        school: "physical",
+        schoolFull: "School of Physical & Chemical Sciences",
+        icon: "medical",
+        desc: "Covers organic synthesis, physical thermodynamics, inorganic crystal lattices, and biochemical structures.",
+        progs: ["B.Sc. Chemistry", "M.Sc. Chemistry", "Ph.D. Chemistry"],
+        papers: [
+          { lvl: "ug", type: "End Sem", year: "2024", sem: "Sem VI", date: "May 2024", size: "1.2 MB" },
+          { lvl: "pg", type: "End Sem", year: "2024", sem: "Sem IV", date: "May 2024", size: "1.5 MB" }
+        ]
+      },
+      {
+        id: "physics",
+        name: "Physics",
+        nameHi: "भौतिक विज्ञान",
+        school: "physical",
+        schoolFull: "School of Physical & Chemical Sciences",
+        icon: "globe",
+        desc: "Analyses quantum electrodynamics, condensed matter physics, statistical models, and astrophysics formulas.",
+        progs: ["B.Sc. Physics", "M.Sc. Physics", "Ph.D. Physics"],
+        papers: [
+          { lvl: "ug", type: "End Sem", year: "2024", sem: "Sem VI", date: "May 2024", size: "1.3 MB" },
+          { lvl: "pg", type: "End Sem", year: "2024", sem: "Sem IV", date: "May 2024", size: "1.6 MB" }
+        ]
+      }
+    ];
+
+    window.addEventListener('DOMContentLoaded', () => {
+      let activeDeptId = departments[0].id;
+      let activeSchoolFilter = "all";
+      let searchQuery = "";
+
+      const sidebarContainer = document.getElementById('deptSidebarList');
+      const papersGrid = document.getElementById('pyqPapersGrid');
+      const schoolTabs = document.querySelectorAll('#pyqSchoolTabs > .btn-school-tab');
+      const sidebarSearch = document.getElementById('sidebarSearch');
+
+      // Initialize render
+      renderSidebar();
+      renderActiveDepartment();
+
+      // Sidebar rendering function
+      function renderSidebar() {
+        sidebarContainer.innerHTML = '';
+        const filtered = departments.filter(d => {
+          const matchSchool = activeSchoolFilter === "all" || d.school === activeSchoolFilter;
+          const matchQuery = d.name.toLowerCase().includes(searchQuery) || d.schoolFull.toLowerCase().includes(searchQuery);
+          return matchSchool && matchQuery;
+        });
+
+        if (filtered.length === 0) {
+          sidebarContainer.innerHTML = `<div style="font-size:0.75rem; color:var(--tx-muted); text-align:center; padding:15px;">No depts found</div>`;
+          return;
+        }
+
+        filtered.forEach(d => {
+          const btn = document.createElement('button');
+          btn.className = `pyq-dept-btn ${d.id === activeDeptId ? 'active' : ''}`;
+          btn.innerHTML = `<span class="icon-holder" style="margin-right:8px;"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-${d.icon}"></use></svg></span>${d.name}`;
+          btn.addEventListener('click', () => {
+            activeDeptId = d.id;
+            // Update active state in list
+            document.querySelectorAll('.pyq-dept-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderActiveDepartment();
+          });
+          sidebarContainer.appendChild(btn);
+        });
+      }
+
+      // Render the active department card and papers list
+      function renderActiveDepartment() {
+        const dept = departments.find(d => d.id === activeDeptId);
+        if (!dept) return;
+
+        // Render card info
+        document.getElementById('activeDeptTitle').innerHTML = `<span class="icon-holder" style="margin-right:10px;"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-${dept.icon}"></use></svg></span>${dept.name}`;
+        document.getElementById('activeDeptSchool').textContent = dept.schoolFull;
+        document.getElementById('activeDeptDesc').textContent = dept.desc;
+
+        // Render progs badges
+        const progsArea = document.getElementById('activeDeptProgs');
+        progsArea.innerHTML = '';
+        dept.progs.forEach(p => {
+          const span = document.createElement('span');
+          span.className = 'qa-card';
+          span.style.padding = '4px 10px';
+          span.style.fontSize = '0.7rem';
+          span.style.boxShadow = 'none';
+          span.textContent = p;
+          progsArea.appendChild(span);
+        });
+
+        // Render paper download cards
+        papersGrid.innerHTML = '';
+        if (dept.papers.length === 0) {
+          papersGrid.innerHTML = `<div style="grid-column: span 2; text-align:center; color:var(--tx-muted); padding:30px;">No papers archived yet.</div>`;
+          return;
+        }
+
+        dept.papers.forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'pyq-card';
+          card.innerHTML = `
+            <div class="pyq-card-header">
+              <span class="pyq-course-code">${p.lvl.toUpperCase()} · ${p.type}</span>
+              <h4 class="pyq-course-name">${p.type} — ${p.year}</h4>
+            </div>
+            <div class="pyq-details">
+              <div><strong>Semester:</strong> ${p.sem}</div>
+              <div><strong>Published:</strong> ${p.date}</div>
+              <div><strong>File Size:</strong> ${p.size}</div>
+              <div><strong>Format:</strong> PDF</div>
+            </div>
+            <a href="#" class="pyq-download-btn" onclick="alert('Download started...'); return false;">
+              Download Paper
+            </a>
+          `;
+          papersGrid.appendChild(card);
+        });
+      }
+
+      // Hook up school tabs
+      schoolTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          schoolTabs.forEach(t => {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+
+          activeSchoolFilter = tab.getAttribute('data-school');
+          // If the currently active department is hidden, auto-select the first visible one
+          const visibleDepts = departments.filter(d => activeSchoolFilter === "all" || d.school === activeSchoolFilter);
+          if (visibleDepts.length > 0 && !visibleDepts.some(d => d.id === activeDeptId)) {
+            activeDeptId = visibleDepts[0].id;
+          }
+          
+          renderSidebar();
+          renderActiveDepartment();
+        });
+      });
+
+      // Hook up search input
+      sidebarSearch.addEventListener('input', (e) => {
+        searchQuery = e.target.value.toLowerCase().trim();
+        renderSidebar();
+      });
+    });
+  </script>
+</body>
+</html>
