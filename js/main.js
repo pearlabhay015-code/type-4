@@ -44,35 +44,40 @@ function initFontSize() {
   const decBtn = document.getElementById('btnDecSize');
   const resetBtn = document.getElementById('btnResetSize');
   const incBtn = document.getElementById('btnIncSize');
+  const sizeIndicator = document.getElementById('sizeIndicator');
 
   if (!decBtn || !resetBtn || !incBtn) return;
 
-  let currentScale = parseFloat(localStorage.getItem('cusb-font-scale')) || 1.0;
-  applyFontScale(currentScale);
+  let currentSize = parseInt(localStorage.getItem('cusb-font-size')) || 16;
+  applyFontSize(currentSize);
 
   decBtn.addEventListener('click', () => {
-    if (currentScale > 0.8) {
-      currentScale -= 0.1;
-      applyFontScale(currentScale);
+    if (currentSize > 12) {
+      currentSize -= 1;
+      applyFontSize(currentSize);
     }
   });
 
   resetBtn.addEventListener('click', () => {
-    currentScale = 1.0;
-    applyFontScale(currentScale);
+    currentSize = 16;
+    applyFontSize(currentSize);
   });
 
   incBtn.addEventListener('click', () => {
-    if (currentScale < 1.3) {
-      currentScale += 0.1;
-      applyFontScale(currentScale);
+    if (currentSize < 30) {
+      currentSize += 1;
+      applyFontSize(currentSize);
     }
   });
 }
 
-function applyFontScale(scale) {
-  document.documentElement.style.fontSize = `${scale * 16}px`;
-  localStorage.setItem('cusb-font-scale', scale);
+function applyFontSize(size) {
+  const sizeIndicator = document.getElementById('sizeIndicator');
+  document.documentElement.style.fontSize = `${size}px`;
+  localStorage.setItem('cusb-font-size', size);
+  if (sizeIndicator) {
+    sizeIndicator.textContent = `${size}px`;
+  }
 }
 
 /* ==========================================================================

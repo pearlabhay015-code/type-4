@@ -32,6 +32,8 @@ const iconDefs = `
     <symbol id="icon-lock" viewBox="0 0 24 24"><path d="M6 10V8a6 6 0 1 1 12 0v2h2v12H4V10h2Zm2 0h8V8a4 4 0 0 0-8 0v2Zm-2 2v8h12v-8H6Z"/></symbol>
     <symbol id="icon-medical" viewBox="0 0 24 24"><path d="M10 3h4v6h6v4h-6v6h-4v-6H4V9h6V3Z"/></symbol>
     <symbol id="icon-send" viewBox="0 0 24 24"><path d="M3 20 21 12 3 4v6l11 2-11 2v6Z"/></symbol>
+    <symbol id="icon-arrow-up" viewBox="0 0 24 24"><path d="M11 20V7.8l-5.6 5.6L4 12 12 4l8 8-1.4 1.4L13 7.8V20h-2Z"/></symbol>
+    <symbol id="icon-robot-chat" viewBox="0 0 24 24"><path d="M11 2h2v3h3.5A3.5 3.5 0 0 1 20 8.5V15a3.5 3.5 0 0 1-3.5 3.5h-1.7L12 22l-2.8-3.5H7.5A3.5 3.5 0 0 1 4 15V8.5A3.5 3.5 0 0 1 7.5 5H11V2Zm-3.5 5A1.5 1.5 0 0 0 6 8.5V15a1.5 1.5 0 0 0 1.5 1.5h2.7l1.8 2.2 1.8-2.2h2.7A1.5 1.5 0 0 0 18 15V8.5A1.5 1.5 0 0 0 16.5 7h-9ZM8 11a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm-3.5 3H15v2H9.5v-2Z"/></symbol>
     <symbol id="icon-moon" viewBox="0 0 24 24"><path d="M21 14.5A8.5 8.5 0 0 1 9.5 3 9.5 9.5 0 1 0 21 14.5Z"/></symbol>
     <symbol id="icon-sun" viewBox="0 0 24 24"><path d="M12 5a7 7 0 1 0 0 14 7 7 0 0 0 0-14Zm0-4h2v3h-2V1Zm0 19h2v3h-2v-3ZM1 11h3v2H1v-2Zm19 0h3v2h-3v-2ZM4.2 2.8l2.1 2.1-1.4 1.4-2.1-2.1 1.4-1.4Zm14.9 14.9 2.1 2.1-1.4 1.4-2.1-2.1 1.4-1.4Zm0-12.8 2.1-2.1 1.4 1.4-2.1 2.1-1.4-1.4ZM4.9 17.7l1.4 1.4-2.1 2.1-1.4-1.4 2.1-2.1Z"/></symbol>
     <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M4 4h16v12H8l-4 4V4Zm2 2v9.2L7.2 14H18V6H6Z"/></symbol>
@@ -157,9 +159,10 @@ class CusbTopbar extends HTMLElement {
           
           <div class="accessibility-controls" role="group" aria-label="Accessibility Font Controls">
             <span class="size-label" data-en="Text Size:" data-hi="आकार:">Size:</span>
-            <button class="btn-size" id="btnDecSize" title="Decrease Text Size" aria-label="Decrease Font Size">A-</button>
-            <button class="btn-size" id="btnResetSize" title="Reset Text Size" aria-label="Reset Font Size">A</button>
-            <button class="btn-size" id="btnIncSize" title="Increase Text Size" aria-label="Increase Font Size">A+</button>
+            <button class="btn-size" id="btnDecSize" title="Decrease Text Size" aria-label="Decrease Font Size">−</button>
+            <button class="btn-size" id="btnResetSize" title="Reset Text Size" aria-label="Reset Font Size"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6M23 20v-6h-6"></path><path d="M20.49 9A9 9 0 0 0 5.64 5.64M3.51 15A9 9 0 0 0 18.36 18.36"></path></svg></button>
+            <button class="btn-size" id="btnIncSize" title="Increase Text Size" aria-label="Increase Font Size">+</button>
+            <span class="size-indicator" id="sizeIndicator">16px</span>
           </div>
           
           <div class="topbar-divider">|</div>
@@ -637,7 +640,9 @@ class CusbChatbot extends HTMLElement {
             <button class="chatbot-send-btn" id="chatbotSendBtn" aria-label="Send query">${iconSvg('send')}</button>
           </div>
         </div>
-        <button class="chatbot-toggle" id="chatbotToggleBtn" aria-label="Open CUSB Assistant Window">${iconSvg('chat')}</button>
+        <button class="chatbot-toggle" id="chatbotToggleBtn" aria-label="Open CUSB Assistant Window">
+          <img src="assets/images/chatbot-bot.avif" alt="" class="chatbot-toggle-img" loading="lazy">
+        </button>
       </div>
       
       <div class="floating-message" id="chatbotFloatingMsg">
@@ -646,7 +651,7 @@ class CusbChatbot extends HTMLElement {
         </div>
       </div>
 
-      <button id="scroll-btn" aria-label="Scroll to top" title="Scroll to top">${iconSvg('send')}</button>
+      <button id="scroll-btn" aria-label="Scroll to top" title="Scroll to top">${iconSvg('arrow-up')}</button>
     `;
     replaceEmojiIcons(this);
 

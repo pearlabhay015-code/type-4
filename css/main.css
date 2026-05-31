@@ -302,15 +302,15 @@ cusb-topbar {
 .accessibility-controls {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
 }
 .btn-size {
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: 4px;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: bold;
   cursor: pointer;
   display: flex;
@@ -318,10 +318,24 @@ cusb-topbar {
   justify-content: center;
   transition: var(--transition);
   color: var(--tx-primary);
+  padding: 0;
 }
 .btn-size:hover {
   background: var(--acc-green);
   color: white;
+}
+.btn-size svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+}
+.size-indicator {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--tx-secondary);
+  min-width: 32px;
+  text-align: center;
+  display: inline-block;
 }
 .size-label {
   font-size: 0.75rem;
@@ -1111,7 +1125,7 @@ cusb-footer {
 ────────────────────────────────────── */
 .chatbot-container {
   position: fixed;
-  bottom: 30px;
+  bottom: 92px;
   right: 30px;
   z-index: 1500;
   font-family: var(--ff-body);
@@ -1130,6 +1144,14 @@ cusb-footer {
   align-items: center;
   justify-content: center;
   transition: var(--transition);
+  overflow: hidden;
+  padding: 0;
+}
+.chatbot-toggle-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .chatbot-toggle:hover {
   transform: scale(1.08);
@@ -1257,7 +1279,7 @@ cusb-footer {
 /* Floating Greeting Bubble */
 .floating-message {
   position: fixed;
-  bottom: 100px;
+  bottom: 162px;
   right: 35px;
   z-index: 1400;
   pointer-events: none;
@@ -1300,7 +1322,7 @@ cusb-footer {
 #scroll-btn {
   position: fixed;
   bottom: 30px;
-  left: 30px;
+  right: 38px;
   background-color: var(--acc-navy);
   color: white;
   border: none;
@@ -1328,6 +1350,17 @@ cusb-footer {
 }
 
 @media (max-width: 575px) {
+  .chatbot-container {
+    bottom: 86px;
+    right: 22px;
+  }
+  .floating-message {
+    bottom: 154px;
+    right: 27px;
+  }
+  #scroll-btn {
+    right: 30px;
+  }
   .chatbot-window {
     width: 290px;
     height: 380px;
