@@ -284,14 +284,14 @@ class CusbNavbar extends HTMLElement {
             
             <!-- 3. ADMINISTRATION -->
             <li class="navbar-item" data-menu="admin">
-              <a href="index2.html" class="navbar-link"><span data-en="Administration" data-hi="प्रशासन">Administration</span></a>
+              <a href="leaders.html" class="navbar-link"><span data-en="Administration" data-hi="प्रशासन">Administration</span></a>
               <div class="megamenu" id="adminMegamenu" role="region" aria-label="Administration Links">
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="Leadership" data-hi="नेतृत्व">Leadership</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="index2.html#visitor"><span class="megamenu-icon">👤</span><span data-en="Hon'ble Visitor" data-hi="माननीय कुलाध्यक्ष">Hon'ble Visitor</span></a></li>
-                    <li class="megamenu-item"><a href="index2.html#chancellor"><span class="megamenu-icon">🎓</span><span data-en="Hon'ble Chancellor" data-hi="माननीय कुलाधिपति">Hon'ble Chancellor</span></a></li>
-                    <li class="megamenu-item"><a href="index2.html#vc"><span class="megamenu-icon">👔</span><span data-en="Vice Chancellor" data-hi="कुलपति">Vice Chancellor</span></a></li>
+                    <li class="megamenu-item"><a href="leaders.html#visitor"><span class="megamenu-icon">👤</span><span data-en="Hon'ble Visitor" data-hi="माननीय कुलाध्यक्ष">Hon'ble Visitor</span></a></li>
+                    <li class="megamenu-item"><a href="leaders.html#chancellor"><span class="megamenu-icon">🎓</span><span data-en="Hon'ble Chancellor" data-hi="माननीय कुलाधिपति">Hon'ble Chancellor</span></a></li>
+                    <li class="megamenu-item"><a href="leaders.html#vc"><span class="megamenu-icon">👔</span><span data-en="Vice Chancellor" data-hi="कुलपति">Vice Chancellor</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
@@ -314,28 +314,28 @@ class CusbNavbar extends HTMLElement {
             
             <!-- 4. ACADEMICS -->
             <li class="navbar-item" data-menu="academics">
-              <a href="index4.html" class="navbar-link"><span data-en="Academics" data-hi="अकादमिक">Academics</span></a>
+              <a href="courses.html" class="navbar-link"><span data-en="Academics" data-hi="अकादमिक">Academics</span></a>
               <div class="megamenu" id="academicsMegamenu" role="region" aria-label="Academics Links">
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="Schools" data-hi="अध्ययन शालाएं">Schools</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="index4.html?school=math"><span class="megamenu-icon">💻</span><span data-en="Maths & Computer Sci" data-hi="गणित और कंप्यूटर विज्ञान">Maths & Computer Sci</span></a></li>
-                    <li class="megamenu-item"><a href="index4.html?school=earth"><span class="megamenu-icon">🌿</span><span data-en="Biological & Earth Sci" data-hi="जैविक और पृथ्वी विज्ञान">Biological & Earth Sci</span></a></li>
-                    <li class="megamenu-item"><a href="index4.html?school=social"><span class="megamenu-icon">⚖️</span><span data-en="Social Sciences" data-hi="सामाजिक विज्ञान">Social Sciences</span></a></li>
+                    <li class="megamenu-item"><a href="courses.html?school=math"><span class="megamenu-icon">💻</span><span data-en="Maths & Computer Sci" data-hi="गणित और कंप्यूटर विज्ञान">Maths & Computer Sci</span></a></li>
+                    <li class="megamenu-item"><a href="courses.html?school=earth"><span class="megamenu-icon">🌿</span><span data-en="Biological & Earth Sci" data-hi="जैविक और पृथ्वी विज्ञान">Biological & Earth Sci</span></a></li>
+                    <li class="megamenu-item"><a href="courses.html?school=social"><span class="megamenu-icon">⚖️</span><span data-en="Social Sciences" data-hi="सामाजिक विज्ञान">Social Sciences</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="Programmes" data-hi="कार्यक्रम">Programmes</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="index4.html"><span class="megamenu-icon">🎓</span><span data-en="Undergraduate" data-hi="स्नातक">Undergraduate</span></a></li>
-                    <li class="megamenu-item"><a href="index4.html"><span class="megamenu-icon">🔬</span><span data-en="Postgraduate" data-hi="स्नातकोत्तर">Postgraduate</span></a></li>
-                    <li class="megamenu-item"><a href="index4.html"><span class="megamenu-icon">🧬</span><span data-en="Doctoral (Ph.D.)" data-hi="डॉक्टरेट (पीएच.डी.)">Doctoral (Ph.D.)</span></a></li>
+                    <li class="megamenu-item"><a href="courses.html"><span class="megamenu-icon">🎓</span><span data-en="Undergraduate" data-hi="स्नातक">Undergraduate</span></a></li>
+                    <li class="megamenu-item"><a href="courses.html"><span class="megamenu-icon">🔬</span><span data-en="Postgraduate" data-hi="स्नातकोत्तर">Postgraduate</span></a></li>
+                    <li class="megamenu-item"><a href="courses.html"><span class="megamenu-icon">🧬</span><span data-en="Doctoral (Ph.D.)" data-hi="डॉक्टरेट (पीएच.डी.)">Doctoral (Ph.D.)</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="Departments" data-hi="विभाग">Departments</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="index3.html"><span class="megamenu-icon">🖥️</span><span data-en="Computer Science" data-hi="कंप्यूटर विज्ञान">Computer Science</span></a></li>
+                    <li class="megamenu-item"><a href="cs.html"><span class="megamenu-icon">🖥️</span><span data-en="Computer Science" data-hi="कंप्यूटर विज्ञान">Computer Science</span></a></li>
                     <li class="megamenu-item"><a href="#"><span class="megamenu-icon">📐</span><span data-en="Mathematics" data-hi="गणित">Mathematics</span></a></li>
                     <li class="megamenu-item"><a href="#"><span class="megamenu-icon">🧪</span><span data-en="Chemistry" data-hi="रसायन शास्त्र">Chemistry</span></a></li>
                   </ul>
@@ -415,7 +415,7 @@ class CusbNavbar extends HTMLElement {
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="Resources" data-hi="संसाधन">Resources</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="index6.html"><span class="megamenu-icon">📚</span><span data-en="PYQ Portal" data-hi="पुराने प्रश्न पत्र">PYQ Portal</span></a></li>
+                    <li class="megamenu-item"><a href="pyq.html"><span class="megamenu-icon">📚</span><span data-en="PYQ Portal" data-hi="पुराने प्रश्न पत्र">PYQ Portal</span></a></li>
                     <li class="megamenu-item"><a href="#"><span class="megamenu-icon">💻</span><span data-en="LMS Portal" data-hi="एलएमएस पोर्टल">LMS Portal</span></a></li>
                   </ul>
                 </div>
@@ -458,7 +458,7 @@ class CusbNavbar extends HTMLElement {
             
             <!-- 9. DOWNLOADS -->
             <li class="navbar-item" data-menu="downloads">
-              <a href="index4.html" class="navbar-link"><span data-en="Downloads" data-hi="डाउनलोड">Downloads</span></a>
+              <a href="courses.html" class="navbar-link"><span data-en="Downloads" data-hi="डाउनलोड">Downloads</span></a>
               <div class="megamenu" id="downloadsMegamenu" role="region" aria-label="Downloads Links">
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="Academics" data-hi="शैक्षणिक">Academics</div>
@@ -518,7 +518,7 @@ class CusbQuickActions extends HTMLElement {
           <a href="index.html#notices" class="qa-card">
             <span class="qa-ico">🔔</span><span data-en="Notices" data-hi="सूचनाएं">Notices</span>
           </a>
-          <a href="index4.html" class="qa-card">
+          <a href="courses.html" class="qa-card">
             <span class="qa-ico">📥</span><span data-en="Downloads" data-hi="डाउनलोड">Downloads</span>
           </a>
           <a href="#footer" class="qa-card">
@@ -687,8 +687,8 @@ class CusbChatbot extends HTMLElement {
       },
       programs: {
         keywords: ['program', 'course', 'degree', 'academics', 'syllabus', 'departments', 'schools'],
-        en: 'CUSB offers 51+ programmes including Undergraduate, Postgraduate, and PhD degrees. Explore detailed courses at academics.html or courses.html.',
-        hi: 'सीयूएसबी स्नातक, स्नातकोत्तर और पीएचडी डिग्री सहित 51+ कार्यक्रम प्रदान करता है। विस्तृत पाठ्यक्रमों के लिए academics.html या courses.html देखें।'
+        en: 'CUSB offers 51+ programmes including Undergraduate, Postgraduate, and PhD degrees. Explore detailed courses at courses.html.',
+        hi: 'सीयूएसबी स्नातक, स्नातकोत्तर और पीएचडी डिग्री सहित 51+ कार्यक्रम प्रदान करता है। विस्तृत पाठ्यक्रमों के लिए courses.html देखें।'
       },
       hostel: {
         keywords: ['hostel', 'warden', 'hostels', 'gargi', 'maitreyi', 'aryabhatta', 'mess', 'accommodation'],

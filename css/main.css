@@ -25,7 +25,7 @@
 
   /* Accent Colors */
   --acc-green: #237836;
-  --acc-dark-green: #1b5c2a;
+  --acc-dark-green: #5a0a08;
   --acc-gold: #f6b425;
   --acc-navy: #0f3c5f;
   --acc-purple: #412461;
@@ -1321,13 +1321,13 @@ cusb-footer {
 /* Scroll to Top button */
 #scroll-btn {
   position: fixed;
-  bottom: 30px;
-  right: 38px;
-  background-color: var(--acc-navy);
+  bottom: 25px;
+  right: 35px;
+  background-color: rgb(6, 103, 213);
   color: white;
   border: none;
-  width: 44px;
-  height: 44px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   font-size: 1.2rem;
   cursor: pointer;
