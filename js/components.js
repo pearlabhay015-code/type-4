@@ -316,30 +316,11 @@ class CusbNavbar extends HTMLElement {
             <li class="navbar-item" data-menu="academics">
               <a href="courses.html" class="navbar-link"><span data-en="Academics" data-hi="अकादमिक">Academics</span></a>
               <div class="megamenu" id="academicsMegamenu" role="region" aria-label="Academics Links">
-                <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Schools" data-hi="अध्ययन शालाएं">Schools</div>
-                  <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="courses.html?school=math"><span class="megamenu-icon">💻</span><span data-en="Maths & Computer Sci" data-hi="गणित और कंप्यूटर विज्ञान">Maths & Computer Sci</span></a></li>
-                    <li class="megamenu-item"><a href="courses.html?school=earth"><span class="megamenu-icon">🌿</span><span data-en="Biological & Earth Sci" data-hi="जैविक और पृथ्वी विज्ञान">Biological & Earth Sci</span></a></li>
-                    <li class="megamenu-item"><a href="courses.html?school=social"><span class="megamenu-icon">⚖️</span><span data-en="Social Sciences" data-hi="सामाजिक विज्ञान">Social Sciences</span></a></li>
-                  </ul>
-                </div>
-                <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Programmes" data-hi="कार्यक्रम">Programmes</div>
-                  <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="courses.html"><span class="megamenu-icon">🎓</span><span data-en="Undergraduate" data-hi="स्नातक">Undergraduate</span></a></li>
-                    <li class="megamenu-item"><a href="courses.html"><span class="megamenu-icon">🔬</span><span data-en="Postgraduate" data-hi="स्नातकोत्तर">Postgraduate</span></a></li>
-                    <li class="megamenu-item"><a href="courses.html"><span class="megamenu-icon">🧬</span><span data-en="Doctoral (Ph.D.)" data-hi="डॉक्टरेट (पीएच.डी.)">Doctoral (Ph.D.)</span></a></li>
-                  </ul>
-                </div>
-                <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Departments" data-hi="विभाग">Departments</div>
-                  <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="cs.html"><span class="megamenu-icon">🖥️</span><span data-en="Computer Science" data-hi="कंप्यूटर विज्ञान">Computer Science</span></a></li>
-                    <li class="megamenu-item"><a href="#"><span class="megamenu-icon">📐</span><span data-en="Mathematics" data-hi="गणित">Mathematics</span></a></li>
-                    <li class="megamenu-item"><a href="#"><span class="megamenu-icon">🧪</span><span data-en="Chemistry" data-hi="रसायन शास्त्र">Chemistry</span></a></li>
-                  </ul>
-                </div>
+                <ul class="megamenu-list">
+                  <li class="megamenu-item"><a href="courses.html?section=schools"><span class="megamenu-icon">🏫</span><span data-en="Schools" data-hi="अध्ययन शालाएं">Schools</span></a></li>
+                  <li class="megamenu-item"><a href="courses.html?section=programmes"><span class="megamenu-icon">🎓</span><span data-en="Programmes" data-hi="कार्यक्रम">Programmes</span></a></li>
+                  <li class="megamenu-item"><a href="courses.html?section=departments"><span class="megamenu-icon">🏛️</span><span data-en="Departments" data-hi="विभाग">Departments</span></a></li>
+                </ul>
               </div>
             </li>
             
@@ -401,10 +382,10 @@ class CusbNavbar extends HTMLElement {
               </div>
             </li>
             
-            <!-- 7. WORKSPACE -->
-            <li class="navbar-item" data-menu="workspace">
-              <a href="#" class="navbar-link"><span data-en="Workspace" data-hi="कार्यक्षेत्र">Workspace</span></a>
-              <div class="megamenu" id="workspaceMegamenu" role="region" aria-label="Workspace Links">
+            <!-- 7. RESOURCES -->
+            <li class="navbar-item" data-menu="resources">
+              <a href="#" class="navbar-link"><span data-en="Resources" data-hi="संसाधन">Resources</span></a>
+              <div class="megamenu" id="resourcesMegamenu" role="region" aria-label="Resources Links">
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="Portals" data-hi="पोर्टल">Portals</div>
                   <ul class="megamenu-list">
@@ -641,7 +622,24 @@ class CusbChatbot extends HTMLElement {
           </div>
         </div>
         <button class="chatbot-toggle" id="chatbotToggleBtn" aria-label="Open CUSB Assistant Window">
-          <img src="assets/images/chatbot-bot.avif" alt="" class="chatbot-toggle-img" loading="lazy">
+          <svg class="chatbot-toggle-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="chatbotShellGradient" x1="12" y1="8" x2="52" y2="58" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="var(--bg-primary)"/>
+                <stop offset="0.55" stop-color="var(--bg-secondary)"/>
+                <stop offset="1" stop-color="var(--acc-blue)"/>
+              </linearGradient>
+            </defs>
+            <path class="chatbot-icon-shadow" d="M18 55c-3 0-5-2-5-5V28c0-9 8-17 19-17s19 8 19 17v22c0 3-2 5-5 5H18z"/>
+            <path class="chatbot-icon-head" d="M16 53c-3 0-5-2-5-5V29c0-11 9-20 21-20s21 9 21 20v19c0 3-2 5-5 5H16z"/>
+            <path class="chatbot-icon-face" d="M20 29c0-5 5-9 12-9s12 4 12 9v8c0 5-5 9-12 9s-12-4-12-9v-8z"/>
+            <circle class="chatbot-icon-eye" cx="27" cy="33" r="2.6"/>
+            <circle class="chatbot-icon-eye" cx="37" cy="33" r="2.6"/>
+            <path class="chatbot-icon-smile" d="M27 39c2.8 2 7.2 2 10 0"/>
+            <path class="chatbot-icon-antenna" d="M32 9V4"/>
+            <circle class="chatbot-icon-dot" cx="32" cy="4" r="2.6"/>
+            <path class="chatbot-icon-ear" d="M11 32H7v10h4M53 32h4v10h-4"/>
+          </svg>
         </button>
       </div>
       

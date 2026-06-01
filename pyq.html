@@ -35,7 +35,7 @@
         <h2 class="pyq-sidebar-title" data-en="Departments" data-hi="विभाग">Departments</h2>
         
         <!-- Local search -->
-        <input type="search" class="search-input" id="sidebarSearch" placeholder="Search department..." style="width:100%; padding:8px 14px; font-size:0.8rem; margin-bottom:15px; border-radius:15px;" aria-label="Search department list">
+        <input type="search" class="search-input pyq-sidebar-search" id="sidebarSearch" placeholder="Search department..." aria-label="Search department list">
         
         <div class="pyq-dept-list" id="deptSidebarList">
           <!-- Populated dynamically -->
@@ -54,17 +54,17 @@
         </div>
 
         <!-- Selected Department Detail Card -->
-        <div class="program-pill-card" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px; margin-bottom:30px;" id="activeDeptCard">
+        <div class="program-pill-card pyq-active-card" id="activeDeptCard">
           <div class="program-pill-title" id="activeDeptTitle">Loading Department...</div>
-          <div style="font-size:0.75rem; color:var(--tx-muted); text-transform:uppercase; font-weight:700;" id="activeDeptSchool">School</div>
-          <p style="font-size:0.85rem; color:var(--tx-secondary); line-height:1.6;" id="activeDeptDesc">Overview</p>
-          <div class="qa-grid" id="activeDeptProgs" style="gap:8px;">
+          <div class="pyq-active-school" id="activeDeptSchool">School</div>
+          <p class="pyq-active-desc" id="activeDeptDesc">Overview</p>
+          <div class="qa-grid pyq-program-badges" id="activeDeptProgs">
             <!-- Badges -->
           </div>
         </div>
 
         <!-- Question Papers Grid -->
-        <h3 style="font-family:var(--ff-title); font-size:1.2rem; margin-bottom:15px;" data-en="Question Papers" data-hi="प्रश्न पत्र सूची">Question Papers</h3>
+        <h3 class="pyq-section-heading" data-en="Question Papers" data-hi="प्रश्न पत्र सूची">Question Papers</h3>
         <div class="pyq-grid" id="pyqPapersGrid">
           <!-- Download cards populated dynamically -->
         </div>
@@ -225,14 +225,14 @@
         });
 
         if (filtered.length === 0) {
-          sidebarContainer.innerHTML = `<div style="font-size:0.75rem; color:var(--tx-muted); text-align:center; padding:15px;">No depts found</div>`;
+          sidebarContainer.innerHTML = `<div class="pyq-empty-state">No depts found</div>`;
           return;
         }
 
         filtered.forEach(d => {
           const btn = document.createElement('button');
           btn.className = `pyq-dept-btn ${d.id === activeDeptId ? 'active' : ''}`;
-          btn.innerHTML = `<span class="icon-holder" style="margin-right:8px;"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-${d.icon}"></use></svg></span>${d.name}`;
+          btn.innerHTML = `<span class="icon-holder pyq-btn-icon"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-${d.icon}"></use></svg></span><span class="pyq-btn-label">${d.name}</span>`;
           btn.addEventListener('click', () => {
             activeDeptId = d.id;
             // Update active state in list
@@ -250,7 +250,7 @@
         if (!dept) return;
 
         // Render card info
-        document.getElementById('activeDeptTitle').innerHTML = `<span class="icon-holder" style="margin-right:10px;"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-${dept.icon}"></use></svg></span>${dept.name}`;
+        document.getElementById('activeDeptTitle').innerHTML = `<span class="icon-holder pyq-title-icon"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-${dept.icon}"></use></svg></span><span>${dept.name}</span>`;
         document.getElementById('activeDeptSchool').textContent = dept.schoolFull;
         document.getElementById('activeDeptDesc').textContent = dept.desc;
 
@@ -260,9 +260,6 @@
         dept.progs.forEach(p => {
           const span = document.createElement('span');
           span.className = 'qa-card';
-          span.style.padding = '4px 10px';
-          span.style.fontSize = '0.7rem';
-          span.style.boxShadow = 'none';
           span.textContent = p;
           progsArea.appendChild(span);
         });
@@ -270,7 +267,7 @@
         // Render paper download cards
         papersGrid.innerHTML = '';
         if (dept.papers.length === 0) {
-          papersGrid.innerHTML = `<div style="grid-column: span 2; text-align:center; color:var(--tx-muted); padding:30px;">No papers archived yet.</div>`;
+          papersGrid.innerHTML = `<div class="pyq-empty-state pyq-empty-grid">No papers archived yet.</div>`;
           return;
         }
 

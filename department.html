@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Department - CUSB</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <a href="#mainContent" class="skip-link">Skip to main content</a>
+
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent">
+    <section class="admin-hero dept-page-hero" aria-label="Department Banner">
+      <div class="container hero-content">
+        <div class="hero-eyebrow">
+          <span id="deptSchool">Central University of South Bihar</span>
+        </div>
+        <h1 class="hero-title" id="deptTitle">Department</h1>
+        <p class="hero-sub" id="deptSummary">Explore academic programmes, research areas, and department information.</p>
+
+        <div class="hero-btns">
+          <a href="#programmes-sec" class="btn btn-gold">Explore Programs</a>
+          <a href="#faculty-sec" class="btn btn-white">Faculty & Research</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="dept-info" aria-labelledby="titleDeptInfo">
+      <div class="container about-uni-grid">
+        <div class="about-uni-content">
+          <h2 class="section-title" id="titleDeptInfo" style="text-align:left; margin-bottom:15px;">Our Identity & Vision</h2>
+          <p class="about-uni-text" id="deptVision"></p>
+
+          <table class="hostel-details-table" style="margin-top:20px;">
+            <thead>
+              <tr><th colspan="2">Department at a Glance</th></tr>
+            </thead>
+            <tbody id="deptFacts"></tbody>
+          </table>
+        </div>
+
+        <div class="about-uni-left">
+          <div class="about-uni-icon-card dept-icon-card">
+            <img id="deptImage" src="assets/dept.jpeg" alt="Department learning space" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background-color:var(--bg-secondary);" id="faculty-sec" aria-labelledby="titleFaculty">
+      <div class="container">
+        <h2 class="section-title" id="titleFaculty">Faculty & Research Areas</h2>
+        <div class="faculty-grid" id="researchGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="programmes-sec" aria-labelledby="titleProgrammes">
+      <div class="container">
+        <h2 class="section-title" id="titleProgrammes">Academic Programmes</h2>
+        <div class="pyq-grid" id="programmesGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <cusb-quick-actions></cusb-quick-actions>
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/department-data.js" defer></script>
+  <script src="js/department-page.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

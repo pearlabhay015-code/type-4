@@ -1,0 +1,272 @@
+window.cusbDepartments = {
+  mathematics: {
+    name: 'Mathematics',
+    school: 'School of Mathematics, Statistics & Computer Science',
+    icon: 'chart',
+    summary: 'The Department of Mathematics builds strong foundations in pure and applied mathematics for teaching, research, analytics, and scientific computing.',
+    vision: 'The department focuses on mathematical reasoning, modelling, analysis, and problem solving. Students engage with classical theory and modern applications across computation, finance, data analysis, and interdisciplinary research.',
+    established: '2009',
+    programmes: ['Integrated B.Sc. + M.Sc. Mathematics', 'M.Sc. Mathematics', 'Ph.D. Mathematics'],
+    research: ['Algebra and Number Theory', 'Differential Equations', 'Mathematical Modelling', 'Numerical Analysis']
+  },
+  statistics: {
+    name: 'Statistics',
+    school: 'School of Mathematics, Statistics & Computer Science',
+    icon: 'chart',
+    summary: 'The Department of Statistics prepares students in statistical theory, applied data analysis, survey methods, and computational statistics.',
+    vision: 'The department connects rigorous statistical foundations with real-world data problems in science, social research, policy, industry, and technology.',
+    established: '2009',
+    programmes: ['Integrated B.Sc. + M.Sc. Statistics', 'M.Sc. Statistics', 'Ph.D. Statistics'],
+    research: ['Probability Theory', 'Inference', 'Sampling Techniques', 'Data Analytics']
+  },
+  bioinformatics: {
+    name: 'Bioinformatics',
+    school: 'School of Earth, Biological & Environmental Sciences',
+    icon: 'medical',
+    summary: 'The Department of Bioinformatics blends biology, computer science, and statistics to study biological data at scale.',
+    vision: 'The department supports interdisciplinary learning in genomics, computational biology, biological databases, and data-driven life science research.',
+    established: '2009',
+    programmes: ['M.Sc. Bioinformatics', 'Ph.D. Bioinformatics'],
+    research: ['Genomics', 'Computational Biology', 'Molecular Modelling', 'Biological Databases']
+  },
+  geology: {
+    name: 'Geology',
+    school: 'School of Earth, Biological & Environmental Sciences',
+    icon: 'globe',
+    summary: 'The Department of Geology studies earth materials, processes, resources, hazards, and environmental change.',
+    vision: 'The department develops field-based and laboratory skills for understanding the Earth system, natural resources, geohazards, and sustainable development.',
+    established: '2009',
+    programmes: ['M.Sc. Geology', 'Ph.D. Geology'],
+    research: ['Petrology', 'Sedimentology', 'Hydrogeology', 'Geochemistry']
+  },
+  geography: {
+    name: 'Geography',
+    school: 'School of Earth, Biological & Environmental Sciences',
+    icon: 'map-pin',
+    summary: 'The Department of Geography explores physical landscapes, human environments, spatial planning, and geospatial technologies.',
+    vision: 'The department combines fieldwork, spatial analysis, GIS, remote sensing, and social-environmental inquiry to understand changing regions and communities.',
+    established: '2009',
+    programmes: ['M.A./M.Sc. Geography', 'Ph.D. Geography'],
+    research: ['GIS and Remote Sensing', 'Urban Studies', 'Geomorphology', 'Regional Planning']
+  },
+  life_science: {
+    name: 'Life Science',
+    school: 'School of Earth, Biological & Environmental Sciences',
+    icon: 'book',
+    summary: 'The Department of Life Science provides broad training in biological systems from molecules to ecosystems.',
+    vision: 'The department encourages laboratory learning and research across cell biology, microbiology, plant sciences, animal sciences, and ecology.',
+    established: '2009',
+    programmes: ['M.Sc. Life Science', 'Ph.D. Life Science'],
+    research: ['Cell Biology', 'Microbiology', 'Plant Sciences', 'Ecology']
+  },
+  biotechnology: {
+    name: 'Biotechnology',
+    school: 'School of Earth, Biological & Environmental Sciences',
+    icon: 'search',
+    summary: 'The Department of Biotechnology applies biological knowledge to health, agriculture, environment, and industrial innovation.',
+    vision: 'The department integrates molecular biology, genetics, bioprocessing, and modern laboratory practice for research and technology-oriented careers.',
+    established: '2009',
+    programmes: ['M.Sc. Biotechnology', 'Ph.D. Biotechnology'],
+    research: ['Molecular Biology', 'Genetic Engineering', 'Bioprocess Technology', 'Immunology']
+  },
+  environmental_sciences: {
+    name: 'Environmental Sciences',
+    school: 'School of Earth, Biological & Environmental Sciences',
+    icon: 'book',
+    summary: 'The Department of Environmental Sciences studies environmental systems, pollution, conservation, and sustainable resource management.',
+    vision: 'The department prepares students to address environmental challenges through field studies, laboratory analysis, policy awareness, and interdisciplinary research.',
+    established: '2009',
+    programmes: ['M.Sc. Environmental Sciences', 'Ph.D. Environmental Sciences'],
+    research: ['Environmental Monitoring', 'Climate Studies', 'Biodiversity', 'Pollution Control']
+  },
+  psychological_sciences: {
+    name: 'Psychological Sciences',
+    school: 'School of Human Sciences',
+    icon: 'users',
+    summary: 'The Department of Psychological Sciences studies behaviour, cognition, development, mental health, and human well-being.',
+    vision: 'The department combines theory, assessment, research methods, and applied practice to prepare students for counselling, research, and human service roles.',
+    established: '2009',
+    programmes: ['M.A./M.Sc. Psychology', 'Ph.D. Psychology'],
+    research: ['Clinical Psychology', 'Cognitive Psychology', 'Counselling', 'Developmental Psychology']
+  },
+  historical_studies: {
+    name: 'Historical Studies',
+    school: 'School of Social Sciences & Policies',
+    icon: 'building',
+    summary: 'The Department of Historical Studies examines societies, cultures, institutions, and ideas across time.',
+    vision: 'The department promotes critical historical inquiry through archival work, interpretation of sources, regional history, and wider global perspectives.',
+    established: '2009',
+    programmes: ['M.A. History', 'Ph.D. History'],
+    research: ['Ancient History', 'Medieval History', 'Modern India', 'Historiography']
+  },
+  economic_studies: {
+    name: 'Economic Studies',
+    school: 'School of Social Sciences & Policies',
+    icon: 'chart',
+    summary: 'The Department of Economic Studies trains students in economic theory, policy analysis, development, and quantitative methods.',
+    vision: 'The department connects economic reasoning with public policy, markets, rural development, finance, and evidence-based decision making.',
+    established: '2009',
+    programmes: ['M.A. Economics', 'Ph.D. Economics'],
+    research: ['Development Economics', 'Public Policy', 'Econometrics', 'Agricultural Economics']
+  },
+  development_studies: {
+    name: 'Development Studies',
+    school: 'School of Social Sciences & Policies',
+    icon: 'globe',
+    summary: 'The Department of Development Studies focuses on inclusive development, livelihoods, governance, and social transformation.',
+    vision: 'The department works at the intersection of policy, economics, society, and field research to understand development challenges and solutions.',
+    established: '2009',
+    programmes: ['M.A. Development Studies', 'Ph.D. Development Studies'],
+    research: ['Rural Development', 'Public Policy', 'Livelihoods', 'Social Inclusion']
+  },
+  political_studies: {
+    name: 'Political Studies',
+    school: 'School of Social Sciences & Policies',
+    icon: 'file',
+    summary: 'The Department of Political Studies examines political institutions, governance, public policy, and democratic processes.',
+    vision: 'The department encourages critical study of political theory, Indian politics, international relations, administration, and constitutional governance.',
+    established: '2009',
+    programmes: ['M.A. Political Science', 'Ph.D. Political Science'],
+    research: ['Indian Politics', 'International Relations', 'Political Theory', 'Public Administration']
+  },
+  sociological_studies: {
+    name: 'Sociological Studies',
+    school: 'School of Social Sciences & Policies',
+    icon: 'users',
+    summary: 'The Department of Sociological Studies explores society, culture, inequality, institutions, and social change.',
+    vision: 'The department develops sociological imagination through theory, fieldwork, research methods, and engagement with contemporary social issues.',
+    established: '2009',
+    programmes: ['M.A. Sociology', 'Ph.D. Sociology'],
+    research: ['Social Stratification', 'Gender Studies', 'Rural Sociology', 'Culture and Society']
+  },
+  library_science: {
+    name: 'Library Science',
+    school: 'School of Social Sciences & Policies',
+    icon: 'book',
+    summary: 'The Department of Library Science prepares students for knowledge organisation, information services, and digital library systems.',
+    vision: 'The department combines library traditions with information technology, metadata, user services, and digital knowledge management.',
+    established: '2009',
+    programmes: ['Bachelor of Library and Information Science', 'Master of Library and Information Science', 'Ph.D. Library and Information Science'],
+    research: ['Digital Libraries', 'Knowledge Organisation', 'Information Retrieval', 'Bibliometrics']
+  },
+  social_work: {
+    name: 'Social Work',
+    school: 'School of Social Sciences & Policies',
+    icon: 'users',
+    summary: 'The Department of Social Work prepares students for professional practice with communities, organisations, and social development programmes.',
+    vision: 'The department emphasises fieldwork, social justice, community engagement, welfare administration, and participatory development.',
+    established: '2009',
+    programmes: ['Master of Social Work', 'Ph.D. Social Work'],
+    research: ['Community Development', 'Social Welfare', 'Public Health', 'Livelihoods']
+  },
+  teacher_education: {
+    name: 'Teacher Education',
+    school: 'School of Education',
+    icon: 'file',
+    summary: 'The Department of Teacher Education develops reflective educators for schools, teacher training, curriculum, and educational research.',
+    vision: 'The department integrates pedagogy, classroom practice, educational psychology, curriculum studies, and research for future-ready teaching.',
+    established: '2009',
+    programmes: ['Integrated Teacher Education Programme', 'B.Ed.', 'M.Ed.', 'Ph.D. Education'],
+    research: ['Pedagogy', 'Curriculum Studies', 'Educational Technology', 'Teacher Professional Development']
+  },
+  physical_education: {
+    name: 'Physical Education',
+    school: 'School of Education',
+    icon: 'users',
+    summary: 'The Department of Physical Education focuses on sports science, fitness, movement education, and professional training.',
+    vision: 'The department promotes health, performance, coaching, sports management, and scientific understanding of physical activity.',
+    established: '2009',
+    programmes: ['B.P.Ed.', 'M.P.Ed.', 'Ph.D. Physical Education'],
+    research: ['Sports Training', 'Exercise Physiology', 'Health Education', 'Sports Psychology']
+  },
+  pharmacy: {
+    name: 'Pharmacy',
+    school: 'School of Pharmaceutical Sciences',
+    icon: 'medical',
+    summary: 'The Department of Pharmacy provides education in pharmaceutical sciences, drug development, formulation, and healthcare practice.',
+    vision: 'The department aims to build professional competence in pharmaceutics, pharmacology, medicinal chemistry, and patient-oriented pharmacy services.',
+    established: '2009',
+    programmes: ['Bachelor of Pharmacy', 'Master of Pharmacy', 'Ph.D. Pharmaceutical Sciences'],
+    research: ['Pharmaceutics', 'Pharmacology', 'Medicinal Chemistry', 'Drug Delivery']
+  },
+  english: {
+    name: 'English',
+    school: 'School of Languages & Literature',
+    icon: 'book',
+    summary: 'The Department of English studies literature, language, culture, criticism, and communication.',
+    vision: 'The department encourages close reading, critical theory, linguistics, cultural studies, creative expression, and research in literary traditions.',
+    established: '2009',
+    programmes: ['M.A. English', 'Ph.D. English'],
+    research: ['Literary Studies', 'Linguistics', 'Cultural Studies', 'Translation Studies']
+  },
+  hindi: {
+    name: 'Hindi',
+    school: 'School of Languages & Literature',
+    icon: 'file',
+    summary: 'The Department of Hindi promotes Hindi language, literature, criticism, translation, and Indian knowledge traditions.',
+    vision: 'The department supports literary scholarship, language study, creative writing, comparative literature, and cultural understanding.',
+    established: '2009',
+    programmes: ['M.A. Hindi', 'Ph.D. Hindi'],
+    research: ['Hindi Literature', 'Linguistics', 'Translation', 'Comparative Literature']
+  },
+  mass_communication: {
+    name: 'Mass Communication',
+    school: 'School of Media & Arts',
+    icon: 'globe',
+    summary: 'The Department of Mass Communication prepares students for journalism, digital media, communication research, and public communication.',
+    vision: 'The department combines media theory, production practice, reporting, audiovisual storytelling, and communication for social change.',
+    established: '2009',
+    programmes: ['M.A. Mass Communication', 'Ph.D. Mass Communication'],
+    research: ['Journalism', 'Digital Media', 'Development Communication', 'Media Studies']
+  },
+  agriculture: {
+    name: 'Agriculture',
+    school: 'School of Agriculture',
+    icon: 'book',
+    summary: 'The Department of Agriculture advances teaching and research in crop science, soil health, agribusiness, and sustainable farming.',
+    vision: 'The department links agricultural science with regional needs, practical field learning, food systems, and rural development.',
+    established: '2009',
+    programmes: ['B.Sc. Agriculture', 'M.Sc. Agriculture', 'Ph.D. Agriculture'],
+    research: ['Crop Production', 'Soil Science', 'Plant Protection', 'Agricultural Extension']
+  },
+  commerce_business: {
+    name: 'Commerce & Business',
+    school: 'School of Commerce & Management',
+    icon: 'briefcase',
+    summary: 'The Department of Commerce & Business develops capability in accounting, finance, management, entrepreneurship, and business analytics.',
+    vision: 'The department prepares students for commerce, management, research, and enterprise through analytical, ethical, and practice-oriented learning.',
+    established: '2009',
+    programmes: ['M.Com.', 'MBA', 'Ph.D. Commerce and Management'],
+    research: ['Finance', 'Marketing', 'Human Resource Management', 'Entrepreneurship']
+  },
+  law_governance: {
+    name: 'Law & Governance',
+    school: 'School of Law & Governance',
+    icon: 'shield',
+    summary: 'The Department of Law & Governance studies legal systems, constitutional values, public institutions, and justice.',
+    vision: 'The department combines legal education, governance studies, research, advocacy skills, and public service orientation.',
+    established: '2009',
+    programmes: ['B.A. LL.B.', 'LL.M.', 'Ph.D. Law'],
+    research: ['Constitutional Law', 'Criminal Law', 'Human Rights', 'Governance']
+  },
+  chemistry: {
+    name: 'Chemistry',
+    school: 'School of Physical & Chemical Sciences',
+    icon: 'medical',
+    summary: 'The Department of Chemistry studies matter, reactions, materials, analysis, and chemical processes.',
+    vision: 'The department develops experimental and theoretical understanding across organic, inorganic, physical, analytical, and materials chemistry.',
+    established: '2009',
+    programmes: ['M.Sc. Chemistry', 'Ph.D. Chemistry'],
+    research: ['Organic Chemistry', 'Inorganic Chemistry', 'Physical Chemistry', 'Materials Chemistry']
+  },
+  physics: {
+    name: 'Physics',
+    school: 'School of Physical & Chemical Sciences',
+    icon: 'globe',
+    summary: 'The Department of Physics investigates matter, energy, materials, space, and fundamental laws of nature.',
+    vision: 'The department combines theory, experiments, computation, and instrumentation to prepare students for research and technology careers.',
+    established: '2009',
+    programmes: ['M.Sc. Physics', 'Ph.D. Physics'],
+    research: ['Condensed Matter Physics', 'High Energy Physics', 'Optics', 'Materials Science']
+  }
+};
