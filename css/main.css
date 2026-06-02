@@ -33,7 +33,7 @@
   --acc-purple: #004b9b;
   --acc-teal: #075fc0;
   --acc-blue: #075fc0;
-  --acc-orange: #d69b17;
+  --acc-orange: #f6cf33;
   --acc-coral: #d69b17;
   --hero-gradient-start: rgba(8, 38, 83, 0.2);
   --hero-gradient-end: rgba(0, 75, 155, 0.12);
@@ -939,6 +939,9 @@ cusb-footer {
   color: var(--tx-primary);
   width: 32px;
   height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  flex-shrink: 0;
   border-radius: 50%;
   display: flex;
   align-items: center;

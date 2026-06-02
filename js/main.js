@@ -59,12 +59,12 @@ function initFontSize() {
   });
 
   resetBtn.addEventListener('click', () => {
-    currentSize = 18;
+    currentSize = 16;
     applyFontSize(currentSize);
   });
 
   incBtn.addEventListener('click', () => {
-    if (currentSize < 24) {
+    if (currentSize < 22) {
       currentSize += 1;
       applyFontSize(currentSize);
     }

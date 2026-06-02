@@ -586,13 +586,18 @@ class CusbFooter extends HTMLElement {
               <li><a href="#" data-en="Accessibility" data-hi="सुगम्यता वक्तव्य">Accessibility Statement</a></li>
             </ul>
             <div class="footer-socials">
-              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook">${iconSvg('facebook')}</a>
-              <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Twitter / X">${iconSvg('x')}</a>
-              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">${iconSvg('instagram')}</a>
-              <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">${iconSvg('linkedin')}</a>
-              <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="YouTube">${iconSvg('youtube')}</a>
+              <a href="https://www.facebook.com/cusbofficial/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook">${iconSvg('facebook')}</a>
+              <a href="https://x.com/CUSBofficial" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Twitter / X">${iconSvg('x')}</a>
+              <a href="https://www.instagram.com/cusbofficialpage/?hl=en" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">${iconSvg('instagram')}</a>
+              <a href="https://in.linkedin.com/school/cusbofficial/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">${iconSvg('linkedin')}</a>
+              <a href="https://www.youtube.com/user/CUBofficialchannel" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="YouTube">${iconSvg('youtube')}</a>
             </div>
           </div>
+          
+
+
+
+
 
           <div class="footer-col footer-map-col">
             <div class="footer-heading" data-en="Campus Map" data-hi="परिसर मानचित्र">Campus Map</div>
