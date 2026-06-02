@@ -155,19 +155,6 @@ class CusbTopbar extends HTMLElement {
           <a href="#" data-en="Disclosure" data-hi="प्रकटीकरण">Disclosure</a>
           <span class="topbar-divider">|</span>
           <a href="#" data-en="Feedback" data-hi="प्रतिक्रिया">Feedback</a>
-          <span class="topbar-divider">|</span>
-          
-          <div class="accessibility-controls" role="group" aria-label="Accessibility Font Controls">
-            <span class="size-label" data-en="Text Size:" data-hi="आकार:">Size:</span>
-            <button class="btn-size" id="btnDecSize" title="Decrease Text Size" aria-label="Decrease Font Size">−</button>
-            <button class="btn-size" id="btnResetSize" title="Reset Text Size" aria-label="Reset Font Size"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6M23 20v-6h-6"></path><path d="M20.49 9A9 9 0 0 0 5.64 5.64M3.51 15A9 9 0 0 0 18.36 18.36"></path></svg></button>
-            <button class="btn-size" id="btnIncSize" title="Increase Text Size" aria-label="Increase Font Size">+</button>
-            <span class="size-indicator" id="sizeIndicator">16px</span>
-          </div>
-          
-          <div class="topbar-divider">|</div>
-          <img src="assets/NAAC.png" alt="NAAC A++ Badge" style="height:22px; width:auto; border-radius:3px;" loading="lazy">
-          <img src="assets/viksit.png" alt="Viksit Bharat Banner" style="height:22px; width:auto; border-radius:3px;" loading="lazy">
         </div>
       </div>
     `;
@@ -176,29 +163,25 @@ class CusbTopbar extends HTMLElement {
 }
 customElements.define('cusb-topbar', CusbTopbar);
 
-// 3. Header Component
-class CusbHeader extends HTMLElement {
+// 2b. Accessibility Bar Component
+class CusbAccessibilityBar extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <div class="container header-wrap" role="banner">
-        <a href="index.html" class="header-brand" aria-label="CUSB Homepage">
-          <img src="assets/culog.png" class="header-logo" alt="CUSB Emblem" loading="lazy">
-          <div class="header-titles">
-            <span class="header-title-main" data-en="CENTRAL UNIVERSITY OF SOUTH BIHAR" data-hi="दक्षिण बिहार केन्द्रीय विश्वविद्यालय">CENTRAL UNIVERSITY OF SOUTH BIHAR</span>
-            <span class="header-title-sub" data-en="Established by the Central Universities Act, 2009" data-hi="केन्द्रीय विश्वविद्यालय अधिनियम, 2009 द्वारा स्थापित">Established by the Central Universities Act, 2009</span>
+      <div class="container accessibility-bar-wrap">
+        <div class="accessibility-left">
+          <div class="accessibility-controls" role="group" aria-label="Accessibility Font Controls">
+            <span class="size-label" data-en="Text Size:" data-hi="पाठ का आकार:">Text Size:</span>
+            <button class="btn-size" id="btnDecSize" title="Decrease Text Size" aria-label="Decrease Font Size">−</button>
+            <button class="btn-size" id="btnResetSize" title="Reset Text Size" aria-label="Reset Font Size"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6M23 20v-6h-6"></path><path d="M20.49 9A9 9 0 0 0 5.64 5.64M3.51 15A9 9 0 0 0 18.36 18.36"></path></svg></button>
+            <button class="btn-size" id="btnIncSize" title="Increase Text Size" aria-label="Increase Font Size">+</button>
+            <span class="size-indicator" id="sizeIndicator">16px</span>
           </div>
-        </a>
-        
-        <div class="header-controls">
-          <!-- Search Bar -->
-          <div class="search-container" role="search">
-            <input type="search" class="search-input" id="siteSearchInput" placeholder="Search courses, admissions, notices..." aria-label="Search CUSB website">
-            <button class="search-btn" id="siteSearchBtn" aria-label="Submit search">${iconSvg('search')}</button>
-          </div>
-          
+        </div>
+        <div class="accessibility-right">
           <!-- Language Converter -->
           <div class="language-controls" aria-label="Language Converter">
-            <select class="language-select" id="languageSelect" aria-label="Choose more languages">
+            <span class="lang-label" data-en="Language:" data-hi="भाषा:">Language:</span>
+            <select class="language-select" id="languageSelect" aria-label="Choose language">
               <option value="en">English</option>
               <optgroup label="Indian Languages">
                 <option value="hi">Hindi</option>
@@ -229,6 +212,45 @@ class CusbHeader extends HTMLElement {
                 <option value="es">Spanish</option>
               </optgroup>
             </select>
+          </div>
+          <span class="accessibility-divider">|</span>
+          <!-- Theme Switcher -->
+          <div class="theme-toggle-container">
+            <span class="theme-label" data-en="Theme:" data-hi="थीम:">Theme:</span>
+            <button class="btn-theme" id="themeToggleBtn" aria-label="Toggle Light/Dark Theme">${iconSvg('moon')}</button>
+          </div>
+        </div>
+      </div>
+    `;
+    replaceEmojiIcons(this);
+  }
+}
+customElements.define('cusb-accessibility-bar', CusbAccessibilityBar);
+
+// 3. Header Component
+class CusbHeader extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+      <div class="container header-wrap" role="banner">
+        <a href="index.html" class="header-brand" aria-label="CUSB Homepage">
+          <img src="assets/culog.png" class="header-logo" alt="CUSB Emblem" loading="lazy">
+          <div class="header-titles">
+            <span class="header-title-main" data-en="CENTRAL UNIVERSITY OF SOUTH BIHAR" data-hi="दक्षिण बिहार केन्द्रीय विश्वविद्यालय">CENTRAL UNIVERSITY OF SOUTH BIHAR</span>
+            <span class="header-title-sub" data-en="Established by the Central Universities Act, 2009" data-hi="केन्द्रीय विश्वविद्यालय अधिनियम, 2009 द्वारा स्थापित">Established by the Central Universities Act, 2009</span>
+          </div>
+        </a>
+        
+        <div class="header-controls">
+          <!-- NAAC and Viksit Bharat Badges -->
+          <div class="header-badges">
+            <img src="assets/NAAC.png" alt="NAAC A++ Badge" class="header-badge-img" loading="lazy">
+            <img src="assets/viksit.png" alt="Viksit Bharat Banner" class="header-badge-img" loading="lazy">
+          </div>
+          
+          <!-- Search Bar -->
+          <div class="search-container" role="search">
+            <input type="search" class="search-input" id="siteSearchInput" placeholder="Search courses, admissions, notices..." aria-label="Search CUSB website">
+            <button class="search-btn" id="siteSearchBtn" aria-label="Submit search">${iconSvg('search')}</button>
           </div>
         </div>
       </div>
@@ -466,10 +488,6 @@ class CusbNavbar extends HTMLElement {
             </li>
           </ul>
         </nav>
-        
-        <div class="theme-toggle-container">
-          <button class="btn-theme" id="themeToggleBtn" aria-label="Toggle Light/Dark Theme">${iconSvg('moon')}</button>
-        </div>
       </div>
     `;
     replaceEmojiIcons(this);

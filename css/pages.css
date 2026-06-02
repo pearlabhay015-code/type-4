@@ -15,7 +15,7 @@
   background-attachment: scroll;
   color: white;
   padding: 120px 0 140px;
-  text-align: center;
+  text-align: left;
 }
 .admin-hero,
 .hero-banner {
@@ -47,10 +47,11 @@
 }
 .hero-content {
   max-width: 900px;
-  margin: 0 auto;
+  margin: 0;
+  padding-left: 40px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 20px;
 }
 .hero-eyebrow {
@@ -87,13 +88,13 @@
   text-shadow: 0 5px 18px rgba(0,0,0,0.34);
 }
 .hero-title span {
-  color: var(--acc-gold);
+  color: rgb(255, 221, 0);
   font-style: italic;
 }
 .hero-sub {
   font-size: 1.2rem;
   max-width: 700px;
-  margin: 0 auto;
+  margin: 0;
   opacity: 0.9;
   text-shadow: 0 2px 5px rgba(0,0,0,0.3);
   overflow-wrap: anywhere;
@@ -103,7 +104,7 @@
   gap: 15px;
   margin-top: 15px;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
 }
 .btn {
   display: inline-block;
@@ -129,7 +130,7 @@
 }
 .btn-white {
   background-color: var(--bg-primary);
-  color: var(--acc-navy);
+  color: rgb(143, 140, 140);
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 .btn-white:hover {
@@ -153,14 +154,14 @@
 .hero-accolades {
   margin-top: 50px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 30px;
   flex-wrap: wrap;
   width: 100%;
   max-width: 1000px;
 }
 .accolade-card {
-  background: rgba(255, 254, 254, 0.078);
+  background: rgba(255, 254, 254, 0.061);
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.417);
   padding: 10px 24px;
@@ -177,83 +178,194 @@
   color: var(--acc-gold);
 }
 
-/* SECTION 1: LEADERS OF CUSB (Staggered Layout) */
-.sec-leaders {
-  background-color: var(--bg-light-green);
-}
-.leaders-container {
-  display: flex;
-  flex-direction: column;
-  gap: 35px;
-  max-width: 800px;
-  margin: 0 auto;
-}
-.leader-card-staggered {
-  display: flex;
-  align-items: center;
-  background: linear-gradient(135deg, var(--bg-primary), var(--bg-light-green));
-  border: 1px solid var(--border-color);
-  border-radius: 80px 20px 20px 80px;
-  padding: 15px 35px 15px 15px;
-  gap: 25px;
-  box-shadow: var(--shadow-md);
-  max-width: 85%;
-  transition: var(--transition);
-}
-.leader-card-staggered:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--acc-green);
-}
-.leader-card-staggered.right-align {
-  align-self: flex-end;
-  border-radius: 20px 80px 80px 20px;
-  padding: 15px 15px 15px 35px;
-  flex-direction: row-reverse;
-  background: linear-gradient(135deg, var(--bg-light-green), var(--bg-primary));
-}
-.leader-avatar-box {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background-color: var(--acc-dark-green);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 2.2rem;
+/* SECTION 1: LEADERSHIP SECTION */
+.leadership-section {
+  background: var(--bg-secondary);
+  padding: 100px 0 80px;
+  position: relative;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  flex-shrink: 0;
-  border: 4px solid var(--bg-primary);
 }
-.leader-avatar-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+
+.leadership-section h2 {
+  text-align: center;
+  margin-bottom: 60px;
+  color: var(--tx-primary);
+  font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+  font-family: var(--ff-title);
 }
-.leader-info-box {
-  flex: 1;
-}
-.leader-role-label {
+
+.section-tag {
+  display: block;
+  text-align: center;
+  margin-bottom: 8px;
   font-size: 0.75rem;
   font-weight: 800;
   text-transform: uppercase;
-  color: var(--acc-coral);
-  letter-spacing: 1px;
-  margin-bottom: 4px;
-}
-.leader-name-txt {
-  font-family: var(--ff-title);
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--acc-dark-green);
-  margin-bottom: 6px;
-}
-.leader-desc-txt {
-  font-size: 0.8rem;
+  letter-spacing: 0.08em;
   color: var(--tx-secondary);
-  line-height: 1.4;
+}
+
+.leaders-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Square Card Layout */
+.leader-card-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leader-card-wrapper.left-aligned,
+.leader-card-wrapper.right-aligned {
+  justify-content: center;
+}
+
+/* Background Soft Gradient Capsules */
+.leader-capsule-bg {
+  display: none;
+}
+
+/* Portrait Card Layout */
+.leader-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 0;
+  min-height: 350px;
+  padding: 28px 26px 22px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  width: 100%;
+  flex-direction: column;
+}
+
+[data-theme="dark"] .leader-card {
+  background: rgba(13, 13, 13, 0.95);
+  border-color: var(--border-color);
+}
+
+.leader-card-wrapper.right-aligned .leader-card {
+  flex-direction: column;
+  border-radius: 8px;
+  padding: 28px 26px 22px;
+}
+
+.leader-card img {
+  width: 126px;
+  height: 126px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--bg-primary);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+  transition: var(--transition);
+  margin-bottom: 16px;
+}
+
+[data-theme="dark"] .leader-card img {
+  border-color: #5c5c5c;
+}
+
+.leader-card > div {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+}
+
+.leader-card h3 {
+  font-family: var(--ff-body);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--tx-primary);
+  margin: 0 0 4px;
+  letter-spacing: 0;
+}
+
+.leader-card p {
+  font-family: var(--ff-body);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--acc-green);
+  margin: 0 0 10px;
+}
+
+.leader-card small {
+  display: block;
+  font-family: var(--ff-body);
+  font-size: 0.78rem;
+  color: var(--tx-muted);
+  line-height: 1.45;
+  min-height: 54px;
+  margin-bottom: 18px;
+}
+
+.leader-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--ff-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--acc-green);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: var(--transition);
+  border: 1px solid rgba(0, 75, 155, 0.32);
+  padding: 8px 18px;
+  border-radius: 6px;
+  min-height: 36px;
+}
+
+.leader-card a:hover {
+  color: var(--acc-dark-green);
+  border-color: var(--acc-green);
+  background: var(--bg-light-green);
+}
+
+/* Hover effects */
+.leader-card-wrapper:hover .leader-card {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.leader-card-wrapper:hover .leader-card img {
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .leaders-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .leadership-section {
+    padding: 60px 0 50px;
+  }
+
+  .leaders-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .leader-card {
+    min-height: auto;
+  }
 }
 
 /* SECTION 2: ABOUT THE UNIVERSITY (Teal/Blue Icon Card) */
@@ -272,9 +384,6 @@
 }
 .about-uni-icon-card {
   background: linear-gradient(135deg, var(--acc-teal), var(--acc-blue));
-  width: 360px;
-  height: 360px;
-  border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -290,7 +399,7 @@
   object-fit: cover;
 }
 .about-uni-icon-card:hover {
-  transform: scale(1.03) rotate(2deg);
+  transform: scale(1.03);
 }
 .about-uni-content {
   display: flex;
@@ -738,17 +847,17 @@
   border-color: var(--border-color);
 }
 
-/* Dark theme page palette based on eye patch, tomcat, fiftieth shade of grey, smoked pearl, and nickel. */
+/* Dark theme page palette based on black, graphite, grey, and white. */
 [data-theme="dark"] .sec-leaders,
 [data-theme="dark"] .sec-programs,
 [data-theme="dark"] .sec-gallery,
 [data-theme="dark"] .sec-quicklinks {
-  background-color: #222222;
+  background-color: #000000;
 }
 [data-theme="dark"] .sec-about-uni,
 [data-theme="dark"] .sec-news-events,
 [data-theme="dark"] .sec-facilities {
-  background-color: #323232;
+  background-color: #0d0d0d;
 }
 [data-theme="dark"] .leader-card-staggered,
 [data-theme="dark"] .leader-card-staggered.right-align,
@@ -761,8 +870,8 @@
 [data-theme="dark"] .pyq-sidebar,
 [data-theme="dark"] .pyq-card,
 [data-theme="dark"] .warden-card {
-  background: linear-gradient(135deg, #323232 0%, #505050 140%) !important;
-  border-color: rgba(146, 146, 146, 0.26);
+  background: linear-gradient(135deg, #0d0d0d 0%, #5c5c5c 145%) !important;
+  border-color: rgba(142, 142, 142, 0.42);
   box-shadow: var(--shadow-md);
 }
 [data-theme="dark"] .leader-card-staggered:hover,
@@ -770,14 +879,14 @@
 [data-theme="dark"] .column-gradient-card:hover,
 [data-theme="dark"] .admin-card:hover,
 [data-theme="dark"] .faculty-card:hover {
-  border-color: rgba(146, 146, 146, 0.78);
+  border-color: rgba(142, 142, 142, 0.9);
 }
 [data-theme="dark"] .leader-avatar-box,
 [data-theme="dark"] .about-uni-icon-card,
 [data-theme="dark"] .facility-card-teal,
 [data-theme="dark"] .quicklink-btn-green {
-  background: linear-gradient(135deg, #505050, #222222);
-  border-color: rgba(146, 146, 146, 0.32);
+  background: linear-gradient(135deg, #5c5c5c, #000000);
+  border-color: rgba(142, 142, 142, 0.48);
 }
 [data-theme="dark"] .leader-name-txt,
 [data-theme="dark"] .program-pill-title,
@@ -786,7 +895,7 @@
 [data-theme="dark"] .pyq-course-name,
 [data-theme="dark"] .warden-name,
 [data-theme="dark"] .column-card-title {
-  color: #f5f5f5;
+  color: #ffffff;
 }
 [data-theme="dark"] .leader-role-label,
 [data-theme="dark"] .program-pill-action,
@@ -794,7 +903,7 @@
 [data-theme="dark"] .faculty-designation,
 [data-theme="dark"] .warden-role,
 [data-theme="dark"] .pyq-course-code {
-  color: #d6d6d6;
+  color: #ffffff;
 }
 [data-theme="dark"] .about-uni-text,
 [data-theme="dark"] .leader-desc-txt,
@@ -814,42 +923,42 @@
 [data-theme="dark"] .pyq-dept-btn.active,
 [data-theme="dark"] .btn-hostel-tab.active,
 [data-theme="dark"] .btn-hostel-tab:hover {
-  background-color: #505050;
+  background-color: #8e8e8e;
   color: #ffffff;
 }
 [data-theme="dark"] .btn-school-tab,
 [data-theme="dark"] .pyq-dept-btn,
 [data-theme="dark"] .btn-hostel-tab {
-  background-color: #323232;
-  border-color: rgba(146, 146, 146, 0.26);
+  background-color: #0d0d0d;
+  border-color: rgba(142, 142, 142, 0.42);
   color: var(--tx-secondary);
 }
 [data-theme="dark"] .gallery-block {
-  border-color: rgba(146, 146, 146, 0.3);
+  border-color: rgba(142, 142, 142, 0.42);
 }
 [data-theme="dark"] .gallery-block:nth-child(n) {
-  background: linear-gradient(135deg, #505050, #323232);
+  background: linear-gradient(135deg, #5c5c5c, #0d0d0d);
 }
 [data-theme="dark"] .facility-icon-wrap,
 [data-theme="dark"] .quicklink-btn-icon {
-  background-color: rgba(146, 146, 146, 0.18);
-  color: #f5f5f5;
-  border-color: rgba(146, 146, 146, 0.3);
+  background-color: rgba(142, 142, 142, 0.24);
+  color: #ffffff;
+  border-color: rgba(142, 142, 142, 0.42);
 }
 [data-theme="dark"] .facility-icon-wrap .icon-holder {
-  background: rgba(146, 146, 146, 0.18);
-  color: #f5f5f5;
-  border-color: rgba(146, 146, 146, 0.3);
+  background: rgba(142, 142, 142, 0.24);
+  color: #ffffff;
+  border-color: rgba(142, 142, 142, 0.42);
 }
 [data-theme="dark"] .quicklink-btn-green:hover,
 [data-theme="dark"] .facility-card-teal:hover {
-  background: linear-gradient(135deg, #6f6f6f, #505050);
+  background: linear-gradient(135deg, #8e8e8e, #5c5c5c);
 }
 [data-theme="dark"] .hostel-details-table th {
-  background-color: #323232;
+  background-color: #0d0d0d;
 }
 [data-theme="dark"] .hostel-details-table tr:nth-child(even) {
-  background-color: rgba(146, 146, 146, 0.08);
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 /* ==========================================================================
