@@ -316,7 +316,7 @@ function initSearch() {
   });
 }
 
-function performSearch(query) {
+async function performSearch(query) {
   const resultsContainer = document.getElementById('searchResultsList');
   if (!resultsContainer) return;
   
@@ -332,31 +332,33 @@ function performSearch(query) {
     return;
   }
 
-  const matches = searchIndex.filter(item => 
-    item.title.toLowerCase().includes(trimmed) || 
-    item.tags.toLowerCase().includes(trimmed) || 
-    item.desc.toLowerCase().includes(trimmed)
-  );
+  try {
+    const response = await fetch(`/api/search?q=${encodeURIComponent(trimmed)}`);
+    const matches = await response.json();
 
-  if (matches.length === 0) {
-    resultsContainer.innerHTML = `<li class="search-no-results" data-en="No matching pages found." data-hi="कोई मेल खाते पृष्ठ नहीं मिले।">No matching pages found.</li>`;
-    const lang = localStorage.getItem('cusb-lang') || 'en';
-    const noResEl = resultsContainer.querySelector('.search-no-results');
-    if (noResEl) noResEl.textContent = noResEl.getAttribute(`data-${lang}`);
-    return;
+    if (matches.length === 0) {
+      resultsContainer.innerHTML = `<li class="search-no-results" data-en="No matching pages found." data-hi="कोई मेल खाते पृष्ठ नहीं मिले।">No matching pages found.</li>`;
+      const lang = localStorage.getItem('cusb-lang') || 'en';
+      const noResEl = resultsContainer.querySelector('.search-no-results');
+      if (noResEl) noResEl.textContent = noResEl.getAttribute(`data-${lang}`);
+      return;
+    }
+
+    matches.forEach(item => {
+      const li = document.createElement('li');
+      li.className = 'search-result-item';
+      li.innerHTML = `
+        <a href="${item.url}">
+          <div class="search-result-title">${item.title}</div>
+          <div class="search-result-desc">${item.desc}</div>
+        </a>
+      `;
+      resultsContainer.appendChild(li);
+    });
+  } catch (err) {
+    console.error("Search API failed:", err);
+    resultsContainer.innerHTML = `<li class="search-no-results">Failed to fetch search results from database.</li>`;
   }
-
-  matches.forEach(item => {
-    const li = document.createElement('li');
-    li.className = 'search-result-item';
-    li.innerHTML = `
-      <a href="${item.url}">
-        <div class="search-result-title">${item.title}</div>
-        <div class="search-result-desc">${item.desc}</div>
-      </a>
-    `;
-    resultsContainer.appendChild(li);
-  });
 }
 
 /* ==========================================================================

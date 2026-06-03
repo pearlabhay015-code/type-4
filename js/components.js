@@ -124,28 +124,56 @@ class CusbTicker extends HTMLElement {
         <div class="ticker-title" data-en="📢 Updates" data-hi="📢 अपडेट">📢 Updates</div>
         <div class="ticker-marquee">
           <div class="ticker-track" id="tickerTrack">
-            <a href="index.html#notices" class="ticker-item">
-              <span data-en="CUSB Admission Bulletin 2026 (CUET-PG)" data-hi="सीयूएसबी प्रवेश बुलेटिन 2026 (सीयूईटी-पीजी)">CUSB Admission Bulletin 2026 (CUET-PG)</span>
-              <span class="ticker-badge" data-en="NEW" data-hi="नया">NEW</span>
-            </a>
-            <a href="index.html#notices" class="ticker-item">
-              <span data-en="NCET-2026 — 4-Year Integrated Teacher Education Programme" data-hi="एनसीईटी-2026 — 4-वर्षीय एकीकृत शिक्षक शिक्षा कार्यक्रम">NCET-2026 — 4-Year Integrated Teacher Education Programme</span>
-              <span class="ticker-badge" data-en="NEW" data-hi="नया">NEW</span>
-            </a>
-            <a href="index.html#cta" class="ticker-item">
-              <span data-en="Admissions Open 2026–27 — Apply Now →" data-hi="प्रवेश खुला 2026-27 — अभी आवेदन करें →">Admissions Open 2026–27 — Apply Now →</span>
-            </a>
-            <a href="index.html#notices" class="ticker-item">
-              <span data-en="45th INCA International Congress — CUSB, March 2026" data-hi="45वीं आईएनसीए अंतर्राष्ट्रीय कांग्रेस — सीयूएसबी, मार्च 2026">45th INCA International Congress — CUSB, March 2026</span>
-            </a>
-            <a href="index.html#notices" class="ticker-item">
-              <span data-en="Ph.D. Admission Notice — All Departments" data-hi="पीएच.डी. प्रवेश सूचना — सभी विभाग">Ph.D. Admission Notice — All Departments</span>
-            </a>
+            <!-- Dynamic announcements will populate here -->
+            <span style="padding:0 20px; color:var(--tx-muted);" data-en="Loading updates..." data-hi="अपडेट लोड हो रहे हैं...">Loading updates...</span>
           </div>
         </div>
       </div>
     `;
     replaceEmojiIcons(this);
+    this.loadAnnouncements();
+  }
+
+  async loadAnnouncements() {
+    const track = this.querySelector('#tickerTrack');
+    if (!track) return;
+    
+    try {
+      const res = await fetch('/api/announcements');
+      const data = await res.json();
+      
+      if (!data || data.length === 0) {
+        track.innerHTML = `<span style="padding:0 20px;" data-en="No recent updates." data-hi="कोई हालिया अपडेट नहीं।">No recent updates.</span>`;
+        return;
+      }
+      
+      track.innerHTML = '';
+      data.forEach((item, index) => {
+        const a = document.createElement('a');
+        a.href = "index.html#notices";
+        a.className = "ticker-item";
+        
+        const isNew = index < 2;
+        a.innerHTML = `
+          <span data-en="${item.title_en}" data-hi="${item.title_hi}">${item.title_en}</span>
+          ${isNew ? '<span class="ticker-badge" data-en="NEW" data-hi="नया">NEW</span>' : ''}
+        `;
+        track.appendChild(a);
+      });
+      
+      const currentLang = localStorage.getItem('cusb-lang') || 'en';
+      const elements = track.querySelectorAll('[data-en], [data-hi]');
+      elements.forEach(el => {
+        const text = el.getAttribute(`data-${currentLang}`);
+        if (text) {
+          el.textContent = text;
+        }
+      });
+      if (window.cusbReplaceEmojiIcons) window.cusbReplaceEmojiIcons(track);
+      
+    } catch (err) {
+      console.error("Failed to load announcements:", err);
+    }
   }
 }
 customElements.define('cusb-ticker', CusbTicker);
@@ -712,66 +740,30 @@ class CusbChatbot extends HTMLElement {
     toggleBtn.addEventListener('click', toggleWindow);
     closeBtn.addEventListener('click', () => chatWindow.classList.remove('active'));
 
-    // Chat responses dictionary
-    const responses = {
-      admissions: {
-        keywords: ['admission', 'apply', 'enroll', 'cuet', 'apply now', 'register', 'admissions'],
-        en: 'You can apply for the 2026–27 session through the CUET-PG or NCET channels. Click the "Apply Now" quick action or visit the academics/admissions page.',
-        hi: 'आप सीयूईटी-पीजी या एनसीईटी माध्यमों से 2026-27 सत्र के लिए आवेदन कर सकते हैं। "अभी आवेदन करें" त्वरित लिंक पर क्लिक करें या प्रवेश पृष्ठ पर जाएं।'
-      },
-      programs: {
-        keywords: ['program', 'course', 'degree', 'academics', 'syllabus', 'departments', 'schools'],
-        en: 'CUSB offers 51+ programmes including Undergraduate, Postgraduate, and PhD degrees. Explore detailed courses at courses.html.',
-        hi: 'सीयूएसबी स्नातक, स्नातकोत्तर और पीएचडी डिग्री सहित 51+ कार्यक्रम प्रदान करता है। विस्तृत पाठ्यक्रमों के लिए courses.html देखें।'
-      },
-      hostel: {
-        keywords: ['hostel', 'warden', 'hostels', 'gargi', 'maitreyi', 'aryabhatta', 'mess', 'accommodation'],
-        en: 'CUSB provides residential facilities for boys (Aryabhatta) and girls (Gargi, Maitreyi) on campus. Details about warden contacts and fees are at hostel.html.',
-        hi: 'सीयूएसबी परिसर में छात्रों (आर्यभट्ट) और छात्राओं (गार्गी, मैत्रेयी) के लिए छात्रावास की सुविधा प्रदान करता है। वार्डन संपर्क और शुल्क विवरण hostel.html पर उपलब्ध हैं।'
-      },
-      campus: {
-        keywords: ['campus', 'infrastructure', 'facilities', 'location', 'gaya', 'panchanpur', 'library', 'sports'],
-        en: 'CUSB is situated across a sprawling 300-acre permanent green campus at Panchanpur, Gaya. Facilities include a digital library, sports grounds, and labs.',
-        hi: 'सीयूएसबी गया के पंचानपुर में 300 एकड़ के विशाल हरित परिसर में स्थित है। सुविधाओं में डिजिटल लाइब्रेरी, खेल मैदान और प्रयोगशालाएं शामिल हैं।'
-      },
-      contact: {
-        keywords: ['contact', 'email', 'phone', 'address', 'helpdesk', 'number'],
-        en: 'You can call us at 0631-2229 530 or email info@cusb.ac.in. The campus address is SH-7, Gaya-Panchanpur Road, Gaya - 824236.',
-        hi: 'आप हमें 0631-2229 530 पर कॉल कर सकते हैं या info@cusb.ac.in पर ईमेल कर सकते हैं। परिसर का पता एसएच-7, गया-पंचानपुर रोड, गया - 824236 है।'
-      },
-      default: {
-        en: 'I can assist you with admissions, course details, campus facilities, hostels, and contacts. What would you like to know?',
-        hi: 'मैं प्रवेश, पाठ्यक्रम विवरण, परिसर सुविधाओं, छात्रावास और संपर्कों में आपकी सहायता कर सकता हूँ। आप क्या जानना चाहते हैं?'
-      }
-    };
-
-    const handleSend = () => {
-      const query = input.value.trim().toLowerCase();
+    const handleSend = async () => {
+      const userVal = input.value.trim();
+      const query = userVal.toLowerCase();
       if (!query) return;
 
       // Add user message
-      addMessage(input.value.trim(), true);
+      addMessage(userVal, true);
       input.value = '';
 
       // Determine response
-      let matched = false;
       const currentLang = localStorage.getItem('cusb-lang') || 'en';
       
-      setTimeout(() => {
-        for (const key in responses) {
-          if (key !== 'default') {
-            if (responses[key].keywords.some(kw => query.includes(kw))) {
-              addMessage(responses[key][currentLang], false);
-              matched = true;
-              break;
-            }
-          }
-        }
-        
-        if (!matched) {
-          addMessage(responses.default[currentLang], false);
-        }
-      }, 500);
+      try {
+        const response = await fetch(`/api/chat?q=${encodeURIComponent(query)}`);
+        const data = await response.json();
+        const reply = data[currentLang] || data['en'] || 'Sorry, I failed to process that request.';
+        addMessage(reply, false);
+      } catch (err) {
+        console.error("Chatbot API failed:", err);
+        const errReply = currentLang === 'hi' 
+          ? 'माफ़ कीजिये, सर्वर से संपर्क करने में कोई समस्या हुई।' 
+          : 'Sorry, there was a problem connecting to the chatbot server.';
+        addMessage(errReply, false);
+      }
     };
 
     const addMessage = (text, isUser) => {
