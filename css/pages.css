@@ -31,10 +31,10 @@
   --hero-image: url('../assets/images/libimg.avif');
 }
 .admin-hero[aria-label="Department Banner"] {
-  --hero-image: url('../assets/images/cs_lab.jpg');
+  --hero-image: url('../assets/images/dept_hero_new.png');
 }
 .admin-hero.dept-page-hero {
-  --hero-image: url('../assets/dept.jpeg');
+  --hero-image: url('../assets/images/dept_hero_new.png');
 }
 .admin-hero[aria-label="Hostel Banner"] {
   --hero-image: url('../assets/images/hostel-girls.png');

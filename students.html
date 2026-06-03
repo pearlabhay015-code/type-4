@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="Student Services & Life — CUSB" data-hi="छात्र सेवाएं और जीवन — सीयूएसबी">Student Services & Life — CUSB</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .student-services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    .student-service-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .student-service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--acc-gold);
+    }
+    .student-service-title {
+      font-family: var(--ff-title);
+      font-size: 1.3rem;
+      color: var(--tx-primary);
+      margin-bottom: 12px;
+    }
+    .student-service-desc {
+      font-size: 0.88rem;
+      color: var(--tx-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent">
+    <!-- ══════ HERO BANNER ══════ -->
+    <section class="admin-hero" aria-label="Academics Banner" style="--hero-image: url('assets/images/hostel-boys-common.jpg');">
+      <div class="container hero-content">
+        <div class="hero-eyebrow">
+          <span data-en="Student Life & Portals" data-hi="छात्र जीवन और पोर्टल">Student Life & Portals</span>
+        </div>
+        <h1 class="hero-title" data-en="Student <span>Support</span>" data-hi="छात्र <span>सहायता</span>">Student <span>Support</span></h1>
+        <p class="hero-sub" data-en="Access academic grade sheets, student portals, sports programs, cultural clubs, and the CUSB alumni network." data-hi="अकादमिक ग्रेड शीट, छात्र पोर्टल, खेल कार्यक्रम, सांस्कृतिक क्लब और सीयूएसबी पूर्व छात्र नेटवर्क तक पहुंचें।">Access academic grade sheets, student portals, sports programs, cultural clubs, and the CUSB alumni network.</p>
+      </div>
+    </section>
+
+    <!-- ══════ STUDENT SERVICES & PORTALS ══════ -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title" data-en="Student Services Directory" data-hi="छात्र सेवा निर्देशिका">Student Services Directory</h2>
+        
+        <div class="student-services-grid">
+          <!-- 1. Samarth Portal -->
+          <div class="student-service-card">
+            <h3 class="student-service-title" data-en="Samarth Student Portal" data-hi="समर्थ छात्र पोर्टल">Samarth Student Portal</h3>
+            <p class="student-service-desc" data-en="The primary university portal powered by Ministry of Education, enabling online course registrations, semester fee payments, and exam form submissions." data-hi="शिक्षा मंत्रालय द्वारा संचालित प्राथमिक विश्वविद्यालय पोर्टल, जो ऑनलाइन पाठ्यक्रम पंजीकरण, सेमेस्टर शुल्क भुगतान और परीक्षा फॉर्म जमा करने में सक्षम बनाता है।">The primary university portal powered by Ministry of Education, enabling online course registrations, semester fee payments, and exam form submissions.</p>
+            <a href="https://cusb.samarth.edu.in/" target="_blank" class="btn btn-gold btn-sm" style="display:inline-block;" data-en="Access Samarth Portal" data-hi="समर्थ पोर्टल खोलें">Access Samarth Portal</a>
+          </div>
+
+          <!-- 2. Results & Grades -->
+          <div class="student-service-card" id="results">
+            <h3 class="student-service-title" data-en="Results & Grades Desk" data-hi="परिणाम और ग्रेड डेस्क">Results & Grades Desk</h3>
+            <p class="student-service-desc" data-en="View notification announcements for end-semester exams, regular results, backlogs, re-evaluation reports, and convocation lists." data-hi="अंतिम-सेमेस्टर परीक्षाओं, नियमित परिणामों, बैकलॉग, पुनर्मूल्यांकन रिपोर्ट और दीक्षांत समारोह सूचियों के लिए अधिसूचना घोषणाएं देखें।">View notification announcements for end-semester exams, regular results, backlogs, re-evaluation reports, and convocation lists.</p>
+            <a href="news-events.html?type=ticker" class="btn btn-white btn-sm" style="display:inline-block;" data-en="Check Exam Results" data-hi="परीक्षा परिणाम देखें">Check Exam Results</a>
+          </div>
+
+          <!-- 3. LMS Portal -->
+          <div class="student-service-card" id="lms">
+            <h3 class="student-service-title" data-en="LMS Portal (E-Learning)" data-hi="एलएमएस पोर्टल (ई-लर्निंग)">LMS Portal (E-Learning)</h3>
+            <p class="student-service-desc" data-en="Access virtual classroom study materials, lecture slides, assignments submission calendars, and teacher communications in one place." data-hi="एक ही स्थान पर वर्चुअल क्लासरूम अध्ययन सामग्री, व्याख्यान स्लाइड, असाइनमेंट जमा करने वाले कैलेंडर और शिक्षक संचार तक पहुंचें।">Access virtual classroom study materials, lecture slides, assignments submission calendars, and teacher communications in one place.</p>
+            <a href="#" class="btn btn-gold btn-sm" style="display:inline-block;" data-en="Open LMS Portal" data-hi="एलएमएस पोर्टल खोलें">Open LMS Portal</a>
+          </div>
+
+          <!-- 4. Sports & Cultural -->
+          <div class="student-service-card" id="sports">
+            <h3 class="student-service-title" data-en="Sports & Culture Clubs" data-hi="खेल और संस्कृति क्लब">Sports & Culture Clubs</h3>
+            <p class="student-service-desc" data-en="Join student clubs promoting football, cricket leagues, debate associations, photography, music groups, and organizing the annual festival." data-hi="फुटबॉल, क्रिकेट लीग, डिबेट एसोसिएशन, फोटोग्राफी, संगीत समूहों को बढ़ावा देने और वार्षिक उत्सव का आयोजन करने वाले छात्र क्लबों में शामिल हों।">Join student clubs promoting football, cricket leagues, debate associations, photography, music groups, and organizing the annual festival.</p>
+            <a href="facilities.html#sports" class="btn btn-white btn-sm" style="display:inline-block;" data-en="View Sports Grounds" data-hi="खेल मैदान देखें">View Sports Grounds</a>
+          </div>
+
+          <!-- 5. Alumni Association -->
+          <div class="student-service-card" id="alumni">
+            <h3 class="student-service-title" data-en="CUSB Alumni Association" data-hi="सीयूएसबी पूर्व छात्र संघ">CUSB Alumni Association</h3>
+            <p class="student-service-desc" data-en="Build professional relationships with thousands of graduates working across industry, academia, and administration globally. Register for reunions." data-hi="वैश्विक स्तर पर उद्योग, शिक्षा और प्रशासन में काम करने वाले हजारों स्नातकों के साथ पेशेवर संबंध बनाएं। पुनर्मिलन के लिए पंजीकरण करें।">Build professional relationships with thousands of graduates working across industry, academia, and administration globally. Register for reunions.</p>
+            <a href="#" class="btn btn-gold btn-sm" style="display:inline-block;" data-en="Register as Alumni" data-hi="पूर्व छात्र के रूप में जुड़ें">Register as Alumni</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <cusb-quick-actions></cusb-quick-actions>
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

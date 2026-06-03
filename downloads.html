@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="University Downloads — CUSB" data-hi="विश्वविद्यालय डाउनलोड — सीयूएसबी">University Downloads — CUSB</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .downloads-section-group {
+      margin-bottom: 45px;
+    }
+    .downloads-section-title {
+      font-family: var(--ff-title);
+      font-size: 1.6rem;
+      color: var(--tx-secondary);
+      border-bottom: 3px solid var(--acc-gold);
+      display: inline-block;
+      padding-bottom: 5px;
+      margin-bottom: 25px;
+    }
+    .downloads-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .download-card-item {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 15px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .download-card-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--acc-blue);
+    }
+    .download-item-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--tx-primary);
+      line-height: 1.4;
+    }
+    .download-item-details {
+      font-size: 0.78rem;
+      color: var(--tx-muted);
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-color);
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent">
+    <!-- ══════ HERO BANNER ══════ -->
+    <section class="admin-hero" aria-label="Academics Banner" style="--hero-image: url('assets/images/libimg.avif');">
+      <div class="container hero-content">
+        <div class="hero-eyebrow">
+          <span data-en="Digital Resources Hub" data-hi="डिजिटल संसाधन केंद्र">Digital Resources Hub</span>
+        </div>
+        <h1 class="hero-title" data-en="University <span>Downloads</span>" data-hi="विश्वविद्यालय <span>डाउनलोड</span>">University <span>Downloads</span></h1>
+        <p class="hero-sub" data-en="Access academic prospectus, registration forms, fee schedules, admit cards, and course syllabi in PDF format." data-hi="पीडीएफ प्रारूप में शैक्षणिक विवरणिका, पंजीकरण फॉर्म, शुल्क कार्यक्रम, प्रवेश पत्र और पाठ्यक्रम पाठ्यक्रम का उपयोग करें।">Access academic prospectus, registration forms, fee schedules, admit cards, and course syllabi in PDF format.</p>
+      </div>
+    </section>
+
+    <!-- ══════ DOWNLOADS LISTS ══════ -->
+    <section class="section">
+      <div class="container">
+        <!-- 1. Admission Documents -->
+        <div class="downloads-section-group" id="prospectus">
+          <h2 class="downloads-section-title" data-en="Admission & Enrolment" data-hi="प्रवेश एवं नामांकन">Admission & Enrolment</h2>
+          <div class="downloads-list" id="admission">
+            <div class="download-card-item">
+              <h3 class="download-item-title" data-en="CUSB Admission Prospectus 2026–27" data-hi="सीयूएसबी प्रवेश विवरणिका 2026-27">CUSB Admission Prospectus 2026–27</h3>
+              <div class="download-item-details">
+                <span>PDF (5.4 MB)</span>
+                <span data-en="Published: 02 Mar 2026" data-hi="प्रकाशित: 02 मार्च 2026">Published: 02 Mar 2026</span>
+              </div>
+              <a href="#" class="pyq-download-btn"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-download"></use></svg> <span data-en="Download PDF" data-hi="पीडीएफ डाउनलोड करें">Download PDF</span></a>
+            </div>
+            <div class="download-card-item">
+              <h3 class="download-item-title" data-en="UG Registration Guidelines (CUET)" data-hi="यूजी पंजीकरण दिशानिर्देश (सीयूईटी)">UG Registration Guidelines (CUET)</h3>
+              <div class="download-item-details">
+                <span>PDF (1.2 MB)</span>
+                <span data-en="Published: 15 Feb 2026" data-hi="प्रकाशित: 15 फरवरी 2026">Published: 15 Feb 2026</span>
+              </div>
+              <a href="#" class="pyq-download-btn"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-download"></use></svg> <span data-en="Download PDF" data-hi="पीडीएफ डाउनलोड करें">Download PDF</span></a>
+            </div>
+            <div class="download-card-item">
+              <h3 class="download-item-title" data-en="PG Hostel Allocation Registration Form" data-hi="पीजी छात्रावास आवंटन पंजीकरण फॉर्म">PG Hostel Allocation Registration Form</h3>
+              <div class="download-item-details">
+                <span>PDF (850 KB)</span>
+                <span data-en="Published: 28 Feb 2026" data-hi="प्रकाशित: 28 फरवरी 2026">Published: 28 Feb 2026</span>
+              </div>
+              <a href="#" class="pyq-download-btn"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-download"></use></svg> <span data-en="Download PDF" data-hi="पीडीएफ डाउनलोड करें">Download PDF</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Academic Calendar & Syllabus -->
+        <div class="downloads-section-group" id="calendar">
+          <h2 class="downloads-section-title" data-en="Academic Calendar & Curriculum" data-hi="शैक्षणिक कैलेंडर और पाठ्यक्रम">Academic Calendar & Curriculum</h2>
+          <div class="downloads-list">
+            <div class="download-card-item">
+              <h3 class="download-item-title" data-en="Annual Academic Calendar 2026–27" data-hi="वार्षिक शैक्षणिक कैलेंडर 2026-27">Annual Academic Calendar 2026–27</h3>
+              <div class="download-item-details">
+                <span>PDF (980 KB)</span>
+                <span data-en="Published: 05 Jan 2026" data-hi="प्रकाशित: 05 जनवरी 2026">Published: 05 Jan 2026</span>
+              </div>
+              <a href="#" class="pyq-download-btn"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-download"></use></svg> <span data-en="Download PDF" data-hi="पीडीएफ डाउनलोड करें">Download PDF</span></a>
+            </div>
+            <div class="download-card-item">
+              <h3 class="download-item-title" data-en="B.Sc. M.Sc. Integrated CS Syllabus" data-hi="बी.एससी. एम.एससी. एकीकृत सीएस पाठ्यक्रम">B.Sc. M.Sc. Integrated CS Syllabus</h3>
+              <div class="download-item-details">
+                <span>PDF (3.1 MB)</span>
+                <span data-en="Published: 12 Aug 2025" data-hi="प्रकाशित: 12 अगस्त 2025">Published: 12 Aug 2025</span>
+              </div>
+              <a href="https://www.cusb.ac.in/images/dept/computer_science/Syllabus/BscMsc_cs_syllabus.pdf" target="_blank" class="pyq-download-btn"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-download"></use></svg> <span data-en="Download PDF" data-hi="पीडीएफ डाउनलोड करें">Download PDF</span></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Examination Documents -->
+        <div class="downloads-section-group" id="admit-cards">
+          <h2 class="downloads-section-title" data-en="Examinations & Fee Structure" data-hi="परीक्षा और शुल्क संरचना">Examinations & Fee Structure</h2>
+          <div class="downloads-list" id="fee-structure">
+            <div class="download-card-item" id="circulars">
+              <h3 class="download-item-title" data-en="Semester Examination Admit Card Request Template" data-hi="सेमेस्टर परीक्षा प्रवेश पत्र अनुरोध प्रपत्र">Semester Examination Admit Card Request Template</h3>
+              <div class="download-item-details">
+                <span>PDF (340 KB)</span>
+                <span data-en="Published: 10 May 2026" data-hi="प्रकाशित: 10 मई 2026">Published: 10 May 2026</span>
+              </div>
+              <a href="#" class="pyq-download-btn"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-download"></use></svg> <span data-en="Download PDF" data-hi="पीडीएफ डाउनलोड करें">Download PDF</span></a>
+            </div>
+            <div class="download-card-item">
+              <h3 class="download-item-title" data-en="Consolidated Fees Structure for UG & PG (Batch 2026)" data-hi="यूजी और पीजी के लिए एकीकृत शुल्क संरचना (बैच 2026)">Consolidated Fees Structure for UG & PG (Batch 2026)</h3>
+              <div class="download-item-details">
+                <span>PDF (1.5 MB)</span>
+                <span data-en="Published: 18 Jan 2026" data-hi="प्रकाशित: 18 जनवरी 2026">Published: 18 Jan 2026</span>
+              </div>
+              <a href="#" class="pyq-download-btn"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-download"></use></svg> <span data-en="Download PDF" data-hi="पीडीएफ डाउनलोड करें">Download PDF</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <cusb-quick-actions></cusb-quick-actions>
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

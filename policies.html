@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="Statutes, Policies & Reports — CUSB" data-hi="नियम, नीतियां और रिपोर्ट — सीयूएसबी">Statutes, Policies & Reports — CUSB</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .policies-container {
+      display: flex;
+      gap: 40px;
+      margin-top: 40px;
+    }
+    .policies-sidebar {
+      width: 280px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 150px;
+      height: fit-content;
+    }
+    .policies-nav-list {
+      list-style: none;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg-primary);
+    }
+    .policies-nav-item a {
+      display: block;
+      padding: 14px 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--tx-primary);
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+    .policies-nav-item:last-child a {
+      border-bottom: none;
+    }
+    .policies-nav-item a:hover, .policies-nav-item.active a {
+      background: var(--bg-secondary);
+      color: var(--acc-blue);
+      border-left: 4px solid var(--acc-blue);
+      padding-left: 16px;
+    }
+    .policies-content-area {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .policy-block {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: var(--shadow-sm);
+    }
+    .policy-title {
+      font-family: var(--ff-title);
+      font-size: 1.6rem;
+      color: var(--tx-primary);
+      margin-bottom: 15px;
+      border-bottom: 2px solid var(--acc-gold);
+      padding-bottom: 8px;
+      display: inline-block;
+    }
+    .policy-text {
+      font-size: 0.92rem;
+      color: var(--tx-muted);
+      line-height: 1.7;
+      margin-bottom: 15px;
+    }
+    .policy-list {
+      list-style-type: square;
+      margin-left: 20px;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+      color: var(--tx-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    @media (max-width: 991px) {
+      .policies-container {
+        flex-direction: column;
+        gap: 30px;
+      }
+      .policies-sidebar {
+        width: 100%;
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent">
+    <!-- ══════ HERO BANNER ══════ -->
+    <section class="admin-hero" aria-label="Academics Banner" style="--hero-image: url('assets/images/admin.jpeg');">
+      <div class="container hero-content">
+        <div class="hero-eyebrow">
+          <span data-en="Compliance & Statutes" data-hi="अनुपालन और नियम">Compliance & Statutes</span>
+        </div>
+        <h1 class="hero-title" data-en="Statutes & <span>Policies</span>" data-hi="नियम और <span>नीतियां</span>">Statutes & <span>Policies</span></h1>
+        <p class="hero-sub" data-en="Access the official statutes, general ordinances, annual audit reports, and website accessibility guidelines." data-hi="आधिकारिक कानूनों, सामान्य अध्यादेशों, वार्षिक लेखा परीक्षा रिपोर्टों और वेबसाइट पहुंच दिशानिर्देशों तक पहुंचें।">Access the official statutes, general ordinances, annual audit reports, and website accessibility guidelines.</p>
+      </div>
+    </section>
+
+    <!-- ══════ POLICIES CONTENT LAYOUT ══════ -->
+    <section class="section">
+      <div class="container policies-container">
+        <!-- Sidebar Navigation -->
+        <aside class="policies-sidebar" aria-label="Policy Navigation">
+          <ul class="policies-nav-list">
+            <li class="policies-nav-item active"><a href="#policies" data-en="University Policies" data-hi="विश्वविद्यालय नीतियां">University Policies</a></li>
+            <li class="policies-nav-item"><a href="#reports" data-en="Annual Reports" data-hi="वार्षिक प्रतिवेदन">Annual Reports</a></li>
+            <li class="policies-nav-item"><a href="#accessibility" data-en="Accessibility Statement" data-hi="सुगम्यता वक्तव्य">Accessibility Statement</a></li>
+          </ul>
+        </aside>
+
+        <!-- Content Area -->
+        <div class="policies-content-area">
+          <!-- 1. University Policies -->
+          <article class="policy-block" id="policies">
+            <h2 class="policy-title" data-en="University Statutes & Regulations" data-hi="विश्वविद्यालय के नियम और विनियम">University Statutes & Regulations</h2>
+            <p class="policy-text" data-en="Central University of South Bihar is governed by the Central Universities Act, 2009. Official regulations and directives are established by the Executive Council and Academic Council of the university." data-hi="दक्षिण बिहार केंद्रीय विश्वविद्यालय केंद्रीय विश्वविद्यालय अधिनियम, 2009 द्वारा शासित है। आधिकारिक नियम और निर्देश विश्वविद्यालय की कार्यकारी परिषद और शैक्षणिक परिषद द्वारा स्थापित किए जाते हैं।">Central University of South Bihar is governed by the Central Universities Act, 2009. Official regulations and directives are established by the Executive Council and Academic Council of the university.</p>
+            <ul class="policy-list">
+              <li data-en="Code of Academic Conduct: Students must maintain 75% attendance to qualify for examinations." data-hi="शैक्षणिक आचरण संहिता: परीक्षाओं के लिए अर्हता प्राप्त करने के लिए छात्रों को 75% उपस्थिति बनाए रखनी होगी।">Code of Academic Conduct: Students must maintain 75% attendance to qualify for examinations.</li>
+              <li data-en="Anti-Ragging Act: Ragging in any form is strictly prohibited on campus. Offenders will face legal action and expulsion." data-hi="रैगिंग विरोधी अधिनियम: परिसर में किसी भी रूप में रैगिंग सख्त वर्जित है। उल्लंघन करने वालों को कानूनी कार्रवाई और निष्कासन का सामना करना पड़ेगा।">Anti-Ragging Act: Ragging in any form is strictly prohibited on campus. Offenders will face legal action and expulsion.</li>
+              <li data-en="Hostel Code: Inmates must adhere to gate timings (8:00 PM for Boys, 7:00 PM for Girls) for safety." data-hi="छात्रावास संहिता: सुरक्षा के लिए कैदियों को गेट के समय (लड़कों के लिए रात 8:00 बजे, लड़कियों के लिए शाम 7:00 बजे) का पालन करना होगा।">Hostel Code: Inmates must adhere to gate timings (8:00 PM for Boys, 7:00 PM for Girls) for safety.</li>
+            </ul>
+          </article>
+
+          <!-- 2. Annual Reports -->
+          <article class="policy-block" id="reports">
+            <h2 class="policy-title" data-en="Annual Audit & Statutory Reports" data-hi="वार्षिक लेखा परीक्षा और वैधानिक रिपोर्ट">Annual Audit & Statutory Reports</h2>
+            <p class="policy-text" data-en="Under legislative mandates, CUSB publishes yearly academic audits, administrative performance updates, and audited finance statements placed before the Parliament of India." data-hi="विधायी शासनादेशों के तहत, सीयूएसबी वार्षिक शैक्षणिक ऑडिट, प्रशासनिक प्रदर्शन अपडेट और भारत की संसद के समक्ष रखे गए ऑडिटेड वित्तीय विवरण प्रकाशित करता है।">Under legislative mandates, CUSB publishes yearly academic audits, administrative performance updates, and audited finance statements placed before the Parliament of India.</p>
+            <ul class="policy-list">
+              <li><a href="downloads.html#fee-structure" data-en="View Audited Accounts 2024–25" data-hi="ऑडिट किए गए खाते 2024-25 देखें">View Audited Accounts 2024–25</a></li>
+              <li><a href="downloads.html#prospectus" data-en="Annual Academic Progress Report 2025" data-hi="वार्षिक शैक्षणिक प्रगति रिपोर्ट 2025">Annual Academic Progress Report 2025</a></li>
+            </ul>
+          </article>
+
+          <!-- 3. Accessibility Statement -->
+          <article class="policy-block" id="accessibility">
+            <h2 class="policy-title" data-en="Web Accessibility Statement" data-hi="वेब सुगम्यता वक्तव्य">Web Accessibility Statement</h2>
+            <p class="policy-text" data-en="We are committed to making the CUSB web portal accessible to all users, including individuals with visual, auditory, or motor impairments. The site is designed in compliance with World Wide Web Consortium (W3C) Web Content Accessibility Guidelines (WCAG) 2.0 Level AA." data-hi="हम सीयूएसबी वेब पोर्टल को सभी उपयोगकर्ताओं के लिए सुलभ बनाने के लिए प्रतिबद्ध हैं, जिसमें दृश्य, श्रवण या मोटर हानि वाले व्यक्ति शामिल हैं। साइट को वर्ल्ड वाइड वेब कंसोर्टियम (W3C) वेब सामग्री एक्सेसिबिलिटी गाइडलाइंस (WCAG) 2.0 स्तर AA के अनुपालन में डिज़ाइन किया गया है।">We are committed to making the CUSB web portal accessible to all users, including individuals with visual, auditory, or motor impairments. The site is designed in compliance with World Wide Web Consortium (W3C) Web Content Accessibility Guidelines (WCAG) 2.0 Level AA.</p>
+            <ul class="policy-list">
+              <li data-en="Bilingual rendering supports local and national languages." data-hi="द्विभाषी अनुवाद स्थानीय और राष्ट्रीय भाषाओं का समर्थन करता है।">Bilingual rendering supports local and national languages.</li>
+              <li data-en="Font Scaling bar allows sizes from 12px to 22px without breaking layout integrity." data-hi="फ़ॉन्ट स्केलिंग बार लेआउट अखंडता को तोड़े बिना 12px से 22px तक के आकार की अनुमति देता है।">Font Scaling bar allows sizes from 12px to 22px without breaking layout integrity.</li>
+              <li data-en="Theme Switcher toggle shifts background to pure black for high contrast readability." data-hi="थीम स्विचर टॉगल उच्च कंट्रास्ट पठनीयता के लिए पृष्ठभूमि को शुद्ध काले रंग में बदल देता है।">Theme Switcher toggle shifts background to pure black for high contrast readability.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <cusb-quick-actions></cusb-quick-actions>
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+  
+  <script>
+    // Smooth scrolling active state synchronization
+    window.addEventListener('DOMContentLoaded', () => {
+      const links = document.querySelectorAll('.policies-nav-item');
+      
+      window.addEventListener('scroll', () => {
+        let current = '';
+        const blocks = document.querySelectorAll('.policy-block');
+        blocks.forEach(block => {
+          const top = block.offsetTop - 200;
+          if (window.scrollY >= top) {
+            current = block.getAttribute('id');
+          }
+        });
+
+        links.forEach(link => {
+          link.classList.remove('active');
+          const href = link.querySelector('a').getAttribute('href');
+          if (href === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="Campus Facilities — CUSB" data-hi="परिसर की सुविधाएं — सीयूएसबी">Campus Facilities — CUSB</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .facilities-showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .facility-showcase-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .facility-showcase-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--acc-gold);
+    }
+    .facility-showcase-media {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+    .facility-showcase-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    .facility-showcase-card:hover .facility-showcase-media img {
+      transform: scale(1.05);
+    }
+    .facility-showcase-details {
+      padding: 24px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .facility-showcase-title {
+      font-family: var(--ff-title);
+      font-size: 1.4rem;
+      color: var(--tx-primary);
+      margin-bottom: 12px;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 8px;
+    }
+    .facility-showcase-desc {
+      font-size: 0.88rem;
+      color: var(--tx-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .facility-details-list {
+      list-style: none;
+      font-size: 0.82rem;
+      color: var(--tx-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .facility-details-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent">
+    <!-- ══════ HERO BANNER ══════ -->
+    <section class="admin-hero" aria-label="Academics Banner" style="--hero-image: url('assets/images/libimg.avif');">
+      <div class="container hero-content">
+        <div class="hero-eyebrow">
+          <span data-en="Green Campus Infrastructure" data-hi="हरित परिसर बुनियादी ढांचा">Green Campus Infrastructure</span>
+        </div>
+        <h1 class="hero-title" data-en="Campus <span>Facilities</span>" data-hi="परिसर <span>सुविधाएं</span>">Campus <span>Facilities</span></h1>
+        <p class="hero-sub" data-en="Explore CUSB's permanent 300-acre environment equipped with state-of-the-art labs, libraries, residential spaces, and health centers." data-hi="अत्याधुनिक प्रयोगशालाओं, पुस्तकालयों, आवासीय स्थानों और स्वास्थ्य केंद्रों से सुसज्जित सीयूएसबी के स्थायी 300 एकड़ के परिसर का अन्वेषण करें।">Explore CUSB's permanent 300-acre environment equipped with state-of-the-art labs, libraries, residential spaces, and health centers.</p>
+      </div>
+    </section>
+
+    <!-- ══════ FACILITIES SHOWCASE ══════ -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title" data-en="World-Class Infrastructure" data-hi="विश्वस्तरीय बुनियादी ढांचा">World-Class Infrastructure</h2>
+        <p style="text-align: center; max-width: 800px; margin: -30px auto 40px; color: var(--tx-muted);" data-en="Central University of South Bihar provides a comprehensive learning ecosytem that supports students in academic work, research, fitness, wellness, and healthy residential life." data-hi="दक्षिण बिहार केंद्रीय विश्वविद्यालय एक व्यापक शिक्षण पारिस्थितिकी तंत्र प्रदान करता है जो छात्रों को शैक्षणिक कार्य, अनुसंधान, फिटनेस, कल्याण और स्वस्थ आवासीय जीवन में सहायता प्रदान करता है।">Central University of South Bihar provides a comprehensive learning ecosytem that supports students in academic work, research, fitness, wellness, and healthy residential life.</p>
+        
+        <div class="facilities-showcase-grid">
+          <!-- 1. Central Library -->
+          <article class="facility-showcase-card" id="library">
+            <div class="facility-showcase-media">
+              <img src="assets/images/libimg.avif" alt="CUSB Central Library" loading="lazy">
+            </div>
+            <div class="facility-showcase-details">
+              <div>
+                <h3 class="facility-showcase-title" data-en="Central Library" data-hi="केंद्रीय पुस्तकालय">Central Library</h3>
+                <p class="facility-showcase-desc" data-en="A knowledge powerhouse holding over 80,000+ volumes, 100+ print journals, and e-resources through national consortia like ShodhSindhu. Fully automated using SOUL database management." data-hi="राष्ट्रीय संकायों जैसे शोधसिंधु के माध्यम से 80,000 से अधिक पुस्तकों, 100 से अधिक मुद्रित पत्रिकाओं और ई-संसाधनों का एक समृद्ध संग्रह। सोल डेटाबेस प्रबंधन का उपयोग करके पूरी तरह से स्वचालित।">A knowledge powerhouse holding over 80,000+ volumes, 100+ print journals, and e-resources through national consortia like ShodhSindhu. Fully automated using SOUL database management.</p>
+                <ul class="facility-details-list">
+                  <li><strong>Timing:</strong> 9:00 AM — 6:00 PM (Monday to Saturday)</li>
+                  <li><strong>E-Library:</strong> Over 15,000+ online journals available 24/7</li>
+                  <li><strong>Special Facilities:</strong> Blind and visually impaired reading stations</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. Hostels -->
+          <article class="facility-showcase-card" id="hostels">
+            <div class="facility-showcase-media">
+              <img src="assets/images/hosimg.jpg" alt="Student residential blocks" loading="lazy">
+            </div>
+            <div class="facility-showcase-details">
+              <div>
+                <h3 class="facility-showcase-title" data-en="Campus Hostels" data-hi="परिसर छात्रावास">Campus Hostels</h3>
+                <p class="facility-showcase-desc" data-en="Fully furnished separate secure hostels for boys (Aryabhatta & Malviya) and girls (Gargi & Maitreyi) within the campus boundary, offering balanced diets and recreation centers." data-hi="परिसर सीमा के भीतर लड़कों (आर्यभट्ट और मालवीय) और लड़कियों (गार्गी और मैत्रेयी) के लिए पूरी तरह से सुसज्जित अलग सुरक्षित छात्रावास, जो संतुलित आहार और मनोरंजन केंद्र प्रदान करते हैं।">Fully furnished separate secure hostels for boys (Aryabhatta & Malviya) and girls (Gargi & Maitreyi) within the campus boundary, offering balanced diets and recreation centers.</p>
+                <ul class="facility-details-list">
+                  <li><strong>Capacity:</strong> 1000+ student accommodations</li>
+                  <li><strong>Services:</strong> Wi-Fi, common TV rooms, visitor lounges</li>
+                  <li><strong>Security:</strong> 24/7 guard surveillance and biometric entry</li>
+                </ul>
+              </div>
+              <a href="hostel.html" class="btn btn-gold btn-sm" style="text-align: center;" data-en="View Hostel Fees & Wardens" data-hi="छात्रावास शुल्क एवं वार्डन देखें">View Hostel Fees & Wardens</a>
+            </div>
+          </article>
+
+          <!-- 3. Sports Complex -->
+          <article class="facility-showcase-card" id="sports">
+            <div class="facility-showcase-media">
+              <img src="assets/images/spoim.jpg" alt="University sports ground" loading="lazy">
+            </div>
+            <div class="facility-showcase-details">
+              <div>
+                <h3 class="facility-showcase-title" data-en="Sports & Gym Complex" data-hi="खेल एवं जिम संकुल">Sports & Gym Complex</h3>
+                <p class="facility-showcase-desc" data-en="Encouraging students to lead active lives, CUSB hosts multi-sport fields, athletics tracks, and outdoor open gyms alongside indoor courts for table tennis and chess." data-hi="छात्रों को सक्रिय जीवन जीने के लिए प्रोत्साहित करते हुए, सीयूएसबी मल्टी-स्पोर्ट्स मैदानों, एथलेटिक्स ट्रैक, और आउटडोर ओपन जिम के साथ-साथ टेबल टेनिस और शतरंज के लिए इनडोर कोर्ट की मेजबानी करता है।">Encouraging students to lead active lives, CUSB hosts multi-sport fields, athletics tracks, and outdoor open gyms alongside indoor courts for table tennis and chess.</p>
+                <ul class="facility-details-list">
+                  <li><strong>Outdoor:</strong> Cricket field, football pitch, volleyball, badminton</li>
+                  <li><strong>Indoor:</strong> Fully equipped weight training and fitness gym</li>
+                  <li><strong>Annual Event:</strong> CUSB Khel Mahotsav</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. Central Instruments Facility -->
+          <article class="facility-showcase-card" id="digital-library">
+            <div class="facility-showcase-media">
+              <img src="assets/images/sclab.jpg" alt="Scientific instrumentation lab" loading="lazy">
+            </div>
+            <div class="facility-showcase-details">
+              <div>
+                <h3 class="facility-showcase-title" data-en="Central Instruments Facility (CIF)" data-hi="केंद्रीय उपकरण केंद्र (CIF)">Central Instruments Facility (CIF)</h3>
+                <p class="facility-showcase-desc" data-en="Equipped with top-tier tools (XRD, SEM, FTIR, NMR) to support advanced research scholars in biological sciences, physics, chemistry, and environmental science domains." data-hi="जैविक विज्ञान, भौतिकी, रसायन विज्ञान और पर्यावरण विज्ञान डोमेन में उन्नत अनुसंधान विद्वानों का समर्थन करने के लिए उच्च स्तरीय उपकरणों (एक्सआरडी, एसईएम, एफटीआईआर, एनएमआर) से सुसज्जित।">Equipped with top-tier tools (XRD, SEM, FTIR, NMR) to support advanced research scholars in biological sciences, physics, chemistry, and environmental science domains.</p>
+                <ul class="facility-details-list">
+                  <li><strong>Aim:</strong> Foster high-quality research publications</li>
+                  <li><strong>Access:</strong> Available to internal students and external institutions</li>
+                  <li><strong>Lab standards:</strong> NABL aligned practices</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 5. Cafeteria -->
+          <article class="facility-showcase-card" id="cafeteria">
+            <div class="facility-showcase-media">
+              <img src="assets/images/diversity.webp" alt="University canteen" loading="lazy">
+            </div>
+            <div class="facility-showcase-details">
+              <div>
+                <h3 class="facility-showcase-title" data-en="Cafeteria & Mess" data-hi="कैफेटेरिया और मेस">Cafeteria & Mess</h3>
+                <p class="facility-showcase-desc" data-en="Spacious canteen serving hygienic food, beverages, and snacks at government approved subsidized rates. Hosts food options matching culinary diversities of students." data-hi="सरकारी अनुमोदित रियायती दरों पर स्वच्छ भोजन, पेय और स्नैक्स परोसने वाली विशाल कैंटीन। छात्रों की पाक विविधताओं से मेल खाने वाले खाद्य विकल्पों की मेजबानी करती है।">Spacious canteen serving hygienic food, beverages, and snacks at government approved subsidized rates. Hosts food options matching culinary diversities of students.</p>
+                <ul class="facility-details-list">
+                  <li><strong>Quality:</strong> FSSAI certified food inspection</li>
+                  <li><strong>Capacity:</strong> Accommodates 150+ students in dining hall</li>
+                  <li><strong>Menu:</strong> North Indian, South Indian, fast-food, juices</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6. Medical Center -->
+          <article class="facility-showcase-card" id="medical">
+            <div class="facility-showcase-media">
+              <img src="assets/images/health.webp" alt="Campus health clinic" loading="lazy">
+            </div>
+            <div class="facility-showcase-details">
+              <div>
+                <h3 class="facility-showcase-title" data-en="Health & Medical Center" data-hi="स्वास्थ्य और चिकित्सा केंद्र">Health & Medical Center</h3>
+                <p class="facility-showcase-desc" data-en="On-campus health clinic providing basic medical assistance, emergency triage, pharmacy services, and routine checkups for students and faculty 24/7." data-hi="परिसर में स्थित स्वास्थ्य क्लिनिक जो छात्रों और शिक्षकों के लिए 24/7 बुनियादी चिकित्सा सहायता, आपातकालीन चिकित्सा, फार्मेसी सेवाएं और नियमित जांच प्रदान करता है।">On-campus health clinic providing basic medical assistance, emergency triage, pharmacy services, and routine checkups for students and faculty 24/7.</p>
+                <ul class="facility-details-list">
+                  <li><strong>Staff:</strong> Full-time resident doctors and nursing assistants</li>
+                  <li><strong>Triage:</strong> Dedicated on-campus ambulance service</li>
+                  <li><strong>Coverage:</strong> Health cards issued for all registered students</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <cusb-quick-actions></cusb-quick-actions>
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

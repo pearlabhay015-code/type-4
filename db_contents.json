@@ -1,0 +1,1782 @@
+{
+  "admin_users": [
+    {
+      "id": 2,
+      "username": "Abhay Kumar",
+      "password_hash": "52af5e990dc16c2b6cd6d48e0f0b113c8a7e60426e379be239e0e71b7186dd34",
+      "salt": "e7a0d57923c23255b5d4710b628a3116",
+      "created_at": "2026-06-03 06:47:08"
+    }
+  ],
+  "sqlite_sequence": [
+    {
+      "name": "admin_users",
+      "seq": 2
+    },
+    {
+      "name": "audit_logs",
+      "seq": 6
+    },
+    {
+      "name": "search_index",
+      "seq": 52
+    },
+    {
+      "name": "hostels",
+      "seq": 6
+    },
+    {
+      "name": "hostel_wardens",
+      "seq": 24
+    },
+    {
+      "name": "departments",
+      "seq": 42
+    },
+    {
+      "name": "department_programmes",
+      "seq": 99
+    },
+    {
+      "name": "department_faculty",
+      "seq": 18
+    },
+    {
+      "name": "department_research",
+      "seq": 177
+    },
+    {
+      "name": "pyqs",
+      "seq": 57
+    },
+    {
+      "name": "chatbot_faq",
+      "seq": 21
+    },
+    {
+      "name": "announcements",
+      "seq": 11
+    },
+    {
+      "name": "gallery",
+      "seq": 14
+    }
+  ],
+  "sessions": [
+    {
+      "token": "40f010a4d8313479f32d9d3ec831018badecb2986cd1b6c693f94288fbc094b1",
+      "username": "Abhay Kumar",
+      "expires_at": "2026-06-03T13:17:08.743104"
+    },
+    {
+      "token": "2547d19efd5b79b4a31ea0c11698cba9407a33fd5fcae12c180bf5e7525c736d",
+      "username": "Abhay Kumar",
+      "expires_at": "2026-06-03T13:24:44.518978"
+    },
+    {
+      "token": "54110eceb756a53753721e2fb98858f14a7d2b1b5824017881f31cda83f97a2d",
+      "username": "Abhay Kumar",
+      "expires_at": "2026-06-03T16:01:16.773166"
+    }
+  ],
+  "audit_logs": [
+    {
+      "id": 2,
+      "username": "Abhay Kumar",
+      "action": "Initial Admin Setup Completed",
+      "created_at": "2026-06-03 06:47:08"
+    },
+    {
+      "id": 3,
+      "username": "Abhay Kumar",
+      "action": "Sign In Successful",
+      "created_at": "2026-06-03 06:54:44"
+    },
+    {
+      "id": 4,
+      "username": "Abhay Kumar",
+      "action": "Published Announcement: PG admissions are going on...",
+      "created_at": "2026-06-03 06:56:03"
+    },
+    {
+      "id": 5,
+      "username": "Abhay Kumar",
+      "action": "Failed login attempt (incorrect password)",
+      "created_at": "2026-06-03 09:31:02"
+    },
+    {
+      "id": 6,
+      "username": "Abhay Kumar",
+      "action": "Sign In Successful",
+      "created_at": "2026-06-03 09:31:16"
+    }
+  ],
+  "departments": [
+    {
+      "id": 29,
+      "slug": "computer_science",
+      "name": "Computer Science",
+      "school": "School of Mathematics, Statistics & Computer Science",
+      "icon": "laptop",
+      "summary": "The Department of Computer Science (DCSC) offers UG-PG integrated, M.Sc. CS, M.Sc. AI, and Ph.D. programmes designed for global excellence.",
+      "vision": "The Department of Computer Science at CUSB is committed to research-led teaching in foundational and applied computing. With a curriculum aligned to NEP 2020 and industry requirements, students gain expertise in algorithms, artificial intelligence, data science, and software engineering — preparing them for careers in technology and research across India and globally.",
+      "established": "2009",
+      "intake_info": "B.Sc.: 25 seats · M.Sc. CS: 40 seats · M.Sc. AI: 20 seats",
+      "admission_mode": "CUET (UG/PG) conducted by NTA",
+      "head_of_department": "Prof. Prabhat Ranjan"
+    },
+    {
+      "id": 30,
+      "slug": "mathematics",
+      "name": "Mathematics",
+      "school": "School of Mathematics, Statistics & Computer Science",
+      "icon": "chart",
+      "summary": "The Department of Mathematics builds strong foundations in pure and applied mathematics for teaching, research, analytics, and scientific computing.",
+      "vision": "The department focuses on mathematical reasoning, modelling, analysis, and problem solving. Students engage with classical theory and modern applications across computation, finance, data analysis, and interdisciplinary research.",
+      "established": "2009",
+      "intake_info": "Integrated: 30 seats · M.Sc.: 40 seats",
+      "admission_mode": "CUET (UG/PG) conducted by NTA",
+      "head_of_department": "Prof. Prabhat Ranjan (Acting)"
+    },
+    {
+      "id": 31,
+      "slug": "statistics",
+      "name": "Statistics",
+      "school": "School of Mathematics, Statistics & Computer Science",
+      "icon": "chart",
+      "summary": "The Department of Statistics prepares students in statistical theory, applied data analysis, survey methods, and computational statistics.",
+      "vision": "The department connects rigorous statistical foundations with real-world data problems in science, social research, policy, industry, and technology.",
+      "established": "2009",
+      "intake_info": "M.Sc.: 30 seats",
+      "admission_mode": "CUET PG",
+      "head_of_department": "Dr. Jainath Yadav (Coordinator)"
+    },
+    {
+      "id": 32,
+      "slug": "bioinformatics",
+      "name": "Bioinformatics",
+      "school": "School of Earth, Biological & Environmental Sciences",
+      "icon": "medical",
+      "summary": "The Department of Bioinformatics blends biology, computer science, and statistics to study biological data at scale.",
+      "vision": "The department supports interdisciplinary learning in genomics, computational biology, biological databases, and data-driven life science research.",
+      "established": "2009",
+      "intake_info": "M.Sc.: 20 seats",
+      "admission_mode": "CUET PG",
+      "head_of_department": "Dr. Tara Kashav (Acting HOD)"
+    },
+    {
+      "id": 33,
+      "slug": "geology",
+      "name": "Geology",
+      "school": "School of Earth, Biological & Environmental Sciences",
+      "icon": "globe",
+      "summary": "The Department of Geology studies earth materials, processes, resources, hazards, and environmental change.",
+      "vision": "The department develops field-based and laboratory skills for understanding the Earth system, natural resources, geohazards, and sustainable development.",
+      "established": "2009",
+      "intake_info": "M.Sc.: 25 seats",
+      "admission_mode": "CUET PG",
+      "head_of_department": "Dr. Manjit Singh (Coordinator)"
+    },
+    {
+      "id": 34,
+      "slug": "geography",
+      "name": "Geography",
+      "school": "School of Earth, Biological & Environmental Sciences",
+      "icon": "map-pin",
+      "summary": "The Department of Geography explores physical landscapes, human environments, spatial planning, and geospatial technologies.",
+      "vision": "The department combines fieldwork, spatial analysis, GIS, remote sensing, and social-environmental inquiry to understand changing regions and communities.",
+      "established": "2009",
+      "intake_info": "M.A./M.Sc.: 30 seats",
+      "admission_mode": "CUET PG",
+      "head_of_department": "Prof. K. N. Singh"
+    },
+    {
+      "id": 35,
+      "slug": "life_science",
+      "name": "Life Science",
+      "school": "School of Earth, Biological & Environmental Sciences",
+      "icon": "book",
+      "summary": "The Department of Life Science provides broad training in biological systems from molecules to ecosystems.",
+      "vision": "The department encourages laboratory learning and research across cell biology, microbiology, plant sciences, animal sciences, and ecology.",
+      "established": "2009",
+      "intake_info": "M.Sc.: 35 seats",
+      "admission_mode": "CUET PG",
+      "head_of_department": "Dr. Tara Kashav"
+    },
+    {
+      "id": 36,
+      "slug": "biotechnology",
+      "name": "Biotechnology",
+      "school": "School of Earth, Biological & Environmental Sciences",
+      "icon": "search",
+      "summary": "The Department of Biotechnology applies biological knowledge to health, agriculture, environment, and industrial innovation.",
+      "vision": "The department integrates molecular biology, genetics, bioprocessing, and modern laboratory practice for research and technology-oriented careers.",
+      "established": "2009",
+      "intake_info": "M.Sc.: 30 seats",
+      "admission_mode": "CUET PG",
+      "head_of_department": "Prof. K.N. Singh (Acting)"
+    },
+    {
+      "id": 37,
+      "slug": "environmental_sciences",
+      "name": "Environmental Sciences",
+      "school": "School of Earth, Biological & Environmental Sciences",
+      "icon": "book",
+      "summary": "The Department of Environmental Sciences studies environmental systems, pollution, conservation, and sustainable resource management.",
+      "vision": "The department prepares students to address environmental challenges through field studies, laboratory analysis, policy awareness, and interdisciplinary research.",
+      "established": "2009",
+      "intake_info": "M.Sc.: 25 seats",
+      "admission_mode": "CUET PG",
+      "head_of_department": "Dr. Manjit Singh"
+    },
+    {
+      "id": 38,
+      "slug": "psychological_sciences",
+      "name": "Psychological Sciences",
+      "school": "School of Human Sciences",
+      "icon": "users",
+      "summary": "The Department of Psychological Sciences studies behaviour, cognition, development, mental health, and human well-being.",
+      "vision": "The department combines theory, assessment, research methods, and applied practice to prepare students for counselling, research, and human service roles.",
+      "established": "2009",
+      "intake_info": "M.A./M.Sc.: 30 seats",
+      "admission_mode": "CUET PG",
+      "head_of_department": "Dr. Pratishtha Sonker (Coordinator)"
+    },
+    {
+      "id": 39,
+      "slug": "historical_studies",
+      "name": "Historical Studies",
+      "school": "School of Social Sciences & Policies",
+      "icon": "building",
+      "summary": "The Department of Historical Studies examines societies, cultures, institutions, and ideas across time.",
+      "vision": "The department promotes critical historical inquiry through archival work, interpretation of sources, regional history, and wider global perspectives.",
+      "established": "2009",
+      "intake_info": "M.A.: 30 seats",
+      "admission_mode": "CUET PG",
+      "head_of_department": "Dr. Priti Rai (Coordinator)"
+    },
+    {
+      "id": 40,
+      "slug": "law_governance",
+      "name": "Law & Governance",
+      "school": "School of Law & Governance",
+      "icon": "shield",
+      "summary": "The Department of Law & Governance studies legal systems, constitutional values, public institutions, and justice.",
+      "vision": "The department combines legal education, governance studies, research, advocacy skills, and public service orientation.",
+      "established": "2009",
+      "intake_info": "B.A. LL.B.: 120 seats · LL.M.: 30 seats",
+      "admission_mode": "CUET (UG/PG)",
+      "head_of_department": "Prof. Prabhat Ranjan (Acting HoD)"
+    },
+    {
+      "id": 41,
+      "slug": "chemistry",
+      "name": "Chemistry",
+      "school": "School of Physical & Chemical Sciences",
+      "icon": "medical",
+      "summary": "The Department of Chemistry studies matter, reactions, materials, analysis, and chemical processes.",
+      "vision": "The department develops experimental and theoretical understanding across organic, inorganic, physical, analytical, and materials chemistry.",
+      "established": "2009",
+      "intake_info": "M.Sc.: 40 seats",
+      "admission_mode": "CUET PG",
+      "head_of_department": "Dr. Lakhwinder Singh (Acting)"
+    },
+    {
+      "id": 42,
+      "slug": "physics",
+      "name": "Physics",
+      "school": "School of Physical & Chemical Sciences",
+      "icon": "globe",
+      "summary": "The Department of Physics investigates matter, energy, materials, space, and fundamental laws of nature.",
+      "vision": "The department combines theory, experiments, computation, and instrumentation to prepare students for research and technology careers.",
+      "established": "2009",
+      "intake_info": "M.Sc.: 40 seats",
+      "admission_mode": "CUET PG",
+      "head_of_department": "Dr. Lakhwinder Singh"
+    }
+  ],
+  "department_programmes": [
+    {
+      "id": 67,
+      "department_slug": "computer_science",
+      "name": "B.Sc. + M.Sc. Computer Science",
+      "level": "ug",
+      "duration": "5 Years",
+      "seats": "25",
+      "entrance": "CUET (UG)",
+      "eligibility": "10+2 with Math",
+      "description": "A five-year comprehensive integrated honours programme covering fundamental coding, architectures, web programming and machine learning, aligning with NEP 2020 exit options.",
+      "syllabus_url": "https://www.cusb.ac.in/images/dept/computer_science/Syllabus/BscMsc_cs_syllabus.pdf"
+    },
+    {
+      "id": 68,
+      "department_slug": "computer_science",
+      "name": "M.Sc. Computer Science",
+      "level": "pg",
+      "duration": "2 Years",
+      "seats": "40",
+      "entrance": "CUET (PG)",
+      "eligibility": "BCA / B.Sc. CS / B.Tech",
+      "description": "An advanced curriculum emphasizing database management, network security, software engineering, and cloud platforms, concluding with a research dissertation project.",
+      "syllabus_url": "https://www.cusb.ac.in/images/dept/computer_science/Syllabus/Msc_cs_syllabus.pdf"
+    },
+    {
+      "id": 69,
+      "department_slug": "computer_science",
+      "name": "M.Sc. Artificial Intelligence",
+      "level": "pg",
+      "duration": "2 Years",
+      "seats": "20",
+      "entrance": "CUET (PG)",
+      "eligibility": "BCA / B.Sc. CS / B.Tech",
+      "description": "Focuses on PyTorch/TensorFlow frameworks, deep learning models, natural language processing, computer vision networks, and ethical artificial intelligence constructs.",
+      "syllabus_url": "https://www.cusb.ac.in/images/dept/computer_science/Syllabus/MScAI_Syllabus_whole.pdf"
+    },
+    {
+      "id": 70,
+      "department_slug": "computer_science",
+      "name": "Ph.D. Computer Science",
+      "level": "phd",
+      "duration": "3–5 Years",
+      "seats": "Varies",
+      "entrance": "UGC NET / Research Exam",
+      "eligibility": "M.Sc. CS / M.Tech (55%+)",
+      "description": "Scholarly research domains covering pattern recognition, cryptography, network routing protocols, medical image analysis, and algorithm complexity evaluations.",
+      "syllabus_url": "https://www.cusb.ac.in/images/dept/computer_science/Syllabus/Phd_Syllabus_Computer_Science.pdf"
+    },
+    {
+      "id": 71,
+      "department_slug": "mathematics",
+      "name": "Integrated B.Sc. + M.Sc. Mathematics",
+      "level": "ug",
+      "duration": "5 Years",
+      "seats": "30",
+      "entrance": "CUET (UG)",
+      "eligibility": "10+2 with Math",
+      "description": "Combined basic and advanced curriculum in mathematical analysis and algebra.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 72,
+      "department_slug": "mathematics",
+      "name": "M.Sc. Mathematics",
+      "level": "pg",
+      "duration": "2 Years",
+      "seats": "40",
+      "entrance": "CUET (PG)",
+      "eligibility": "B.Sc. with Math",
+      "description": "Core postgraduate course with advanced real analysis, algebra, and topology.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 73,
+      "department_slug": "mathematics",
+      "name": "Ph.D. Mathematics",
+      "level": "phd",
+      "duration": "3–5 Years",
+      "seats": "Varies",
+      "entrance": "UGC NET / Research Exam",
+      "eligibility": "M.Sc. Mathematics",
+      "description": "Research studies in core areas of algebra, analysis, and computation.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 74,
+      "department_slug": "statistics",
+      "name": "Integrated B.Sc. + M.Sc. Statistics",
+      "level": "ug",
+      "duration": "5 Years",
+      "seats": "25",
+      "entrance": "CUET UG",
+      "eligibility": "10+2 with Math",
+      "description": "Combined course in statistical foundations and computations.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 75,
+      "department_slug": "statistics",
+      "name": "M.Sc. Statistics",
+      "level": "pg",
+      "duration": "2 Years",
+      "seats": "30",
+      "entrance": "CUET PG",
+      "eligibility": "B.Sc. with Math/Stats",
+      "description": "In-depth statistics covering regression, sampling, and analytics.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 76,
+      "department_slug": "statistics",
+      "name": "Ph.D. Statistics",
+      "level": "phd",
+      "duration": "3–5 Years",
+      "seats": "Varies",
+      "entrance": "NET/UGC Exam",
+      "eligibility": "M.Sc. Statistics",
+      "description": "Research coursework and thesis.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 77,
+      "department_slug": "bioinformatics",
+      "name": "M.Sc. Bioinformatics",
+      "level": "pg",
+      "duration": "2 Years",
+      "seats": "20",
+      "entrance": "CUET PG",
+      "eligibility": "B.Sc. Biology/Math/CS",
+      "description": "Studies genomic data, sequence alignment, molecular modelling.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 78,
+      "department_slug": "bioinformatics",
+      "name": "Ph.D. Bioinformatics",
+      "level": "phd",
+      "duration": "3–5 Years",
+      "seats": "Varies",
+      "entrance": "UGC NET / GATE",
+      "eligibility": "M.Sc. Bioinformatics",
+      "description": "Doctoral level investigations.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 79,
+      "department_slug": "geology",
+      "name": "M.Sc. Geology",
+      "level": "pg",
+      "duration": "2 Years",
+      "seats": "25",
+      "entrance": "CUET PG",
+      "eligibility": "B.Sc. Geology",
+      "description": "Comprehensive training in petrology, structural geology, mapping.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 80,
+      "department_slug": "geology",
+      "name": "Ph.D. Geology",
+      "level": "phd",
+      "duration": "3–5 Years",
+      "seats": "Varies",
+      "entrance": "UGC NET",
+      "eligibility": "M.Sc. Geology",
+      "description": "Doctoral research.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 81,
+      "department_slug": "geography",
+      "name": "M.A./M.Sc. Geography",
+      "level": "pg",
+      "duration": "2 Years",
+      "seats": "30",
+      "entrance": "CUET PG",
+      "eligibility": "Bachelor Degree",
+      "description": "Spatial planning, GIS, remote sensing, human geography.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 82,
+      "department_slug": "geography",
+      "name": "Ph.D. Geography",
+      "level": "phd",
+      "duration": "3–5 Years",
+      "seats": "Varies",
+      "entrance": "NET",
+      "eligibility": "M.A./M.Sc. Geography",
+      "description": "Doctoral research.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 83,
+      "department_slug": "life_science",
+      "name": "M.Sc. Life Science",
+      "level": "pg",
+      "duration": "2 Years",
+      "seats": "35",
+      "entrance": "CUET PG",
+      "eligibility": "B.Sc. Life Sciences/Bio",
+      "description": "Advanced studies in cell biology, biochemistry, physiology.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 84,
+      "department_slug": "life_science",
+      "name": "Ph.D. Life Science",
+      "level": "phd",
+      "duration": "3–5 Years",
+      "seats": "Varies",
+      "entrance": "NET/GATE",
+      "eligibility": "M.Sc. Life Science",
+      "description": "Doctoral level molecular biology research.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 85,
+      "department_slug": "biotechnology",
+      "name": "M.Sc. Biotechnology",
+      "level": "pg",
+      "duration": "2 Years",
+      "seats": "30",
+      "entrance": "CUET PG",
+      "eligibility": "B.Sc. Biotechnology/Bio",
+      "description": "Enzyme engineering, genetics, molecular biology, tissue culture.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 86,
+      "department_slug": "biotechnology",
+      "name": "Ph.D. Biotechnology",
+      "level": "phd",
+      "duration": "3–5 Years",
+      "seats": "Varies",
+      "entrance": "NET/GATE",
+      "eligibility": "M.Sc. Biotechnology",
+      "description": "Molecular biosciences research.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 87,
+      "department_slug": "environmental_sciences",
+      "name": "M.Sc. Environmental Sciences",
+      "level": "pg",
+      "duration": "2 Years",
+      "seats": "25",
+      "entrance": "CUET PG",
+      "eligibility": "B.Sc. Environmental Science/Bio/Math",
+      "description": "Ecological monitoring, EIA, climate studies, waste management.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 88,
+      "department_slug": "environmental_sciences",
+      "name": "Ph.D. Environmental Sciences",
+      "level": "phd",
+      "duration": "3–5 Years",
+      "seats": "Varies",
+      "entrance": "NET/UGC",
+      "eligibility": "M.Sc. Environmental Sci",
+      "description": "Advanced environmental conservation research.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 89,
+      "department_slug": "psychological_sciences",
+      "name": "M.A./M.Sc. Psychology",
+      "level": "pg",
+      "duration": "2 Years",
+      "seats": "30",
+      "entrance": "CUET PG",
+      "eligibility": "Bachelor Degree",
+      "description": "Clinical and cognitive psychology, counseling, testing.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 90,
+      "department_slug": "psychological_sciences",
+      "name": "Ph.D. Psychology",
+      "level": "phd",
+      "duration": "3–5 Years",
+      "seats": "Varies",
+      "entrance": "NET",
+      "eligibility": "M.A. Psychology",
+      "description": "Doctoral level psychological research.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 91,
+      "department_slug": "historical_studies",
+      "name": "M.A. History",
+      "level": "pg",
+      "duration": "2 Years",
+      "seats": "30",
+      "entrance": "CUET PG",
+      "eligibility": "Bachelor Degree",
+      "description": "Ancient, Medieval, and Modern Indian history, historiography.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 92,
+      "department_slug": "historical_studies",
+      "name": "Ph.D. History",
+      "level": "phd",
+      "duration": "3–5 Years",
+      "seats": "Varies",
+      "entrance": "NET",
+      "eligibility": "M.A. History",
+      "description": "Archival research and thesis.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 93,
+      "department_slug": "law_governance",
+      "name": "B.A. LL.B.",
+      "level": "ug",
+      "duration": "5 Years",
+      "seats": "120",
+      "entrance": "CUET (UG)",
+      "eligibility": "10+2 with 45%",
+      "description": "Integrated double-degree law course.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 94,
+      "department_slug": "law_governance",
+      "name": "LL.M.",
+      "level": "pg",
+      "duration": "2 Years",
+      "seats": "30",
+      "entrance": "CUET (PG)",
+      "eligibility": "LL.B. degree",
+      "description": "Postgraduate specialisation in constitutional or corporate law.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 95,
+      "department_slug": "law_governance",
+      "name": "Ph.D. Law",
+      "level": "phd",
+      "duration": "3–5 Years",
+      "seats": "Varies",
+      "entrance": "NET/GATE",
+      "eligibility": "LL.M.",
+      "description": "Doctoral level legal investigations.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 96,
+      "department_slug": "chemistry",
+      "name": "M.Sc. Chemistry",
+      "level": "pg",
+      "duration": "2 Years",
+      "seats": "40",
+      "entrance": "CUET PG",
+      "eligibility": "B.Sc. Chemistry",
+      "description": "Inorganic, physical, organic and analytical labs.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 97,
+      "department_slug": "chemistry",
+      "name": "Ph.D. Chemistry",
+      "level": "phd",
+      "duration": "3–5 Years",
+      "seats": "Varies",
+      "entrance": "NET/GATE",
+      "eligibility": "M.Sc. Chemistry",
+      "description": "Advanced synthetic or physical chemistry research.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 98,
+      "department_slug": "physics",
+      "name": "M.Sc. Physics",
+      "level": "pg",
+      "duration": "2 Years",
+      "seats": "40",
+      "entrance": "CUET PG",
+      "eligibility": "B.Sc. Physics",
+      "description": "Solid state physics, quantum mechanics, electronics.",
+      "syllabus_url": "#"
+    },
+    {
+      "id": 99,
+      "department_slug": "physics",
+      "name": "Ph.D. Physics",
+      "level": "phd",
+      "duration": "3–5 Years",
+      "seats": "Varies",
+      "entrance": "NET/GATE",
+      "eligibility": "M.Sc. Physics",
+      "description": "Doctoral physics dissertation.",
+      "syllabus_url": "#"
+    }
+  ],
+  "department_faculty": [
+    {
+      "id": 13,
+      "department_slug": "computer_science",
+      "name": "Prof. Prabhat Ranjan",
+      "designation": "Professor & HoD",
+      "specialization": "Big Data, Distributed Systems, Software Engineering",
+      "email": "prabhatranjan@cusb.ac.in",
+      "image_url": "assets/hod.jpeg"
+    },
+    {
+      "id": 14,
+      "department_slug": "computer_science",
+      "name": "Dr. Jainath Yadav",
+      "designation": "Associate Professor",
+      "specialization": "Speech Signal Processing, Machine Learning, Image Watermarking",
+      "email": "jainathyadav@cusb.ac.in",
+      "image_url": "assets/jainath.jpeg"
+    },
+    {
+      "id": 15,
+      "department_slug": "computer_science",
+      "name": "Dr. Nemi Chandra Rathore",
+      "designation": "Associate Professor",
+      "specialization": "OSN Security, Online Privacy, Mobile OS",
+      "email": "ncrathore@cusb.ac.in",
+      "image_url": "assets/nemisir.jpeg"
+    },
+    {
+      "id": 16,
+      "department_slug": "computer_science",
+      "name": "Dr. Piyush Kumar Singh",
+      "designation": "Assistant Professor",
+      "specialization": "Image Processing, Parallel Computing, Wavelet Transform",
+      "email": "piyushsingh@cusb.ac.in",
+      "image_url": "assets/piyush.jpeg"
+    },
+    {
+      "id": 17,
+      "department_slug": "computer_science",
+      "name": "Dr. Mrityunjay Singh",
+      "designation": "Assistant Professor",
+      "specialization": "Discrete Mathematics, Cryptography, Algorithms",
+      "email": "mrityunjaysingh@cusb.ac.in",
+      "image_url": "assets/mrityunjay.jpeg"
+    },
+    {
+      "id": 18,
+      "department_slug": "computer_science",
+      "name": "Dr. Prakash Kumar",
+      "designation": "Assistant Professor",
+      "specialization": "Network Security, Data Communication",
+      "email": "prakashkumar@cusb.ac.in",
+      "image_url": "assets/prakash.jpeg"
+    }
+  ],
+  "department_research": [
+    {
+      "id": 119,
+      "department_slug": "computer_science",
+      "area": "Big Data"
+    },
+    {
+      "id": 120,
+      "department_slug": "computer_science",
+      "area": "Distributed Systems"
+    },
+    {
+      "id": 121,
+      "department_slug": "computer_science",
+      "area": "Software Engineering"
+    },
+    {
+      "id": 122,
+      "department_slug": "computer_science",
+      "area": "Speech Signal Processing"
+    },
+    {
+      "id": 123,
+      "department_slug": "computer_science",
+      "area": "Machine Learning"
+    },
+    {
+      "id": 124,
+      "department_slug": "computer_science",
+      "area": "OSN Security"
+    },
+    {
+      "id": 125,
+      "department_slug": "computer_science",
+      "area": "Cryptography"
+    },
+    {
+      "id": 126,
+      "department_slug": "mathematics",
+      "area": "Algebra and Number Theory"
+    },
+    {
+      "id": 127,
+      "department_slug": "mathematics",
+      "area": "Differential Equations"
+    },
+    {
+      "id": 128,
+      "department_slug": "mathematics",
+      "area": "Mathematical Modelling"
+    },
+    {
+      "id": 129,
+      "department_slug": "mathematics",
+      "area": "Numerical Analysis"
+    },
+    {
+      "id": 130,
+      "department_slug": "statistics",
+      "area": "Probability Theory"
+    },
+    {
+      "id": 131,
+      "department_slug": "statistics",
+      "area": "Inference"
+    },
+    {
+      "id": 132,
+      "department_slug": "statistics",
+      "area": "Sampling Techniques"
+    },
+    {
+      "id": 133,
+      "department_slug": "statistics",
+      "area": "Data Analytics"
+    },
+    {
+      "id": 134,
+      "department_slug": "bioinformatics",
+      "area": "Genomics"
+    },
+    {
+      "id": 135,
+      "department_slug": "bioinformatics",
+      "area": "Computational Biology"
+    },
+    {
+      "id": 136,
+      "department_slug": "bioinformatics",
+      "area": "Molecular Modelling"
+    },
+    {
+      "id": 137,
+      "department_slug": "bioinformatics",
+      "area": "Biological Databases"
+    },
+    {
+      "id": 138,
+      "department_slug": "geology",
+      "area": "Petrology"
+    },
+    {
+      "id": 139,
+      "department_slug": "geology",
+      "area": "Sedimentology"
+    },
+    {
+      "id": 140,
+      "department_slug": "geology",
+      "area": "Hydrogeology"
+    },
+    {
+      "id": 141,
+      "department_slug": "geology",
+      "area": "Geochemistry"
+    },
+    {
+      "id": 142,
+      "department_slug": "geography",
+      "area": "GIS and Remote Sensing"
+    },
+    {
+      "id": 143,
+      "department_slug": "geography",
+      "area": "Urban Studies"
+    },
+    {
+      "id": 144,
+      "department_slug": "geography",
+      "area": "Geomorphology"
+    },
+    {
+      "id": 145,
+      "department_slug": "geography",
+      "area": "Regional Planning"
+    },
+    {
+      "id": 146,
+      "department_slug": "life_science",
+      "area": "Cell Biology"
+    },
+    {
+      "id": 147,
+      "department_slug": "life_science",
+      "area": "Microbiology"
+    },
+    {
+      "id": 148,
+      "department_slug": "life_science",
+      "area": "Plant Sciences"
+    },
+    {
+      "id": 149,
+      "department_slug": "life_science",
+      "area": "Ecology"
+    },
+    {
+      "id": 150,
+      "department_slug": "biotechnology",
+      "area": "Molecular Biology"
+    },
+    {
+      "id": 151,
+      "department_slug": "biotechnology",
+      "area": "Genetic Engineering"
+    },
+    {
+      "id": 152,
+      "department_slug": "biotechnology",
+      "area": "Bioprocess Technology"
+    },
+    {
+      "id": 153,
+      "department_slug": "biotechnology",
+      "area": "Immunology"
+    },
+    {
+      "id": 154,
+      "department_slug": "environmental_sciences",
+      "area": "Environmental Monitoring"
+    },
+    {
+      "id": 155,
+      "department_slug": "environmental_sciences",
+      "area": "Climate Studies"
+    },
+    {
+      "id": 156,
+      "department_slug": "environmental_sciences",
+      "area": "Biodiversity"
+    },
+    {
+      "id": 157,
+      "department_slug": "environmental_sciences",
+      "area": "Pollution Control"
+    },
+    {
+      "id": 158,
+      "department_slug": "psychological_sciences",
+      "area": "Clinical Psychology"
+    },
+    {
+      "id": 159,
+      "department_slug": "psychological_sciences",
+      "area": "Cognitive Psychology"
+    },
+    {
+      "id": 160,
+      "department_slug": "psychological_sciences",
+      "area": "Counselling"
+    },
+    {
+      "id": 161,
+      "department_slug": "psychological_sciences",
+      "area": "Developmental Psychology"
+    },
+    {
+      "id": 162,
+      "department_slug": "historical_studies",
+      "area": "Ancient History"
+    },
+    {
+      "id": 163,
+      "department_slug": "historical_studies",
+      "area": "Medieval History"
+    },
+    {
+      "id": 164,
+      "department_slug": "historical_studies",
+      "area": "Modern India"
+    },
+    {
+      "id": 165,
+      "department_slug": "historical_studies",
+      "area": "Historiography"
+    },
+    {
+      "id": 166,
+      "department_slug": "law_governance",
+      "area": "Constitutional Law"
+    },
+    {
+      "id": 167,
+      "department_slug": "law_governance",
+      "area": "Criminal Law"
+    },
+    {
+      "id": 168,
+      "department_slug": "law_governance",
+      "area": "Human Rights"
+    },
+    {
+      "id": 169,
+      "department_slug": "law_governance",
+      "area": "Governance"
+    },
+    {
+      "id": 170,
+      "department_slug": "chemistry",
+      "area": "Organic Chemistry"
+    },
+    {
+      "id": 171,
+      "department_slug": "chemistry",
+      "area": "Inorganic Chemistry"
+    },
+    {
+      "id": 172,
+      "department_slug": "chemistry",
+      "area": "Physical Chemistry"
+    },
+    {
+      "id": 173,
+      "department_slug": "chemistry",
+      "area": "Materials Chemistry"
+    },
+    {
+      "id": 174,
+      "department_slug": "physics",
+      "area": "Condensed Matter Physics"
+    },
+    {
+      "id": 175,
+      "department_slug": "physics",
+      "area": "High Energy Physics"
+    },
+    {
+      "id": 176,
+      "department_slug": "physics",
+      "area": "Optics"
+    },
+    {
+      "id": 177,
+      "department_slug": "physics",
+      "area": "Materials Science"
+    }
+  ],
+  "hostels": [
+    {
+      "id": 5,
+      "slug": "girls_hostels",
+      "name": "Gargi Sadan & Maitreyi Sadan",
+      "type": "girls",
+      "description": "The girls hostels provide comfortable and safe lodging for postgraduate and research students. Managed by a dedicated female warden team, it boasts robust security measures, a modern common room with a TV, daily newspaper service, and clean dining services.",
+      "total_rooms": "150+ (Double Sharing)",
+      "security_details": "24/7 Female Guards, CCTV Surveillance",
+      "common_facilities": "Common Room, TV, Reading Room, Gym, Wi-Fi",
+      "mess_system": "Co-operative, Vegetarian & Non-Veg menu options",
+      "image_url": "assets/images/hostel-girls.png"
+    },
+    {
+      "id": 6,
+      "slug": "boys_hostels",
+      "name": "Aryabhatta Sadan & Malviya Sadan",
+      "type": "boys",
+      "description": "The boys hostels offer secure, spacious, and student-friendly accommodation. The rooms are double-sharing, well-ventilated, and furnished with a bed, table, and wardrobe. Facilities include an outdoor playground, high-speed Wi-Fi, indoor games, and clean drinking water units.",
+      "total_rooms": "200+ (Double Sharing)",
+      "security_details": "24/7 Security Guards, Gate Register Log",
+      "common_facilities": "Table Tennis, Badminton Court, Wi-Fi, TV Lounge",
+      "mess_system": "Student-run mess committee, Weekly menu reviews",
+      "image_url": "assets/images/hostel-boys.jpg"
+    }
+  ],
+  "hostel_wardens": [
+    {
+      "id": 17,
+      "hostel_slug": "girls_hostels",
+      "name": "Dr. Tara Kashav",
+      "role": "Chief Warden",
+      "department": "Department of Hindi",
+      "image_url": "assets/images/warden-tara-kashav.jpg"
+    },
+    {
+      "id": 18,
+      "hostel_slug": "girls_hostels",
+      "name": "Dr. Priti Rai",
+      "role": "Warden",
+      "department": "Department of Economics",
+      "image_url": "assets/images/warden-priti-rai.jpg"
+    },
+    {
+      "id": 19,
+      "hostel_slug": "girls_hostels",
+      "name": "Dr. Pratishtha Sonker",
+      "role": "Assistant Warden",
+      "department": "Department of Psychology",
+      "image_url": "assets/images/warden-pratishtha-sonker.jpg"
+    },
+    {
+      "id": 20,
+      "hostel_slug": "boys_hostels",
+      "name": "Dr. Vipin Kumar Singh",
+      "role": "Chief Warden",
+      "department": "Department of English",
+      "image_url": "assets/images/warden-vipin-singh.jpg"
+    },
+    {
+      "id": 21,
+      "hostel_slug": "boys_hostels",
+      "name": "Dr. Manjit Singh",
+      "role": "Warden",
+      "department": "Department of Geology",
+      "image_url": "assets/images/warden-manjit-singh.jpg"
+    },
+    {
+      "id": 22,
+      "hostel_slug": "boys_hostels",
+      "name": "Dr. Lakhwinder Singh",
+      "role": "Warden",
+      "department": "Department of Physics",
+      "image_url": "assets/images/warden-lakhwinder-singh.jpg"
+    },
+    {
+      "id": 23,
+      "hostel_slug": "boys_hostels",
+      "name": "Dr. Kishor Kumar",
+      "role": "Warden",
+      "department": "Department of Teacher Education",
+      "image_url": "assets/images/warden-kishor-kumar.jpeg"
+    },
+    {
+      "id": 24,
+      "hostel_slug": "boys_hostels",
+      "name": "Dr. Priya Ranjan",
+      "role": "Warden",
+      "department": "Department of Sociology",
+      "image_url": "assets/images/warden-priya-ranjan.jpg"
+    }
+  ],
+  "pyqs": [
+    {
+      "id": 39,
+      "department_slug": "computer_science",
+      "level": "ug",
+      "type": "End Sem",
+      "year": "2024",
+      "semester": "Sem VI",
+      "date_published": "May 2024",
+      "file_size": "1.2 MB",
+      "download_url": "#"
+    },
+    {
+      "id": 40,
+      "department_slug": "computer_science",
+      "level": "pg",
+      "type": "End Sem",
+      "year": "2024",
+      "semester": "Sem II",
+      "date_published": "May 2024",
+      "file_size": "1.4 MB",
+      "download_url": "#"
+    },
+    {
+      "id": 41,
+      "department_slug": "computer_science",
+      "level": "pg",
+      "type": "Mid Sem",
+      "year": "2024",
+      "semester": "Sem III",
+      "date_published": "Oct 2024",
+      "file_size": "0.9 MB",
+      "download_url": "#"
+    },
+    {
+      "id": 42,
+      "department_slug": "computer_science",
+      "level": "phd",
+      "type": "Coursework",
+      "year": "2023",
+      "semester": "Paper I",
+      "date_published": "Dec 2023",
+      "file_size": "0.8 MB",
+      "download_url": "#"
+    },
+    {
+      "id": 43,
+      "department_slug": "mathematics",
+      "level": "ug",
+      "type": "End Sem",
+      "year": "2024",
+      "semester": "Sem IV",
+      "date_published": "May 2024",
+      "file_size": "1.0 MB",
+      "download_url": "#"
+    },
+    {
+      "id": 44,
+      "department_slug": "mathematics",
+      "level": "pg",
+      "type": "End Sem",
+      "year": "2024",
+      "semester": "Sem IV",
+      "date_published": "May 2024",
+      "file_size": "1.3 MB",
+      "download_url": "#"
+    },
+    {
+      "id": 45,
+      "department_slug": "mathematics",
+      "level": "pg",
+      "type": "Mid Sem",
+      "year": "2024",
+      "semester": "Sem I",
+      "date_published": "Oct 2024",
+      "file_size": "0.7 MB",
+      "download_url": "#"
+    },
+    {
+      "id": 46,
+      "department_slug": "bioinformatics",
+      "level": "pg",
+      "type": "End Sem",
+      "year": "2024",
+      "semester": "Sem IV",
+      "date_published": "May 2024",
+      "file_size": "1.1 MB",
+      "download_url": "#"
+    },
+    {
+      "id": 47,
+      "department_slug": "bioinformatics",
+      "level": "pg",
+      "type": "Mid Sem",
+      "year": "2024",
+      "semester": "Sem III",
+      "date_published": "Oct 2024",
+      "file_size": "0.8 MB",
+      "download_url": "#"
+    },
+    {
+      "id": 48,
+      "department_slug": "biotechnology",
+      "level": "pg",
+      "type": "End Sem",
+      "year": "2024",
+      "semester": "Sem II",
+      "date_published": "May 2024",
+      "file_size": "1.5 MB",
+      "download_url": "#"
+    },
+    {
+      "id": 49,
+      "department_slug": "biotechnology",
+      "level": "pg",
+      "type": "Mid Sem",
+      "year": "2024",
+      "semester": "Sem I",
+      "date_published": "Oct 2024",
+      "file_size": "0.9 MB",
+      "download_url": "#"
+    },
+    {
+      "id": 50,
+      "department_slug": "historical_studies",
+      "level": "pg",
+      "type": "End Sem",
+      "year": "2024",
+      "semester": "Sem IV",
+      "date_published": "May 2024",
+      "file_size": "1.0 MB",
+      "download_url": "#"
+    },
+    {
+      "id": 51,
+      "department_slug": "historical_studies",
+      "level": "pg",
+      "type": "Mid Sem",
+      "year": "2024",
+      "semester": "Sem II",
+      "date_published": "Oct 2024",
+      "file_size": "0.6 MB",
+      "download_url": "#"
+    },
+    {
+      "id": 52,
+      "department_slug": "law_governance",
+      "level": "ug",
+      "type": "End Sem",
+      "year": "2024",
+      "semester": "Sem VIII",
+      "date_published": "May 2024",
+      "file_size": "1.6 MB",
+      "download_url": "#"
+    },
+    {
+      "id": 53,
+      "department_slug": "law_governance",
+      "level": "pg",
+      "type": "End Sem",
+      "year": "2024",
+      "semester": "Sem II",
+      "date_published": "May 2024",
+      "file_size": "1.2 MB",
+      "download_url": "#"
+    },
+    {
+      "id": 54,
+      "department_slug": "chemistry",
+      "level": "ug",
+      "type": "End Sem",
+      "year": "2024",
+      "semester": "Sem VI",
+      "date_published": "May 2024",
+      "file_size": "1.2 MB",
+      "download_url": "#"
+    },
+    {
+      "id": 55,
+      "department_slug": "chemistry",
+      "level": "pg",
+      "type": "End Sem",
+      "year": "2024",
+      "semester": "Sem IV",
+      "date_published": "May 2024",
+      "file_size": "1.5 MB",
+      "download_url": "#"
+    },
+    {
+      "id": 56,
+      "department_slug": "physics",
+      "level": "ug",
+      "type": "End Sem",
+      "year": "2024",
+      "semester": "Sem VI",
+      "date_published": "May 2024",
+      "file_size": "1.3 MB",
+      "download_url": "#"
+    },
+    {
+      "id": 57,
+      "department_slug": "physics",
+      "level": "pg",
+      "type": "End Sem",
+      "year": "2024",
+      "semester": "Sem IV",
+      "date_published": "May 2024",
+      "file_size": "1.6 MB",
+      "download_url": "#"
+    }
+  ],
+  "chatbot_faq": [
+    {
+      "id": 15,
+      "category": "admissions",
+      "keywords": "admission,apply,enroll,cuet,apply now,register,admissions,samarth",
+      "response_en": "You can apply for the 2026–27 academic session through the CUET-UG/PG or NCET portals. Visit the Admissions Portal at https://cuet.samarth.ac.in/ or click the \"Apply Now\" action on our site.",
+      "response_hi": "आप सीयूईटी-यूजी/पीजी या एनसीईटी पोर्टल्स के माध्यम से शैक्षणिक सत्र 2026-27 के लिए आवेदन कर सकते हैं। प्रवेश पोर्टल https://cuet.samarth.ac.in/ पर जाएं या हमारी साइट पर \"अभी आवेदन करें\" पर क्लिक करें।"
+    },
+    {
+      "id": 16,
+      "category": "programs",
+      "keywords": "program,course,degree,academics,syllabus,departments,schools,science,arts,math",
+      "response_en": "CUSB offers 51+ programmes including Undergraduate, Postgraduate, and PhD degrees across multiple schools. Check our detailed offerings at courses.html.",
+      "response_hi": "सीयूएसबी कई संकायों में स्नातक, स्नातकोत्तर और पीएचडी डिग्री सहित 51+ कार्यक्रम प्रदान करता है। विस्तृत जानकारी के लिए courses.html देखें।"
+    },
+    {
+      "id": 17,
+      "category": "hostel",
+      "keywords": "hostel,warden,hostels,gargi,maitreyi,aryabhatta,mess,accommodation,rooms,fees",
+      "response_en": "CUSB provides secure hostels on campus: Gargi Sadan & Maitreyi Sadan for girls, and Aryabhatta Sadan & Malviya Sadan for boys. Each has modern double-sharing rooms, high-speed Wi-Fi, dining, security, and common rooms. Fees and wardens directory are available at hostel.html.",
+      "response_hi": "सीयूएसबी परिसर में सुरक्षित छात्रावास प्रदान करता है: लड़कियों के लिए गार्गी और मैत्रेयी सदन, और लड़कों के लिए आर्यभट्ट और मालवीय सदन। प्रत्येक में आधुनिक डबल-शेयरिंग कमरे, वाई-फाई, डाइनिंग और सुरक्षा है। विस्तृत जानकारी hostel.html पर है।"
+    },
+    {
+      "id": 18,
+      "category": "campus",
+      "keywords": "campus,infrastructure,facilities,location,gaya,panchanpur,library,sports,gym",
+      "response_en": "CUSB is located on a sprawling 300-acre permanent green campus at Gaya-Panchanpur. It features smart classrooms, high-tech labs, a central library with thousands of electronic resources, open gyms, sports complexes, and a medical clinic.",
+      "response_hi": "सीयूएसबी गया-पंचानपुर में 300 एकड़ के विशाल हरित परिसर में स्थित है। इसमें स्मार्ट कक्षाएं, हाई-टेक लैब, केंद्रीय पुस्तकालय, ओपन जिम, स्पोर्ट्स कॉम्प्लेक्स और एक स्वास्थ्य क्लिनिक शामिल है।"
+    },
+    {
+      "id": 19,
+      "category": "contact",
+      "keywords": "contact,email,phone,address,helpdesk,number,office,gaya",
+      "response_en": "You can reach us at our helpdesk number 0631-2229 530 or via email at info@cusb.ac.in. The physical address is SH-7, Gaya-Panchanpur Road, Gaya - 824236, Bihar, India.",
+      "response_hi": "आप हमसे 0631-2229 530 पर या info@cusb.ac.in पर ईमेल द्वारा संपर्क कर सकते हैं। पता है: एसएच-7, गया-पंचानपुर रोड, गया - 824236, बिहार, भारत।"
+    },
+    {
+      "id": 20,
+      "category": "fee",
+      "keywords": "fee,fees,payment,pay,structure,cost,money",
+      "response_en": "Students can pay academic fees online through the Samarth student portal at https://cusb.samarth.edu.in/. For detailed course fee structure brochures, check the Downloads tab or our Academics section.",
+      "response_hi": "छात्र समर्थ छात्र पोर्टल https://cusb.samarth.edu.in/ के माध्यम से शैक्षणिक शुल्क का ऑनलाइन भुगतान कर सकते हैं। विस्तृत शुल्क संरचना के लिए डाउनलोड टैब देखें।"
+    },
+    {
+      "id": 21,
+      "category": "default",
+      "keywords": "help,info,queries,what",
+      "response_en": "I am the CUSB University Assistant. I can assist you with admissions, course details, campus facilities, hostels, faculty search, announcements, and contacts. What would you like to know?",
+      "response_hi": "मैं सीयूएसबी विश्वविद्यालय सहायक हूँ। मैं प्रवेश, पाठ्यक्रम, परिसर सुविधाओं, छात्रावास, शिक्षकों की जानकारी, समाचार और संपर्क विवरण के बारे में आपकी सहायता कर सकता हूँ।"
+    }
+  ],
+  "search_index": [
+    {
+      "id": 31,
+      "title": "Home Page",
+      "tags": "home main landing index index.html",
+      "desc": "CUSB Main Homepage, Announcements, Gallery",
+      "url": "index.html"
+    },
+    {
+      "id": 32,
+      "title": "About CUSB",
+      "tags": "about university overview history statutes accreditation about.html",
+      "desc": "Overview, history, vision, mission, and stats of CUSB",
+      "url": "about.html"
+    },
+    {
+      "id": 33,
+      "title": "Vision & Mission",
+      "tags": "vision mission motto core values about.html#vision",
+      "desc": "Core values, mission statements, and motto of CUSB",
+      "url": "about.html#vision"
+    },
+    {
+      "id": 34,
+      "title": "NAAC Accreditation",
+      "tags": "naac a++ nirf accreditation ugc recognition about.html#accreditation",
+      "desc": "Accreditation status, NIRF rankings, and UGC certifications",
+      "url": "about.html#accreditation"
+    },
+    {
+      "id": 35,
+      "title": "University Leadership",
+      "tags": "administration leaders president chancellor vice chancellor vc registrar governance leaders.html",
+      "desc": "University officers, Visitor, Chancellor, and Vice-Chancellor details",
+      "url": "leaders.html"
+    },
+    {
+      "id": 36,
+      "title": "Vice-Chancellor's Desk",
+      "tags": "vc profile message administration leaders.html#vc",
+      "desc": "Profile and greeting from Vice-Chancellor Prof. K.N. Singh",
+      "url": "leaders.html#vc"
+    },
+    {
+      "id": 37,
+      "title": "Courses & Programmes",
+      "tags": "courses programs academics degrees admission undergraduate postgraduate phd courses.html",
+      "desc": "List of schools, departments, and course curricula",
+      "url": "courses.html"
+    },
+    {
+      "id": 38,
+      "title": "Computer Science Department",
+      "tags": "computer science cs academics programs bsc msc ai phd syllabus cs.html",
+      "desc": "Faculty members, labs, and programmes offered in Computer Science",
+      "url": "cs.html"
+    },
+    {
+      "id": 39,
+      "title": "CS Faculty Members",
+      "tags": "cs faculty teachers staff professors cs.html#faculty-sec",
+      "desc": "List of computer science professors, coordinators, and wardens",
+      "url": "cs.html#faculty-sec"
+    },
+    {
+      "id": 40,
+      "title": "Hostel Facilities",
+      "tags": "hostel accommodation wardens rooms mess charges aryabhatta malviya hostel.html",
+      "desc": "Hostel fees, guidelines, wardens, and registration details",
+      "url": "hostel.html"
+    },
+    {
+      "id": 41,
+      "title": "Hostel Wardens",
+      "tags": "warden contact hostel rules admin hostel.html#wardens-sec",
+      "desc": "Meet the wardens of Aryabhatta, Gargi, and Maitreyi Hostels",
+      "url": "hostel.html#wardens-sec"
+    },
+    {
+      "id": 42,
+      "title": "Previous Year Questions (PYQs)",
+      "tags": "pyq exam question papers previous semesters files pyq.html",
+      "desc": "Download old semester exam question papers by department",
+      "url": "pyq.html"
+    },
+    {
+      "id": 43,
+      "title": "Admissions Portal",
+      "tags": "apply cuet pg admission register samarth",
+      "desc": "Online applications and brochures for academic session 2026-27",
+      "url": "https://cuet.samarth.ac.in/"
+    },
+    {
+      "id": 44,
+      "title": "Online Fee Payment",
+      "tags": "pay fees samarth online transaction account",
+      "desc": "Samarth online portal for student fee collection",
+      "url": "https://cusb.samarth.edu.in/"
+    },
+    {
+      "id": 45,
+      "title": "RTI online cell",
+      "tags": "rti right to information query details disclosure",
+      "desc": "Submit inquiries under the RTI Act",
+      "url": "https://rtionline.gov.in/"
+    },
+    {
+      "id": 46,
+      "title": "News & Events",
+      "tags": "news events announcements notices updates upcoming calendar CUSB latest",
+      "desc": "Dynamic list of latest news, events, and notices at Central University of South Bihar",
+      "url": "news-events.html"
+    },
+    {
+      "id": 47,
+      "title": "Campus Facilities",
+      "tags": "facilities campus library sports cafeteria medical classroom smart lab CIF hostels digital infrastructure",
+      "desc": "Overview of CUSB campus facilities including Central Library, Sports Complex, hostels, and medical support",
+      "url": "facilities.html"
+    },
+    {
+      "id": 48,
+      "title": "Research & Innovations",
+      "tags": "research projects mous publications seminars conferences innovation funding grant DST publications",
+      "desc": "Information on key research areas, sponsored projects, MoUs, collaborations, and seminars at CUSB",
+      "url": "research.html"
+    },
+    {
+      "id": 49,
+      "title": "University Downloads",
+      "tags": "downloads prospectus calendar syllabus admit card fee structure forms admission PDF brochure",
+      "desc": "Download official CUSB documents including academic calendar, prospectus, admission forms, and fee structures",
+      "url": "downloads.html"
+    },
+    {
+      "id": 50,
+      "title": "Student Support & Services",
+      "tags": "students services portal results exams sports culture clubs alumni registry Samarth LMS grading grades",
+      "desc": "Student services directory containing portals, exam result guidelines, clubs, and alumni registry",
+      "url": "students.html"
+    },
+    {
+      "id": 51,
+      "title": "Statutes, Policies & Reports",
+      "tags": "policies statutes ordinances compliance privacy accessibility reports audit code conduct compliance annual",
+      "desc": "University regulations, official guidelines, privacy policy, accessibility statements, and annual reports",
+      "url": "policies.html"
+    },
+    {
+      "id": 52,
+      "title": "Careers & Recruitments",
+      "tags": "careers recruitments jobs openings professor teaching staff vacancy Samarth application faculty register",
+      "desc": "Job openings and career opportunities at CUSB for academic and non-teaching positions",
+      "url": "careers.html"
+    }
+  ],
+  "announcements": [
+    {
+      "id": 1,
+      "title_en": "CUSB Admission Bulletin 2026 (CUET-PG)",
+      "title_hi": "सीयूएसबी प्रवेश बुलेटिन 2026 (सीयूईटी-पीजी)",
+      "desc_en": "CUSB Admission Bulletin 2026 for PG Programs has been released. Online application forms are open via Samarth portal.",
+      "desc_hi": "पीजी कार्यक्रमों के लिए सीयूएसबी प्रवेश बुलेटिन 2026 जारी कर दिया गया है। ऑनलाइन आवेदन फॉर्म समर्थ पोर्टल के माध्यम से खुले हैं।",
+      "type": "ticker",
+      "image_url": null,
+      "date_str": null,
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 2,
+      "title_en": "NCET-2026 — 4-Year Integrated Teacher Education Programme",
+      "title_hi": "एनसीईटी-2026 — 4-वर्षीय एकीकृत शिक्षक शिक्षा कार्यक्रम",
+      "desc_en": "NCET-2026 registration is live for the 4-Year Integrated Teacher Education Programme (ITEP). Apply online.",
+      "desc_hi": "एनसीईटी-2026 पंजीकरण 4-वर्षीय एकीकृत शिक्षक शिक्षा कार्यक्रम (ITEP) के लिए सक्रिय है। ऑनलाइन आवेदन करें।",
+      "type": "ticker",
+      "image_url": null,
+      "date_str": null,
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 3,
+      "title_en": "Admissions Open 2026–27 — Apply Now →",
+      "title_hi": "प्रवेश खुला 2026-27 — अभी आवेदन करें →",
+      "desc_en": "Admissions are open for all UG, PG, Integrated, and PhD programs for academic session 2026-27. Click apply now.",
+      "desc_hi": "अकादमिक सत्र 2026-27 के लिए सभी यूजी, पीजी, एकीकृत और पीएचडी कार्यक्रमों के लिए प्रवेश खुले हैं। अभी आवेदन करें।",
+      "type": "ticker",
+      "image_url": null,
+      "date_str": null,
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 4,
+      "title_en": "45th INCA International Congress — CUSB, March 2026",
+      "title_hi": "45वीं आईएनसीए अंतर्राष्ट्रीय कांग्रेस — सीयूएसबी, मार्च 2026",
+      "desc_en": "Central University of South Bihar is hosting the 45th INCA International Congress at Gaya campus in March 2026.",
+      "desc_hi": "दक्षिण बिहार केंद्रीय विश्वविद्यालय मार्च 2026 में गया परिसर में 45वीं आईएनसीए अंतर्राष्ट्रीय कांग्रेस की मेजबानी कर रहा है।",
+      "type": "ticker",
+      "image_url": null,
+      "date_str": null,
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 5,
+      "title_en": "Ph.D. Admission Notice — All Departments",
+      "title_hi": "पीएच.डी. प्रवेश सूचना — सभी विभाग",
+      "desc_en": "Ph.D. admission notifications and vacancy matrix are published for all departments. Check research syllabus.",
+      "desc_hi": "सभी विभागों के लिए पीएचडी प्रवेश अधिसूचना और रिक्ति विवरण प्रकाशित किया गया है। रिसर्च सिलेबस देखें।",
+      "type": "ticker",
+      "image_url": null,
+      "date_str": null,
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 6,
+      "title_en": "CUSB Admission Bulletin 2026 released for PG Programs",
+      "title_hi": "पीजी कार्यक्रमों के लिए सीयूएसबी प्रवेश बुलेटिन 2026 जारी",
+      "desc_en": "CUET PG Entrance",
+      "desc_hi": "सीयूईटी पीजी प्रवेश परीक्षा",
+      "type": "news",
+      "image_url": "assets/images/blockB.jpg",
+      "date_str": "10 MAR",
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 7,
+      "title_en": "Recruitment Notification issued for Non-Teaching Posts",
+      "title_hi": "गैर-शिक्षण पदों के लिए भर्ती अधिसूचना जारी",
+      "desc_en": "CUSB Career Opportunity",
+      "desc_hi": "सीयूएसबी करियर अवसर",
+      "type": "news",
+      "image_url": "assets/images/admin_good.jpeg",
+      "date_str": "02 MAR",
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 8,
+      "title_en": "Competition on Smart Design for Website Development",
+      "title_hi": "वेबसाइट विकास के लिए स्मार्ट डिजाइन पर प्रतियोगिता",
+      "desc_en": "Student Event",
+      "desc_hi": "छात्र कार्यक्रम",
+      "type": "news",
+      "image_url": "assets/images/cs_lab.jpg",
+      "date_str": "14 FEB",
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 9,
+      "title_en": "45th INCA International Congress hosting at Gaya campus",
+      "title_hi": "गया परिसर में 45वीं आईएनसीए अंतर्राष्ट्रीय कांग्रेस की मेजबानी",
+      "desc_en": "International Conference",
+      "desc_hi": "अंतर्राष्ट्रीय सम्मेलन",
+      "type": "event",
+      "image_url": "assets/images/audimg.jpg",
+      "date_str": "18 MAR",
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 10,
+      "title_en": "National Science Day celebrations in Science block",
+      "title_hi": "विज्ञान ब्लॉक में राष्ट्रीय विज्ञान दिवस समारोह",
+      "desc_en": "School of Physical Sciences",
+      "desc_hi": "भौतिक विज्ञान अध्ययन शाला",
+      "type": "event",
+      "image_url": "assets/images/sclab.jpg",
+      "date_str": "28 FEB",
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 11,
+      "title_en": "Foundation Day celebrations and cultural programs",
+      "title_hi": "स्थापना दिवस समारोह और सांस्कृतिक कार्यक्रम",
+      "desc_en": "Annual Celebration",
+      "desc_hi": "वार्षिक उत्सव",
+      "type": "event",
+      "image_url": "assets/images/convo.png",
+      "date_str": "20 FEB",
+      "created_at": "2026-06-03 09:38:42"
+    }
+  ],
+  "gallery": [
+    {
+      "id": 1,
+      "title_en": "Main Entrance Gate",
+      "title_hi": "मुख्य प्रवेश द्वार",
+      "image_url": "assets/drone.png",
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 2,
+      "title_en": "Academic Block",
+      "title_hi": "अकादमिक ब्लॉक",
+      "image_url": "assets/images/blockB.jpg",
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 3,
+      "title_en": "Sports Ground",
+      "title_hi": "खेल मैदान",
+      "image_url": "assets/images/spoim.jpg",
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 4,
+      "title_en": "Aryabhatta Hostel",
+      "title_hi": "आर्यभट्ट छात्रावास",
+      "image_url": "assets/aryabhatta.jpeg",
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 5,
+      "title_en": "Malviya Hostel",
+      "title_hi": "मालवीय छात्रावास",
+      "image_url": "assets/malviya.jpeg",
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 6,
+      "title_en": "300-Acre Campus Panorama",
+      "title_hi": "300 एकड़ परिसर का विहंगम दृश्य",
+      "image_url": "assets/images/admin_good.jpeg",
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 7,
+      "title_en": "Student Facilities",
+      "title_hi": "Student Facilities",
+      "image_url": "assets/images/hostel-boys-common.jpg",
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 8,
+      "title_en": "Central Library",
+      "title_hi": "Central Library",
+      "image_url": "assets/images/libimg.avif",
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 9,
+      "title_en": "Auditorium",
+      "title_hi": "Auditorium",
+      "image_url": "assets/images/audimg.jpg",
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 10,
+      "title_en": "Computer Lab",
+      "title_hi": "Computer Lab",
+      "image_url": "assets/images/cs_lab.jpg",
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 11,
+      "title_en": "Smart Classroom",
+      "title_hi": "Smart Classroom",
+      "image_url": "assets/images/2013.jpg",
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 12,
+      "title_en": "Gargi Sadan",
+      "title_hi": "Gargi Sadan",
+      "image_url": "assets/images/gargi sadan.jpg",
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 13,
+      "title_en": "Open Gym",
+      "title_hi": "Open Gym",
+      "image_url": "assets/images/opengym.jpeg",
+      "created_at": "2026-06-03 09:38:42"
+    },
+    {
+      "id": 14,
+      "title_en": "Campus Administration",
+      "title_hi": "Campus Administration",
+      "image_url": "assets/images/admin.jpeg",
+      "created_at": "2026-06-03 09:38:42"
+    }
+  ]
+}

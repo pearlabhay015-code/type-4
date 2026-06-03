@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="Careers & Recruitments — CUSB" data-hi="करियर और भर्तियां — सीयूएसबी">Careers & Recruitments — CUSB</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .career-openings-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .career-item-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      transition: var(--transition);
+    }
+    .career-item-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--acc-gold);
+    }
+    .career-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--tx-primary);
+      margin-bottom: 6px;
+    }
+    .career-meta {
+      display: flex;
+      gap: 15px;
+      font-size: 0.8rem;
+      color: var(--tx-muted);
+    }
+    .career-badge {
+      background: var(--bg-light-green);
+      color: var(--acc-green);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+    }
+    .career-deadline {
+      color: #ff3d00;
+      font-weight: 600;
+    }
+    @media (max-width: 768px) {
+      .career-item-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent">
+    <!-- ══════ HERO BANNER ══════ -->
+    <section class="admin-hero" aria-label="Academics Banner" style="--hero-image: url('assets/images/admin_good.jpeg');">
+      <div class="container hero-content">
+        <div class="hero-eyebrow">
+          <span data-en="Work with us" data-hi="हमारे साथ काम करें">Work with us</span>
+        </div>
+        <h1 class="hero-title" data-en="CUSB <span>Careers</span>" data-hi="सीयूएसबी <span>करियर</span>">CUSB <span>Careers</span></h1>
+        <p class="hero-sub" data-en="Join our dynamic academic community and administrative ranks. CUSB is an equal opportunity employer committed to high scholarly excellence." data-hi="हमारे गतिशील शैक्षणिक समुदाय और प्रशासनिक रैंक में शामिल हों। सीयूएसबी एक समान अवसर नियोक्ता है जो उच्च शैक्षणिक उत्कृष्टता के लिए प्रतिबद्ध है।">Join our dynamic academic community and administrative ranks. CUSB is an equal opportunity employer committed to high scholarly excellence.</p>
+      </div>
+    </section>
+
+    <!-- ══════ CAREER VACANCIES ══════ -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title" data-en="Current Job Openings" data-hi="वर्तमान नौकरी के अवसर">Current Job Openings</h2>
+        
+        <div class="career-openings-grid">
+          <!-- Position 1 -->
+          <div class="career-item-card">
+            <div>
+              <div class="career-title" data-en="Professor & Associate Professor (Multiple Departments)" data-hi="प्रोफेसर और एसोसिएट प्रोफेसर (विभिन्न विभाग)">Professor & Associate Professor (Multiple Departments)</div>
+              <div class="career-meta">
+                <span class="career-badge" data-en="Academic Post" data-hi="शैक्षणिक पद">Academic Post</span>
+                <span data-en="Vacancy No: CUSB/T/2026/01" data-hi="रिक्ति संख्या: CUSB/T/2026/01">Vacancy No: CUSB/T/2026/01</span>
+                <span>|</span>
+                <span class="career-deadline" data-en="Last Date: 30 Jun 2026" data-hi="अंतिम तिथि: 30 जून 2026">Last Date: 30 Jun 2026</span>
+              </div>
+            </div>
+            <a href="https://cusbrec.samarth.edu.in/" target="_blank" class="btn btn-gold btn-sm" data-en="Apply Online" data-hi="ऑनलाइन आवेदन करें">Apply Online</a>
+          </div>
+
+          <!-- Position 2 -->
+          <div class="career-item-card">
+            <div>
+              <div class="career-title" data-en="Registrar & Finance Officer (Deputation/Direct)" data-hi="कुलसचिव और वित्त अधिकारी (प्रतिनियुक्ति/सीधी भर्ती)">Registrar & Finance Officer (Deputation/Direct)</div>
+              <div class="career-meta">
+                <span class="career-badge" data-en="Administration" data-hi="प्रशासनिक पद">Administration</span>
+                <span data-en="Vacancy No: CUSB/NT/2026/04" data-hi="रिक्ति संख्या: CUSB/NT/2026/04">Vacancy No: CUSB/NT/2026/04</span>
+                <span>|</span>
+                <span class="career-deadline" data-en="Last Date: 20 Jun 2026" data-hi="अंतिम तिथि: 20 जून 2026">Last Date: 20 Jun 2026</span>
+              </div>
+            </div>
+            <a href="https://cusbntrec.samarth.edu.in/" target="_blank" class="btn btn-gold btn-sm" data-en="Apply Online" data-hi="ऑनलाइन आवेदन करें">Apply Online</a>
+          </div>
+
+          <!-- Position 3 -->
+          <div class="career-item-card">
+            <div>
+              <div class="career-title" data-en="Technical Assistant (Computer Laboratory)" data-hi="तकनीकी सहायक (कंप्यूटर प्रयोगशाला)">Technical Assistant (Computer Laboratory)</div>
+              <div class="career-meta">
+                <span class="career-badge" data-en="Technical Staff" data-hi="तकनीकी स्टाफ">Technical Staff</span>
+                <span data-en="Vacancy No: CUSB/NT/2026/05" data-hi="रिक्ति संख्या: CUSB/NT/2026/05">Vacancy No: CUSB/NT/2026/05</span>
+                <span>|</span>
+                <span class="career-deadline" data-en="Last Date: 15 Jun 2026" data-hi="अंतिम तिथि: 15 जून 2026">Last Date: 15 Jun 2026</span>
+              </div>
+            </div>
+            <a href="https://cusbntrec.samarth.edu.in/" target="_blank" class="btn btn-gold btn-sm" data-en="Apply Online" data-hi="ऑनलाइन आवेदन करें">Apply Online</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <cusb-quick-actions></cusb-quick-actions>
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
