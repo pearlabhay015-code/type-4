@@ -42,6 +42,14 @@ const iconDefs = `
     <symbol id="icon-instagram" viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm5.2-3.2a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></symbol>
     <symbol id="icon-linkedin" viewBox="0 0 24 24"><path d="M4 4.5A2.5 2.5 0 1 1 9 4.5a2.5 2.5 0 0 1-5 0ZM4.5 9h4v12h-4V9Zm6 0h3.8v1.7c.7-1.1 1.9-2 3.8-2 3.3 0 4.4 2.2 4.4 5.2V21h-4v-6.4c0-1.5-.3-2.6-1.8-2.6s-2.2 1.1-2.2 2.7V21h-4V9Z"/></symbol>
     <symbol id="icon-youtube" viewBox="0 0 24 24"><path d="M21.5 7.2c-.2-1-1-1.7-2-1.9C17.8 5 12 5 12 5s-5.8 0-7.5.3c-1 .2-1.8.9-2 1.9C2.2 9 2.2 12 2.2 12s0 3 .3 4.8c.2 1 1 1.7 2 1.9 1.7.3 7.5.3 7.5.3s5.8 0 7.5-.3c1-.2 1.8-.9 2-1.9.3-1.8.3-4.8.3-4.8s0-3-.3-4.8ZM10 15.2V8.8l5.5 3.2-5.5 3.2Z"/></symbol>
+    <symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/></symbol>
+    <symbol id="icon-brain" viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 0-4 4c0 .6.1 1.1.4 1.6A4 4 0 0 0 6 11c0 .7.2 1.4.5 2A4 4 0 0 0 5 16a4 4 0 0 0 3.5 4H11V6a2 2 0 0 1 2 0v14h2.5A4 4 0 0 0 19 16a4 4 0 0 0-1.5-3c.3-.6.5-1.3.5-2a4 4 0 0 0-2.4-3.4c.3-.5.4-1 .4-1.6a4 4 0 0 0-4-4Z"/></symbol>
+    <symbol id="icon-flag" viewBox="0 0 24 24"><path d="M4 2v20M4 4h12l-3 4 3 4H4"/></symbol>
+    <symbol id="icon-chevron-left" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+    <symbol id="icon-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></symbol>
+    <symbol id="icon-admin-key" viewBox="0 0 24 24"><path d="M12 2C9.2 2 7 4.2 7 7c0 1.9 1 3.5 2.5 4.3V22h5V11.3C16 10.5 17 8.9 17 7c0-2.8-2.2-5-5-5Zm0 2a3 3 0 0 1 0 6 3 3 0 0 1 0-6Z"/><path d="M10 15h4M10 18h4"/></symbol>
   </svg>
 `;
 
@@ -57,7 +65,7 @@ function ensureIconSprite() {
 const emojiIconMap = {
   '📢': 'file', '📞': 'phone', '✉': 'mail', '🔍': 'search', '☰': 'menu',
   '✕': 'close', '🌙': 'moon', '☀️': 'sun', '🏠': 'home', '🏛️': 'building',
-  '👁️': 'search', '📜': 'file', '📊': 'chart', '📂': 'file', '🛡️': 'shield',
+  '👁️': 'eye', '📜': 'file', '📊': 'chart', '📂': 'file', '🛡️': 'shield',
   '♿': 'users', '👤': 'users', '🎓': 'graduation', '👔': 'briefcase',
   '📋': 'file', '💼': 'briefcase', '💻': 'laptop', '🌿': 'book',
   '⚖️': 'shield', '🔬': 'search', '🧬': 'medical', '📚': 'book',
@@ -65,9 +73,12 @@ const emojiIconMap = {
   '🌐': 'globe', '🧑‍🎓': 'graduation', '🏆': 'graduation', '🔒': 'lock',
   '💰': 'briefcase', '⚽': 'users', '🌱': 'book', '👨‍🏫': 'users',
   '💳': 'briefcase', '📖': 'book', '🍳': 'briefcase', '🏫': 'building',
-  '🏥': 'medical', '📸': 'file', '📄': 'file', '📅': 'calendar',
+  '🏥': 'medical', '📸': 'file', '📄': 'download', '📅': 'calendar',
   '📝': 'file', '🔔': 'file', '📥': 'file', '📍': 'map-pin',
-  '💬': 'chat', '➔': 'send', '▲': 'send', '⚡': 'file'
+  '💬': 'chat', '➔': 'send', '▲': 'send', '⚡': 'file',
+  '🎯': 'target', '🧠': 'brain', '🇮🇳': 'flag',
+  '◀': 'chevron-left', '▶': 'chevron-right',
+  '📧': 'mail', '👩': 'users', '👨': 'users', '🆔': 'file'
 };
 
 function iconNameFromText(text) {
@@ -155,6 +166,8 @@ class CusbTopbar extends HTMLElement {
           <a href="#" data-en="Disclosure" data-hi="प्रकटीकरण">Disclosure</a>
           <span class="topbar-divider">|</span>
           <a href="#" data-en="Feedback" data-hi="प्रतिक्रिया">Feedback</a>
+          <span class="topbar-divider">|</span>
+          <a href="admin.html" data-en="Admin Login" data-hi="एडमिन लॉगिन" class="topbar-icon-text">${iconSvg('admin-key')}<span data-en="Admin Login" data-hi="एडमिन लॉगिन">Admin Login</span></a>
         </div>
       </div>
     `;

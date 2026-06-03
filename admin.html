@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CUSB Admin Gateway | Central University of South Bihar</title>
+  
+  <!-- Fonts and CSS -->
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="icon" type="image/png" href="assets/culog.png">
+  
+  <style>
+    /* Inline helper for page rendering state transitions */
+    .fade-transition {
+      transition: opacity 0.25s ease;
+      opacity: 1;
+    }
+    .fade-transition.hidden {
+      opacity: 0;
+      display: none;
+    }
+  </style>
+</head>
+<body class="admin-body">
+
+  <div class="admin-login-container">
+    <div class="admin-card">
+      <img src="assets/culog.png" class="admin-logo" alt="CUSB Logo">
+      <h1 class="admin-title" id="gatewayTitle">CUSB Admin Portal</h1>
+      <p class="admin-subtitle" id="gatewaySubtitle">Gateway Authentication</p>
+      
+      <!-- Notifications -->
+      <div id="alertBox" class="admin-alert"></div>
+      
+      <!-- Form for Creation (First Time Setup) -->
+      <form id="setupForm" class="fade-transition hidden" novalidate>
+        <div class="admin-form-group">
+          <label class="admin-label" for="setupUsername">Create Username</label>
+          <div class="admin-input-wrapper">
+            <input type="text" id="setupUsername" class="admin-input" autocomplete="username" required placeholder="Enter admin username">
+          </div>
+        </div>
+        
+        <div class="admin-form-group">
+          <label class="admin-label" for="setupPassword">Create Password</label>
+          <div class="admin-input-wrapper">
+            <input type="password" id="setupPassword" class="admin-input" autocomplete="new-password" required placeholder="Min 8 chars, 1 number, 1 special">
+          </div>
+          <!-- Password Strength Indicator -->
+          <div class="psw-strength-container" id="strengthBars">
+            <div class="psw-bar"></div>
+            <div class="psw-bar"></div>
+            <div class="psw-bar"></div>
+            <div class="psw-bar"></div>
+          </div>
+          <div class="psw-label" id="strengthLabel">Password strength</div>
+        </div>
+        
+        <div class="admin-form-group">
+          <label class="admin-label" for="setupConfirmPassword">Confirm Password</label>
+          <div class="admin-input-wrapper">
+            <input type="password" id="setupConfirmPassword" class="admin-input" autocomplete="new-password" required placeholder="Re-enter password">
+          </div>
+        </div>
+        
+        <button type="submit" class="admin-btn" id="btnCreate">
+          <span>Create Account & Log In</span>
+        </button>
+      </form>
+      
+      <!-- Form for Standard Login -->
+      <form id="loginForm" class="fade-transition hidden">
+        <div class="admin-form-group">
+          <label class="admin-label" for="loginUsername">Username</label>
+          <div class="admin-input-wrapper">
+            <input type="text" id="loginUsername" class="admin-input" autocomplete="username" required placeholder="Enter username">
+          </div>
+        </div>
+        
+        <div class="admin-form-group">
+          <label class="admin-label" for="loginPassword">Password</label>
+          <div class="admin-input-wrapper">
+            <input type="password" id="loginPassword" class="admin-input" autocomplete="current-password" required placeholder="Enter password">
+          </div>
+        </div>
+        
+        <button type="submit" class="admin-btn" id="btnLogin">
+          <span>Sign In</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Set theme on load based on main site selection
+    const savedTheme = localStorage.getItem('cusb-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
+    // DOM Elements
+    const gatewayTitle = document.getElementById('gatewayTitle');
+    const gatewaySubtitle = document.getElementById('gatewaySubtitle');
+    const alertBox = document.getElementById('alertBox');
+    const setupForm = document.getElementById('setupForm');
+    const loginForm = document.getElementById('loginForm');
+    
+    const setupPassword = document.getElementById('setupPassword');
+    const setupConfirmPassword = document.getElementById('setupConfirmPassword');
+    const strengthBars = document.getElementById('strengthBars').children;
+    const strengthLabel = document.getElementById('strengthLabel');
+
+    // Utility: Show Alert
+    function showAlert(message, type = 'error') {
+      alertBox.textContent = message;
+      alertBox.className = `admin-alert ${type}`;
+    }
+
+    function clearAlert() {
+      alertBox.textContent = '';
+      alertBox.className = 'admin-alert';
+    }
+
+    // Password strength check
+    setupPassword.addEventListener('input', () => {
+      const val = setupPassword.value;
+      let strength = 0;
+      
+      if (val.length >= 8) strength++;
+      if (/[A-Z]/.test(val) || /[a-z]/.test(val)) {
+        if (/[A-Z]/.test(val) && /[a-z]/.test(val)) strength++;
+        else strength = Math.max(strength, 1);
+      }
+      if (/[0-9]/.test(val)) strength++;
+      if (/[^A-Za-z0-9]/.test(val)) strength++;
+
+      // Reset bars
+      for (let i = 0; i < 4; i++) {
+        strengthBars[i].style.backgroundColor = '';
+      }
+
+      const colors = ['#dc3545', '#ffc107', '#17a2b8', '#28a745'];
+      const labels = ['Weak', 'Moderate', 'Good', 'Strong'];
+
+      if (val.length > 0) {
+        const score = Math.max(1, strength) - 1;
+        for (let i = 0; i <= score; i++) {
+          strengthBars[i].style.backgroundColor = colors[score];
+        }
+        strengthLabel.textContent = `Strength: ${labels[score]}`;
+        strengthLabel.style.color = colors[score];
+      } else {
+        strengthLabel.textContent = 'Password strength';
+        strengthLabel.style.color = '';
+      }
+    });
+
+    // Check Setup Status from Backend
+    async function checkSetupStatus() {
+      try {
+        const response = await fetch('/api/setup-status');
+        const data = await response.json();
+        
+        if (data.setup_required) {
+          gatewayTitle.textContent = "Admin Setup";
+          gatewaySubtitle.textContent = "First-time Administrator Configuration";
+          setupForm.classList.remove('hidden');
+          loginForm.classList.add('hidden');
+        } else {
+          gatewayTitle.textContent = "Admin Sign In";
+          gatewaySubtitle.textContent = "Access Admin Dashboard";
+          loginForm.classList.remove('hidden');
+          setupForm.classList.add('hidden');
+        }
+      } catch (err) {
+        console.error("Connection failed:", err);
+        if (window.location.protocol === 'file:') {
+          showAlert("Error: You are accessing this page directly via a file URL (file://). Please run 'python server.py' in the terminal and open http://localhost:8000/admin.html in your browser.");
+        } else if (window.location.port !== '8000') {
+          showAlert("Error: You are accessing this page on port " + window.location.port + ". The admin portal must be accessed via http://localhost:8000/admin.html (Make sure 'python server.py' is running).");
+        } else {
+          showAlert("Failed to connect to authentication server. Make sure server.py is running.");
+        }
+      }
+    }
+
+    // Handle First-time Setup Registration Form
+    setupForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearAlert();
+
+      const username = document.getElementById('setupUsername').value.trim();
+      const password = setupPassword.value;
+      const confirmPassword = setupConfirmPassword.value;
+
+      if (!username || !password || !confirmPassword) {
+        showAlert("Please fill in all fields.");
+        return;
+      }
+
+      if (password.length < 8) {
+        showAlert("Password must be at least 8 characters long.");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        showAlert("Passwords do not match.");
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+          showAlert("Admin account created successfully! Logging you in...", "success");
+          setTimeout(() => {
+            window.location.href = '/admin-panel.html';
+          }, 1500);
+        } else {
+          showAlert(data.error || "Registration failed.");
+        }
+      } catch (err) {
+        showAlert("Server connection failed. Please try again.");
+      }
+    });
+
+    // Handle Standard Login Form
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearAlert();
+
+      const username = document.getElementById('loginUsername').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      if (!username || !password) {
+        showAlert("Please enter both username and password.");
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+          showAlert("Sign in successful! Redirecting...", "success");
+          setTimeout(() => {
+            window.location.href = '/admin-panel.html';
+          }, 1000);
+        } else {
+          showAlert(data.error || "Invalid username or password.");
+        }
+      } catch (err) {
+        showAlert("Server connection failed. Please try again.");
+      }
+    });
+
+    // Check status on load
+    window.onload = checkSetupStatus;
+  </script>
+</body>
+</html>

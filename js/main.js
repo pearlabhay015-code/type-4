@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLanguage();
   initSearch();
   initMobileNav();
+  initTranslateOffsetWatcher();
   if (window.cusbReplaceEmojiIcons) window.cusbReplaceEmojiIcons(document);
 });
 
@@ -442,4 +443,22 @@ function initMobileNav() {
       navMenu.classList.remove('active');
     }
   });
+}
+
+/* ==========================================================================
+   6. GOOGLE TRANSLATE FLOATING BAR OFFSET WATCHER
+   ========================================================================== */
+function initTranslateOffsetWatcher() {
+  setInterval(() => {
+    const iframe = document.querySelector('.goog-te-banner-frame');
+    let offset = 0;
+    
+    // Check if the iframe exists and is visible (display !== none)
+    if (iframe && iframe.style.display !== 'none' && window.getComputedStyle(iframe).display !== 'none') {
+      offset = iframe.offsetHeight || 40; // Fallback to 40px
+    }
+    
+    // Set the CSS variable on the root document
+    document.documentElement.style.setProperty('--translate-offset', `${offset}px`);
+  }, 250);
 }

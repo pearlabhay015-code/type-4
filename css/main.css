@@ -412,7 +412,7 @@ cusb-accessibility-bar {
   background-color: var(--bg-secondary);
   border-bottom: 1px solid var(--border-color);
   position: sticky;
-  top: 0;
+  top: var(--translate-offset, 0px);
   z-index: 1100;
   height: var(--accessibility-h);
   box-shadow: var(--shadow-sm);
@@ -562,7 +562,6 @@ cusb-header {
   background-color: var(--bg-primary);
 }
 #google_translate_element,
-.goog-te-banner-frame,
 .goog-te-balloon-frame,
 .goog-logo-link,
 .goog-te-gadget span {
@@ -573,7 +572,7 @@ cusb-header {
   overflow: hidden;
 }
 body {
-  top: 0 !important;
+  top: var(--translate-offset, 0px) !important;
 }
 /* Search input details */
 .search-container {
@@ -621,7 +620,7 @@ cusb-navbar {
   display: block;
   background-color: var(--acc-navy);
   position: sticky;
-  top: var(--accessibility-h);
+  top: calc(var(--accessibility-h) + var(--translate-offset, 0px));
   z-index: 1090;
   box-shadow: var(--shadow-md);
 }
@@ -1112,7 +1111,7 @@ cusb-footer {
   color: white;
   width: 40px;
   height: 40px;
-  align-items: center;
+  align-items:center;
   justify-content: center;
   transition: transform 0.25s ease, background-color 0.25s ease;
 }
@@ -1238,8 +1237,15 @@ cusb-footer {
     padding: 10px 20px;
   }
   
+  cusb-navbar .container {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-end !important;
+    padding: 6px 15px !important;
+  }
   .mobile-nav-toggle {
     display: flex;
+    order: 1;
   }
 
   cusb-navbar {
@@ -1248,14 +1254,16 @@ cusb-footer {
   .navbar-nav {
     width: 100%;
     min-width: 0;
+    order: 2;
   }
   .navbar-menu {
     display: flex; /* Managed by mobile drawer menu */
     flex-direction: column;
     width: 100%;
     max-width: 100vw;
-    background-color: var(--acc-navy);
-    border-top: 1px solid rgba(255,255,255,0.1);
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
     overflow: hidden;
     max-height: 0;
     opacity: 0;
@@ -1271,7 +1279,21 @@ cusb-footer {
   .navbar-link {
     width: 100%;
     padding: 12px 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: var(--tx-primary) !important;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .navbar-link:hover,
+  .navbar-item.active > .navbar-link {
+    background-color: rgba(0, 75, 155, 0.06) !important;
+    color: var(--tx-primary) !important;
+    border-left: 4px solid var(--acc-gold);
+    padding-left: 24px;
+    border-bottom-color: var(--border-color);
+  }
+  [data-theme="dark"] .navbar-link:hover,
+  [data-theme="dark"] .navbar-item.active > .navbar-link {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    color: var(--tx-primary) !important;
   }
   .megamenu {
     position: static;
@@ -1284,9 +1306,9 @@ cusb-footer {
     padding: 14px;
     box-shadow: none;
     border: none;
-    background-color: rgba(0,0,0,0.15);
+    background-color: var(--bg-primary);
     max-width: 100%;
-    overflow-x: hidden;
+    overflow: hidden !important;
     max-height: 0;
     opacity: 0;
     visibility: hidden;
@@ -1300,6 +1322,22 @@ cusb-footer {
     visibility: visible;
     padding-top: 14px;
     padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  #academicsMegamenu {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 14px !important;
+  }
+  .navbar-item.active #academicsMegamenu {
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+  }
+  #academicsMegamenu .megamenu-item a {
+    color: var(--tx-primary) !important;
+  }
+  #academicsMegamenu .megamenu-item a:hover {
+    color: var(--acc-gold) !important;
   }
   .megamenu-column,
   .megamenu-list,

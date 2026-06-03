@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CUSB Admin Panel | Central University of South Bihar</title>
+  
+  <!-- Fonts and CSS -->
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="icon" type="image/png" href="assets/culog.png">
+  
+  <style>
+    /* Inline styles for dashboard table and helper visual items */
+    .logs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      margin-top: 10px;
+    }
+    .logs-table th, .logs-table td {
+      border: 1px solid var(--admin-border);
+      padding: 8px 12px;
+      text-align: left;
+    }
+    .logs-table th {
+      background-color: rgba(0, 75, 155, 0.05);
+      color: var(--admin-dark-blue);
+      font-weight: 700;
+    }
+    .theme-toggle-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+      padding: 6px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      width: 32px;
+      height: 32px;
+    }
+    .theme-toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  </style>
+</head>
+<body class="admin-body">
+
+  <!-- Header Navigation -->
+  <nav class="admin-nav">
+    <div class="admin-nav-brand">
+      <img src="assets/culog.png" class="admin-nav-logo" alt="CUSB Logo">
+      <span class="admin-nav-title">CUSB Admin Console</span>
+    </div>
+    <div class="admin-nav-actions">
+      <!-- Theme toggle -->
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Dark/Light Mode">
+        <svg id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+      <span class="admin-nav-user" id="navUserDisplay">Admin: Loading...</span>
+      <button class="admin-btn-logout" id="btnLogout">Sign Out</button>
+    </div>
+  </nav>
+
+  <!-- Dashboard Content -->
+  <main class="admin-content">
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">Control Panel Dashboard</h1>
+      <p style="color: var(--admin-text-secondary); font-size: 0.9rem; margin-top: 5px;">Configure announcements, examine system analytics, and audit logs.</p>
+    </div>
+
+    <!-- Alert Box for messages -->
+    <div id="dashboardAlert" class="admin-alert" style="margin-bottom: 25px;"></div>
+
+    <div class="dashboard-grid">
+      <!-- Cards section -->
+      
+      <!-- Statistics Card -->
+      <section class="panel-card" aria-labelledby="cardStatsTitle">
+        <h2 class="panel-card-title" id="cardStatsTitle">System Overview</h2>
+        <div class="stat-grid">
+          <div class="stat-item">
+            <div class="stat-value" id="statAnnouncements">0</div>
+            <div class="stat-label">Announcements</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="statSessions">1</div>
+            <div class="stat-label">Active Sessions</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">SQLite</div>
+            <div class="stat-label">Database Type</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="statQueries">0</div>
+            <div class="stat-label">Secured Transactions</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Announcement Manager Form -->
+      <section class="panel-card" aria-labelledby="cardNoticeTitle">
+        <h2 class="panel-card-title" id="cardNoticeTitle">Post New Announcement</h2>
+        <form id="announcementForm">
+          <input type="text" id="noticeTitleEn" class="form-input-text" required placeholder="Announcement Title (English)" aria-label="Announcement Title (English)">
+          <input type="text" id="noticeTitleHi" class="form-input-text" required placeholder="घोषणा शीर्षक (हिन्दी)" aria-label="घोषणा शीर्षक (हिन्दी)">
+          <textarea id="noticeDescEn" class="form-input-textarea" required placeholder="Detailed details or URL link (English)" aria-label="Detailed details or URL link (English)"></textarea>
+          <textarea id="noticeDescHi" class="form-input-textarea" required placeholder="विस्तृत विवरण या यूआरएल लिंक (हिन्दी)" aria-label="विस्तृत विवरण या यूआरएल लिंक (हिन्दी)"></textarea>
+          <button type="submit" class="form-btn-submit">Publish Update</button>
+        </form>
+      </section>
+
+      <!-- Audit Logs Card -->
+      <section class="panel-card" aria-labelledby="cardLogsTitle" style="grid-column: span 1;">
+        <h2 class="panel-card-title" id="cardLogsTitle">Auth Audit Logs</h2>
+        <div style="max-height: 250px; overflow-y: auto;">
+          <table class="logs-table">
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Activity</th>
+                <th>Timestamp</th>
+              </tr>
+            </thead>
+            <tbody id="logsTableBody">
+              <tr>
+                <td colspan="3" style="text-align: center; color: var(--admin-text-secondary);">Loading logs...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // Theme toggle logic
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const themeIcon = document.getElementById('themeIcon');
+    let currentTheme = localStorage.getItem('cusb-theme') || 'light';
+    
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(currentTheme);
+
+    themeToggleBtn.addEventListener('click', () => {
+      currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      localStorage.setItem('cusb-theme', currentTheme);
+      updateThemeIcon(currentTheme);
+    });
+
+    function updateThemeIcon(theme) {
+      if (theme === 'dark') {
+        themeIcon.innerHTML = `<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>`;
+      } else {
+        themeIcon.innerHTML = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>`;
+      }
+    }
+
+    // Dashboard UI Elements
+    const navUserDisplay = document.getElementById('navUserDisplay');
+    const btnLogout = document.getElementById('btnLogout');
+    const announcementForm = document.getElementById('announcementForm');
+    const dashboardAlert = document.getElementById('dashboardAlert');
+    const logsTableBody = document.getElementById('logsTableBody');
+
+    const statAnnouncements = document.getElementById('statAnnouncements');
+    const statSessions = document.getElementById('statSessions');
+    const statQueries = document.getElementById('statQueries');
+
+    function showAlert(message, type = 'error') {
+      dashboardAlert.textContent = message;
+      dashboardAlert.className = `admin-alert ${type}`;
+      setTimeout(() => {
+        dashboardAlert.className = 'admin-alert';
+        dashboardAlert.textContent = '';
+      }, 5000);
+    }
+
+    // Authenticate Session on load
+    async function checkAuth() {
+      try {
+        const response = await fetch('/api/check-session');
+        const data = await response.json();
+
+        if (response.ok && data.authenticated) {
+          navUserDisplay.textContent = `Admin: ${data.username}`;
+          loadDashboardData();
+        } else {
+          // Redirect to login page if session is invalid
+          window.location.href = '/admin.html';
+        }
+      } catch (err) {
+        console.error(err);
+        window.location.href = '/admin.html';
+      }
+    }
+
+    // Load logs and metrics
+    async function loadDashboardData() {
+      try {
+        // Load stats
+        const statsRes = await fetch('/api/admin/stats');
+        if (statsRes.ok) {
+          const stats = await statsRes.json();
+          statAnnouncements.textContent = stats.announcements_count || 0;
+          statSessions.textContent = stats.active_sessions || 1;
+          statQueries.textContent = stats.queries_count || 0;
+        }
+
+        // Load logs
+        const logsRes = await fetch('/api/admin/logs');
+        if (logsRes.ok) {
+          const logs = await logsRes.json();
+          logsTableBody.innerHTML = '';
+          if (logs.length === 0) {
+            logsTableBody.innerHTML = '<tr><td colspan="3" style="text-align: center;">No audit logs recorded.</td></tr>';
+          } else {
+            logs.forEach(log => {
+              const tr = document.createElement('tr');
+              tr.innerHTML = `
+                <td>${escapeHTML(log.username)}</td>
+                <td>${escapeHTML(log.action)}</td>
+                <td>${new Date(log.created_at).toLocaleString()}</td>
+              `;
+              logsTableBody.appendChild(tr);
+            });
+          }
+        }
+      } catch (err) {
+        console.error("Dashboard statistics loading failed:", err);
+      }
+    }
+
+    function escapeHTML(str) {
+      return str.replace(/[&<>'"]/g, 
+        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+      );
+    }
+
+    // Announcement Submission
+    announcementForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const titleEn = document.getElementById('noticeTitleEn').value.trim();
+      const titleHi = document.getElementById('noticeTitleHi').value.trim();
+      const descEn = document.getElementById('noticeDescEn').value.trim();
+      const descHi = document.getElementById('noticeDescHi').value.trim();
+
+      try {
+        const response = await fetch('/api/announcements', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ titleEn, titleHi, descEn, descHi })
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+          showAlert("Announcement published successfully!", "success");
+          announcementForm.reset();
+          loadDashboardData();
+        } else {
+          showAlert(data.error || "Failed to publish announcement.");
+        }
+      } catch (err) {
+        showAlert("Server connection error.");
+      }
+    });
+
+    // Logout
+    btnLogout.addEventListener('click', async () => {
+      try {
+        await fetch('/api/logout', { method: 'POST' });
+      } catch (err) {
+        console.error("Sign out request error:", err);
+      }
+      window.location.href = '/admin.html';
+    });
+
+    // Run auth check on load
+    window.onload = checkAuth;
+  </script>
+</body>
+</html>
