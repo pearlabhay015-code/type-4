@@ -1098,6 +1098,30 @@
       "image_url": "assets/images/warden-pratishtha-sonker.jpg"
     },
     {
+      "id": 25,
+      "hostel_slug": "girls_hostels",
+      "name": "Dr. Renu Choudhary",
+      "role": "Chief Warden",
+      "department": "Department of Biotechnology",
+      "image_url": "assets/images/warden-renu-choudhary.jpg"
+    },
+    {
+      "id": 26,
+      "hostel_slug": "girls_hostels",
+      "name": "Dr. Rashmi Tyagi",
+      "role": "Warden",
+      "department": "Department of English",
+      "image_url": "assets/images/warden-rashmi-tyagi.jpg"
+    },
+    {
+      "id": 27,
+      "hostel_slug": "girls_hostels",
+      "name": "Dr. Anshu",
+      "role": "Assistant Warden",
+      "department": "Department of Life Science",
+      "image_url": "assets/images/warden-anshu.jpg"
+    },
+    {
       "id": 20,
       "hostel_slug": "boys_hostels",
       "name": "Dr. Vipin Kumar Singh",

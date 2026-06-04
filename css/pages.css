@@ -1463,6 +1463,20 @@
   color: var(--acc-coral);
   margin-bottom: 8px;
 }
+.warden-table-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--acc-green);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease-in-out;
+  display: block;
+  margin: 0 auto;
+}
+.warden-table-img:hover {
+  transform: scale(1.1);
+}
 
 .about-uni-grid,
 .hostel-grid,
