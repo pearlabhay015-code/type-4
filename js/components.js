@@ -195,10 +195,10 @@ class CusbTopbar extends HTMLElement {
           <span class="topbar-divider">|</span>
           <a href="#" data-en="Feedback" data-hi="प्रतिक्रिया">Feedback</a>
           <span class="topbar-divider">|</span>
-          <a href="http://localhost:8000/admin.html" data-en="Admin Login" data-hi="एडमिन लॉगिन" class="topbar-icon-text">${iconSvg('admin-key')}<span data-en="Admin Login" data-hi="एडमिन लॉगिन">Admin Login</span></a>
+          <a href="admin.html" data-en="Admin Login" data-hi="एडमिन लॉगिन" class="topbar-icon-text">${iconSvg('admin-key')}<span data-en="Admin Login" data-hi="एडमिन लॉगिन">Admin Login</span></a>
         </div>
       </div>
-    `;
+    `
     replaceEmojiIcons(this);
   }
 }
