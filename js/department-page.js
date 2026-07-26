@@ -2,6 +2,7 @@
   const departments = window.cusbDepartments || {};
   const params = new URLSearchParams(window.location.search);
   const slug = params.get('dept') || '';
+  const requestedType = params.get('type') || '';
   const dept = departments[slug];
 
   const fallback = {
@@ -16,6 +17,20 @@
   };
 
   const data = dept || fallback;
+  const courseTypeLabels = {
+    ug: 'UG Courses',
+    pg: 'PG Courses',
+    integrated: 'Integrated Courses',
+    phd: 'Ph.D. Courses'
+  };
+  const programmeType = (programme) => {
+    const text = programme.toLowerCase();
+    if (text.includes('ph.d')) return 'phd';
+    if (text.includes('integrated') || text.includes('b.a. ll.b')) return 'integrated';
+    if (text.includes('m.') || text.includes('master') || text.includes('mba') || text.includes('ll.m')) return 'pg';
+    if (text.includes('b.') || text.includes('bachelor')) return 'ug';
+    return 'pg';
+  };
   const schoolImages = [
     { match: 'Mathematics', src: 'assets/images/mathematics-png.jpg' },
     { match: 'Earth', src: 'assets/images/sclab.jpg' },
@@ -77,17 +92,24 @@
 
   const programmesGrid = document.getElementById('programmesGrid');
   if (programmesGrid) {
-    programmesGrid.innerHTML = data.programmes.map((programme) => `
+    const visibleProgrammes = requestedType
+      ? data.programmes.filter((programme) => programmeType(programme) === requestedType)
+      : data.programmes;
+    const programmesTitle = document.getElementById('titleProgrammes');
+    if (programmesTitle && requestedType && courseTypeLabels[requestedType]) {
+      programmesTitle.textContent = `${courseTypeLabels[requestedType]} - ${data.name}`;
+    }
+    programmesGrid.innerHTML = visibleProgrammes.length ? visibleProgrammes.map((programme) => `
       <div class="pyq-card">
         <div class="pyq-card-header">
-          <span class="pyq-course-code">${programme.includes('Ph.D') ? 'Doctoral' : programme.includes('M.') || programme.includes('LL.M') ? 'Postgraduate' : 'Academic Programme'}</span>
+          <span class="pyq-course-code">${programmeType(programme) === 'phd' ? 'Doctoral' : programmeType(programme) === 'pg' ? 'Postgraduate' : programmeType(programme) === 'ug' ? 'Undergraduate' : 'Integrated'}</span>
           <h3 class="pyq-course-name">${programme}</h3>
         </div>
         <div class="pyq-details">
           <div><strong>Duration:</strong> As per ordinance</div>
           <div><strong>Entrance:</strong> CUET / CUSB rules</div>
           <div><strong>Mode:</strong> Full-time</div>
-          <div><strong>Level:</strong> ${programme.includes('Ph.D') ? 'Doctoral' : programme.includes('M.') || programme.includes('LL.M') ? 'PG' : 'UG/Integrated'}</div>
+          <div><strong>Level:</strong> ${courseTypeLabels[programmeType(programme)] || 'Academic Programme'}</div>
         </div>
         <p style="font-size:0.75rem; color:var(--tx-secondary); line-height:1.5;">This programme follows the university curriculum structure and academic regulations for the department.</p>
         <a href="courses.html" class="pyq-download-btn">
@@ -95,7 +117,19 @@
           <span>Download Syllabus</span>
         </a>
       </div>
-    `).join('');
+    `).join('') : `
+      <div class="pyq-card">
+        <div class="pyq-card-header">
+          <span class="pyq-course-code">Not Offered</span>
+          <h3 class="pyq-course-name">No ${courseTypeLabels[requestedType] || 'selected programmes'} listed for this department.</h3>
+        </div>
+        <p style="font-size:0.85rem; color:var(--tx-secondary); line-height:1.6;">Please choose another course type or return to the complete courses list.</p>
+        <a href="courses.html" class="pyq-download-btn">
+          <svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-book"></use></svg>
+          <span>View All Courses</span>
+        </a>
+      </div>
+    `;
   }
 
   if (!dept) {

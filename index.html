@@ -116,58 +116,13 @@
       </div>
     </section>
 
-    <!-- ══════ SECTION 3: PROGRAMS & COURSES (White-to-green pills) ══════ -->
+    <!-- SECTION 3: SCHOOLS & DEPARTMENTS -->
     <section class="section sec-programs" aria-labelledby="titlePrograms">
       <div class="container">
-        <h2 class="section-title" id="titlePrograms" data-en="Programs & Courses" data-hi="कार्यक्रम और पाठ्यक्रम">Programs & Courses</h2>
-        <div class="programs-grid">
-          <!-- UG -->
-          <div class="program-card">
-            <div class="program-card-icon"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-graduation"></use></svg></div>
-            <h3 class="program-card-title" data-en="Undergraduate" data-hi="स्नातक पाठ्यक्रम (UG)">Undergraduate</h3>
-            <ul class="program-card-details">
-              <li data-en="Duration: 3–4 Years" data-hi="अवधि: 3–4 वर्ष">Duration: 3–4 Years</li>
-              <li data-en="NEP 2020 Aligned" data-hi="एनईपी 2020 अनुकूल">NEP 2020 Aligned</li>
-              <li data-en="B.Tech, B.Sc, BA, Law" data-hi="बी.टेक, बी.एससी, बीए, लॉ">B.Tech, B.Sc, BA, Law</li>
-            </ul>
-            <a href="courses.html" class="btn btn-gold btn-sm" data-en="Explore UG →" data-hi="स्नातक देखें →">Explore UG →</a>
-          </div>
-
-          <!-- PG -->
-          <div class="program-card">
-            <div class="program-card-icon"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-book"></use></svg></div>
-            <h3 class="program-card-title" data-en="Postgraduate" data-hi="स्नातकोत्तर पाठ्यक्रम (PG)">Postgraduate</h3>
-            <ul class="program-card-details">
-              <li data-en="Duration: 2 Years" data-hi="अवधि: 2 वर्ष">Duration: 2 Years</li>
-              <li data-en="Research & Industry Focus" data-hi="अनुसंधान और उद्योग फोकस">Research & Industry Focus</li>
-              <li data-en="M.Tech, M.Sc, MBA, MA" data-hi="एम.टेक, एम.एससी, एमबीए, एमए">M.Tech, M.Sc, MBA, MA</li>
-            </ul>
-            <a href="courses.html" class="btn btn-gold btn-sm" data-en="Explore PG →" data-hi="स्नातकोत्तर देखें →">Explore PG →</a>
-          </div>
-
-          <!-- Integrated -->
-          <div class="program-card">
-            <div class="program-card-icon"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-users"></use></svg></div>
-            <h3 class="program-card-title" data-en="Integrated Programs" data-hi="एकीकृत पाठ्यक्रम">Integrated Programs</h3>
-            <ul class="program-card-details">
-              <li data-en="Duration: 5 Years" data-hi="अवधि: 5 वर्ष">Duration: 5 Years</li>
-              <li data-en="Double-Degree Curricula" data-hi="दोहरी डिग्री पाठ्यक्रम">Double-Degree Curricula</li>
-              <li data-en="BA LLB, BSc B.Ed, BA B.Ed" data-hi="बीए एलएलबी, बीएससी बीएड, बीए बीएड">BA LLB, BSc B.Ed, BA B.Ed</li>
-            </ul>
-            <a href="courses.html" class="btn btn-gold btn-sm" data-en="Explore Integrated →" data-hi="एकीकृत देखें →">Explore Integrated →</a>
-          </div>
-
-          <!-- PhD -->
-          <div class="program-card">
-            <div class="program-card-icon"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-search"></use></svg></div>
-            <h3 class="program-card-title" data-en="Ph.D. Research" data-hi="पीएच.डी. कार्यक्रम">Ph.D. Research</h3>
-            <ul class="program-card-details">
-              <li data-en="Doctoral Fellowships" data-hi="डॉक्टरेट फैलोशिप">Doctoral Fellowships</li>
-              <li data-en="Advanced Research Labs" data-hi="उन्नत अनुसंधान प्रयोगशालाएं">Advanced Research Labs</li>
-              <li data-en="Offered across all Schools" data-hi="सभी संकायों में उपलब्ध">Offered across all Schools</li>
-            </ul>
-            <a href="courses.html" class="btn btn-gold btn-sm" data-en="Explore Ph.D. →" data-hi="अनुसंधान देखें →">Explore Ph.D. →</a>
-          </div>
+        <h2 class="section-title" id="titlePrograms" data-en="Schools & Departments" data-hi="स्कूल और विभाग">Schools & Departments</h2>
+        <p class="section-subtitle academic-map-subtitle">A concise gateway to CUSB academics, grouped by school with direct department paths.</p>
+        <div class="program-browser" id="programBrowser">
+          <div class="program-browser-grid" id="homeSchoolGrid"></div>
         </div>
       </div>
     </section>
@@ -216,46 +171,44 @@
       </div>
     </section>
 
-    <!-- ══════ SECTION 4B: UPCOMING EVENTS (Big visual cards) ══════ -->
+    <!-- ══════ SECTION 4B: UPCOMING EVENTS (Interactive Calendar) ══════ -->
     <section class="section sec-events" id="events" aria-labelledby="titleEvents">
       <div class="container">
         <h2 class="section-title" id="titleEvents" data-en="Upcoming Events" data-hi="आगामी कार्यक्रम">Upcoming Events</h2>
-        <div class="events-grid">
-          <!-- Card 1 -->
-          <article class="event-card">
-            <div class="event-card-media">
-              <img src="assets/images/audimg.jpg" alt="University auditorium" loading="lazy">
-              <div class="event-card-date"><span>18</span>MAR</div>
+        
+        <div class="event-calendar-container">
+          <!-- Calendar Card -->
+          <div class="calendar-card">
+            <div class="calendar-header">
+              <button id="prevMonthBtn" class="calendar-nav-btn" aria-label="Previous Month" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--tx-primary); padding: 5px 15px;">&larr;</button>
+              <h3 id="calendarMonthYear" class="calendar-month-year">June 2026</h3>
+              <button id="nextMonthBtn" class="calendar-nav-btn" aria-label="Next Month" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--tx-primary); padding: 5px 15px;">&rarr;</button>
             </div>
-            <div class="event-card-details">
-              <span class="event-card-meta" data-en="International Conference" data-hi="अंतर्राष्ट्रीय सम्मेलन">International Conference</span>
-              <h4 class="event-card-title"><a href="news-events.html?type=event" data-en="45th INCA International Congress hosting at Gaya campus" data-hi="गया परिसर में 45वीं आईएनसीए अंतर्राष्ट्रीय कांग्रेस की मेजबानी">45th INCA International Congress hosting at Gaya campus</a></h4>
+            <div class="calendar-weekdays">
+              <div data-en="Mon" data-hi="सोम">Mon</div>
+              <div data-en="Tue" data-hi="मंगल">Tue</div>
+              <div data-en="Wed" data-hi="बुध">Wed</div>
+              <div data-en="Thu" data-hi="गुरु">Thu</div>
+              <div data-en="Fri" data-hi="शुक्र">Fri</div>
+              <div data-en="Sat" data-hi="शनि">Sat</div>
+              <div data-en="Sun" data-hi="रवि">Sun</div>
             </div>
-          </article>
-
-          <!-- Card 2 -->
-          <article class="event-card">
-            <div class="event-card-media">
-              <img src="assets/images/sclab.jpg" alt="Science Lab" loading="lazy">
-              <div class="event-card-date"><span>28</span>FEB</div>
+            <div id="calendarDaysGrid" class="calendar-days-grid">
+              <!-- Dynamically populated days -->
             </div>
-            <div class="event-card-details">
-              <span class="event-card-meta" data-en="School of Physical Sciences" data-hi="भौतिक विज्ञान अध्ययन शाला">School of Physical Sciences</span>
-              <h4 class="event-card-title"><a href="news-events.html?type=event" data-en="National Science Day celebrations in Science block" data-hi="विज्ञान ब्लॉक में राष्ट्रीय विज्ञान दिवस समारोह">National Science Day celebrations in Science block</a></h4>
+          </div>
+          
+          <!-- Event Details Side Panel -->
+          <div class="event-side-panel" id="eventSidePanel">
+            <div class="side-panel-header">
+              <h3 data-en="Events on Selected Date" data-hi="चयनित तिथि पर कार्यक्रम">Events on Selected Date</h3>
+              <span id="selectedDateDisplay" class="selected-date-display">-</span>
             </div>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="event-card">
-            <div class="event-card-media">
-              <img src="assets/images/convo.png" alt="Foundation day celebration" loading="lazy">
-              <div class="event-card-date"><span>20</span>FEB</div>
+            <div id="eventDetailsList" class="event-details-list">
+              <!-- Dynamically populated event cards or empty state message -->
+              <div class="no-events-msg" data-en="Select a date with events to view details." data-hi="विवरण देखने के लिए कार्यक्रमों वाली तिथि का चयन करें।">Select a date with events to view details.</div>
             </div>
-            <div class="event-card-details">
-              <span class="event-card-meta" data-en="Annual Celebration" data-hi="वार्षिक उत्सव">Annual Celebration</span>
-              <h4 class="event-card-title"><a href="news-events.html?type=event" data-en="Foundation Day celebrations and cultural programs" data-hi="स्थापना दिवस समारोह और सांस्कृतिक कार्यक्रम">Foundation Day celebrations and cultural programs</a></h4>
-            </div>
-          </article>
+          </div>
         </div>
       </div>
     </section>
@@ -341,40 +294,45 @@
               <p class="facility-card-desc" data-en="Separate state-of-the-art secure residential blocks for boys and girls." data-hi="लड़कों और लड़कियों के लिए अलग-अलग अत्याधुनिक और सुरक्षित छात्रावास सुविधा।">Separate state-of-the-art secure residential blocks for boys and girls.</p>
               <a href="hostel.html" class="btn btn-white btn-sm" style="padding:6px 16px; font-size:0.75rem;" data-en="View Hostels" data-hi="छात्रावास देखें">View Hostels</a>
             </div>
-
+ 
             <!-- 2. Library -->
             <div class="facility-card-teal">
               <div class="facility-card-media"><img src="assets/images/libimg.avif" alt="Reading and study space" loading="lazy"></div>
               <h3 class="facility-card-title" data-en="Library" data-hi="पुस्तकालय">Library</h3>
               <p class="facility-card-desc" data-en="Central Library with thousands of e-journals and physical resources." data-hi="हजारों ई-पत्रिकाओं और भौतिक संसाधनों के साथ केंद्रीय पुस्तकालय।">Central Library with thousands of e-journals and physical resources.</p>
+              <a href="library.html" class="btn btn-white btn-sm" style="padding:6px 16px; font-size:0.75rem;" data-en="View Library" data-hi="पुस्तकालय देखें">View Library</a>
             </div>
-
+ 
             <!-- 3. Cafeteria -->
             <div class="facility-card-teal">
               <div class="facility-card-media"><img src="assets/images/diversity.webp" alt="Student common area near dining facilities" loading="lazy"></div>
               <h3 class="facility-card-title" data-en="Cafeteria" data-hi="कैफेटेरिया">Cafeteria</h3>
               <p class="facility-card-desc" data-en="Hygiene-first multi-cuisine canteen offering healthy food choices." data-hi="स्वच्छता को प्राथमिकता देने वाली बहु-व्यंजन कैंटीन जो स्वास्थ्यवर्धक भोजन देती है।">Hygiene-first multi-cuisine canteen offering healthy food choices.</p>
+              <a href="cafeteria.html" class="btn btn-white btn-sm" style="padding:6px 16px; font-size:0.75rem;" data-en="View Cafeteria" data-hi="कैफेटेरिया देखें">View Cafeteria</a>
             </div>
-
+ 
             <!-- 4. Sports Complex -->
             <div class="facility-card-teal">
               <div class="facility-card-media"><img src="assets/images/spoim.jpg" alt="CUSB sports ground" loading="lazy"></div>
               <h3 class="facility-card-title" data-en="Sports Complex" data-hi="खेल संकुल">Sports Complex</h3>
               <p class="facility-card-desc" data-en="Cricket, football fields, running tracks, and indoor arenas." data-hi="क्रिकेट, फुटबॉल मैदान, रनिंग ट्रैक और इंडोर खेल सुविधाएं।">Cricket, football fields, running tracks, and indoor arenas.</p>
+              <a href="sports.html" class="btn btn-white btn-sm" style="padding:6px 16px; font-size:0.75rem;" data-en="View Sports" data-hi="खेल संकुल देखें">View Sports</a>
             </div>
-
+ 
             <!-- 5. Medical Centre -->
             <div class="facility-card-teal">
               <div class="facility-card-media"><img src="assets/images/health.webp" alt="Campus health and medical centre" loading="lazy"></div>
               <h3 class="facility-card-title" data-en="Medical" data-hi="चिकित्सा केंद्र">Medical</h3>
               <p class="facility-card-desc" data-en="On-campus health clinic providing basic medical assistance 24/7." data-hi="परिसर में स्थित स्वास्थ्य क्लिनिक जो 24/7 प्राथमिक चिकित्सा देता है।">On-campus health clinic providing basic medical assistance 24/7.</p>
+              <a href="medical.html" class="btn btn-white btn-sm" style="padding:6px 16px; font-size:0.75rem;" data-en="View Medical" data-hi="चिकित्सा देखें">View Medical</a>
             </div>
-
+ 
             <!-- 6. Smart Classroom -->
             <div class="facility-card-teal">
               <div class="facility-card-media"><img src="assets/images/admin.jpeg" alt="Smart classroom academic block" loading="lazy"></div>
               <h3 class="facility-card-title" data-en="Smart Classroom" data-hi="स्मार्ट कक्षाएं">Smart Classroom</h3>
               <p class="facility-card-desc" data-en="Wi-Fi classrooms integrated with projector and smart board systems." data-hi="प्रोजेक्टर और स्मार्ट बोर्ड प्रणालियों से एकीकृत वाई-फाई कक्षाएं।">Wi-Fi classrooms integrated with projector and smart board systems.</p>
+              <a href="facilities.html" class="btn btn-white btn-sm" style="padding:6px 16px; font-size:0.75rem;" data-en="View Facilities" data-hi="सुविधाएं देखें">View Facilities</a>
             </div>
           </div>
           
@@ -545,7 +503,9 @@
 
   <!-- Scripts -->
   <script src="js/components.js" defer></script>
+  <script src="js/department-data.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/event-calendar.js" defer></script>
   
   <script>
     // Local facility cards slider handler
@@ -562,6 +522,63 @@
           scrollContainer.scrollBy({ left: 285, behavior: 'smooth' });
         });
       }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const departments = window.cusbDepartments || {};
+      const schoolGrid = document.getElementById('homeSchoolGrid');
+
+      if (!schoolGrid) return;
+
+      const schoolMap = Object.entries(departments).reduce((map, [slug, dept]) => {
+        if (!map.has(dept.school)) map.set(dept.school, []);
+        map.get(dept.school).push({ slug, href: `department.html?dept=${slug}`, ...dept });
+        return map;
+      }, new Map());
+      const mathSchool = 'School of Mathematics, Statistics & Computer Science';
+      if (schoolMap.has(mathSchool)) {
+        schoolMap.get(mathSchool).unshift({
+          slug: 'computer_science',
+          href: 'cs.html',
+          name: 'Computer Science',
+          school: mathSchool,
+          icon: 'laptop'
+        });
+      }
+
+      schoolGrid.innerHTML = Array.from(schoolMap.entries()).map(([school, schoolDepartments], index) => `
+        <article class="program-school-card" style="--card-index:${index % 4}">
+          <button class="program-school-heading" type="button" aria-expanded="false">
+            <span class="program-select-icon"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-building"></use></svg></span>
+            <div>
+              <h3>${school}</h3>
+              <p>${schoolDepartments.length} ${schoolDepartments.length === 1 ? 'department' : 'departments'}</p>
+            </div>
+            <span class="program-school-arrow" aria-hidden="true">→</span>
+          </button>
+          <div class="program-dept-list" aria-label="${school} departments">
+            ${schoolDepartments.map(dept => `
+              <a href="${dept.href}" class="program-dept-link">
+                <span class="program-dept-icon"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-${dept.icon || 'graduation'}"></use></svg></span>
+                <span>${dept.name}</span>
+              </a>
+            `).join('')}
+          </div>
+        </article>
+      `).join('');
+
+      schoolGrid.addEventListener('click', event => {
+        const heading = event.target.closest('.program-school-heading');
+        if (!heading) return;
+        const card = heading.closest('.program-school-card');
+        const isOpen = card.classList.toggle('is-open');
+        heading.setAttribute('aria-expanded', String(isOpen));
+        schoolGrid.querySelectorAll('.program-school-card.is-open').forEach(openCard => {
+          if (openCard === card) return;
+          openCard.classList.remove('is-open');
+          openCard.querySelector('.program-school-heading')?.setAttribute('aria-expanded', 'false');
+        });
+      });
     });
   </script>
 </body>

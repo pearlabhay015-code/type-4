@@ -10,7 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initLanguage();
   initSearch();
   initMobileNav();
+  initQuickLinksMenu();
+  initChatbot();
+  initScrollToTop();
   initTranslateOffsetWatcher();
+  initDynamicContent();
   if (window.cusbReplaceEmojiIcons) window.cusbReplaceEmojiIcons(document);
 });
 
@@ -49,7 +53,7 @@ function initFontSize() {
 
   if (!decBtn || !resetBtn || !incBtn) return;
 
-  let currentSize = parseInt(localStorage.getItem('cusb-font-size')) || 16;
+  let currentSize = parseInt(localStorage.getItem('cusb-font-size')) || 18;
   applyFontSize(currentSize);
 
   decBtn.addEventListener('click', () => {
@@ -60,12 +64,12 @@ function initFontSize() {
   });
 
   resetBtn.addEventListener('click', () => {
-    currentSize = 16;
+    currentSize = 18;
     applyFontSize(currentSize);
   });
 
   incBtn.addEventListener('click', () => {
-    if (currentSize < 22) {
+    if (currentSize < 25) {
       currentSize += 1;
       applyFontSize(currentSize);
     }
@@ -370,8 +374,49 @@ function initMobileNav() {
   
   if (!toggleBtn || !navMenu) return;
 
+  const resetDesktopDropdownPosition = (menu) => {
+    menu.style.position = '';
+    menu.style.top = '';
+    menu.style.left = '';
+    menu.style.right = '';
+    menu.style.width = '';
+    menu.style.maxWidth = '';
+  };
+
+  const keepDropdownInViewport = (menu) => {
+    if (!menu || window.innerWidth <= 991) return;
+
+    requestAnimationFrame(() => {
+      const viewportPadding = 16;
+      const navbar = document.querySelector('cusb-navbar');
+      const navRect = navbar ? navbar.getBoundingClientRect() : { bottom: 0 };
+      const itemRect = menu.parentElement.getBoundingClientRect();
+      const desiredWidth = Math.min(menu.offsetWidth || 750, window.innerWidth - (viewportPadding * 2));
+      const left = Math.min(
+        Math.max(itemRect.left, viewportPadding),
+        window.innerWidth - desiredWidth - viewportPadding
+      );
+
+      menu.style.position = 'fixed';
+      menu.style.top = `${Math.max(0, navRect.bottom)}px`;
+      menu.style.left = `${left}px`;
+      menu.style.right = 'auto';
+      menu.style.width = `${desiredWidth}px`;
+      menu.style.maxWidth = `${window.innerWidth - (viewportPadding * 2)}px`;
+    });
+  };
+
   const closeAllDropdowns = () => {
-    navMenu.querySelectorAll('.navbar-item.active').forEach(item => item.classList.remove('active'));
+    navMenu.querySelectorAll('.navbar-item.active').forEach(item => {
+      const menu = item.querySelector('.megamenu');
+      item.classList.remove('active');
+      if (menu) resetDesktopDropdownPosition(menu);
+    });
+  };
+
+  const updateActiveDropdowns = () => {
+    if (window.innerWidth <= 991) return;
+    navMenu.querySelectorAll('.navbar-item.active .megamenu').forEach(keepDropdownInViewport);
   };
 
   const closeMenu = () => {
@@ -383,6 +428,14 @@ function initMobileNav() {
   };
 
   const openMenu = () => {
+    const quickToggle = document.getElementById('mobileQuickLinksToggleBtn');
+    const quickSidebar = document.querySelector('.fixed-quicklinks-sidebar');
+    if (quickToggle && quickSidebar) {
+      quickToggle.setAttribute('aria-expanded', 'false');
+      quickToggle.classList.remove('is-open');
+      quickSidebar.classList.remove('is-open');
+    }
+
     toggleBtn.setAttribute('aria-expanded', 'true');
     toggleBtn.classList.add('is-open');
     toggleBtn.innerHTML = window.cusbIconSvg ? window.cusbIconSvg('close') : 'Close';
@@ -414,13 +467,18 @@ function initMobileNav() {
       e.preventDefault();
       const wasActive = item.classList.contains('active');
       closeAllDropdowns();
-      if (!wasActive) item.classList.add('active');
+      if (!wasActive) {
+        item.classList.add('active');
+        keepDropdownInViewport(megamenu);
+      }
     });
 
     link.parentElement.addEventListener('mouseenter', () => {
-      if (window.innerWidth > 991 && link.parentElement.querySelector('.megamenu')) {
+      const megamenu = link.parentElement.querySelector('.megamenu');
+      if (window.innerWidth > 991 && megamenu) {
         closeAllDropdowns();
         link.parentElement.classList.add('active');
+        keepDropdownInViewport(megamenu);
       }
     });
   });
@@ -438,17 +496,204 @@ function initMobileNav() {
   });
 
   window.addEventListener('resize', () => {
+    navMenu.querySelectorAll('.megamenu').forEach(resetDesktopDropdownPosition);
     if (window.innerWidth > 991) {
       toggleBtn.setAttribute('aria-expanded', 'false');
       toggleBtn.classList.remove('is-open');
       toggleBtn.innerHTML = window.cusbIconSvg ? window.cusbIconSvg('menu') : 'Menu';
       navMenu.classList.remove('active');
+      updateActiveDropdowns();
     }
   });
+
+  window.addEventListener('scroll', updateActiveDropdowns, { passive: true });
+}
+
+function initQuickLinksMenu() {
+  const toggleBtn = document.getElementById('mobileQuickLinksToggleBtn');
+  const sidebar = document.querySelector('.fixed-quicklinks-sidebar');
+  const closeBtn = document.getElementById('quickLinksCloseBtn');
+
+  if (!toggleBtn || !sidebar) return;
+
+  const updateMobileSidebarTop = () => {
+    if (window.innerWidth > 991) {
+      document.documentElement.style.removeProperty('--mobile-quicklinks-top');
+      return;
+    }
+
+    const navbar = document.querySelector('cusb-navbar');
+    const bottom = navbar ? Math.max(0, navbar.getBoundingClientRect().bottom) : 0;
+    document.documentElement.style.setProperty('--mobile-quicklinks-top', `${bottom}px`);
+  };
+
+  const closeQuickLinks = () => {
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    toggleBtn.classList.remove('is-open');
+    sidebar.classList.remove('is-open');
+  };
+
+  const openQuickLinks = () => {
+    const navToggle = document.getElementById('mobileNavToggleBtn');
+    const navMenu = document.getElementById('navbarMenu');
+    if (navToggle && navMenu) {
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.classList.remove('is-open');
+      navToggle.innerHTML = window.cusbIconSvg ? window.cusbIconSvg('menu') : 'Menu';
+      navMenu.classList.remove('active');
+      navMenu.querySelectorAll('.navbar-item.active').forEach(item => item.classList.remove('active'));
+    }
+
+    updateMobileSidebarTop();
+    toggleBtn.setAttribute('aria-expanded', 'true');
+    toggleBtn.classList.add('is-open');
+    sidebar.classList.add('is-open');
+  };
+
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (toggleBtn.getAttribute('aria-expanded') === 'true') closeQuickLinks();
+    else openQuickLinks();
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeQuickLinks();
+    });
+  }
+
+  sidebar.addEventListener('click', (e) => e.stopPropagation());
+  sidebar.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 991) closeQuickLinks();
+    });
+  });
+
+  document.addEventListener('click', () => {
+    if (window.innerWidth <= 991) closeQuickLinks();
+  });
+
+  window.addEventListener('resize', () => {
+    updateMobileSidebarTop();
+    if (window.innerWidth > 991) closeQuickLinks();
+  }, { passive: true });
+  window.addEventListener('scroll', updateMobileSidebarTop, { passive: true });
+  updateMobileSidebarTop();
 }
 
 /* ==========================================================================
-   6. GOOGLE TRANSLATE FLOATING BAR OFFSET WATCHER
+   6. CHATBOT AND SCROLL-TO-TOP
+   ========================================================================== */
+function initChatbot() {
+  const toggleBtn = document.getElementById('chatbotToggleBtn');
+  const closeBtn = document.getElementById('chatbotCloseBtn');
+  const windowEl = document.getElementById('chatbotWindow');
+  const form = document.getElementById('chatbotForm');
+  const input = document.getElementById('chatbotInput');
+  const messages = document.getElementById('chatbotMessages');
+  const greeting = document.getElementById('chatbotGreeting');
+
+  if (!toggleBtn || !closeBtn || !windowEl || !form || !input || !messages) return;
+
+  const quickReplies = [
+    {
+      keys: ['admission', 'apply', 'cuet', 'entrance'],
+      text: 'Admissions are handled through CUET/Samarth. Use the Apply Now button or visit the Admissions page for dates, eligibility, and notices.'
+    },
+    {
+      keys: ['course', 'program', 'school', 'department', 'academics'],
+      text: 'You can browse Schools & Departments on this homepage. Hover or tap a school card, then choose the department you want to explore.'
+    },
+    {
+      keys: ['hostel', 'mess', 'accommodation'],
+      text: 'Hostel details, wardens, facilities, and rules are available from the Hostels quick link.'
+    },
+    {
+      keys: ['library', 'book', 'journal'],
+      text: 'The Central Library page includes library facilities, resources, and student services.'
+    },
+    {
+      keys: ['contact', 'phone', 'email', 'address'],
+      text: 'You can find phone, email, and campus address details in the footer Contact Us section.'
+    },
+    {
+      keys: ['notice', 'news', 'event', 'calendar'],
+      text: 'Latest news and upcoming events are listed on the homepage, with more details on the News & Events page.'
+    }
+  ];
+
+  const appendMessage = (text, type = 'bot') => {
+    const message = document.createElement('div');
+    const bubble = document.createElement('div');
+    message.className = `chatbot-message ${type}`;
+    bubble.className = 'chatbot-message-bubble';
+    bubble.textContent = text;
+    message.appendChild(bubble);
+    messages.appendChild(message);
+    messages.scrollTop = messages.scrollHeight;
+  };
+
+  const getBotReply = (value) => {
+    const query = value.toLowerCase();
+    const match = quickReplies.find(reply => reply.keys.some(key => query.includes(key)));
+    if (match) return match.text;
+    return 'I can guide you to admissions, schools, departments, hostel, library, notices, events, and contact details. Try asking about one of these.';
+  };
+
+  const openChat = () => {
+    windowEl.classList.add('active');
+    windowEl.setAttribute('aria-hidden', 'false');
+    toggleBtn.setAttribute('aria-expanded', 'true');
+    if (greeting) greeting.classList.add('hidden');
+    setTimeout(() => input.focus(), 100);
+  };
+
+  const closeChat = () => {
+    windowEl.classList.remove('active');
+    windowEl.setAttribute('aria-hidden', 'true');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+  };
+
+  toggleBtn.addEventListener('click', () => {
+    if (windowEl.classList.contains('active')) closeChat();
+    else openChat();
+  });
+
+  closeBtn.addEventListener('click', closeChat);
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const value = input.value.trim();
+    if (!value) return;
+    appendMessage(value, 'user');
+    input.value = '';
+    setTimeout(() => appendMessage(getBotReply(value), 'bot'), 350);
+  });
+
+  setTimeout(() => {
+    if (greeting && !windowEl.classList.contains('active')) greeting.classList.add('hidden');
+  }, 7000);
+}
+
+function initScrollToTop() {
+  const scrollBtn = document.getElementById('scroll-btn');
+  if (!scrollBtn) return;
+
+  const updateVisibility = () => {
+    scrollBtn.classList.toggle('show', window.scrollY > 420);
+  };
+
+  scrollBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  window.addEventListener('scroll', updateVisibility, { passive: true });
+  updateVisibility();
+}
+
+/* ==========================================================================
+   7. GOOGLE TRANSLATE FLOATING BAR OFFSET WATCHER
    ========================================================================== */
 function initTranslateOffsetWatcher() {
   setInterval(() => {
@@ -463,4 +708,153 @@ function initTranslateOffsetWatcher() {
     // Set the CSS variable on the root document
     document.documentElement.style.setProperty('--translate-offset', `${offset}px`);
   }, 250);
+}
+
+/* ==========================================================================
+   7. DYNAMIC SITE CONTENT LOADER (GALLERY, NEWS & EVENTS)
+   ========================================================================== */
+function renderGallery(galleryList) {
+  const container = document.querySelector('.gallery-grid-pastel');
+  if (!container || !galleryList || galleryList.length === 0) return;
+
+  container.innerHTML = '';
+  galleryList.forEach(item => {
+    const block = document.createElement('div');
+    block.className = 'gallery-block';
+    block.innerHTML = `
+      <img src="${item.image_url}" alt="${item.title_en}" loading="lazy" onerror="this.src='assets/images/blockB.jpg'">
+      <div class="gallery-overlay" data-en="${item.title_en}" data-hi="${item.title_hi}">${item.title_en}</div>
+    `;
+    container.appendChild(block);
+  });
+}
+
+function renderNewsCards(newsList) {
+  const container = document.querySelector('.news-grid');
+  if (!container || !newsList || newsList.length === 0) return;
+
+  container.innerHTML = '';
+  newsList.slice(0, 3).forEach(item => {
+    const defaultImage = 'assets/images/blockB.jpg';
+    const imgUrl = item.image_url || defaultImage;
+    
+    let dateObj = new Date(item.created_at);
+    let day = dateObj.getDate();
+    let month = dateObj.toLocaleString('en-US', { month: 'short' }).toUpperCase();
+    
+    const displayTag = item.date_str || "News";
+    
+    const article = document.createElement('article');
+    article.className = 'news-card';
+    article.innerHTML = `
+      <div class="news-card-media">
+        <img src="${imgUrl}" alt="${item.title_en}" loading="lazy" onerror="this.src='assets/images/blockB.jpg'">
+        <div class="news-card-date"><span>${day}</span>${month}</div>
+      </div>
+      <div class="news-card-details">
+        <span class="news-card-meta" data-en="${displayTag}" data-hi="${displayTag}">${displayTag}</span>
+        <h4 class="news-card-title">
+          <a href="news-events.html?type=news" data-en="${item.title_en}" data-hi="${item.title_hi}">${item.title_en}</a>
+        </h4>
+      </div>
+    `;
+    container.appendChild(article);
+  });
+}
+
+function renderEventCards(eventList) {
+  const container = document.querySelector('.events-grid');
+  if (!container || !eventList || eventList.length === 0) return;
+
+  container.innerHTML = '';
+  eventList.slice(0, 3).forEach(item => {
+    const defaultImage = 'assets/images/audimg.jpg';
+    const imgUrl = item.image_url || defaultImage;
+    
+    let dateObj = new Date(item.created_at);
+    let day = dateObj.getDate();
+    let month = dateObj.toLocaleString('en-US', { month: 'short' }).toUpperCase();
+    
+    const displayTag = item.date_str || "Event";
+    
+    const article = document.createElement('article');
+    article.className = 'event-card';
+    article.innerHTML = `
+      <div class="event-card-media">
+        <img src="${imgUrl}" alt="${item.title_en}" loading="lazy" onerror="this.src='assets/images/audimg.jpg'">
+        <div class="event-card-date"><span>${day}</span>${month}</div>
+      </div>
+      <div class="event-card-details">
+        <span class="event-card-meta" data-en="${displayTag}" data-hi="${displayTag}">${displayTag}</span>
+        <h4 class="event-card-title">
+          <a href="news-events.html?type=event" data-en="${item.title_en}" data-hi="${item.title_hi}">${item.title_en}</a>
+        </h4>
+      </div>
+    `;
+    container.appendChild(article);
+  });
+}
+
+async function initDynamicContent() {
+  const currentLang = localStorage.getItem('cusb-lang') || 'en';
+  
+  // 1. Fetch & Render Gallery
+  const galleryContainer = document.querySelector('.gallery-grid-pastel');
+  if (galleryContainer) {
+    try {
+      const response = await fetch('/api/gallery');
+      if (response.ok) {
+        const galleryList = await response.json();
+        if (galleryList && galleryList.length > 0) {
+          renderGallery(galleryList);
+          galleryContainer.querySelectorAll('[data-en], [data-hi]').forEach(el => {
+            const text = el.getAttribute(`data-${currentLang}`);
+            if (text) el.textContent = text;
+          });
+        }
+      }
+    } catch (err) {
+      console.error("Failed to fetch gallery:", err);
+    }
+  }
+
+  // 2. Fetch & Render News / Events
+  const newsContainer = document.querySelector('.news-grid');
+  const eventsContainer = document.querySelector('.events-grid');
+  if (newsContainer || eventsContainer) {
+    try {
+      const response = await fetch('/api/announcements');
+      if (response.ok) {
+        const announcements = await response.json();
+        
+        // Filter active news
+        const newsList = announcements.filter(item => item.type.toLowerCase() === 'news');
+        if (newsList.length > 0 && newsContainer) {
+          renderNewsCards(newsList);
+          newsContainer.querySelectorAll('[data-en], [data-hi]').forEach(el => {
+            const text = el.getAttribute(`data-${currentLang}`);
+            if (text) {
+              if (text.includes('<') && text.includes('>')) el.innerHTML = text;
+              else el.textContent = text;
+            }
+          });
+        }
+
+        // Filter active events
+        const eventsList = announcements.filter(item => item.type.toLowerCase() === 'event');
+        if (eventsList.length > 0 && eventsContainer) {
+          renderEventCards(eventsList);
+          eventsContainer.querySelectorAll('[data-en], [data-hi]').forEach(el => {
+            const text = el.getAttribute(`data-${currentLang}`);
+            if (text) {
+              if (text.includes('<') && text.includes('>')) el.innerHTML = text;
+              else el.textContent = text;
+            }
+          });
+        }
+      }
+    } catch (err) {
+      console.error("Failed to fetch announcements:", err);
+    }
+  }
 }

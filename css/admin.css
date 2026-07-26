@@ -446,3 +446,35 @@
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* Password Visibility Toggle */
+.password-toggle-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: var(--admin-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+  z-index: 10;
+}
+
+.password-toggle-btn:hover {
+  color: var(--admin-text-primary);
+}
+
+.admin-input-wrapper .admin-input {
+  padding-right: 40px;
+}
+
+.admin-input-wrapper .form-input-text {
+  margin-bottom: 0;
+  padding-right: 40px;
+}

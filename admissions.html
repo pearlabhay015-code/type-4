@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admissions 2026-27 | Central University of South Bihar (CUSB)</title>
+  <meta name="description" content="Official Admissions Portal for Central University of South Bihar (CUSB). Explore CUET UG, CUET PG, Ph.D. admissions, eligibility criteria, key dates, fee structures, and application links.">
+  <meta name="keywords" content="CUSB Admissions, CUET UG, CUET PG, CUSB Fee Structure, CUSB Eligibility, NTA CUET 2026, Central University Bihar Admissions">
+  <link rel="icon" href="assets/culog.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <cusb-topbar></cusb-topbar>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-header></cusb-header>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="main-content">
+    <!-- Hero Banner -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-content">
+          <span class="hero-badge">Academic Session 2026–2027</span>
+          <h1>Admissions & Academic Programmes</h1>
+          <p>Join NAAC A++ Accredited Central University of South Bihar. Discover world-class undergraduate, postgraduate, and doctoral opportunities across 25+ specialized departments.</p>
+          <div class="hero-actions">
+            <a href="https://cuet.samarth.ac.in/" target="_blank" class="btn btn-primary">Apply via CUET (UG/PG)</a>
+            <a href="downloads.html#prospectus" class="btn btn-secondary">Download Prospectus</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Admission Highlights Grid -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title text-center">
+          <h2>Why Choose CUSB for Your Higher Education?</h2>
+          <p>Nationally recognized excellence, cutting-edge facilities, and affordable central university fees</p>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="card glass-card">
+            <div class="card-icon">🎓</div>
+            <h3>CUET Merit Selection</h3>
+            <p>Admission to all UG and PG programmes is conducted through the National Testing Agency (NTA) Common University Entrance Test (CUET).</p>
+          </div>
+          <div class="card glass-card">
+            <div class="card-icon">🏆</div>
+            <h3>NAAC A++ Accreditation</h3>
+            <p>Rated among India's top central universities with a CGPA score of 3.58 by NAAC, offering state-of-the-art research laboratories and hostels.</p>
+          </div>
+          <div class="card glass-card">
+            <div class="card-icon">💰</div>
+            <h3>Scholarship Support</h3>
+            <p>Full support for National Scholarship Portal (NSP), Bihar Post-Matric Scholarships, ICSSR, UGC NET/JRF Fellowships, and merit fee concessions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Admissions List / Filter Section -->
+    <section class="section bg-alt" id="notice-list">
+      <div class="container">
+        <div class="section-header-flex">
+          <div>
+            <h2>Active Admission Notices & Bulletins</h2>
+            <p>Latest announcements regarding application deadlines, merit lists, and counseling rounds</p>
+          </div>
+          <div class="filter-controls">
+            <button class="filter-btn active" data-filter="all">All Programmes</button>
+            <button class="filter-btn" data-filter="ug">Undergraduate</button>
+            <button class="filter-btn" data-filter="pg">Postgraduate</button>
+            <button class="filter-btn" data-filter="phd">Doctoral (Ph.D.)</button>
+          </div>
+        </div>
+
+        <div class="admission-grid" id="admissionsContainer">
+          <!-- Dynamic Content loaded from /api/admissions -->
+          <div class="loading-spinner">Loading active admission notices...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Eligibility & Fee Structure Table -->
+    <section class="section" id="eligibility">
+      <div class="container">
+        <div class="section-title">
+          <h2>Programme Eligibility & Intake Capacity</h2>
+          <p>Minimum required educational qualifications and seat matrices for 2026-27</p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Programme Name</th>
+                <th>Level</th>
+                <th>Duration</th>
+                <th>Seat Intake</th>
+                <th>Entrance Mode</th>
+                <th>Eligibility Criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>B.Sc. + M.Sc. Computer Science</strong></td>
+                <td><span class="badge badge-ug">UG Integrated</span></td>
+                <td>5 Years</td>
+                <td>25 Seats</td>
+                <td>CUET (UG)</td>
+                <td>10+2 in Science stream with Mathematics (Min 50% aggregate)</td>
+              </tr>
+              <tr>
+                <td><strong>M.Sc. Computer Science</strong></td>
+                <td><span class="badge badge-pg">Postgraduate</span></td>
+                <td>2 Years</td>
+                <td>40 Seats</td>
+                <td>CUET (PG)</td>
+                <td>B.Sc. CS / BCA / B.Tech / B.Sc. with Math or CS as major subject</td>
+              </tr>
+              <tr>
+                <td><strong>M.Sc. Artificial Intelligence</strong></td>
+                <td><span class="badge badge-pg">Postgraduate</span></td>
+                <td>2 Years</td>
+                <td>20 Seats</td>
+                <td>CUET (PG)</td>
+                <td>B.Sc. CS / BCA / B.Tech / B.Sc. IT with programming background</td>
+              </tr>
+              <tr>
+                <td><strong>Ph.D. Computer Science</strong></td>
+                <td><span class="badge badge-phd">Doctoral</span></td>
+                <td>3-5 Years</td>
+                <td>Varies</td>
+                <td>UGC NET / NET-JRF / CUSB Entrance</td>
+                <td>Master's Degree in CS / IT / MCA / M.Tech with 55% marks</td>
+              </tr>
+              <tr>
+                <td><strong>Integrated B.A. LL.B. (Honours)</strong></td>
+                <td><span class="badge badge-ug">UG Integrated</span></td>
+                <td>5 Years</td>
+                <td>120 Seats</td>
+                <td>CUET (UG)</td>
+                <td>10+2 in any stream (Min 45% aggregate)</td>
+              </tr>
+              <tr>
+                <td><strong>M.Sc. Biotechnology</strong></td>
+                <td><span class="badge badge-pg">Postgraduate</span></td>
+                <td>2 Years</td>
+                <td>30 Seats</td>
+                <td>CUET (PG)</td>
+                <td>B.Sc. in Biotechnology / Life Sciences / Biological Sciences</td>
+              </tr>
+              <tr>
+                <td><strong>M.Sc. Physics</strong></td>
+                <td><span class="badge badge-pg">Postgraduate</span></td>
+                <td>2 Years</td>
+                <td>40 Seats</td>
+                <td>CUET (PG)</td>
+                <td>B.Sc. Honours in Physics with Mathematics as subsidiary</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const container = document.getElementById('admissionsContainer');
+      try {
+        const res = await fetch('/api/admissions');
+        if (!res.ok) throw new Error('API Error');
+        const data = await res.json();
+        
+        if (!data || data.length === 0) {
+          container.innerHTML = `
+            <div class="card glass-card">
+              <h3>CUSB Admission Bulletin 2026–27</h3>
+              <p>Admissions for the upcoming academic session are currently open. Apply online through NTA CUET official portals.</p>
+              <div class="card-footer-flex">
+                <a href="https://cuet.samarth.ac.in/" target="_blank" class="btn btn-sm btn-primary">CUET Application Portal &rarr;</a>
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = data.map(item => `
+          <div class="card glass-card admission-card">
+            <div class="card-header-badge">
+              <span class="badge badge-active">${item.academic_year}</span>
+              ${item.application_end_date ? `<span class="deadline-text">Deadline: ${item.application_end_date}</span>` : ''}
+            </div>
+            <h3>${item.title}</h3>
+            <p>${item.description || 'Official admission announcement for prospective students.'}</p>
+            ${item.eligibility ? `<div class="eligibility-box"><strong>Eligibility:</strong> ${item.eligibility}</div>` : ''}
+            <div class="card-actions">
+              ${item.apply_url ? `<a href="${item.apply_url}" target="_blank" class="btn btn-sm btn-primary">Apply Online</a>` : ''}
+              ${item.brochure_url ? `<a href="${item.brochure_url}" target="_blank" class="btn btn-sm btn-outline">Download Brochure</a>` : ''}
+            </div>
+          </div>
+        `).join('');
+      } catch (e) {
+        container.innerHTML = `
+          <div class="card glass-card">
+            <h3>Central University of South Bihar Admissions 2026-27</h3>
+            <p>Online registration for CUET UG and PG counseling is ongoing. Please visit the official Samarth Admission Portal to register.</p>
+            <a href="https://cusb.samarth.edu.in/" target="_blank" class="btn btn-primary">Visit Samarth Admission Portal</a>
+          </div>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>

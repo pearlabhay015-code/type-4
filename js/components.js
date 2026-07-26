@@ -131,48 +131,66 @@ class CusbTicker extends HTMLElement {
       </div>
     `;
     replaceEmojiIcons(this);
+    const title = this.querySelector('.ticker-title');
+    if (title) {
+      title.innerHTML = `${iconSvg('file')}<span>Updates</span>`;
+      title.setAttribute('data-en', 'Updates');
+      title.setAttribute('data-hi', 'Updates');
+    }
     this.loadAnnouncements();
   }
 
   async loadAnnouncements() {
     const track = this.querySelector('#tickerTrack');
     if (!track) return;
-    
-    try {
-      const res = await fetch('/api/announcements');
-      const data = await res.json();
-      
-      if (!data || data.length === 0) {
-        track.innerHTML = `<span style="padding:0 20px;" data-en="No recent updates." data-hi="कोई हालिया अपडेट नहीं।">No recent updates.</span>`;
-        return;
-      }
-      
+
+    const fallbackItems = [
+      { title_en: 'Admissions Open 2026-27', title_hi: 'Admissions Open 2026-27' },
+      { title_en: 'CUSB Admission Bulletin 2026 released', title_hi: 'CUSB Admission Bulletin 2026 released' },
+      { title_en: 'Visit Latest News for notices and events', title_hi: 'Visit Latest News for notices and events' }
+    ];
+
+    const escapeHTML = value => String(value || '').replace(/[&<>"']/g, char => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    })[char]);
+
+    const renderTickerItems = items => {
+      const visibleItems = (items && items.length ? items : fallbackItems).slice(0, 8);
       track.innerHTML = '';
-      data.forEach((item, index) => {
+
+      [...visibleItems, ...visibleItems].forEach((item, index) => {
         const a = document.createElement('a');
-        a.href = "index.html#notices";
-        a.className = "ticker-item";
-        
+        a.href = 'index.html#notices';
+        a.className = 'ticker-item';
+        if (index >= visibleItems.length) a.setAttribute('aria-hidden', 'true');
+
         const isNew = index < 2;
         a.innerHTML = `
-          <span data-en="${item.title_en}" data-hi="${item.title_hi}">${item.title_en}</span>
-          ${isNew ? '<span class="ticker-badge" data-en="NEW" data-hi="नया">NEW</span>' : ''}
+          <span data-en="${escapeHTML(item.title_en)}" data-hi="${escapeHTML(item.title_hi || item.title_en)}">${escapeHTML(item.title_en)}</span>
+          ${isNew ? '<span class="ticker-badge" data-en="NEW" data-hi="NEW">NEW</span>' : ''}
         `;
         track.appendChild(a);
       });
-      
+
       const currentLang = localStorage.getItem('cusb-lang') || 'en';
-      const elements = track.querySelectorAll('[data-en], [data-hi]');
-      elements.forEach(el => {
+      track.querySelectorAll('[data-en], [data-hi]').forEach(el => {
         const text = el.getAttribute(`data-${currentLang}`);
-        if (text) {
-          el.textContent = text;
-        }
+        if (text) el.textContent = text;
       });
-      if (window.cusbReplaceEmojiIcons) window.cusbReplaceEmojiIcons(track);
-      
+    };
+
+    try {
+      const res = await fetch('/api/announcements');
+      if (!res.ok) throw new Error(`Announcements API returned ${res.status}`);
+      const data = await res.json();
+      renderTickerItems(data);
     } catch (err) {
       console.error("Failed to load announcements:", err);
+      renderTickerItems(fallbackItems);
     }
   }
 }
@@ -198,7 +216,7 @@ class CusbTopbar extends HTMLElement {
           <a href="admin.html" data-en="Admin Login" data-hi="एडमिन लॉगिन" class="topbar-icon-text">${iconSvg('admin-key')}<span data-en="Admin Login" data-hi="एडमिन लॉगिन">Admin Login</span></a>
         </div>
       </div>
-    `
+    `;
     replaceEmojiIcons(this);
   }
 }
@@ -306,6 +324,10 @@ class CusbNavbar extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <div class="container" style="display:flex; justify-content:space-between; align-items:center; position:relative;">
+        <button class="mobile-quicklinks-toggle" id="mobileQuickLinksToggleBtn" aria-label="Open Quick Links" aria-expanded="false">
+          ${iconSvg('target')}
+          <span data-en="Quick Links" data-hi="Quick Links">Quick Links</span>
+        </button>
         <button class="mobile-nav-toggle" id="mobileNavToggleBtn" aria-label="Open Navigation Menu" aria-expanded="false">${iconSvg('menu')}</button>
         
         <nav class="navbar-nav" aria-label="Main Navigation">
@@ -313,8 +335,51 @@ class CusbNavbar extends HTMLElement {
             <!-- 1. HOME -->
             <li class="navbar-item" data-menu="home">
               <a href="index.html" class="navbar-link"><span class="megamenu-icon">🏠</span><span data-en="Home" data-hi="होम">Home</span></a>
+              <div class="megamenu" id="referenceAboutMegamenu" role="region" aria-label="About Menu Links">
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="About University" data-hi="About University">About University</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="about.html"><span class="megamenu-icon">ðŸ›ï¸</span><span data-en="The University" data-hi="The University">The University</span></a></li>
+                    <li class="megamenu-item"><a href="policies.html#act"><span class="megamenu-icon">ðŸ“œ</span><span data-en="Central Universities Act, 2009" data-hi="Central Universities Act, 2009">Central Universities Act, 2009</span></a></li>
+                    <li class="megamenu-item"><a href="about.html#history"><span class="megamenu-icon">ðŸ“š</span><span data-en="History and Development" data-hi="History and Development">History and Development</span></a></li>
+                    <li class="megamenu-item"><a href="policies.html#statutes"><span class="megamenu-icon">ðŸ“‹</span><span data-en="Statutes & Ordinances" data-hi="Statutes & Ordinances">Statutes & Ordinances</span></a></li>
+                    <li class="megamenu-item"><a href="about.html#vision"><span class="megamenu-icon">ðŸ‘ï¸</span><span data-en="Vision & Mission" data-hi="Vision & Mission">Vision & Mission</span></a></li>
+                    <li class="megamenu-item"><a href="policies.html#policies"><span class="megamenu-icon">ðŸ›¡ï¸</span><span data-en="Regulation and Policy Documents" data-hi="Regulation and Policy Documents">Regulation and Policy Documents</span></a></li>
+                    <li class="megamenu-item"><a href="about.html#features"><span class="megamenu-icon">ðŸŽ¯</span><span data-en="Salient Features and Best Practices" data-hi="Salient Features and Best Practices">Salient Features and Best Practices</span></a></li>
+                    <li class="megamenu-item"><a href="policies.html#reports"><span class="megamenu-icon">ðŸ“Š</span><span data-en="Annual Reports and Annual Accounts" data-hi="Annual Reports and Annual Accounts">Annual Reports and Annual Accounts</span></a></li>
+                    <li class="megamenu-item"><a href="about.html#kulgeet"><span class="megamenu-icon">ðŸ“–</span><span data-en="University Kulgeet" data-hi="University Kulgeet">University Kulgeet</span></a></li>
+                    <li class="megamenu-item"><a href="about.html#logo"><span class="megamenu-icon">ðŸ‡®ðŸ‡³</span><span data-en="CUSB Logo" data-hi="CUSB Logo">CUSB Logo</span></a></li>
+                    <li class="megamenu-item"><a href="#footer"><span class="megamenu-icon">ðŸ“</span><span data-en="How to Reach CUSB" data-hi="How to Reach CUSB">How to Reach CUSB</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="Statutory Bodies" data-hi="Statutory Bodies">Statutory Bodies</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="leaders.html#court"><span class="megamenu-icon">ðŸ›ï¸</span><span data-en="The Court" data-hi="The Court">The Court</span></a></li>
+                    <li class="megamenu-item"><a href="leaders.html#executive"><span class="megamenu-icon">ðŸ‘¤</span><span data-en="Executive Council" data-hi="Executive Council">Executive Council</span></a></li>
+                    <li class="megamenu-item"><a href="leaders.html#academic"><span class="megamenu-icon">ðŸ“‹</span><span data-en="Academic Council" data-hi="Academic Council">Academic Council</span></a></li>
+                    <li class="megamenu-item"><a href="leaders.html#finance"><span class="megamenu-icon">ðŸ’¼</span><span data-en="Finance Committee" data-hi="Finance Committee">Finance Committee</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="Others" data-hi="Others">Others</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="tenders.html"><span class="megamenu-icon">ðŸ“‹</span><span data-en="Tenders" data-hi="Tenders">Tenders</span></a></li>
+                    <li class="megamenu-item"><a href="news-events.html?type=notice"><span class="megamenu-icon">ðŸ””</span><span data-en="Notices" data-hi="Notices">Notices</span></a></li>
+                    <li class="megamenu-item"><a href="news-events.html?type=event"><span class="megamenu-icon">ðŸ“…</span><span data-en="Upcoming Events" data-hi="Upcoming Events">Upcoming Events</span></a></li>
+                    <li class="megamenu-item"><a href="news-events.html#archived"><span class="megamenu-icon">ðŸ“‚</span><span data-en="Archived Events" data-hi="Archived Events">Archived Events</span></a></li>
+                    <li class="megamenu-item"><a href="index.html#gallery"><span class="megamenu-icon">ðŸ“¸</span><span data-en="Photo Gallery" data-hi="Photo Gallery">Photo Gallery</span></a></li>
+                    <li class="megamenu-item"><a href="careers.html"><span class="megamenu-icon">ðŸ’¼</span><span data-en="Recruitment" data-hi="Recruitment">Recruitment</span></a></li>
+                    <li class="megamenu-item"><a href="downloads.html"><span class="megamenu-icon">ðŸ“„</span><span data-en="Download" data-hi="Download">Download</span></a></li>
+                    <li class="megamenu-item"><a href="news-events.html#recent"><span class="megamenu-icon">ðŸ“¥</span><span data-en="Recent Event" data-hi="Recent Event">Recent Event</span></a></li>
+                    <li class="megamenu-item"><a href="news-events.html#academic-highlights"><span class="megamenu-icon">ðŸŽ“</span><span data-en="Academic Highlights" data-hi="Academic Highlights">Academic Highlights</span></a></li>
+                    <li class="megamenu-item"><a href="news-events.html?type=circular"><span class="megamenu-icon">ðŸ“œ</span><span data-en="Circular / Notification / Office Order" data-hi="Circular / Notification / Office Order">Circular / Notification / Office Order</span></a></li>
+                    <li class="megamenu-item"><a href="about.html#foundation-day"><span class="megamenu-icon">ðŸ‡®ðŸ‡³</span><span data-en="Foundation Day" data-hi="Foundation Day">Foundation Day</span></a></li>
+                  </ul>
+                </div>
+              </div>
             </li>
-            
+
             <!-- 2. ABOUT -->
             <li class="navbar-item" data-menu="about">
               <a href="about.html" class="navbar-link"><span data-en="About" data-hi="परिचय">About</span></a>
@@ -366,10 +431,10 @@ class CusbNavbar extends HTMLElement {
                   </ul>
                 </div>
                 <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Careers" data-hi="करियर">Careers</div>
+                  <div class="megamenu-heading" data-en="Directory" data-hi="निर्देशिका">Directory</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="careers.html"><span class="megamenu-icon">💼</span><span data-en="Recruitments" data-hi="भर्तियां">Recruitments</span></a></li>
                     <li class="megamenu-item"><a href="leaders.html#faculty"><span class="megamenu-icon">📋</span><span data-en="Faculty Directory" data-hi="संकाय निर्देशिका">Faculty Directory</span></a></li>
+                    <li class="megamenu-item"><a href="careers.html"><span class="megamenu-icon">💼</span><span data-en="Recruitment / Careers" data-hi="भर्तियां / करियर">Recruitment / Careers</span></a></li>
                   </ul>
                 </div>
               </div>
@@ -379,150 +444,131 @@ class CusbNavbar extends HTMLElement {
             <li class="navbar-item" data-menu="academics">
               <a href="courses.html" class="navbar-link"><span data-en="Academics" data-hi="अकादमिक">Academics</span></a>
               <div class="megamenu" id="academicsMegamenu" role="region" aria-label="Academics Links">
-                <ul class="megamenu-list">
-                  <li class="megamenu-item"><a href="courses.html?section=schools"><span class="megamenu-icon">🏫</span><span data-en="Schools" data-hi="अध्ययन शालाएं">Schools</span></a></li>
-                  <li class="megamenu-item"><a href="courses.html?section=programmes"><span class="megamenu-icon">🎓</span><span data-en="Programmes" data-hi="कार्यक्रम">Programmes</span></a></li>
-                  <li class="megamenu-item"><a href="courses.html?section=departments"><span class="megamenu-icon">🏛️</span><span data-en="Departments" data-hi="विभाग">Departments</span></a></li>
-                </ul>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="Structure" data-hi="संरचना">Schools & Depts</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="courses.html?section=schools"><span class="megamenu-icon">🏫</span><span data-en="Schools" data-hi="अध्ययन शालाएं">Schools</span></a></li>
+                    <li class="megamenu-item"><a href="courses.html?section=departments"><span class="megamenu-icon">🏛️</span><span data-en="Departments" data-hi="विभाग">Departments</span></a></li>
+                    <li class="megamenu-item"><a href="cs.html"><span class="megamenu-icon">💻</span><span data-en="Computer Science Dept" data-hi="कंप्यूटर साइंस विभाग">Computer Science Dept</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="Programmes" data-hi="कार्यक्रम">Programmes</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="courses.html?level=ug"><span class="megamenu-icon">🎓</span><span data-en="Undergraduate (UG)" data-hi="स्नातक (यूजी)">Undergraduate (UG)</span></a></li>
+                    <li class="megamenu-item"><a href="courses.html?level=pg"><span class="megamenu-icon">📜</span><span data-en="Postgraduate (PG)" data-hi="स्नातकोत्तर (पीजी)">Postgraduate (PG)</span></a></li>
+                    <li class="megamenu-item"><a href="courses.html?level=phd"><span class="megamenu-icon">🔬</span><span data-en="Doctoral (Ph.D.)" data-hi="विद्यावाचस्पति (पीएचडी)">Doctoral (Ph.D.)</span></a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+
+            <!-- 5. ADMISSIONS -->
+            <li class="navbar-item" data-menu="admissions">
+              <a href="admissions.html" class="navbar-link"><span data-en="Admissions" data-hi="प्रवेश">Admissions</span></a>
+              <div class="megamenu" id="admissionsMegamenu" role="region" aria-label="Admissions Links">
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="Overview" data-hi="अवलोकन">Admission 2026</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="admissions.html"><span class="megamenu-icon">📝</span><span data-en="Admission Notices & Dates" data-hi="प्रवेश सूचनाएं एवं तिथियां">Admission Notices & Dates</span></a></li>
+                    <li class="megamenu-item"><a href="admissions.html#eligibility"><span class="megamenu-icon">📋</span><span data-en="Eligibility Criteria" data-hi="पात्रता मापदंड">Eligibility Criteria</span></a></li>
+                    <li class="megamenu-item"><a href="https://cuet.samarth.ac.in/" target="_blank"><span class="megamenu-icon">🌐</span><span data-en="CUET UG Portal" data-hi="सीयूईटी यूजी पोर्टल">CUET UG Portal</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="Resources" data-hi="संसाधन">Information</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="downloads.html#prospectus"><span class="megamenu-icon">📄</span><span data-en="Information Brochure" data-hi="सूचना विवरणिका">Information Brochure</span></a></li>
+                    <li class="megamenu-item"><a href="downloads.html#fee-structure"><span class="megamenu-icon">💰</span><span data-en="Fee Structure" data-hi="शुल्क संरचना">Fee Structure</span></a></li>
+                  </ul>
+                </div>
               </div>
             </li>
             
-            <!-- 5. RESEARCH -->
+            <!-- 6. RESEARCH -->
             <li class="navbar-item" data-menu="research">
               <a href="research.html" class="navbar-link"><span data-en="Research" data-hi="अनुसंधान">Research</span></a>
               <div class="megamenu" id="researchMegamenu" role="region" aria-label="Research Links">
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="Activities" data-hi="गतिविधियाँ">Activities</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="research.html#areas"><span class="megamenu-icon">🔬</span><span data-en="Research Areas" data-hi="अनुसंधान क्षेत्र">Research Areas</span></a></li>
-                    <li class="megamenu-item"><a href="research.html#publications"><span class="megamenu-icon">📚</span><span data-en="Publications" data-hi="प्रकाशन">Publications</span></a></li>
                     <li class="megamenu-item"><a href="research.html#projects"><span class="megamenu-icon">📁</span><span data-en="Sponsored Projects" data-hi="प्रायोजित परियोजनाएं">Sponsored Projects</span></a></li>
+                    <li class="megamenu-item"><a href="research.html#publications"><span class="megamenu-icon">📚</span><span data-en="Faculty Publications" data-hi="संकाय प्रकाशन">Faculty Publications</span></a></li>
+                    <li class="megamenu-item"><a href="research.html#areas"><span class="megamenu-icon">🔬</span><span data-en="Research Thrust Areas" data-hi="अनुसंधान क्षेत्र">Research Thrust Areas</span></a></li>
                   </ul>
                 </div>
-                <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Centers" data-hi="केंद्र">Centers</div>
-                  <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="research.html#instruments"><span class="megamenu-icon">🏢</span><span data-en="Central Instruments" data-hi="केंद्रीय उपकरण केंद्र">Central Instruments Facility</span></a></li>
-                    <li class="megamenu-item"><a href="research.html#incubation"><span class="megamenu-icon">💡</span><span data-en="Incubation Centre" data-hi="इंक्यूबेशन सेंटर">Incubation Centre</span></a></li>
-                  </ul>
-                </div>
-                <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Collaborations" data-hi="सहयोग">Collaborations</div>
-                  <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="research.html#mous"><span class="megamenu-icon">🤝</span><span data-en="MoUs & Partnerships" data-hi="समझौता ज्ञापन">MoUs & Partnerships</span></a></li>
-                    <li class="megamenu-item"><a href="research.html#seminars"><span class="megamenu-icon">🌐</span><span data-en="Seminars" data-hi="संगोष्ठी">Seminars & Conferences</span></a></li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            
-            <!-- 6. STUDENTS -->
-            <li class="navbar-item" data-menu="students">
-              <a href="students.html" class="navbar-link"><span data-en="Students" data-hi="छात्र">Students</span></a>
-              <div class="megamenu" id="studentsMegamenu" role="region" aria-label="Students Links">
-                <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Services" data-hi="सेवाएं">Services</div>
-                  <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="https://cusb.samarth.edu.in/index.php/site/login" target="_blank"><span class="megamenu-icon">🧑‍🎓</span><span data-en="Student Portal" data-hi="छात्र पोर्टल">Student Portal</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#results"><span class="megamenu-icon">🏆</span><span data-en="Results & Grades" data-hi="परीक्षा परिणाम">Results & Exams</span></a></li>
-                    <li class="megamenu-item"><a href="hostel.html"><span class="megamenu-icon">🏠</span><span data-en="Hostel & Wardens" data-hi="छात्रावास और वार्डन">Hostel & Wardens</span></a></li>
-                  </ul>
-                </div>
-                <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Support" data-hi="सहायता">Support</div>
-                  <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="https://www.antiragging.in/" target="_blank"><span class="megamenu-icon">🔒</span><span data-en="Anti-Ragging Cell" data-hi="एंटी-रैगिंग सेल">Anti-Ragging Cell</span></a></li>
-                    <li class="megamenu-item"><a href="https://scholarships.gov.in/" target="_blank"><span class="megamenu-icon">💰</span><span data-en="National Scholarship" data-hi="राष्ट्रीय छात्रवृत्ति">National Scholarship</span></a></li>
-                  </ul>
-                </div>
-                <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Activities" data-hi="गतिविधियां">Activities</div>
-                  <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="students.html#sports"><span class="megamenu-icon">⚽</span><span data-en="Sports & Culture" data-hi="खेल एवं संस्कृति">Sports & Culture</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#alumni"><span class="megamenu-icon">🌱</span><span data-en="Alumni Association" data-hi="पूर्व छात्र संगठन">Alumni Association</span></a></li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            
-            <!-- 7. RESOURCES -->
-            <li class="navbar-item" data-menu="resources">
-              <a href="#" class="navbar-link"><span data-en="Resources" data-hi="संसाधन">Resources</span></a>
-              <div class="megamenu" id="resourcesMegamenu" role="region" aria-label="Resources Links">
-                <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Portals" data-hi="पोर्टल">Portals</div>
-                  <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="https://cusb.samarth.ac.in/index.php/site/login" target="_blank"><span class="megamenu-icon">👨‍🏫</span><span data-en="Faculty Login" data-hi="संकाय लॉगिन">Faculty Login</span></a></li>
-                    <li class="megamenu-item"><a href="https://cusb.samarth.edu.in/index.php/site/login" target="_blank"><span class="megamenu-icon">💳</span><span data-en="Online Fee Payment" data-hi="ऑनलाइन शुल्क भुगतान">Online Fee Payment</span></a></li>
-                  </ul>
-                </div>
-                <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Resources" data-hi="संसाधन">Resources</div>
-                  <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="pyq.html"><span class="megamenu-icon">📚</span><span data-en="PYQ Portal" data-hi="पुराने प्रश्न पत्र">PYQ Portal</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#lms"><span class="megamenu-icon">💻</span><span data-en="LMS Portal" data-hi="एलएमएस पोर्टल">LMS Portal</span></a></li>
-                  </ul>
-                </div>
-                <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Library" data-hi="पुस्तकालय">Library</div>
-                  <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="facilities.html#digital-library"><span class="megamenu-icon">📖</span><span data-en="Digital Library" data-hi="डिजिटल लाइब्रेरी">Digital Library</span></a></li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            
-            <!-- 8. CAMPUS -->
-            <li class="navbar-item" data-menu="campus">
-              <a href="facilities.html" class="navbar-link"><span data-en="Campus" data-hi="परिसर">Campus</span></a>
-              <div class="megamenu" id="campusMegamenu" role="region" aria-label="Campus Links">
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="Facilities" data-hi="सुविधाएं">Facilities</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="hostel.html"><span class="megamenu-icon">🏢</span><span data-en="Campus Hostels" data-hi="परिसर छात्रावास">Campus Hostels</span></a></li>
-                    <li class="megamenu-item"><a href="facilities.html#library"><span class="megamenu-icon">📚</span><span data-en="Central Library" data-hi="केंद्रीय पुस्तकालय">Central Library</span></a></li>
-                    <li class="megamenu-item"><a href="facilities.html#cafeteria"><span class="megamenu-icon">🍳</span><span data-en="Cafeteria" data-hi="कैफेटेरिया">Cafeteria</span></a></li>
-                  </ul>
-                </div>
-                <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Infrastructure" data-hi="बुनियादी ढांचा">Infrastructure</div>
-                  <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="facilities.html#smart-classrooms"><span class="megamenu-icon">🏫</span><span data-en="Smart Classrooms" data-hi="स्मार्ट कक्षाएं">Smart Classrooms</span></a></li>
-                    <li class="megamenu-item"><a href="facilities.html#medical"><span class="megamenu-icon">🏥</span><span data-en="Medical Center" data-hi="चिकित्सा केंद्र">Medical Center</span></a></li>
-                  </ul>
-                </div>
-                <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Life at CUSB" data-hi="सीयूएसबी जीवन">Life at CUSB</div>
-                  <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="index.html#gallery"><span class="megamenu-icon">📸</span><span data-en="Photo Gallery" data-hi="फोटो गैलरी">Photo Gallery</span></a></li>
+                    <li class="megamenu-item"><a href="cif.html"><span class="megamenu-icon">🏢</span><span data-en="Central Instrumentation (CIF)" data-hi="केंद्रीय उपकरण सुविधा (सीआईएफ)">Central Instrumentation (CIF)</span></a></li>
+                    <li class="megamenu-item"><a href="research.html#incubation"><span class="megamenu-icon">💡</span><span data-en="Incubation Centre" data-hi="इंक्यूबेशन सेंटर">Incubation Centre</span></a></li>
                   </ul>
                 </div>
               </div>
             </li>
             
-            <!-- 9. DOWNLOADS -->
+            <!-- 7. STUDENTS & CAMPUS -->
+            <li class="navbar-item" data-menu="students">
+              <a href="students.html" class="navbar-link"><span data-en="Student Corner" data-hi="छात्र कॉर्नर">Student Corner</span></a>
+              <div class="megamenu" id="studentsMegamenu" role="region" aria-label="Student Links">
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="Services" data-hi="सेवाएं">Services</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="https://cusb.samarth.edu.in/index.php/site/login" target="_blank"><span class="megamenu-icon">🧑‍🎓</span><span data-en="Student Portal (Samarth)" data-hi="छात्र पोर्टल (समर्थ)">Student Portal (Samarth)</span></a></li>
+                    <li class="megamenu-item"><a href="students.html#results"><span class="megamenu-icon">🏆</span><span data-en="Results & Grades" data-hi="परीक्षा परिणाम">Results & Grades</span></a></li>
+                    <li class="megamenu-item"><a href="hostel.html"><span class="megamenu-icon">🏠</span><span data-en="Hostels & Wardens" data-hi="छात्रावास और वार्डन">Hostels & Wardens</span></a></li>
+                    <li class="megamenu-item"><a href="pyq.html"><span class="megamenu-icon">📚</span><span data-en="PYQ Portal" data-hi="पुराने प्रश्न पत्र">PYQ Portal</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="Campus Life" data-hi="परिसर जीवन">Campus & Facilities</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="library.html"><span class="megamenu-icon">📚</span><span data-en="Central Library" data-hi="केंद्रीय पुस्तकालय">Central Library</span></a></li>
+                    <li class="megamenu-item"><a href="cafeteria.html"><span class="megamenu-icon">🍳</span><span data-en="Cafeteria" data-hi="कैफेटेरिया">Cafeteria</span></a></li>
+                    <li class="megamenu-item"><a href="sports.html"><span class="megamenu-icon">⚽</span><span data-en="Sports & Gym" data-hi="खेल एवं जिम">Sports & Gym</span></a></li>
+                    <li class="megamenu-item"><a href="medical.html"><span class="megamenu-icon">🏥</span><span data-en="Medical Center" data-hi="चिकित्सा केंद्र">Medical Center</span></a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+
+            <!-- 8. CAREERS & TENDERS -->
+            <li class="navbar-item" data-menu="opportunities">
+              <a href="careers.html" class="navbar-link"><span data-en="Careers & Tenders" data-hi="करियर और निविदाएं">Careers & Tenders</span></a>
+              <div class="megamenu" id="opportunitiesMegamenu" role="region" aria-label="Opportunities Links">
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="Recruitment" data-hi="भर्तियां">Recruitment</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="careers.html"><span class="megamenu-icon">💼</span><span data-en="Faculty & Staff Openings" data-hi="शिक्षण एवं गैर-शिक्षण पद">Faculty & Staff Openings</span></a></li>
+                    <li class="megamenu-item"><a href="careers.html#results"><span class="megamenu-icon">📜</span><span data-en="Recruitment Results" data-hi="भर्ती परिणाम">Recruitment Results</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="Tenders" data-hi="निविदाएं">Procurement</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="tenders.html"><span class="megamenu-icon">📋</span><span data-en="Active Tenders" data-hi="सक्रिय निविदाएं">Active Tenders & EOI</span></a></li>
+                    <li class="megamenu-item"><a href="tenders.html#archived"><span class="megamenu-icon">📂</span><span data-en="Archived Tenders" data-hi="पुराणी निविदाएं">Archived Tenders</span></a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            
+            <!-- 9. DOWNLOADS & NOTICES -->
             <li class="navbar-item" data-menu="downloads">
-              <a href="downloads.html" class="navbar-link"><span data-en="Downloads" data-hi="डाउनलोड">Downloads</span></a>
+              <a href="news-events.html" class="navbar-link"><span data-en="Notices & Media" data-hi="सूचनाएं एवं मीडिया">Notices & Media</span></a>
               <div class="megamenu" id="downloadsMegamenu" role="region" aria-label="Downloads Links">
                 <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Academics" data-hi="शैक्षणिक">Academics</div>
+                  <div class="megamenu-heading" data-en="Notices" data-hi="सूचनाएं">Notices & Events</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="downloads.html#prospectus"><span class="megamenu-icon">📄</span><span data-en="CUSB Prospectus" data-hi="सीयूएसबी विवरणिका">CUSB Prospectus</span></a></li>
-                    <li class="megamenu-item"><a href="downloads.html#calendar"><span class="megamenu-icon">📅</span><span data-en="Academic Calendar" data-hi="शैक्षणिक कैलेंडर">Academic Calendar</span></a></li>
+                    <li class="megamenu-item"><a href="news-events.html"><span class="megamenu-icon">🔔</span><span data-en="Latest News & Circulars" data-hi="नवीनतम समाचार एवं परिपत्र">Latest News & Circulars</span></a></li>
+                    <li class="megamenu-item"><a href="news-events.html?type=event"><span class="megamenu-icon">📅</span><span data-en="Events & Seminars" data-hi="कार्यक्रम एवं संगोष्ठी">Events & Seminars</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Forms & Notices" data-hi="प्रपत्र एवं सूचना">Forms & Notices</div>
+                  <div class="megamenu-heading" data-en="Downloads" data-hi="डाउनलोड">Documents</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="downloads.html#admission"><span class="megamenu-icon">📝</span><span data-en="Admission Forms" data-hi="प्रवेश प्रपत्र">Admission Forms</span></a></li>
-                    <li class="megamenu-item"><a href="downloads.html#circulars"><span class="megamenu-icon">🔔</span><span data-en="General Notices" data-hi="सामान्य सूचनाएं">General Circulars</span></a></li>
-                  </ul>
-                </div>
-                <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Exam Documents" data-hi="परीक्षा दस्तावेज">Exam Documents</div>
-                  <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="downloads.html#admit-cards"><span class="megamenu-icon">🆔</span><span data-en="Admit Cards" data-hi="प्रवेश पत्र">Admit Cards</span></a></li>
-                    <li class="megamenu-item"><a href="downloads.html#fee-structure"><span class="megamenu-icon">💰</span><span data-en="Fee Structure" data-hi="शुल्क संरचना">Fee Structure</span></a></li>
+                    <li class="megamenu-item"><a href="downloads.html"><span class="megamenu-icon">📄</span><span data-en="Download Center" data-hi="डाउनलोड केंद्र">Download Center</span></a></li>
+                    <li class="megamenu-item"><a href="index.html#gallery"><span class="megamenu-icon">📸</span><span data-en="Photo Gallery" data-hi="फोटो गैलरी">Photo Gallery</span></a></li>
                   </ul>
                 </div>
               </div>
@@ -531,6 +577,175 @@ class CusbNavbar extends HTMLElement {
         </nav>
       </div>
     `;
+    const homeItem = this.querySelector('[data-menu="home"]');
+    const aboutItem = this.querySelector('[data-menu="about"]');
+    const referenceAboutMenu = this.querySelector('#referenceAboutMegamenu');
+    const existingAboutMenu = this.querySelector('#aboutMegamenu');
+    if (homeItem && aboutItem && referenceAboutMenu) {
+      referenceAboutMenu.id = 'aboutMegamenu';
+      if (existingAboutMenu && existingAboutMenu !== referenceAboutMenu) existingAboutMenu.remove();
+      aboutItem.appendChild(referenceAboutMenu);
+    }
+    const adminMenu = this.querySelector('#adminMegamenu');
+    if (adminMenu) {
+      adminMenu.innerHTML = `
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Administration" data-hi="Administration">Administration</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="leaders.html#visitor"><span data-en="Visitor" data-hi="Visitor">Visitor</span></a></li>
+            <li class="megamenu-item"><a href="leaders.html#chancellor"><span data-en="Chancellor" data-hi="Chancellor">Chancellor</span></a></li>
+            <li class="megamenu-item"><a href="leaders.html#vc"><span data-en="Vice-Chancellor" data-hi="Vice-Chancellor">Vice-Chancellor</span></a></li>
+            <li class="megamenu-item"><a href="leaders.html#pro-vc"><span data-en="Pro-Vice Chancellor" data-hi="Pro-Vice Chancellor">Pro-Vice Chancellor</span></a></li>
+            <li class="megamenu-item"><a href="leaders.html#dean-student-welfare"><span data-en="Dean of Student welfare" data-hi="Dean of Student welfare">Dean of Student welfare</span></a></li>
+            <li class="megamenu-item"><a href="leaders.html#proctorial-board"><span data-en="Proctorial Board" data-hi="Proctorial Board">Proctorial Board</span></a></li>
+            <li class="megamenu-item"><a href="leaders.html#dean-head"><span data-en="Dean/Head" data-hi="Dean/Head">Dean/Head</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading admin-divider-heading" aria-hidden="true">----------------------------------------</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="leaders.html#registrar"><span data-en="Registrar" data-hi="Registrar">Registrar</span></a></li>
+            <li class="megamenu-item"><a href="leaders.html#finance-officer"><span data-en="Finance Officer" data-hi="Finance Officer">Finance Officer</span></a></li>
+            <li class="megamenu-item"><a href="leaders.html#controller-examination"><span data-en="Controller of Examination" data-hi="Controller of Examination">Controller of Examination</span></a></li>
+            <li class="megamenu-item"><a href="leaders.html#librarian"><span data-en="Librarian" data-hi="Librarian">Librarian</span></a></li>
+            <li class="megamenu-item"><a href="leaders.html#section-staff"><span data-en="Section & Staff" data-hi="Section & Staff">Section & Staff</span></a></li>
+            <li class="megamenu-item"><a href="leaders.html#committee-cell"><span data-en="Committee/Cell" data-hi="Committee/Cell">Committee/Cell</span></a></li>
+            <li class="megamenu-item"><a href="leaders.html#organogram"><span data-en="Organogram" data-hi="Organogram">Organogram</span></a></li>
+          </ul>
+        </div>
+      `;
+    }
+    const academicsMenu = this.querySelector('#academicsMegamenu');
+    if (academicsMenu) {
+      academicsMenu.innerHTML = `
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Earth, Biological and Environmental Sciences" data-hi="Earth, Biological and Environmental Sciences">Earth, Biological and Environmental Sciences</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=bioinformatics"><span data-en="Dept. of Bioinformatics" data-hi="Dept. of Bioinformatics">Dept. of Bioinformatics</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=geology"><span data-en="Department of Geology" data-hi="Department of Geology">Department of Geology</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=geography"><span data-en="Department of Geography" data-hi="Department of Geography">Department of Geography</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=life-science"><span data-en="Dept. of Life Science" data-hi="Dept. of Life Science">Dept. of Life Science</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=biotechnology"><span data-en="Department of Biotechnology" data-hi="Department of Biotechnology">Department of Biotechnology</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=environmental-sciences"><span data-en="Department of Environmental Sciences" data-hi="Department of Environmental Sciences">Department of Environmental Sciences</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Social Sciences and Policies" data-hi="Social Sciences and Policies">Social Sciences and Policies</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=historical-studies-archaeology"><span data-en="Department of Historical Studies and Archaeology" data-hi="Department of Historical Studies and Archaeology">Department of Historical Studies and Archaeology</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=economic-studies-policy"><span data-en="Department of Economic Studies and Policy" data-hi="Department of Economic Studies and Policy">Department of Economic Studies and Policy</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=development-studies"><span data-en="Development Studies" data-hi="Development Studies">Development Studies</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=political-studies"><span data-en="Dept. of Political Studies" data-hi="Dept. of Political Studies">Dept. of Political Studies</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=sociological-studies"><span data-en="Department of Sociological Studies" data-hi="Department of Sociological Studies">Department of Sociological Studies</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=library-information-science"><span data-en="Dept. of Library & Information Science" data-hi="Dept. of Library & Information Science">Dept. of Library & Information Science</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Mathematics, Statistics and Computer Science" data-hi="Mathematics, Statistics and Computer Science">Mathematics, Statistics and Computer Science</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=mathematics"><span data-en="Dept. of Mathematics" data-hi="Dept. of Mathematics">Dept. of Mathematics</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=statistics"><span data-en="Department of Statistics" data-hi="Department of Statistics">Department of Statistics</span></a></li>
+            <li class="megamenu-item"><a href="cs.html"><span data-en="Department of Computer Science" data-hi="Department of Computer Science">Department of Computer Science</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="School of Education (Teacher & Physical)" data-hi="School of Education (Teacher & Physical)">School of Education (Teacher & Physical)</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=teacher-education"><span data-en="Department of Teacher Education" data-hi="Department of Teacher Education">Department of Teacher Education</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=physical-education"><span data-en="Department of Physical Education" data-hi="Department of Physical Education">Department of Physical Education</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Physical & Chemical" data-hi="Physical & Chemical">Physical & Chemical</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=chemistry"><span data-en="Department of Chemistry" data-hi="Department of Chemistry">Department of Chemistry</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=physics"><span data-en="Department of Physics" data-hi="Department of Physics">Department of Physics</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Languages & Literature" data-hi="Languages & Literature">Languages & Literature</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=english"><span data-en="Department of English" data-hi="Department of English">Department of English</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=indian-languages"><span data-en="Dept. of Indian Languages" data-hi="Dept. of Indian Languages">Dept. of Indian Languages</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Media, Arts & Aesthetics" data-hi="Media, Arts & Aesthetics">Media, Arts & Aesthetics</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=mass-communication-media"><span data-en="Mass Communication and Media" data-hi="Mass Communication and Media">Mass Communication and Media</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="School of Management" data-hi="School of Management">School of Management</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=commerce-business-studies"><span data-en="Department of Commerce and Business Studies" data-hi="Department of Commerce and Business Studies">Department of Commerce and Business Studies</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Human Sciences" data-hi="Human Sciences">Human Sciences</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=psychological-sciences"><span data-en="Dept. of Psychological Sciences" data-hi="Dept. of Psychological Sciences">Dept. of Psychological Sciences</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Law and Governance" data-hi="Law and Governance">Law and Governance</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=law-governance"><span data-en="Department of Law and Governance" data-hi="Department of Law and Governance">Department of Law and Governance</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Health Science" data-hi="Health Science">Health Science</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=pharmacy"><span data-en="Department of Pharmacy" data-hi="Department of Pharmacy">Department of Pharmacy</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Agriculture & Development" data-hi="Agriculture & Development">Agriculture & Develop...</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=agriculture"><span data-en="Department of Agriculture" data-hi="Department of Agriculture">Department of Agriculture</span></a></li>
+          </ul>
+        </div>
+      `;
+    }
+    const researchMenu = this.querySelector('#researchMegamenu');
+    if (researchMenu) {
+      researchMenu.innerHTML = `
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Facility and Services" data-hi="Facility and Services">Facility and Services</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="cif.html"><span data-en="Central Instrumental Facility" data-hi="Central Instrumental Facility">Central Instrumental Facility</span></a></li>
+            <li class="megamenu-item"><a href="facilities.html#computer-centre"><span data-en="University Computer Centre" data-hi="University Computer Centre">University Computer Centre</span></a></li>
+            <li class="megamenu-item"><a href="facilities.html#media-studio"><span data-en="Media Studio" data-hi="Media Studio">Media Studio</span></a></li>
+            <li class="megamenu-item"><a href="research.html#inca-congress"><span data-en="45th INCA International Congress" data-hi="45th INCA International Congress">45th INCA International Congress</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Committee & Cell" data-hi="Committee & Cell">Committee & Cell</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="research.html#iic"><span data-en="IIC-Innovation Council" data-hi="IIC-Innovation Council">IIC-Innovation Council</span></a></li>
+            <li class="megamenu-item"><a href="research.html#ipr-cell"><span data-en="IPR Cell" data-hi="IPR Cell">IPR Cell</span></a></li>
+            <li class="megamenu-item"><a href="research.html#rd-cell"><span data-en="R&D Cell" data-hi="R&D Cell">R&D Cell</span></a></li>
+            <li class="megamenu-item"><a href="research.html#fpac-iaec-rdc"><span data-en="FPAC/IAEC/RDC Cell" data-hi="FPAC/IAEC/RDC Cell">FPAC/IAEC/RDC Cell</span></a></li>
+            <li class="megamenu-item"><a href="research.html#legal-cell"><span data-en="Legal Cell" data-hi="Legal Cell">Legal Cell</span></a></li>
+            <li class="megamenu-item"><a href="research.html#iecbhr-ibsc"><span data-en="IECBHR/IBSC Cell" data-hi="IECBHR/IBSC Cell">IECBHR/IBSC Cell</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="General" data-hi="General">General</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="research.html#publications"><span data-en="Highlights and Publications" data-hi="Highlights and Publications">Highlights and Publications</span></a></li>
+            <li class="megamenu-item"><a href="research.html#partnership"><span data-en="Partnership" data-hi="Partnership">Partnership</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Grants & Funding" data-hi="Grants & Funding">Grants & Funding</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="research.html#scholarship-fellowship"><span data-en="Scholarship and Fellowship" data-hi="Scholarship and Fellowship">Scholarship and Fellowship</span></a></li>
+            <li class="megamenu-item"><a href="research.html#grants"><span data-en="Grants for Faculties" data-hi="Grants for Faculties">Grants for Faculties</span></a></li>
+          </ul>
+        </div>
+      `;
+    }
     replaceEmojiIcons(this);
   }
 }
@@ -609,52 +824,33 @@ class CusbFooter extends HTMLElement {
           </div>
           
           <div class="footer-col">
-            <div class="footer-heading" data-en="Important Links" data-hi="महत्वपूर्ण लिंक">Important Links</div>
+            <div class="footer-heading" data-en="Quick Links" data-hi="त्वरित लिंक्स">Quick Links</div>
             <ul class="footer-links">
-              <li><a href="http://www.ugc.ac.in/" target="_blank" rel="noopener noreferrer">UGC</a></li>
-              <li><a href="http://naac.gov.in/" target="_blank" rel="noopener noreferrer">NAAC</a></li>
-              <li><a href="https://www.nirfindia.org/" target="_blank" rel="noopener noreferrer">NIRF</a></li>
-              <li><a href="https://rtionline.gov.in/" target="_blank" rel="noopener noreferrer" data-en="RTI Act" data-hi="आरटीआई कानून">RTI Act</a></li>
+              <li><a href="about.html" data-en="About CUSB" data-hi="सीयूएसबी के बारे में">About CUSB</a></li>
+              <li><a href="leaders.html" data-en="University Administration" data-hi="विश्वविद्यालय प्रशासन">University Administration</a></li>
+              <li><a href="courses.html" data-en="Schools & Departments" data-hi="अध्ययन शालाएं एवं विभाग">Schools & Departments</a></li>
+              <li><a href="admissions.html" data-en="Admissions 2026-27" data-hi="प्रवेश 2026-27">Admissions 2026-27</a></li>
+              <li><a href="careers.html" data-en="Careers & Openings" data-hi="करियर और नौकरियां">Careers & Openings</a></li>
+              <li><a href="tenders.html" data-en="Tenders & EOI" data-hi="निविदाएं">Tenders & EOI</a></li>
             </ul>
           </div>
-          
+
           <div class="footer-col">
-            <div class="footer-heading" data-en="Policies" data-hi="नीतियां">Policies</div>
+            <div class="footer-heading" data-en="Resources" data-hi="संसाधन">Resources</div>
             <ul class="footer-links">
-              <li><a href="#" data-en="Privacy Policy" data-hi="गोपनीयता नीति">Privacy Policy</a></li>
-              <li><a href="#" data-en="Terms & Conditions" data-hi="नियम व शर्तें">Terms & Conditions</a></li>
-              <li><a href="#" data-en="Sitemap" data-hi="साइटमैप">Sitemap</a></li>
-              <li><a href="#" data-en="Accessibility" data-hi="सुगम्यता वक्तव्य">Accessibility Statement</a></li>
+              <li><a href="https://cusb.samarth.edu.in/" target="_blank" data-en="Samarth Student Portal" data-hi="समर्थ छात्र पोर्टल">Samarth Student Portal</a></li>
+              <li><a href="hostel.html" data-en="Campus Hostels" data-hi="परिसर छात्रावास">Campus Hostels</a></li>
+              <li><a href="library.html" data-en="Central Library" data-hi="केंद्रीय पुस्तकालय">Central Library</a></li>
+              <li><a href="pyq.html" data-en="Previous Papers (PYQ)" data-hi="पुराने प्रश्न पत्र">Previous Papers (PYQ)</a></li>
+              <li><a href="policies.html" data-en="Policies & RTI" data-hi="नीतियां और आरटीआई">Policies & RTI</a></li>
             </ul>
-            <div class="footer-socials">
-              <a href="https://www.facebook.com/cusbofficial/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook">${iconSvg('facebook')}</a>
-              <a href="https://x.com/CUSBofficial" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Twitter / X">${iconSvg('x')}</a>
-              <a href="https://www.instagram.com/cusbofficialpage/?hl=en" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">${iconSvg('instagram')}</a>
-              <a href="https://in.linkedin.com/school/cusbofficial/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">${iconSvg('linkedin')}</a>
-              <a href="https://www.youtube.com/user/CUBofficialchannel" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="YouTube">${iconSvg('youtube')}</a>
-            </div>
-          </div>
-          
-
-
-
-
-
-          <div class="footer-col footer-map-col">
-            <div class="footer-heading" data-en="Campus Map" data-hi="परिसर मानचित्र">Campus Map</div>
-            <iframe
-              class="footer-map"
-              title="Central University of South Bihar location map"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=Central%20University%20of%20South%20Bihar%2C%20Gaya&output=embed">
-            </iframe>
           </div>
         </div>
-        
+
         <div class="footer-bottom">
-          <span data-en="© 2026 Central University of South Bihar. All Rights Reserved." data-hi="© 2026 दक्षिण बिहार केन्द्रीय विश्वविद्यालय। सर्वाधिकार सुरक्षित।">© 2026 Central University of South Bihar. All Rights Reserved.</span>
-          <span data-en="Designed for Web Accessibility standards" data-hi="वेब सुगम्यता मानकों के लिए डिज़ाइन किया गया">Designed for Web Accessibility standards</span>
+          <div class="footer-copyright">
+            &copy; 2026 Central University of South Bihar. All Rights Reserved.
+          </div>
         </div>
       </div>
     `;
@@ -663,134 +859,105 @@ class CusbFooter extends HTMLElement {
 }
 customElements.define('cusb-footer', CusbFooter);
 
-// 7. Chatbot Component
+// 7. Chatbot and Scroll Actions Component
 class CusbChatbot extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <div class="chatbot-container" id="chatbotContainer">
-        <div class="chatbot-window" id="chatbotWindow">
-          <div class="chatbot-header">
-            <span data-en="💬 CUSB Assistant" data-hi="💬 सीयूएसबी सहायक">💬 CUSB Assistant</span>
-            <button class="chatbot-close" id="chatbotCloseBtn" aria-label="Close Chat Window">${iconSvg('close')}</button>
-          </div>
+      <div class="floating-message" id="chatbotGreeting" aria-hidden="true">
+        <div class="floating-message-bubble" data-en="Need help? Ask CUSB Assistant" data-hi="सहायता चाहिए? CUSB सहायक से पूछें">Need help? Ask CUSB Assistant</div>
+      </div>
+
+      <div class="chatbot-container" aria-live="polite">
+        <section class="chatbot-window" id="chatbotWindow" aria-label="CUSB Assistant" aria-hidden="true">
+          <header class="chatbot-header">
+            <span data-en="CUSB Assistant" data-hi="CUSB सहायक">CUSB Assistant</span>
+            <button class="chatbot-close" id="chatbotCloseBtn" type="button" aria-label="Close chatbot">${iconSvg('close')}</button>
+          </header>
           <div class="chatbot-messages" id="chatbotMessages">
             <div class="chatbot-message bot">
-              <div class="chatbot-message-bubble" data-en="Hi! I'm the CUSB Assistant. Ask me about admissions, programs, campus, hostels, or general inquiries!" data-hi="नमस्ते! मैं सीयूएसबी सहायक हूँ। मुझसे प्रवेश, कार्यक्रमों, परिसर, छात्रावास या सामान्य पूछताछ के बारे में पूछें!">
-                Hi! I'm the CUSB Assistant. Ask me about admissions, programs, campus, hostels, or general inquiries!
-              </div>
+              <div class="chatbot-message-bubble">Hello! I can help you find admissions, courses, departments, facilities, notices, and contact details.</div>
             </div>
           </div>
-          <div class="chatbot-input-group">
-            <input type="text" id="chatbotInput" placeholder="Ask me anything..." aria-label="Chat input query">
-            <button class="chatbot-send-btn" id="chatbotSendBtn" aria-label="Send query">${iconSvg('send')}</button>
-          </div>
-        </div>
-        <button class="chatbot-toggle" id="chatbotToggleBtn" aria-label="Open CUSB Assistant Window">
-          <svg class="chatbot-toggle-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-            <defs>
-              <linearGradient id="chatbotShellGradient" x1="12" y1="8" x2="52" y2="58" gradientUnits="userSpaceOnUse">
-                <stop offset="0" stop-color="var(--bg-primary)"/>
-                <stop offset="0.55" stop-color="var(--bg-secondary)"/>
-                <stop offset="1" stop-color="var(--acc-blue)"/>
-              </linearGradient>
-            </defs>
-            <path class="chatbot-icon-shadow" d="M18 55c-3 0-5-2-5-5V28c0-9 8-17 19-17s19 8 19 17v22c0 3-2 5-5 5H18z"/>
-            <path class="chatbot-icon-head" d="M16 53c-3 0-5-2-5-5V29c0-11 9-20 21-20s21 9 21 20v19c0 3-2 5-5 5H16z"/>
-            <path class="chatbot-icon-face" d="M20 29c0-5 5-9 12-9s12 4 12 9v8c0 5-5 9-12 9s-12-4-12-9v-8z"/>
-            <circle class="chatbot-icon-eye" cx="27" cy="33" r="2.6"/>
-            <circle class="chatbot-icon-eye" cx="37" cy="33" r="2.6"/>
-            <path class="chatbot-icon-smile" d="M27 39c2.8 2 7.2 2 10 0"/>
-            <path class="chatbot-icon-antenna" d="M32 9V4"/>
-            <circle class="chatbot-icon-dot" cx="32" cy="4" r="2.6"/>
-            <path class="chatbot-icon-ear" d="M11 32H7v10h4M53 32h4v10h-4"/>
-          </svg>
+          <form class="chatbot-input-group" id="chatbotForm">
+            <input id="chatbotInput" type="text" autocomplete="off" placeholder="Ask about admissions, courses, hostel..." aria-label="Ask CUSB Assistant">
+            <button class="chatbot-send-btn" type="submit" aria-label="Send message">${iconSvg('send')}</button>
+          </form>
+        </section>
+        <button class="chatbot-toggle" id="chatbotToggleBtn" type="button" aria-label="Open chatbot" aria-expanded="false">
+          ${iconSvg('robot-chat')}
         </button>
       </div>
-      
-      <div class="floating-message" id="chatbotFloatingMsg">
-        <div class="floating-message-bubble" data-en="Need Any Help?" data-hi="क्या आपको मदद चाहिए?">
-          Need Any Help?
-        </div>
-      </div>
 
-      <button id="scroll-btn" aria-label="Scroll to top" title="Scroll to top">${iconSvg('arrow-up')}</button>
+      <button id="scroll-btn" type="button" aria-label="Scroll to top">${iconSvg('arrow-up')}</button>
     `;
     replaceEmojiIcons(this);
-
-    this.initChatbotLogic();
-  }
-
-  initChatbotLogic() {
-    const container = this.querySelector('#chatbotContainer');
-    const toggleBtn = this.querySelector('#chatbotToggleBtn');
-    const closeBtn = this.querySelector('#chatbotCloseBtn');
-    const chatWindow = this.querySelector('#chatbotWindow');
-    const floatMsg = this.querySelector('#chatbotFloatingMsg');
-    const input = this.querySelector('#chatbotInput');
-    const sendBtn = this.querySelector('#chatbotSendBtn');
-    const messages = this.querySelector('#chatbotMessages');
-    const scrollBtn = this.querySelector('#scroll-btn');
-
-    // Toggle Chat window
-    const toggleWindow = () => {
-      chatWindow.classList.toggle('active');
-      floatMsg.classList.add('hidden');
-    };
-
-    toggleBtn.addEventListener('click', toggleWindow);
-    closeBtn.addEventListener('click', () => chatWindow.classList.remove('active'));
-
-    const handleSend = async () => {
-      const userVal = input.value.trim();
-      const query = userVal.toLowerCase();
-      if (!query) return;
-
-      // Add user message
-      addMessage(userVal, true);
-      input.value = '';
-
-      // Determine response
-      const currentLang = localStorage.getItem('cusb-lang') || 'en';
-      
-      try {
-        const response = await fetch(`/api/chat?q=${encodeURIComponent(query)}`);
-        const data = await response.json();
-        const reply = data[currentLang] || data['en'] || 'Sorry, I failed to process that request.';
-        addMessage(reply, false);
-      } catch (err) {
-        console.error("Chatbot API failed:", err);
-        const errReply = currentLang === 'hi' 
-          ? 'माफ़ कीजिये, सर्वर से संपर्क करने में कोई समस्या हुई।' 
-          : 'Sorry, there was a problem connecting to the chatbot server.';
-        addMessage(errReply, false);
-      }
-    };
-
-    const addMessage = (text, isUser) => {
-      const msgRow = document.createElement('div');
-      msgRow.className = `chatbot-message ${isUser ? 'user' : 'bot'}`;
-      msgRow.innerHTML = `<div class="chatbot-message-bubble">${text}</div>`;
-      messages.appendChild(msgRow);
-      messages.scrollTop = messages.scrollHeight;
-    };
-
-    sendBtn.addEventListener('click', handleSend);
-    input.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') handleSend();
-    });
-
-    // Scroll to top control
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        scrollBtn.classList.add('show');
-      } else {
-        scrollBtn.classList.remove('show');
-      }
-    });
-
-    scrollBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
   }
 }
 customElements.define('cusb-chatbot', CusbChatbot);
+
+// 8. Fixed Quick Links Sidebar Component
+class CusbSidebar extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+      <aside class="fixed-quicklinks-sidebar" role="navigation" aria-label="Quick Links Sidebar">
+        <div class="sidebar-heading">
+          ${iconSvg('target')}
+          <span data-en="QUICK LINKS" data-hi="त्वरित लिंक्स">QUICK LINKS</span>
+          <button class="sidebar-close" id="quickLinksCloseBtn" type="button" aria-label="Close Quick Links">${iconSvg('close')}</button>
+        </div>
+        <ul class="sidebar-menu-list">
+          <li><a href="admissions.html" class="sidebar-link">${iconSvg('file')}<span data-en="Admissions 2026-27" data-hi="प्रवेश 2026-27">Admissions 2026-27</span></a></li>
+          <li><a href="https://cuet.samarth.ac.in/" target="_blank" class="sidebar-link">${iconSvg('graduation')}<span data-en="CUET Application" data-hi="सीयूईटी आवेदन">CUET Application</span></a></li>
+          <li><a href="https://cusb.samarth.edu.in/index.php/site/login" target="_blank" class="sidebar-link">${iconSvg('users')}<span data-en="Samarth Portal" data-hi="समर्थ पोर्टल">Samarth Portal</span></a></li>
+          <li><a href="students.html#results" class="sidebar-link">${iconSvg('chart')}<span data-en="Results & Grades" data-hi="परीक्षा परिणाम">Results & Grades</span></a></li>
+          <li><a href="hostel.html" class="sidebar-link">${iconSvg('building')}<span data-en="Campus Hostels" data-hi="छात्रावास">Campus Hostels</span></a></li>
+          <li><a href="library.html" class="sidebar-link">${iconSvg('book')}<span data-en="Central Library" data-hi="केंद्रीय पुस्तकालय">Central Library</span></a></li>
+          <li><a href="pyq.html" class="sidebar-link">${iconSvg('file')}<span data-en="PYQ Portal" data-hi="पुराने प्रश्न पत्र">PYQ Portal</span></a></li>
+          <li><a href="tenders.html" class="sidebar-link">${iconSvg('shield')}<span data-en="Active Tenders" data-hi="सक्रिय निविदाएं">Active Tenders</span></a></li>
+          <li><a href="careers.html" class="sidebar-link">${iconSvg('briefcase')}<span data-en="Job Openings" data-hi="भर्ती / नौकरियां">Job Openings</span></a></li>
+          <li><a href="cif.html" class="sidebar-link">${iconSvg('laptop')}<span data-en="CIF Facility" data-hi="सीआईएफ सुविधा">CIF Facility</span></a></li>
+          <li><a href="downloads.html" class="sidebar-link">${iconSvg('download')}<span data-en="Download Center" data-hi="डाउनलोड केंद्र">Download Center</span></a></li>
+          <li><a href="admin.html" class="sidebar-link">${iconSvg('admin-key')}<span data-en="Admin Console" data-hi="एडमिन कंसोल">Admin Console</span></a></li>
+        </ul>
+      </aside>
+    `;
+    replaceEmojiIcons(this);
+  }
+}
+customElements.define('cusb-sidebar', CusbSidebar);
+
+// Auto-mount Sidebar to DOM if not explicitly placed
+document.addEventListener('DOMContentLoaded', () => {
+  if (!document.querySelector('cusb-sidebar')) {
+    const navbar = document.querySelector('cusb-navbar');
+    const sidebar = document.createElement('cusb-sidebar');
+    if (navbar && navbar.parentNode) {
+      navbar.parentNode.insertBefore(sidebar, navbar.nextSibling);
+    } else {
+      document.body.prepend(sidebar);
+    }
+  }
+
+  // Keep sidebar always below the navbar dynamically
+  const updateSidebarPosition = () => {
+    const navbar = document.querySelector('cusb-navbar');
+    const sidebarElement = document.querySelector('.fixed-quicklinks-sidebar');
+    if (navbar && sidebarElement) {
+      if (window.innerWidth <= 991) {
+        sidebarElement.style.top = '';
+        sidebarElement.style.height = '';
+        return;
+      }
+
+      const navRect = navbar.getBoundingClientRect();
+      const bottom = Math.max(0, navRect.bottom);
+      sidebarElement.style.top = bottom + 'px';
+      sidebarElement.style.height = 'calc(100vh - ' + bottom + 'px)';
+    }
+  };
+  
+  window.addEventListener('scroll', updateSidebarPosition, { passive: true });
+  window.addEventListener('resize', updateSidebarPosition, { passive: true });
+  // Initial positioning
+  setTimeout(updateSidebarPosition, 0);
+});

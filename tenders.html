@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tenders & Procurement | Central University of South Bihar (CUSB)</title>
+  <meta name="description" content="Official Tenders and Expressions of Interest (EOI) for Central University of South Bihar. View procurement notices, technical specifications, EMD amounts, and submission deadlines.">
+  <meta name="keywords" content="CUSB Tenders, Central University Bihar Procurement, EOI, e-Procurement, CUSB Tender Documents">
+  <link rel="icon" href="assets/culog.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <cusb-topbar></cusb-topbar>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-header></cusb-header>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="main-content">
+    <!-- Hero Banner -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-content">
+          <span class="hero-badge">Procurement & Stores Section</span>
+          <h1>Tenders, EOI & Quotations</h1>
+          <p>Invitations for Bids, Expressions of Interest, and Quotations for works, goods, and specialized scientific instrumentation at CUSB Gaya campus.</p>
+          <div class="hero-actions">
+            <a href="https://eprocure.gov.in/cppp/" target="_blank" class="btn btn-primary">CPPP Portal &rarr;</a>
+            <a href="#tenders-list" class="btn btn-secondary">View Active Tenders</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tenders Section -->
+    <section class="section" id="tenders-list">
+      <div class="container">
+        <div class="section-header-flex">
+          <div>
+            <h2>Active Procurement Notices & Tenders</h2>
+            <p>Sealed tenders invited from eligible manufacturers, dealers, and registered contractors</p>
+          </div>
+        </div>
+
+        <div class="table-responsive" style="margin-top:20px;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Tender Reference No.</th>
+                <th>Title / Description</th>
+                <th>Estimated Value</th>
+                <th>EMD Amount</th>
+                <th>Opening Date</th>
+                <th>Closing Date</th>
+                <th>Document Link</th>
+              </tr>
+            </thead>
+            <tbody id="tendersTableBody">
+              <!-- Dynamically populated or fallback tenders -->
+              <tr>
+                <td><strong>CUSB/PSD/TENDER/2026/01</strong></td>
+                <td>Supply and installation of High-Performance Computing (HPC) GPU Cluster for Department of Computer Science</td>
+                <td>₹ 45,00,000</td>
+                <td>₹ 90,000</td>
+                <td>2026-06-01</td>
+                <td>2026-07-30</td>
+                <td><a href="#" class="btn btn-sm btn-outline">Download PDF</a></td>
+              </tr>
+              <tr>
+                <td><strong>CUSB/STORE/EQUIP/2026/04</strong></td>
+                <td>Procurement of Analytical Instruments (XRD, FE-SEM) for Central Instrumentation Facility (CIF)</td>
+                <td>₹ 1,20,00,000</td>
+                <td>₹ 2,40,000</td>
+                <td>2026-06-15</td>
+                <td>2026-08-05</td>
+                <td><a href="#" class="btn btn-sm btn-outline">Download PDF</a></td>
+              </tr>
+              <tr>
+                <td><strong>CUSB/ESTATE/MAINT/2026/08</strong></td>
+                <td>Annual Maintenance Contract (AMC) for Solar Power Plant and Electrical Substation</td>
+                <td>₹ 18,50,000</td>
+                <td>₹ 37,000</td>
+                <td>2026-06-20</td>
+                <td>2026-08-10</td>
+                <td><a href="#" class="btn btn-sm btn-outline">Download PDF</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- General Procurement Guidelines -->
+    <section class="section bg-alt">
+      <div class="container">
+        <div class="section-title">
+          <h2>Bidding Guidelines & Terms</h2>
+        </div>
+        <div class="grid grid-2">
+          <div class="card glass-card">
+            <h3>Submission Instructions</h3>
+            <p>Bids must be submitted strictly through the Central Public Procurement Portal (CPPP) or in sealed envelopes addressed to the Registrar / Store Officer as specified in the tender document before the stipulated closing time.</p>
+          </div>
+          <div class="card glass-card">
+            <h3>EMD & Exemption</h3>
+            <p>Earnest Money Deposit (EMD) should be paid via Demand Draft or Bank Guarantee in favor of "Central University of South Bihar". MSME / NSIC registered firms are exempt as per GOI norms.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const tbody = document.getElementById('tendersTableBody');
+      try {
+        const res = await fetch('/api/tenders');
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data && data.length > 0) {
+          tbody.innerHTML = data.map(item => `
+            <tr>
+              <td><strong>${item.tender_no || item.slug}</strong></td>
+              <td>${item.title}<br><small style="color:var(--tx-muted);">${item.description || ''}</small></td>
+              <td>${item.estimated_value ? '₹ ' + item.estimated_value.toLocaleString() : 'N/A'}</td>
+              <td>${item.emd_amount ? '₹ ' + item.emd_amount.toLocaleString() : 'N/A'}</td>
+              <td>${item.opening_date || '—'}</td>
+              <td><span class="deadline-text">${item.closing_date || '—'}</span></td>
+              <td>${item.document_url ? `<a href="${item.document_url}" target="_blank" class="btn btn-sm btn-outline">Download PDF</a>` : '<span class="text-muted">N/A</span>'}</td>
+            </tr>
+          `).join('');
+        }
+      } catch (e) {
+        console.log("Using static fallback tenders");
+      }
+    });
+  </script>
+</body>
+</html>

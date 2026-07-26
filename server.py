@@ -44,6 +44,19 @@ def init_db():
             title_hi TEXT NOT NULL,
             desc_en TEXT NOT NULL,
             desc_hi TEXT NOT NULL,
+            type TEXT,
+            image_url TEXT,
+            date_str TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS gallery (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title_en TEXT NOT NULL,
+            title_hi TEXT NOT NULL,
+            image_url TEXT NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
@@ -53,6 +66,118 @@ def init_db():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT NOT NULL,
             action TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS schools (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            slug TEXT UNIQUE NOT NULL,
+            short_description TEXT,
+            description TEXT,
+            office_email TEXT,
+            office_phone TEXT,
+            sort_order INTEGER DEFAULT 0,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS admissions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            slug TEXT UNIQUE NOT NULL,
+            academic_year TEXT NOT NULL,
+            description TEXT,
+            eligibility TEXT,
+            application_start_date TEXT,
+            application_end_date TEXT,
+            brochure_url TEXT,
+            apply_url TEXT,
+            status TEXT DEFAULT 'published',
+            priority_level INTEGER DEFAULT 0,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS recruitment (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            slug TEXT UNIQUE NOT NULL,
+            post_name TEXT,
+            advertisement_no TEXT,
+            description TEXT,
+            opening_date TEXT,
+            closing_date TEXT,
+            document_url TEXT,
+            apply_url TEXT,
+            status TEXT DEFAULT 'published',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS tenders (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            slug TEXT UNIQUE NOT NULL,
+            tender_no TEXT,
+            description TEXT,
+            opening_date TEXT,
+            closing_date TEXT,
+            estimated_value REAL,
+            emd_amount REAL,
+            document_url TEXT,
+            status TEXT DEFAULT 'published',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS administration (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            designation TEXT NOT NULL,
+            message TEXT,
+            profile_photo_url TEXT,
+            email TEXT,
+            phone TEXT,
+            office_location TEXT,
+            sort_order INTEGER DEFAULT 0,
+            status TEXT DEFAULT 'active'
+        )
+    ''')
+
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS research_projects (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            department_slug TEXT,
+            pi_name TEXT NOT NULL,
+            title TEXT NOT NULL,
+            funding_agency TEXT,
+            grant_amount REAL,
+            start_date TEXT,
+            end_date TEXT,
+            summary TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS publications (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            faculty_name TEXT,
+            department_slug TEXT,
+            title TEXT NOT NULL,
+            publication_type TEXT NOT NULL,
+            authors TEXT NOT NULL,
+            journal_or_publisher TEXT,
+            publication_year INTEGER,
+            doi TEXT,
+            url TEXT,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
@@ -91,6 +216,17 @@ def get_db_stats():
 
 class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     
+    # Preflight OPTIONS request handler
+    def do_OPTIONS(self):
+        self.send_response(200)
+        origin = self.headers.get('Origin')
+        if origin:
+            self.send_header('Access-Control-Allow-Origin', origin)
+            self.send_header('Access-Control-Allow-Credentials', 'true')
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type, Cookie, X-Session-Token')
+        self.end_headers()
+
     # Helper to parse POST body JSON
     def get_post_data(self):
         content_length = int(self.headers.get('Content-Length', 0))
@@ -108,23 +244,36 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header('Content-Type', 'application/json')
         self.send_header('Cache-Control', 'no-store, no-cache, must-revalidate')
         
+        origin = self.headers.get('Origin')
+        if origin:
+            self.send_header('Access-Control-Allow-Origin', origin)
+            self.send_header('Access-Control-Allow-Credentials', 'true')
+            
         if headers:
             for k, v in headers.items():
                 self.send_header(k, v)
         self.end_headers()
         self.wfile.write(json.dumps(data).encode('utf-8'))
 
-    # Retrieve current valid session username from cookie
+    # Retrieve current valid session username from cookie or header
     def get_session_username(self):
-        cookie_header = self.headers.get('Cookie')
-        if not cookie_header:
-            return None
+        session_token = None
         
-        cookie = SimpleCookie(cookie_header)
-        if 'session_token' not in cookie:
-            return None
+        # 1. Try custom header first (helps with cross-origin local testing)
+        token_header = self.headers.get('X-Session-Token')
+        if token_header:
+            session_token = token_header.strip()
             
-        session_token = cookie['session_token'].value
+        # 2. Fall back to Cookie
+        if not session_token:
+            cookie_header = self.headers.get('Cookie')
+            if cookie_header:
+                cookie = SimpleCookie(cookie_header)
+                if 'session_token' in cookie:
+                    session_token = cookie['session_token'].value
+        
+        if not session_token:
+            return None
         
         conn = sqlite3.connect(DB_FILE)
         c = conn.cursor()
@@ -215,20 +364,142 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                 
             conn = sqlite3.connect(DB_FILE)
             c = conn.cursor()
+            results = []
+            like_pattern = f'%{q}%'
+            
+            # 1. Search index (static pages)
             c.execute('''
-                SELECT title, tags, desc, url 
+                SELECT title, desc, url, tags 
                 FROM search_index 
                 WHERE title LIKE ? OR tags LIKE ? OR desc LIKE ?
-                LIMIT 20
-            ''', (f'%{q}%', f'%{q}%', f'%{q}%'))
-            rows = c.fetchall()
+                LIMIT 15
+            ''', (like_pattern, like_pattern, like_pattern))
+            for row in c.fetchall():
+                results.append({
+                    "title": row[0],
+                    "desc": row[1],
+                    "url": row[2],
+                    "tags": row[3]
+                })
+                
+            # 2. Faculty members
+            c.execute('''
+                SELECT name, designation, specialization, email, department_slug 
+                FROM department_faculty 
+                WHERE name LIKE ? OR designation LIKE ? OR specialization LIKE ?
+                LIMIT 10
+            ''', (like_pattern, like_pattern, like_pattern))
+            for row in c.fetchall():
+                name, designation, spec, email, dept_slug = row
+                dname = "Computer Science" if dept_slug == 'computer_science' else dept_slug.replace('_', ' ').replace('-', ' ').title()
+                results.append({
+                    "title": f"{name} ({designation})",
+                    "desc": f"Faculty in Department of {dname}. Specialization: {spec}. Contact: {email}",
+                    "url": f"cs.html#faculty" if dept_slug in ('computer-science', 'computer_science') else f"department.html?slug={dept_slug}#faculty",
+                    "tags": "faculty, academic, staff"
+                })
+                
+            # 3. Announcements (News, Events, Circulars, Dates)
+            c.execute('''
+                SELECT title_en, title_hi, desc_en, type, date_str 
+                FROM announcements 
+                WHERE title_en LIKE ? OR title_hi LIKE ? OR desc_en LIKE ? OR desc_hi LIKE ?
+                LIMIT 15
+            ''', (like_pattern, like_pattern, like_pattern, like_pattern))
+            for row in c.fetchall():
+                title_en, title_hi, desc_en, type_, date_str = row
+                results.append({
+                    "title": title_en,
+                    "desc": desc_en[:150] + '...' if len(desc_en) > 150 else desc_en,
+                    "url": f"news-events.html?type={type_}",
+                    "tags": f"news, announcement, {type_}"
+                })
+                
+            # 4. Hostels
+            c.execute('''
+                SELECT name, type, description, common_facilities 
+                FROM hostels 
+                WHERE name LIKE ? OR description LIKE ? OR common_facilities LIKE ?
+                LIMIT 5
+            ''', (like_pattern, like_pattern, like_pattern))
+            for row in c.fetchall():
+                name, htype, desc, facilities = row
+                results.append({
+                    "title": f"{name} Hostel ({htype.capitalize()})",
+                    "desc": f"{desc} Facilities: {facilities}",
+                    "url": "hostel.html",
+                    "tags": "hostel, campus, accommodation"
+                })
+                
+            # 5. Hostel Wardens
+            c.execute('''
+                SELECT name, role, department, hostel_slug 
+                FROM hostel_wardens 
+                WHERE name LIKE ? OR role LIKE ? OR department LIKE ?
+                LIMIT 5
+            ''', (like_pattern, like_pattern, like_pattern))
+            for row in c.fetchall():
+                name, role, dept, hostel_slug = row
+                hname = hostel_slug.replace('_', ' ').replace('-', ' ').title()
+                results.append({
+                    "title": f"{name} ({role})",
+                    "desc": f"{role} of {hname}. Affiliated Department: {dept}",
+                    "url": "hostel.html#wardens",
+                    "tags": "warden, hostel, staff"
+                })
+                
+            # 6. Academic Departments
+            c.execute('''
+                SELECT name, school, summary, slug 
+                FROM departments 
+                WHERE name LIKE ? OR school LIKE ? OR summary LIKE ?
+                LIMIT 5
+            ''', (like_pattern, like_pattern, like_pattern))
+            for row in c.fetchall():
+                name, school, summary, slug = row
+                results.append({
+                    "title": f"Department of {name}",
+                    "desc": f"School: {school}. Summary: {summary}",
+                    "url": "cs.html" if slug in ('computer-science', 'computer_science') else f"department.html?slug={slug}",
+                    "tags": "department, academic, courses"
+                })
+                
+            # 7. Department Programmes
+            c.execute('''
+                SELECT name, level, duration, entrance, eligibility, department_slug 
+                FROM department_programmes 
+                WHERE name LIKE ? OR level LIKE ? OR eligibility LIKE ?
+                LIMIT 5
+            ''', (like_pattern, like_pattern, like_pattern))
+            for row in c.fetchall():
+                name, level, duration, entrance, eligibility, dept_slug = row
+                results.append({
+                    "title": f"{name} ({level})",
+                    "desc": f"Duration: {duration}. Entrance Exam: {entrance}. Eligibility: {eligibility}",
+                    "url": "cs.html#programmes" if dept_slug in ('computer-science', 'computer_science') else f"department.html?slug={dept_slug}#programmes",
+                    "tags": "course, programme, academic"
+                })
+                
             conn.close()
             
-            results = [{"title": r[0], "tags": r[1], "desc": r[2], "url": r[3]} for r in rows]
-            self.send_json(200, results)
+            # Deduplicate results by URL and Title
+            seen = set()
+            unique_results = []
+            for r in results:
+                key = (r['title'].lower(), r['url'].lower())
+                if key not in seen:
+                    seen.add(key)
+                    unique_results.append(r)
+            
+            self.send_json(200, unique_results[:20])
             return
 
         # 6. API: Chatbot assistant response
+        elif path == '/api/chat':
+            from urllib.parse import parse_qs
+            query_params = parse_qs(parsed_path.query)
+            q = query_params.get('q', [''])[0].strip().lower()
+            
         elif path == '/api/chat':
             from urllib.parse import parse_qs
             query_params = parse_qs(parsed_path.query)
@@ -241,6 +512,65 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             conn = sqlite3.connect(DB_FILE)
             c = conn.cursor()
             
+            # Extract query words for advanced matches
+            q_words = [w for w in q.split() if len(w) > 3]
+            
+            # Step A: Check for PYQs (Previous Year Papers) first to avoid FAQ category overlap
+            if "pyq" in q or "question paper" in q or "previous year" in q or "paper" in q:
+                c.execute('SELECT department_slug, level, type, year, semester, download_url FROM pyqs')
+                pyq_rows = c.fetchall()
+                matched_pyqs = []
+                for dept_slug, level, ptype, year, sem, download_url in pyq_rows:
+                    dept_name = dept_slug.replace('_', ' ').replace('-', ' ').lower()
+                    if dept_name in q or level.lower() in q or any(w in dept_name for w in q_words):
+                        matched_pyqs.append((dept_slug, level, ptype, year, sem, download_url))
+                
+                if matched_pyqs:
+                    items_en = []
+                    items_hi = []
+                    for dept_slug, level, ptype, year, sem, download_url in matched_pyqs[:3]:
+                        dname = dept_slug.replace('_', ' ').replace('-', ' ').title()
+                        items_en.append(f"- {dname} ({level}) - {ptype} {year} (Sem {sem}): [Download]({download_url})")
+                        items_hi.append(f"- {dname} ({level}) - {ptype} {year} (सेमेस्टर {sem}): [डाउनलोड]({download_url})")
+                    
+                    resp_en = "Here are the previous year question papers I found:\n" + "\n".join(items_en)
+                    resp_hi = "मुझे निम्नलिखित पिछले वर्ष के प्रश्न पत्र मिले हैं:\n" + "\n".join(items_hi)
+                    conn.close()
+                    self.send_json(200, {"en": resp_en, "hi": resp_hi})
+                    return
+
+            # Step B: Check Announcements (News, Events, Circulars, Dates) before standard FAQ
+            c.execute('SELECT title_en, title_hi, desc_en, type, date_str FROM announcements')
+            ann_rows = c.fetchall()
+            matched_anns = []
+            for title_en, title_hi, desc_en, type_, date_str in ann_rows:
+                title_lower = title_en.lower()
+                desc_lower = desc_en.lower()
+                title_hi_lower = title_hi.lower()
+                
+                is_match = (q in title_lower) or (q in desc_lower) or (q in title_hi_lower)
+                if not is_match and q_words:
+                    is_match = any(word in title_lower or word in desc_lower for word in q_words)
+                
+                if not is_match:
+                    is_match = (type_ in q and ("latest" in q or "recent" in q or "news" in q or "event" in q or "circular" in q or "date" in q or "show" in q or "what" in q or "any" in q))
+                    
+                if is_match:
+                    matched_anns.append((title_en, title_hi, desc_en, type_, date_str))
+            
+            if matched_anns:
+                items_en = []
+                items_hi = []
+                for title_en, title_hi, desc_en, type_, date_str in matched_anns[:4]:
+                    items_en.append(f"- **{title_en}** ({type_.upper()} - {date_str or 'Recent'})")
+                    items_hi.append(f"- **{title_hi}** ({type_.upper()} - {date_str or 'हाल ही में'})")
+                
+                resp_en = "Here are the updates/news I found:\n" + "\n".join(items_en)
+                resp_hi = "मुझे निम्नलिखित अपडेट/समाचार मिले हैं:\n" + "\n".join(items_hi)
+                conn.close()
+                self.send_json(200, {"en": resp_en, "hi": resp_hi})
+                return
+
             # Step 1: Check standard FAQ categories
             c.execute('SELECT category, keywords, response_en, response_hi FROM chatbot_faq')
             faq_rows = c.fetchall()
@@ -342,6 +672,28 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                 self.send_json(200, {"en": resp_en, "hi": resp_hi})
                 return
                 
+            # Step 8: Search Index Fallback
+            c.execute('SELECT title, desc, url FROM search_index')
+            idx_rows = c.fetchall()
+            matched_idx = None
+            for title, desc, url in idx_rows:
+                title_lower = title.lower()
+                desc_lower = desc.lower()
+                is_match = (q in title_lower) or (q in desc_lower)
+                if not is_match and q_words:
+                    is_match = any(word in title_lower for word in q_words)
+                if is_match:
+                    matched_idx = (title, desc, url)
+                    break
+            
+            if matched_idx:
+                title, desc, url = matched_idx
+                resp_en = f"You can find information about '{title}' on our site here: [{title}]({url}).\nDescription: {desc}"
+                resp_hi = f"आप '{title}' के बारे में जानकारी हमारी वेबसाइट पर यहाँ देख सकते हैं: [{title}]({url})।\nविवरण: {desc}"
+                conn.close()
+                self.send_json(200, {"en": resp_en, "hi": resp_hi})
+                return
+                
             # Default Fallback
             c.execute('SELECT response_en, response_hi FROM chatbot_faq WHERE category = "default"')
             default_row = c.fetchone()
@@ -361,13 +713,32 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             from urllib.parse import parse_qs
             query_params = parse_qs(parsed_path.query)
             t = query_params.get('type', [''])[0].strip().lower()
+            archive = query_params.get('archive', [''])[0].strip().lower() == 'true'
+            show_all = query_params.get('show_all', [''])[0].strip().lower() == 'true'
             
             conn = sqlite3.connect(DB_FILE)
             c = conn.cursor()
+            
+            query = 'SELECT id, title_en, title_hi, desc_en, desc_hi, type, image_url, date_str, created_at FROM announcements'
+            params = []
+            conditions = []
+            
             if t:
-                c.execute('SELECT id, title_en, title_hi, desc_en, desc_hi, type, image_url, date_str, created_at FROM announcements WHERE type = ? ORDER BY created_at DESC', (t,))
-            else:
-                c.execute('SELECT id, title_en, title_hi, desc_en, desc_hi, type, image_url, date_str, created_at FROM announcements ORDER BY created_at DESC')
+                conditions.append('type = ?')
+                params.append(t)
+                
+            if not show_all:
+                if archive:
+                    conditions.append("created_at < datetime('now', '-60 days')")
+                else:
+                    conditions.append("created_at >= datetime('now', '-60 days')")
+                    
+            if conditions:
+                query += ' WHERE ' + ' AND '.join(conditions)
+                
+            query += ' ORDER BY created_at DESC'
+            
+            c.execute(query, tuple(params))
             rows = c.fetchall()
             conn.close()
             
@@ -491,19 +862,110 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                 self.send_json(200, hostels)
                 return
 
-        # 11. API: List Admin Users (Protected)
-        elif path == '/api/admin/list-users':
-            username = self.get_session_username()
-            if not username:
-                self.send_json(401, { "error": "Unauthorized" })
-                return
+        # 12. API: Get Schools & Departments Hierarchy
+        elif path == '/api/schools':
             conn = sqlite3.connect(DB_FILE)
             c = conn.cursor()
-            c.execute('SELECT username, created_at FROM admin_users ORDER BY username')
+            c.execute('SELECT id, name, slug, short_description, description, office_email, office_phone FROM schools ORDER BY sort_order, name')
+            school_rows = c.fetchall()
+            schools = []
+            for s in school_rows:
+                s_id, s_name, s_slug, s_short, s_desc, s_email, s_phone = s
+                c.execute('SELECT slug, name, summary, head_of_department FROM departments WHERE school = ? ORDER BY name', (s_name,))
+                dept_rows = c.fetchall()
+                schools.append({
+                    "id": s_id, "name": s_name, "slug": s_slug,
+                    "short_description": s_short, "description": s_desc,
+                    "office_email": s_email, "office_phone": s_phone,
+                    "departments": [{"slug": d[0], "name": d[1], "summary": d[2], "head_of_department": d[3]} for d in dept_rows]
+                })
+            conn.close()
+            self.send_json(200, schools)
+            return
+
+        # 13. API: Get Admissions
+        elif path == '/api/admissions':
+            conn = sqlite3.connect(DB_FILE)
+            c = conn.cursor()
+            c.execute('SELECT id, title, slug, academic_year, description, eligibility, application_start_date, application_end_date, brochure_url, apply_url, status, priority_level FROM admissions ORDER BY priority_level DESC, created_at DESC')
             rows = c.fetchall()
             conn.close()
-            users = [{"username": r[0], "created_at": r[1]} for r in rows]
-            self.send_json(200, users)
+            results = [{
+                "id": r[0], "title": r[1], "slug": r[2], "academic_year": r[3],
+                "description": r[4], "eligibility": r[5], "application_start_date": r[6],
+                "application_end_date": r[7], "brochure_url": r[8], "apply_url": r[9],
+                "status": r[10], "priority_level": r[11]
+            } for r in rows]
+            self.send_json(200, results)
+            return
+
+        # 14. API: Get Recruitment Notices
+        elif path == '/api/recruitment':
+            conn = sqlite3.connect(DB_FILE)
+            c = conn.cursor()
+            c.execute('SELECT id, title, slug, post_name, advertisement_no, description, opening_date, closing_date, document_url, apply_url, status FROM recruitment ORDER BY closing_date DESC, created_at DESC')
+            rows = c.fetchall()
+            conn.close()
+            results = [{
+                "id": r[0], "title": r[1], "slug": r[2], "post_name": r[3],
+                "advertisement_no": r[4], "description": r[5], "opening_date": r[6],
+                "closing_date": r[7], "document_url": r[8], "apply_url": r[9], "status": r[10]
+            } for r in rows]
+            self.send_json(200, results)
+            return
+
+        # 15. API: Get Tenders & Procurement Notices
+        elif path == '/api/tenders':
+            conn = sqlite3.connect(DB_FILE)
+            c = conn.cursor()
+            c.execute('SELECT id, title, slug, tender_no, description, opening_date, closing_date, estimated_value, emd_amount, document_url, status FROM tenders ORDER BY closing_date DESC, created_at DESC')
+            rows = c.fetchall()
+            conn.close()
+            results = [{
+                "id": r[0], "title": r[1], "slug": r[2], "tender_no": r[3],
+                "description": r[4], "opening_date": r[5], "closing_date": r[6],
+                "estimated_value": r[7], "emd_amount": r[8], "document_url": r[9], "status": r[10]
+            } for r in rows]
+            self.send_json(200, results)
+            return
+
+        # 16. API: Get Administration Leadership
+        elif path == '/api/administration':
+            conn = sqlite3.connect(DB_FILE)
+            c = conn.cursor()
+            c.execute('SELECT id, name, designation, message, profile_photo_url, email, phone, office_location, sort_order, status FROM administration ORDER BY sort_order, id')
+            rows = c.fetchall()
+            conn.close()
+            results = [{
+                "id": r[0], "name": r[1], "designation": r[2], "message": r[3],
+                "profile_photo_url": r[4], "email": r[5], "phone": r[6],
+                "office_location": r[7], "sort_order": r[8], "status": r[9]
+            } for r in rows]
+            self.send_json(200, results)
+            return
+
+        # 17. API: Get Research Projects & Publications
+        elif path == '/api/research':
+            conn = sqlite3.connect(DB_FILE)
+            c = conn.cursor()
+            c.execute('SELECT id, department_slug, pi_name, title, funding_agency, grant_amount, start_date, end_date, summary FROM research_projects ORDER BY start_date DESC')
+            proj_rows = c.fetchall()
+            c.execute('SELECT id, faculty_name, department_slug, title, publication_type, authors, journal_or_publisher, publication_year, doi, url FROM publications ORDER BY publication_year DESC')
+            pub_rows = c.fetchall()
+            conn.close()
+            res = {
+                "projects": [{
+                    "id": p[0], "department_slug": p[1], "pi_name": p[2], "title": p[3],
+                    "funding_agency": p[4], "grant_amount": p[5], "start_date": p[6],
+                    "end_date": p[7], "summary": p[8]
+                } for p in proj_rows],
+                "publications": [{
+                    "id": pb[0], "faculty_name": pb[1], "department_slug": pb[2], "title": pb[3],
+                    "publication_type": pb[4], "authors": pb[5], "journal_or_publisher": pb[6],
+                    "publication_year": pb[7], "doi": pb[8], "url": pb[9]
+                } for pb in pub_rows]
+            }
+            self.send_json(200, res)
             return
 
         # Fallback: Serve static HTML files from current directory
@@ -565,7 +1027,7 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             cookie['session_token']['httponly'] = True
             cookie['session_token']['max-age'] = 3600
             
-            self.send_json(200, { "success": True }, { "Set-Cookie": cookie.output(header='') })
+            self.send_json(200, { "success": True, "token": session_token, "username": username }, { "Set-Cookie": cookie.output(header='') })
             return
 
         # 2. API: Sign In Admin
@@ -621,7 +1083,7 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             cookie['session_token']['httponly'] = True
             cookie['session_token']['max-age'] = 3600
             
-            self.send_json(200, { "success": True }, { "Set-Cookie": cookie.output(header='') })
+            self.send_json(200, { "success": True, "token": session_token, "username": username }, { "Set-Cookie": cookie.output(header='') })
             return
 
         # 3. API: Logout Admin
@@ -720,6 +1182,52 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             self.send_json(200, { "success": True })
             return
 
+        # 4c. API: Update Announcement (Protected)
+        elif path == '/api/announcements/update':
+            username = self.get_session_username()
+            if not username:
+                self.send_json(401, { "error": "Unauthorized" })
+                return
+            data = self.get_post_data()
+            id_ = data.get('id')
+            title_en = data.get('titleEn', '').strip()
+            title_hi = data.get('titleHi', '').strip()
+            desc_en = data.get('descEn', '').strip()
+            desc_hi = data.get('descHi', '').strip()
+            type_ = data.get('type', 'ticker').strip()
+            image_url = data.get('imageUrl', '').strip() or None
+            date_str = data.get('dateStr', '').strip() or None
+            
+            if id_ is None or not title_en or not title_hi or not desc_en or not desc_hi:
+                self.send_json(400, { "error": "ID and all announcement fields are required." })
+                return
+                
+            conn = sqlite3.connect(DB_FILE)
+            c = conn.cursor()
+            # Fetch old title to update search index
+            c.execute('SELECT title_en FROM announcements WHERE id = ?', (id_,))
+            row = c.fetchone()
+            old_title = row[0] if row else None
+            
+            c.execute('''
+                UPDATE announcements 
+                SET title_en = ?, title_hi = ?, desc_en = ?, desc_hi = ?, type = ?, image_url = ?, date_str = ?
+                WHERE id = ?
+            ''', (title_en, title_hi, desc_en, desc_hi, type_, image_url, date_str, id_))
+            
+            if old_title:
+                c.execute('DELETE FROM search_index WHERE title = ? AND tags LIKE "%announcement%"', (old_title,))
+            c.execute('INSERT INTO search_index (title, tags, desc, url) VALUES (?, ?, ?, ?)',
+                      (title_en, f"announcement news update notice {type_} {title_en.lower()}", desc_en, "index.html#notices"))
+                      
+            c.execute('INSERT INTO audit_logs (username, action) VALUES (?, ?)', 
+                      (username, f"Updated Announcement ({type_}): {title_en[:30]}..."))
+            conn.commit()
+            conn.close()
+            
+            self.send_json(200, { "success": True })
+            return
+
         # 5. API: Add Gallery Image (Protected)
         elif path == '/api/gallery':
             username = self.get_session_username()
@@ -767,6 +1275,36 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                 c.execute('INSERT INTO audit_logs (username, action) VALUES (?, ?)', 
                           (username, f"Deleted Gallery Image: {title}"))
                 conn.commit()
+            conn.close()
+            self.send_json(200, { "success": True })
+            return
+
+        # 5c. API: Update Gallery Image (Protected)
+        elif path == '/api/gallery/update':
+            username = self.get_session_username()
+            if not username:
+                self.send_json(401, { "error": "Unauthorized" })
+                return
+            data = self.get_post_data()
+            id_ = data.get('id')
+            title_en = data.get('titleEn', '').strip()
+            title_hi = data.get('titleHi', '').strip()
+            image_url = data.get('imageUrl', '').strip()
+            
+            if id_ is None or not title_en or not title_hi or not image_url:
+                self.send_json(400, { "error": "ID and all gallery fields are required." })
+                return
+                
+            conn = sqlite3.connect(DB_FILE)
+            c = conn.cursor()
+            c.execute('''
+                UPDATE gallery 
+                SET title_en = ?, title_hi = ?, image_url = ?
+                WHERE id = ?
+            ''', (title_en, title_hi, image_url, id_))
+            c.execute('INSERT INTO audit_logs (username, action) VALUES (?, ?)', 
+                      (username, f"Updated Gallery Image: {title_en}"))
+            conn.commit()
             conn.close()
             self.send_json(200, { "success": True })
             return

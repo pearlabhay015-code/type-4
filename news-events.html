@@ -117,11 +117,14 @@
     <section class="section">
       <div class="container">
         <!-- Interactive Tabs -->
-        <div class="school-tab-bar news-events-filter" id="filterTabBar" role="tablist" aria-label="Filter Announcements">
+        <div class="school-tab-bar news-events-filter" id="filterTabBar" role="tablist" aria-label="Filter Announcements" style="flex-wrap: wrap; gap: 8px;">
           <button class="btn-school-tab active" data-filter="all" role="tab" aria-selected="true" data-en="All Announcements" data-hi="सभी घोषणाएं">All Announcements</button>
           <button class="btn-school-tab" data-filter="news" role="tab" aria-selected="false" data-en="Latest News" data-hi="नवीनतम समाचार">Latest News</button>
           <button class="btn-school-tab" data-filter="event" role="tab" aria-selected="false" data-en="Upcoming Events" data-hi="आगामी कार्यक्रम">Upcoming Events</button>
+          <button class="btn-school-tab" data-filter="circular" role="tab" aria-selected="false" data-en="Circulars" data-hi="परिपत्र (Circulars)">Circulars</button>
+          <button class="btn-school-tab" data-filter="date" role="tab" aria-selected="false" data-en="Important Dates" data-hi="महत्वपूर्ण तिथियां">Important Dates</button>
           <button class="btn-school-tab" data-filter="ticker" role="tab" aria-selected="false" data-en="General Notices" data-hi="सामान्य सूचनाएं">General Notices</button>
+          <button class="btn-school-tab" data-filter="archive" role="tab" aria-selected="false" data-en="Archived Updates" data-hi="अभिलेखागार">Archived Updates</button>
         </div>
 
         <!-- Dynamic Content Area -->
@@ -157,7 +160,14 @@
 
       async function fetchAnnouncements() {
         try {
-          const response = await fetch('/api/announcements');
+          listContainer.innerHTML = '<div class="loading-spinner" data-en="Loading updates from server..." data-hi="सर्वर से अपडेट लोड हो रहे हैं...">Loading updates from server...</div>';
+          applyLangToContainer();
+
+          let url = '/api/announcements';
+          if (activeFilter === 'archive') {
+            url += '?archive=true';
+          }
+          const response = await fetch(url);
           allAnnouncements = await response.json();
           renderAnnouncements(activeFilter);
         } catch (error) {
@@ -175,6 +185,9 @@
             const itemType = item.type.toLowerCase();
             if (filter === 'news') return itemType === 'news' || itemType === 'latest news';
             if (filter === 'event') return itemType === 'event' || itemType === 'upcoming events' || itemType === 'events';
+            if (filter === 'circular') return itemType === 'circular' || itemType === 'circulars';
+            if (filter === 'date') return itemType === 'date' || itemType === 'dates' || itemType === 'important dates';
+            if (filter === 'archive') return true; // Server-side filters already applied
             return itemType === filter;
           });
         }
@@ -227,6 +240,7 @@
       // Tab click events
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
+          const prevFilter = activeFilter;
           tabs.forEach(t => {
             t.classList.remove('active');
             t.setAttribute('aria-selected', 'false');
@@ -234,7 +248,12 @@
           tab.classList.add('active');
           tab.setAttribute('aria-selected', 'true');
           activeFilter = tab.getAttribute('data-filter');
-          renderAnnouncements(activeFilter);
+          
+          if (activeFilter === 'archive' || prevFilter === 'archive') {
+            fetchAnnouncements();
+          } else {
+            renderAnnouncements(activeFilter);
+          }
         });
       });
 

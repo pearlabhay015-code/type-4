@@ -143,5 +143,37 @@
 
   <script src="js/components.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const grid = document.querySelector('.career-openings-grid');
+      try {
+        const res = await fetch('/api/recruitment');
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data && data.length > 0) {
+          grid.innerHTML = data.map(item => `
+            <div class="career-item-card">
+              <div>
+                <div class="career-title">${item.title} (${item.post_name || 'Opening'})</div>
+                <div class="career-meta">
+                  <span class="career-badge">Advt No: ${item.advertisement_no || item.slug}</span>
+                  ${item.opening_date ? `<span>Opening: ${item.opening_date}</span>` : ''}
+                  <span>|</span>
+                  <span class="career-deadline">Closing Date: ${item.closing_date || 'Open until filled'}</span>
+                </div>
+                ${item.description ? `<p style="font-size:0.85rem; color:var(--tx-muted); margin-top:8px;">${item.description}</p>` : ''}
+              </div>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                ${item.apply_url ? `<a href="${item.apply_url}" target="_blank" class="btn btn-gold btn-sm">Apply Online</a>` : ''}
+                ${item.document_url ? `<a href="${item.document_url}" target="_blank" class="btn btn-outline btn-sm">Notification PDF</a>` : ''}
+              </div>
+            </div>
+          `).join('');
+        }
+      } catch (e) {
+        console.log("Using default static recruitment openings");
+      }
+    });
+  </script>
 </body>
 </html>
