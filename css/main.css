@@ -39,8 +39,8 @@
   --hero-gradient-end: rgba(0, 75, 155, 0.12);
 
   /* Typography */
-  --ff-hero: 'Playfair Display', Georgia, serif;
-  --ff-title: 'Playfair Display', Georgia, serif;
+  --ff-hero: 'Inter', sans-serif;
+  --ff-title: 'Inter', sans-serif;
   --ff-body: 'Inter', sans-serif;
 
   /* Sizes */
@@ -65,7 +65,7 @@
   --bg-primary: #000000;
   --bg-secondary: #0d0d0d;
   --bg-light-green: #5c5c5c;
-  --bg-light-cyan: #8e8e8e;
+  --bg-light-cyan: #222222;
   --bg-maroon: #000000;
   
   --tx-primary: #f5f5f5;
@@ -247,7 +247,11 @@ cusb-ticker {
 [data-theme="dark"] .chatbot-toggle,
 [data-theme="dark"] .chatbot-send-btn,
 [data-theme="dark"] #scroll-btn {
+  background-color: #323232;
+}
+[data-theme="dark"] cusb-accessibility-bar {
   background-color: #000000;
+  color: #ffffff;
 }
 [data-theme="dark"] .ticker-title {
   background: var(--acc-maroon);
@@ -257,6 +261,14 @@ cusb-ticker {
 }
 [data-theme="dark"] .header-title-sub {
   color: #ffffff;
+}
+/* Dark theme: make accessibility bar buttons black */
+[data-theme="dark"] cusb-accessibility-bar button,
+[data-theme="dark"] cusb-accessibility-bar a,
+[data-theme="dark"] cusb-accessibility-bar .btn {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: rgba(255,255,255,0.06);
 }
 .ticker-wrap {
   display: flex;
@@ -988,7 +1000,7 @@ cusb-navbar .container {
   color: var(--tx-primary);
 }
 .megamenu-item a:hover {
-  color: var(--acc-coral);
+  color: #000000;
   transform: translateX(3px);
 }
 #aboutMegamenu .megamenu-icon {
@@ -1030,7 +1042,7 @@ cusb-navbar .container {
 }
 [data-theme="dark"] .megamenu-item a:hover,
 [data-theme="dark"] #academicsMegamenu .megamenu-item a:hover {
-  color: #ffffff !important;
+  color: #000000 !important;
   background: rgba(255, 255, 255, 0.1);
 }
 
@@ -1576,10 +1588,17 @@ cusb-footer {
   .navbar-item {
     width: 100%;
   }
+
+  .navbar-link {
+    display: flex;
+    align-items: center;
+    min-height: 25px;
+    padding: 14px 20px;
+  }
   .navbar-link:hover,
   .navbar-item.active > .navbar-link {
     background-color: rgba(0, 75, 155, 0.06) !important;
-    color: var(--tx-primary) !important;
+    color: #000000 !important;
     border-left: 4px solid var(--acc-gold);
     padding-left: 24px;
     border-bottom-color: var(--border-color);
@@ -1587,7 +1606,7 @@ cusb-footer {
   [data-theme="dark"] .navbar-link:hover,
   [data-theme="dark"] .navbar-item.active > .navbar-link {
     background-color: rgba(255, 255, 255, 0.08) !important;
-    color: var(--tx-primary) !important;
+    color: #000000 !important;
   }
   .megamenu {
     position: static;
@@ -1779,7 +1798,7 @@ cusb-footer {
 }
 .chatbot-toggle:hover {
   transform: scale(1.08);
-  background-color: var(--acc-coral);
+  background-color: #5c5c5c;
 }
 .chatbot-window {
   position: absolute;
@@ -1978,7 +1997,7 @@ cusb-footer {
   visibility: visible;
 }
 #scroll-btn:hover {
-  background-color: var(--acc-coral);
+  background-color: #5c5c5c;
   transform: translateY(-3px);
 }
 

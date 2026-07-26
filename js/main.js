@@ -53,7 +53,7 @@ function initFontSize() {
 
   if (!decBtn || !resetBtn || !incBtn) return;
 
-  let currentSize = parseInt(localStorage.getItem('cusb-font-size')) || 18;
+  let currentSize = parseInt(localStorage.getItem('cusb-font-size')) || 16;
   applyFontSize(currentSize);
 
   decBtn.addEventListener('click', () => {
@@ -64,7 +64,7 @@ function initFontSize() {
   });
 
   resetBtn.addEventListener('click', () => {
-    currentSize = 18;
+    currentSize = 16;
     applyFontSize(currentSize);
   });
 

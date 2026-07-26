@@ -78,7 +78,7 @@
 }
 
 .admin-title {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.6rem;
   font-weight: 700;
   text-align: center;
@@ -250,7 +250,7 @@
 }
 
 .admin-nav-title {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 1.1rem;
 }
@@ -297,7 +297,7 @@
 }
 
 .dashboard-title {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.8rem;
   font-weight: 800;
   color: var(--admin-dark-blue);
