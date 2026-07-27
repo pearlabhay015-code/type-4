@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const eventDetailsList = document.getElementById('eventDetailsList');
   
   // State variables
-  let currentYear = 2026; // Default to 2026 matching database records
-  let currentMonth = 5;  // Default to June (0-indexed: 5)
+  let currentYear; // will be initialized to current system date in setInitialSelection
+  let currentMonth;
   let eventsMap = {};     // Format: { 'YYYY-MM-DD': [event1, event2, ...] }
   let selectedDateStr = '';
 
@@ -137,17 +137,29 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function setInitialSelection() {
-    const keys = Object.keys(eventsMap).sort();
-    if (keys.length > 0) {
-      const parts = keys[0].split('-');
-      currentYear = parseInt(parts[0], 10);
-      currentMonth = parseInt(parts[1], 10) - 1;
-      return;
-    }
-
+    // Prefer real-world current date: show current month and select today by default
     const today = new Date();
     currentYear = today.getFullYear();
     currentMonth = today.getMonth();
+    const todayKey = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+    selectedDateStr = todayKey;
+  }
+
+  // Keep calendar synchronized with system date. Check every minute and update when day changes.
+  function startDateSync() {
+    let lastDateStr = new Date().toDateString();
+    setInterval(() => {
+      const now = new Date();
+      const nowDateStr = now.toDateString();
+      if (nowDateStr !== lastDateStr) {
+        lastDateStr = nowDateStr;
+        currentYear = now.getFullYear();
+        currentMonth = now.getMonth();
+        selectedDateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+        renderCalendar();
+        displaySelectedEvents();
+      }
+    }, 60 * 1000);
   }
 
   // Parse event dates dynamically and map them
@@ -282,9 +294,12 @@ document.addEventListener('DOMContentLoaded', () => {
       createDayCell(day, currentMonth, currentYear, false, isToday);
     }
     
-    // Render padding days of the next month to complete the grid (usually 42 cells total)
-    const totalCells = daysGrid.children.length;
-    const remainingCells = (totalCells <= 35) ? 35 - totalCells : 42 - totalCells;
+    // Render padding days of the next month to complete the grid.
+    // Calculate only the number of rows actually needed so we don't render an extra empty week.
+    const cellsSoFar = daysGrid.children.length; // includes prev-month padding + current month days
+    const rowsNeeded = Math.ceil(cellsSoFar / 7);
+    const totalCellsToRender = rowsNeeded * 7;
+    const remainingCells = totalCellsToRender - cellsSoFar;
     for (let day = 1; day <= remainingCells; day++) {
       const nextMonth = currentMonth === 11 ? 0 : currentMonth + 1;
       const nextYear = currentMonth === 11 ? currentYear + 1 : currentYear;
@@ -440,6 +455,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Fetch and initialize on load
   loadEvents();
+
+  // Start the system date watcher so calendar stays in sync across days
+  startDateSync();
 
   // Watch for language change triggers
   window.addEventListener('storage', (e) => {

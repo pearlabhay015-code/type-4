@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollToTop();
   initTranslateOffsetWatcher();
   initDynamicContent();
+  initEnquiryModal();
   if (window.cusbReplaceEmojiIcons) window.cusbReplaceEmojiIcons(document);
 });
 
@@ -867,3 +868,254 @@ async function initDynamicContent() {
     }
   }
 }
+
+/* ==========================================================================
+   10. INTERACTIVE FLOATING ENQUIRY FORM & MODAL LOGIC
+   ========================================================================== */
+function initEnquiryModal() {
+  const floatBtn = document.getElementById('floatingEnquiryBtn');
+  const modalOverlay = document.getElementById('enquiryModalOverlay');
+  const closeBtn = document.getElementById('enquiryModalCloseBtn');
+  const form = document.getElementById('enquiryForm');
+  const categoryChips = document.querySelectorAll('#enquiryCategoryChips .enquiry-chip');
+  const categoryInput = document.getElementById('enquiryCategoryInput');
+  const programSelect = document.getElementById('enquiryProgramLevel');
+  const departmentSelect = document.getElementById('enquiryDepartment');
+  const messageArea = document.getElementById('enquiryMessage');
+  const charCounter = document.getElementById('charCounter');
+  const progressFill = document.getElementById('enquiryProgressFill');
+  const successContainer = document.getElementById('enquirySuccessContainer');
+  const ticketBadge = document.getElementById('enquiryTicketNumber');
+  const copyBtn = document.getElementById('copyTicketBtn');
+  const resetBtn = document.getElementById('resetEnquiryBtn');
+
+  // Open Modal
+  if (floatBtn && modalOverlay) {
+    floatBtn.addEventListener('click', () => {
+      modalOverlay.classList.add('active');
+      modalOverlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  // Close Modal
+  const closeModal = () => {
+    if (modalOverlay) {
+      modalOverlay.classList.remove('active');
+      modalOverlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  };
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (modalOverlay) {
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeModal();
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('active')) {
+      closeModal();
+    }
+  });
+
+  // Category Selector Chips
+  categoryChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      categoryChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const cat = chip.getAttribute('data-category');
+      if (categoryInput) categoryInput.value = cat;
+
+      // Customize placeholders based on category
+      if (messageArea) {
+        if (cat === 'admissions') {
+          messageArea.placeholder = "Ask about admission dates, eligibility criteria, CUET cut-off, or application procedure...";
+        } else if (cat === 'courses') {
+          messageArea.placeholder = "Ask about specific course syllabus, faculty details, duration, or degree structure...";
+        } else if (cat === 'hostel') {
+          messageArea.placeholder = "Ask about hostel room allotment, fee structure, mess facilities, or rules...";
+        } else if (cat === 'scholarship') {
+          messageArea.placeholder = "Ask about NSP scholarships, fee waiver schemes, or merit-cum-means awards...";
+        } else {
+          messageArea.placeholder = "Type your query details here...";
+        }
+      }
+    });
+  });
+
+  // Dynamic Course/Department updates based on Program Level selection
+  const deptOptionsByLevel = {
+    ug: [
+      { val: "ba_llb", label: "B.A. LL.B. (Hons.) - 5 Year Integrated" },
+      { val: "bsc_bed", label: "B.Sc. B.Ed. Integrated" },
+      { val: "ba_bed", label: "B.A. B.Ed. Integrated" },
+      { val: "btech_cs", label: "B.Tech in Computer Science" }
+    ],
+    pg: [
+      { val: "msc_cs", label: "M.Sc. Computer Science" },
+      { val: "msc_math", label: "M.Sc. Mathematics" },
+      { val: "msc_phy", label: "M.Sc. Physics" },
+      { val: "msc_chem", label: "M.Sc. Chemistry" },
+      { val: "msc_biotech", label: "M.Sc. Biotechnology" },
+      { val: "llm", label: "LL.M. (Master of Laws)" },
+      { val: "ma_mc", label: "M.A. Journalism & Mass Communication" },
+      { val: "med", label: "M.Ed. (Master of Education)" },
+      { val: "ma_econ", label: "M.A. Economics" }
+    ],
+    phd: [
+      { val: "phd_cs", label: "Ph.D. in Computer Science" },
+      { val: "phd_phy", label: "Ph.D. in Physics" },
+      { val: "phd_chem", label: "Ph.D. in Chemistry" },
+      { val: "phd_law", label: "Ph.D. in Law" },
+      { val: "phd_bio", label: "Ph.D. in Biotechnology" },
+      { val: "phd_edu", label: "Ph.D. in Education" }
+    ],
+    diploma: [
+      { val: "pgd_data", label: "PG Diploma in Data Science" },
+      { val: "pgd_yoga", label: "PG Diploma in Yoga & Wellness" }
+    ]
+  };
+
+  if (programSelect && departmentSelect) {
+    programSelect.addEventListener('change', (e) => {
+      const level = e.target.value;
+      departmentSelect.innerHTML = '<option value="" data-en="-- Select Department / Course --" data-hi="-- विभाग / पाठ्यक्रम चुनें --">-- Select Department / Course --</option>';
+      if (deptOptionsByLevel[level]) {
+        deptOptionsByLevel[level].forEach(opt => {
+          const el = document.createElement('option');
+          el.value = opt.val;
+          el.textContent = opt.label;
+          departmentSelect.appendChild(el);
+        });
+      }
+      updateFormProgress();
+    });
+  }
+
+  // Live Character Counter
+  if (messageArea && charCounter) {
+    messageArea.addEventListener('input', () => {
+      const len = messageArea.value.length;
+      charCounter.textContent = `${len} / 500`;
+      updateFormProgress();
+    });
+  }
+
+  // Live Input Validation & Progress Bar
+  const requiredInputs = form ? form.querySelectorAll('[required]') : [];
+  
+  function updateFormProgress() {
+    if (!requiredInputs.length || !progressFill) return;
+    let validCount = 0;
+
+    requiredInputs.forEach(input => {
+      if (input.type === 'email') {
+        const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
+        if (isValid) {
+          input.classList.add('is-valid');
+          input.classList.remove('is-invalid');
+          validCount++;
+        } else if (input.value.trim().length > 0) {
+          input.classList.add('is-invalid');
+          input.classList.remove('is-valid');
+        } else {
+          input.classList.remove('is-valid', 'is-invalid');
+        }
+      } else if (input.type === 'tel') {
+        const isValid = /^[0-9]{10}$/.test(input.value.trim());
+        if (isValid) {
+          input.classList.add('is-valid');
+          input.classList.remove('is-invalid');
+          validCount++;
+        } else if (input.value.trim().length > 0) {
+          input.classList.add('is-invalid');
+          input.classList.remove('is-valid');
+        } else {
+          input.classList.remove('is-valid', 'is-invalid');
+        }
+      } else {
+        if (input.value.trim().length > 0) {
+          input.classList.add('is-valid');
+          input.classList.remove('is-invalid');
+          validCount++;
+        } else {
+          input.classList.remove('is-valid', 'is-invalid');
+        }
+      }
+    });
+
+    const percent = Math.round((validCount / requiredInputs.length) * 100);
+    progressFill.style.width = `${percent}%`;
+  }
+
+  if (requiredInputs.length) {
+    requiredInputs.forEach(input => {
+      input.addEventListener('input', updateFormProgress);
+      input.addEventListener('change', updateFormProgress);
+    });
+  }
+
+  // Form Submission Logic
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      let isValid = true;
+      requiredInputs.forEach(input => {
+        if (!input.value.trim()) {
+          input.classList.add('is-invalid');
+          isValid = false;
+        }
+      });
+
+      if (!isValid) {
+        alert("Please fill out all required fields correctly.");
+        return;
+      }
+
+      const submitBtn = document.getElementById('enquirySubmitBtn');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span data-en="Submitting..." data-hi="जमा किया जा रहा है...">Submitting...</span>';
+      }
+
+      setTimeout(() => {
+        const ticketNum = 'CUSB-ENQ-2026-' + Math.floor(1000 + Math.random() * 9000);
+        if (ticketBadge) ticketBadge.textContent = ticketNum;
+
+        form.style.display = 'none';
+        if (successContainer) successContainer.style.display = 'block';
+
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<span data-en="Submit Enquiry →" data-hi="पूछताछ जमा करें →">Submit Enquiry →</span>';
+        }
+      }, 800);
+    });
+  }
+
+  // Copy Ticket Reference
+  if (copyBtn && ticketBadge) {
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(ticketBadge.textContent).then(() => {
+        const origText = copyBtn.textContent;
+        copyBtn.textContent = '✓ Copied to Clipboard!';
+        setTimeout(() => copyBtn.textContent = origText, 2000);
+      });
+    });
+  }
+
+  // Reset Enquiry Form
+  if (resetBtn && form && successContainer) {
+    resetBtn.addEventListener('click', () => {
+      form.reset();
+      requiredInputs.forEach(input => input.classList.remove('is-valid', 'is-invalid'));
+      if (progressFill) progressFill.style.width = '0%';
+      if (charCounter) charCounter.textContent = '0 / 500';
+      successContainer.style.display = 'none';
+      form.style.display = 'grid';
+    });
+  }
+}
+

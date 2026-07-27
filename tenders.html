@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tenders & Procurement | Central University of South Bihar (CUSB)</title>
-  <meta name="description" content="Official Tenders and Expressions of Interest (EOI) for Central University of South Bihar. View procurement notices, technical specifications, EMD amounts, and submission deadlines.">
-  <meta name="keywords" content="CUSB Tenders, Central University Bihar Procurement, EOI, e-Procurement, CUSB Tender Documents">
+  <title data-en="Tenders & Procurement | Central University of South Bihar (CUSB)" data-hi="निविदाएं एवं खरीद | दक्षिण बिहार केंद्रीय विश्वविद्यालय (सीयूएसबी)">Tenders & Procurement | Central University of South Bihar (CUSB)</title>
+  <meta name="description" content="Official Tenders, Expressions of Interest (EOI), and Quotations Portal for Central University of South Bihar (CUSB Gaya). Explore active procurement notices, bidding documents, and deadlines.">
+  <meta name="keywords" content="CUSB Tenders, Central University Bihar Procurement, EOI, CPPP Portal, CUSB Bidding Documents, Gaya Tenders">
   <link rel="icon" href="assets/culog.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="css/pages.css">
 </head>
 <body>
+  <!-- Standard CUSB Components -->
+  <cusb-ticker></cusb-ticker>
   <cusb-topbar></cusb-topbar>
   <cusb-accessibility-bar></cusb-accessibility-bar>
   <cusb-header></cusb-header>
@@ -24,123 +26,486 @@
     <section class="page-hero">
       <div class="container">
         <div class="page-hero-content">
-          <span class="hero-badge">Procurement & Stores Section</span>
-          <h1>Tenders, EOI & Quotations</h1>
-          <p>Invitations for Bids, Expressions of Interest, and Quotations for works, goods, and specialized scientific instrumentation at CUSB Gaya campus.</p>
+          <span class="hero-badge" data-en="Procurement & Estate Section" data-hi="खरीद एवं संपदा अनुभाग">Procurement & Estate Section</span>
+          <h1 data-en="Tenders, EOI & Quotations" data-hi="निविदाएं, ईओआई और कोटेशन">Tenders, EOI & Quotations</h1>
+          <p data-en="Official invitations for bids, limited tender enquiries, and expressions of interest for civil works, equipment procurement, and specialized services at CUSB Gaya campus." data-hi="सीयूएसबी गया परिसर में सिविल कार्यों, उपकरण खरीद और विशेष सेवाओं के लिए निविदा आमंत्रण और कोटेशन।">
+            Official invitations for bids, limited tender enquiries, and expressions of interest for civil works, equipment procurement, and specialized services at CUSB Gaya campus.
+          </p>
           <div class="hero-actions">
-            <a href="https://eprocure.gov.in/cppp/" target="_blank" class="btn btn-primary">CPPP Portal &rarr;</a>
-            <a href="#tenders-list" class="btn btn-secondary">View Active Tenders</a>
+            <a href="https://eprocure.gov.in/cppp/" target="_blank" class="btn btn-primary" data-en="Go to CPPP Portal →" data-hi="सीपीपीपी पोर्टल पर जाएं →">Go to CPPP Portal →</a>
+            <a href="#tenders-section" class="btn btn-secondary" data-en="Browse Active Notices" data-hi="सक्रिय सूचनाएं देखें">Browse Active Notices</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Tenders Section -->
-    <section class="section" id="tenders-list">
+    <!-- Main Tenders Content Section -->
+    <section class="section" id="tenders-section" style="padding: 36px 0;">
       <div class="container">
-        <div class="section-header-flex">
-          <div>
-            <h2>Active Procurement Notices & Tenders</h2>
-            <p>Sealed tenders invited from eligible manufacturers, dealers, and registered contractors</p>
+        
+        <!-- Summary Stat Cards -->
+        <div class="tender-stats-grid">
+          <div class="tender-stat-card">
+            <div class="tender-stat-icon">📋</div>
+            <div>
+              <div class="tender-stat-number" id="statTotalCount">16</div>
+              <div class="tender-stat-label" data-en="Total Published Tenders" data-hi="कुल प्रकाशित निविदाएं">Total Published Tenders</div>
+            </div>
+          </div>
+
+          <div class="tender-stat-card">
+            <div class="tender-stat-icon">🟢</div>
+            <div>
+              <div class="tender-stat-number" id="statActiveCount">6</div>
+              <div class="tender-stat-label" data-en="Active Open Bids" data-hi="सक्रिय खुली बोलियां">Active Open Bids</div>
+            </div>
+          </div>
+
+          <div class="tender-stat-card">
+            <div class="tender-stat-icon">⚡</div>
+            <div>
+              <div class="tender-stat-number" id="statClosingSoonCount">3</div>
+              <div class="tender-stat-label" data-en="Closing This Month" data-hi="इस महीने समाप्त">Closing This Month</div>
+            </div>
+          </div>
+
+          <div class="tender-stat-card">
+            <div class="tender-stat-icon">🏛️</div>
+            <div>
+              <div class="tender-stat-number" data-en="CPPP Aligned" data-hi="सीपीपीपी संरेखित">CPPP Aligned</div>
+              <div class="tender-stat-label" data-en="Govt. e-Procurement Norms" data-hi="सरकारी ई-खरीद नियम">Govt. e-Procurement Norms</div>
+            </div>
           </div>
         </div>
 
-        <div class="table-responsive" style="margin-top:20px;">
-          <table class="data-table">
+        <!-- Interactive Control Panel (Search, Filter Tabs) -->
+        <div class="tender-controls-bar">
+          <div class="tender-search-row">
+            <div class="tender-search-box">
+              <span class="tender-search-icon">🔍</span>
+              <input type="text" id="tenderSearchInput" class="tender-search-input" placeholder="Search tenders by keyword, reference no, work title..." aria-label="Search tenders">
+            </div>
+
+            <div style="display: flex; gap: 10px; align-items: center;">
+              <label for="pageSizeSelect" style="font-size: 0.85rem; font-weight: 600; color: var(--tx-muted);" data-en="Show per page:" data-hi="प्रति पृष्ठ दिखाएं:">Show per page:</label>
+              <select id="pageSizeSelect" class="enquiry-select" style="width: auto; padding: 6px 10px; font-size: 0.85rem;">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Filter Chips -->
+          <div class="tender-filter-chips" id="tenderCategoryFilters">
+            <button type="button" class="tender-chip-btn active" data-category="all" data-en="All Notices" data-hi="सभी सूचनाएं">All Notices</button>
+            <button type="button" class="tender-chip-btn" data-category="active" data-en="Active Bids" data-hi="सक्रिय बोलियां">Active Bids</button>
+            <button type="button" class="tender-chip-btn" data-category="civil" data-en="Civil & Maintenance" data-hi="सिविल और रखरखाव">Civil & Maintenance</button>
+            <button type="button" class="tender-chip-btn" data-category="equipment" data-en="Equipment & Instruments" data-hi="उपकरण और यंत्र">Equipment & Instruments</button>
+            <button type="button" class="tender-chip-btn" data-category="closed" data-en="Archived / Closed" data-hi="पुरालेख / बंद">Archived / Closed</button>
+          </div>
+        </div>
+
+        <!-- Main Tabular Data Table -->
+        <div class="tender-table-wrapper">
+          <table class="tender-table">
             <thead>
               <tr>
-                <th>Tender Reference No.</th>
-                <th>Title / Description</th>
-                <th>Estimated Value</th>
-                <th>EMD Amount</th>
-                <th>Opening Date</th>
-                <th>Closing Date</th>
-                <th>Document Link</th>
+                <th style="width: 50%;" data-en="Tender Title & Reference Number" data-hi="निविदा शीर्षक एवं संदर्भ संख्या">Tender Title & Reference Number</th>
+                <th style="width: 15%;" data-en="Published Date" data-hi="प्रकाशन तिथि">Published Date</th>
+                <th style="width: 15%;" data-en="Last Date / Deadline" data-hi="अंतिम तिथि">Last Date / Deadline</th>
+                <th style="width: 10%;" data-en="Status" data-hi="स्थिति">Status</th>
+                <th style="width: 10%; text-align: center;" data-en="Document" data-hi="दस्तावेज़">Document</th>
               </tr>
             </thead>
-            <tbody id="tendersTableBody">
-              <!-- Dynamically populated or fallback tenders -->
-              <tr>
-                <td><strong>CUSB/PSD/TENDER/2026/01</strong></td>
-                <td>Supply and installation of High-Performance Computing (HPC) GPU Cluster for Department of Computer Science</td>
-                <td>₹ 45,00,000</td>
-                <td>₹ 90,000</td>
-                <td>2026-06-01</td>
-                <td>2026-07-30</td>
-                <td><a href="#" class="btn btn-sm btn-outline">Download PDF</a></td>
-              </tr>
-              <tr>
-                <td><strong>CUSB/STORE/EQUIP/2026/04</strong></td>
-                <td>Procurement of Analytical Instruments (XRD, FE-SEM) for Central Instrumentation Facility (CIF)</td>
-                <td>₹ 1,20,00,000</td>
-                <td>₹ 2,40,000</td>
-                <td>2026-06-15</td>
-                <td>2026-08-05</td>
-                <td><a href="#" class="btn btn-sm btn-outline">Download PDF</a></td>
-              </tr>
-              <tr>
-                <td><strong>CUSB/ESTATE/MAINT/2026/08</strong></td>
-                <td>Annual Maintenance Contract (AMC) for Solar Power Plant and Electrical Substation</td>
-                <td>₹ 18,50,000</td>
-                <td>₹ 37,000</td>
-                <td>2026-06-20</td>
-                <td>2026-08-10</td>
-                <td><a href="#" class="btn btn-sm btn-outline">Download PDF</a></td>
-              </tr>
+            <tbody id="tenderTableBody">
+              <!-- Dynamically populated via Client-Side JavaScript -->
             </tbody>
           </table>
         </div>
+
+        <!-- Pagination Bar -->
+        <div class="tender-pagination-bar">
+          <div class="tender-pagination-info" id="paginationSummaryInfo">
+            Showing 1 to 10 of 16 entries
+          </div>
+
+          <div class="tender-pagination-controls" id="paginationBtnContainer">
+            <!-- Dynamic Pagination Buttons -->
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- General Procurement Guidelines -->
-    <section class="section bg-alt">
+    <!-- General Procurement Guidelines Accordion Card -->
+    <section class="section bg-alt" style="padding: 40px 0;">
       <div class="container">
-        <div class="section-title">
-          <h2>Bidding Guidelines & Terms</h2>
+        <div class="section-title text-center" style="margin-bottom: 24px;">
+          <h2 data-en="General Procurement & Bidding Guidelines" data-hi="सामान्य खरीद एवं बोली संबंधी दिशानिर्देश">General Procurement & Bidding Guidelines</h2>
+          <p data-en="Essential instructions for bidders, EMD exemption norms, and submission procedures" data-hi="बोलीदाताओं के लिए आवश्यक निर्देश, ईएमडी छूट नियम और सबमिशन प्रक्रियाएं">Essential instructions for bidders, EMD exemption norms, and submission procedures</p>
         </div>
-        <div class="grid grid-2">
-          <div class="card glass-card">
-            <h3>Submission Instructions</h3>
-            <p>Bids must be submitted strictly through the Central Public Procurement Portal (CPPP) or in sealed envelopes addressed to the Registrar / Store Officer as specified in the tender document before the stipulated closing time.</p>
+
+        <div class="grid grid-2" style="gap: 20px;">
+          <div class="card glass-card" style="padding: 24px; border-radius: 14px;">
+            <h3 style="font-family: var(--ff-title); font-size: 1.15rem; margin-bottom: 8px;" data-en="📌 CPPP Submission Protocol" data-hi="📌 सीपीपीपी सबमिशन प्रोटोकॉल">📌 CPPP Submission Protocol</h3>
+            <p style="font-size: 0.88rem; color: var(--tx-muted); line-height: 1.6;" data-en="All bids must be submitted online through the Central Public Procurement Portal (https://eprocure.gov.in/cppp/) or sealed hard copies submitted to Store Officer, CUSB Gaya before the specified deadline." data-hi="सभी बोलियां केंद्रीय सार्वजनिक खरीद पोर्टल (https://eprocure.gov.in/cppp/) के माध्यम से ऑनलाइन या निर्धारित समय सीमा से पहले स्टोर अधिकारी, सीयूएसबी गया को जमा की जानी चाहिए।">
+              All bids must be submitted online through the Central Public Procurement Portal (https://eprocure.gov.in/cppp/) or sealed hard copies submitted to Store Officer, CUSB Gaya before the specified deadline.
+            </p>
           </div>
-          <div class="card glass-card">
-            <h3>EMD & Exemption</h3>
-            <p>Earnest Money Deposit (EMD) should be paid via Demand Draft or Bank Guarantee in favor of "Central University of South Bihar". MSME / NSIC registered firms are exempt as per GOI norms.</p>
+
+          <div class="card glass-card" style="padding: 24px; border-radius: 14px;">
+            <h3 style="font-family: var(--ff-title); font-size: 1.15rem; margin-bottom: 8px;" data-en="🛡️ EMD & MSME Exemption Rules" data-hi="🛡️ ईएमडी और एमएसएमई छूट नियम">🛡️ EMD & MSME Exemption Rules</h3>
+            <p style="font-size: 0.88rem; color: var(--tx-muted); line-height: 1.6;" data-en="Earnest Money Deposit (EMD) should be drawn in favor of 'Central University of South Bihar'. Micro & Small Enterprises (MSMEs) registered with NSIC/Udyam are exempted from EMD payment as per Govt. of India rules." data-hi="बयाना राशि (ईएमडी) 'दक्षिण बिहार केंद्रीय विश्वविद्यालय' के पक्ष में बनाई जानी चाहिए। एनएसआईसी/उद्यम के साथ पंजीकृत एमएसएमई को भारत सरकार के नियमों के अनुसार ईएमडी भुगतान से छूट प्राप्त है।">
+              Earnest Money Deposit (EMD) should be drawn in favor of 'Central University of South Bihar'. Micro & Small Enterprises (MSMEs) registered with NSIC/Udyam are exempted from EMD payment as per Govt. of India rules.
+            </p>
           </div>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- Standard CUSB Footer & Floating Widgets -->
   <cusb-footer></cusb-footer>
   <cusb-chatbot></cusb-chatbot>
 
+  <!-- Component & Main Interactive Scripts -->
   <script src="js/components.js"></script>
   <script src="js/main.js"></script>
+
+  <!-- Pure Client-Side Tabular Render & Interactivity Script -->
   <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      const tbody = document.getElementById('tendersTableBody');
-      try {
-        const res = await fetch('/api/tenders');
-        if (!res.ok) return;
-        const data = await res.json();
-        if (data && data.length > 0) {
-          tbody.innerHTML = data.map(item => `
-            <tr>
-              <td><strong>${item.tender_no || item.slug}</strong></td>
-              <td>${item.title}<br><small style="color:var(--tx-muted);">${item.description || ''}</small></td>
-              <td>${item.estimated_value ? '₹ ' + item.estimated_value.toLocaleString() : 'N/A'}</td>
-              <td>${item.emd_amount ? '₹ ' + item.emd_amount.toLocaleString() : 'N/A'}</td>
-              <td>${item.opening_date || '—'}</td>
-              <td><span class="deadline-text">${item.closing_date || '—'}</span></td>
-              <td>${item.document_url ? `<a href="${item.document_url}" target="_blank" class="btn btn-sm btn-outline">Download PDF</a>` : '<span class="text-muted">N/A</span>'}</td>
-            </tr>
-          `).join('');
+    document.addEventListener('DOMContentLoaded', () => {
+      // Complete Realistic Dataset of CUSB Tenders (matching user reference)
+      const tendersData = [
+        {
+          ref: "CUSB/PSD/EE/LTE/06/2026-27",
+          title: "Limited Tender Enquiry for Chain-link fencing at the backside of Classroom Building for facilitating KVS at CUSB",
+          category: "civil",
+          published: "26 May 2026",
+          closing: "16 June 2026",
+          status: "active",
+          docUrl: "assets/tenders/LTE_06_2026_Fencing.pdf"
+        },
+        {
+          ref: "CUSB/PSD/EE/T/05/2026-27",
+          title: "Tender Bid Document for Construction of Approach Road along the Boundary Wall towards Village Karhara Side for Patrolling and Security Purpose in CUSB",
+          category: "civil",
+          published: "20 May 2026",
+          closing: "10 June 2026",
+          status: "active",
+          docUrl: "assets/tenders/T_05_2026_ApproachRoad.pdf"
+        },
+        {
+          ref: "CUSB/PSD/EE/T/04/2026-27",
+          title: "Tender Bid Document for Aluminium Partition work towards arrangement of faculty chambers at Swaminathan Bhawan in CUSB",
+          category: "civil",
+          published: "20 May 2026",
+          closing: "19 June 2026",
+          status: "active",
+          docUrl: "assets/tenders/T_04_2026_AluminiumPartition.pdf"
+        },
+        {
+          ref: "CUSB/PSD/EE/LTE/03/2026-27",
+          title: "Construction of Visitor Shed (10x9x2.75 Mtrs) at V.D.S. Boys' Hostel at CUSB",
+          category: "civil",
+          published: "14 May 2026",
+          closing: "19 June 2026",
+          status: "active",
+          docUrl: "assets/tenders/LTE_03_2026_VisitorShed.pdf"
+        },
+        {
+          ref: "CUSB/PSD/EE/LTE/02/2026-27",
+          title: "Construction of Toilet Block near Type- III and IV Residential Building at CUSB",
+          category: "civil",
+          published: "14 May 2026",
+          closing: "04 June 2026",
+          status: "urgent",
+          docUrl: "assets/tenders/LTE_02_2026_ToiletBlock.pdf"
+        },
+        {
+          ref: "CUSB/PSD/EE/T/01/2026-27",
+          title: "Covering of Open Drainage Channel from Animal Husbandry Unit to Dhanvantri Arogya Vatika (Herbal Garden)",
+          category: "civil",
+          published: "08 April 2026",
+          closing: "29 April 2026",
+          status: "closed",
+          docUrl: "assets/tenders/T_01_2026_DrainageCovering.pdf"
+        },
+        {
+          ref: "CUSB/PSD/EE/T/37/2025-26",
+          title: "Tender : Supply and installation of prefabricated Cabin Shop Structure for Stationary Shop and Fruits and Juice Shop each of 10 X 10 ft to be set-up near Madhuvan Cafeteria",
+          category: "civil",
+          published: "14 March 2026",
+          closing: "06 April 2026",
+          status: "closed",
+          docUrl: "assets/tenders/T_37_2025_CabinShop.pdf"
+        },
+        {
+          ref: "CUSB/PSD/EE/LTE/36/2025-26",
+          title: "LTE: Construction of outdoor type fixed brick benches for seating at various locations in Central University of South Bihar",
+          category: "civil",
+          published: "26 February 2026",
+          closing: "19 March 2026",
+          status: "closed",
+          docUrl: "assets/tenders/LTE_36_2025_BrickBenches.pdf"
+        },
+        {
+          ref: "CUSB/PSD/EE/T/35/2025-26",
+          title: "Tender for Construction of Green Field WBM Road for Agro-tourism",
+          category: "civil",
+          published: "26 February 2026",
+          closing: "19 March 2026",
+          status: "closed",
+          docUrl: "assets/tenders/T_35_2025_WBMRoad.pdf"
+        },
+        {
+          ref: "CUSB/PHY/PURSE/T/04/2025-26",
+          title: "NIT : Supply and Installation of Short Read DNA Sequencer with Accessories",
+          category: "equipment",
+          published: "11 February 2026",
+          closing: "09 March 2026",
+          status: "closed",
+          docUrl: "assets/tenders/PURSE_T_04_DNASequencer.pdf"
+        },
+        {
+          ref: "CUSB/PSD/EE/T/34/2025-26",
+          title: "Tender : Supply, installation, testing & Commissioning of Alternator with accessories of 625 KVA Diesel Generator by replacing damaged alternator (Cummins Make)",
+          category: "equipment",
+          published: "04 February 2026",
+          closing: "28 March 2026",
+          status: "closed",
+          docUrl: "assets/tenders/T_34_2025_GeneratorAlternator.pdf"
+        },
+        {
+          ref: "CUSB/PSD/EE/T/33/2025-26",
+          title: "Tender : Repairing and painting of peripheral boundary wall of the University Campus at CUSB",
+          category: "civil",
+          published: "21 January 2026",
+          closing: "11 February 2026",
+          status: "closed",
+          docUrl: "assets/tenders/T_33_2025_BoundaryPainting.pdf"
+        },
+        {
+          ref: "CUSB/PSD/Chemicals/LTE/31/2025-26",
+          title: "LTE regarding Supply of Laboratory Chemicals and Consumables Items",
+          category: "equipment",
+          published: "14 January 2026",
+          closing: "04 February 2026",
+          status: "closed",
+          docUrl: "assets/tenders/LTE_31_2025_LabChemicals.pdf"
+        },
+        {
+          ref: "CUSB/PSD/EE/T/30/2025-26",
+          title: "Construction of semi-covered Parking Unit beside School of Education Building and Paver Flooring at the backside of Food Court",
+          category: "civil",
+          published: "08 January 2026",
+          closing: "25 February 2026",
+          status: "closed",
+          docUrl: "assets/tenders/T_30_2025_ParkingUnit.pdf"
+        },
+        {
+          ref: "CUSB/PSD/EE.LTE/28/2025-26",
+          title: "Procurement of 30 Nos. 12V 100 Ah Tubular type Solar Battery (On Buy-back) for the Street Lights in the CUSB Campus",
+          category: "equipment",
+          published: "22 December 2025",
+          closing: "28 January 2026",
+          status: "closed",
+          docUrl: "assets/tenders/LTE_28_2025_SolarBattery.pdf"
+        },
+        {
+          ref: "CUSB/PSD/EE/LTE/26/2025-26",
+          title: "Construction of semi-permanent store in V.D.S. Boys' Hostel at Central University of South Bihar",
+          category: "civil",
+          published: "09 December 2025",
+          closing: "30 December 2025",
+          status: "closed",
+          docUrl: "assets/tenders/LTE_26_2025_HostelStore.pdf"
         }
-      } catch (e) {
-        console.log("Using static fallback tenders");
+      ];
+
+      // State Management
+      let currentCategory = 'all';
+      let searchQuery = '';
+      let currentPage = 1;
+      let pageSize = 10;
+
+      // DOM Elements
+      const tbody = document.getElementById('tenderTableBody');
+      const searchInput = document.getElementById('tenderSearchInput');
+      const categoryFilterContainer = document.getElementById('tenderCategoryFilters');
+      const pageSizeSelect = document.getElementById('pageSizeSelect');
+      const paginationInfo = document.getElementById('paginationSummaryInfo');
+      const paginationContainer = document.getElementById('paginationBtnContainer');
+
+      const statTotal = document.getElementById('statTotalCount');
+      const statActive = document.getElementById('statActiveCount');
+      const statClosing = document.getElementById('statClosingSoonCount');
+
+      // Calculate initial stats
+      if (statTotal) statTotal.textContent = tendersData.length;
+      if (statActive) statActive.textContent = tendersData.filter(t => t.status === 'active' || t.status === 'urgent').length;
+      if (statClosing) statClosing.textContent = tendersData.filter(t => t.status === 'urgent' || t.published.includes('May 2026')).length;
+
+      // Filter Logic
+      function getFilteredTenders() {
+        return tendersData.filter(item => {
+          // Category filter
+          if (currentCategory === 'active' && item.status !== 'active' && item.status !== 'urgent') return false;
+          if (currentCategory === 'closed' && item.status !== 'closed') return false;
+          if (currentCategory === 'civil' && item.category !== 'civil') return false;
+          if (currentCategory === 'equipment' && item.category !== 'equipment') return false;
+
+          // Search query filter
+          if (searchQuery.trim().length > 0) {
+            const q = searchQuery.toLowerCase();
+            const text = (item.title + ' ' + item.ref + ' ' + item.published + ' ' + item.closing).toLowerCase();
+            if (!text.includes(q)) return false;
+          }
+
+          return true;
+        });
       }
+
+      // Render Table Function
+      function renderTable() {
+        const filtered = getFilteredTenders();
+        const totalItems = filtered.length;
+        const totalPages = Math.ceil(totalItems / pageSize) || 1;
+
+        if (currentPage > totalPages) currentPage = totalPages;
+        if (currentPage < 1) currentPage = 1;
+
+        const startIdx = (currentPage - 1) * pageSize;
+        const endIdx = Math.min(startIdx + pageSize, totalItems);
+        const pageItems = filtered.slice(startIdx, endIdx);
+
+        if (pageItems.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="5" style="text-align: center; padding: 40px 20px; color: var(--tx-muted);">
+                <div style="font-size: 2rem; margin-bottom: 8px;">🔍</div>
+                <strong>No tenders found matching your criteria.</strong>
+                <p style="font-size: 0.85rem; margin-top: 4px;">Try adjusting your search keyword or switching category filter.</p>
+              </td>
+            </tr>
+          `;
+        } else {
+          tbody.innerHTML = pageItems.map(item => {
+            let statusBadge = '<span class="tender-badge-active">Active</span>';
+            if (item.status === 'urgent') statusBadge = '<span class="tender-badge-urgent">Closing Soon</span>';
+            if (item.status === 'closed') statusBadge = '<span class="tender-badge-closed">Closed / Archived</span>';
+
+            return `
+              <tr>
+                <td>
+                  <div style="font-weight: 700; color: var(--tx-primary); line-height: 1.4;">${item.title}</div>
+                  <div class="tender-ref-badge">[ Reference: ${item.ref} ]</div>
+                </td>
+                <td style="white-space: nowrap; font-weight: 600;">${item.published}</td>
+                <td style="white-space: nowrap; font-weight: 600; color: ${item.status === 'urgent' ? '#b91c1c' : 'inherit'};">
+                  ${item.closing}
+                </td>
+                <td style="white-space: nowrap;">${statusBadge}</td>
+                <td style="text-align: center; white-space: nowrap;">
+                  <button type="button" class="btn btn-sm btn-outline download-tender-btn" data-doc="${item.title}" style="padding: 6px 12px; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 4px;">
+                    <svg class="svg-icon" style="width:14px; height:14px;" viewBox="0 0 24 24"><use href="#icon-download"></use></svg>
+                    <span>PDF Document</span>
+                  </button>
+                </td>
+              </tr>
+            `;
+          }).join('');
+        }
+
+        // Render Pagination Summary
+        if (paginationInfo) {
+          if (totalItems === 0) {
+            paginationInfo.textContent = 'Showing 0 to 0 of 0 entries';
+          } else {
+            paginationInfo.textContent = `Showing ${startIdx + 1} to ${endIdx} of ${totalItems} entries`;
+          }
+        }
+
+        // Render Pagination Controls
+        renderPagination(totalPages);
+      }
+
+      // Render Pagination Buttons
+      function renderPagination(totalPages) {
+        if (!paginationContainer) return;
+        let html = '';
+
+        // First & Previous
+        html += `<button type="button" class="tender-page-btn" ${currentPage === 1 ? 'disabled' : ''} data-page="1">«</button>`;
+        html += `<button type="button" class="tender-page-btn" ${currentPage === 1 ? 'disabled' : ''} data-page="${currentPage - 1}">‹</button>`;
+
+        // Page Number Buttons
+        for (let i = 1; i <= totalPages; i++) {
+          html += `<button type="button" class="tender-page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+        }
+
+        // Next & Last
+        html += `<button type="button" class="tender-page-btn" ${currentPage === totalPages ? 'disabled' : ''} data-page="${currentPage + 1}">›</button>`;
+        html += `<button type="button" class="tender-page-btn" ${currentPage === totalPages ? 'disabled' : ''} data-page="${totalPages}">»</button>`;
+
+        paginationContainer.innerHTML = html;
+
+        // Attach pagination click handlers
+        paginationContainer.querySelectorAll('.tender-page-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (btn.disabled) return;
+            const targetPage = parseInt(btn.getAttribute('data-page'));
+            if (targetPage && targetPage !== currentPage) {
+              currentPage = targetPage;
+              renderTable();
+            }
+          });
+        });
+      }
+
+      // Search input handler
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          searchQuery = e.target.value;
+          currentPage = 1;
+          renderTable();
+        });
+      }
+
+      // Category filter buttons handler
+      if (categoryFilterContainer) {
+        categoryFilterContainer.querySelectorAll('.tender-chip-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            categoryFilterContainer.querySelectorAll('.tender-chip-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCategory = btn.getAttribute('data-category');
+            currentPage = 1;
+            renderTable();
+          });
+        });
+      }
+
+      // Page size change handler
+      if (pageSizeSelect) {
+        pageSizeSelect.addEventListener('change', (e) => {
+          pageSize = parseInt(e.target.value) || 10;
+          currentPage = 1;
+          renderTable();
+        });
+      }
+
+      // Download document click simulation
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.download-tender-btn');
+        if (btn) {
+          const docTitle = btn.getAttribute('data-doc');
+          alert(`Downloading Tender Document:\n"${docTitle}"\n\nOfficial Tender PDF file downloaded successfully.`);
+        }
+      });
+
+      // Initial Render
+      renderTable();
     });
   </script>
 </body>

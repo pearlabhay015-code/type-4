@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="Enquiry & Support Portal 2026 | CUSB" data-hi="पूछताछ एवं सहायता पोर्टल 2026 | सीयूएसबी">Enquiry & Support Portal 2026 | CUSB</title>
+  <meta name="description" content="Official Enquiry and Support Portal of Central University of South Bihar (CUSB). Get instant answers regarding admissions, courses, hostels, scholarships, and campus facilities.">
+  <meta name="keywords" content="CUSB Enquiry, CUSB Helpdesk, CUSB Admission Enquiry, Central University Bihar Support, CUET Enquiry 2026">
+  <link rel="icon" href="assets/culog.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <!-- Standard CUSB Components -->
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-header></cusb-header>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="main-content">
+    <!-- HERO BANNER -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-content">
+          <span class="hero-badge" data-en="Academic Session 2026–2027 Helpline" data-hi="शैक्षणिक सत्र 2026-2027 हेल्पलाइन">Academic Session 2026–2027 Helpline</span>
+          <h1 data-en="Admission & University Enquiry" data-hi="प्रवेश एवं विश्वविद्यालय पूछताछ">Admission & University Enquiry</h1>
+          <p data-en="Have questions regarding admissions, courses, hostel allotment, fees, or campus facilities? Fill out the interactive enquiry form below for prompt assistance from our university helpline officers." data-hi="क्या आपके पास प्रवेश, पाठ्यक्रम, छात्रावास आवंटन, शुल्क या परिसर सुविधाओं के बारे में प्रश्न हैं? त्वरित सहायता के लिए नीचे दिए गए फॉर्म को भरें।">
+            Have questions regarding admissions, courses, hostel allotment, fees, or campus facilities? Fill out the interactive enquiry form below for prompt assistance from our university helpline officers.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN ENQUIRY CONTAINER -->
+    <section class="section" style="padding: 40px 0;">
+      <div class="container">
+        <div class="grid grid-2" style="grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: start;">
+          
+          <!-- LEFT COLUMN: INTERACTIVE FORM CARD -->
+          <div class="card glass-card" style="padding: 30px; border-radius: 20px; box-shadow: var(--shadow-lg);">
+            <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 14px;">
+              <div>
+                <h2 style="font-family: var(--ff-title); font-size: 1.5rem; margin-bottom: 4px;" data-en="Submit Online Enquiry" data-hi="ऑनलाइन पूछताछ दर्ज करें">Submit Online Enquiry</h2>
+                <p style="font-size: 0.88rem; color: var(--tx-muted);" data-en="Select category and fill your details to receive an official reference ticket" data-hi="श्रेणी चुनें और आधिकारिक संदर्भ टिकट प्राप्त करने के लिए अपना विवरण भरें">Select category and fill your details to receive an official reference ticket</p>
+              </div>
+              <span style="display: flex; align-items: center; color: var(--acc-navy);"><svg class="svg-icon" style="width:36px; height:36px;" viewBox="0 0 24 24"><use href="#icon-file"></use></svg></span>
+            </div>
+
+            <!-- Form Progress Meter -->
+            <div class="enquiry-progress-bar">
+              <div class="enquiry-progress-fill" id="pageEnquiryProgressFill"></div>
+            </div>
+
+            <!-- Category Selector Chips -->
+            <div class="enquiry-category-chips" id="pageEnquiryCategoryChips">
+              <button type="button" class="enquiry-chip active" data-category="admissions"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-graduation"></use></svg> <span data-en="Admissions 2026" data-hi="प्रवेश 2026">Admissions 2026</span></button>
+              <button type="button" class="enquiry-chip" data-category="courses"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-building"></use></svg> <span data-en="Courses & Eligibility" data-hi="पाठ्यक्रम और पात्रता">Courses & Eligibility</span></button>
+              <button type="button" class="enquiry-chip" data-category="hostel"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-home"></use></svg> <span data-en="Hostel & Campus" data-hi="छात्रावास और परिसर">Hostel & Campus</span></button>
+              <button type="button" class="enquiry-chip" data-category="scholarship"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-briefcase"></use></svg> <span data-en="Scholarships & Fees" data-hi="छात्रवृत्ति और शुल्क">Scholarships & Fees</span></button>
+              <button type="button" class="enquiry-chip" data-category="general"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-chat"></use></svg> <span data-en="General Query" data-hi="सामान्य प्रश्न">General Query</span></button>
+            </div>
+
+            <!-- Main Interactive Form -->
+            <form id="pageEnquiryForm" class="enquiry-form-grid" novalidate>
+              <input type="hidden" id="pageEnquiryCategoryInput" name="category" value="admissions">
+
+              <div class="enquiry-field-group">
+                <label for="pageEnquiryFullName" class="enquiry-field-label">
+                  <span data-en="Full Name" data-hi="पूरा नाम">Full Name</span> <span class="req">*</span>
+                </label>
+                <input type="text" id="pageEnquiryFullName" name="fullName" class="enquiry-input" placeholder="e.g. Rahul Kumar" required>
+              </div>
+
+              <div class="enquiry-field-group">
+                <label for="pageEnquiryEmail" class="enquiry-field-label">
+                  <span data-en="Email Address" data-hi="ईमेल पता">Email Address</span> <span class="req">*</span>
+                </label>
+                <input type="email" id="pageEnquiryEmail" name="email" class="enquiry-input" placeholder="name@example.com" required>
+              </div>
+
+              <div class="enquiry-field-group">
+                <label for="pageEnquiryPhone" class="enquiry-field-label">
+                  <span data-en="Mobile / WhatsApp No." data-hi="मोबाइल / व्हाट्सएप नंबर">Mobile / WhatsApp No.</span> <span class="req">*</span>
+                </label>
+                <input type="tel" id="pageEnquiryPhone" name="phone" class="enquiry-input" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+              </div>
+
+              <div class="enquiry-field-group">
+                <label for="pageEnquiryProgramLevel" class="enquiry-field-label">
+                  <span data-en="Program Level" data-hi="कार्यक्रम स्तर">Program Level</span> <span class="req">*</span>
+                </label>
+                <select id="pageEnquiryProgramLevel" name="programLevel" class="enquiry-select" required>
+                  <option value="" data-en="-- Select Level --" data-hi="-- स्तर चुनें --">-- Select Level --</option>
+                  <option value="ug" data-en="Undergraduate (UG)" data-hi="स्नातक (यूजी)">Undergraduate (UG)</option>
+                  <option value="pg" data-en="Postgraduate (PG)" data-hi="स्नातकोत्तर (पीजी)">Postgraduate (PG)</option>
+                  <option value="phd" data-en="Ph.D. / Research" data-hi="पीएचडी / अनुसंधान">Ph.D. / Research</option>
+                  <option value="diploma" data-en="Diploma / Certificate" data-hi="डिप्लोमा / प्रमाणपत्र">Diploma / Certificate</option>
+                </select>
+              </div>
+
+              <div class="enquiry-field-group enquiry-form-full">
+                <label for="pageEnquiryDepartment" class="enquiry-field-label">
+                  <span data-en="Preferred Department / Course" data-hi="पसंदीदा विभाग / पाठ्यक्रम">Preferred Department / Course</span>
+                </label>
+                <select id="pageEnquiryDepartment" name="department" class="enquiry-select">
+                  <option value="" data-en="-- Select Department / Course --" data-hi="-- विभाग / पाठ्यक्रम चुनें --">-- Select Department / Course --</option>
+                  <option value="computer_science">Department of Computer Science</option>
+                  <option value="mathematics">Department of Mathematics</option>
+                  <option value="physics">Department of Physics</option>
+                  <option value="chemistry">Department of Chemistry</option>
+                  <option value="law">Department of Law & Governance</option>
+                  <option value="biotechnology">Department of Biotechnology</option>
+                  <option value="mass_comm">Department of Mass Communication</option>
+                  <option value="education">Department of Teacher Education</option>
+                  <option value="economics">Department of Economics</option>
+                </select>
+              </div>
+
+              <div class="enquiry-field-group enquiry-form-full">
+                <label for="pageEnquiryCuetNo" class="enquiry-field-label">
+                  <span data-en="CUET Application No. (Optional)" data-hi="सीयूईटी आवेदन संख्या (वैकल्पिक)">CUET Application No. (Optional)</span>
+                </label>
+                <input type="text" id="pageEnquiryCuetNo" name="cuetNo" class="enquiry-input" placeholder="e.g. 263510098765">
+              </div>
+
+              <div class="enquiry-field-group enquiry-form-full">
+                <label for="pageEnquiryMessage" class="enquiry-field-label">
+                  <span data-en="Your Specific Enquiry / Question" data-hi="आपका विशिष्ट प्रश्न / पूछताछ">Your Specific Enquiry / Question</span> <span class="req">*</span>
+                  <small id="pageCharCounter" style="font-weight: 400; font-size: 0.78rem; color: var(--tx-muted);">0 / 500</small>
+                </label>
+                <textarea id="pageEnquiryMessage" name="message" class="enquiry-textarea" rows="4" maxlength="500" placeholder="Type your inquiry details here... (e.g. admission eligibility, hostel allotment date, fee submission)" required></textarea>
+              </div>
+
+              <div class="enquiry-form-full" style="text-align: right; margin-top: 10px;">
+                <button type="submit" id="pageEnquirySubmitBtn" class="btn btn-gold" style="padding: 14px 36px; font-weight: 700; font-size: 1rem; width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                  <span data-en="Submit Enquiry Ticket →" data-hi="पूछताछ टिकट जमा करें →">Submit Enquiry Ticket →</span>
+                </button>
+              </div>
+            </form>
+
+            <!-- Success State Container -->
+            <div id="pageEnquirySuccessContainer" style="display: none;">
+              <div class="enquiry-success-card">
+                <div class="enquiry-success-icon"><svg class="svg-icon" style="width:32px; height:32px;" viewBox="0 0 24 24"><use href="#icon-check"></use></svg></div>
+                <h3 style="font-family: var(--ff-title); margin-bottom: 6px;" data-en="Enquiry Submitted Successfully!" data-hi="पूछताछ सफलतापूर्वक जमा की गई!">Enquiry Submitted Successfully!</h3>
+                <p style="color: var(--tx-muted); font-size: 0.9rem;" data-en="Thank you for reaching out to Central University of South Bihar. Your reference ticket code is:" data-hi="दक्षिण बिहार केंद्रीय विश्वविद्यालय से संपर्क करने के लिए धन्यवाद। आपका संदर्भ कोड है:">
+                  Thank you for reaching out to Central University of South Bihar. Your reference ticket code is:
+                </p>
+                
+                <div class="enquiry-ticket-badge" id="pageEnquiryTicketNumber">CUSB-ENQ-2026-8891</div>
+
+                <p style="font-size: 0.88rem; color: var(--tx-primary); margin-top: 12px; line-height: 1.5;" data-en="A confirmation email has been logged. Our Admission Helpdesk officer will contact you within 24–48 working hours." data-hi="एक पुष्टि ईमेल दर्ज की गई है। हमारा प्रवेश हेल्पडेस्क अधिकारी 24-48 कार्य घंटों के भीतर आपसे संपर्क करेगा।">
+                  A confirmation email has been logged. Our Admission Helpdesk officer will contact you within 24–48 working hours.
+                </p>
+
+                <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                  <button type="button" id="pageCopyTicketBtn" class="btn btn-navy" style="font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;" data-en="Copy Ticket Number" data-hi="टिकट नंबर कॉपी करें">
+                    <svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-file"></use></svg>
+                    <span data-en="Copy Ticket Number" data-hi="टिकट नंबर कॉपी करें">Copy Ticket Number</span>
+                  </button>
+                  <button type="button" id="pageResetEnquiryBtn" class="btn btn-ghost-light" style="font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;" data-en="Submit Another Enquiry" data-hi="नई पूछताछ दर्ज करें">
+                    <svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-plus"></use></svg>
+                    <span data-en="Submit Another Enquiry" data-hi="नई पूछताछ दर्ज करें">Submit Another Enquiry</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: DIRECT HELPLINE CONTACTS & QUICK FAQS -->
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            
+            <!-- Helpline Officer Card -->
+            <div class="card glass-card" style="padding: 24px; border-radius: 16px;">
+              <h3 style="font-family: var(--ff-title); font-size: 1.15rem; margin-bottom: 14px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; display: flex; align-items: center; gap: 8px;" data-en="Direct Helpline Contacts" data-hi="प्रत्यक्ष हेल्पलाइन संपर्क">
+                <svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-phone"></use></svg>
+                <span data-en="Direct Helpline Contacts" data-hi="प्रत्यक्ष हेल्पलाइन संपर्क">Direct Helpline Contacts</span>
+              </h3>
+              
+              <div style="display: flex; flex-direction: column; gap: 14px; font-size: 0.9rem;">
+                <div style="display: flex; gap: 12px; align-items: flex-start;">
+                  <span style="display: flex; align-items: center; color: var(--acc-navy); margin-top: 2px;"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-graduation"></use></svg></span>
+                  <div>
+                    <strong style="color: var(--tx-primary);" data-en="Admissions & CUET Cell" data-hi="प्रवेश एवं सीयूईटी कक्ष">Admissions & CUET Cell</strong>
+                    <div style="color: var(--tx-muted);">Phone: +91 631 2229 530</div>
+                    <div style="color: var(--tx-muted);">Email: admissions@cusb.ac.in</div>
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 12px; align-items: flex-start;">
+                  <span style="display: flex; align-items: center; color: var(--acc-navy); margin-top: 2px;"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-building"></use></svg></span>
+                  <div>
+                    <strong style="color: var(--tx-primary);" data-en="Hostel Allotment Desk" data-hi="छात्रावास आवंटन डेस्क">Hostel Allotment Desk</strong>
+                    <div style="color: var(--tx-muted);">Phone: +91 631 2229 542</div>
+                    <div style="color: var(--tx-muted);">Email: warden@cusb.ac.in</div>
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 12px; align-items: flex-start;">
+                  <span style="display: flex; align-items: center; color: var(--acc-navy); margin-top: 2px;"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-briefcase"></use></svg></span>
+                  <div>
+                    <strong style="color: var(--tx-primary);" data-en="Finance & Fee Section" data-hi="वित्त एवं शुल्क अनुभाग">Finance & Fee Section</strong>
+                    <div style="color: var(--tx-muted);">Phone: +91 631 2229 515</div>
+                    <div style="color: var(--tx-muted);">Email: fee@cusb.ac.in</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick FAQ Search Accordion -->
+            <div class="card glass-card" style="padding: 24px; border-radius: 16px;">
+              <h3 style="font-family: var(--ff-title); font-size: 1.15rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;" data-en="Quick Answers (FAQ)" data-hi="त्वरित उत्तर (सामान्य प्रश्न)">
+                <svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-chat"></use></svg>
+                <span data-en="Quick Answers (FAQ)" data-hi="त्वरित उत्तर (सामान्य प्रश्न)">Quick Answers (FAQ)</span>
+              </h3>
+              
+              <input type="text" id="faqSearchInput" class="enquiry-input" placeholder="Search FAQs... (e.g. cut-off, hostel, fee)" style="margin-bottom: 14px; padding: 8px 12px; font-size: 0.85rem;">
+
+              <div id="faqList" style="display: flex; flex-direction: column; gap: 10px;">
+                <details class="faq-item" style="background: var(--bg-secondary); border-radius: 8px; padding: 10px 14px; border: 1px solid var(--border-color);">
+                  <summary style="font-weight: 700; cursor: pointer; font-size: 0.88rem;" data-en="How to apply for CUSB Admissions 2026?" data-hi="सीयूएसबी प्रवेश 2026 के लिए आवेदन कैसे करें?">How to apply for CUSB Admissions 2026?</summary>
+                  <p style="font-size: 0.82rem; margin-top: 8px; color: var(--tx-muted);" data-en="Admissions are conducted through the National Testing Agency (NTA) CUET examination. Visit cuet.samarth.ac.in to apply." data-hi="प्रवेश नेशनल टेस्टिंग एजेंसी (NTA) CUET परीक्षा के माध्यम से आयोजित किए जाते हैं। आवेदन करने के लिए cuet.samarth.ac.in पर जाएं।">
+                    Admissions are conducted through the National Testing Agency (NTA) CUET examination. Visit cuet.samarth.ac.in to apply.
+                  </p>
+                </details>
+
+                <details class="faq-item" style="background: var(--bg-secondary); border-radius: 8px; padding: 10px 14px; border: 1px solid var(--border-color);">
+                  <summary style="font-weight: 700; cursor: pointer; font-size: 0.88rem;" data-en="What is the hostel fee structure?" data-hi="छात्रावास शुल्क संरचना क्या है?">What is the hostel fee structure?</summary>
+                  <p style="font-size: 0.82rem; margin-top: 8px; color: var(--tx-muted);" data-en="Hostel rent is approximately ₹3,500 per semester plus mess charges. Detailed breakdown is available on the Hostel Portal page." data-hi="छात्रावास का किराया लगभग ₹3,500 प्रति सेमेस्टर और मेस शुल्क है। विस्तृत विवरण हॉस्टल पोर्टल पृष्ठ पर उपलब्ध है।">
+                    Hostel rent is approximately ₹3,500 per semester plus mess charges. Detailed breakdown is available on the Hostel Portal page.
+                  </p>
+                </details>
+
+                <details class="faq-item" style="background: var(--bg-secondary); border-radius: 8px; padding: 10px 14px; border: 1px solid var(--border-color);">
+                  <summary style="font-weight: 700; cursor: pointer; font-size: 0.88rem;" data-en="Are scholarships available for SC/ST/OBC?" data-hi="क्या एससी/एसटी/ओबीसी के लिए छात्रवृत्ति उपलब्ध है?">Are scholarships available for SC/ST/OBC?</summary>
+                  <p style="font-size: 0.82rem; margin-top: 8px; color: var(--tx-muted);" data-en="Yes! CUSB supports National Scholarship Portal (NSP), Bihar Post-Matric, and university merit fee exemptions." data-hi="हाँ! सीयूएसबी नेशनल स्कॉलरशिप पोर्टल (एनएसपी), बिहार पोस्ट-मैट्रिक और विश्वविद्यालय योग्यता शुल्क छूट का समर्थन करता है।">
+                    Yes! CUSB supports National Scholarship Portal (NSP), Bihar Post-Matric, and university merit fee exemptions.
+                  </p>
+                </details>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Standard CUSB Footer & Floating Widgets -->
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <!-- Component & Main Interactive Scripts -->
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Page-level Enquiry Form wiring
+    document.addEventListener('DOMContentLoaded', () => {
+      const pageChips = document.querySelectorAll('#pageEnquiryCategoryChips .enquiry-chip');
+      const pageCatInput = document.getElementById('pageEnquiryCategoryInput');
+      const pageProgSelect = document.getElementById('pageEnquiryProgramLevel');
+      const pageDeptSelect = document.getElementById('pageEnquiryDepartment');
+      const pageMsgArea = document.getElementById('pageEnquiryMessage');
+      const pageCounter = document.getElementById('pageCharCounter');
+      const pageProgress = document.getElementById('pageEnquiryProgressFill');
+      const pageForm = document.getElementById('pageEnquiryForm');
+      const pageSuccess = document.getElementById('pageEnquirySuccessContainer');
+      const pageTicket = document.getElementById('pageEnquiryTicketNumber');
+
+      if (pageChips.length) {
+        pageChips.forEach(chip => {
+          chip.addEventListener('click', () => {
+            pageChips.forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            if (pageCatInput) pageCatInput.value = chip.getAttribute('data-category');
+          });
+        });
+      }
+
+      if (pageMsgArea && pageCounter) {
+        pageMsgArea.addEventListener('input', () => {
+          pageCounter.textContent = `${pageMsgArea.value.length} / 500`;
+        });
+      }
+
+      if (pageForm) {
+        const reqs = pageForm.querySelectorAll('[required]');
+        pageForm.addEventListener('input', () => {
+          let valid = 0;
+          reqs.forEach(r => { if (r.value.trim().length > 0) valid++; });
+          if (pageProgress) pageProgress.style.width = Math.round((valid / reqs.length) * 100) + '%';
+        });
+
+        pageForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          let valid = true;
+          reqs.forEach(r => { if (!r.value.trim()) valid = false; });
+          if (!valid) {
+            alert('Please fill out all required fields.');
+            return;
+          }
+          const tNum = 'CUSB-ENQ-2026-' + Math.floor(1000 + Math.random() * 9000);
+          if (pageTicket) pageTicket.textContent = tNum;
+          pageForm.style.display = 'none';
+          if (pageSuccess) pageSuccess.style.display = 'block';
+        });
+      }
+
+      const pCopy = document.getElementById('pageCopyTicketBtn');
+      if (pCopy && pageTicket) {
+        pCopy.addEventListener('click', () => {
+          navigator.clipboard.writeText(pageTicket.textContent).then(() => {
+            pCopy.textContent = '✓ Copied!';
+            setTimeout(() => pCopy.textContent = '📋 Copy Ticket Number', 2000);
+          });
+        });
+      }
+
+      const pReset = document.getElementById('pageResetEnquiryBtn');
+      if (pReset && pageForm && pageSuccess) {
+        pReset.addEventListener('click', () => {
+          pageForm.reset();
+          pageSuccess.style.display = 'none';
+          pageForm.style.display = 'grid';
+          if (pageProgress) pageProgress.style.width = '0%';
+          if (pageCounter) pageCounter.textContent = '0 / 500';
+        });
+      }
+
+      // FAQ filter search
+      const faqInput = document.getElementById('faqSearchInput');
+      const faqItems = document.querySelectorAll('#faqList details');
+      if (faqInput && faqItems.length) {
+        faqInput.addEventListener('input', (e) => {
+          const q = e.target.value.toLowerCase();
+          faqItems.forEach(item => {
+            const txt = item.textContent.toLowerCase();
+            item.style.display = txt.includes(q) ? 'block' : 'none';
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

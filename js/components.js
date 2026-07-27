@@ -50,6 +50,8 @@ const iconDefs = `
     <symbol id="icon-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
     <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></symbol>
     <symbol id="icon-admin-key" viewBox="0 0 24 24"><path d="M12 2C9.2 2 7 4.2 7 7c0 1.9 1 3.5 2.5 4.3V22h5V11.3C16 10.5 17 8.9 17 7c0-2.8-2.2-5-5-5Zm0 2a3 3 0 0 1 0 6 3 3 0 0 1 0-6Z"/><path d="M10 15h4M10 18h4"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></symbol>
   </svg>
 `;
 
@@ -906,6 +908,7 @@ class CusbSidebar extends HTMLElement {
           <button class="sidebar-close" id="quickLinksCloseBtn" type="button" aria-label="Close Quick Links">${iconSvg('close')}</button>
         </div>
         <ul class="sidebar-menu-list">
+          <li><a href="enquiry.html" class="sidebar-link">${iconSvg('file')}<span data-en="Enquiry Portal 2026" data-hi="पूछताछ पोर्टल 2026">Enquiry Portal 2026</span></a></li>
           <li><a href="admissions.html" class="sidebar-link">${iconSvg('file')}<span data-en="Admissions 2026-27" data-hi="प्रवेश 2026-27">Admissions 2026-27</span></a></li>
           <li><a href="https://cuet.samarth.ac.in/" target="_blank" class="sidebar-link">${iconSvg('graduation')}<span data-en="CUET Application" data-hi="सीयूईटी आवेदन">CUET Application</span></a></li>
           <li><a href="https://cusb.samarth.edu.in/index.php/site/login" target="_blank" class="sidebar-link">${iconSvg('users')}<span data-en="Samarth Portal" data-hi="समर्थ पोर्टल">Samarth Portal</span></a></li>
@@ -926,7 +929,154 @@ class CusbSidebar extends HTMLElement {
 }
 customElements.define('cusb-sidebar', CusbSidebar);
 
-// Auto-mount Sidebar to DOM if not explicitly placed
+// 9. Floating Enquiry Widget & Modal Component
+class CusbEnquiryWidget extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
+      <button class="floating-enquiry-btn" id="floatingEnquiryBtn" type="button" aria-label="Open Admissions Enquiry Form" title="Admissions & General Enquiry 2026">
+        <span class="enquiry-btn-pulse"></span>
+        <span class="enquiry-btn-icon">${iconSvg('file')}</span>
+        <span data-en="Enquire Now" data-hi="पूछताछ करें">Enquire Now</span>
+      </button>
+
+      <div class="enquiry-modal-overlay" id="enquiryModalOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="enquiryModalTitle">
+        <div class="enquiry-modal-card">
+          <div class="enquiry-modal-header">
+            <div class="enquiry-modal-title" id="enquiryModalTitle">
+              ${iconSvg('file')}
+              <span data-en="CUSB Admission & General Enquiry 2026" data-hi="सीयूएसबी प्रवेश एवं सामान्य पूछताछ 2026">CUSB Admission & General Enquiry 2026</span>
+            </div>
+            <button class="enquiry-modal-close" id="enquiryModalCloseBtn" type="button" aria-label="Close enquiry form">${iconSvg('close')}</button>
+          </div>
+          
+          <div class="enquiry-modal-body">
+            <div class="enquiry-progress-bar">
+              <div class="enquiry-progress-fill" id="enquiryProgressFill"></div>
+            </div>
+
+            <div class="enquiry-category-chips" id="enquiryCategoryChips">
+              <button type="button" class="enquiry-chip active" data-category="admissions">${iconSvg('graduation')} <span data-en="Admissions 2026" data-hi="प्रवेश 2026">Admissions 2026</span></button>
+              <button type="button" class="enquiry-chip" data-category="courses">${iconSvg('building')} <span data-en="Courses & Eligibility" data-hi="पाठ्यक्रम और पात्रता">Courses & Eligibility</span></button>
+              <button type="button" class="enquiry-chip" data-category="hostel">${iconSvg('home')} <span data-en="Hostel & Campus" data-hi="छात्रावास और परिसर">Hostel & Campus</span></button>
+              <button type="button" class="enquiry-chip" data-category="scholarship">${iconSvg('briefcase')} <span data-en="Scholarships & Fees" data-hi="छात्रवृत्ति और शुल्क">Scholarships & Fees</span></button>
+              <button type="button" class="enquiry-chip" data-category="general">${iconSvg('chat')} <span data-en="General Query" data-hi="सामान्य प्रश्न">General Query</span></button>
+            </div>
+
+            <form id="enquiryForm" class="enquiry-form-grid" novalidate>
+              <input type="hidden" id="enquiryCategoryInput" name="category" value="admissions">
+
+              <div class="enquiry-field-group">
+                <label for="enquiryFullName" class="enquiry-field-label">
+                  <span data-en="Full Name" data-hi="पूरा नाम">Full Name</span> <span class="req">*</span>
+                </label>
+                <input type="text" id="enquiryFullName" name="fullName" class="enquiry-input" placeholder="e.g. Rahul Kumar" required>
+                <span class="enquiry-hint" data-en="Enter your official name" data-hi="अपना आधिकारिक नाम दर्ज करें">Enter your official name</span>
+              </div>
+
+              <div class="enquiry-field-group">
+                <label for="enquiryEmail" class="enquiry-field-label">
+                  <span data-en="Email Address" data-hi="ईमेल पता">Email Address</span> <span class="req">*</span>
+                </label>
+                <input type="email" id="enquiryEmail" name="email" class="enquiry-input" placeholder="name@example.com" required>
+                <span class="enquiry-hint" data-en="We will send response to this email" data-hi="हम इस ईमेल पर उत्तर भेजेंगे">We will send response to this email</span>
+              </div>
+
+              <div class="enquiry-field-group">
+                <label for="enquiryPhone" class="enquiry-field-label">
+                  <span data-en="Mobile / WhatsApp No." data-hi="मोबाइल / व्हाट्सएप नंबर">Mobile / WhatsApp No.</span> <span class="req">*</span>
+                </label>
+                <input type="tel" id="enquiryPhone" name="phone" class="enquiry-input" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+              </div>
+
+              <div class="enquiry-field-group">
+                <label for="enquiryProgramLevel" class="enquiry-field-label">
+                  <span data-en="Program Level" data-hi="कार्यक्रम स्तर">Program Level</span> <span class="req">*</span>
+                </label>
+                <select id="enquiryProgramLevel" name="programLevel" class="enquiry-select" required>
+                  <option value="" data-en="-- Select Level --" data-hi="-- स्तर चुनें --">-- Select Level --</option>
+                  <option value="ug" data-en="Undergraduate (UG)" data-hi="स्नातक (यूजी)">Undergraduate (UG)</option>
+                  <option value="pg" data-en="Postgraduate (PG)" data-hi="स्नातकोत्तर (पीजी)">Postgraduate (PG)</option>
+                  <option value="phd" data-en="Ph.D. / Research" data-hi="पीएचडी / अनुसंधान">Ph.D. / Research</option>
+                  <option value="diploma" data-en="Diploma / Certificate" data-hi="डिप्लोमा / प्रमाणपत्र">Diploma / Certificate</option>
+                </select>
+              </div>
+
+              <div class="enquiry-field-group enquiry-form-full" id="dynamicDepartmentGroup">
+                <label for="enquiryDepartment" class="enquiry-field-label">
+                  <span data-en="Preferred Department / Course" data-hi="पसंदीदा विभाग / पाठ्यक्रम">Preferred Department / Course</span>
+                </label>
+                <select id="enquiryDepartment" name="department" class="enquiry-select">
+                  <option value="" data-en="-- Select Department / Course --" data-hi="-- विभाग / पाठ्यक्रम चुनें --">-- Select Department / Course --</option>
+                  <option value="computer_science">Department of Computer Science</option>
+                  <option value="mathematics">Department of Mathematics</option>
+                  <option value="physics">Department of Physics</option>
+                  <option value="chemistry">Department of Chemistry</option>
+                  <option value="law">Department of Law & Governance</option>
+                  <option value="biotechnology">Department of Biotechnology</option>
+                  <option value="mass_comm">Department of Mass Communication</option>
+                  <option value="education">Department of Teacher Education</option>
+                  <option value="economics">Department of Economics</option>
+                </select>
+              </div>
+
+              <div class="enquiry-field-group enquiry-form-full" id="dynamicCuetGroup">
+                <label for="enquiryCuetNo" class="enquiry-field-label">
+                  <span data-en="CUET Application No. (Optional)" data-hi="सीयूईटी आवेदन संख्या (वैकल्पिक)">CUET Application No. (Optional)</span>
+                </label>
+                <input type="text" id="enquiryCuetNo" name="cuetNo" class="enquiry-input" placeholder="e.g. 263510098765">
+              </div>
+
+              <div class="enquiry-field-group enquiry-form-full">
+                <label for="enquiryMessage" class="enquiry-field-label">
+                  <span data-en="Your Specific Enquiry / Question" data-hi="आपका विशिष्ट प्रश्न / पूछताछ">Your Specific Enquiry / Question</span> <span class="req">*</span>
+                  <small id="charCounter" style="font-weight: 400; font-size: 0.78rem; color: var(--tx-muted);">0 / 500</small>
+                </label>
+                <textarea id="enquiryMessage" name="message" class="enquiry-textarea" rows="4" maxlength="500" placeholder="Type your inquiry details here... (e.g. admission eligibility, hostel allotment date, fee submission)" required></textarea>
+              </div>
+
+              <div class="enquiry-form-full" style="display: flex; gap: 12px; align-items: center; justify-content: space-between; margin-top: 8px;">
+                <a href="enquiry.html" class="btn btn-ghost-light" style="font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px;">
+                  ${iconSvg('file')}
+                  <span data-en="Open Full Page" data-hi="पूरा पृष्ठ खोलें">Open Full Page</span>
+                </a>
+                <button type="submit" id="enquirySubmitBtn" class="btn btn-gold" style="padding: 12px 28px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
+                  <span data-en="Submit Enquiry →" data-hi="पूछताछ जमा करें →">Submit Enquiry →</span>
+                </button>
+              </div>
+            </form>
+
+            <div id="enquirySuccessContainer" style="display: none;">
+              <div class="enquiry-success-card">
+                <div class="enquiry-success-icon">${iconSvg('check')}</div>
+                <h3 style="font-family: var(--ff-title); margin-bottom: 6px;" data-en="Enquiry Submitted Successfully!" data-hi="पूछताछ सफलतापूर्वक जमा की गई!">Enquiry Submitted Successfully!</h3>
+                <p style="color: var(--tx-muted); font-size: 0.9rem;" data-en="Thank you for reaching out to CUSB. Your query reference number is:" data-hi="सीयूएसबी से संपर्क करने के लिए धन्यवाद। आपकी संदर्भ संख्या है:">Thank you for reaching out to CUSB. Your query reference number is:</p>
+                
+                <div class="enquiry-ticket-badge" id="enquiryTicketNumber">CUSB-ENQ-2026-9482</div>
+
+                <p style="font-size: 0.85rem; color: var(--tx-primary); margin-top: 10px;" data-en="Our Admission Helpline officer will review your query and respond to your email/phone within 24–48 working hours." data-hi="हमारा प्रवेश हेल्पलाइन अधिकारी आपकी समीक्षा करेगा और 24-48 कार्य घंटों के भीतर उत्तर देगा।">Our Admission Helpline officer will review your query and respond to your email/phone within 24–48 working hours.</p>
+
+                <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                  <button type="button" id="copyTicketBtn" class="btn btn-navy" style="font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px;">
+                    ${iconSvg('file')}
+                    <span data-en="Copy Ticket Reference" data-hi="संदर्भ संख्या कॉपी करें">Copy Ticket Reference</span>
+                  </button>
+                  <button type="button" id="resetEnquiryBtn" class="btn btn-ghost-light" style="font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px;">
+                    ${iconSvg('plus')}
+                    <span data-en="Submit Another Enquiry" data-hi="नई पूछताछ दर्ज करें">Submit Another Enquiry</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    replaceEmojiIcons(this);
+  }
+}
+customElements.define('cusb-enquiry-widget', CusbEnquiryWidget);
+
+// Auto-mount Sidebar & Enquiry Widget to DOM if not explicitly placed
 document.addEventListener('DOMContentLoaded', () => {
   if (!document.querySelector('cusb-sidebar')) {
     const navbar = document.querySelector('cusb-navbar');
@@ -936,6 +1086,11 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       document.body.prepend(sidebar);
     }
+  }
+
+  if (!document.querySelector('cusb-enquiry-widget')) {
+    const widget = document.createElement('cusb-enquiry-widget');
+    document.body.appendChild(widget);
   }
 
   // Keep sidebar always below the navbar dynamically
@@ -974,3 +1129,4 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial positioning
   setTimeout(updateSidebarPosition, 0);
 });
+

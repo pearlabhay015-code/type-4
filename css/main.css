@@ -715,6 +715,11 @@ cusb-navbar .container {
   transition: var(--transition);
 }
 
+/* Ensure nav links change to black on hover */
+.navbar-link:hover {
+  color: #000000 !important;
+}
+
 /* FIXED SIDEBAR FOR QUICK LINKS */
 .fixed-quicklinks-sidebar {
   position: fixed;
@@ -2055,3 +2060,641 @@ cusb-footer {
     transform: none !important;
   }
 }
+
+/* ==========================================================================
+   FLOATING ENQUIRY FORM BUTTON & INTERACTIVE MODAL / PAGE STYLES
+   ========================================================================== */
+
+/* Floating Enquiry Button - Midpoint Right Side (Rectangular Shape) */
+.floating-enquiry-btn {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9990;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--acc-navy) 0%, var(--acc-dark-green) 100%);
+  color: #ffffff;
+  padding: 16px 14px 16px 10px;
+  border-radius: 6px 0 0 6px;
+  box-shadow: -4px 4px 22px rgba(0, 75, 155, 0.35);
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-left: 4px solid var(--acc-gold);
+  border-right: none;
+  font-family: var(--ff-body);
+  font-weight: 800;
+  font-size: 0.94rem;
+  letter-spacing: 0.5px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, background 0.3s ease;
+  user-select: none;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.floating-enquiry-btn:hover {
+  transform: translateY(-50%) translateX(-6px);
+  box-shadow: -6px 6px 28px rgba(0, 75, 155, 0.5);
+  background: linear-gradient(135deg, #014291 0%, #002b5f 100%);
+}
+
+.floating-enquiry-btn .enquiry-btn-icon {
+  width: 28px;
+  height: 28px;
+  background: var(--acc-gold);
+  color: #082653;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(90deg);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.floating-enquiry-btn .enquiry-btn-pulse {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 10px;
+  height: 10px;
+  background-color: #22c55e;
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="dark"] .floating-enquiry-btn {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-color: rgba(255, 255, 255, 0.15);
+  border-left: 4px solid var(--acc-gold);
+  box-shadow: -4px 4px 20px rgba(0, 0, 0, 0.6);
+  color: #f8fafc;
+}
+[data-theme="dark"] .floating-enquiry-btn:hover {
+  background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+}
+
+/* Modal Overlay & Modal Window */
+.enquiry-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 38, 83, 0.65);
+  backdrop-filter: blur(6px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.enquiry-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.enquiry-modal-card {
+  background: var(--bg-primary);
+  color: var(--tx-primary);
+  width: 100%;
+  max-width: 740px;
+  max-height: 90vh;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0.92) translateY(20px);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.enquiry-modal-overlay.active .enquiry-modal-card {
+  transform: scale(1) translateY(0);
+}
+
+/* Header of Modal */
+.enquiry-modal-header {
+  background: linear-gradient(135deg, var(--acc-navy) 0%, var(--acc-dark-green) 100%);
+  color: #ffffff;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--acc-gold);
+}
+
+.enquiry-modal-title {
+  font-family: var(--ff-title);
+  font-size: 1.25rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.enquiry-modal-close {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.enquiry-modal-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+/* Modal Body */
+.enquiry-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Interactive Form Grid & Components */
+.enquiry-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.enquiry-form-full {
+  grid-column: span 2;
+}
+
+.enquiry-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.enquiry-field-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--tx-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.enquiry-field-label span.req {
+  color: var(--acc-coral);
+}
+
+.enquiry-input,
+.enquiry-select,
+.enquiry-textarea {
+  width: 100%;
+  padding: 11px 14px;
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--border-radius);
+  color: var(--tx-primary);
+  font-family: var(--ff-body);
+  font-size: 0.92rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  outline: none;
+}
+
+.enquiry-input:focus,
+.enquiry-select:focus,
+.enquiry-textarea:focus {
+  border-color: var(--acc-navy);
+  box-shadow: 0 0 0 3px rgba(0, 75, 155, 0.15);
+  background: var(--bg-primary);
+}
+
+.enquiry-input.is-valid,
+.enquiry-select.is-valid,
+.enquiry-textarea.is-valid {
+  border-color: #10b981;
+}
+
+.enquiry-input.is-invalid,
+.enquiry-select.is-invalid,
+.enquiry-textarea.is-invalid {
+  border-color: #ef4444;
+}
+
+.enquiry-hint {
+  font-size: 0.78rem;
+  color: var(--tx-muted);
+}
+
+/* Category Selection Chips */
+.enquiry-category-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.enquiry-chip {
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-color);
+  color: var(--tx-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.enquiry-chip:hover {
+  border-color: var(--acc-navy);
+  background: var(--bg-light-cyan);
+}
+
+.enquiry-chip.active {
+  background: var(--acc-navy);
+  color: #ffffff;
+  border-color: var(--acc-navy);
+  box-shadow: 0 2px 8px rgba(0, 75, 155, 0.25);
+}
+
+/* Progress Meter */
+.enquiry-progress-bar {
+  height: 6px;
+  background: var(--border-color);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.enquiry-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--acc-navy) 0%, var(--acc-gold) 100%);
+  transition: width 0.3s ease;
+}
+
+/* Confirmation / Success Card */
+.enquiry-success-card {
+  text-align: center;
+  padding: 30px 20px;
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  border: 2px dashed #10b981;
+}
+
+.enquiry-success-icon {
+  width: 64px;
+  height: 64px;
+  background: #10b981;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 16px auto;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+
+.enquiry-ticket-badge {
+  display: inline-block;
+  background: var(--acc-navy);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 12px 0;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .floating-enquiry-btn {
+    padding: 10px 12px 10px 10px;
+    font-size: 0.82rem;
+  }
+  .enquiry-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .enquiry-form-full {
+    grid-column: span 1;
+  }
+  .enquiry-modal-card {
+    max-height: 94vh;
+  }
+}
+
+/* ==========================================================================
+   CLEAN TABULAR TENDERS PAGE STYLES
+   ========================================================================== */
+
+.tender-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.tender-stat-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.tender-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--acc-navy);
+}
+
+.tender-stat-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 75, 155, 0.1);
+  color: var(--acc-navy);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.tender-stat-number {
+  font-family: var(--ff-title);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--tx-primary);
+  line-height: 1.1;
+}
+
+.tender-stat-label {
+  font-size: 0.82rem;
+  color: var(--tx-muted);
+  font-weight: 600;
+}
+
+/* Control Panel Bar (Search, Tabs, Filter) */
+.tender-controls-bar {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tender-search-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.tender-search-box {
+  position: relative;
+  flex: 1;
+  min-width: 280px;
+}
+
+.tender-search-input {
+  width: 100%;
+  padding: 10px 14px 10px 40px;
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--border-radius);
+  color: var(--tx-primary);
+  font-size: 0.9rem;
+  outline: none;
+  transition: var(--transition);
+}
+
+.tender-search-input:focus {
+  border-color: var(--acc-navy);
+  box-shadow: 0 0 0 3px rgba(0, 75, 155, 0.15);
+  background: var(--bg-primary);
+}
+
+.tender-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--tx-muted);
+  pointer-events: none;
+}
+
+.tender-filter-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tender-chip-btn {
+  padding: 7px 14px;
+  border-radius: 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--tx-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tender-chip-btn:hover {
+  border-color: var(--acc-navy);
+  background: var(--bg-light-cyan);
+}
+
+.tender-chip-btn.active {
+  background: var(--acc-navy);
+  color: #ffffff;
+  border-color: var(--acc-navy);
+}
+
+/* Modern Tabular Table */
+.tender-table-wrapper {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow-x: auto;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 20px;
+}
+
+.tender-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+  min-width: 800px;
+}
+
+.tender-table th {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-light-cyan) 100%);
+  color: var(--tx-secondary);
+  font-family: var(--ff-title);
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 14px 16px;
+  border-bottom: 2px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.tender-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--tx-primary);
+  vertical-align: top;
+  transition: background 0.2s ease;
+}
+
+.tender-table tbody tr:nth-child(even) {
+  background-color: var(--bg-secondary);
+}
+
+.tender-table tbody tr:hover {
+  background-color: var(--bg-light-cyan);
+}
+
+.tender-ref-badge {
+  display: inline-block;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--acc-navy);
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.tender-badge-active {
+  background: rgba(34, 197, 94, 0.15);
+  color: #15803d;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  display: inline-block;
+}
+
+.tender-badge-urgent {
+  background: rgba(239, 68, 68, 0.15);
+  color: #b91c1c;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  display: inline-block;
+}
+
+.tender-badge-closed {
+  background: rgba(100, 116, 139, 0.15);
+  color: #475569;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  display: inline-block;
+}
+
+/* Pagination Bar */
+.tender-pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tender-pagination-info {
+  font-size: 0.85rem;
+  color: var(--tx-muted);
+}
+
+.tender-pagination-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.tender-page-btn {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--tx-primary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.tender-page-btn:hover:not(:disabled) {
+  border-color: var(--acc-navy);
+  background: var(--acc-navy);
+  color: white;
+}
+
+.tender-page-btn.active {
+  background: var(--acc-navy);
+  color: white;
+  border-color: var(--acc-navy);
+}
+
+.tender-page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+[data-theme="dark"] .tender-table th {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  color: #f8fafc;
+}
+[data-theme="dark"] .tender-table tbody tr:nth-child(even) {
+  background-color: #0f172a;
+}
+[data-theme="dark"] .tender-table tbody tr:hover {
+  background-color: #1e293b;
+}
+
+
