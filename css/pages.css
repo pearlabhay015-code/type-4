@@ -738,7 +738,7 @@
   }
   .program-school-card:hover .program-school-arrow {
     transform: translateX(5px);
-    background: var(--acc-gold);
+    background: rgb(67, 146, 250);
   }
   .program-school-card:hover .program-dept-list {
     max-height: 320px;
@@ -808,15 +808,16 @@
   align-items: center;
   justify-content: center;
   flex: 0 0 38px;
-  background: rgb(67, 146, 250);
-  color: #ffffff;
+  background: #e6e8ea;
+  color: #1f2933;
   font-size: 1.28rem;
   line-height: 1;
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 .program-school-card.is-open .program-school-arrow {
   transform: rotate(90deg);
-  background: var(--acc-gold);
+  background: rgb(67, 146, 250);
+  color: #ffffff;
 }
 .program-dept-list {
   display: grid;

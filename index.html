@@ -516,10 +516,10 @@
       
       if (scrollContainer && prevBtn && nextBtn) {
         prevBtn.addEventListener('click', () => {
-          scrollContainer.scrollBy({ left: -285, behavior: 'smooth' });
+          scrollContainer.scrollBy({ left: -285, behavior: window.innerWidth <= 991 ? 'auto' : 'smooth' });
         });
         nextBtn.addEventListener('click', () => {
-          scrollContainer.scrollBy({ left: 285, behavior: 'smooth' });
+          scrollContainer.scrollBy({ left: 285, behavior: window.innerWidth <= 991 ? 'auto' : 'smooth' });
         });
       }
     });

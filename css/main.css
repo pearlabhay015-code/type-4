@@ -2029,3 +2029,29 @@ cusb-footer {
     right: -10px;
   }
 }
+
+/* Zero Animation Mode for Mobile & Touch Devices for Maximum Performance */
+@media (max-width: 991px), (pointer: coarse) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition: none !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+
+  .program-school-card:hover,
+  .program-select-card:hover,
+  .sidebar-link:hover,
+  .qa-card:hover,
+  .news-card:hover,
+  .facility-card-teal:hover,
+  .gallery-block:hover,
+  .btn:hover {
+    transform: none !important;
+  }
+}
