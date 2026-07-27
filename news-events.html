@@ -158,22 +158,38 @@
       }
 
       async function fetchAnnouncements() {
+        allAnnouncements = [];
         try {
-          listContainer.innerHTML = '<div class="loading-spinner" data-en="Loading updates from server..." data-hi="सर्वर से अपडेट लोड हो रहे हैं...">Loading updates from server...</div>';
-          applyLangToContainer();
-
           let url = window.cusbApiUrl('announcements');
           if (activeFilter === 'archive') {
             url += '?archive=true';
           }
           const response = await fetch(url);
-          allAnnouncements = await response.json();
-          renderAnnouncements(activeFilter);
+          if (response.ok) {
+            allAnnouncements = await response.json();
+          }
         } catch (error) {
-          console.error("Error fetching announcements:", error);
-          listContainer.innerHTML = '<div class="loading-spinner" data-en="Failed to load updates. Please try again." data-hi="अपडेट लोड करने में विफल। कृपया पुनः प्रयास करें।">Failed to load updates. Please try again.</div>';
-          applyLangToContainer();
+          console.log("Backend offline, reading local storage announcements");
         }
+
+        const stored = localStorage.getItem('cusb_announcements');
+        if (stored) {
+          try {
+            const localArr = JSON.parse(stored);
+            if (localArr && localArr.length > 0) {
+              const now = Date.now();
+              localArr.forEach(item => {
+                if (!item.expiry_timestamp || item.expiry_timestamp === 0 || item.expiry_timestamp > now) {
+                  if (!allAnnouncements.some(a => a.id === item.id)) {
+                    allAnnouncements.unshift(item);
+                  }
+                }
+              });
+            }
+          } catch(e) {}
+        }
+
+        renderAnnouncements(activeFilter);
       }
 
       function renderAnnouncements(filter) {

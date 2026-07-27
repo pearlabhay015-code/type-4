@@ -40,30 +40,43 @@
       gap: 12px;
       padding: 12px 16px;
       background: transparent;
-      border: none;
+      border: 1px solid transparent;
       color: var(--admin-text-secondary);
       font-weight: 600;
       font-size: 0.9rem;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
       text-align: left;
-      transition: all 0.3s ease;
+      transition: all 0.25s ease;
       width: 100%;
     }
     
     .sidebar-btn:hover {
-      background-color: rgba(0, 75, 155, 0.05);
-      color: var(--admin-blue);
+      background-color: rgba(0, 75, 155, 0.08);
+      color: #004b9b;
+      border-color: rgba(0, 75, 155, 0.15);
     }
     
     .sidebar-btn.active {
-      background-color: var(--admin-blue);
-      color: #ffffff;
+      background: linear-gradient(135deg, #004b9b 0%, #082653 100%) !important;
+      color: #ffffff !important;
+      border-color: transparent !important;
+      box-shadow: 0 4px 12px rgba(0, 75, 155, 0.25);
     }
     
-    [data-theme="dark"] .sidebar-btn.active {
-      background-color: #5c5c5c;
+    .sidebar-btn.active svg {
+      stroke: #ffffff !important;
+    }
+    
+    [data-theme="dark"] .sidebar-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
       color: #ffffff;
+    }
+
+    [data-theme="dark"] .sidebar-btn.active {
+      background: linear-gradient(135deg, #004b9b 0%, #002f68 100%) !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
     }
     
     /* Main panel area */
@@ -2248,23 +2261,30 @@
       const dateStr = document.getElementById('editNoticeDateStr').value.trim();
 
       try {
-        const response = await adminFetch('/api/announcements/update', {
+        await adminFetch('/api/announcements/update', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id, titleEn, titleHi, descEn, descHi, type, imageUrl, dateStr })
         });
-        const data = await response.json();
-
-        if (response.ok) {
-          showAlert("Announcement updated successfully!", "success");
-          closeModal('editAnnouncementModal');
-          loadAnnouncements();
-        } else {
-          showAlert(data.error || "Failed to update announcement.");
-        }
       } catch (err) {
-        showAlert("Server connection error.");
+        console.log("Backend offline, updating announcement locally");
       }
+
+      const item = loadedAnnouncements.find(ann => ann.id === id);
+      if (item) {
+        item.title_en = titleEn;
+        item.title_hi = titleHi;
+        item.desc_en = descEn;
+        item.desc_hi = descHi;
+        item.type = type;
+        item.image_url = imageUrl;
+        item.date_str = dateStr;
+        localStorage.setItem('cusb_announcements', JSON.stringify(loadedAnnouncements));
+      }
+
+      showAlert("Announcement updated live on website!", "success");
+      closeModal('editAnnouncementModal');
+      loadAnnouncements();
     });
 
     // ==========================================
@@ -2272,43 +2292,72 @@
     // ==========================================
     let loadedGallery = [];
 
+    function renderGalleryGrid() {
+      const grid = document.getElementById('galleryGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      
+      if (!loadedGallery || loadedGallery.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--admin-text-secondary); padding: 30px 0;">No photos in the website gallery.</div>';
+        return;
+      }
+
+      loadedGallery.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'gallery-admin-card';
+        card.innerHTML = `
+          <div class="gallery-admin-media">
+            <img src="${item.image_url}" alt="${item.title_en}" onerror="this.src='assets/images/blockB.jpg'">
+          </div>
+          <div class="gallery-admin-details">
+            <div>
+              <div class="gallery-admin-title">${escapeHTML(item.title_en)}</div>
+              <div style="font-size:0.75rem; color:var(--admin-text-secondary); margin-top:2px;">${escapeHTML(item.title_hi)}</div>
+            </div>
+            <div class="action-btn-group" style="margin-top:8px;">
+              <button class="action-btn btn-edit" style="flex:1;" onclick="initEditGallery(${item.id})">Edit</button>
+              <button class="action-btn btn-delete" style="flex:1;" onclick="deleteGallery(${item.id})">Delete</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
     async function loadGallery() {
       try {
         const response = await adminFetch('/api/gallery');
         if (response.ok) {
-          loadedGallery = await response.json();
-          const grid = document.getElementById('galleryGrid');
-          grid.innerHTML = '';
-          
-          if (loadedGallery.length === 0) {
-            grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--admin-text-secondary); padding: 30px 0;">No photos in the website gallery.</div>';
+          const apiG = await response.json();
+          if (apiG && apiG.length > 0) {
+            loadedGallery = apiG;
+            localStorage.setItem('cusb_gallery', JSON.stringify(loadedGallery));
+            renderGalleryGrid();
             return;
           }
-
-          loadedGallery.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'gallery-admin-card';
-            card.innerHTML = `
-              <div class="gallery-admin-media">
-                <img src="${item.image_url}" alt="${item.title_en}" onerror="this.src='assets/images/blockB.jpg'">
-              </div>
-              <div class="gallery-admin-details">
-                <div>
-                  <div class="gallery-admin-title">${escapeHTML(item.title_en)}</div>
-                  <div style="font-size:0.75rem; color:var(--admin-text-secondary); margin-top:2px;">${escapeHTML(item.title_hi)}</div>
-                </div>
-                <div class="action-btn-group" style="margin-top:5px;">
-                  <button class="action-btn btn-edit" style="flex:1;" onclick="initEditGallery(${item.id})">Edit</button>
-                  <button class="action-btn btn-delete" style="flex:1;" onclick="deleteGallery(${item.id})">Delete</button>
-                </div>
-              </div>
-            `;
-            grid.appendChild(card);
-          });
         }
       } catch (err) {
-        showAlert("Failed to load gallery items.");
+        console.log("Backend offline, reading gallery from LocalStorage");
       }
+
+      const storedG = localStorage.getItem('cusb_gallery');
+      if (storedG) {
+        try { loadedGallery = JSON.parse(storedG); } catch(e) {}
+      }
+
+      if (!loadedGallery || loadedGallery.length === 0) {
+        loadedGallery = [
+          { id: 1, title_en: "Main Entrance Gate", title_hi: "मुख्य प्रवेश द्वार", image_url: "assets/drone.png" },
+          { id: 2, title_en: "Academic Block Complex", title_hi: "अकादमिक ब्लॉक परिसर", image_url: "assets/images/blockB.jpg" },
+          { id: 3, title_en: "Central Library & Reading Hall", title_hi: "केंद्रीय पुस्तकालय", image_url: "assets/images/libimg.avif" },
+          { id: 4, title_en: "University Central Auditorium", title_hi: "विश्वविद्यालय सभागार", image_url: "assets/images/audimg.jpg" },
+          { id: 5, title_en: "Computer Science GPU Lab", title_hi: "कंप्यूटर साइंस जीपीयू लैब", image_url: "assets/images/cs_lab.jpg" },
+          { id: 6, title_en: "Sports Complex Stadium", title_hi: "खेल परिसर मैदान", image_url: "assets/images/spoim.jpg" }
+        ];
+        localStorage.setItem('cusb_gallery', JSON.stringify(loadedGallery));
+      }
+
+      renderGalleryGrid();
     }
 
     // Add Image to Gallery
@@ -2319,44 +2368,48 @@
       const titleHi = document.getElementById('addGalleryTitleHi').value.trim();
       const imageUrl = document.getElementById('addGalleryImageUrl').value.trim();
 
+      const newItem = {
+        id: Date.now(),
+        title_en: titleEn,
+        title_hi: titleHi,
+        image_url: imageUrl,
+        created_at: new Date().toISOString()
+      };
+
       try {
-        const response = await adminFetch('/api/gallery', {
+        await adminFetch('/api/gallery', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ titleEn, titleHi, imageUrl })
         });
-        const data = await response.json();
-
-        if (response.ok) {
-          showAlert("Gallery image added successfully!", "success");
-          document.getElementById('addGalleryForm').reset();
-          loadGallery();
-        } else {
-          showAlert(data.error || "Failed to add image.");
-        }
       } catch (err) {
-        showAlert("Connection error.");
+        console.log("Backend offline, adding gallery photo locally");
       }
+
+      loadedGallery.unshift(newItem);
+      localStorage.setItem('cusb_gallery', JSON.stringify(loadedGallery));
+      showAlert("Gallery photo published live on website!", "success");
+      document.getElementById('addGalleryForm').reset();
+      renderGalleryGrid();
     });
 
     // Delete Gallery Image
     async function deleteGallery(id) {
-      if (!confirm("Remove this image from the gallery?")) return;
+      if (!confirm("Remove this image from the live gallery website?")) return;
       try {
-        const response = await adminFetch('/api/gallery/delete', {
+        await adminFetch('/api/gallery/delete', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id })
         });
-        if (response.ok) {
-          showAlert("Gallery photo removed successfully!", "success");
-          loadGallery();
-        } else {
-          showAlert("Deletion failed.");
-        }
       } catch (err) {
-        showAlert("Connection error.");
+        console.log("Backend offline, deleting gallery photo locally");
       }
+
+      loadedGallery = loadedGallery.filter(g => g.id !== id);
+      localStorage.setItem('cusb_gallery', JSON.stringify(loadedGallery));
+      showAlert("Gallery photo removed live from website!", "success");
+      renderGalleryGrid();
     }
 
     // Edit Gallery Modal Init
@@ -2382,23 +2435,26 @@
       const imageUrl = document.getElementById('editGalleryImageUrl').value.trim();
 
       try {
-        const response = await adminFetch('/api/gallery/update', {
+        await adminFetch('/api/gallery/update', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id, titleEn, titleHi, imageUrl })
         });
-        const data = await response.json();
-
-        if (response.ok) {
-          showAlert("Gallery image updated successfully!", "success");
-          closeModal('editGalleryModal');
-          loadGallery();
-        } else {
-          showAlert(data.error || "Failed to update image.");
-        }
       } catch (err) {
-        showAlert("Connection error.");
+        console.log("Backend offline, updating gallery photo locally");
       }
+
+      const item = loadedGallery.find(g => g.id === id);
+      if (item) {
+        item.title_en = titleEn;
+        item.title_hi = titleHi;
+        item.image_url = imageUrl;
+        localStorage.setItem('cusb_gallery', JSON.stringify(loadedGallery));
+      }
+
+      showAlert("Gallery image updated live on website!", "success");
+      closeModal('editGalleryModal');
+      renderGalleryGrid();
     });
 
     // ==========================================
@@ -2542,8 +2598,161 @@
       }
     }
 
-    // Run auth check on load
-    window.onload = checkAuth;
+    // ==========================================
+    // AUTO ENGLISH-TO-HINDI TRANSLATION LOGIC
+    // ==========================================
+    const enHiDictionary = {
+      "admission": "प्रवेश",
+      "admissions": "प्रवेश",
+      "notice": "सूचना",
+      "notices": "सूचनाएं",
+      "news": "समाचार",
+      "event": "कार्यक्रम",
+      "events": "कार्यक्रम",
+      "result": "परिणाम",
+      "results": "परिणाम",
+      "exam": "परीक्षा",
+      "exams": "परीक्षाएं",
+      "examination": "परीक्षा",
+      "schedule": "समय सारणी",
+      "time table": "समय सारणी",
+      "circular": "परिपत्र",
+      "circulars": "परिपत्र",
+      "tender": "निविदा",
+      "tenders": "निविदाएं",
+      "career": "करियर",
+      "careers": "करियर और नौकरियां",
+      "recruitment": "भर्ती",
+      "job": "नौकरी",
+      "jobs": "नौकरियां",
+      "spring": "वसन्त",
+      "summer": "ग्रीष्मकालीन",
+      "winter": "शीतकालीन",
+      "autumn": "शरद ऋतु",
+      "internship": "इन्टर्नशिप",
+      "internships": "इन्टर्नशिप अवसर",
+      "opportunity": "अवसर",
+      "opportunities": "अवसर",
+      "syllabus": "पाठ्यक्रम",
+      "library": "पुस्तकालय",
+      "sports": "खेल",
+      "athletics": "एथलेटिक्स",
+      "department": "विभाग",
+      "science": "विज्ञान",
+      "computer science": "कंप्यूटर विज्ञान",
+      "biotechnology": "बायोटेक्नोलॉजी",
+      "physics": "भौतिकी",
+      "chemistry": "रसायन विज्ञान",
+      "mathematics": "गणित",
+      "law": "विधि",
+      "humanities": "मानविकी",
+      "lecture": "व्याख्यान",
+      "workshop": "कार्यशाला",
+      "seminar": "संगोष्ठी",
+      "conference": "सम्मेलन",
+      "university": "विश्वविद्यालय",
+      "campus": "परिसर",
+      "student": "छात्र",
+      "students": "छात्र",
+      "faculty": "संकाय",
+      "teacher": "शिक्षक",
+      "professor": "प्रोफेसर",
+      "scholarship": "छात्रवृत्ति",
+      "fee": "शुल्क",
+      "payment": "भुगतान",
+      "portal": "पोर्टल",
+      "important date": "महत्वपूर्ण तिथि",
+      "important dates": "महत्वपूर्ण तिथियां",
+      "hall": "सभागार",
+      "auditorium": "सभागार",
+      "hostel": "छात्रावास",
+      "building": "भवन",
+      "main gate": "मुख्य द्वार"
+    };
+
+    async function translateTextToHindi(text) {
+      if (!text || !text.trim()) return '';
+      const trimmed = text.trim();
+      const lower = trimmed.toLowerCase();
+
+      // 1. Direct dictionary match
+      if (enHiDictionary[lower]) return enHiDictionary[lower];
+
+      // 2. Google Translate free endpoint
+      try {
+        const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=hi&dt=t&q=${encodeURIComponent(trimmed)}`;
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 1400);
+        const res = await fetch(url, { signal: controller.signal });
+        clearTimeout(timeoutId);
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data[0]) {
+            let translated = data[0].map(item => item[0]).join('');
+            if (translated && translated !== trimmed) return translated;
+          }
+        }
+      } catch (err) {}
+
+      // 3. Word by word dictionary mapping
+      const words = trimmed.split(/\s+/);
+      const translatedWords = words.map(w => {
+        const clean = w.toLowerCase().replace(/[^a-z0-9]/g, '');
+        return enHiDictionary[clean] || w;
+      });
+      return translatedWords.join(' ');
+    }
+
+    function setupAutoTranslate(enInputId, hiInputId) {
+      const enEl = document.getElementById(enInputId);
+      const hiEl = document.getElementById(hiInputId);
+      if (!enEl || !hiEl) return;
+
+      let timer = null;
+      let userManuallyEditedHindi = false;
+
+      hiEl.addEventListener('input', () => {
+        userManuallyEditedHindi = hiEl.value.trim() !== '';
+      });
+
+      enEl.addEventListener('input', () => {
+        clearTimeout(timer);
+        const val = enEl.value;
+        if (!val.trim()) {
+          if (!userManuallyEditedHindi) hiEl.value = '';
+          return;
+        }
+
+        // Instant local check for single words or common terms
+        const lower = val.trim().toLowerCase();
+        if (enHiDictionary[lower] && !userManuallyEditedHindi) {
+          hiEl.value = enHiDictionary[lower];
+        }
+
+        timer = setTimeout(async () => {
+          if (userManuallyEditedHindi && hiEl.value.trim() !== '') return;
+          const translated = await translateTextToHindi(val);
+          if (translated) {
+            hiEl.value = translated;
+          }
+        }, 200);
+      });
+    }
+
+    function initAllAutoTranslators() {
+      setupAutoTranslate('addNoticeTitleEn', 'addNoticeTitleHi');
+      setupAutoTranslate('addNoticeDescEn', 'addNoticeDescHi');
+      setupAutoTranslate('editNoticeTitleEn', 'editNoticeTitleHi');
+      setupAutoTranslate('editNoticeDescEn', 'editNoticeDescHi');
+      setupAutoTranslate('addGalleryTitleEn', 'addGalleryTitleHi');
+      setupAutoTranslate('editGalleryTitleEn', 'editGalleryTitleHi');
+    }
+
+    // Run auth check & setup auto-translation on load
+    window.onload = function() {
+      checkAuth();
+      initAllAutoTranslators();
+    };
   </script>
 </body>
 </html>

@@ -1474,6 +1474,33 @@ function initGalleryTicker() {
     }
   ];
 
+  // Merge live custom gallery items added via Admin Panel
+  const storedGallery = localStorage.getItem('cusb_gallery');
+  if (storedGallery) {
+    try {
+      const customGallery = JSON.parse(storedGallery);
+      if (customGallery && customGallery.length > 0) {
+        customGallery.forEach((item, idx) => {
+          const gObj = {
+            id: 'cusb-custom-g-' + (item.id || idx),
+            title_en: item.title_en || item.titleEn || "Campus View",
+            title_hi: item.title_hi || item.titleHi || item.title_en || "परिसर दृश्य",
+            category_en: item.category_en || 'Campus Landmark',
+            category_hi: item.category_hi || 'परिसर लैंडमार्क',
+            src: item.image_url || item.src || 'assets/images/blockB.jpg',
+            location: 'CUSB Panchanpur Campus',
+            access: 'Students & Visitors',
+            desc_en: item.desc_en || item.title_en || "CUSB Campus Landmark",
+            desc_hi: item.desc_hi || item.title_hi || item.title_en || "सीयूएसबी परिसर",
+            link: 'facilities.html'
+          };
+          if (idx % 2 === 0) row1Items.unshift(gObj);
+          else row2Items.unshift(gObj);
+        });
+      }
+    } catch(e) {}
+  }
+
   // Function to create a gallery card element
   const createCard = (item) => {
     const lang = localStorage.getItem('cusb-lang') || 'en';
@@ -1942,3 +1969,151 @@ function openNewsDetailModal(item) {
   modal.classList.add('active');
 }
 
+/* ==========================================================================
+   17. UNIVERSAL CURSOR DRAG & MOBILE TOUCH GESTURE SCROLLER FOR CARDS & FLOATING WIDGETS
+   ========================================================================== */
+function enableDragToScroll(el) {
+  if (!el) return;
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  el.style.cursor = 'grab';
+
+  el.addEventListener('mousedown', (e) => {
+    if (['INPUT', 'BUTTON', 'A', 'TEXTAREA'].includes(e.target.tagName)) return;
+    isDown = true;
+    el.style.cursor = 'grabbing';
+    startX = e.pageX - el.offsetLeft;
+    scrollLeft = el.scrollLeft;
+  });
+
+  el.addEventListener('mouseleave', () => {
+    isDown = false;
+    el.style.cursor = 'grab';
+  });
+
+  el.addEventListener('mouseup', () => {
+    isDown = false;
+    el.style.cursor = 'grab';
+  });
+
+  el.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - el.offsetLeft;
+    const walk = (x - startX) * 2;
+    el.scrollLeft = scrollLeft - walk;
+  });
+
+  // Mobile Touch Gestures
+  let touchStartX = 0;
+  let touchScrollLeft = 0;
+
+  el.addEventListener('touchstart', (e) => {
+    if (['INPUT', 'BUTTON', 'A', 'TEXTAREA'].includes(e.target.tagName)) return;
+    touchStartX = e.touches[0].pageX - el.offsetLeft;
+    touchScrollLeft = el.scrollLeft;
+  }, { passive: true });
+
+  el.addEventListener('touchmove', (e) => {
+    const x = e.touches[0].pageX - el.offsetLeft;
+    const walk = (x - touchStartX) * 1.5;
+    el.scrollLeft = touchScrollLeft - walk;
+  }, { passive: true });
+}
+
+function makeElementDraggable(el, handleEl) {
+  if (!el) return;
+  const handle = handleEl || el;
+  let posX = 0, posY = 0, initialX = 0, initialY = 0;
+
+  handle.style.cursor = 'grab';
+
+  handle.addEventListener('mousedown', dragMouseDown);
+
+  function dragMouseDown(e) {
+    if (['INPUT', 'BUTTON', 'TEXTAREA', 'A'].includes(e.target.tagName)) return;
+    e.preventDefault();
+    initialX = e.clientX;
+    initialY = e.clientY;
+    document.addEventListener('mousemove', elementDrag);
+    document.addEventListener('mouseup', closeDragElement);
+  }
+
+  function elementDrag(e) {
+    e.preventDefault();
+    posX = initialX - e.clientX;
+    posY = initialY - e.clientY;
+    initialX = e.clientX;
+    initialY = e.clientY;
+    el.style.top = Math.max(10, Math.min(window.innerHeight - 80, el.offsetTop - posY)) + "px";
+    el.style.left = Math.max(10, Math.min(window.innerWidth - 80, el.offsetLeft - posX)) + "px";
+    el.style.bottom = "auto";
+    el.style.right = "auto";
+    el.style.position = "fixed";
+  }
+
+  function closeDragElement() {
+    document.removeEventListener('mousemove', elementDrag);
+    document.removeEventListener('mouseup', closeDragElement);
+  }
+
+  // Touch drag for phone & tablet
+  handle.addEventListener('touchstart', touchStart, { passive: false });
+
+  function touchStart(e) {
+    if (['INPUT', 'BUTTON', 'TEXTAREA', 'A'].includes(e.target.tagName)) return;
+    const touch = e.touches[0];
+    initialX = touch.clientX;
+    initialY = touch.clientY;
+    document.addEventListener('touchmove', touchMove, { passive: false });
+    document.addEventListener('touchend', touchEnd);
+  }
+
+  function touchMove(e) {
+    const touch = e.touches[0];
+    posX = initialX - touch.clientX;
+    posY = initialY - touch.clientY;
+    initialX = touch.clientX;
+    initialY = touch.clientY;
+    el.style.top = Math.max(10, Math.min(window.innerHeight - 80, el.offsetTop - posY)) + "px";
+    el.style.left = Math.max(10, Math.min(window.innerWidth - 80, el.offsetLeft - posX)) + "px";
+    el.style.bottom = "auto";
+    el.style.right = "auto";
+    el.style.position = "fixed";
+  }
+
+  function touchEnd() {
+    document.removeEventListener('touchmove', touchMove);
+    document.removeEventListener('touchend', touchEnd);
+  }
+}
+
+// Attach Drag & Touch Scrollers Across Site
+document.addEventListener('DOMContentLoaded', () => {
+  const scrollContainers = [
+    'galleryRow1Track', 'galleryRow2Track', 'galleryTickerWrapper', 'newsTickerTrack',
+    'newsGrid', 'eventsGrid', 'galleryGrid', 'kpiGrid'
+  ];
+
+  scrollContainers.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) enableDragToScroll(el);
+  });
+
+  document.querySelectorAll('.news-grid, .events-grid, .gallery-grid-pastel, .kpi-row-grid, .table-responsive').forEach(el => {
+    enableDragToScroll(el);
+  });
+
+  // Make Chatbot Floating Button & Window Draggable
+  setTimeout(() => {
+    const chatbotHost = document.querySelector('cusb-chatbot');
+    if (chatbotHost && chatbotHost.shadowRoot) {
+      const chatBtn = chatbotHost.shadowRoot.querySelector('.chatbot-toggle');
+      const chatWin = chatbotHost.shadowRoot.querySelector('.chatbot-container');
+      if (chatBtn) makeElementDraggable(chatBtn);
+      if (chatWin) makeElementDraggable(chatWin, chatWin.querySelector('.chatbot-header'));
+    }
+  }, 1000);
+});

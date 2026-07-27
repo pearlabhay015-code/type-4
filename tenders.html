@@ -324,6 +324,27 @@
         }
       ];
 
+      // Merge live custom tenders added via Admin Panel
+      const storedTenders = localStorage.getItem('cusb_tenders');
+      if (storedTenders) {
+        try {
+          const customTenders = JSON.parse(storedTenders);
+          if (customTenders && customTenders.length > 0) {
+            customTenders.forEach(t => {
+              tendersData.unshift({
+                ref: t.refNo || t.ref || "CUSB/PROC/2026/T-NEW",
+                title: t.title || "Tender Notice",
+                category: t.category || "equipment",
+                published: "Today",
+                closing: t.closing || t.deadline || "15 Dec 2026",
+                status: "active",
+                docUrl: t.link || "tenders.html"
+              });
+            });
+          }
+        } catch(e) {}
+      }
+
       // State Management
       let currentCategory = 'all';
       let searchQuery = '';
