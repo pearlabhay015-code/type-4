@@ -17,43 +17,202 @@
 }
 
 /* Hero Banner */
-.hero-banner {
-  position: relative;
-  background-image: url('../assets/drone.png');
-  background-size: cover;
-  background-position: center;
-  background-attachment: scroll;
-  color: white;
-  padding: 120px 0 140px;
-  text-align: left;
-}
+/* Hero Banner & Page Hero Common Styles */
+.hero-banner,
 .admin-hero,
-.hero-banner {
-  background-image: var(--hero-image);
+.page-hero {
+  position: relative;
+  background-image:  var(--hero-image, url('../assets/drone.png'));
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: #ffffff;
+  padding: 85px 0 95px;
+  text-align: left;
+  box-shadow: inset 0 -10px 25px rgba(0, 0, 0, 0.2);
 }
+
+.page-hero-content,
+.hero-content {
+  max-width: 850px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.page-hero-content h1,
+.hero-title {
+  font-family: var(--ff-hero, 'Inter', sans-serif);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.page-hero-content p,
+.hero-sub {
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0;
+  max-width: 750px;
+}
+
+.hero-actions,
+.hero-btns {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(212, 160, 23, 0.25);
+  border: 1px solid var(--acc-gold);
+  color: var(--acc-gold);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+
+/* ==========================================================================
+   PER-PAGE DEDICATED HERO BACKGROUND IMAGES (Content Specific)
+   ========================================================================== */
+
+/* Homepage Banner */
 .hero-banner {
   --hero-image: url('../assets/drone.png');
 }
+
+/* Tenders & Procurement Page */
+.page-hero[aria-label="Tenders Banner"],
+.tenders-hero {
+  --hero-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1600&auto=format&fit=crop');
+}
+
+/* Enquiry & Helpdesk Support Page */
+.page-hero[aria-label="Enquiry Banner"],
+.enquiry-hero {
+  --hero-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1600&auto=format&fit=crop');
+}
+
+/* Admissions Page */
+.page-hero[aria-label="Admissions Banner"],
+.admin-hero[aria-label="Admissions Banner"] {
+  --hero-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600&auto=format&fit=crop');
+}
+
+/* About University Page */
 .admin-hero[aria-label="About Banner"] {
   --hero-image: url('../assets/images/admin_good.jpeg');
 }
-.admin-hero[aria-label="Academics Banner"] {
-  --hero-image: url('../assets/images/libimg.avif');
+
+/* Academic Courses & Programs Page */
+.admin-hero[aria-label="Academics Banner"],
+.admin-hero[aria-label="Courses Banner"] {
+  --hero-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1600&auto=format&fit=crop');
 }
-.admin-hero[aria-label="Department Banner"] {
-  --hero-image: url('../assets/images/dept_hero_new.png');
+
+/* Computer Science Department Page */
+.admin-hero[aria-label="CS Banner"] {
+  --hero-image: url('../assets/images/cs_lab.jpg');
 }
+
+/* General Department Page */
+.admin-hero[aria-label="Department Banner"],
 .admin-hero.dept-page-hero {
   --hero-image: url('../assets/images/dept_hero_new.png');
 }
+
+/* Hostels & Student Residence Page */
 .admin-hero[aria-label="Hostel Banner"] {
   --hero-image: url('../assets/images/hostel-girls.png');
 }
-.admin-hero[aria-label="Administration Banner"] {
-  --hero-image: url('../assets/images/admin.jpeg');
+
+/* Central Library Page */
+.admin-hero[aria-label="Library Banner"] {
+  --hero-image: url('../assets/images/libimg.avif');
 }
-.admin-hero[aria-label="PYQ Banner"] {
+
+/* Careers & Faculty Recruitment Page */
+.admin-hero[aria-label="Careers Banner"] {
+  --hero-image: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1600&auto=format&fit=crop');
+}
+
+/* Campus Facilities Page */
+.admin-hero[aria-label="Facilities Banner"] {
+  --hero-image: url('../assets/hero_eve.png');
+}
+
+/* Central Instrumentation Facility (CIF) Page */
+.admin-hero[aria-label="CIF Banner"] {
   --hero-image: url('../assets/images/sclab.jpg');
+}
+
+/* News & Upcoming Events Page */
+.admin-hero[aria-label="News Banner"],
+.admin-hero[aria-label="Events Banner"] {
+  --hero-image: url('../assets/images/audimg.jpg');
+}
+
+/* University Policies & Governance Page */
+.admin-hero[aria-label="Policies Banner"] {
+  --hero-image: url('https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1600&auto=format&fit=crop');
+}
+
+/* Previous Year Question Papers (PYQ) Page */
+.admin-hero[aria-label="PYQ Banner"] {
+  --hero-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1600&auto=format&fit=crop');
+}
+
+/* Research & Innovation Page */
+.admin-hero[aria-label="Research Banner"] {
+  --hero-image: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1600&auto=format&fit=crop');
+}
+
+/* Sports & Athletics Page */
+.admin-hero[aria-label="Sports Banner"] {
+  --hero-image: url('https://images.unsplash.com/photo-1517649763962-0c623266ddc0?q=80&w=1600&auto=format&fit=crop');
+}
+
+/* Student Corner & Campus Life Page */
+.admin-hero[aria-label="Students Banner"] {
+  --hero-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop');
+}
+
+/* Cafeteria & Student Dining Page */
+.admin-hero[aria-label="Cafeteria Banner"] {
+  --hero-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1600&auto=format&fit=crop');
+}
+
+/* Medical & Health Center Page */
+.admin-hero[aria-label="Medical Banner"] {
+  --hero-image: url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop');
+}
+
+/* Downloads & Archive Forms Page */
+.admin-hero[aria-label="Downloads Banner"] {
+  --hero-image: url('https://images.unsplash.com/photo-1568992687947-868a62a9f521?q=80&w=1600&auto=format&fit=crop');
+}
+
+/* Leadership & Vice-Chancellor Page */
+.admin-hero[aria-label="Leaders Banner"],
+.admin-hero[aria-label="Administration Banner"] {
+  --hero-image: url('../assets/images/convo.png');
 }
 .hero-content {
   max-width: 900px;
@@ -69,7 +228,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  background: var(--acc-coral);
+  background: rgb(163, 20, 1);
   color: white;
   padding: 6px 16px;
   border-radius: 20px;
@@ -275,12 +434,12 @@
   flex-direction: column;
   align-items: center;
   gap: 0;
-  min-height: 380px;
-  padding: 28px 26px 22px;
+  min-height: 420px;
+  padding: 34px 32px 28px;
   text-align: center;
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: var(--shadow-md);
   transition: var(--transition);
   width: 100%;
@@ -298,15 +457,15 @@
 }
 
 .leader-card img {
-  width: 136px;
-  height: 136px;
-  border-radius: 15%;
+  width: 160px;
+  height: 160px;
+  border-radius: 18%;
   object-fit: cover;
-  border: 4px solid var(--bg-primary);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border: 5px solid var(--bg-primary);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
   transition: var(--transition);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -317,17 +476,20 @@
 }
 
 .leader-card > div {
-  display: grid;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
+  height: 100%;
 }
 
 .leader-card h3 {
   font-family: var(--ff-body);
-  font-size: 1rem;
+  font-size: 1.08rem;
   font-weight: 700;
   color: var(--tx-primary);
-  margin: 0 0 4px;
+  margin: 0 0 6px;
   letter-spacing: 0;
 }
 
@@ -354,6 +516,7 @@
 .leader-card a {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   font-family: var(--ff-body);
   font-size: 0.82rem;
@@ -363,9 +526,10 @@
   letter-spacing: 0.05em;
   transition: var(--transition);
   border: 1px solid rgba(0, 75, 155, 0.32);
-  padding: 8px 18px;
+  padding: 10px 20px;
   border-radius: 6px;
-  min-height: 36px;
+  min-height: 40px;
+  margin-top: 20px;
 }
 
 .leader-card a:hover {
@@ -2453,8 +2617,8 @@
 }
 
 .calendar-card {
-  background: var(--bg-primary);
-  border: 1px solid var(--border-color);
+  background: #fea27e;
+  border: 1px solid rgba(214, 155, 23, 0.18);
   border-radius: 12px;
   padding: 20px;
   /* let the calendar size to its content */

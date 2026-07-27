@@ -5,6 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize custom components and attach event handlers
+  initAccessibilityBarOffset();
   initTheme();
   initFontSize();
   initLanguage();
@@ -18,6 +19,30 @@ document.addEventListener('DOMContentLoaded', () => {
   initEnquiryModal();
   if (window.cusbReplaceEmojiIcons) window.cusbReplaceEmojiIcons(document);
 });
+
+/**
+ * Dynamically measures the actual pixel height of <cusb-accessibility-bar>
+ * and updates CSS variable --accessibility-h so <cusb-navbar> is ALWAYS
+ * positioned cleanly below it without overlapping on any device or font size.
+ */
+function initAccessibilityBarOffset() {
+  const updateOffset = () => {
+    const accessBar = document.querySelector('cusb-accessibility-bar');
+    if (accessBar) {
+      const rect = accessBar.getBoundingClientRect();
+      const h = Math.round(rect.height);
+      if (h > 0) {
+        document.documentElement.style.setProperty('--accessibility-h', `${h}px`);
+      }
+    }
+  };
+
+  updateOffset();
+  window.addEventListener('resize', updateOffset);
+  window.addEventListener('load', updateOffset);
+  setTimeout(updateOffset, 150);
+  setTimeout(updateOffset, 500);
+}
 
 /* ==========================================================================
    1. THEME SWITCHING (LIGHT / DARK)
@@ -252,12 +277,9 @@ const searchIndex = [
 ];
 
 function initSearch() {
-  const searchInput = document.getElementById('siteSearchInput');
-  const searchBtn = document.getElementById('siteSearchBtn');
+  const triggerBtn = document.getElementById('headerSearchTriggerBtn') || document.getElementById('siteSearchBtn');
   
-  if (!searchInput || !searchBtn) return;
-
-  // Create Search Modal Dynamically if it doesn't exist
+  // Create Search Modal Overlay Dynamically if it doesn't exist
   if (!document.getElementById('siteSearchOverlay')) {
     const overlay = document.createElement('div');
     overlay.className = 'search-overlay';
@@ -266,14 +288,38 @@ function initSearch() {
     overlay.setAttribute('aria-modal', 'true');
     overlay.setAttribute('aria-label', 'Search Website Results');
     
+    const searchIconSvg = window.cusbIconSvg ? window.cusbIconSvg('search') : '🔍';
+    const closeIconSvg = window.cusbIconSvg ? window.cusbIconSvg('close') : '✕';
+
     overlay.innerHTML = `
       <div class="search-modal">
         <div class="search-modal-header">
-          <span class="search-modal-title" data-en="CUSB Search Portal" data-hi="सीयूएसबी खोज पोर्टल">CUSB Search Portal</span>
-          <button class="search-modal-close" id="closeSearchModalBtn" aria-label="Close search overlay">${window.cusbIconSvg ? window.cusbIconSvg('close') : 'Close'}</button>
+          <div class="search-modal-title">
+            <span style="color:var(--acc-navy); display:inline-flex; align-items:center;">${searchIconSvg}</span>
+            <span data-en="Search Portal" data-hi="खोज पोर्टल">Search Portal</span>
+          </div>
+          <div class="search-modal-close-row">
+            <span class="search-esc-tag">ESC</span>
+            <button class="search-modal-close" id="closeSearchModalBtn" aria-label="Close search overlay">${closeIconSvg}</button>
+          </div>
         </div>
         <div class="search-modal-body">
-          <input type="search" class="search-modal-input" id="modalSearchInput" placeholder="Type search keywords...">
+          <div class="search-modal-input-wrap">
+            <span class="search-modal-input-icon">${searchIconSvg}</span>
+            <input type="search" class="search-modal-input" id="modalSearchInput" placeholder="Search courses, admissions, notices, tenders, hostels..." aria-label="Search keywords">
+          </div>
+
+          <div class="search-quick-chips">
+            <span style="font-size:0.78rem; font-weight:700; color:var(--tx-muted); display:inline-flex; align-items:center; margin-right:4px;" data-en="Popular:" data-hi="लोकप्रिय:">Popular:</span>
+            <button type="button" class="search-chip" data-query="Admissions 2026">Admissions 2026</button>
+            <button type="button" class="search-chip" data-query="CUET Cutoff">CUET Cutoff</button>
+            <button type="button" class="search-chip" data-query="Courses">Courses & Fees</button>
+            <button type="button" class="search-chip" data-query="Hostel">Hostels</button>
+            <button type="button" class="search-chip" data-query="Tenders">Tenders</button>
+            <button type="button" class="search-chip" data-query="Library">Library</button>
+            <button type="button" class="search-chip" data-query="PYQ">PYQ Papers</button>
+          </div>
+
           <ul class="search-results-list" id="searchResultsList">
             <!-- Results appended here -->
           </ul>
@@ -286,37 +332,67 @@ function initSearch() {
     
     // Attach modal close actions
     const closeBtn = document.getElementById('closeSearchModalBtn');
-    closeBtn.addEventListener('click', () => {
-      overlay.classList.remove('active');
-    });
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        overlay.classList.remove('active');
+      });
+    }
+
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) {
         overlay.classList.remove('active');
       }
     });
-    
+
     // Attach input search listener inside modal
     const modalInput = document.getElementById('modalSearchInput');
-    modalInput.addEventListener('input', (e) => {
-      performSearch(e.target.value);
+    if (modalInput) {
+      modalInput.addEventListener('input', (e) => {
+        performSearch(e.target.value);
+      });
+    }
+
+    // Attach quick query chips listener
+    overlay.querySelectorAll('.search-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const q = chip.getAttribute('data-query');
+        if (modalInput && q) {
+          modalInput.value = q;
+          modalInput.focus();
+          performSearch(q);
+        }
+      });
     });
   }
 
-  // Trigger search modal on header input
+  // Open search modal function
   const openModal = () => {
     const overlay = document.getElementById('siteSearchOverlay');
     const modalInput = document.getElementById('modalSearchInput');
-    overlay.classList.add('active');
-    modalInput.value = searchInput.value;
-    performSearch(modalInput.value);
-    setTimeout(() => modalInput.focus(), 100);
+    if (overlay && modalInput) {
+      overlay.classList.add('active');
+      setTimeout(() => modalInput.focus(), 100);
+      if (!modalInput.value.trim()) {
+        performSearch('');
+      }
+    }
   };
 
-  searchBtn.addEventListener('click', openModal);
-  searchInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
+  // Trigger search modal on header button click
+  if (triggerBtn) {
+    triggerBtn.addEventListener('click', openModal);
+  }
+
+  // Global Keyboard Shortcuts (Ctrl+K / Cmd+K / ESC)
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
       e.preventDefault();
       openModal();
+    } else if (e.key === 'Escape') {
+      const overlay = document.getElementById('siteSearchOverlay');
+      if (overlay && overlay.classList.contains('active')) {
+        overlay.classList.remove('active');
+      }
     }
   });
 }

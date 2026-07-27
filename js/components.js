@@ -280,6 +280,13 @@ class CusbAccessibilityBar extends HTMLElement {
             <span class="theme-label" data-en="Theme:" data-hi="थीम:">Theme:</span>
             <button class="btn-theme" id="themeToggleBtn" aria-label="Toggle Light/Dark Theme">${iconSvg('moon')}</button>
           </div>
+          <span class="accessibility-divider">|</span>
+          <!-- Search Icon Button -->
+          <div class="accessibility-search-container" role="search">
+            <button type="button" class="access-search-btn" id="headerSearchTriggerBtn" aria-label="Open Search Modal" title="Search CUSB Website (Ctrl+K)">
+              ${iconSvg('search')}
+            </button>
+          </div>
         </div>
       </div>
     `;
@@ -306,12 +313,6 @@ class CusbHeader extends HTMLElement {
           <div class="header-badges">
             <img src="assets/NAAC.png" alt="NAAC A++ Badge" class="header-badge-img" loading="lazy">
             <img src="assets/viksit.png" alt="Viksit Bharat Banner" class="header-badge-img" loading="lazy">
-          </div>
-          
-          <!-- Search Bar -->
-          <div class="search-container" role="search">
-            <input type="search" class="search-input" id="siteSearchInput" placeholder="Search courses, admissions, notices..." aria-label="Search CUSB website">
-            <button class="search-btn" id="siteSearchBtn" aria-label="Submit search">${iconSvg('search')}</button>
           </div>
         </div>
       </div>

@@ -60,6 +60,12 @@
   setText('deptSummary', data.summary);
   setText('deptVision', data.vision);
 
+  // Set per-department hero section background image
+  const heroSec = document.querySelector('.dept-page-hero') || document.querySelector('.admin-hero');
+  if (heroSec && data.heroImage) {
+    heroSec.style.setProperty('--hero-image', `url('${data.heroImage}')`);
+  }
+
   const deptImage = document.getElementById('deptImage');
   if (deptImage) {
     deptImage.src = departmentImage;
