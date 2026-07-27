@@ -239,38 +239,38 @@ class CusbAccessibilityBar extends HTMLElement {
           </div>
         </div>
         <div class="accessibility-right">
-          <!-- Language Converter -->
-          <div class="language-controls" aria-label="Language Converter">
+          <!-- Language Converter (Dropdown protected with notranslate / translate="no") -->
+          <div class="language-controls notranslate" translate="no" aria-label="Language Converter">
             <span class="lang-label" data-en="Language:" data-hi="भाषा:">Language:</span>
-            <select class="language-select" id="languageSelect" aria-label="Choose language">
-              <option value="en">English</option>
-              <optgroup label="Indian Languages">
-                <option value="hi">Hindi</option>
-                <option value="bn">Bengali</option>
-                <option value="ta">Tamil</option>
-                <option value="te">Telugu</option>
-                <option value="mr">Marathi</option>
-                <option value="gu">Gujarati</option>
-                <option value="pa">Punjabi</option>
-                <option value="ur">Urdu</option>
-                <option value="kn">Kannada</option>
-                <option value="ml">Malayalam</option>
-                <option value="or">Odia</option>
-                <option value="as">Assamese</option>
-                <option value="ne">Nepali</option>
-                <option value="sa">Sanskrit</option>
+            <select class="language-select notranslate" translate="no" id="languageSelect" aria-label="Choose language">
+              <option value="en" class="notranslate" translate="no">English</option>
+              <optgroup label="Indian Languages" class="notranslate" translate="no">
+                <option value="hi" class="notranslate" translate="no">हिन्दी (Hindi)</option>
+                <option value="bn" class="notranslate" translate="no">বাংলা (Bengali)</option>
+                <option value="ta" class="notranslate" translate="no">தமிழ் (Tamil)</option>
+                <option value="te" class="notranslate" translate="no">తెలుగు (Telugu)</option>
+                <option value="mr" class="notranslate" translate="no">मराठी (Marathi)</option>
+                <option value="gu" class="notranslate" translate="no">ગુજરાતી (Gujarati)</option>
+                <option value="pa" class="notranslate" translate="no">ਪੰਜਾਬੀ (Punjabi)</option>
+                <option value="ur" class="notranslate" translate="no">اردو (Urdu)</option>
+                <option value="kn" class="notranslate" translate="no">ಕನ್ನಡ (Kannada)</option>
+                <option value="ml" class="notranslate" translate="no">മലയാളം (Malayalam)</option>
+                <option value="or" class="notranslate" translate="no">ଓଡ଼ିଆ (Odia)</option>
+                <option value="as" class="notranslate" translate="no">অসমীয়া (Assamese)</option>
+                <option value="ne" class="notranslate" translate="no">नेपाली (Nepali)</option>
+                <option value="sa" class="notranslate" translate="no">संस्कृतम् (Sanskrit)</option>
               </optgroup>
-              <optgroup label="Foreign Languages">
-                <option value="ar">Arabic</option>
-                <option value="zh-CN">Chinese</option>
-                <option value="fr">French</option>
-                <option value="de">German</option>
-                <option value="it">Italian</option>
-                <option value="ja">Japanese</option>
-                <option value="ko">Korean</option>
-                <option value="pt">Portuguese</option>
-                <option value="ru">Russian</option>
-                <option value="es">Spanish</option>
+              <optgroup label="Foreign Languages" class="notranslate" translate="no">
+                <option value="ar" class="notranslate" translate="no">العربية (Arabic)</option>
+                <option value="zh-CN" class="notranslate" translate="no">中文 (Chinese)</option>
+                <option value="fr" class="notranslate" translate="no">Français (French)</option>
+                <option value="de" class="notranslate" translate="no">Deutsch (German)</option>
+                <option value="it" class="notranslate" translate="no">Italiano (Italian)</option>
+                <option value="ja" class="notranslate" translate="no">日本語 (Japanese)</option>
+                <option value="ko" class="notranslate" translate="no">한국어 (Korean)</option>
+                <option value="pt" class="notranslate" translate="no">Português (Portuguese)</option>
+                <option value="ru" class="notranslate" translate="no">Русский (Russian)</option>
+                <option value="es" class="notranslate" translate="no">Español (Spanish)</option>
               </optgroup>
             </select>
           </div>
@@ -912,19 +912,27 @@ class CusbSidebar extends HTMLElement {
           <button class="sidebar-close" id="quickLinksCloseBtn" type="button" aria-label="Close Quick Links">${iconSvg('close')}</button>
         </div>
         <ul class="sidebar-menu-list">
-          <li><a href="enquiry.html" class="sidebar-link">${iconSvg('file')}<span data-en="Enquiry Portal 2026" data-hi="पूछताछ पोर्टल 2026">Enquiry Portal 2026</span></a></li>
-          <li><a href="admissions.html" class="sidebar-link">${iconSvg('file')}<span data-en="Admissions 2026-27" data-hi="प्रवेश 2026-27">Admissions 2026-27</span></a></li>
-          <li><a href="https://cuet.samarth.ac.in/" target="_blank" class="sidebar-link">${iconSvg('graduation')}<span data-en="CUET Application" data-hi="सीयूईटी आवेदन">CUET Application</span></a></li>
-          <li><a href="https://cusb.samarth.edu.in/index.php/site/login" target="_blank" class="sidebar-link">${iconSvg('users')}<span data-en="Samarth Portal" data-hi="समर्थ पोर्टल">Samarth Portal</span></a></li>
-          <li><a href="students.html#results" class="sidebar-link">${iconSvg('chart')}<span data-en="Results & Grades" data-hi="परीक्षा परिणाम">Results & Grades</span></a></li>
-          <li><a href="hostel.html" class="sidebar-link">${iconSvg('building')}<span data-en="Campus Hostels" data-hi="छात्रावास">Campus Hostels</span></a></li>
-          <li><a href="library.html" class="sidebar-link">${iconSvg('book')}<span data-en="Central Library" data-hi="केंद्रीय पुस्तकालय">Central Library</span></a></li>
-          <li><a href="pyq.html" class="sidebar-link">${iconSvg('file')}<span data-en="PYQ Portal" data-hi="पुराने प्रश्न पत्र">PYQ Portal</span></a></li>
+          <li><a href="about.html" class="sidebar-link">${iconSvg('file')}<span data-en="Prospectus 2026" data-hi="विवरणिका 2026">Prospectus 2026</span></a></li>
+          <li><a href="courses.html" class="sidebar-link">${iconSvg('file')}<span data-en="Syllabus & Courses" data-hi="पाठ्यक्रम">Syllabus & Courses</span></a></li>
+          <li><a href="students.html#exams" class="sidebar-link">${iconSvg('graduation')}<span data-en="Exams & Grades" data-hi="परीक्षाएं">Exams & Grades</span></a></li>
+          <li><a href="pyq.html" class="sidebar-link">${iconSvg('file')}<span data-en="PYQ Portal" data-hi="पुराने पेपर">PYQ Portal</span></a></li>
+          <li><a href="news-events.html?type=events" class="sidebar-link">${iconSvg('graduation')}<span data-en="Convocation" data-hi="दीक्षांत समारोह">Convocation</span></a></li>
+          <li><a href="https://scholarships.gov.in/" target="_blank" class="sidebar-link">${iconSvg('briefcase')}<span data-en="Scholarship Portal" data-hi="छात्रवृत्ति">Scholarship Portal</span></a></li>
+          <li><a href="hostel.html" class="sidebar-link">${iconSvg('home')}<span data-en="Hostels & Housing" data-hi="छात्रावास">Hostels & Housing</span></a></li>
+          <li><a href="https://rtionline.gov.in/" target="_blank" class="sidebar-link">${iconSvg('globe')}<span data-en="RTI Online Portal" data-hi="आरटीआई ऑनलाइन">RTI Online Portal</span></a></li>
+          <li><a href="https://www.antiragging.in/" target="_blank" class="sidebar-link">${iconSvg('lock')}<span data-en="Anti-Ragging Cell" data-hi="रैगिंग रोधी">Anti-Ragging Cell</span></a></li>
+          <li><a href="https://webmail.cusb.ac.in/" target="_blank" class="sidebar-link">${iconSvg('globe')}<span data-en="CUSB Webmail" data-hi="वेबमेल">CUSB Webmail</span></a></li>
+          <li><a href="https://cusb.samarth.edu.in/" target="_blank" class="sidebar-link">${iconSvg('graduation')}<span data-en="Samarth Student Portal" data-hi="समर्थ छात्र पोर्टल">Samarth Student Portal</span></a></li>
+          <li><a href="https://cusb.samarth.ac.in/" target="_blank" class="sidebar-link">${iconSvg('users')}<span data-en="Samarth Employee Portal" data-hi="समर्थ कर्मचारी पोर्टल">Samarth Employee Portal</span></a></li>
+          <li><a href="about.html#iqac" class="sidebar-link">${iconSvg('building')}<span data-en="IQAC Cell" data-hi="आईक्यूएसी सेल">IQAC Cell</span></a></li>
+          <li><a href="about.html#nirf" class="sidebar-link">${iconSvg('chart')}<span data-en="NIRF Cell" data-hi="एनआईआरएफ सेल">NIRF Cell</span></a></li>
+          <li><a href="cs.html" class="sidebar-link">${iconSvg('laptop')}<span data-en="Computer Science Dept" data-hi="कंप्यूटर साइंस">Computer Science Dept</span></a></li>
+          <li><a href="leaders.html" class="sidebar-link">${iconSvg('briefcase')}<span data-en="Officers & Deans" data-hi="अधिकारी">Officers & Deans</span></a></li>
+          <li><a href="about.html#accreditation" class="sidebar-link">${iconSvg('file')}<span data-en="NAAC Accreditation" data-hi="नेक मान्यता">NAAC Accreditation</span></a></li>
+          <li><a href="enquiry.html" class="sidebar-link">${iconSvg('phone')}<span data-en="Help Desk & Enquiry" data-hi="सहायता डेस्क">Help Desk & Enquiry</span></a></li>
           <li><a href="tenders.html" class="sidebar-link">${iconSvg('shield')}<span data-en="Active Tenders" data-hi="सक्रिय निविदाएं">Active Tenders</span></a></li>
           <li><a href="careers.html" class="sidebar-link">${iconSvg('briefcase')}<span data-en="Job Openings" data-hi="भर्ती / नौकरियां">Job Openings</span></a></li>
-          <li><a href="cif.html" class="sidebar-link">${iconSvg('laptop')}<span data-en="CIF Facility" data-hi="सीआईएफ सुविधा">CIF Facility</span></a></li>
           <li><a href="downloads.html" class="sidebar-link">${iconSvg('download')}<span data-en="Download Center" data-hi="डाउनलोड केंद्र">Download Center</span></a></li>
-          <li><a href="admin.html" class="sidebar-link">${iconSvg('admin-key')}<span data-en="Admin Console" data-hi="एडमिन कंसोल">Admin Console</span></a></li>
         </ul>
       </aside>
     `;

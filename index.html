@@ -36,19 +36,6 @@
           <a href="about.html" class="btn btn-white" data-en="Explore CUSB" data-hi="विवरण जानें">Explore CUSB</a>
           <a href="courses.html" class="btn btn-ghost-light" data-en="View Courses" data-hi="पाठ्यक्रम देखें">View Courses</a>
         </div>
-        
-        <!-- Accolades badge overlay -->
-        <div class="hero-accolades">
-          <div class="accolade-card">
-            <span class="icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-graduation"></use></svg></span><span data-en="NAAC Accredited A++" data-hi="नैक द्वारा ए++ ग्रेड">NAAC Accredited A++</span>
-          </div>
-          <div class="accolade-card">
-            <span class="icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-book"></use></svg></span><span data-en="NEP 2020 Aligned" data-hi="एनईपी 2020 अनुकूल">NEP 2020 Aligned</span>
-          </div>
-          <div class="accolade-card">
-            <span class="icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-flag"></use></svg></span><span data-en="Viksit Bharat Partner" data-hi="विकसित भारत सहभागी">Viksit Bharat Partner</span>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -116,57 +103,18 @@
       </div>
     </section>
 
-    <!-- SECTION 3: SCHOOLS & DEPARTMENTS -->
-    <section class="section sec-programs" aria-labelledby="titlePrograms">
-      <div class="container">
-        <h2 class="section-title" id="titlePrograms" data-en="Schools & Departments" data-hi="स्कूल और विभाग">Schools & Departments</h2>
-        <p class="section-subtitle academic-map-subtitle">A concise gateway to CUSB academics, grouped by school with direct department paths.</p>
-        <div class="program-browser" id="programBrowser">
-          <div class="program-browser-grid" id="homeSchoolGrid"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════ SECTION 4A: LATEST NEWS (Big visual cards) ══════ -->
+    <!-- ══════ SECTION 4A: LATEST NEWS (Auto-Moving Right-to-Left Ticker Slider) ══════ -->
     <section class="section sec-news" id="notices" aria-labelledby="titleNews">
       <div class="container">
-        <h2 class="section-title" id="titleNews" data-en="Latest News" data-hi="नवीनतम समाचार">Latest News</h2>
-        <div class="news-grid">
-          <!-- Card 1 -->
-          <article class="news-card">
-            <div class="news-card-media">
-              <img src="assets/images/blockB.jpg" alt="Students near academic block" loading="lazy">
-              <div class="news-card-date"><span>10</span>MAR</div>
-            </div>
-            <div class="news-card-details">
-              <span class="news-card-meta" data-en="CUET PG Entrance" data-hi="सीयूईटी पीजी प्रवेश परीक्षा">CUET PG Entrance</span>
-              <h4 class="news-card-title"><a href="news-events.html?type=news" data-en="CUSB Admission Bulletin 2026 released for PG Programs" data-hi="पीजी कार्यक्रमों के लिए सीयूएसबी प्रवेश बुलेटिन 2026 जारी">CUSB Admission Bulletin 2026 released for PG Programs</a></h4>
-            </div>
-          </article>
+        <div class="news-section-header">
+          <h2 class="section-title" id="titleNews" data-en="Latest News & Announcements" data-hi="नवीनतम समाचार एवं घोषणाएं">Latest News & Announcements</h2>
+        </div>
 
-          <!-- Card 2 -->
-          <article class="news-card">
-            <div class="news-card-media">
-              <img src="assets/images/admin_good.jpeg" alt="Administrative block" loading="lazy">
-              <div class="news-card-date"><span>02</span>MAR</div>
-            </div>
-            <div class="news-card-details">
-              <span class="news-card-meta" data-en="CUSB Career Opportunity" data-hi="सीयूएसबी करियर अवसर">CUSB Career Opportunity</span>
-              <h4 class="news-card-title"><a href="news-events.html?type=news" data-en="Recruitment Notification issued for Non-Teaching Posts" data-hi="गैर-शिक्षण पदों के लिए भर्ती अधिसूचना जारी">Recruitment Notification issued for Non-Teaching Posts</a></h4>
-            </div>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="news-card">
-            <div class="news-card-media">
-              <img src="assets/images/cs_lab.jpg" alt="Students working in computer lab" loading="lazy">
-              <div class="news-card-date"><span>14</span>FEB</div>
-            </div>
-            <div class="news-card-details">
-              <span class="news-card-meta" data-en="Student Event" data-hi="छात्र कार्यक्रम">Student Event</span>
-              <h4 class="news-card-title"><a href="news-events.html?type=news" data-en="Competition on Smart Design for Website Development" data-hi="वेबसाइट विकास के लिए स्मार्ट डिजाइन पर प्रतियोगिता">Competition on Smart Design for Website Development</a></h4>
-            </div>
-          </article>
+        <!-- Infinite Auto-Scrolling Right-to-Left Ticker Track -->
+        <div class="news-ticker-wrapper" id="newsTickerWrapper">
+          <div class="news-ticker-track" id="newsTickerTrack">
+            <!-- Dynamically populated via JS with interactive news cards -->
+          </div>
         </div>
       </div>
     </section>
@@ -201,228 +149,137 @@
           <!-- Event Details Side Panel -->
           <div class="event-side-panel" id="eventSidePanel">
             <div class="side-panel-header">
-              <h3 data-en="Events on Selected Date" data-hi="चयनित तिथि पर कार्यक्रम">Events on Selected Date</h3>
-              <span id="selectedDateDisplay" class="selected-date-display">-</span>
+              <div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+                <h3 data-en="Events & Highlights" data-hi="कार्यक्रम और झलकियां">Events & Highlights</h3>
+                <div class="event-carousel-controls">
+                  <button type="button" class="btn-event-nav" id="prevEventBtn" aria-label="Previous Event" title="Previous Event">‹</button>
+                  <button type="button" class="btn-event-nav" id="pauseEventBtn" aria-label="Toggle Auto Play" title="Pause / Play Auto-Slide">⏸</button>
+                  <button type="button" class="btn-event-nav" id="nextEventBtn" aria-label="Next Event" title="Next Event">›</button>
+                </div>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-top:4px;">
+                <span id="selectedDateDisplay" class="selected-date-display">-</span>
+              </div>
             </div>
             <div id="eventDetailsList" class="event-details-list">
               <!-- Dynamically populated event cards or empty state message -->
-              <div class="no-events-msg" data-en="Select a date with events to view details." data-hi="विवरण देखने के लिए कार्यक्रमों वाली तिथि का चयन करें।">Select a date with events to view details.</div>
+              <div class="no-events-msg" data-en="Loading upcoming events..." data-hi="आगामी कार्यक्रम लोड हो रहे हैं...">Loading upcoming events...</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ══════ SECTION 5: GALLERY (Color Block Grid) ══════ -->
+    <!-- ══════ SECTION 5: GALLERY (Dual-Row Auto-Moving Sliders: Row 1 L→R, Row 2 R→L) ══════ -->
     <section class="section sec-gallery" id="gallery" aria-labelledby="titleGallery">
       <div class="container">
-        <h2 class="section-title" id="titleGallery" data-en="Gallery" data-hi="चित्र दीर्घा (गैलरी)">Gallery</h2>
-        <div class="gallery-grid-pastel">
-          <div class="gallery-block">
-            <img src="assets/drone.png" alt="University Entrance gate view" loading="lazy">
-            <div class="gallery-overlay" data-en="Main Entrance Gate" data-hi="मुख्य प्रवेश द्वार">Main Entrance Gate</div>
+        <div class="gallery-section-header">
+          <h2 class="section-title" id="titleGallery" data-en="Campus Photo Gallery" data-hi="परिसर चित्र दीर्घा">Campus Photo Gallery</h2>
+        </div>
+
+        <div class="gallery-dual-wrapper" id="galleryTickerWrapper">
+          <!-- Row 1: Left to Right Motion -->
+          <div class="gallery-row-container row-ltr">
+            <div class="gallery-row-track" id="galleryRow1Track">
+              <!-- Populated via JS with Row 1 cards -->
+            </div>
           </div>
-          <div class="gallery-block">
-            <img src="assets/images/blockB.jpg" alt="Academic departments building front view" loading="lazy">
-            <div class="gallery-overlay" data-en="Academic Block" data-hi="अकादमिक ब्लॉक">Academic Block</div>
-          </div>
-          <div class="gallery-block">
-            <img src="assets/images/spoim.jpg" alt="Football playing field" loading="lazy">
-            <div class="gallery-overlay" data-en="Sports Ground" data-hi="खेल मैदान">Sports Ground</div>
-          </div>
-          <div class="gallery-block">
-            <img src="assets/aryabhatta.jpeg" alt="Aryabhatta Boys Hostel facade" loading="lazy">
-            <div class="gallery-overlay" data-en="Aryabhatta Hostel" data-hi="आर्यभट्ट छात्रावास">Aryabhatta Hostel</div>
-          </div>
-          <div class="gallery-block">
-            <img src="assets/malviya.jpeg" alt="Malviya Hostel building front" loading="lazy">
-            <div class="gallery-overlay" data-en="Malviya Hostel" data-hi="मालवीय छात्रावास">Malviya Hostel</div>
-          </div>
-          <div class="gallery-block">
-            <img src="assets/images/admin_good.jpeg" alt="Administrative block and campus approach" loading="lazy">
-            <div class="gallery-overlay" data-en="300-Acre Campus Panorama" data-hi="300 एकड़ परिसर का विहंगम दृश्य">300-Acre Campus Panorama</div>
-          </div>
-          <div class="gallery-block">
-            <img src="assets/images/hostel-boys-common.jpg" alt="Hostel common area and student facilities" loading="lazy">
-            <div class="gallery-overlay" data-en="Student Facilities" data-hi="Student Facilities">Student Facilities</div>
-          </div>
-          <div class="gallery-block">
-            <img src="assets/images/libimg.avif" alt="Central library reading area" loading="lazy">
-            <div class="gallery-overlay" data-en="Central Library" data-hi="Central Library">Central Library</div>
-          </div>
-          <div class="gallery-block">
-            <img src="assets/images/audimg.jpg" alt="University auditorium" loading="lazy">
-            <div class="gallery-overlay" data-en="Auditorium" data-hi="Auditorium">Auditorium</div>
-          </div>
-          <div class="gallery-block">
-            <img src="assets/images/cs_lab.jpg" alt="Computer science laboratory" loading="lazy">
-            <div class="gallery-overlay" data-en="Computer Lab" data-hi="Computer Lab">Computer Lab</div>
-          </div>
-          <div class="gallery-block">
-            <img src="assets/images/2013.jpg" alt="Academic building aerial view" loading="lazy">
-            <div class="gallery-overlay" data-en="Smart Classroom" data-hi="Smart Classroom">Smart Classroom</div>
-          </div>
-          <div class="gallery-block">
-            <img src="assets/images/gargi sadan.jpg" alt="Gargi Sadan hostel building" loading="lazy">
-            <div class="gallery-overlay" data-en="Gargi Sadan" data-hi="Gargi Sadan">Gargi Sadan</div>
-          </div>
-          <div class="gallery-block">
-            <img src="assets/images/opengym.jpeg" alt="Open gym facility" loading="lazy">
-            <div class="gallery-overlay" data-en="Open Gym" data-hi="Open Gym">Open Gym</div>
-          </div>
-          <div class="gallery-block">
-            <img src="assets/images/admin.jpeg" alt="Administrative building aerial view" loading="lazy">
-            <div class="gallery-overlay" data-en="Campus Administration" data-hi="Campus Administration">Campus Administration</div>
+
+          <!-- Row 2: Right to Left Motion -->
+          <div class="gallery-row-container row-rtl">
+            <div class="gallery-row-track" id="galleryRow2Track">
+              <!-- Populated via JS with Row 2 cards -->
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ══════ SECTION 6: CAMPUS FACILITIES ══════ -->
-    <section class="section sec-facilities" aria-labelledby="titleFacilities">
+    <!-- ══════ SECTION 6: CAMPUS FACILITIES (Abstract Shape Collage) ══════ -->
+    <section class="section sec-facilities" id="campus-facilities" aria-labelledby="titleFacilities">
       <div class="container">
-        <h2 class="section-title" id="titleFacilities" data-en="Campus Facilities" data-hi="परिसर की सुविधाएं">Campus Facilities</h2>
-        
-        <div class="facilities-carousel-container">
-          <button class="carousel-btn" id="slidePrevBtn" aria-label="Slide Left"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-chevron-left"></use></svg></button>
-          
-          <div class="facilities-grid-scroll" id="facilitiesScroll">
-            <!-- 1. Hostels -->
-            <div class="facility-card-teal">
-              <div class="facility-card-media"><img src="assets/images/hosimg.jpg" alt="CUSB hostel building" loading="lazy"></div>
-              <h3 class="facility-card-title" data-en="Hostels" data-hi="छात्रावास">Hostels</h3>
-              <p class="facility-card-desc" data-en="Separate state-of-the-art secure residential blocks for boys and girls." data-hi="लड़कों और लड़कियों के लिए अलग-अलग अत्याधुनिक और सुरक्षित छात्रावास सुविधा।">Separate state-of-the-art secure residential blocks for boys and girls.</p>
-              <a href="hostel.html" class="btn btn-white btn-sm" style="padding:6px 16px; font-size:0.75rem;" data-en="View Hostels" data-hi="छात्रावास देखें">View Hostels</a>
+        <div class="facilities-header-row">
+          <h2 class="section-title" id="titleFacilities" data-en="Campus Facilities" data-hi="परिसर की सुविधाएं">Campus Facilities</h2>
+          <p class="facilities-subtitle" data-en="Explore CUSB's world-class academic, residential, sports, and research infrastructure" data-hi="सीयूएसबी की विश्व स्तरीय अकादमिक, आवासीय, खेल और अनुसंधान अवसंरचना का अन्वेषण करें">Explore CUSB's world-class academic, residential, sports, and research infrastructure</p>
+        </div>
+
+        <div class="facilities-abstract-grid">
+          <!-- 1. Hostels Block (Large Featured Abstract Shape) -->
+          <a href="hostel.html" class="facility-collage-card shape-large-featured" aria-label="Explore Student Hostels">
+            <img src="assets/images/hosimg.jpg" alt="CUSB Student Hostels" loading="lazy">
+            <div class="facility-collage-overlay">
+              <span class="facility-collage-tag" data-en="Residential Block" data-hi="आवासीय ब्लॉक">Residential Block</span>
+              <h3 class="facility-collage-title" data-en="Hostels & Residences" data-hi="छात्रावास एवं आवास">Hostels & Residences</h3>
+              <p class="facility-collage-desc" data-en="Separate secure residential blocks for boys and girls with 24/7 security and Wi-Fi." data-hi="लड़कों और लड़कियों के लिए 24/7 सुरक्षा और वाई-फाई के साथ अलग-अलग सुरक्षित छात्रावास।">Separate secure residential blocks for boys and girls with 24/7 security and Wi-Fi.</p>
+              <span class="facility-collage-btn"><span data-en="Visit Hostel Page →" data-hi="छात्रावास पृष्ठ देखें →">Visit Hostel Page →</span></span>
             </div>
- 
-            <!-- 2. Library -->
-            <div class="facility-card-teal">
-              <div class="facility-card-media"><img src="assets/images/libimg.avif" alt="Reading and study space" loading="lazy"></div>
-              <h3 class="facility-card-title" data-en="Library" data-hi="पुस्तकालय">Library</h3>
-              <p class="facility-card-desc" data-en="Central Library with thousands of e-journals and physical resources." data-hi="हजारों ई-पत्रिकाओं और भौतिक संसाधनों के साथ केंद्रीय पुस्तकालय।">Central Library with thousands of e-journals and physical resources.</p>
-              <a href="library.html" class="btn btn-white btn-sm" style="padding:6px 16px; font-size:0.75rem;" data-en="View Library" data-hi="पुस्तकालय देखें">View Library</a>
+          </a>
+
+          <!-- 2. Library Block (Wide Horizontal Shape) -->
+          <a href="library.html" class="facility-collage-card shape-wide-top" aria-label="Explore Central Library">
+            <img src="assets/images/libimg.avif" alt="Central Library & Reading Rooms" loading="lazy">
+            <div class="facility-collage-overlay">
+              <span class="facility-collage-tag" data-en="Learning Hub" data-hi="अध्ययन केंद्र">Learning Hub</span>
+              <h3 class="facility-collage-title" data-en="Central Library" data-hi="केंद्रीय पुस्तकालय">Central Library</h3>
+              <p class="facility-collage-desc" data-en="50,000+ books, e-journals, NDL access & automated RFID checkouts." data-hi="50,000+ पुस्तकें, ई-पत्रिकाएं, एनडीएल एक्सेस और स्वचालित आरएफआईडी।">50,000+ books, e-journals, NDL access & automated RFID checkouts.</p>
+              <span class="facility-collage-btn"><span data-en="Visit Library Page →" data-hi="पुस्तकालय पृष्ठ देखें →">Visit Library Page →</span></span>
             </div>
- 
-            <!-- 3. Cafeteria -->
-            <div class="facility-card-teal">
-              <div class="facility-card-media"><img src="assets/images/diversity.webp" alt="Student common area near dining facilities" loading="lazy"></div>
-              <h3 class="facility-card-title" data-en="Cafeteria" data-hi="कैफेटेरिया">Cafeteria</h3>
-              <p class="facility-card-desc" data-en="Hygiene-first multi-cuisine canteen offering healthy food choices." data-hi="स्वच्छता को प्राथमिकता देने वाली बहु-व्यंजन कैंटीन जो स्वास्थ्यवर्धक भोजन देती है।">Hygiene-first multi-cuisine canteen offering healthy food choices.</p>
-              <a href="cafeteria.html" class="btn btn-white btn-sm" style="padding:6px 16px; font-size:0.75rem;" data-en="View Cafeteria" data-hi="कैफेटेरिया देखें">View Cafeteria</a>
+          </a>
+
+          <!-- 3. Cafeteria Block (Organic Pill Shape) -->
+          <a href="cafeteria.html" class="facility-collage-card shape-pill-compact" aria-label="Explore Campus Cafeteria">
+            <img src="assets/images/diversity.webp" alt="Multi-cuisine Campus Cafeteria" loading="lazy">
+            <div class="facility-collage-overlay">
+              <span class="facility-collage-tag" data-en="Dining & Food" data-hi="खान-पान और भोजन">Dining & Food</span>
+              <h3 class="facility-collage-title" data-en="Cafeteria & Dining" data-hi="कैफेटेरिया और भोजन">Cafeteria & Dining</h3>
+              <p class="facility-collage-desc" data-en="Hygienic multi-cuisine food court." data-hi="स्वच्छ बहु-व्यंजन फूड कोर्ट।">Hygienic multi-cuisine food court.</p>
+              <span class="facility-collage-btn"><span data-en="Visit Cafeteria →" data-hi="कैफेटेरिया देखें →">Visit Cafeteria →</span></span>
             </div>
- 
-            <!-- 4. Sports Complex -->
-            <div class="facility-card-teal">
-              <div class="facility-card-media"><img src="assets/images/spoim.jpg" alt="CUSB sports ground" loading="lazy"></div>
-              <h3 class="facility-card-title" data-en="Sports Complex" data-hi="खेल संकुल">Sports Complex</h3>
-              <p class="facility-card-desc" data-en="Cricket, football fields, running tracks, and indoor arenas." data-hi="क्रिकेट, फुटबॉल मैदान, रनिंग ट्रैक और इंडोर खेल सुविधाएं।">Cricket, football fields, running tracks, and indoor arenas.</p>
-              <a href="sports.html" class="btn btn-white btn-sm" style="padding:6px 16px; font-size:0.75rem;" data-en="View Sports" data-hi="खेल संकुल देखें">View Sports</a>
+          </a>
+
+          <!-- 4. Sports Complex Block (Large Bottom Span Shape) -->
+          <a href="sports.html" class="facility-collage-card shape-wide-bottom" aria-label="Explore Sports Complex">
+            <img src="assets/images/spoim.jpg" alt="CUSB Sports Complex & Grounds" loading="lazy">
+            <div class="facility-collage-overlay">
+              <span class="facility-collage-tag" data-en="Athletics & Fitness" data-hi="खेल और फिटनेस">Athletics & Fitness</span>
+              <h3 class="facility-collage-title" data-en="Sports Complex Stadium" data-hi="खेल संकुल स्टेडियम">Sports Complex Stadium</h3>
+              <p class="facility-collage-desc" data-en="Football fields, cricket pitch, basketball, badminton courts, open gym & running tracks." data-hi="फुटबॉल मैदान, क्रिकेट पिच, बास्केटबॉल, बैडमिंटन कोर्ट, ओपन जिम और रनिंग ट्रैक।">Football fields, cricket pitch, basketball, badminton courts, open gym & running tracks.</p>
+              <span class="facility-collage-btn"><span data-en="Visit Sports Page →" data-hi="खेल पृष्ठ देखें →">Visit Sports Page →</span></span>
             </div>
- 
-            <!-- 5. Medical Centre -->
-            <div class="facility-card-teal">
-              <div class="facility-card-media"><img src="assets/images/health.webp" alt="Campus health and medical centre" loading="lazy"></div>
-              <h3 class="facility-card-title" data-en="Medical" data-hi="चिकित्सा केंद्र">Medical</h3>
-              <p class="facility-card-desc" data-en="On-campus health clinic providing basic medical assistance 24/7." data-hi="परिसर में स्थित स्वास्थ्य क्लिनिक जो 24/7 प्राथमिक चिकित्सा देता है।">On-campus health clinic providing basic medical assistance 24/7.</p>
-              <a href="medical.html" class="btn btn-white btn-sm" style="padding:6px 16px; font-size:0.75rem;" data-en="View Medical" data-hi="चिकित्सा देखें">View Medical</a>
+          </a>
+
+          <!-- 5. Medical Centre (Abstract Curved Corner Block) -->
+          <a href="medical.html" class="facility-collage-card shape-curved-small" aria-label="Explore Health Centre">
+            <img src="assets/images/health.webp" alt="Medical & Healthcare Centre" loading="lazy">
+            <div class="facility-collage-overlay">
+              <span class="facility-collage-tag" data-en="Health & Care" data-hi="स्वास्थ्य सेवा">Health & Care</span>
+              <h3 class="facility-collage-title" data-en="Medical Centre" data-hi="चिकित्सा केंद्र">Medical Centre</h3>
+              <p class="facility-collage-desc" data-en="24/7 emergency medical assistance." data-hi="24/7 आपातकालीन चिकित्सा सहायता।">24/7 emergency medical assistance.</p>
+              <span class="facility-collage-btn"><span data-en="Visit Medical Page →" data-hi="चिकित्सा पृष्ठ देखें →">Visit Medical Page →</span></span>
             </div>
- 
-            <!-- 6. Smart Classroom -->
-            <div class="facility-card-teal">
-              <div class="facility-card-media"><img src="assets/images/admin.jpeg" alt="Smart classroom academic block" loading="lazy"></div>
-              <h3 class="facility-card-title" data-en="Smart Classroom" data-hi="स्मार्ट कक्षाएं">Smart Classroom</h3>
-              <p class="facility-card-desc" data-en="Wi-Fi classrooms integrated with projector and smart board systems." data-hi="प्रोजेक्टर और स्मार्ट बोर्ड प्रणालियों से एकीकृत वाई-फाई कक्षाएं।">Wi-Fi classrooms integrated with projector and smart board systems.</p>
-              <a href="facilities.html" class="btn btn-white btn-sm" style="padding:6px 16px; font-size:0.75rem;" data-en="View Facilities" data-hi="सुविधाएं देखें">View Facilities</a>
+          </a>
+
+          <!-- 6. Smart Classrooms (Slanted Abstract Shape) -->
+          <a href="facilities.html" class="facility-collage-card shape-slanted-right" aria-label="Explore Smart Classrooms">
+            <img src="assets/images/2013.jpg" alt="Interactive Smart Classrooms" loading="lazy">
+            <div class="facility-collage-overlay">
+              <span class="facility-collage-tag" data-en="Smart Education" data-hi="स्मार्ट शिक्षा">Smart Education</span>
+              <h3 class="facility-collage-title" data-en="Smart Classrooms" data-hi="स्मार्ट कक्षाएं">Smart Classrooms</h3>
+              <p class="facility-collage-desc" data-en="Digitally integrated lecture halls with smartboards & audio systems." data-hi="स्मार्ट बोर्ड और ऑडियो सिस्टम के साथ एकीकृत डिजिटल कक्षाएं।">Digitally integrated lecture halls with smartboards & audio systems.</p>
+              <span class="facility-collage-btn"><span data-en="View All Facilities →" data-hi="सभी सुविधाएं देखें →">View All Facilities →</span></span>
             </div>
-          </div>
-          
-          <button class="carousel-btn" id="slideNextBtn" aria-label="Slide Right"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-chevron-right"></use></svg></button>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- ══════ SECTION 7: QUICK LINKS ══════ -->
-    <section class="section sec-quicklinks" id="quicklinks" aria-labelledby="titleQuickLinks">
+    <!-- SECTION 7: SCHOOLS & DEPARTMENTS -->
+    <section class="section sec-programs" aria-labelledby="titlePrograms">
       <div class="container">
-        <h2 class="section-title" id="titleQuickLinks" data-en="Quick Links" data-hi="त्वरित लिंक">Quick Links</h2>
-        <div class="quicklinks-grid">
-          <!-- Row 1 -->
-          <a href="about.html" class="quicklink-btn-green">
-            <span class="quicklink-btn-icon icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-file"></use></svg></span>
-            <span class="quicklink-btn-label" data-en="Prospectus" data-hi="विवरणिका">Prospectus</span>
-          </a>
-          <a href="#" class="quicklink-btn-green">
-            <span class="quicklink-btn-icon icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-file"></use></svg></span>
-            <span class="quicklink-btn-label" data-en="Syllabus" data-hi="पाठ्यक्रम">Syllabus</span>
-          </a>
-          <a href="#" class="quicklink-btn-green">
-            <span class="quicklink-btn-icon icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-graduation"></use></svg></span>
-            <span class="quicklink-btn-label" data-en="Exams" data-hi="परीक्षाएं">Exams</span>
-          </a>
-          <a href="pyq.html" class="quicklink-btn-green">
-            <span class="quicklink-btn-icon icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-file"></use></svg></span>
-            <span class="quicklink-btn-label" data-en="PYQ Portal" data-hi="पुराने पेपर">PYQ Portal</span>
-          </a>
-          <a href="#" class="quicklink-btn-green">
-            <span class="quicklink-btn-icon icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-graduation"></use></svg></span>
-            <span class="quicklink-btn-label" data-en="Convocation" data-hi="दीक्षांत समारोह">Convocation</span>
-          </a>
-          <a href="https://scholarships.gov.in/" target="_blank" class="quicklink-btn-green">
-            <span class="quicklink-btn-icon icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-briefcase"></use></svg></span>
-            <span class="quicklink-btn-label" data-en="Scholarship" data-hi="छात्रवृत्ति">Scholarship</span>
-          </a>
-
-          <!-- Row 2 -->
-          <a href="hostel.html" class="quicklink-btn-green">
-            <span class="quicklink-btn-icon icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-home"></use></svg></span>
-            <span class="quicklink-btn-label" data-en="Hostels" data-hi="छात्रावास">Hostels</span>
-          </a>
-          <a href="https://rtionline.gov.in/" target="_blank" class="quicklink-btn-green">
-            <span class="quicklink-btn-icon icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-globe"></use></svg></span>
-            <span class="quicklink-btn-label" data-en="RTI online" data-hi="आरटीआई">RTI online</span>
-          </a>
-          <a href="https://www.antiragging.in/" target="_blank" class="quicklink-btn-green">
-            <span class="quicklink-btn-icon icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-lock"></use></svg></span>
-            <span class="quicklink-btn-label" data-en="Anti-Ragging" data-hi="रैगिंग रोधी">Anti-Ragging</span>
-          </a>
-          <a href="#" class="quicklink-btn-green">
-            <span class="quicklink-btn-icon icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-globe"></use></svg></span>
-            <span class="quicklink-btn-label" data-en="Webmail" data-hi="वेबमेल">Webmail</span>
-          </a>
-          <a href="https://cusb.samarth.edu.in/" target="_blank" class="quicklink-btn-green">
-            <span class="quicklink-btn-icon icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-graduation"></use></svg></span>
-            <span class="quicklink-btn-label" data-en="Samarth Stud" data-hi="समर्थ छात्र">Samarth Stud</span>
-          </a>
-          <a href="https://cusb.samarth.ac.in/" target="_blank" class="quicklink-btn-green">
-            <span class="quicklink-btn-icon icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-users"></use></svg></span>
-            <span class="quicklink-btn-label" data-en="Samarth Emp" data-hi="समर्थ कर्मचारी">Samarth Emp</span>
-          </a>
-
-          <!-- Row 3 -->
-          <a href="#" class="quicklink-btn-green">
-            <span class="quicklink-btn-icon icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-building"></use></svg></span>
-            <span class="quicklink-btn-label" data-en="IQAC Cell" data-hi="आईक्यूएसी">IQAC Cell</span>
-          </a>
-          <a href="#" class="quicklink-btn-green">
-            <span class="quicklink-btn-icon icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-chart"></use></svg></span>
-            <span class="quicklink-btn-label" data-en="NIRF Cell" data-hi="एनआईआरएफ">NIRF Cell</span>
-          </a>
-          <a href="cs.html" class="quicklink-btn-green">
-            <span class="quicklink-btn-icon icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-laptop"></use></svg></span>
-            <span class="quicklink-btn-label" data-en="Computer Sci" data-hi="कंप्यूटर वि.">Computer Sci</span>
-          </a>
-          <a href="leaders.html" class="quicklink-btn-green">
-            <span class="quicklink-btn-icon icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-briefcase"></use></svg></span>
-            <span class="quicklink-btn-label" data-en="Officers" data-hi="अधिकारी">Officers</span>
-          </a>
-          <a href="about.html#accreditation" class="quicklink-btn-green">
-            <span class="quicklink-btn-icon icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-file"></use></svg></span>
-            <span class="quicklink-btn-label" data-en="Accreditation" data-hi="मान्यता">Accreditation</span>
-          </a>
-          <a href="#footer" class="quicklink-btn-green">
-            <span class="quicklink-btn-icon icon-holder"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-phone"></use></svg></span>
-            <span class="quicklink-btn-label" data-en="Help Desk" data-hi="सहायता डेस्क">Help Desk</span>
-          </a>
+        <h2 class="section-title" id="titlePrograms" data-en="Schools & Departments" data-hi="स्कूल और विभाग">Schools & Departments</h2>
+        <p class="section-subtitle academic-map-subtitle">A concise gateway to CUSB academics, grouped by school with direct department paths.</p>
+        <div class="program-browser" id="programBrowser">
+          <div class="program-browser-grid" id="homeSchoolGrid"></div>
         </div>
       </div>
     </section>
@@ -497,7 +354,6 @@
   </main>
 
   <!-- Reusable Actions and Footer -->
-  <cusb-quick-actions></cusb-quick-actions>
   <cusb-footer></cusb-footer>
   <cusb-chatbot></cusb-chatbot>
 
@@ -506,24 +362,7 @@
   <script src="js/department-data.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/event-calendar.js" defer></script>
-  
   <script>
-    // Local facility cards slider handler
-    window.addEventListener('DOMContentLoaded', () => {
-      const scrollContainer = document.getElementById('facilitiesScroll');
-      const prevBtn = document.getElementById('slidePrevBtn');
-      const nextBtn = document.getElementById('slideNextBtn');
-      
-      if (scrollContainer && prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-          scrollContainer.scrollBy({ left: -285, behavior: window.innerWidth <= 991 ? 'auto' : 'smooth' });
-        });
-        nextBtn.addEventListener('click', () => {
-          scrollContainer.scrollBy({ left: 285, behavior: window.innerWidth <= 991 ? 'auto' : 'smooth' });
-        });
-      }
-    });
-
     window.addEventListener('DOMContentLoaded', () => {
       const departments = window.cusbDepartments || {};
       const schoolGrid = document.getElementById('homeSchoolGrid');

@@ -834,10 +834,13 @@
       return fetch(fullUrl, fetchOptions);
     }
 
-    // Authenticate Session on load
+    // Authenticate Session on load (Hybrid Backend + Standalone LocalStorage)
     async function checkAuth() {
       try {
-        const response = await adminFetch('/api/check-session');
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 1200);
+        const response = await adminFetch('/api/check-session', { signal: controller.signal });
+        clearTimeout(timeoutId);
         const data = await response.json();
 
         if (response.ok && data.authenticated) {
@@ -845,14 +848,20 @@
           navUserDisplay.textContent = `Admin: ${data.username}`;
           document.getElementById('settingsUsername').value = data.username;
           loadDashboardData();
-        } else {
-          localStorage.removeItem('cusb_session_token');
-          window.location.href = '/admin.html';
+          return;
         }
       } catch (err) {
-        console.error(err);
-        localStorage.removeItem('cusb_session_token');
-        window.location.href = '/admin.html';
+        console.log("Backend offline, validating session token locally");
+      }
+
+      const token = localStorage.getItem('cusb_session_token');
+      if (token) {
+        activeUser = localStorage.getItem('cusb_active_user') || 'Administrator';
+        navUserDisplay.textContent = `Admin: ${activeUser}`;
+        document.getElementById('settingsUsername').value = activeUser;
+        loadDashboardData();
+      } else {
+        window.location.href = 'admin.html';
       }
     }
 
@@ -1324,7 +1333,7 @@
         console.error("Logout request error:", err);
       }
       localStorage.removeItem('cusb_session_token');
-      window.location.href = '/admin.html';
+      window.location.href = 'admin.html';
     });
 
     // Toggle password visibility helper

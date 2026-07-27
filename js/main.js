@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initTranslateOffsetWatcher();
   initDynamicContent();
   initEnquiryModal();
+  initGalleryTicker();
+  initNewsTicker();
   if (window.cusbReplaceEmojiIcons) window.cusbReplaceEmojiIcons(document);
 });
 
@@ -144,8 +146,10 @@ function setLanguage(lang, options = {}) {
   document.documentElement.setAttribute('lang', lang);
   
   if (manualLang) {
-    // Scan DOM for fast, hand-authored English/Hindi text content.
-    const elements = document.querySelectorAll('[data-en], [data-hi]');
+    // Scan DOM for fast, hand-authored English/Hindi text content (excluding protected language dropdown)
+    const elements = Array.from(document.querySelectorAll('[data-en], [data-hi]')).filter(el => {
+      return !el.classList.contains('notranslate') && !el.closest('#languageSelect') && !el.closest('.language-controls');
+    });
     elements.forEach(el => el.classList.add('text-fade-out'));
     window.setTimeout(() => {
       elements.forEach(el => {
@@ -380,19 +384,36 @@ function initSearch() {
     }
   };
 
-  // Trigger search modal on header button click, using typed query if present
+  // Trigger search modal on search bar click, container click, or input focus
   if (triggerBtn) {
-    triggerBtn.addEventListener('click', () => {
-      const query = headerSearchInput?.value.trim() || '';
-      openModal(query);
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openModal(headerSearchInput?.value.trim() || '');
     });
   }
 
   if (headerSearchInput) {
+    headerSearchInput.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal(headerSearchInput.value.trim() || '');
+    });
+    headerSearchInput.addEventListener('focus', (e) => {
+      e.preventDefault();
+      openModal(headerSearchInput.value.trim() || '');
+    });
     headerSearchInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
-        openModal(headerSearchInput.value.trim());
+        openModal(headerSearchInput.value.trim() || '');
+      }
+    });
+  }
+
+  const searchWrap = document.querySelector('.search-container') || document.querySelector('.accessibility-search-container');
+  if (searchWrap) {
+    searchWrap.addEventListener('click', (e) => {
+      if (e.target !== triggerBtn && e.target !== headerSearchInput) {
+        openModal(headerSearchInput?.value.trim() || '');
       }
     });
   }
@@ -745,7 +766,6 @@ function initChatbot() {
     windowEl.classList.add('active');
     windowEl.setAttribute('aria-hidden', 'false');
     toggleBtn.setAttribute('aria-expanded', 'true');
-    if (greeting) greeting.classList.add('hidden');
     setTimeout(() => input.focus(), 100);
   };
 
@@ -770,10 +790,6 @@ function initChatbot() {
     input.value = '';
     setTimeout(() => appendMessage(getBotReply(value), 'bot'), 350);
   });
-
-  setTimeout(() => {
-    if (greeting && !windowEl.classList.contains('active')) greeting.classList.add('hidden');
-  }, 7000);
 }
 
 function initScrollToTop() {
@@ -793,21 +809,30 @@ function initScrollToTop() {
 }
 
 /* ==========================================================================
-   7. GOOGLE TRANSLATE FLOATING BAR OFFSET WATCHER
+   7. GOOGLE TRANSLATE BANNER SUPPRESSOR & OFFSET CLEANUP
    ========================================================================== */
 function initTranslateOffsetWatcher() {
-  setInterval(() => {
-    const iframe = document.querySelector('.goog-te-banner-frame');
-    let offset = 0;
-    
-    // Check if the iframe exists and is visible (display !== none)
-    if (iframe && iframe.style.display !== 'none' && window.getComputedStyle(iframe).display !== 'none') {
-      offset = iframe.offsetHeight || 40; // Fallback to 40px
-    }
-    
-    // Set the CSS variable on the root document
-    document.documentElement.style.setProperty('--translate-offset', `${offset}px`);
-  }, 250);
+  const suppressTranslateBanner = () => {
+    // Hide and disable any Google Translate banner frames, tooltips, or popups
+    document.querySelectorAll('.goog-te-banner-frame, iframe.goog-te-banner-frame, #goog-gt-tt, .goog-te-balloon-frame, .VIpgJd-yDtfdf-l4e2f-Lg2fx, .skiptranslate').forEach(el => {
+      if (el.tagName === 'IFRAME' || el.id === 'goog-gt-tt' || el.classList.contains('goog-te-banner-frame')) {
+        el.style.display = 'none';
+        el.style.visibility = 'hidden';
+        el.style.opacity = '0';
+        el.style.height = '0';
+        el.style.width = '0';
+        el.style.pointerEvents = 'none';
+      }
+    });
+
+    // Reset body style & offset so page top never shifts down
+    if (document.body.style.top !== '0px') document.body.style.top = '0px';
+    if (document.documentElement.style.top !== '0px') document.documentElement.style.top = '0px';
+    document.documentElement.style.setProperty('--translate-offset', '0px');
+  };
+
+  suppressTranslateBanner();
+  setInterval(suppressTranslateBanner, 200);
 }
 
 /* ==========================================================================
@@ -1207,5 +1232,644 @@ function initEnquiryModal() {
       form.style.display = 'grid';
     });
   }
+}
+
+/* ==========================================================================
+   16. DUAL-ROW AUTO-MOVING GALLERY SLIDER (ROW 1 L→R, ROW 2 R→L) & MODAL
+   ========================================================================== */
+function initGalleryTicker() {
+  const row1Track = document.getElementById('galleryRow1Track');
+  const row2Track = document.getElementById('galleryRow2Track');
+  const wrapper = document.getElementById('galleryTickerWrapper');
+  if (!row1Track || !row2Track || !wrapper) return;
+
+  const row1Items = [
+    {
+      id: "entrance",
+      title_en: "Main Entrance Gate",
+      title_hi: "मुख्य प्रवेश द्वार",
+      category_en: "Campus Landmark",
+      category_hi: "परिसर लैंडमार्क",
+      src: "assets/drone.png",
+      location: "SH-7, Panchanpur Road Entrance",
+      access: "24/7 Security Access",
+      desc_en: "The grand entrance gate of Central University of South Bihar (CUSB), located on SH-7 at Panchanpur, Gaya. Features architectural archways, CCTV surveillance, multi-lane vehicular access, and tree-lined walkways welcoming visitors across 300 acres.",
+      desc_hi: "दक्षिण बिहार केन्द्रीय विश्वविद्यालय (सीयूएसबी) का भव्य प्रवेश द्वार, पंचानपुर-गया मार्ग पर स्थित है।",
+      link: "about.html"
+    },
+    {
+      id: "academic-block",
+      title_en: "Academic Block Complex",
+      title_hi: "अकादमिक ब्लॉक परिसर",
+      category_en: "Academic Infrastructure",
+      category_hi: "शैक्षणिक अवसंरचना",
+      src: "assets/images/blockB.jpg",
+      location: "Central Academic Sector",
+      access: "25 Academic Departments & Labs",
+      desc_en: "State-of-the-art multi-storey academic blocks housing 25+ academic departments, smart multimedia lecture halls, advanced research laboratories, departmental reading halls, and faculty rooms connected via high-speed campus Wi-Fi.",
+      desc_hi: "25 से अधिक शैक्षणिक विभागों, स्मार्ट व्याख्यान कक्षों और उन्नत प्रयोगशालाओं से सुसज्जित आधुनिक अकादमिक भवन।",
+      link: "courses.html"
+    },
+    {
+      id: "sports-ground",
+      title_en: "Sports Complex & Athletics Ground",
+      title_hi: "खेल परिसर और एथलेटिक्स मैदान",
+      category_en: "Sports & Fitness",
+      category_hi: "खेल और फिटनेस",
+      src: "assets/images/spoim.jpg",
+      location: "South Campus Athletics Zone",
+      access: "Full-size pitch & outdoor courts",
+      desc_en: "Comprehensive sports ground featuring a regulation football field, cricket oval, volleyball, basketball, and badminton courts, running tracks, and indoor sports equipment for student tournaments.",
+      desc_hi: "फुटबॉल, क्रिकेट, वॉलीबॉल, बास्केटबॉल और दौड़ ट्रैक की सुविधा वाला विस्तृत खेल परिसर।",
+      link: "sports.html"
+    },
+    {
+      id: "aryabhatta",
+      title_en: "Aryabhatta Boys Hostel",
+      title_hi: "आर्यभट्ट छात्रावास",
+      category_en: "Student Accommodation",
+      category_hi: "छात्र आवास",
+      src: "assets/aryabhatta.jpeg",
+      location: "North Residential Sector",
+      access: "300+ Student Rooms & Mess",
+      desc_en: "Premier residential facility providing high-speed internet, solar water heaters, study lounges, 24/7 electricity backup, and a hygienic dining hall serving nutritious meals for postgraduate & PhD scholars.",
+      desc_hi: "उच्च गति इंटरनेट, अध्ययन कक्ष और पौष्टिक भोजन कक्ष के साथ आधुनिक छात्र छात्रावास।",
+      link: "hostel.html#aryabhatta"
+    },
+    {
+      id: "malviya",
+      title_en: "Malviya Boys Hostel",
+      title_hi: "मालवीय छात्रावास",
+      category_en: "Student Accommodation",
+      category_hi: "छात्र आवास",
+      src: "assets/malviya.jpeg",
+      location: "North Residential Sector",
+      access: "Undergraduate & Postgraduates",
+      desc_en: "Spacious residential complex equipped with indoor games, TV lounges, reading rooms, laundry facilities, and 24-hour campus security for undergraduate students.",
+      desc_hi: "इनडोर खेल, टीवी लाउंज और 24-घंटे सुरक्षा से सुसज्जित विशाल आवासीय परिसर।",
+      link: "hostel.html#malviya"
+    },
+    {
+      id: "panorama",
+      title_en: "300-Acre Eco-Friendly Campus Panorama",
+      title_hi: "300-एकड़ हरित परिसर विहंगम दृश्य",
+      category_en: "Campus Environment",
+      category_hi: "परिसर वातावरण",
+      src: "assets/images/admin_good.jpeg",
+      location: "CUSB Panchanpur, Gaya",
+      access: "Zero-discharge Green Campus",
+      desc_en: "Panoramic view of CUSB's award-winning green campus equipped with rooftop solar power plants, rainwater harvesting reservoirs, sewage treatment plants, and lush botanical gardens.",
+      desc_hi: "सौर ऊर्जा, वर्षा जल संचयन और हरित उद्यानों से सुसज्जित सीयूएसबी का विहंगम हरित परिसर।",
+      link: "about.html"
+    },
+    {
+      id: "student-lounge",
+      title_en: "Student Activity Center & Lounge",
+      title_hi: "छात्र गतिविधि केंद्र और लाउंज",
+      category_en: "Campus Life",
+      category_hi: "परिसर जीवन",
+      src: "assets/images/hostel-boys-common.jpg",
+      location: "Student Activity Complex",
+      access: "All Registered Students",
+      desc_en: "Vibrant student lounge offering indoor recreation facilities, table tennis, chess tables, music practice zones, club meeting hubs, and collaborative study corners.",
+      desc_hi: "इनडोर खेल, संगीत अभ्यास क्षेत्रों और समूह अध्ययन कोनों वाला जीवंत छात्र लाउंज।",
+      link: "students.html"
+    }
+  ];
+
+  const row2Items = [
+    {
+      id: "library",
+      title_en: "Central Library & Digital Reading Hall",
+      title_hi: "केंद्रीय पुस्तकालय और डिजिटल वाचन कक्ष",
+      category_en: "Learning Resources",
+      category_hi: "अध्ययन संसाधन",
+      src: "assets/images/libimg.avif",
+      location: "Central Library Building",
+      access: "50,000+ Print & Electronic Titles",
+      desc_en: "Fully automated library equipped with RFID self-issue counters, access to National Digital Library, e-ShodhSindhu e-journals, 200+ reading seats, and quiet research cubicles.",
+      desc_hi: "50,000+ पुस्तकों, ई-संसाधनों और 200+ पठन सीटों वाला पूर्णतः स्वचालित केंद्रीय पुस्तकालय।",
+      link: "library.html"
+    },
+    {
+      id: "auditorium",
+      title_en: "University Central Auditorium",
+      title_hi: "विश्वविद्यालय केंद्रीय सभागार",
+      category_en: "Cultural & Academic Events",
+      category_hi: "सांस्कृतिक और अकादमिक कार्यक्रम",
+      src: "assets/images/audimg.jpg",
+      location: "Administrative & Cultural Block",
+      access: "500+ Seating Capacity",
+      desc_en: "Air-conditioned 500-seat acoustic auditorium hosting convocations, national academic symposia, cultural festivals, theatrical performances, and guest lectures.",
+      desc_hi: "दीक्षांत समारोह, राष्ट्रीय सम्मेलनों और सांस्कृतिक उत्सवों के लिए 500-सीटों वाला केंद्रीय सभागार।",
+      link: "facilities.html#auditorium"
+    },
+    {
+      id: "cs-lab",
+      title_en: "High-Performance Computer Science GPU Lab",
+      title_hi: "उच्च-प्रदर्शन कंप्यूटर साइंस जीपीयू लैब",
+      category_en: "Technology & Computing",
+      category_hi: "प्रौद्योगिकी और कंप्यूटिंग",
+      src: "assets/images/cs_lab.jpg",
+      location: "Aryabhatta Academic Block B",
+      access: "NVIDIA Workstations & AI Tech",
+      desc_en: "Advanced computing center fitted with high-end NVIDIA GPU workstations, Linux server clusters, AI/Machine Learning development suites, and high-bandwidth fiber connections.",
+      desc_hi: "एनवीडिया जीपीयू वर्कस्टेशन, एआई/मशीन लर्निंग डेवलपमेंट टूल और हाई-स्पीड नेटवर्क से सुसज्जित लैब।",
+      link: "cs.html"
+    },
+    {
+      id: "smart-classroom",
+      title_en: "Interactive Smart Classroom",
+      title_hi: "इंटरैक्टिव स्मार्ट क्लासरूम",
+      category_en: "Academic Technology",
+      category_hi: "अकादमिक तकनीक",
+      src: "assets/images/2013.jpg",
+      location: "All Departmental Lecture Halls",
+      access: "Smartboards & Dual Projectors",
+      desc_en: "Digitally enhanced classroom with interactive touch displays, wireless screen casting, ceiling-array microphones, and lecture recording systems for hybrid learning.",
+      desc_hi: "स्मार्ट बोर्ड, वायरलेस स्क्रीन कास्टिंग और हाइब्रिड लर्निंग सुविधाओं वाले डिजिटल व्याख्यान कक्ष।",
+      link: "courses.html"
+    },
+    {
+      id: "gargi",
+      title_en: "Gargi Sadan Girls Hostel",
+      title_hi: "गार्गी सदन छात्रावास",
+      category_en: "Female Student Accommodation",
+      category_hi: "छात्रा आवास",
+      src: "assets/images/gargi sadan.jpg",
+      location: "South Residential Sector",
+      access: "24/7 Security & Female Warden",
+      desc_en: "Secure residential building for female undergraduate and postgraduate students, equipped with biometric security access, reading hall, courtyard garden, and mess.",
+      desc_hi: "बायोमेट्रिक सुरक्षा, वाचन कक्ष और पौष्टिक मेस के साथ छात्राओं के लिए सुरक्षित आवासीय भवन।",
+      link: "hostel.html#gargi"
+    },
+    {
+      id: "open-gym",
+      title_en: "Outdoor Open Gymnasium",
+      title_hi: "ओपन जिम सुविधा",
+      category_en: "Health & Physical Wellness",
+      category_hi: "स्वास्थ्य और फिटनेस",
+      src: "assets/images/opengym.jpeg",
+      location: "Campus Garden & Park",
+      access: "All Campus Residents",
+      desc_en: "Weather-resistant outdoor exercise machines installed in landscaped gardens, offering students and staff calisthenics equipment for morning workouts.",
+      desc_hi: "छात्रों और कर्मचारियों के लिए परिसर के उद्यानों में स्थापित ऑल-वेदर आउटडोर फिटनेस उपकरण।",
+      link: "sports.html#gym"
+    },
+    {
+      id: "admin-block",
+      title_en: "Administrative Building & VC Secretariat",
+      title_hi: "प्रशासनिक भवन और कुलपति सचिवालय",
+      category_en: "University Governance",
+      category_hi: "विश्वविद्यालय प्रशासन",
+      src: "assets/images/admin.jpeg",
+      location: "Main Campus Plaza",
+      access: "Administrative Divisions",
+      desc_en: "Nodal center for university governance containing the Vice-Chancellor's Secretariat, Office of the Registrar, Controller of Examinations, and Finance Office.",
+      desc_hi: "कुलपति कार्यालय, कुलसचिव कार्यालय, परीक्षा नियंत्रक और वित्त विभाग का केंद्रीय प्रशासनिक भवन।",
+      link: "leaders.html"
+    }
+  ];
+
+  // Function to create a gallery card element
+  const createCard = (item) => {
+    const lang = localStorage.getItem('cusb-lang') || 'en';
+    const card = document.createElement('div');
+    card.className = 'gallery-ticker-card';
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', `View details about ${item.title_en}`);
+
+    const title = lang === 'en' ? item.title_en : item.title_hi;
+    const category = lang === 'en' ? item.category_en : item.category_hi;
+
+    card.innerHTML = `
+      <img src="${item.src}" alt="${title}" loading="lazy" onerror="this.src='assets/images/audimg.jpg'">
+      <div class="gallery-ticker-overlay">
+        <span class="gallery-card-category">${category}</span>
+        <h3 class="gallery-card-title">${title}</h3>
+        <span class="gallery-card-click-hint"><span>🔍</span> <span data-en="Click for details" data-hi="विवरण के लिए क्लिक करें">Click for details</span></span>
+      </div>
+    `;
+
+    card.addEventListener('click', () => openGalleryDetailModal(item));
+    return card;
+  };
+
+  // Render 2 duplicate sets into Row 1 and Row 2 for smooth infinite loop
+  row1Track.innerHTML = '';
+  row1Items.forEach(item => row1Track.appendChild(createCard(item)));
+  row1Items.forEach(item => row1Track.appendChild(createCard(item)));
+
+  row2Track.innerHTML = '';
+  row2Items.forEach(item => row2Track.appendChild(createCard(item)));
+  row2Items.forEach(item => row2Track.appendChild(createCard(item)));
+
+  // Hardware accelerated motion coordinates
+  let pos1 = -row1Track.scrollWidth / 2;
+  let speed1 = 0.85; // Row 1: Left to Right!
+
+  let pos2 = 0;
+  let speed2 = -0.85; // Row 2: Right to Left!
+
+  let isMoving = true;
+  let animId = null;
+
+  const animate = () => {
+    if (isMoving) {
+      // Row 1: L -> R
+      pos1 += speed1;
+      if (pos1 >= 0) {
+        pos1 = -row1Track.scrollWidth / 2;
+      }
+      row1Track.style.transform = `translate3d(${pos1}px, 0, 0)`;
+
+      // Row 2: R -> L
+      pos2 += speed2;
+      if (pos2 <= -row2Track.scrollWidth / 2) {
+        pos2 = 0;
+      }
+      row2Track.style.transform = `translate3d(${pos2}px, 0, 0)`;
+    }
+    animId = requestAnimationFrame(animate);
+  };
+
+  animId = requestAnimationFrame(animate);
+
+  // Pause movement on hover or touch on mobile for zero lag
+  wrapper.addEventListener('mouseenter', () => { isMoving = false; });
+  wrapper.addEventListener('mouseleave', () => { isMoving = true; });
+  wrapper.addEventListener('touchstart', () => { isMoving = false; }, { passive: true });
+  wrapper.addEventListener('touchend', () => { isMoving = true; }, { passive: true });
+
+  // Manual Control Buttons
+  const prevBtn = document.getElementById('prevGalleryBtn');
+  const pauseBtn = document.getElementById('pauseGalleryBtn');
+  const nextBtn = document.getElementById('nextGalleryBtn');
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      pos1 += 240;
+      pos2 += 240;
+      row1Track.style.transform = `translate3d(${pos1}px, 0, 0)`;
+      row2Track.style.transform = `translate3d(${pos2}px, 0, 0)`;
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      pos1 -= 240;
+      pos2 -= 240;
+      row1Track.style.transform = `translate3d(${pos1}px, 0, 0)`;
+      row2Track.style.transform = `translate3d(${pos2}px, 0, 0)`;
+    });
+  }
+
+  if (pauseBtn) {
+    pauseBtn.addEventListener('click', () => {
+      isMoving = !isMoving;
+      pauseBtn.textContent = isMoving ? '⏸' : '▶';
+      pauseBtn.title = isMoving ? 'Pause Auto Motion' : 'Play Auto Motion';
+    });
+  }
+}
+
+// Open Detailed Gallery Information Modal
+function openGalleryDetailModal(item) {
+  let modal = document.getElementById('galleryDetailModal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.className = 'search-overlay';
+    modal.id = 'galleryDetailModal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+
+    modal.innerHTML = `
+      <div class="search-modal gallery-detail-modal" style="max-width: 650px;">
+        <div class="search-modal-header">
+          <div class="search-modal-title">
+            <span style="color:var(--acc-navy); display:inline-flex; align-items:center;">🏛️</span>
+            <span id="galleryModalCategory">Campus Detail</span>
+          </div>
+          <div class="search-modal-close-row">
+            <span class="search-esc-tag">ESC</span>
+            <button class="search-modal-close" id="closeGalleryModalBtn" aria-label="Close modal">✕</button>
+          </div>
+        </div>
+        <div class="search-modal-body gallery-modal-body">
+          <div class="gallery-modal-media">
+            <img id="galleryModalImg" src="" alt="">
+            <div id="galleryModalTag" class="gallery-modal-tag">Central Campus</div>
+          </div>
+          <div class="gallery-modal-info">
+            <h3 id="galleryModalTitle" class="gallery-modal-title">Title Here</h3>
+            <p id="galleryModalDesc" class="gallery-modal-desc">Detailed information...</p>
+            
+            <div class="gallery-modal-specs">
+              <div class="spec-item">
+                <span class="spec-label" data-en="Location" data-hi="स्थान">Location:</span>
+                <span id="galleryModalLoc" class="spec-val">CUSB Gaya Campus</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label" data-en="Category" data-hi="श्रेणी">Category:</span>
+                <span id="galleryModalCatVal" class="spec-val">Academic Facility</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label" data-en="Access & Features" data-hi="पहुँच और विशेषताएँ">Access & Features:</span>
+                <span id="galleryModalAccess" class="spec-val">Students & Faculty</span>
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; margin-top:10px;">
+              <a id="galleryModalLink" href="facilities.html" class="btn-gallery-explore" data-en="Explore Full Page →" data-hi="पूरा पृष्ठ देखें →">Explore Full Page →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    const closeBtn = document.getElementById('closeGalleryModalBtn');
+    if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+  }
+
+  const lang = localStorage.getItem('cusb-lang') || 'en';
+  document.getElementById('galleryModalCategory').textContent = lang === 'en' ? item.category_en : item.category_hi;
+  document.getElementById('galleryModalTag').textContent = lang === 'en' ? item.category_en : item.category_hi;
+  document.getElementById('galleryModalImg').src = item.src;
+  document.getElementById('galleryModalImg').alt = lang === 'en' ? item.title_en : item.title_hi;
+  document.getElementById('galleryModalTitle').textContent = lang === 'en' ? item.title_en : item.title_hi;
+  document.getElementById('galleryModalDesc').textContent = lang === 'en' ? item.desc_en : item.desc_hi;
+  document.getElementById('galleryModalLoc').textContent = item.location || 'CUSB Gaya Campus';
+  document.getElementById('galleryModalCatVal').textContent = lang === 'en' ? item.category_en : item.category_hi;
+  document.getElementById('galleryModalAccess').textContent = item.access || 'Students & Staff';
+  
+  const linkEl = document.getElementById('galleryModalLink');
+  if (linkEl) {
+    linkEl.href = item.link || 'facilities.html';
+  }
+
+  modal.classList.add('active');
+}
+
+/* ==========================================================================
+   17. AUTO-MOVING NEWS SLIDER (RIGHT TO LEFT) & INTERACTIVE NEWS MODAL
+   ========================================================================== */
+function initNewsTicker() {
+  const track = document.getElementById('newsTickerTrack');
+  const wrapper = document.getElementById('newsTickerWrapper');
+  if (!track || !wrapper) return;
+
+  const cusbNewsItems = [
+    {
+      id: "news-pg-admissions",
+      title_en: "CUSB Admission Bulletin 2026 Released for PG Programs",
+      title_hi: "पीजी कार्यक्रमों के लिए सीयूएसबी प्रवेश बुलेटिन 2026 जारी",
+      category_en: "CUET PG Admissions",
+      category_hi: "सीयूईटी पीजी प्रवेश",
+      date: "10 MAR 2026",
+      publisher: "Central Admission Cell, CUSB",
+      src: "assets/images/blockB.jpg",
+      desc_en: "Central University of South Bihar has officially released the admission prospectus and application guidelines for 28 Postgraduate Degree (MA, MSc, MTech, LLM, MPharm, MEd) programs for Academic Session 2026-27 through CUET PG 2026 scores.",
+      desc_hi: "दक्षिण बिहार केंद्रीय विश्वविद्यालय ने सीयूईटी पीजी 2026 के माध्यम से शैक्षणिक सत्र 2026-27 के लिए 28 स्नातकोत्तर पाठ्यक्रमों का प्रवेश बुलेटिन जारी किया है।",
+      link: "admissions.html"
+    },
+    {
+      id: "news-non-teaching-recruitment",
+      title_en: "Recruitment Notification Issued for Non-Teaching Posts",
+      title_hi: "गैर-शिक्षण पदों के लिए भर्ती अधिसूचना जारी",
+      category_en: "Careers & Jobs",
+      category_hi: "करियर और नौकरियां",
+      date: "02 MAR 2026",
+      publisher: "Recruitment Cell, Registrar Office",
+      src: "assets/images/admin_good.jpeg",
+      desc_en: "Applications are invited from eligible candidates for administrative and technical non-teaching positions including Section Officer, Assistant Registrar, Senior Technical Assistant, and System Analyst at CUSB Gaya campus.",
+      desc_hi: "सीयूएसबी गया परिसर में अनुभाग अधिकारी, सहायक कुलसचिव और वरिष्ठ तकनीकी सहायक सहित गैर-शिक्षण पदों के लिए ऑनलाइन आवेदन आमंत्रित किए जाते हैं।",
+      link: "careers.html"
+    },
+    {
+      id: "news-web-competition",
+      title_en: "National Hackathon & Website Development Competition",
+      title_hi: "वेबसाइट विकास और राष्ट्रीय हैकाथॉन प्रतियोगिता",
+      category_en: "Student Innovation",
+      category_hi: "छात्र नवाचार",
+      date: "14 FEB 2026",
+      publisher: "Department of Computer Science",
+      src: "assets/images/cs_lab.jpg",
+      desc_en: "CUSB Department of Computer Science is hosting a 24-hour National Student Hackathon on 'Smart Web & AI Interface Design'. Cash prizes worth ₹50,000 to be awarded to top winning teams.",
+      desc_hi: "कंप्यूटर विज्ञान विभाग द्वारा 'स्मार्ट वेब और एआई इंटरफेस डिजाइन' पर 24 घंटे की राष्ट्रीय छात्र हैकाथॉन का आयोजन किया जा रहा है।",
+      link: "cs.html"
+    },
+    {
+      id: "news-research-grant",
+      title_en: "CUSB Faculty Secures ₹1.2 Crore DST-SERB Research Grant",
+      title_hi: "सीयूएसबी संकाय को ₹1.2 करोड़ का डीएसटी-एसईआरबी शोध अनुदान मिला",
+      category_en: "Research & Development",
+      category_hi: "अनुसंधान एवं विकास",
+      date: "28 JAN 2026",
+      publisher: "Dean Research & Development Cell",
+      src: "assets/images/audimg.jpg",
+      desc_en: "School of Physical Sciences and Bioinformatics team awarded a prestigious major research grant from DST-SERB for advanced quantum materials simulation and molecular docking studies.",
+      desc_hi: "भौतिक विज्ञान और बायोइनफॉर्मेटिक्स संकाय को क्वांटम सामग्री सिमुलेशन और आणविक अध्ययन के लिए डीएसटी-एसईआरबी से प्रमुख शोध अनुदान स्वीकृत हुआ।",
+      link: "research.html"
+    },
+    {
+      id: "news-naac-accreditation",
+      title_en: "NAAC Peer Team Awards CUSB Highest Institutional Grade",
+      title_hi: "नेक पीयर टीम ने सीयूएसबी को सर्वोच्च संस्थागत ग्रेड प्रदान किया",
+      category_en: "Institutional Excellence",
+      category_hi: "संस्थागत उत्कृष्टता",
+      date: "15 JAN 2026",
+      publisher: "IQAC Cell, CUSB",
+      src: "assets/drone.png",
+      desc_en: "National Assessment and Accreditation Council (NAAC) has awarded Central University of South Bihar top institutional accreditation rating recognizing excellence in teaching, research, and campus infrastructure.",
+      desc_hi: "राष्ट्रीय मूल्यांकन एवं प्रत्यायन परिषद (NAAC) ने अध्यापन, अनुसंधान और बुनियादी ढांचे में उत्कृष्टता को पहचानते हुए सीयूएसबी को शीर्ष ग्रेड प्रदान किया।",
+      link: "about.html"
+    },
+    {
+      id: "news-sports-meet",
+      title_en: "CUSB Inter-Department Athletics Meet & Sports Carnival 2026",
+      title_hi: "सीयूएसबी अंतर-विभागीय एथलेटिक्स मीट और खेल महोत्सव 2026",
+      category_en: "Campus Sports",
+      category_hi: "परिसर खेल",
+      date: "05 JAN 2026",
+      publisher: "Department of Physical Education",
+      src: "assets/images/spoim.jpg",
+      desc_en: "Over 800 student athletes competing across 18 track and field events, football, cricket, table tennis, and outdoor open gym championships at the University Sports Stadium.",
+      desc_hi: "विश्वविद्यालय खेल स्टेडियम में 18 ट्रैक और फ़ील्ड प्रतियोगिताओं, फुटबॉल और टेबल टेनिस में 800 से अधिक छात्र एथलीट भाग ले रहे हैं।",
+      link: "sports.html"
+    }
+  ];
+
+  // Create news card element
+  const createNewsCard = (item) => {
+    const lang = localStorage.getItem('cusb-lang') || 'en';
+    const card = document.createElement('div');
+    card.className = 'news-ticker-card';
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', `Read news about ${item.title_en}`);
+
+    const title = lang === 'en' ? item.title_en : item.title_hi;
+    const category = lang === 'en' ? item.category_en : item.category_hi;
+    const desc = lang === 'en' ? item.desc_en : item.desc_hi;
+
+    card.innerHTML = `
+      <div class="news-ticker-media">
+        <img src="${item.src}" alt="${title}" loading="lazy" onerror="this.src='assets/images/audimg.jpg'">
+        <div class="news-ticker-date-badge">${item.date}</div>
+      </div>
+      <div class="news-ticker-body">
+        <span class="news-ticker-meta">${category}</span>
+        <h3 class="news-ticker-title">${title}</h3>
+        <p class="news-ticker-desc">${desc}</p>
+        <span class="news-ticker-link"><span data-en="Read Full Story →" data-hi="पूरा विवरण पढ़ें →">Read Full Story →</span></span>
+      </div>
+    `;
+
+    card.addEventListener('click', () => openNewsDetailModal(item));
+    return card;
+  };
+
+  // Render 2 duplicate sets for infinite continuous loop
+  track.innerHTML = '';
+  cusbNewsItems.forEach(item => track.appendChild(createNewsCard(item)));
+  cusbNewsItems.forEach(item => track.appendChild(createNewsCard(item)));
+
+  // Continuous Right-to-Left Moving Animation (negative speed moves track right-to-left!)
+  let position = 0;
+  let speed = -0.85; 
+  let isMoving = true;
+  let animId = null;
+
+  const animate = () => {
+    if (isMoving) {
+      position += speed;
+      if (position <= -track.scrollWidth / 2) {
+        position = 0;
+      } else if (position >= 0) {
+        position = -track.scrollWidth / 2;
+      }
+      track.style.transform = `translateX(${position}px)`;
+    }
+    animId = requestAnimationFrame(animate);
+  };
+
+  animId = requestAnimationFrame(animate);
+
+  // Pause movement on mouse hover
+  wrapper.addEventListener('mouseenter', () => { isMoving = false; });
+  wrapper.addEventListener('mouseleave', () => { isMoving = true; });
+
+  // Manual Control Buttons
+  const prevBtn = document.getElementById('prevNewsBtn');
+  const pauseBtn = document.getElementById('pauseNewsBtn');
+  const nextBtn = document.getElementById('nextNewsBtn');
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      position += 280;
+      track.style.transform = `translateX(${position}px)`;
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      position -= 280;
+      track.style.transform = `translateX(${position}px)`;
+    });
+  }
+
+  if (pauseBtn) {
+    pauseBtn.addEventListener('click', () => {
+      isMoving = !isMoving;
+      pauseBtn.textContent = isMoving ? '⏸' : '▶';
+      pauseBtn.title = isMoving ? 'Pause Auto Motion' : 'Play Auto Motion';
+    });
+  }
+}
+
+// Open Detailed News Information Modal
+function openNewsDetailModal(item) {
+  let modal = document.getElementById('newsDetailModal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.className = 'search-overlay';
+    modal.id = 'newsDetailModal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+
+    modal.innerHTML = `
+      <div class="search-modal news-detail-modal" style="max-width: 660px;">
+        <div class="search-modal-header">
+          <div class="search-modal-title">
+            <span style="color:var(--acc-navy); display:inline-flex; align-items:center;">📰</span>
+            <span id="newsModalCategory">University News</span>
+          </div>
+          <div class="search-modal-close-row">
+            <span class="search-esc-tag">ESC</span>
+            <button class="search-modal-close" id="closeNewsModalBtn" aria-label="Close modal">✕</button>
+          </div>
+        </div>
+        <div class="search-modal-body gallery-modal-body">
+          <div class="gallery-modal-media">
+            <img id="newsModalImg" src="" alt="">
+            <div id="newsModalDate" class="gallery-modal-tag">10 MAR 2026</div>
+          </div>
+          <div class="gallery-modal-info">
+            <h3 id="newsModalTitle" class="gallery-modal-title">Title Here</h3>
+            <p id="newsModalDesc" class="gallery-modal-desc">Detailed story...</p>
+            
+            <div class="gallery-modal-specs">
+              <div class="spec-item">
+                <span class="spec-label" data-en="Published By" data-hi="प्रकाशक">Published By:</span>
+                <span id="newsModalPublisher" class="spec-val">CUSB Central Office</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label" data-en="Category" data-hi="श्रेणी">Category:</span>
+                <span id="newsModalCatVal" class="spec-val">Official Announcement</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label" data-en="Publication Date" data-hi="प्रकाशन तिथि">Publication Date:</span>
+                <span id="newsModalDateVal" class="spec-val">2026</span>
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; margin-top:10px;">
+              <a id="newsModalLink" href="news-events.html" class="btn-gallery-explore" data-en="Read Full Story on News Portal →" data-hi="समाचार पोर्टल पर पूरा विवरण पढ़ें →">Read Full Story on News Portal →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    const closeBtn = document.getElementById('closeNewsModalBtn');
+    if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+  }
+
+  const lang = localStorage.getItem('cusb-lang') || 'en';
+  document.getElementById('newsModalCategory').textContent = lang === 'en' ? item.category_en : item.category_hi;
+  document.getElementById('newsModalDate').textContent = item.date || '2026';
+  document.getElementById('newsModalImg').src = item.src;
+  document.getElementById('newsModalImg').alt = lang === 'en' ? item.title_en : item.title_hi;
+  document.getElementById('newsModalTitle').textContent = lang === 'en' ? item.title_en : item.title_hi;
+  document.getElementById('newsModalDesc').textContent = lang === 'en' ? item.desc_en : item.desc_hi;
+  document.getElementById('newsModalPublisher').textContent = item.publisher || 'CUSB Press Office';
+  document.getElementById('newsModalCatVal').textContent = lang === 'en' ? item.category_en : item.category_hi;
+  document.getElementById('newsModalDateVal').textContent = item.date || '2026';
+  
+  const linkEl = document.getElementById('newsModalLink');
+  if (linkEl) {
+    linkEl.href = item.link || 'news-events.html';
+  }
+
+  modal.classList.add('active');
 }
 

@@ -1,6 +1,10 @@
 /**
- * CUSB WEBSITE - INTERACTIVE EVENT CALENDAR
- * Fetches events from server, highlights dates on calendar, and displays event details in side panel.
+ * CUSB WEBSITE - INTERACTIVE EVENT CALENDAR & AUTO-ROTATING HIGHLIGHTS
+ * Features:
+ * 1. Auto-rotating event slideshow at regular intervals (every 4s)
+ * 2. Synchronized calendar date highlighting and automatic month switching
+ * 3. Manual date click to jump directly to any clicked day's events
+ * 4. Interactive controls (Previous, Next, Pause/Play, Mouse Hover Pause)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,14 +15,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const daysGrid = document.getElementById('calendarDaysGrid');
   
   // Side panel DOM elements
+  const eventSidePanel = document.getElementById('eventSidePanel');
   const selectedDateDisplay = document.getElementById('selectedDateDisplay');
   const eventDetailsList = document.getElementById('eventDetailsList');
+  const prevEventBtn = document.getElementById('prevEventBtn');
+  const pauseEventBtn = document.getElementById('pauseEventBtn');
+  const nextEventBtn = document.getElementById('nextEventBtn');
   
   // State variables
-  let currentYear; // will be initialized to current system date in setInitialSelection
+  let currentYear; 
   let currentMonth;
   let eventsMap = {};     // Format: { 'YYYY-MM-DD': [event1, event2, ...] }
+  let allEventsList = []; // Flattened array of all events sorted by date
   let selectedDateStr = '';
+
+  // Auto-slide state
+  let currentCarouselIndex = 0;
+  let isAutoPlayPaused = false;
+  let userClickPauseTimer = null;
+  let autoSlideInterval = null;
 
   const eventImages = {
     national: 'assets/images/admin_good.jpeg',
@@ -48,77 +63,30 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const fallbackEvents = [
-    holidayEvent("New Year (OH)", "1 January 2026", "Gazetted/Observed Holiday", eventImages.festival),
-    holidayEvent("Observed Holiday", "2 January 2026", "Gazetted/Observed Holiday", eventImages.campus),
-    holidayEvent("Republic Day", "26 January 2026", "Gazetted/Observed Holiday", eventImages.national),
-    holidayEvent("Holi (OH)", "3 March 2026", "Gazetted/Observed Holiday", eventImages.holi),
-    holidayEvent("Holi", "4 March 2026", "Gazetted/Observed Holiday", eventImages.holi),
-    holidayEvent("Holi (OH)", "5 March 2026", "Gazetted/Observed Holiday", eventImages.holi),
-    holidayEvent("Holi (OH)", "6 March 2026", "Gazetted/Observed Holiday", eventImages.holi),
-    holidayEvent("Idu'l Fitr", "21 March 2026", "Gazetted/Observed Holiday", eventImages.eid),
-    holidayEvent("Mahavir Jayanti", "31 March 2026", "Gazetted/Observed Holiday", eventImages.jain),
-    holidayEvent("Good Friday", "3 April 2026", "Gazetted/Observed Holiday", eventImages.christmas),
-    holidayEvent("Buddha Purnima", "1 May 2026", "Gazetted/Observed Holiday", eventImages.buddha),
-    holidayEvent("Idu'l Zuha", "27 May 2026", "Gazetted/Observed Holiday", eventImages.eid),
-    holidayEvent("Muharram", "26 June 2026", "Gazetted/Observed Holiday", eventImages.eid),
-    holidayEvent("Independence Day", "15 August 2026", "Gazetted/Observed Holiday", eventImages.national),
-    holidayEvent("Prophet Mohammad's Birthday (Id-E-Milad)", "26 August 2026", "Gazetted/Observed Holiday", eventImages.eid),
-    holidayEvent("Janamashtami (Vaishnavi)", "4 September 2026", "Gazetted/Observed Holiday", eventImages.festival),
-    holidayEvent("Mahatma Gandhi's Birthday", "2 October 2026", "Gazetted/Observed Holiday", eventImages.gandhi),
-    holidayEvent("An Additional Day for Dussehra", "19 October 2026", "Gazetted/Observed Holiday", eventImages.festival),
-    holidayEvent("Dussehra (Vijay Dashmi)", "20 October 2026", "Gazetted/Observed Holiday", eventImages.festival),
-    holidayEvent("Diwali (Deepavali)", "8 November 2026", "Gazetted/Observed Holiday", eventImages.diwali),
-    holidayEvent("Diwali & Chhath Pooja (OH)", "9 November 2026", "Gazetted/Observed Holiday", eventImages.diwali),
-    holidayEvent("Diwali & Chhath Pooja (OH)", "10 November 2026", "Gazetted/Observed Holiday", eventImages.diwali),
-    holidayEvent("Diwali & Chhath Pooja (OH)", "11 November 2026", "Gazetted/Observed Holiday", eventImages.diwali),
-    holidayEvent("Diwali & Chhath Pooja (OH)", "12 November 2026", "Gazetted/Observed Holiday", eventImages.diwali),
-    holidayEvent("Diwali & Chhath Pooja (OH)", "13 November 2026", "Gazetted/Observed Holiday", eventImages.diwali),
-    holidayEvent("Guru Nanak's Birthday", "24 November 2026", "Gazetted/Observed Holiday", eventImages.sikh),
-    holidayEvent("Christmas Day", "25 December 2026", "Gazetted/Observed Holiday", eventImages.christmas),
-    holidayEvent("New Year's Day", "1 January 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Hazrat Ali's Birthday", "3 January 2026", "Restricted Holiday", eventImages.eid),
-    holidayEvent("Makar Sankranti/Magha Bihu/Pongal", "14 January 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Sri Panchami, Basant Panchami", "23 January 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Guru Ravi Das's Birthday", "1 February 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Birthday of Swami Dayananda Saraswati", "12 February 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Maha Shivratri", "15 February 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Shiva Ji Jayanti", "19 February 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Holika Dahan/Dolyatra", "3 March 2026", "Restricted Holiday", eventImages.holi),
-    holidayEvent("Chaitra Sukladi/Gudi Padava/Ugadi/Cheti", "19 March 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Jamat-Ul-Vida/Naoraz", "20 March 2026", "Restricted Holiday", eventImages.eid),
-    holidayEvent("Ram Navami", "26 March 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Easter Sunday", "5 April 2026", "Restricted Holiday", eventImages.christmas),
-    holidayEvent("Vaisakhi/Vishu/Meshadi (Tamil New Year's Day)", "14 April 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Vaisakhadi (Bengal)/Bahag Bihu (Assam)", "15 April 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Birthday of Guru Rabindranath Tagore", "9 May 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Rath Yatra", "16 July 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Parsi New Year's Day/Nauraj", "15 August 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Onam or Thiru Onam Day", "26 August 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Raksha Bandhan", "28 August 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Ganesh Chaturthi/Vinayak Chaturthi", "14 September 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("1st Navratra", "11 October 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Dussehra (Saptami)", "18 October 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Dussehra (Mahaashtami)", "19 October 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Dussehra (Mahanavmi)", "20 October 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Maharishi Valmiki's Birthday", "26 October 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Karaka Chaturthi (Karwa Chouth)", "29 October 2026", "Restricted Holiday", eventImages.festival),
-    holidayEvent("Naraka Chaturdasi", "8 November 2026", "Restricted Holiday", eventImages.diwali),
-    holidayEvent("Govardhan Puja", "9 November 2026", "Restricted Holiday", eventImages.diwali),
-    holidayEvent("Bhai Duj", "11 November 2026", "Restricted Holiday", eventImages.diwali),
-    holidayEvent("Pratihar Shashthi or Surya Shashthi (Chhath)", "15 November 2026", "Restricted Holiday", eventImages.diwali),
-    holidayEvent("Guru Teg Bahadur's Martyrdom Day", "24 November 2026", "Restricted Holiday", eventImages.sikh),
-    holidayEvent("Hazrat Ali's Birthday", "23 December 2026", "Restricted Holiday", eventImages.eid),
-    holidayEvent("Christmas Eve", "24 December 2026", "Restricted Holiday", eventImages.christmas)
+    holidayEvent("Republic Day Celebration", "26 January 2026", "National Festival & Campus Parade", eventImages.national),
+    holidayEvent("Annual Athletic Meet & Sports", "15 February 2026", "CUSB Sports Complex", eventImages.campus),
+    holidayEvent("Holi Festival of Colors", "4 March 2026", "Cultural Celebration", eventImages.holi),
+    holidayEvent("Idu'l Fitr", "21 March 2026", "Gazetted Holiday", eventImages.eid),
+    holidayEvent("Good Friday Observation", "3 April 2026", "Observed Holiday", eventImages.christmas),
+    holidayEvent("Buddha Purnima & Peace Lecture", "1 May 2026", "University Academic Lecture", eventImages.buddha),
+    holidayEvent("International Yoga Day", "21 June 2026", "CUSB Open Amphitheatre", eventImages.campus),
+    holidayEvent("Independence Day Celebrations", "15 August 2026", "National Flag Hoisting & Parade", eventImages.national),
+    holidayEvent("Teacher's Day & Excellence Awards", "5 September 2026", "Central Auditorium", eventImages.campus),
+    holidayEvent("Mahatma Gandhi Jayanti", "2 October 2026", "Swachhata Abhiyan", eventImages.gandhi),
+    holidayEvent("Dussehra Vijay Dashmi", "20 October 2026", "Festival Holiday", eventImages.festival),
+    holidayEvent("Diwali & Chhath Puja Mahotsav", "8 November 2026", "Cultural Festival", eventImages.diwali),
+    holidayEvent("Guru Nanak Jayanti", "24 November 2026", "Gazetted Holiday", eventImages.sikh),
+    holidayEvent("Christmas Day Celebrations", "25 December 2026", "Campus Winter Fest", eventImages.christmas)
   ];
   
   const monthNames = {
     en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-    hi: ["à¤œà¤¨à¤µà¤°à¥€", "à¤«à¤°à¤µà¤°à¥€", "à¤®à¤¾à¤°à¥à¤š", "à¤…à¤ªà¥à¤°à¥ˆà¤²", "à¤®à¤ˆ", "à¤œà¥‚à¤¨", "à¤œà¥à¤²à¤¾à¤ˆ", "à¤…à¤—à¤¸à¥à¤¤", "à¤¸à¤¿à¤¤à¤‚à¤¬à¤°", "à¤…à¤•à¥à¤Ÿà¥‚à¤¬à¤°", "à¤¨à¤µà¤‚à¤¬à¤°", "à¤¦à¤¿à¤¸à¤‚à¤¬à¤°"]
+    hi: ["जनवरी", "फरवरी", "मार्च", "अप्रैल", "मई", "जून", "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर"]
   };
 
   const dayNames = {
     en: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    hi: ["à¤¸à¥‹à¤®", "à¤®à¤‚à¤—à¤²", "à¤¬à¥à¤§", "à¤—à¥à¤°à¥", "à¤¶à¥à¤•à¥à¤°", "à¤¶à¤¨à¤¿", "à¤°à¤µà¤¿"]
+    hi: ["सोम", "मंगल", "बुध", "गुरु", "शुक्र", "शनि", "रवि"]
   };
 
   // Helper: Get active language
@@ -145,26 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
     selectedDateStr = todayKey;
   }
 
-  // Keep calendar synchronized with system date. Check every minute and update when day changes.
-  function startDateSync() {
-    let lastDateStr = new Date().toDateString();
-    setInterval(() => {
-      const now = new Date();
-      const nowDateStr = now.toDateString();
-      if (nowDateStr !== lastDateStr) {
-        lastDateStr = nowDateStr;
-        currentYear = now.getFullYear();
-        currentMonth = now.getMonth();
-        selectedDateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-        renderCalendar();
-        displaySelectedEvents();
-      }
-    }, 60 * 1000);
-  }
-
   // Parse event dates dynamically and map them
   function parseEvents(events) {
     eventsMap = {};
+    allEventsList = [];
     const monthMapping = {
       jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11
     };
@@ -223,15 +175,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const d = String(date.getDate()).padStart(2, '0');
         const key = `${y}-${m}-${d}`;
         
+        event.parsed_date = date;
+        event.date_key = key;
+
         if (!eventsMap[key]) {
           eventsMap[key] = [];
         }
         eventsMap[key].push(event);
+        allEventsList.push(event);
       }
     });
+
+    // Sort allEventsList chronologically
+    allEventsList.sort((a, b) => a.parsed_date - b.parsed_date);
   }
 
-  // Load events from API
+  // Load events from API or fallback
   async function loadEvents() {
     try {
       const response = await fetch('/api/announcements?show_all=true');
@@ -240,18 +199,182 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       const data = await response.json();
       parseEvents(data);
-      setInitialSelection();
-      renderCalendar();
-      displaySelectedEvents();
-      return;
     } catch (error) {
-      console.error("Error loading events for calendar:", error);
+      console.warn("Using fallback events data for calendar slideshow:", error.message);
       parseEvents(fallbackEvents);
-      setInitialSelection();
-      renderCalendar();
+    }
+
+    setInitialSelection();
+    renderCalendar();
+    
+    if (allEventsList.length > 0) {
+      // Find event closest to today
+      const today = new Date();
+      const closestIndex = allEventsList.findIndex(e => e.parsed_date >= today);
+      currentCarouselIndex = closestIndex !== -1 ? closestIndex : 0;
+      displayEventAtIndex(currentCarouselIndex);
+    } else {
       displaySelectedEvents();
+    }
+
+    startAutoSlide();
+  }
+
+  // Auto-Slide Engine at 4-second intervals
+  function startAutoSlide() {
+    if (autoSlideInterval) clearInterval(autoSlideInterval);
+    autoSlideInterval = setInterval(() => {
+      if (!isAutoPlayPaused && allEventsList.length > 0) {
+        currentCarouselIndex = (currentCarouselIndex + 1) % allEventsList.length;
+        displayEventAtIndex(currentCarouselIndex, true);
+      }
+    }, 4000);
+  }
+
+  function pauseAutoSlideTemporarily(durationMs = 7000) {
+    isAutoPlayPaused = true;
+    clearTimeout(userClickPauseTimer);
+    userClickPauseTimer = setTimeout(() => {
+      if (pauseEventBtn && pauseEventBtn.textContent !== '▶') {
+        isAutoPlayPaused = false;
+      }
+    }, durationMs);
+  }
+
+  // Display Event at a specific Carousel Index
+  function displayEventAtIndex(index, isAutoSlide = false) {
+    if (allEventsList.length === 0) return;
+    
+    currentCarouselIndex = index;
+    const evt = allEventsList[index];
+    const key = evt.date_key;
+    selectedDateStr = key;
+
+    // Synchronize Calendar Month if event falls in a different month
+    const evtYear = evt.parsed_date.getFullYear();
+    const evtMonth = evt.parsed_date.getMonth();
+    
+    if (evtYear !== currentYear || evtMonth !== currentMonth) {
+      currentYear = evtYear;
+      currentMonth = evtMonth;
+      renderCalendar();
+    } else {
+      // Update selected class in current grid
+      updateCalendarSelection(key);
+    }
+
+    // Render Event Card in Side Panel
+    renderEventCard(evt, index + 1, allEventsList.length);
+  }
+
+  // Update selected class in grid without re-rendering everything
+  function updateCalendarSelection(key) {
+    document.querySelectorAll('.calendar-day-cell').forEach(c => {
+      if (c.getAttribute('data-date') === key) {
+        c.classList.add('selected');
+      } else {
+        c.classList.remove('selected');
+      }
+    });
+  }
+
+  // Render Event Card into Side Panel
+  function renderEventCard(item, currentNum, totalNum) {
+    const lang = getLang();
+
+    const parts = item.date_key.split('-');
+    const y = parseInt(parts[0], 10);
+    const m = parseInt(parts[1], 10) - 1;
+    const d = parseInt(parts[2], 10);
+
+    const formattedDate = lang === 'en' 
+      ? `${d} ${monthNames['en'][m]} ${y}`
+      : `${d} ${monthNames['hi'][m]} ${y}`;
+      
+    if (selectedDateDisplay) {
+      selectedDateDisplay.textContent = formattedDate;
+    }
+
+    const defaultImage = 'assets/images/audimg.jpg';
+    const imgUrl = item.image_url || defaultImage;
+    const category = item.desc_en || 'CUSB Event';
+    const categoryHi = item.desc_hi || 'सीयूएसबी कार्यक्रम';
+    
+    const title = lang === 'en' ? item.title_en : item.title_hi;
+    const meta = lang === 'en' ? category : categoryHi;
+    const timeStr = item.date_str || (lang === 'en' ? 'Full Day' : 'पूरा दिन');
+    
+    const safeTitle = escapeHTML(title || item.title_en || 'CUSB Event');
+    const safeImage = escapeHTML(imgUrl);
+    const safeMeta = escapeHTML(meta || 'CUSB Event');
+    const safeDateLabel = escapeHTML(timeStr || formattedDate);
+    const detailsText = lang === 'en'
+      ? `Scheduled at Central University of South Bihar, Gaya campus. ${item.desc_en || 'Event details will be updated soon.'}`
+      : `Central University of South Bihar, Gaya campus. ${item.desc_hi || item.desc_en || 'Event details will be updated soon.'}`;
+
+    eventDetailsList.style.opacity = '0';
+    eventDetailsList.style.transition = 'opacity 0.25s ease';
+
+    setTimeout(() => {
+      eventDetailsList.innerHTML = `
+        <div class="panel-event-card">
+          <div class="panel-event-media">
+            <img src="${safeImage}" alt="${safeTitle}" loading="lazy" onerror="this.src='assets/images/audimg.jpg'">
+            <div class="panel-event-date-badge">${safeDateLabel}</div>
+          </div>
+          <div class="panel-event-body">
+            <div class="panel-event-meta">${safeMeta}</div>
+            <h4 class="panel-event-title">${safeTitle}</h4>
+            <p class="panel-event-desc">${escapeHTML(detailsText)}</p>
+            <div class="panel-event-info">
+              <span>${escapeHTML(formattedDate)}</span>
+              <span>CUSB Gaya Campus</span>
+            </div>
+            <a class="panel-event-link" href="news-events.html?type=event">View event details</a>
+          </div>
+        </div>
+      `;
+      eventDetailsList.style.opacity = '1';
+    }, 120);
+  }
+
+  // Render Event Details on Manual Date Click
+  function displaySelectedEvents() {
+    const lang = getLang();
+
+    if (!selectedDateStr) return;
+    
+    const parts = selectedDateStr.split('-');
+    const y = parseInt(parts[0], 10);
+    const m = parseInt(parts[1], 10) - 1;
+    const d = parseInt(parts[2], 10);
+    
+    const formattedDate = lang === 'en' 
+      ? `${d} ${monthNames['en'][m]} ${y}`
+      : `${d} ${monthNames['hi'][m]} ${y}`;
+      
+    if (selectedDateDisplay) {
+      selectedDateDisplay.textContent = formattedDate;
+    }
+
+    const events = eventsMap[selectedDateStr] || [];
+    
+    if (events.length === 0) {
+
+      eventDetailsList.innerHTML = `
+        <div class="no-events-msg" data-en="No events scheduled for this date." data-hi="इस तिथि के लिए कोई कार्यक्रम निर्धारित नहीं है।">
+          ${lang === 'en' ? 'No events scheduled for this date.' : 'इस तिथि के लिए कोई कार्यक्रम निर्धारित नहीं है。'}
+        </div>
+      `;
       return;
-      eventDetailsList.innerHTML = `<div class="no-events-msg" data-en="Failed to load events." data-hi="à¤•à¤¾à¤°à¥à¤¯à¤•à¥à¤°à¤® à¤²à¥‹à¤¡ à¤•à¤°à¤¨à¥‡ à¤®à¥‡à¤‚ à¤µà¤¿à¤«à¤²à¥¤">Failed to load events.</div>`;
+    }
+
+    // Find matching index in allEventsList
+    const index = allEventsList.findIndex(e => e.date_key === selectedDateStr);
+    if (index !== -1) {
+      displayEventAtIndex(index);
+    } else {
+      renderEventCard(events[0], 1, events.length);
     }
   }
 
@@ -272,7 +395,6 @@ document.addEventListener('DOMContentLoaded', () => {
     daysGrid.innerHTML = '';
     
     // Get start day and total days in current month
-    // Week starts on Monday in our layout, so adjust day index (0 = Sun, 1 = Mon, ..., 6 = Sat)
     const firstDayIndex = (new Date(currentYear, currentMonth, 1).getDay() + 6) % 7;
     const totalDays = new Date(currentYear, currentMonth + 1, 0).getDate();
     
@@ -295,8 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Render padding days of the next month to complete the grid.
-    // Calculate only the number of rows actually needed so we don't render an extra empty week.
-    const cellsSoFar = daysGrid.children.length; // includes prev-month padding + current month days
+    const cellsSoFar = daysGrid.children.length; 
     const rowsNeeded = Math.ceil(cellsSoFar / 7);
     const totalCellsToRender = rowsNeeded * 7;
     const remainingCells = totalCellsToRender - cellsSoFar;
@@ -345,89 +466,10 @@ document.addEventListener('DOMContentLoaded', () => {
       cell.classList.add('selected');
       selectedDateStr = dateKey;
       displaySelectedEvents();
+      pauseAutoSlideTemporarily(7000); // Pause auto-rotation for 7 seconds on click
     });
     
     daysGrid.appendChild(cell);
-  }
-
-  // Render Event Details in Side Panel
-  function displaySelectedEvents() {
-    const lang = getLang();
-
-    if (!selectedDateStr) {
-      selectedDateDisplay.textContent = 'No date selected';
-      eventDetailsList.innerHTML = `
-        <div class="no-events-msg" data-en="Click a highlighted date to view only that day's events." data-hi="Click a highlighted date to view only that day's events.">
-          Click a highlighted date to view only that day's events.
-        </div>
-      `;
-      return;
-    }
-    
-    // Parse selected date to display nicely
-    const parts = selectedDateStr.split('-');
-    const y = parseInt(parts[0], 10);
-    const m = parseInt(parts[1], 10) - 1;
-    const d = parseInt(parts[2], 10);
-    
-    const formattedDate = lang === 'en' 
-      ? `${d} ${monthNames['en'][m]} ${y}`
-      : `${d} ${monthNames['hi'][m]} ${y}`;
-      
-    selectedDateDisplay.textContent = formattedDate;
-    
-    // Load events from map
-    const events = eventsMap[selectedDateStr] || [];
-    
-    if (events.length === 0) {
-      eventDetailsList.innerHTML = `
-        <div class="no-events-msg" data-en="No events scheduled for this date." data-hi="à¤‡à¤¸ à¤¤à¤¿à¤¥à¤¿ à¤•à¥‡ à¤²à¤¿à¤ à¤•à¥‹à¤ˆ à¤•à¤¾à¤°à¥à¤¯à¤•à¥à¤°à¤® à¤¨à¤¿à¤°à¥à¤§à¤¾à¤°à¤¿à¤¤ à¤¨à¤¹à¥€à¤‚ à¤¹à¥ˆà¥¤">
-          ${lang === 'en' ? 'No events scheduled for this date.' : 'à¤‡à¤¸ à¤¤à¤¿à¤¥à¤¿ à¤•à¥‡ à¤²à¤¿à¤ à¤•à¥‹à¤ˆ à¤•à¤¾à¤°à¥à¤¯à¤•à¥à¤°à¤® à¤¨à¤¿à¤°à¥à¤§à¤¾à¤°à¤¿à¤¤ à¤¨à¤¹à¥€à¤‚ à¤¹à¥ˆà¥¤'}
-        </div>
-      `;
-      return;
-    }
-    
-    eventDetailsList.innerHTML = '';
-    events.forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'panel-event-card';
-      
-      const defaultImage = 'assets/images/audimg.jpg';
-      const imgUrl = item.image_url || defaultImage;
-      const category = item.desc_en || 'CUSB Event'; // e.g. "School of Physical Sciences" or "International Conference"
-      const categoryHi = item.desc_hi || 'à¤¸à¥€à¤¯à¥‚à¤à¤¸à¤¬à¥€ à¤•à¤¾à¤°à¥à¤¯à¤•à¥à¤°à¤®';
-      
-      const title = lang === 'en' ? item.title_en : item.title_hi;
-      const meta = lang === 'en' ? category : categoryHi;
-      const timeStr = item.date_str || (lang === 'en' ? 'Full Day' : 'à¤ªà¥‚à¤°à¤¾ à¤¦à¤¿à¤¨');
-      
-      const safeTitle = escapeHTML(title || item.title_en || 'CUSB Event');
-      const safeImage = escapeHTML(imgUrl);
-      const safeMeta = escapeHTML(meta || 'CUSB Event');
-      const safeDateLabel = escapeHTML(timeStr || formattedDate);
-      const detailsText = lang === 'en'
-        ? `Scheduled at Central University of South Bihar, Gaya campus. ${item.desc_en || 'Event details will be updated soon.'}`
-        : `Central University of South Bihar, Gaya campus. ${item.desc_hi || item.desc_en || 'Event details will be updated soon.'}`;
-
-      card.innerHTML = `
-        <div class="panel-event-media">
-          <img src="${safeImage}" alt="${safeTitle}" loading="lazy" onerror="this.src='assets/images/audimg.jpg'">
-          <div class="panel-event-date-badge">${safeDateLabel}</div>
-        </div>
-        <div class="panel-event-body">
-          <div class="panel-event-meta">${safeMeta}</div>
-          <h4 class="panel-event-title">${safeTitle}</h4>
-          <p class="panel-event-desc">${escapeHTML(detailsText)}</p>
-          <div class="panel-event-info">
-            <span>${escapeHTML(formattedDate)}</span>
-            <span>CUSB Gaya Campus</span>
-          </div>
-          <a class="panel-event-link" href="news-events.html?type=event">View event details</a>
-        </div>
-      `;
-      eventDetailsList.appendChild(card);
-    });
   }
 
   // Month navigation click event handlers
@@ -440,6 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
     selectedDateStr = '';
     renderCalendar();
     displaySelectedEvents();
+    pauseAutoSlideTemporarily(5000);
   });
 
   nextMonthBtn.addEventListener('click', () => {
@@ -451,12 +494,51 @@ document.addEventListener('DOMContentLoaded', () => {
     selectedDateStr = '';
     renderCalendar();
     displaySelectedEvents();
+    pauseAutoSlideTemporarily(5000);
   });
+
+  // Event Carousel Control Buttons
+  if (prevEventBtn) {
+    prevEventBtn.addEventListener('click', () => {
+      if (allEventsList.length === 0) return;
+      currentCarouselIndex = (currentCarouselIndex - 1 + allEventsList.length) % allEventsList.length;
+      displayEventAtIndex(currentCarouselIndex);
+      pauseAutoSlideTemporarily(6000);
+    });
+  }
+
+  if (nextEventBtn) {
+    nextEventBtn.addEventListener('click', () => {
+      if (allEventsList.length === 0) return;
+      currentCarouselIndex = (currentCarouselIndex + 1) % allEventsList.length;
+      displayEventAtIndex(currentCarouselIndex);
+      pauseAutoSlideTemporarily(6000);
+    });
+  }
+
+  if (pauseEventBtn) {
+    pauseEventBtn.addEventListener('click', () => {
+      isAutoPlayPaused = !isAutoPlayPaused;
+      pauseEventBtn.textContent = isAutoPlayPaused ? '▶' : '⏸';
+      pauseEventBtn.title = isAutoPlayPaused ? 'Play Auto-Slide' : 'Pause Auto-Slide';
+    });
+  }
+
+  // Mouse Hover Pause / Resume on Side Panel
+  if (eventSidePanel) {
+    eventSidePanel.addEventListener('mouseenter', () => {
+      isAutoPlayPaused = true;
+    });
+    eventSidePanel.addEventListener('mouseleave', () => {
+      if (!pauseEventBtn || pauseEventBtn.textContent !== '▶') {
+        isAutoPlayPaused = false;
+      }
+    });
+  }
 
   // Fetch and initialize on load
   loadEvents();
 
-  // Start the system date watcher so calendar stays in sync across days
   startDateSync();
 
   // Watch for language change triggers

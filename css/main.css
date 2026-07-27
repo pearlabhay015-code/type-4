@@ -508,6 +508,7 @@ cusb-accessibility-bar {
   background-color: var(--bg-secondary);
   color: var(--tx-primary);
   transition: var(--transition);
+  cursor: pointer;
 }
 
 .accessibility-search-container .search-input:focus {
@@ -698,18 +699,44 @@ cusb-header {
   border-color: var(--acc-navy);
   background-color: var(--bg-primary);
 }
+/* Hide Google Translate top banner frame, popups, tooltips, and logo elements completely */
 #google_translate_element,
+.goog-te-banner-frame,
+iframe.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+#goog-gt-tt,
 .goog-te-balloon-frame,
+.goog-te-spinner-pos,
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-text-highlight,
 .goog-logo-link,
-.goog-te-gadget span {
+.goog-te-gadget,
+.goog-te-gadget span,
+.VIpgJd-yDtfdf-l4e2f-Lg2fx,
+.VIpgJd-yDtfdf-a4sW3,
+iframe[id*=":1.container"],
+iframe[src*="translate.google.com"],
+iframe[src*="translate.googleapis.com"] {
   display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  max-height: 0 !important;
+  max-width: 0 !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  z-index: -99999 !important;
 }
-.goog-te-gadget {
-  height: 0;
-  overflow: hidden;
-}
-body {
-  top: var(--translate-offset, 0px) !important;
+
+/* Ensure document body & html top never shift down when translating */
+html, body {
+  top: 0px !important;
+  position: static !important;
+  margin-top: 0px !important;
 }
 /* Search input details */
 .search-container {
@@ -2332,7 +2359,7 @@ cusb-footer {
 .floating-enquiry-btn {
   position: fixed;
   right: 0;
-  top: 50%;
+  top: 58%;
   /* keep vertically centered and fully visible */
   transform: translateY(-50%);
   z-index: 9990;
