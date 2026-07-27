@@ -105,8 +105,8 @@
     const savedTheme = localStorage.getItem('cusb-theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
 
-    // Dynamic API Base URL for local development/cross-origin support
-    const API_BASE = window.location.port !== '8000' ? 'http://localhost:8000' : '';
+    // The API is served from the same site on both XAMPP and the local server.
+    const API_BASE = new URL('.', window.location.href).pathname.replace(/\/$/, '');
 
     // DOM Elements
     const gatewayTitle = document.getElementById('gatewayTitle');

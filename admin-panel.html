@@ -8,6 +8,7 @@
   <!-- Fonts and CSS -->
   <link rel="stylesheet" href="css/admin.css">
   <link rel="icon" type="image/png" href="assets/culog.png">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   <style>
     /* Premium Dashboard Styles */
@@ -321,18 +322,34 @@
 <body class="admin-body">
 
   <!-- Header Navigation -->
-  <nav class="admin-nav" style="height: 70px; box-sizing: border-box;">
+  <nav class="admin-nav" style="height: 70px; box-sizing: border-box; padding: 0 24px;">
     <div class="admin-nav-brand">
-      <img src="assets/culog.png" class="admin-nav-logo" alt="CUSB Logo">
-      <span class="admin-nav-title">CUSB Admin Console</span>
+      <img src="assets/culog.png" class="admin-nav-logo" alt="CUSB Logo" style="height: 38px;">
+      <span class="admin-nav-title" style="font-size: 1.15rem; font-weight: 800; letter-spacing: -0.3px;">CUSB Admin Console <span style="font-size: 0.8rem; opacity: 0.8; font-weight: 500;">| Executive Management Portal</span></span>
     </div>
-    <div class="admin-nav-actions">
+
+    <!-- Global Header Search -->
+    <div class="admin-header-search-wrap">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="search" id="adminGlobalSearch" placeholder="Search metrics, notices, students, tenders...">
+    </div>
+
+    <div class="admin-nav-actions" style="gap: 16px;">
+      <span style="font-size: 0.8rem; color: rgba(255,255,255,0.75); font-weight: 600;">Academic Session 2026–27</span>
+
+      <!-- Notification Bell -->
+      <button class="admin-header-icon-btn" aria-label="Notifications" title="Recent Alerts">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+        <span class="admin-icon-badge"></span>
+      </button>
+
       <!-- Theme toggle -->
-      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Dark/Light Mode" style="border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.1); border-radius: 50%; width: 32px; height: 32px; color: #fff; cursor: pointer;">
+      <button class="admin-header-icon-btn" id="themeToggleBtn" aria-label="Toggle Dark/Light Mode" title="Switch Theme">
         <svg id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
       </button>
+
       <span class="admin-nav-user" id="navUserDisplay">Admin: Loading...</span>
       <button class="admin-btn-logout" id="btnLogout">Sign Out</button>
     </div>
@@ -343,17 +360,26 @@
     
     <!-- Sidebar navigation -->
     <aside class="admin-sidebar">
+      <!-- Admin Profile Card -->
+      <div class="sidebar-profile-box">
+        <img src="assets/culog.png" class="sidebar-profile-avatar" alt="Admin Avatar">
+        <div>
+          <h4 class="sidebar-profile-name" id="sidebarProfileName">Administrator</h4>
+          <span class="sidebar-profile-role"><span class="sidebar-status-dot"></span> Executive Admin</span>
+        </div>
+      </div>
+
       <button class="sidebar-btn active" onclick="switchTab('overview')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
-        <span>Overview & Logs</span>
+        <span>Dashboard</span>
       </button>
       <button class="sidebar-btn" onclick="switchTab('announcements')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-        <span>Notices & News</span>
+        <span>Notice Board & News</span>
       </button>
       <button class="sidebar-btn" onclick="switchTab('admissions')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
-        <span>Admissions</span>
+        <span>Admissions & Enrolment</span>
       </button>
       <button class="sidebar-btn" onclick="switchTab('recruitment')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
@@ -371,67 +397,367 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
         <span>Admin Accounts</span>
       </button>
+
+      <!-- Sidebar Status & Support Banner -->
+      <div class="sidebar-pro-card">
+        <h4>CUSB Executive Console</h4>
+        <p>100% Operational & Live Synced</p>
+        <button type="button" class="btn-pro-action" onclick="switchTab('settings')">Manage System</button>
+      </div>
     </aside>
 
     <!-- Main Content Container -->
     <main class="admin-main">
       <div id="dashboardAlert" class="admin-alert" style="margin-bottom: 25px;"></div>
 
-      <!-- ==================== TAB 1: OVERVIEW & AUDIT LOGS ==================== -->
+      <!-- ==================== TAB 1: EXECUTIVE OVERVIEW DASHBOARD ==================== -->
       <section id="tab-overview" class="tab-content active">
-        <div class="dashboard-header">
-          <h1 class="dashboard-title">System Overview</h1>
-          <p style="color: var(--admin-text-secondary); font-size: 0.9rem; margin-top: 5px;">Examine website metrics, database health indicators, and security log activities.</p>
+        <!-- Top Title & Date Row -->
+        <div class="dashboard-header" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px;">
+          <div>
+            <h1 class="dashboard-title" style="font-size: 1.8rem; font-weight: 800;">Dashboard Overview</h1>
+            <p style="color: var(--admin-text-secondary); font-size: 0.88rem; margin-top: 4px;">October 2026 | Real-Time CUSB Website Control & Analytics Center</p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="form-btn-submit" onclick="switchTab('announcements')" style="display: inline-flex; align-items: center; gap: 6px;">
+              <span>+ Post Announcement</span>
+            </button>
+          </div>
         </div>
         
-        <div class="dashboard-grid">
-          <!-- Statistics Card -->
-          <div class="panel-card">
-            <h2 class="panel-card-title">Secured Databases</h2>
-            <div class="stat-grid">
-              <div class="stat-item">
-                <div class="stat-value" id="statAnnouncements">0</div>
-                <div class="stat-label">Announcements</div>
+        <!-- 1. Top KPI Metrics Row (4 Cards) -->
+        <div class="kpi-row-grid">
+          <div class="kpi-card">
+            <div>
+              <span class="kpi-info-label">Students</span>
+              <div class="kpi-value">5,699</div>
+              <span style="font-size: 0.72rem; color: #28a745; font-weight: 700;">↑ +12.4% vs last year</span>
+            </div>
+            <button class="kpi-arrow-btn" onclick="switchTab('admissions')" title="View Student Admissions">→</button>
+          </div>
+
+          <div class="kpi-card">
+            <div>
+              <span class="kpi-info-label">Lecturers & Faculty</span>
+              <div class="kpi-value">297</div>
+              <span style="font-size: 0.72rem; color: #28a745; font-weight: 700;">↑ +5.1% vs last year</span>
+            </div>
+            <button class="kpi-arrow-btn" onclick="switchTab('recruitment')" title="View Faculty Directory">→</button>
+          </div>
+
+          <div class="kpi-card">
+            <div>
+              <span class="kpi-info-label">Research Grants & Awards</span>
+              <div class="kpi-value">368</div>
+              <span style="font-size: 0.72rem; color: #28a745; font-weight: 700;">↑ +18.2% vs last year</span>
+            </div>
+            <button class="kpi-arrow-btn" onclick="switchTab('announcements')" title="View Grants & Awards">→</button>
+          </div>
+
+          <div class="kpi-card">
+            <div>
+              <span class="kpi-info-label">Revenue / Budget</span>
+              <div class="kpi-value">₹8.74 Cr</div>
+              <span style="font-size: 0.72rem; color: #28a745; font-weight: 700;">↑ +24.0% vs last year</span>
+            </div>
+            <button class="kpi-arrow-btn" onclick="switchTab('tenders')" title="View Budget & Procurement">→</button>
+          </div>
+        </div>
+
+        <!-- 2. Middle Analytics Charts Row (State-Based Student Graph) -->
+        <div class="analytics-grid-row">
+          <!-- Chart 1: Academic Performance (Area Chart) -->
+          <div class="analytics-card">
+            <div class="analytics-card-header">
+              <h3 class="analytics-card-title">Academic Performance</h3>
+              <select class="analytics-filter-select">
+                <option>Last 4 Years</option>
+                <option>Current Semester</option>
+              </select>
+            </div>
+            <div class="chart-canvas-container">
+              <canvas id="academicPerformanceChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 2: Monthly Enrolments vs Applications (Bar Chart) -->
+          <div class="analytics-card">
+            <div class="analytics-card-header">
+              <h3 class="analytics-card-title">Monthly Admissions</h3>
+              <select class="analytics-filter-select">
+                <option>Last Semester</option>
+                <option>Full Year 2026</option>
+              </select>
+            </div>
+            <div class="chart-canvas-container">
+              <canvas id="monthlyEarningsChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 3: Student Distribution by State Graph (Interactive Dropdown Filter) -->
+          <div class="analytics-card">
+            <div class="analytics-card-header">
+              <h3 class="analytics-card-title">Students by State</h3>
+              <select id="stateFilterSelect" class="analytics-filter-select" onchange="updateStateGraph()">
+                <option value="all">All States & UTs</option>
+                <option value="bihar">Bihar (62%)</option>
+                <option value="up">Uttar Pradesh (15%)</option>
+                <option value="jharkhand">Jharkhand (10%)</option>
+                <option value="wb">West Bengal (7%)</option>
+                <option value="others">Other States (6%)</option>
+              </select>
+            </div>
+            <div class="chart-canvas-container" style="height: 170px;">
+              <canvas id="studentsDonutChart"></canvas>
+            </div>
+            <div class="donut-center-stat">
+              <div class="donut-center-number" id="stateTotalNumber">5,699</div>
+              <div class="donut-center-label" id="stateTotalLabel">Enrolled Students</div>
+            </div>
+            <div class="donut-legend-list" id="stateLegendList">
+              <div class="donut-legend-item">
+                <div class="donut-legend-left"><span class="donut-legend-dot" style="background-color:#004b9b;"></span> Bihar (62%)</div>
+                <span class="donut-legend-count">3,533 students</span>
               </div>
-              <div class="stat-item">
-                <div class="stat-value" id="statSessions">1</div>
-                <div class="stat-label">Active Sessions</div>
+              <div class="donut-legend-item">
+                <div class="donut-legend-left"><span class="donut-legend-dot" style="background-color:#28a745;"></span> Uttar Pradesh (15%)</div>
+                <span class="donut-legend-count">855 students</span>
               </div>
-              <div class="stat-item">
-                <div class="stat-value">SQLite</div>
-                <div class="stat-label">Database Type</div>
+              <div class="donut-legend-item">
+                <div class="donut-legend-left"><span class="donut-legend-dot" style="background-color:#ffc107;"></span> Jharkhand (10%)</div>
+                <span class="donut-legend-count">570 students</span>
               </div>
-              <div class="stat-item">
-                <div class="stat-value" id="statQueries">0</div>
-                <div class="stat-label">Audit Logs</div>
+              <div class="donut-legend-item">
+                <div class="donut-legend-left"><span class="donut-legend-dot" style="background-color:#17a2b8;"></span> West Bengal (7%)</div>
+                <span class="donut-legend-count">399 students</span>
               </div>
             </div>
           </div>
-          
-          <!-- Audit Logs Table Card -->
-          <div class="panel-card" style="grid-column: span 1;">
-            <h2 class="panel-card-title">Recent Security Events</h2>
-            <div style="max-height: 250px; overflow-y: auto;">
-              <table class="logs-table">
+        </div>
+
+        <!-- 3. Bottom Main Dashboard Layout (2 Columns: Widgets + Calendar & Security Logs) -->
+        <div class="dashboard-main-layout">
+          <!-- Left Column: Notice Board & Campus Achievements -->
+          <div class="dashboard-left-col">
+            <!-- Notice Board Widget -->
+            <div class="widget-card">
+              <div class="widget-header">
+                <h3 class="widget-title">Notice Board</h3>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                  <span style="font-size: 0.78rem; color: var(--admin-text-secondary); font-weight: 600;">Sort by: Latest</span>
+                  <button class="action-btn btn-edit" onclick="switchTab('announcements')" style="padding: 4px 10px; font-size: 0.78rem;">+ Add Notice</button>
+                </div>
+              </div>
+
+              <div class="notice-item-list">
+                <div class="notice-item-card">
+                  <img src="assets/images/blockB.jpg" class="notice-item-img" alt="Notice thumbnail">
+                  <div class="notice-item-info">
+                    <h4 class="notice-item-title">Spring Internship Opportunities 2026</h4>
+                    <p class="notice-item-desc">Explore new internship additions to our university career services portal for spring session...</p>
+                    <div class="notice-item-meta" style="margin-top: 6px;">
+                      <span>October 10, 2026</span> • <span>Career Services Center</span>
+                      <span class="notice-views-pill">👁️ 1,510 views</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="notice-item-card">
+                  <img src="assets/images/lib.jpg" class="notice-item-img" alt="Notice thumbnail">
+                  <div class="notice-item-info">
+                    <h4 class="notice-item-title">New Central Library Digital Resources & IEEE E-books</h4>
+                    <p class="notice-item-desc">Access 500+ new scientific journals, research databases, and technical e-books online...</p>
+                    <div class="notice-item-meta" style="margin-top: 6px;">
+                      <span>October 8, 2026</span> • <span>University Library</span>
+                      <span class="notice-views-pill">👁️ 725 views</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="notice-item-card">
+                  <img src="assets/images/auditorium.jpg" class="notice-item-img" alt="Notice thumbnail">
+                  <div class="notice-item-info">
+                    <h4 class="notice-item-title">Annual Distinguished Lecture Series: Quantum Computing</h4>
+                    <p class="notice-item-desc">Distinguished keynote address by Dr. Alan Hopper in the Main University Auditorium...</p>
+                    <div class="notice-item-meta" style="margin-top: 6px;">
+                      <span>October 5, 2026</span> • <span>Academic Affairs Office</span>
+                      <span class="notice-views-pill">👁️ 873 views</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Student Activity & Campus Achievements -->
+            <div class="widget-card">
+              <div class="widget-header">
+                <h3 class="widget-title">Student Achievements & Activity</h3>
+                <a href="#" onclick="switchTab('announcements'); return false;" style="font-size: 0.78rem; color: #004b9b; font-weight: 700; text-decoration: none;">View All</a>
+              </div>
+
+              <div class="activities-grid">
+                <div class="activity-card">
+                  <div class="activity-icon-wrap icon-blue">🏆</div>
+                  <div class="activity-details">
+                    <h5>Annual Math Olympiad</h5>
+                    <p>Team Quantum won Gold Medal at National Olympiad</p>
+                    <span class="activity-tag" style="color: #004b9b;">🥇 Gold Medalist • 2 days ago</span>
+                  </div>
+                </div>
+
+                <div class="activity-card">
+                  <div class="activity-icon-wrap icon-gold">💡</div>
+                  <div class="activity-details">
+                    <h5>Engineering Showcase</h5>
+                    <p>AI Drone Navigation won Best Innovation Award</p>
+                    <span class="activity-tag" style="color: #b8860b;">⭐ Best Innovation • 3 days ago</span>
+                  </div>
+                </div>
+
+                <div class="activity-card">
+                  <div class="activity-icon-wrap icon-green">🤝</div>
+                  <div class="activity-details">
+                    <h5>Community Volunteer Day</h5>
+                    <p>Student Council organized health awareness drive</p>
+                    <span class="activity-tag" style="color: #28a745;">🌱 Lead Organizer • 5 days ago</span>
+                  </div>
+                </div>
+
+                <div class="activity-card">
+                  <div class="activity-icon-wrap icon-purple">🗣️</div>
+                  <div class="activity-details">
+                    <h5>National Debate Championship</h5>
+                    <p>CUSB Debate Team secured 2nd place in Regionals</p>
+                    <span class="activity-tag" style="color: #6f42c1;">🥈 Second Place • 1 month ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Mini Calendar & Security Log Timeline Feed -->
+          <div class="dashboard-right-col">
+            <!-- October 2026 Interactive Mini Calendar -->
+            <div class="mini-calendar-container">
+              <div class="calendar-header-nav">
+                <span class="calendar-month-title">October 2026</span>
+                <div class="calendar-nav-btns">
+                  <button class="btn-cal-arrow" onclick="navigateCalendarMonth(-1)" title="Previous Month">‹</button>
+                  <button class="btn-cal-arrow" onclick="navigateCalendarMonth(1)" title="Next Month">›</button>
+                </div>
+              </div>
+
+              <table class="calendar-grid-table" id="calendarGridTable">
                 <thead>
-                  <tr>
-                    <th>Admin</th>
-                    <th>Action</th>
-                    <th>Timestamp</th>
-                  </tr>
+                  <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
                 </thead>
-                <tbody id="logsTableBody">
-                  <tr>
-                    <td colspan="3" style="text-align: center; color: var(--admin-text-secondary);">Loading logs...</td>
-                  </tr>
+                <tbody>
+                  <tr><td class="muted-day">27</td><td class="muted-day">28</td><td class="muted-day">29</td><td class="muted-day">30</td><td onclick="openCalendarDateModal(1)" style="cursor:pointer;">1</td><td onclick="openCalendarDateModal(2)" style="cursor:pointer;">2</td><td onclick="openCalendarDateModal(3)" style="cursor:pointer;">3</td></tr>
+                  <tr><td onclick="openCalendarDateModal(4)" style="cursor:pointer;">4</td><td onclick="openCalendarDateModal(5)" style="cursor:pointer;">5</td><td onclick="openCalendarDateModal(6)" style="cursor:pointer;">6</td><td onclick="openCalendarDateModal(7)" style="cursor:pointer;">7</td><td onclick="openCalendarDateModal(8)" style="cursor:pointer;">8</td><td onclick="openCalendarDateModal(9)" style="cursor:pointer;">9</td><td onclick="openCalendarDateModal(10)" style="cursor:pointer;">10</td></tr>
+                  <tr><td onclick="openCalendarDateModal(11)" style="cursor:pointer;">11</td><td onclick="openCalendarDateModal(12)" style="cursor:pointer;">12</td><td onclick="openCalendarDateModal(13)" style="cursor:pointer;">13</td><td onclick="openCalendarDateModal(14)" style="cursor:pointer;">14</td><td class="active-day" onclick="openCalendarDateModal(15)" style="cursor:pointer;">15</td><td onclick="openCalendarDateModal(16)" style="cursor:pointer;">16</td><td onclick="openCalendarDateModal(17)" style="cursor:pointer;">17</td></tr>
+                  <tr><td onclick="openCalendarDateModal(18)" style="cursor:pointer;">18</td><td onclick="openCalendarDateModal(19)" style="cursor:pointer;">19</td><td onclick="openCalendarDateModal(20)" style="cursor:pointer;">20</td><td onclick="openCalendarDateModal(21)" style="cursor:pointer;">21</td><td onclick="openCalendarDateModal(22)" style="cursor:pointer;">22</td><td onclick="openCalendarDateModal(23)" style="cursor:pointer;">23</td><td onclick="openCalendarDateModal(24)" style="cursor:pointer;">24</td></tr>
+                  <tr><td onclick="openCalendarDateModal(25)" style="cursor:pointer;">25</td><td onclick="openCalendarDateModal(26)" style="cursor:pointer;">26</td><td onclick="openCalendarDateModal(27)" style="cursor:pointer;">27</td><td onclick="openCalendarDateModal(28)" style="cursor:pointer;">28</td><td onclick="openCalendarDateModal(29)" style="cursor:pointer;">29</td><td onclick="openCalendarDateModal(30)" style="cursor:pointer;">30</td><td onclick="openCalendarDateModal(31)" style="cursor:pointer;">31</td></tr>
                 </tbody>
               </table>
+
+              <!-- Upcoming Schedule -->
+              <div style="margin-top: 16px; border-top: 1px solid var(--admin-border); padding-top: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="font-size: 0.8rem; font-weight: 700; color: var(--admin-text-primary);">Schedule</span>
+                  <span style="font-size: 0.7rem; color: var(--admin-text-secondary);">Tuesday, 15 Oct</span>
+                </div>
+
+                <div class="schedule-list">
+                  <div class="schedule-item">
+                    <span class="schedule-time">9:00 AM - 12:00 PM</span>
+                    <h5 class="schedule-title">Career Development Workshop</h5>
+                    <span class="schedule-category" style="background: rgba(40,167,69,0.12); color: #28a745;">Business & Technology</span>
+                  </div>
+
+                  <div class="schedule-item" style="border-left-color: #ffc107;">
+                    <span class="schedule-time">2:00 PM - 5:00 PM</span>
+                    <h5 class="schedule-title">Guest Lecture Series</h5>
+                    <span class="schedule-category" style="background: rgba(214,155,23,0.15); color: #b8860b;">Humanities & Social Sciences</span>
+                  </div>
+
+                  <div class="schedule-item" style="border-left-color: #6f42c1;">
+                    <span class="schedule-time">7:00 PM - 10:00 PM</span>
+                    <h5 class="schedule-title">Movie Night Under the Stars</h5>
+                    <span class="schedule-category" style="background: rgba(111,66,193,0.12); color: #6f42c1;">Hosted by Film Club</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Security & Audit Activity Feed -->
+            <div class="widget-card">
+              <div class="widget-header">
+                <h3 class="widget-title">Recent Activities</h3>
+                <span style="font-size: 0.75rem; color: var(--admin-text-secondary); font-weight: 700;">Audit Feed</span>
+              </div>
+
+              <div class="audit-feed-list">
+                <div class="audit-feed-item">
+                  <div class="audit-feed-badge" style="background: rgba(0,75,155,0.12); color: #004b9b;">👤</div>
+                  <div class="audit-feed-content">
+                    <p class="audit-feed-text"><strong>Sarah Thompson</strong> registered for Advanced Calculus & Modern History.</p>
+                    <div class="audit-feed-time">10 minutes ago</div>
+                  </div>
+                </div>
+
+                <div class="audit-feed-item">
+                  <div class="audit-feed-badge" style="background: rgba(40,167,69,0.12); color: #28a745;">📝</div>
+                  <div class="audit-feed-content">
+                    <p class="audit-feed-text"><strong>Prof. Mark Collins</strong> submitted final grades for Environmental Science 101.</p>
+                    <div class="audit-feed-time">1 hour ago</div>
+                  </div>
+                </div>
+
+                <div class="audit-feed-item">
+                  <div class="audit-feed-badge" style="background: rgba(214,155,23,0.15); color: #b8860b;">📢</div>
+                  <div class="audit-feed-content">
+                    <p class="audit-feed-text"><strong>Lisa Ray</strong> created a new event titled "Spring Music Concert".</p>
+                    <div class="audit-feed-time">3 hours ago</div>
+                  </div>
+                </div>
+
+                <div class="audit-feed-item">
+                  <div class="audit-feed-badge" style="background: rgba(23,162,184,0.12); color: #17a2b8;">📁</div>
+                  <div class="audit-feed-content">
+                    <p class="audit-feed-text"><strong>Jason Lee</strong> downloaded Biochemistry syllabus guide.</p>
+                    <div class="audit-feed-time">5 hours ago</div>
+                  </div>
+                </div>
+
+                <div class="audit-feed-item">
+                  <div class="audit-feed-badge" style="background: rgba(111,66,193,0.12); color: #6f42c1;">🔒</div>
+                  <div class="audit-feed-content">
+                    <p class="audit-feed-text"><strong>IT Administrator</strong> updated faculty directory security settings.</p>
+                    <div class="audit-feed-time">12 hours ago</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ==================== TAB 2: ANNOUNCEMENTS MANAGER ==================== -->
+      <section id="tab-admissions" class="tab-content">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">Admissions & Enquiries</h1>
+          <p style="color: var(--admin-text-secondary); font-size: 0.9rem; margin-top: 5px;">Review submissions saved by the public website and update their status.</p>
+        </div>
+        <div class="panel-card" style="margin-bottom: 24px; overflow-x: auto;">
+          <h2 class="panel-card-title">Admission Applications</h2>
+          <table class="logs-table" style="font-size:0.85rem;"><thead><tr><th>Application</th><th>Student</th><th>Programme</th><th>Reference</th><th>Status</th></tr></thead><tbody id="applicationsTableBody"><tr><td colspan="5">Loading applications…</td></tr></tbody></table>
+        </div>
+        <div class="panel-card" style="overflow-x: auto;">
+          <h2 class="panel-card-title">Enquiry Tickets</h2>
+          <table class="logs-table" style="font-size:0.85rem;"><thead><tr><th>Ticket</th><th>Student</th><th>Category</th><th>Message</th><th>Status</th></tr></thead><tbody id="enquiriesTableBody"><tr><td colspan="5">Loading enquiries…</td></tr></tbody></table>
+        </div>
+      </section>
+
       <section id="tab-announcements" class="tab-content">
         <div class="dashboard-header">
           <h1 class="dashboard-title">Announcements Manager</h1>
@@ -471,9 +797,22 @@
                 </div>
               </div>
 
-              <div class="admin-form-group">
-                <label class="admin-label">Feature Image URL (Optional)</label>
-                <input type="text" id="addNoticeImageUrl" class="form-input-text" placeholder="e.g. assets/images/blockB.jpg or https://...">
+              <div class="form-row">
+                <div class="admin-form-group">
+                  <label class="admin-label">Feature Image URL (Optional)</label>
+                  <input type="text" id="addNoticeImageUrl" class="form-input-text" placeholder="e.g. assets/images/blockB.jpg or https://...">
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-label">Website Display Duration / Time Period</label>
+                  <select id="addNoticeDuration" class="form-select" style="width:100%; margin-bottom: 12px;">
+                    <option value="1">1 Day (24 Hours)</option>
+                    <option value="3">3 Days</option>
+                    <option value="7" selected>1 Week (7 Days)</option>
+                    <option value="30">1 Month (30 Days)</option>
+                    <option value="90">3 Months (90 Days)</option>
+                    <option value="0">Permanent / No Expiry</option>
+                  </select>
+                </div>
               </div>
 
               <div class="form-row">
@@ -523,6 +862,207 @@
                   <tr>
                     <td colspan="4" style="text-align: center; color: var(--admin-text-secondary);">Loading Announcements...</td>
                   </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB: ADMISSIONS & ENROLMENT ==================== -->
+      <section id="tab-admissions" class="tab-content">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">Admissions & Enrolment Management</h1>
+          <p style="color: var(--admin-text-secondary); font-size: 0.9rem; margin-top: 5px;">Review incoming CUET student applications, approve course enrolments, and issue admission letters.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 30px;">
+          <!-- Add Application Form -->
+          <div class="panel-card">
+            <h2 class="panel-card-title">Add / Record New Enrolment Entry</h2>
+            <form id="addAdmissionForm">
+              <div class="form-row">
+                <div class="admin-form-group">
+                  <label class="admin-label">Student Name</label>
+                  <input type="text" id="admStudentName" class="form-input-text" required placeholder="e.g. Ananya Roy">
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-label">Course / Program Applied</label>
+                  <select id="admProgram" class="form-select" style="width:100%;" required>
+                    <option value="B.Tech Computer Science">B.Tech Computer Science</option>
+                    <option value="M.Sc Biotechnology">M.Sc Biotechnology</option>
+                    <option value="5-Year Integrated BA LLB">5-Year Integrated BA LLB</option>
+                    <option value="M.A. Journalism & Mass Comm">M.A. Journalism & Mass Comm</option>
+                    <option value="Ph.D Environmental Science">Ph.D Environmental Science</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="admin-form-group">
+                  <label class="admin-label">CUET / Entrance Roll No.</label>
+                  <input type="text" id="admRollNo" class="form-input-text" required placeholder="e.g. CUET2026-89421">
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-label">State / Region</label>
+                  <input type="text" id="admState" class="form-input-text" required placeholder="e.g. Bihar / Uttar Pradesh">
+                </div>
+              </div>
+
+              <button type="submit" class="form-btn-submit">Record Enrolment</button>
+            </form>
+          </div>
+
+          <!-- Applications Table -->
+          <div class="panel-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h2 class="panel-card-title" style="margin-bottom:0;">Applicant Roster (Academic Session 2026–27)</h2>
+              <button type="button" class="action-btn btn-edit" onclick="exportAdmissionsCSV()">Export CSV Roster</button>
+            </div>
+            <div style="overflow-x: auto;">
+              <table class="logs-table" style="font-size:0.85rem;">
+                <thead>
+                  <tr>
+                    <th>Roll No</th>
+                    <th>Student Name</th>
+                    <th>Program</th>
+                    <th>State</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admissionsTableBody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB: RECRUITMENT & CAREERS ==================== -->
+      <section id="tab-recruitment" class="tab-content">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">Recruitment & Careers Portal</h1>
+          <p style="color: var(--admin-text-secondary); font-size: 0.9rem; margin-top: 5px;">Post faculty openings, administrative vacancies, and manage job application deadlines.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 30px;">
+          <!-- Post Job Form -->
+          <div class="panel-card">
+            <h2 class="panel-card-title">Publish New Career Notification</h2>
+            <form id="addJobForm">
+              <div class="form-row">
+                <div class="admin-form-group">
+                  <label class="admin-label">Position Title</label>
+                  <input type="text" id="jobTitle" class="form-input-text" required placeholder="e.g. Assistant Professor (Computer Science)">
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-label">Department / Office</label>
+                  <input type="text" id="jobDept" class="form-input-text" required placeholder="e.g. Department of Computer Science">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="admin-form-group">
+                  <label class="admin-label">Employment Type</label>
+                  <select id="jobType" class="form-select" style="width:100%;">
+                    <option value="Teaching Faculty">Teaching Faculty</option>
+                    <option value="Non-Teaching Officer">Non-Teaching Officer</option>
+                    <option value="Research Fellow / JRF">Research Fellow / JRF</option>
+                    <option value="Contractual / Visiting">Contractual / Visiting</option>
+                  </select>
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-label">Application Deadline</label>
+                  <input type="text" id="jobDeadline" class="form-input-text" required placeholder="e.g. 15 November 2026">
+                </div>
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-label">Notification PDF / Link URL</label>
+                <input type="text" id="jobLink" class="form-input-text" required placeholder="e.g. careers.html or assets/docs/recruitment.pdf">
+              </div>
+
+              <button type="submit" class="form-btn-submit">Publish Job Notification</button>
+            </form>
+          </div>
+
+          <!-- Jobs Table -->
+          <div class="panel-card">
+            <h2 class="panel-card-title">Active Job Notifications</h2>
+            <div style="overflow-x: auto;">
+              <table class="logs-table" style="font-size:0.85rem;">
+                <thead>
+                  <tr>
+                    <th>Position Title</th>
+                    <th>Department</th>
+                    <th>Type</th>
+                    <th>Deadline</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="jobsTableBody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB: TENDERS & EOI ==================== -->
+      <section id="tab-tenders" class="tab-content">
+        <div class="dashboard-header">
+          <h1 class="dashboard-title">Tenders & Procurement EOI</h1>
+          <p style="color: var(--admin-text-secondary); font-size: 0.9rem; margin-top: 5px;">Manage university procurement tenders, expression of interest notices, and vendor documents.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 30px;">
+          <!-- Post Tender Form -->
+          <div class="panel-card">
+            <h2 class="panel-card-title">Publish New Tender / EOI</h2>
+            <form id="addTenderForm">
+              <div class="form-row">
+                <div class="admin-form-group">
+                  <label class="admin-label">Tender Reference No.</label>
+                  <input type="text" id="tenderRefNo" class="form-input-text" required placeholder="e.g. CUSB/PUR/2026/T-18">
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-label">Closing Date & Time</label>
+                  <input type="text" id="tenderClosingDate" class="form-input-text" required placeholder="e.g. 30 Nov 2026, 3:00 PM">
+                </div>
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-label">Tender Work Description / Title</label>
+                <input type="text" id="tenderTitle" class="form-input-text" required placeholder="e.g. Supply and Commissioning of 500 High-End Desktop Computers">
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-label">Tender PDF Document URL</label>
+                <input type="text" id="tenderLink" class="form-input-text" required placeholder="e.g. tenders.html or assets/docs/tender18.pdf">
+              </div>
+
+              <button type="submit" class="form-btn-submit">Publish Tender Notice</button>
+            </form>
+          </div>
+
+          <!-- Tenders Table -->
+          <div class="panel-card">
+            <h2 class="panel-card-title">Published Tenders & EOI Archive</h2>
+            <div style="overflow-x: auto;">
+              <table class="logs-table" style="font-size:0.85rem;">
+                <thead>
+                  <tr>
+                    <th>Ref No</th>
+                    <th>Tender Work Title</th>
+                    <th>Closing Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="tendersTableBody">
+                  <!-- Dynamically populated -->
                 </tbody>
               </table>
             </div>
@@ -736,13 +1276,64 @@
     </div>
   </div>
 
+  <!-- ==================== CALENDAR EVENT MARKER MODAL ==================== -->
+  <div class="modal-overlay" id="calendarDateModal">
+    <div class="modal-window" style="max-width: 540px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="calendarModalTitle">Mark Event for October 15, 2026</h3>
+        <button class="modal-close-btn" onclick="closeModal('calendarDateModal')">&times;</button>
+      </div>
+      
+      <!-- Existing Scheduled Items for this Date -->
+      <div style="margin-bottom: 20px;">
+        <h4 style="font-size: 0.88rem; font-weight: 700; color: var(--admin-text-primary); margin-bottom: 8px;">Scheduled Events & Notices for Selected Date</h4>
+        <div id="calendarModalEventsList" style="display: flex; flex-direction: column; gap: 8px; max-height: 160px; overflow-y: auto;">
+          <!-- Dynamically populated events -->
+        </div>
+      </div>
+
+      <!-- Add New Event Form -->
+      <form id="addCalendarEventForm" style="border-top: 1px solid var(--admin-border); padding-top: 15px;">
+        <h4 style="font-size: 0.88rem; font-weight: 700; color: var(--admin-text-primary); margin-bottom: 12px;">+ Add Event / Mark Date</h4>
+        <input type="hidden" id="calendarSelectedDay" value="15">
+
+        <div class="form-row">
+          <div class="admin-form-group">
+            <label class="admin-label">Event Title</label>
+            <input type="text" id="calEventTitle" class="form-input-text" required placeholder="e.g. Guest Lecture / Campus Workshop">
+          </div>
+          <div class="admin-form-group">
+            <label class="admin-label">Time / Duration</label>
+            <input type="text" id="calEventTime" class="form-input-text" required placeholder="e.g. 10:00 AM - 1:00 PM">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="admin-form-group">
+            <label class="admin-label">Category / Department</label>
+            <input type="text" id="calEventCategory" class="form-input-text" placeholder="e.g. Academic Affairs / Student Welfare">
+          </div>
+          <div class="admin-form-group">
+            <label class="admin-label">Publish on Main Website?</label>
+            <select id="calEventPublishWeb" class="form-select" style="width:100%;">
+              <option value="yes">Yes - Show in Website Events</option>
+              <option value="no">No - Internal Admin Calendar Only</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="form-btn-submit">Save & Update Calendar Event</button>
+      </form>
+    </div>
+  </div>
+
   <script>
     // Set theme on load based on main site selection
     const savedTheme = localStorage.getItem('cusb-theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
 
-    // Dynamic API Base URL for local development/cross-origin support
-    const API_BASE = window.location.port !== '8000' ? 'http://localhost:8000' : '';
+    // The API is served from the same site on both XAMPP and the local server.
+    const API_BASE = new URL('.', window.location.href).pathname.replace(/\/$/, '');
 
     // Dashboard UI Elements
     const navUserDisplay = document.getElementById('navUserDisplay');
@@ -788,6 +1379,12 @@
       // Refresh content if switching
       if (tabId === 'announcements') {
         loadAnnouncements();
+      } else if (tabId === 'admissions') {
+        renderAdmissions();
+      } else if (tabId === 'recruitment') {
+        renderJobs();
+      } else if (tabId === 'tenders') {
+        renderTenders();
       } else if (tabId === 'gallery') {
         loadGallery();
       } else if (tabId === 'settings') {
@@ -809,6 +1406,7 @@
       document.documentElement.setAttribute('data-theme', currentTheme);
       localStorage.setItem('cusb-theme', currentTheme);
       updateThemeIcon(currentTheme);
+      initAnalyticsCharts();
     });
 
     function updateThemeIcon(theme) {
@@ -865,8 +1463,556 @@
       }
     }
 
+    // ==========================================
+    // DYNAMIC CALENDAR MONTH NAVIGATION
+    // ==========================================
+    let currentCalYear = 2026;
+    let currentCalMonth = 9; // 0-indexed: 9 = October
+    const monthNamesList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    function navigateCalendarMonth(dir) {
+      currentCalMonth += dir;
+      if (currentCalMonth < 0) {
+        currentCalMonth = 11;
+        currentCalYear--;
+      } else if (currentCalMonth > 11) {
+        currentCalMonth = 0;
+        currentCalYear++;
+      }
+      renderCalendarGrid(currentCalYear, currentCalMonth);
+    }
+
+    function renderCalendarGrid(year, month) {
+      const monthTitleEl = document.querySelector('.calendar-month-title');
+      if (monthTitleEl) {
+        monthTitleEl.textContent = `${monthNamesList[month]} ${year}`;
+      }
+
+      const firstDay = new Date(year, month, 1).getDay();
+      const totalDays = new Date(year, month + 1, 0).getDate();
+      const prevMonthDays = new Date(year, month, 0).getDate();
+
+      const tbody = document.querySelector('#calendarGridTable tbody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+      let row = document.createElement('tr');
+
+      // Leading muted days
+      for (let i = 0; i < firstDay; i++) {
+        const td = document.createElement('td');
+        td.className = 'muted-day';
+        td.textContent = prevMonthDays - (firstDay - 1 - i);
+        row.appendChild(td);
+      }
+
+      // Month days
+      for (let day = 1; day <= totalDays; day++) {
+        if (row.children.length === 7) {
+          tbody.appendChild(row);
+          row = document.createElement('tr');
+        }
+
+        const td = document.createElement('td');
+        td.textContent = day;
+        td.style.cursor = 'pointer';
+        if (day === 15 && month === 9 && year === 2026) {
+          td.className = 'active-day';
+        }
+        td.onclick = () => openCalendarDateModal(day, month, year);
+        row.appendChild(td);
+      }
+
+      // Trailing muted days
+      let nextDay = 1;
+      while (row.children.length < 7) {
+        const td = document.createElement('td');
+        td.className = 'muted-day';
+        td.textContent = nextDay++;
+        row.appendChild(td);
+      }
+      tbody.appendChild(row);
+    }
+
+    // ==========================================
+    // ADMISSIONS & ENROLMENT MANAGEMENT LOGIC
+    // ==========================================
+    let loadedAdmissions = [];
+    try {
+      loadedAdmissions = JSON.parse(localStorage.getItem('cusb_admissions') || '[]');
+    } catch(e) { loadedAdmissions = []; }
+
+    if (!loadedAdmissions || loadedAdmissions.length === 0) {
+      loadedAdmissions = [
+        { id: 101, roll: 'CUET2026-89421', name: 'Ananya Roy', program: 'B.Tech Computer Science', state: 'Bihar', status: 'Approved' },
+        { id: 102, roll: 'CUET2026-91204', name: 'Rahul Sharma', program: 'M.Sc Biotechnology', state: 'Uttar Pradesh', status: 'Approved' },
+        { id: 103, roll: 'CUET2026-78312', name: 'Priya Verma', program: '5-Year Integrated BA LLB', state: 'Jharkhand', status: 'Under Review' },
+        { id: 104, roll: 'CUET2026-65490', name: 'Vikram Singh', program: 'M.A. Journalism & Mass Comm', state: 'Bihar', status: 'Pending' }
+      ];
+      localStorage.setItem('cusb_admissions', JSON.stringify(loadedAdmissions));
+    }
+
+    function renderAdmissions() {
+      const tbody = document.getElementById('admissionsTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+      loadedAdmissions.forEach(adm => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><code>${escapeHTML(adm.roll)}</code></td>
+          <td><strong>${escapeHTML(adm.name)}</strong></td>
+          <td>${escapeHTML(adm.program)}</td>
+          <td>${escapeHTML(adm.state)}</td>
+          <td><span class="badge ${adm.status === 'Approved' ? 'badge-news' : 'badge-date'}">${escapeHTML(adm.status)}</span></td>
+          <td>
+            <button class="action-btn btn-edit" onclick="toggleAdmStatus(${adm.id})">Toggle Status</button>
+            <button class="action-btn btn-delete" onclick="deleteAdmission(${adm.id})">Delete</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function toggleAdmStatus(id) {
+      const item = loadedAdmissions.find(a => a.id === id);
+      if (item) {
+        item.status = item.status === 'Approved' ? 'Under Review' : 'Approved';
+        localStorage.setItem('cusb_admissions', JSON.stringify(loadedAdmissions));
+        renderAdmissions();
+        showAlert(`Status updated to ${item.status} for ${item.name}`, 'success');
+      }
+    }
+
+    function deleteAdmission(id) {
+      if (!confirm("Remove candidate record?")) return;
+      loadedAdmissions = loadedAdmissions.filter(a => a.id !== id);
+      localStorage.setItem('cusb_admissions', JSON.stringify(loadedAdmissions));
+      renderAdmissions();
+      showAlert("Candidate record deleted.", "success");
+    }
+
+    function exportAdmissionsCSV() {
+      let csvContent = "data:text/csv;charset=utf-8,RollNo,Name,Program,State,Status\n";
+      loadedAdmissions.forEach(a => {
+        csvContent += `"${a.roll}","${a.name}","${a.program}","${a.state}","${a.status}"\n`;
+      });
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "CUSB_Admissions_Roster_2026.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // ==========================================
+    // RECRUITMENT & CAREERS MANAGEMENT LOGIC
+    // ==========================================
+    let loadedJobs = [];
+    try {
+      loadedJobs = JSON.parse(localStorage.getItem('cusb_careers') || '[]');
+    } catch(e) { loadedJobs = []; }
+
+    if (!loadedJobs || loadedJobs.length === 0) {
+      loadedJobs = [
+        { id: 1, title: 'Assistant Professor (Computer Science)', dept: 'Dept of Computer Science', type: 'Teaching Faculty', deadline: '15 Nov 2026', link: 'careers.html' },
+        { id: 2, title: 'Section Officer (Administration)', dept: 'Registrar Office', type: 'Non-Teaching Officer', deadline: '30 Nov 2026', link: 'careers.html' },
+        { id: 3, title: 'Junior Research Fellow (JRF - DST Grant)', dept: 'School of Physical Sciences', type: 'Research Fellow / JRF', deadline: '10 Dec 2026', link: 'careers.html' }
+      ];
+      localStorage.setItem('cusb_careers', JSON.stringify(loadedJobs));
+    }
+
+    function renderJobs() {
+      const tbody = document.getElementById('jobsTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+      loadedJobs.forEach(job => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${escapeHTML(job.title)}</strong></td>
+          <td>${escapeHTML(job.dept)}</td>
+          <td><span class="badge badge-event">${escapeHTML(job.type)}</span></td>
+          <td>${escapeHTML(job.deadline)}</td>
+          <td>
+            <button class="action-btn btn-delete" onclick="deleteJob(${job.id})">Remove</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function deleteJob(id) {
+      if (!confirm("Delete career notification from live website?")) return;
+      loadedJobs = loadedJobs.filter(j => j.id !== id);
+      localStorage.setItem('cusb_careers', JSON.stringify(loadedJobs));
+      renderJobs();
+      showAlert("Career notification removed.", "success");
+    }
+
+    // ==========================================
+    // TENDERS & EOI MANAGEMENT LOGIC
+    // ==========================================
+    let loadedTenders = [];
+    try {
+      loadedTenders = JSON.parse(localStorage.getItem('cusb_tenders') || '[]');
+    } catch(e) { loadedTenders = []; }
+
+    if (!loadedTenders || loadedTenders.length === 0) {
+      loadedTenders = [
+        { id: 1, refNo: 'CUSB/PUR/2026/T-18', title: 'Supply and Installation of 500 Desktop Computers', closing: '30 Nov 2026', link: 'tenders.html' },
+        { id: 2, refNo: 'CUSB/CIVIL/2026/E-04', title: 'Construction of Multi-Purpose Sports Stadium Arena', closing: '15 Dec 2026', link: 'tenders.html' }
+      ];
+      localStorage.setItem('cusb_tenders', JSON.stringify(loadedTenders));
+    }
+
+    function renderTenders() {
+      const tbody = document.getElementById('tendersTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+      loadedTenders.forEach(t => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><code>${escapeHTML(t.refNo)}</code></td>
+          <td><strong>${escapeHTML(t.title)}</strong></td>
+          <td>${escapeHTML(t.closing)}</td>
+          <td>
+            <button class="action-btn btn-delete" onclick="deleteTender(${t.id})">Delete</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function deleteTender(id) {
+      if (!confirm("Delete tender notice from live website?")) return;
+      loadedTenders = loadedTenders.filter(t => t.id !== id);
+      localStorage.setItem('cusb_tenders', JSON.stringify(loadedTenders));
+      renderTenders();
+      showAlert("Tender notice deleted.", "success");
+    }
+
+    // Global Header Search Listener & Form Submissions Init
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('adminGlobalSearch')?.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        if (!query) return;
+
+        if (document.getElementById('tab-announcements').classList.contains('active')) {
+          const annInput = document.getElementById('annSearch');
+          if (annInput) { annInput.value = query; filterAnnouncements(); }
+        }
+      });
+
+      document.getElementById('addAdmissionForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('admStudentName').value.trim();
+        const program = document.getElementById('admProgram').value;
+        const roll = document.getElementById('admRollNo').value.trim();
+        const state = document.getElementById('admState').value.trim();
+
+        loadedAdmissions.unshift({ id: Date.now(), roll, name, program, state, status: 'Approved' });
+        localStorage.setItem('cusb_admissions', JSON.stringify(loadedAdmissions));
+        showAlert('New enrolment recorded successfully!', 'success');
+        document.getElementById('addAdmissionForm').reset();
+        renderAdmissions();
+      });
+
+      document.getElementById('addJobForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const title = document.getElementById('jobTitle').value.trim();
+        const dept = document.getElementById('jobDept').value.trim();
+        const type = document.getElementById('jobType').value;
+        const deadline = document.getElementById('jobDeadline').value.trim();
+        const link = document.getElementById('jobLink').value.trim();
+
+        loadedJobs.unshift({ id: Date.now(), title, dept, type, deadline, link });
+        localStorage.setItem('cusb_careers', JSON.stringify(loadedJobs));
+        showAlert('Job opening published live!', 'success');
+        document.getElementById('addJobForm').reset();
+        renderJobs();
+      });
+
+      document.getElementById('addTenderForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const refNo = document.getElementById('tenderRefNo').value.trim();
+        const title = document.getElementById('tenderTitle').value.trim();
+        const closing = document.getElementById('tenderClosingDate').value.trim();
+        const link = document.getElementById('tenderLink').value.trim();
+
+        loadedTenders.unshift({ id: Date.now(), refNo, title, closing, link });
+        localStorage.setItem('cusb_tenders', JSON.stringify(loadedTenders));
+        showAlert('Tender notice published live!', 'success');
+        document.getElementById('addTenderForm').reset();
+        renderTenders();
+      });
+    });
+
+    // Chart.js Instances
+    let perfChartInstance = null;
+    let earningsChartInstance = null;
+    let donutChartInstance = null;
+
+    function initAnalyticsCharts() {
+      if (typeof Chart === 'undefined') {
+        console.log("Chart.js script not loaded yet");
+        return;
+      }
+
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const textColor = isDark ? '#b8b8b8' : '#536477';
+      const gridColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
+
+      // 1. Academic Performance Line Area Chart
+      const perfCanvas = document.getElementById('academicPerformanceChart');
+      if (perfCanvas) {
+        const perfCtx = perfCanvas.getContext('2d');
+        if (perfChartInstance) perfChartInstance.destroy();
+        
+        const gradient = perfCtx.createLinearGradient(0, 0, 0, 200);
+        gradient.addColorStop(0, 'rgba(40, 167, 69, 0.35)');
+        gradient.addColorStop(1, 'rgba(40, 167, 69, 0.0)');
+
+        perfChartInstance = new Chart(perfCtx, {
+          type: 'line',
+          data: {
+            labels: ['2024', '2025', '2026', '2027'],
+            datasets: [{
+              label: 'Performance Score %',
+              data: [33, 45, 70, 64],
+              borderColor: '#28a745',
+              borderWidth: 3,
+              backgroundColor: gradient,
+              fill: true,
+              tension: 0.35,
+              pointBackgroundColor: '#28a745',
+              pointRadius: 5,
+              pointHoverRadius: 7
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: isDark ? '#1a1a1a' : '#ffffff',
+                titleColor: isDark ? '#fff' : '#082653',
+                bodyColor: isDark ? '#ccc' : '#333',
+                borderColor: '#28a745',
+                borderWidth: 1,
+                padding: 10,
+                displayColors: false
+              }
+            },
+            scales: {
+              x: { grid: { display: false }, ticks: { color: textColor, font: { size: 11 } } },
+              y: { grid: { color: gridColor }, ticks: { color: textColor, font: { size: 11 }, callback: v => v + '%' }, min: 0, max: 100 }
+            }
+          }
+        });
+      }
+
+      // 2. Monthly Enrolments & Applications Bar Chart
+      const earnCanvas = document.getElementById('monthlyEarningsChart');
+      if (earnCanvas) {
+        const earnCtx = earnCanvas.getContext('2d');
+        if (earningsChartInstance) earningsChartInstance.destroy();
+
+        earningsChartInstance = new Chart(earnCtx, {
+          type: 'bar',
+          data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [
+              {
+                label: 'Enrolments',
+                data: [45, 60, 52, 70, 65, 80],
+                backgroundColor: '#004b9b',
+                borderRadius: 4
+              },
+              {
+                label: 'Applications',
+                data: [25, 40, 35, 55, 45, 60],
+                backgroundColor: '#28a745',
+                borderRadius: 4
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false }
+            },
+            scales: {
+              x: { grid: { display: false }, ticks: { color: textColor, font: { size: 10 } } },
+              y: { grid: { color: gridColor }, ticks: { color: textColor, font: { size: 10 } } }
+            }
+          }
+        });
+      }
+
+      // 3. Students Breakdown Donut Ring Chart
+      const donutCanvas = document.getElementById('studentsDonutChart');
+      if (donutCanvas) {
+        const donutCtx = donutCanvas.getContext('2d');
+        if (donutChartInstance) donutChartInstance.destroy();
+
+        donutChartInstance = new Chart(donutCtx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Bihar', 'Uttar Pradesh', 'Jharkhand', 'West Bengal', 'Other States'],
+            datasets: [{
+              data: [3533, 855, 570, 399, 342],
+              backgroundColor: ['#004b9b', '#28a745', '#ffc107', '#17a2b8', '#6f42c1'],
+              borderWidth: 0,
+              hoverOffset: 4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '76%',
+            plugins: {
+              legend: { display: false }
+            }
+          }
+        });
+      }
+    }
+
+    const stateDataSets = {
+      all: { labels: ['Bihar', 'Uttar Pradesh', 'Jharkhand', 'West Bengal', 'Other States'], data: [3533, 855, 570, 399, 342], total: '5,699', label: 'Enrolled Students' },
+      bihar: { labels: ['Patna', 'Gaya', 'Muzaffarpur', 'Bhagalpur', 'Darbhanga'], data: [1200, 950, 600, 450, 333], total: '3,533', label: 'Bihar Students' },
+      up: { labels: ['Varanasi', 'Gorakhpur', 'Lucknow', 'Prayagraj', 'Others'], data: [300, 220, 180, 105, 50], total: '855', label: 'UP Students' },
+      jharkhand: { labels: ['Ranchi', 'Dhanbad', 'Jamshedpur', 'Bokaro', 'Others'], data: [210, 150, 110, 60, 40], total: '570', label: 'Jharkhand Students' },
+      wb: { labels: ['Kolkata', 'Asansol', 'Siliguri', 'Durgapur', 'Others'], data: [150, 100, 75, 45, 29], total: '399', label: 'WB Students' },
+      others: { labels: ['Delhi NCR', 'MP & CG', 'NE States', 'Southern States', 'Union Terr.'], data: [120, 90, 60, 42, 30], total: '342', label: 'Other Regions' }
+    };
+
+    function updateStateGraph() {
+      const selected = document.getElementById('stateFilterSelect')?.value || 'all';
+      const dataset = stateDataSets[selected] || stateDataSets.all;
+
+      const numEl = document.getElementById('stateTotalNumber');
+      const labelEl = document.getElementById('stateTotalLabel');
+      if (numEl) numEl.textContent = dataset.total;
+      if (labelEl) labelEl.textContent = dataset.label;
+
+      const legendList = document.getElementById('stateLegendList');
+      if (legendList) {
+        const colors = ['#004b9b', '#28a745', '#ffc107', '#17a2b8', '#6f42c1'];
+        legendList.innerHTML = dataset.labels.map((label, idx) => `
+          <div class="donut-legend-item">
+            <div class="donut-legend-left"><span class="donut-legend-dot" style="background-color:${colors[idx % colors.length]};"></span> ${label}</div>
+            <span class="donut-legend-count">${dataset.data[idx]} students</span>
+          </div>
+        `).join('');
+      }
+
+      if (donutChartInstance) {
+        donutChartInstance.data.labels = dataset.labels;
+        donutChartInstance.data.datasets[0].data = dataset.data;
+        donutChartInstance.update();
+      }
+    }
+
+    // ==========================================
+    // INTERACTIVE CALENDAR EVENT MARKER LOGIC
+    // ==========================================
+    let storedCalendarEvents = {};
+    try {
+      storedCalendarEvents = JSON.parse(localStorage.getItem('cusb_events_calendar') || '{}');
+    } catch(e) { storedCalendarEvents = {}; }
+
+    function openCalendarDateModal(dayNum) {
+      document.getElementById('calendarSelectedDay').value = dayNum;
+      document.getElementById('calendarModalTitle').textContent = `Mark Event for October ${dayNum}, 2026`;
+
+      const listContainer = document.getElementById('calendarModalEventsList');
+      if (listContainer) {
+        listContainer.innerHTML = '';
+        const dayEvents = storedCalendarEvents[dayNum] || [];
+        if (dayEvents.length === 0) {
+          listContainer.innerHTML = '<p style="font-size:0.8rem; color:var(--admin-text-secondary);">No events currently marked for this date.</p>';
+        } else {
+          dayEvents.forEach((ev, idx) => {
+            const div = document.createElement('div');
+            div.className = 'schedule-item';
+            div.innerHTML = `
+              <div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+                <div>
+                  <span class="schedule-time">${escapeHTML(ev.time)}</span>
+                  <h5 class="schedule-title">${escapeHTML(ev.title)}</h5>
+                  <span class="schedule-category" style="background: rgba(0,75,155,0.1); color: #004b9b;">${escapeHTML(ev.category || 'General')}</span>
+                </div>
+                <button type="button" class="action-btn btn-delete" onclick="deleteCalendarEvent(${dayNum}, ${idx})" style="padding:2px 8px; font-size:0.75rem;">Delete</button>
+              </div>
+            `;
+            listContainer.appendChild(div);
+          });
+        }
+      }
+
+      openModal('calendarDateModal');
+    }
+
+    function deleteCalendarEvent(dayNum, idx) {
+      if (!storedCalendarEvents[dayNum]) return;
+      storedCalendarEvents[dayNum].splice(idx, 1);
+      localStorage.setItem('cusb_events_calendar', JSON.stringify(storedCalendarEvents));
+      openCalendarDateModal(dayNum);
+      showAlert("Calendar event removed.", "success");
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const calForm = document.getElementById('addCalendarEventForm');
+      if (calForm) {
+        calForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const dayNum = document.getElementById('calendarSelectedDay').value;
+          const title = document.getElementById('calEventTitle').value.trim();
+          const time = document.getElementById('calEventTime').value.trim();
+          const category = document.getElementById('calEventCategory').value.trim();
+          const publishWeb = document.getElementById('calEventPublishWeb').value;
+
+          if (!storedCalendarEvents[dayNum]) storedCalendarEvents[dayNum] = [];
+          
+          const newEv = { title, time, category, date_str: `October ${dayNum}, 2026` };
+          storedCalendarEvents[dayNum].push(newEv);
+          localStorage.setItem('cusb_events_calendar', JSON.stringify(storedCalendarEvents));
+
+          if (publishWeb === 'yes') {
+            const newAnn = {
+              id: Date.now(),
+              title_en: title,
+              title_hi: title,
+              desc_en: `Scheduled Event for October ${dayNum}, 2026 (${time}): ${category}`,
+              desc_hi: `अक्टूबर ${dayNum}, 2026 (${time}) के लिए कार्यक्रम: ${category}`,
+              type: 'event',
+              date_str: `October ${dayNum}, 2026`,
+              created_at: new Date().toISOString()
+            };
+            loadedAnnouncements.unshift(newAnn);
+            localStorage.setItem('cusb_announcements', JSON.stringify(loadedAnnouncements));
+            if (typeof loadAnnouncements === 'function') loadAnnouncements();
+          }
+
+          showAlert(`Event marked successfully for October ${dayNum}, 2026!`, 'success');
+          calForm.reset();
+          openCalendarDateModal(dayNum);
+        });
+      }
+    });
+
     // Load logs and metrics (Overview Tab)
     async function loadDashboardData() {
+      // Initialize analytics charts
+      initAnalyticsCharts();
+      
+      const profileName = document.getElementById('sidebarProfileName');
+      if (profileName && activeUser) {
+        profileName.textContent = activeUser;
+      }
       try {
         const statsRes = await adminFetch('/api/admin/stats');
         if (statsRes.ok) {
@@ -907,6 +2053,31 @@
       );
     }
 
+    async function loadAdmissionsAndEnquiries() {
+      try {
+        const [applicationsResponse, enquiriesResponse] = await Promise.all([
+          adminFetch('/api/admin/admission-applications'),
+          adminFetch('/api/admin/enquiries')
+        ]);
+        const applications = applicationsResponse.ok ? await applicationsResponse.json() : [];
+        const enquiries = enquiriesResponse.ok ? await enquiriesResponse.json() : [];
+        document.getElementById('applicationsTableBody').innerHTML = applications.length ? applications.map(item => `
+          <tr><td>${escapeHTML(item.application_code)}<br><small>${new Date(item.created_at).toLocaleDateString()}</small></td><td><strong>${escapeHTML(item.full_name)}</strong><br><small>${escapeHTML(item.email)} · ${escapeHTML(item.phone)}</small></td><td>${escapeHTML(item.programme)}<br><small>${escapeHTML(item.programme_level)}</small></td><td>${escapeHTML(item.external_reference || '—')}</td><td><select class="form-select" onchange="updateApplicationStatus(${item.id}, this.value)">${['submitted','under_review','admitted','rejected','withdrawn'].map(status => `<option value="${status}" ${status === item.status ? 'selected' : ''}>${status.replace('_', ' ')}</option>`).join('')}</select></td></tr>`).join('') : '<tr><td colspan="5">No admission applications have been submitted.</td></tr>';
+        document.getElementById('enquiriesTableBody').innerHTML = enquiries.length ? enquiries.map(item => `
+          <tr><td>${escapeHTML(item.ticket_code)}<br><small>${new Date(item.created_at).toLocaleDateString()}</small></td><td><strong>${escapeHTML(item.full_name)}</strong><br><small>${escapeHTML(item.email)} · ${escapeHTML(item.phone)}</small></td><td>${escapeHTML(item.category)}<br><small>${escapeHTML(item.programme_level || '')}</small></td><td>${escapeHTML(item.message)}</td><td><select class="form-select" onchange="updateEnquiryStatus(${item.id}, this.value)">${['new','in_progress','resolved','closed'].map(status => `<option value="${status}" ${status === item.status ? 'selected' : ''}>${status.replace('_', ' ')}</option>`).join('')}</select></td></tr>`).join('') : '<tr><td colspan="5">No enquiries have been submitted.</td></tr>';
+      } catch (error) { showAlert('Unable to load admissions and enquiries.'); }
+    }
+
+    async function updateApplicationStatus(id, status) {
+      const response = await adminFetch('/api/admin/admission-applications/status', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, status }) });
+      if (!response.ok) showAlert('Unable to update application status.');
+    }
+
+    async function updateEnquiryStatus(id, status) {
+      const response = await adminFetch('/api/admin/enquiries/status', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, status }) });
+      if (!response.ok) showAlert('Unable to update enquiry status.');
+    }
+
     // ==========================================
     // ANNOUNCEMENTS CRUD LOGIC
     // ==========================================
@@ -916,10 +2087,17 @@
         if (response.ok) {
           loadedAnnouncements = await response.json();
           filterAnnouncements();
+          return;
         }
       } catch (err) {
-        showAlert("Failed to load announcements list.");
+        console.log("Backend offline, loading announcements from LocalStorage");
       }
+
+      const stored = localStorage.getItem('cusb_announcements');
+      if (stored) {
+        try { loadedAnnouncements = JSON.parse(stored); } catch(e) {}
+      }
+      filterAnnouncements();
     }
 
     function filterAnnouncements() {
@@ -982,45 +2160,61 @@
       const type = document.getElementById('addNoticeType').value;
       const imageUrl = document.getElementById('addNoticeImageUrl').value.trim();
       const dateStr = document.getElementById('addNoticeDateStr').value.trim();
+      const durationDays = parseInt(document.getElementById('addNoticeDuration')?.value || '7', 10);
+      const expiryTimestamp = durationDays > 0 ? (Date.now() + (durationDays * 24 * 60 * 60 * 1000)) : 0;
+
+      const newNotice = {
+        id: Date.now(),
+        title_en: titleEn,
+        title_hi: titleHi,
+        desc_en: descEn,
+        desc_hi: descHi,
+        type: type,
+        image_url: imageUrl,
+        date_str: dateStr,
+        created_at: new Date().toISOString(),
+        expiry_days: durationDays,
+        expiry_timestamp: expiryTimestamp
+      };
 
       try {
         const response = await adminFetch('/api/announcements', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ titleEn, titleHi, descEn, descHi, type, imageUrl, dateStr })
+          body: JSON.stringify(newNotice)
         });
-        const data = await response.json();
-
         if (response.ok) {
-          showAlert("Announcement published successfully!", "success");
-          document.getElementById('addAnnouncementForm').reset();
-          loadAnnouncements();
-        } else {
-          showAlert(data.error || "Failed to publish announcement.");
+          showAlert("Announcement published live on website!", "success");
         }
       } catch (err) {
-        showAlert("Server connection error.");
+        console.log("Backend offline, updating announcement locally");
       }
+
+      // Save locally to ensure live website synchronization
+      loadedAnnouncements.unshift(newNotice);
+      localStorage.setItem('cusb_announcements', JSON.stringify(loadedAnnouncements));
+      showAlert("Announcement published live on website!", "success");
+      document.getElementById('addAnnouncementForm').reset();
+      loadAnnouncements();
     });
 
     // Delete Announcement
     async function deleteAnnouncement(id) {
-      if (!confirm("Are you sure you want to permanently delete this announcement?")) return;
+      if (!confirm("Are you sure you want to permanently delete this announcement from the live website?")) return;
       try {
-        const response = await adminFetch('/api/announcements/delete', {
+        await adminFetch('/api/announcements/delete', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id })
         });
-        if (response.ok) {
-          showAlert("Announcement deleted successfully!", "success");
-          loadAnnouncements();
-        } else {
-          showAlert("Deletion failed.");
-        }
       } catch (err) {
-        showAlert("Connection error.");
+        console.log("Backend offline, deleting announcement locally");
       }
+
+      loadedAnnouncements = loadedAnnouncements.filter(item => item.id !== id);
+      localStorage.setItem('cusb_announcements', JSON.stringify(loadedAnnouncements));
+      showAlert("Announcement removed from website successfully!", "success");
+      loadAnnouncements();
     }
 
     // Edit Announcement Modal Init

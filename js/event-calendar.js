@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load events from API or fallback
   async function loadEvents() {
     try {
-      const response = await fetch('/api/announcements?show_all=true');
+      const response = await fetch(window.cusbApiUrl('announcements?show_all=true'));
       if (!response.ok) {
         throw new Error(`Announcements API returned ${response.status}`);
       }

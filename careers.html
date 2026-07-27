@@ -146,7 +146,7 @@
     document.addEventListener('DOMContentLoaded', async () => {
       const grid = document.querySelector('.career-openings-grid');
       try {
-        const res = await fetch('/api/recruitment');
+        const res = await fetch(window.cusbApiUrl('recruitment'));
         if (!res.ok) return;
         const data = await res.json();
         if (data && data.length > 0) {

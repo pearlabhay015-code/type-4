@@ -295,7 +295,7 @@
           if (pageProgress) pageProgress.style.width = Math.round((valid / reqs.length) * 100) + '%';
         });
 
-        pageForm.addEventListener('submit', (e) => {
+        pageForm.addEventListener('submit', async (e) => {
           e.preventDefault();
           let valid = true;
           reqs.forEach(r => { if (!r.value.trim()) valid = false; });
@@ -303,7 +303,31 @@
             alert('Please fill out all required fields.');
             return;
           }
-          const tNum = 'CUSB-ENQ-2026-' + Math.floor(1000 + Math.random() * 9000);
+          const submitButton = document.getElementById('pageEnquirySubmitBtn');
+          if (submitButton) submitButton.disabled = true;
+          let tNum;
+          try {
+            const response = await fetch(window.cusbApiUrl('enquiries'), {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                fullName: document.getElementById('pageEnquiryFullName').value.trim(),
+                email: document.getElementById('pageEnquiryEmail').value.trim(),
+                phone: document.getElementById('pageEnquiryPhone').value.trim(),
+                category: pageCatInput.value,
+                programmeLevel: pageProgSelect.value,
+                department: pageDeptSelect.value,
+                message: pageMsgArea.value.trim()
+              })
+            });
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.error || 'Unable to submit enquiry.');
+            tNum = result.ticket_code;
+          } catch (error) {
+            alert(error.message || 'Unable to submit your enquiry. Please try again.');
+            if (submitButton) submitButton.disabled = false;
+            return;
+          }
           if (pageTicket) pageTicket.textContent = tNum;
           pageForm.style.display = 'none';
           if (pageSuccess) pageSuccess.style.display = 'block';

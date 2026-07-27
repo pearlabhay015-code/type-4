@@ -86,6 +86,26 @@
       </div>
     </section>
 
+    <section class="section" id="admission-registration">
+      <div class="container" style="max-width: 860px;">
+        <div class="card glass-card" style="padding: 30px;">
+          <div class="section-title">
+            <h2>Admission Registration</h2>
+            <p>Submit your contact details for CUSB admission follow-up. Do not enter identity documents, payment details, or passwords here.</p>
+          </div>
+          <form id="admissionRegistrationForm" class="enquiry-form-grid">
+            <div class="enquiry-field-group"><label class="enquiry-field-label" for="admissionFullName">Full Name *</label><input class="enquiry-input" id="admissionFullName" required maxlength="160"></div>
+            <div class="enquiry-field-group"><label class="enquiry-field-label" for="admissionEmail">Email *</label><input class="enquiry-input" id="admissionEmail" type="email" required maxlength="254"></div>
+            <div class="enquiry-field-group"><label class="enquiry-field-label" for="admissionPhone">Mobile Number *</label><input class="enquiry-input" id="admissionPhone" inputmode="tel" required maxlength="20"></div>
+            <div class="enquiry-field-group"><label class="enquiry-field-label" for="admissionLevel">Programme Level *</label><select class="enquiry-input" id="admissionLevel" required><option value="">Select level</option><option value="ug">Undergraduate</option><option value="pg">Postgraduate</option><option value="phd">Ph.D.</option></select></div>
+            <div class="enquiry-field-group"><label class="enquiry-field-label" for="admissionProgramme">Programme *</label><input class="enquiry-input" id="admissionProgramme" required maxlength="180" placeholder="For example, M.Sc. Computer Science"></div>
+            <div class="enquiry-field-group"><label class="enquiry-field-label" for="admissionReference">CUET / Samarth Reference (optional)</label><input class="enquiry-input" id="admissionReference" maxlength="100"></div>
+            <div class="enquiry-form-full"><button class="btn btn-primary" id="admissionSubmitBtn" type="submit">Save Admission Registration</button><p id="admissionRegistrationResult" style="margin-top: 12px; font-weight: 600;" aria-live="polite"></p></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
     <!-- Eligibility & Fee Structure Table -->
     <section class="section" id="eligibility">
       <div class="container">
@@ -179,7 +199,7 @@
     document.addEventListener('DOMContentLoaded', async () => {
       const container = document.getElementById('admissionsContainer');
       try {
-        const res = await fetch('/api/admissions');
+        const res = await fetch(window.cusbApiUrl('admissions'));
         if (!res.ok) throw new Error('API Error');
         const data = await res.json();
         
@@ -219,6 +239,36 @@
             <a href="https://cusb.samarth.edu.in/" target="_blank" class="btn btn-primary">Visit Samarth Admission Portal</a>
           </div>
         `;
+      }
+
+      const registrationForm = document.getElementById('admissionRegistrationForm');
+      const registrationResult = document.getElementById('admissionRegistrationResult');
+      if (registrationForm) {
+        registrationForm.addEventListener('submit', async event => {
+          event.preventDefault();
+          const submitButton = document.getElementById('admissionSubmitBtn');
+          submitButton.disabled = true;
+          registrationResult.textContent = 'Saving your registration…';
+          try {
+            const response = await fetch(window.cusbApiUrl('admission-applications'), {
+              method: 'POST', headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                fullName: document.getElementById('admissionFullName').value.trim(),
+                email: document.getElementById('admissionEmail').value.trim(),
+                phone: document.getElementById('admissionPhone').value.trim(),
+                programme: document.getElementById('admissionProgramme').value.trim(),
+                programmeLevel: document.getElementById('admissionLevel').value,
+                externalReference: document.getElementById('admissionReference').value.trim()
+              })
+            });
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.error || 'Unable to save your registration.');
+            registrationResult.textContent = `Registration saved. Your reference is ${result.application_code}.`;
+            registrationForm.reset();
+          } catch (error) {
+            registrationResult.textContent = error.message || 'Unable to save your registration.';
+          } finally { submitButton.disabled = false; }
+        });
       }
     });
   </script>

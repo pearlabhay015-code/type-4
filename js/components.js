@@ -3,6 +3,11 @@
  * Standard HTML5 custom elements utilizing Light DOM to inherit global stylesheets.
  */
 
+window.cusbApiUrl = window.cusbApiUrl || ((path) => {
+  const base = new URL('.', document.baseURI);
+  return new URL(`api/${String(path).replace(/^\/+/, '')}`, base).toString();
+});
+
 const iconSvg = (name, label = '') => `
   <svg class="svg-icon svg-icon-${name}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
     <use href="#icon-${name}"></use>
@@ -186,7 +191,7 @@ class CusbTicker extends HTMLElement {
     };
 
     try {
-      const res = await fetch('/api/announcements');
+      const res = await fetch(window.cusbApiUrl('announcements'));
       if (!res.ok) throw new Error(`Announcements API returned ${res.status}`);
       const data = await res.json();
       renderTickerItems(data);
@@ -1140,4 +1145,3 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial positioning
   setTimeout(updateSidebarPosition, 0);
 });
-

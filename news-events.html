@@ -162,7 +162,7 @@
           listContainer.innerHTML = '<div class="loading-spinner" data-en="Loading updates from server..." data-hi="सर्वर से अपडेट लोड हो रहे हैं...">Loading updates from server...</div>';
           applyLangToContainer();
 
-          let url = '/api/announcements';
+          let url = window.cusbApiUrl('announcements');
           if (activeFilter === 'archive') {
             url += '?archive=true';
           }
@@ -258,6 +258,7 @@
 
       // Fetch on load
       fetchAnnouncements();
+      window.setInterval(fetchAnnouncements, 30000);
 
       // Listen to language changes
       window.addEventListener('storage', (e) => {

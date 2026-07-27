@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollToTop();
   initTranslateOffsetWatcher();
   initDynamicContent();
+  window.setInterval(initDynamicContent, 30000);
   initEnquiryModal();
   initGalleryTicker();
   initNewsTicker();
@@ -449,7 +450,7 @@ async function performSearch(query) {
   }
 
   try {
-    const response = await fetch(`/api/search?q=${encodeURIComponent(trimmed)}`);
+    const response = await fetch(window.cusbApiUrl(`search?q=${encodeURIComponent(trimmed)}`));
     const matches = await response.json();
 
     if (matches.length === 0) {
@@ -762,6 +763,18 @@ function initChatbot() {
     return 'I can guide you to admissions, schools, departments, hostel, library, notices, events, and contact details. Try asking about one of these.';
   };
 
+  const getDatabaseReply = async (value) => {
+    try {
+      const response = await fetch(window.cusbApiUrl(`chat?q=${encodeURIComponent(value)}`));
+      if (!response.ok) throw new Error('Chat API unavailable');
+      const reply = await response.json();
+      const lang = localStorage.getItem('cusb-lang') || 'en';
+      return reply[lang] || reply.en;
+    } catch (error) {
+      return getBotReply(value);
+    }
+  };
+
   const openChat = () => {
     windowEl.classList.add('active');
     windowEl.setAttribute('aria-hidden', 'false');
@@ -782,13 +795,17 @@ function initChatbot() {
 
   closeBtn.addEventListener('click', closeChat);
 
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const value = input.value.trim();
     if (!value) return;
     appendMessage(value, 'user');
     input.value = '';
-    setTimeout(() => appendMessage(getBotReply(value), 'bot'), 350);
+    appendMessage('Searching CUSB information…', 'bot');
+    const pendingReply = messages.lastElementChild;
+    const answer = await getDatabaseReply(value);
+    if (pendingReply) pendingReply.remove();
+    appendMessage(answer, 'bot');
   });
 }
 
@@ -922,64 +939,90 @@ function renderEventCards(eventList) {
 
 async function initDynamicContent() {
   const currentLang = localStorage.getItem('cusb-lang') || 'en';
+  const now = Date.now();
   
-  // 1. Fetch & Render Gallery
+  // 1. Fetch & Render Gallery (API fallback to LocalStorage)
   const galleryContainer = document.querySelector('.gallery-grid-pastel');
   if (galleryContainer) {
+    let galleryList = [];
     try {
-      const response = await fetch('/api/gallery');
+      const response = await fetch(window.cusbApiUrl('gallery'));
       if (response.ok) {
-        const galleryList = await response.json();
-        if (galleryList && galleryList.length > 0) {
-          renderGallery(galleryList);
-          galleryContainer.querySelectorAll('[data-en], [data-hi]').forEach(el => {
-            const text = el.getAttribute(`data-${currentLang}`);
-            if (text) el.textContent = text;
-          });
-        }
+        galleryList = await response.json();
       }
     } catch (err) {
-      console.error("Failed to fetch gallery:", err);
+      console.log("Backend offline, loading gallery from LocalStorage");
+    }
+
+    if (!galleryList || galleryList.length === 0) {
+      const storedG = localStorage.getItem('cusb_gallery');
+      if (storedG) {
+        try { galleryList = JSON.parse(storedG); } catch(e) {}
+      }
+    }
+
+    if (galleryList && galleryList.length > 0) {
+      renderGallery(galleryList);
+      galleryContainer.querySelectorAll('[data-en], [data-hi]').forEach(el => {
+        const text = el.getAttribute(`data-${currentLang}`);
+        if (text) el.textContent = text;
+      });
     }
   }
 
-  // 2. Fetch & Render News / Events
+  // 2. Fetch & Render News / Events with Expiry Duration Filtering
   const newsContainer = document.querySelector('.news-grid');
   const eventsContainer = document.querySelector('.events-grid');
   if (newsContainer || eventsContainer) {
+    let announcements = [];
     try {
-      const response = await fetch('/api/announcements');
+      const response = await fetch(window.cusbApiUrl('announcements'));
       if (response.ok) {
-        const announcements = await response.json();
-        
-        // Filter active news
-        const newsList = announcements.filter(item => item.type.toLowerCase() === 'news');
-        if (newsList.length > 0 && newsContainer) {
-          renderNewsCards(newsList);
-          newsContainer.querySelectorAll('[data-en], [data-hi]').forEach(el => {
-            const text = el.getAttribute(`data-${currentLang}`);
-            if (text) {
-              if (text.includes('<') && text.includes('>')) el.innerHTML = text;
-              else el.textContent = text;
-            }
-          });
-        }
-
-        // Filter active events
-        const eventsList = announcements.filter(item => item.type.toLowerCase() === 'event');
-        if (eventsList.length > 0 && eventsContainer) {
-          renderEventCards(eventsList);
-          eventsContainer.querySelectorAll('[data-en], [data-hi]').forEach(el => {
-            const text = el.getAttribute(`data-${currentLang}`);
-            if (text) {
-              if (text.includes('<') && text.includes('>')) el.innerHTML = text;
-              else el.textContent = text;
-            }
-          });
-        }
+        announcements = await response.json();
       }
     } catch (err) {
-      console.error("Failed to fetch announcements:", err);
+      console.log("Backend offline, loading announcements from LocalStorage");
+    }
+
+    if (!announcements || announcements.length === 0) {
+      const storedA = localStorage.getItem('cusb_announcements');
+      if (storedA) {
+        try { announcements = JSON.parse(storedA); } catch(e) {}
+      }
+    }
+
+    if (announcements && announcements.length > 0) {
+      // Filter out items whose set display duration / expiry timestamp has passed
+      const activeAnnouncements = announcements.filter(item => {
+        if (!item.expiry_timestamp || item.expiry_timestamp === 0) return true; // Permanent
+        return item.expiry_timestamp > now; // Active within duration
+      });
+
+      // Render active news
+      const newsList = activeAnnouncements.filter(item => item.type.toLowerCase() === 'news');
+      if (newsList.length > 0 && newsContainer) {
+        renderNewsCards(newsList);
+        newsContainer.querySelectorAll('[data-en], [data-hi]').forEach(el => {
+          const text = el.getAttribute(`data-${currentLang}`);
+          if (text) {
+            if (text.includes('<') && text.includes('>')) el.innerHTML = text;
+            else el.textContent = text;
+          }
+        });
+      }
+
+      // Render active events
+      const eventsList = activeAnnouncements.filter(item => item.type.toLowerCase() === 'event');
+      if (eventsList.length > 0 && eventsContainer) {
+        renderEventCards(eventsList);
+        eventsContainer.querySelectorAll('[data-en], [data-hi]').forEach(el => {
+          const text = el.getAttribute(`data-${currentLang}`);
+          if (text) {
+            if (text.includes('<') && text.includes('>')) el.innerHTML = text;
+            else el.textContent = text;
+          }
+        });
+      }
     }
   }
 }
@@ -1703,6 +1746,32 @@ function initNewsTicker() {
       link: "sports.html"
     }
   ];
+
+  // Merge live announcements added via Admin Panel (filtering out expired ones)
+  const storedAnn = localStorage.getItem('cusb_announcements');
+  if (storedAnn) {
+    try {
+      const customItems = JSON.parse(storedAnn);
+      const now = Date.now();
+      customItems.reverse().forEach(cItem => {
+        if (!cItem.expiry_timestamp || cItem.expiry_timestamp === 0 || cItem.expiry_timestamp > now) {
+          cusbNewsItems.unshift({
+            id: 'cusb-custom-' + cItem.id,
+            title_en: cItem.title_en,
+            title_hi: cItem.title_hi || cItem.title_en,
+            category_en: cItem.type ? cItem.type.toUpperCase() : "CUSB Announcement",
+            category_hi: cItem.type ? cItem.type.toUpperCase() : "सीयूएसबी घोषणा",
+            date: cItem.date_str || "LATEST",
+            publisher: "CUSB Administration",
+            src: cItem.image_url || "assets/images/blockB.jpg",
+            desc_en: cItem.desc_en,
+            desc_hi: cItem.desc_hi || cItem.desc_en,
+            link: "news-events.html"
+          });
+        }
+      });
+    } catch(e) {}
+  }
 
   // Create news card element
   const createNewsCard = (item) => {
