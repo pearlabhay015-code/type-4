@@ -939,13 +939,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Keep sidebar always below the navbar dynamically
+  let isTicking = false;
   const updateSidebarPosition = () => {
     const navbar = document.querySelector('cusb-navbar');
     const sidebarElement = document.querySelector('.fixed-quicklinks-sidebar');
     if (navbar && sidebarElement) {
       if (window.innerWidth <= 991) {
-        sidebarElement.style.top = '';
-        sidebarElement.style.height = '';
+        if (sidebarElement.style.top !== '') {
+          sidebarElement.style.top = '';
+          sidebarElement.style.height = '';
+        }
         return;
       }
 
@@ -955,9 +958,19 @@ document.addEventListener('DOMContentLoaded', () => {
       sidebarElement.style.height = 'calc(100vh - ' + bottom + 'px)';
     }
   };
+
+  const onScrollThrottled = () => {
+    if (!isTicking) {
+      isTicking = true;
+      requestAnimationFrame(() => {
+        updateSidebarPosition();
+        isTicking = false;
+      });
+    }
+  };
   
-  window.addEventListener('scroll', updateSidebarPosition, { passive: true });
-  window.addEventListener('resize', updateSidebarPosition, { passive: true });
+  window.addEventListener('scroll', onScrollThrottled, { passive: true });
+  window.addEventListener('resize', onScrollThrottled, { passive: true });
   // Initial positioning
   setTimeout(updateSidebarPosition, 0);
 });

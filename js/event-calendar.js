@@ -21,16 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedDateStr = '';
 
   const eventImages = {
-    national: 'https://commons.wikimedia.org/wiki/Special:FilePath/Republic%20Day%20Parade%202024%20montage.jpg',
-    gandhi: 'https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20Gandhi.jpg',
-    holi: 'https://commons.wikimedia.org/wiki/Special:FilePath/Holi%20Celebration%20India.jpg',
-    diwali: 'https://commons.wikimedia.org/wiki/Special:FilePath/Diwali%20Diya.jpg',
-    buddha: 'https://commons.wikimedia.org/wiki/Special:FilePath/Buddha%20jayanti%20at%20Mahabodhi%20society.jpg',
-    christmas: 'https://commons.wikimedia.org/wiki/Special:FilePath/Christmas%20in%20India%20church.jpg',
-    eid: 'https://commons.wikimedia.org/wiki/Special:FilePath/Eid%20al-Fitr%20Namaz.jpg',
-    jain: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bhagwan%20Mahaveer.jpg',
-    sikh: 'https://commons.wikimedia.org/wiki/Special:FilePath/Guru%20Nanak%202.jpg',
-    festival: 'https://commons.wikimedia.org/wiki/Special:FilePath/Indian%20Festival%20of%20colors%20Holi.jpg',
+    national: 'assets/images/admin_good.jpeg',
+    gandhi: 'assets/images/2013.jpg',
+    holi: 'assets/images/spoim.jpg',
+    diwali: 'assets/images/audimg.jpg',
+    buddha: 'assets/images/blockB.jpg',
+    christmas: 'assets/images/2013.jpg',
+    eid: 'assets/images/admin.jpeg',
+    jain: 'assets/images/blockB.jpg',
+    sikh: 'assets/images/audimg.jpg',
+    festival: 'assets/images/spoim.jpg',
     campus: 'assets/images/audimg.jpg'
   };
 

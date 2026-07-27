@@ -516,15 +516,25 @@ function initQuickLinksMenu() {
 
   if (!toggleBtn || !sidebar) return;
 
+  let sidebarTicking = false;
   const updateMobileSidebarTop = () => {
-    if (window.innerWidth > 991) {
-      document.documentElement.style.removeProperty('--mobile-quicklinks-top');
+    if (window.innerWidth > 991 || !sidebar.classList.contains('is-open')) {
       return;
     }
 
     const navbar = document.querySelector('cusb-navbar');
     const bottom = navbar ? Math.max(0, navbar.getBoundingClientRect().bottom) : 0;
     document.documentElement.style.setProperty('--mobile-quicklinks-top', `${bottom}px`);
+  };
+
+  const onScrollSidebar = () => {
+    if (!sidebarTicking && sidebar.classList.contains('is-open')) {
+      sidebarTicking = true;
+      requestAnimationFrame(() => {
+        updateMobileSidebarTop();
+        sidebarTicking = false;
+      });
+    }
   };
 
   const closeQuickLinks = () => {
@@ -575,11 +585,10 @@ function initQuickLinksMenu() {
   });
 
   window.addEventListener('resize', () => {
-    updateMobileSidebarTop();
+    if (sidebar.classList.contains('is-open')) updateMobileSidebarTop();
     if (window.innerWidth > 991) closeQuickLinks();
   }, { passive: true });
-  window.addEventListener('scroll', updateMobileSidebarTop, { passive: true });
-  updateMobileSidebarTop();
+  window.addEventListener('scroll', onScrollSidebar, { passive: true });
 }
 
 /* ==========================================================================
