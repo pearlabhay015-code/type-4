@@ -494,6 +494,52 @@ cusb-accessibility-bar {
   gap: 8px;
 }
 
+.accessibility-search-container .search-container {
+  position: relative;
+  width: 260px;
+}
+
+.accessibility-search-container .search-input {
+  width: 100%;
+  padding: 8px 40px 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  font-size: 0.85rem;
+  background-color: var(--bg-secondary);
+  color: var(--tx-primary);
+  transition: var(--transition);
+}
+
+.accessibility-search-container .search-input:focus {
+  outline: none;
+  border-color: var(--acc-navy);
+  background-color: var(--bg-primary);
+  box-shadow: 0 0 0 3px rgba(15, 60, 95, 0.1);
+}
+
+.accessibility-search-container .search-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--tx-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.accessibility-search-container .search-btn .svg-icon {
+  font-size: 1rem;
+}
+
+.accessibility-search-container .search-btn:hover {
+  color: var(--acc-navy);
+}
+
 .access-search-btn {
   width: 28px;
   height: 28px;
@@ -2331,17 +2377,6 @@ cusb-footer {
   transform: rotate(0deg);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   flex-shrink: 0;
-}
-
-.floating-enquiry-btn .enquiry-btn-pulse {
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  width: 10px;
-  height: 10px;
-  background-color: #c52222;
-  border-radius: 2px;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8);
 }
 
 [data-theme="dark"] .floating-enquiry-btn {

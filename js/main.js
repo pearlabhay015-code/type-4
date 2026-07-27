@@ -366,21 +366,35 @@ function initSearch() {
   }
 
   // Open search modal function
-  const openModal = () => {
+  const headerSearchInput = document.getElementById('headerSearchInput');
+  const openModal = (query = '') => {
     const overlay = document.getElementById('siteSearchOverlay');
     const modalInput = document.getElementById('modalSearchInput');
     if (overlay && modalInput) {
       overlay.classList.add('active');
-      setTimeout(() => modalInput.focus(), 100);
-      if (!modalInput.value.trim()) {
-        performSearch('');
+      if (query) {
+        modalInput.value = query;
       }
+      setTimeout(() => modalInput.focus(), 100);
+      performSearch(modalInput.value.trim() || '');
     }
   };
 
-  // Trigger search modal on header button click
+  // Trigger search modal on header button click, using typed query if present
   if (triggerBtn) {
-    triggerBtn.addEventListener('click', openModal);
+    triggerBtn.addEventListener('click', () => {
+      const query = headerSearchInput?.value.trim() || '';
+      openModal(query);
+    });
+  }
+
+  if (headerSearchInput) {
+    headerSearchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        openModal(headerSearchInput.value.trim());
+      }
+    });
   }
 
   // Global Keyboard Shortcuts (Ctrl+K / Cmd+K / ESC)

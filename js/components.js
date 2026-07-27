@@ -281,11 +281,14 @@ class CusbAccessibilityBar extends HTMLElement {
             <button class="btn-theme" id="themeToggleBtn" aria-label="Toggle Light/Dark Theme">${iconSvg('moon')}</button>
           </div>
           <span class="accessibility-divider">|</span>
-          <!-- Search Icon Button -->
+          <!-- Search Bar Area -->
           <div class="accessibility-search-container" role="search">
-            <button type="button" class="access-search-btn" id="headerSearchTriggerBtn" aria-label="Open Search Modal" title="Search CUSB Website (Ctrl+K)">
-              ${iconSvg('search')}
-            </button>
+            <div class="search-container" style="width: 260px;">
+              <input type="search" class="search-input" id="headerSearchInput" placeholder="Search courses, syllabs..." aria-label="Search courses, syllabs...">
+              <button type="button" class="search-btn" id="headerSearchTriggerBtn" aria-label="Open Search Modal" title="Search CUSB Website (Ctrl+K)">
+                ${iconSvg('search')}
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -935,8 +938,7 @@ class CusbEnquiryWidget extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <button class="floating-enquiry-btn" id="floatingEnquiryBtn" type="button" aria-label="Open Admissions Enquiry Form" title="Admissions & General Enquiry 2026">
-        <span class="enquiry-btn-pulse"></span>
-        <span class="enquiry-btn-icon">${iconSvg('file')}</span>
+
         <span data-en="Enquire Now" data-hi="पूछताछ करें">Enquire Now</span>
       </button>
 
