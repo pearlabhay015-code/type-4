@@ -3,76 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-en="Research & Innovations — CUSB" data-hi="अनुसंधान और नवाचार — सीयूएसबी">Research & Innovations — CUSB</title>
+  <title>Research - CUSB</title>
+  <meta name="description" content="Local research facilities, cells, publications, partnerships and funding information for CUSB.">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pages.css">
-  <style>
-    .research-grid-sec {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      margin-top: 30px;
-    }
-    .research-highlight-card {
-      background: var(--bg-primary);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-    }
-    .research-highlight-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--acc-gold);
-    }
-    .research-highlight-title {
-      font-family: var(--ff-title);
-      font-size: 1.25rem;
-      color: var(--tx-primary);
-      margin-bottom: 12px;
-    }
-    .research-highlight-desc {
-      font-size: 0.88rem;
-      color: var(--tx-muted);
-      line-height: 1.6;
-    }
-    .mou-list {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-top: 30px;
-    }
-    .mou-item {
-      background: var(--bg-secondary);
-      border-left: 5px solid var(--acc-blue);
-      padding: 16px 20px;
-      border-radius: 0 8px 8px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
-    .mou-info h4 {
-      font-size: 0.98rem;
-      color: var(--tx-primary);
-      margin-bottom: 4px;
-    }
-    .mou-info p {
-      font-size: 0.82rem;
-      color: var(--tx-muted);
-    }
-    .mou-date {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--acc-coral);
-      white-space: nowrap;
-    }
-  </style>
 </head>
 <body>
-  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
-
+  <a href="#mainContent" class="skip-link">Skip to main content</a>
   <cusb-ticker></cusb-ticker>
   <cusb-topbar></cusb-topbar>
   <cusb-header></cusb-header>
@@ -80,110 +17,82 @@
   <cusb-navbar></cusb-navbar>
 
   <main id="mainContent">
-    <!-- ══════ HERO BANNER ══════ -->
-    <section class="admin-hero" aria-label="Research Banner">
+    <section class="admin-hero resource-hero research-resource-hero" aria-label="Research banner">
       <div class="container hero-content">
-        <div class="hero-eyebrow">
-          <span data-en="Research & Innovations" data-hi="अनुसंधान और नवाचार">Research & Innovations</span>
-        </div>
-        <h1 class="hero-title" data-en="Academic <span>Research</span>" data-hi="शैक्षणिक <span>अनुसंधान</span>">Academic <span>Research</span></h1>
-        <p class="hero-sub" data-en="Delve into the cutting-edge sponsored projects, publications, partnerships, and scientific seminars powering national development." data-hi="राष्ट्रीय विकास को शक्ति प्रदान करने वाली अत्याधुनिक प्रायोजित परियोजनाओं, प्रकाशनों, साझेदारियों और वैज्ञानिक सेमिनारों में गहराई से उतरें।">Delve into the cutting-edge sponsored projects, publications, partnerships, and scientific seminars powering national development.</p>
+        <div class="hero-eyebrow"><span>Research</span></div>
+        <h1 class="hero-title">Research and <span>Innovation</span></h1>
+        <p class="hero-sub">Research facilities, committees, publications, partnerships, fellowships and grant support at the Central University of South Bihar.</p>
       </div>
     </section>
 
-    <!-- ══════ RESEARCH AREAS ══════ -->
-    <section class="section" id="areas">
+    <section class="section information-directory" aria-labelledby="researchDirectoryTitle">
       <div class="container">
-        <h2 class="section-title" data-en="Key Research Areas" data-hi="प्रमुख अनुसंधान क्षेत्र">Key Research Areas</h2>
-        <div class="research-grid-sec">
-          <div class="research-highlight-card">
-            <h3 class="research-highlight-title" data-en="Computer Science & AI" data-hi="कंप्यूटर विज्ञान और एआई">Computer Science & AI</h3>
-            <p class="research-highlight-desc" data-en="Scholarly study focus in Distributed Systems, Machine Learning algorithms, OSN Security, Speech Signal Processing, and Cryptography." data-hi="वितरित प्रणालियों, मशीन लर्निंग एल्गोरिदम, ओएसएन सुरक्षा, स्पीच सिग्नल प्रोसेसिंग और क्रिप्टोग्राफी में विद्वतापूर्ण अध्ययन।">Scholarly study focus in Distributed Systems, Machine Learning algorithms, OSN Security, Speech Signal Processing, and Cryptography.</p>
-          </div>
-          <div class="research-highlight-card">
-            <h3 class="research-highlight-title" data-en="Biological & Biotech Sciences" data-hi="जैविक और बायोटेक विज्ञान">Biological & Biotech Sciences</h3>
-            <p class="research-highlight-desc" data-en="Deep biological research in DNA Sequencing, bioinformatics modeling, genetics, agricultural biotechnology, and ecological conservation." data-hi="डीएनए अनुक्रमण, जैव सूचना विज्ञान मॉडलिंग, आनुवंशिकी, कृषि जैव प्रौद्योगिकी और पारिस्थितिक संरक्षण में गहन जैविक अनुसंधान।">Deep biological research in DNA Sequencing, bioinformatics modeling, genetics, agricultural biotechnology, and ecological conservation.</p>
-          </div>
-          <div class="research-highlight-card">
-            <h3 class="research-highlight-title" data-en="Physical & Chemical Sciences" data-hi="भौतिक और रासायनिक विज्ञान">Physical & Chemical Sciences</h3>
-            <p class="research-highlight-desc" data-en="Exploring material structures, organic synthesis, nanotech particles, quantum computations, and laser spectroscopy applications." data-hi="सामग्री संरचनाओं, कार्बनिक संश्लेषण, नैनोटेक कणों, क्वांटम संगणनाओं और लेजर स्पेक्ट्रोस्कोपी अनुप्रयोगों की खोज।">Exploring material structures, organic synthesis, nanotech particles, quantum computations, and laser spectroscopy applications.</p>
-          </div>
-          <div class="research-highlight-card">
-            <h3 class="research-highlight-title" data-en="Social Policies & Humanities" data-hi="सामाजिक नीतियां और मानविकी">Social Policies & Humanities</h3>
-            <p class="research-highlight-desc" data-en="Analyzing economic structures, historical frameworks, developmental goals, gender reforms, and teacher education systems." data-hi="आर्थिक संरचनाओं, ऐतिहासिक ढांचों, विकासात्मक लक्ष्यों, लैंगिक सुधारों और शिक्षक शिक्षा प्रणालियों का विश्लेषण।">Analyzing economic structures, historical frameworks, developmental goals, gender reforms, and teacher education systems.</p>
-          </div>
+        <span class="section-tag">Explore</span>
+        <h2 id="researchDirectoryTitle" class="section-title">Research resources</h2>
+        <div class="resource-chip-row" aria-label="Research page sections">
+          <a href="#central-instrumental-facility">Central Instrumental Facility</a><a href="#university-computer-centre">Computer Centre</a><a href="#media-studio">Media Studio</a><a href="#inca-congress">INCA Congress</a><a href="#iic">IIC</a><a href="#ipr">IPR Cell</a><a href="#rdc">R&amp;D Cell</a><a href="#fpac-iaec-rdc">FPAC/IAEC/RDC</a><a href="#legal-cell">Legal Cell</a><a href="#iecbhr-ibsc">IECBHR/IBSC</a><a href="#highlights-publications">Highlights and Publications</a><a href="#partnership">Partnership</a><a href="#scholarship-fellowship">Scholarship and Fellowship</a><a href="#grants-faculties">Grants for Faculties</a>
         </div>
       </div>
     </section>
 
-    <!-- ══════ SPONSORED PROJECTS & PUBLICATIONS ══════ -->
-    <section class="section" style="background-color: var(--bg-secondary);" id="projects">
+    <section class="section" aria-labelledby="researchIntroTitle">
+      <div class="container information-two-column">
+        <div class="information-copy">
+          <span class="section-tag">Research ecosystem</span>
+          <h2 id="researchIntroTitle" class="section-title information-title">Research at CUSB</h2>
+          <p>CUSB is a research-cum-teaching university where faculty undertake basic, applied and cross-cutting research. The University records support from agencies including DBT, DST, JSPS, SERB, UNEP, UGC, ICMR, ICSSR, BRNS and MoEF.</p>
+          <p>Its research ecosystem brings biological, physical, chemical, computational, earth, environmental, social and human sciences together to address societal problems and sustainable development goals.</p>
+        </div>
+        <aside class="research-metric-card"><span>Published R&amp;D Cell profile</span><strong>469</strong><p>research papers reported over the preceding five years, with 3,106 citations and an H-index of 83 in the published profile.</p></aside>
+      </div>
+    </section>
+
+    <section class="section information-alt" aria-labelledby="facilitiesTitle">
       <div class="container">
-        <h2 class="section-title" data-en="Sponsored Research Projects" data-hi="प्रायोजित अनुसंधान परियोजनाएं">Sponsored Research Projects</h2>
-        <table class="hostel-details-table" id="publications">
-          <thead>
-            <tr>
-              <th data-en="Project Title" data-hi="परियोजना का नाम">Project Title</th>
-              <th data-en="Funding Agency" data-hi="वित्तपोषक एजेंसी">Funding Agency</th>
-              <th data-en="Status" data-hi="स्थिति">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-en="Development of Speech Translation Systems for Regional Dialects" data-hi="क्षेत्रीय बोलियों के लिए वाक् अनुवाद प्रणालियों का विकास">Development of Speech Translation Systems for Regional Dialects</td>
-              <td>DST / MeitY</td>
-              <td style="color:var(--acc-teal); font-weight:bold;" data-en="Active" data-hi="सक्रिय">Active</td>
-            </tr>
-            <tr>
-              <td data-en="Synthesis of Nanoporous Catalysts for Biodiesel Production" data-hi="बायोडीजल उत्पादन के लिए नैनोपोरस उत्प्रेरक का संश्लेषण">Synthesis of Nanoporous Catalysts for Biodiesel Production</td>
-              <td>SERB-DST</td>
-              <td style="color:var(--acc-teal); font-weight:bold;" data-en="Active" data-hi="सक्रिय">Active</td>
-            </tr>
-            <tr>
-              <td data-en="Evaluation of Rural Education Policies in South Bihar" data-hi="दक्षिण बिहार में ग्रामीण शिक्षा नीतियों का मूल्यांकन">Evaluation of Rural Education Policies in South Bihar</td>
-              <td>ICSSR</td>
-              <td style="color:var(--tx-muted);" data-en="Completed" data-hi="पूर्ण">Completed</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ══════ MOUS & PARTNERSHIPS ══════ -->
-    <section class="section" id="mous">
-      <div class="container" id="instruments">
-        <h2 class="section-title" data-en="Active MoUs & Collaborations" data-hi="सक्रिय समझौता ज्ञापन एवं सहयोग">Active MoUs & Collaborations</h2>
-        <div class="mou-list" id="incubation">
-          <div class="mou-item" id="seminars">
-            <div class="mou-info">
-              <h4 data-en="CSIR - National Chemical Laboratory, Pune" data-hi="सीएसआईआर - राष्ट्रीय रासायनिक प्रयोगशाला, पुणे">CSIR - National Chemical Laboratory, Pune</h4>
-              <p data-en="Collaborative research in chemistry, polymer science, and material characters." data-hi="रसायन विज्ञान, पॉलिमर विज्ञान और सामग्री लक्षणों में सहयोगी अनुसंधान।">Collaborative research in chemistry, polymer science, and material characters.</p>
-            </div>
-            <div class="mou-date" data-en="Valid till 2028" data-hi="2028 तक वैध">Valid till 2028</div>
-          </div>
-          <div class="mou-item">
-            <div class="mou-info">
-              <h4 data-en="IIT Patna Research Center" data-hi="आईआईटी पटना अनुसंधान केंद्र">IIT Patna Research Center</h4>
-              <p data-en="Joint doctoral guidance and resource sharing in high performance computing and data analytics." data-hi="उच्च प्रदर्शन कंप्यूटिंग और डेटा एनालिटिक्स में संयुक्त डॉक्टरेट मार्गदर्शन और संसाधन साझाकरण।">Joint doctoral guidance and resource sharing in high performance computing and data analytics.</p>
-            </div>
-            <div class="mou-date" data-en="Valid till 2027" data-hi="2027 तक वैध">Valid till 2027</div>
-          </div>
-          <div class="mou-item">
-            <div class="mou-info">
-              <h4 data-en="National Institute of Technology, Patna" data-hi="राष्ट्रीय प्रौद्योगिकी संस्थान, पटना">National Institute of Technology, Patna</h4>
-              <p data-en="Academic exchange programmes, library sharing, and joint student seminars." data-hi="अकादमिक विनिमय कार्यक्रम, पुस्तकालय साझाकरण, और संयुक्त छात्र सेमिनार।">Academic exchange programmes, library sharing, and joint student seminars.</p>
-            </div>
-            <div class="mou-date" data-en="Valid till 2029" data-hi="2029 तक वैध">Valid till 2029</div>
-          </div>
+        <span class="section-tag">Facility and Services</span>
+        <h2 id="facilitiesTitle" class="section-title">Research facilities</h2>
+        <div class="research-resource-grid">
+          <article id="central-instrumental-facility" class="research-resource-card"><span>Central Instrumental Facility</span><h3>Central Instrumental Facility</h3><p>Established in 2019 with departmental and University support, CIF provides advanced analytical instruments for multidisciplinary research. It is operated by qualified faculty and technical staff and is open to researchers from universities, academic and national research institutes, private institutes and industry.</p><details><summary>Vision, mission and objectives</summary><p><strong>Vision:</strong> provide advanced analytical techniques for cutting-edge science and technology research. <strong>Mission:</strong> facilitate researchers with modern scientific technology. Its objectives include data-acquisition guidance, instrument workshops and access to sophisticated analytical equipment for R&amp;D measurement.</p></details></article>
+          <article id="university-computer-centre" class="research-resource-card"><span>Facility and Services</span><h3>University Computer Centre</h3><p>The University Computer Centre is listed as a central research service. Local information for access, technical support and computing resources can be maintained here as it is issued by the University.</p><a href="enquiry.html">Ask about local access guidance</a></article>
+          <article id="media-studio" class="research-resource-card"><span>Facility and Services</span><h3>Media Studio</h3><p>The soundproof electronic media production lab includes Sony 4K professional cameras, audio console, video mixer, talkback, virtual chroma and real sets, an Apple Mac-Pro editing suite, teleprompter, live-streaming equipment and editing/graphics bays.</p><details><summary>Available equipment</summary><p>Teleprompter; three-camera studio setup; touch-screen computer; interactive board; virtual reality system; character generator; AUX camera; video switcher; audio mixer; multiview monitor; final window; audio delay unit; talkback; dimmer light; light controller; chroma set; three-point lighting; and DSLR.</p></details></article>
+          <article id="inca-congress" class="research-resource-card"><span>Facility and Services</span><h3>45th INCA International Congress</h3><p>Information related to the 45th INCA International Congress is maintained as a dedicated research resource. Local event material, programme information and notices can be added to this area as they are issued.</p><a href="news-events.html?type=event">View local research events</a></article>
         </div>
       </div>
     </section>
+
+    <section class="section" aria-labelledby="committeeTitle">
+      <div class="container">
+        <span class="section-tag">Committee &amp; Cell</span>
+        <h2 id="committeeTitle" class="section-title">Research committees and cells</h2>
+        <div class="research-resource-grid research-resource-grid--three">
+          <article id="iic" class="research-resource-card compact"><span>Committee &amp; Cell</span><h3>IIC-Innovation Council</h3><p>The Innovation Council section brings together innovation-oriented activities and institutional initiatives. Local notices and activity records can be published here.</p></article>
+          <article id="ipr" class="research-resource-card compact"><span>Committee &amp; Cell</span><h3>IPR Cell</h3><p>The IPR Cell supports awareness and guidance around intellectual-property matters connected with University research and innovation.</p></article>
+          <article id="rdc" class="research-resource-card compact research-resource-card--featured"><span>Committee &amp; Cell</span><h3>Research and Development Cell</h3><p>Established under the UGC RDC framework, the Cell strengthens the research ecosystem in line with NEP 2020, encourages collaboration and helps mobilise research resources and funding.</p><a href="assets/documents/research-rdc-guidelines.pdf" target="_blank">Open local RDC guidelines <span>PDF</span></a></article>
+          <article id="fpac-iaec-rdc" class="research-resource-card compact"><span>Committee &amp; Cell</span><h3>FPAC/IAEC/RDC Cell</h3><p>This local section represents the FPAC, IAEC and RDC-related research governance information listed by the University.</p></article>
+          <article id="legal-cell" class="research-resource-card compact"><span>Committee &amp; Cell</span><h3>Legal Cell</h3><p>The Legal Cell section provides a local home for research-related legal information, notices and institutional guidance.</p></article>
+          <article id="iecbhr-ibsc" class="research-resource-card compact"><span>Committee &amp; Cell</span><h3>IECBHR/IBSC Cell</h3><p>This section holds locally published information for IECBHR and IBSC research oversight and biosafety-related communications.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="highlights-publications" class="section information-alt" aria-labelledby="highlightsTitle">
+      <div class="container information-panel">
+        <span class="section-tag">General</span>
+        <h2 id="highlightsTitle" class="section-title information-title">Highlights and publications</h2>
+        <p>Locally maintained research projects and publication records appear below. They update from the website's research database when records are available.</p>
+        <div class="research-live-columns">
+          <div><h3>Research projects</h3><div id="researchProjects" class="research-live-list"><p class="research-empty">No local project records have been published yet.</p></div></div>
+          <div><h3>Publications</h3><div id="researchPublications" class="research-live-list"><p class="research-empty">No local publication records have been published yet.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="partnership" class="section" aria-labelledby="partnershipTitle"><div class="container information-panel"><span class="section-tag">General</span><h2 id="partnershipTitle" class="section-title information-title">Partnership</h2><p>CUSB promotes research collaboration with academic institutions, research organisations, industry, government and community partners. Partnership updates and local memoranda can be published through the website's research records.</p><a class="btn btn-gold" href="news-events.html">View local research news</a></div></section>
+
+    <section class="section information-alt" aria-labelledby="fundingTitle"><div class="container"><span class="section-tag">Grants &amp; Funding</span><h2 id="fundingTitle" class="section-title">Funding support</h2><div class="research-resource-grid"><article id="scholarship-fellowship" class="research-resource-card"><span>Grants &amp; Funding</span><h3>Scholarship and Fellowship</h3><p>Scholarship and fellowship information for research students can be organised and maintained in this local area as calls and institutional notices are issued.</p><a href="enquiry.html">Ask the local help desk</a></article><article id="grants-faculties" class="research-resource-card"><span>Grants &amp; Funding</span><h3>Grants for Faculties</h3><p>Faculty grant opportunities, proposal guidance and research-support notices can be maintained here for the University community.</p><a href="enquiry.html">Request local grant guidance</a></article></div></div></section>
   </main>
 
-  <cusb-footer></cusb-footer>
-  <cusb-chatbot></cusb-chatbot>
-
-  <script src="js/components.js" defer></script>
-  <script src="js/main.js" defer></script>
+  <cusb-footer></cusb-footer><cusb-chatbot></cusb-chatbot>
+  <script src="js/components.js" defer></script><script src="js/main.js" defer></script><script src="js/research-page.js" defer></script>
 </body>
 </html>

@@ -3,114 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-en="Student Services & Life — CUSB" data-hi="छात्र सेवाएं और जीवन — सीयूएसबी">Student Services & Life — CUSB</title>
+  <title>Student Corner - CUSB</title>
+  <meta name="description" content="Local academic, examination, welfare and student-support resources for CUSB students.">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pages.css">
-  <style>
-    .student-services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      margin-top: 30px;
-    }
-    .student-service-card {
-      background: var(--bg-primary);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-    }
-    .student-service-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--acc-gold);
-    }
-    .student-service-title {
-      font-family: var(--ff-title);
-      font-size: 1.3rem;
-      color: var(--tx-primary);
-      margin-bottom: 12px;
-    }
-    .student-service-desc {
-      font-size: 0.88rem;
-      color: var(--tx-muted);
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-  </style>
 </head>
 <body>
-  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
-
-  <cusb-ticker></cusb-ticker>
-  <cusb-topbar></cusb-topbar>
-  <cusb-header></cusb-header>
-  <cusb-accessibility-bar></cusb-accessibility-bar>
-  <cusb-navbar></cusb-navbar>
+  <a href="#mainContent" class="skip-link">Skip to main content</a>
+  <cusb-ticker></cusb-ticker><cusb-topbar></cusb-topbar><cusb-header></cusb-header><cusb-accessibility-bar></cusb-accessibility-bar><cusb-navbar></cusb-navbar>
 
   <main id="mainContent">
-    <!-- ══════ HERO BANNER ══════ -->
-    <section class="admin-hero" aria-label="Students Banner">
-      <div class="container hero-content">
-        <div class="hero-eyebrow">
-          <span data-en="Student Life & Portals" data-hi="छात्र जीवन और पोर्टल">Student Life & Portals</span>
-        </div>
-        <h1 class="hero-title" data-en="Student <span>Support</span>" data-hi="छात्र <span>सहायता</span>">Student <span>Support</span></h1>
-        <p class="hero-sub" data-en="Access academic grade sheets, student portals, sports programs, cultural clubs, and the CUSB alumni network." data-hi="अकादमिक ग्रेड शीट, छात्र पोर्टल, खेल कार्यक्रम, सांस्कृतिक क्लब और सीयूएसबी पूर्व छात्र नेटवर्क तक पहुंचें।">Access academic grade sheets, student portals, sports programs, cultural clubs, and the CUSB alumni network.</p>
-      </div>
-    </section>
+    <section class="admin-hero resource-hero student-resource-hero" aria-label="Student Corner banner"><div class="container hero-content"><div class="hero-eyebrow"><span>Student Corner</span></div><h1 class="hero-title">Student <span>Resources</span></h1><p class="hero-sub">Academic, examination, welfare, development and campus-life resources in one locally maintained student directory.</p></div></section>
 
-    <!-- ══════ STUDENT SERVICES & PORTALS ══════ -->
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title" data-en="Student Services Directory" data-hi="छात्र सेवा निर्देशिका">Student Services Directory</h2>
-        
-        <div class="student-services-grid">
-          <!-- 1. Samarth Portal -->
-          <div class="student-service-card">
-            <h3 class="student-service-title" data-en="Samarth Student Portal" data-hi="समर्थ छात्र पोर्टल">Samarth Student Portal</h3>
-            <p class="student-service-desc" data-en="The primary university portal powered by Ministry of Education, enabling online course registrations, semester fee payments, and exam form submissions." data-hi="शिक्षा मंत्रालय द्वारा संचालित प्राथमिक विश्वविद्यालय पोर्टल, जो ऑनलाइन पाठ्यक्रम पंजीकरण, सेमेस्टर शुल्क भुगतान और परीक्षा फॉर्म जमा करने में सक्षम बनाता है।">The primary university portal powered by Ministry of Education, enabling online course registrations, semester fee payments, and exam form submissions.</p>
-            <a href="https://cusb.samarth.edu.in/" target="_blank" class="btn btn-gold btn-sm" style="display:inline-block;" data-en="Access Samarth Portal" data-hi="समर्थ पोर्टल खोलें">Access Samarth Portal</a>
-          </div>
+    <section class="section information-directory" aria-labelledby="studentDirectoryTitle"><div class="container"><span class="section-tag">Explore</span><h2 id="studentDirectoryTitle" class="section-title">Student Corner</h2><div class="resource-chip-row" aria-label="Student Corner sections"><a href="courses.html">Department &amp; Programmes</a><a href="#academic-examination-notices">Academic Notices</a><a href="#semester-exam-schedule">Exam Schedule</a><a href="#semester-results">Semester Result</a><a href="#scholarship-fellowship">Scholarship</a><a href="hostel.html">Hostel</a><a href="#anti-ragging">Anti-Ragging</a><a href="#placement-cell">Placement</a><a href="#counselling-wellbeing">Counselling</a><a href="#nss">NSS</a><a href="#ncc">NCC</a><a href="#grievance-redressal">Grievance Redressal</a></div></div></section>
 
-          <!-- 2. Results & Grades -->
-          <div class="student-service-card" id="results">
-            <h3 class="student-service-title" data-en="Results & Grades Desk" data-hi="परिणाम और ग्रेड डेस्क">Results & Grades Desk</h3>
-            <p class="student-service-desc" data-en="View notification announcements for end-semester exams, regular results, backlogs, re-evaluation reports, and convocation lists." data-hi="अंतिम-सेमेस्टर परीक्षाओं, नियमित परिणामों, बैकलॉग, पुनर्मूल्यांकन रिपोर्ट और दीक्षांत समारोह सूचियों के लिए अधिसूचना घोषणाएं देखें।">View notification announcements for end-semester exams, regular results, backlogs, re-evaluation reports, and convocation lists.</p>
-            <a href="news-events.html?type=ticker" class="btn btn-white btn-sm" style="display:inline-block;" data-en="Check Exam Results" data-hi="परीक्षा परिणाम देखें">Check Exam Results</a>
-          </div>
+    <section class="section" aria-labelledby="academicTitle"><div class="container"><span class="section-tag">Academic and examination</span><h2 id="academicTitle" class="section-title">Academic resources</h2><div class="student-resource-grid">
+      <article class="student-resource-card"><span>Department &amp; Programmes</span><h3>Department &amp; Programmes</h3><p>Browse the locally maintained department pages for programmes, syllabus information and faculty profiles.</p><a href="courses.html">Open local programmes</a></article>
+      <article id="academic-examination-notices" class="student-resource-card"><span>Notices</span><h3>Academics/Examination Notices</h3><p>Current local notices and announcements related to academics and examinations appear in the updates panel below.</p><a href="#student-updates">View local updates</a></article>
+      <article id="semester-exam-schedule" class="student-resource-card"><span>Semester Examination 2026</span><h3>Semester Exam Schedule</h3><p>Semester examination schedules are published as local student notices when issued by the University.</p><a href="#student-updates">Check local schedule updates</a></article>
+      <article id="ordinance-manual-regulation" class="student-resource-card"><span>Academic rules</span><h3>Ordinance/ Manual/ Regulation</h3><p>Academic ordinance, regulation and manual resources guide students through academic requirements and University procedures.</p><a href="assets/documents/about/ordinance.pdf" target="_blank">Open local ordinance <span>PDF</span></a><a href="assets/documents/about/phd-ordinances.pdf" target="_blank">Open local Ph.D. ordinances <span>PDF</span></a></article>
+      <article id="semester-results" class="student-resource-card"><span>Semester Result June 2026</span><h3>Semester Result</h3><p>Semester-result updates are shown through locally maintained student notices. Individual results are not collected on this public replica.</p><a href="#student-updates">View local result notices</a></article>
+      <article class="student-resource-card"><span>Prospectus</span><h3>Prospectus</h3><p>The current programme eligibility, fee and admission information is held in the local Admissions archive.</p><a href="admissions.html#admission-2026-27">Open local prospectus resources</a></article>
+      <article id="convocation" class="student-resource-card"><span>4th Convocation</span><h3>Convocation</h3><p>The Student Corner records the 4th Convocation held on 20 March 2025. Locally published future convocation notices can be added here.</p><a href="news-events.html?type=event">View local events</a></article>
+      <article id="formats-performa" class="student-resource-card"><span>UG, Integrated and PG</span><h3>Download (Format/Performa)</h3><p>Student formats and proformas can be placed in this local download directory as official files are added.</p><a href="downloads.html">Open local download centre</a></article>
+      <article class="student-resource-card"><span>Course Structure</span><h3>Course Structure and Syllabus</h3><p>Course and syllabus information is organised by department, allowing students to find the current local version of each programme.</p><a href="courses.html">Browse course structure and syllabus</a></article>
+    </div></div></section>
 
-          <!-- 3. LMS Portal -->
-          <div class="student-service-card" id="lms">
-            <h3 class="student-service-title" data-en="LMS Portal (E-Learning)" data-hi="एलएमएस पोर्टल (ई-लर्निंग)">LMS Portal (E-Learning)</h3>
-            <p class="student-service-desc" data-en="Access virtual classroom study materials, lecture slides, assignments submission calendars, and teacher communications in one place." data-hi="एक ही स्थान पर वर्चुअल क्लासरूम अध्ययन सामग्री, व्याख्यान स्लाइड, असाइनमेंट जमा करने वाले कैलेंडर और शिक्षक संचार तक पहुंचें।">Access virtual classroom study materials, lecture slides, assignments submission calendars, and teacher communications in one place.</p>
-            <a href="#" class="btn btn-gold btn-sm" style="display:inline-block;" data-en="Open LMS Portal" data-hi="एलएमएस पोर्टल खोलें">Open LMS Portal</a>
-          </div>
+    <section id="student-updates" class="section information-alt" aria-labelledby="updatesTitle"><div class="container information-panel"><span class="section-tag">Live local feed</span><h2 id="updatesTitle" class="section-title information-title">Academic and examination updates</h2><p>New student notices entered in the website administration area are shown here. This feed remains local and never redirects students to CUSB.</p><div id="studentUpdates" class="student-update-list" aria-live="polite"><article class="student-update-card"><span>Student notice</span><h3>Local academic updates will appear here</h3><p>Use the resource cards above while the latest notices are being added.</p></article></div></div></section>
 
-          <!-- 4. Sports & Cultural -->
-          <div class="student-service-card" id="sports">
-            <h3 class="student-service-title" data-en="Sports & Culture Clubs" data-hi="खेल और संस्कृति क्लब">Sports & Culture Clubs</h3>
-            <p class="student-service-desc" data-en="Join student clubs promoting football, cricket leagues, debate associations, photography, music groups, and organizing the annual festival." data-hi="फुटबॉल, क्रिकेट लीग, डिबेट एसोसिएशन, फोटोग्राफी, संगीत समूहों को बढ़ावा देने और वार्षिक उत्सव का आयोजन करने वाले छात्र क्लबों में शामिल हों।">Join student clubs promoting football, cricket leagues, debate associations, photography, music groups, and organizing the annual festival.</p>
-            <a href="facilities.html#sports" class="btn btn-white btn-sm" style="display:inline-block;" data-en="View Sports Grounds" data-hi="खेल मैदान देखें">View Sports Grounds</a>
-          </div>
+    <section class="section" aria-labelledby="supportTitle"><div class="container"><span class="section-tag">Student support</span><h2 id="supportTitle" class="section-title">Welfare and support services</h2><div class="student-resource-grid">
+      <article id="scholarship-fellowship" class="student-resource-card"><span>Financial support</span><h3>Scholarship and Fellowship</h3><p>Scholarship and fellowship opportunities for students can be maintained in this local section as University notices are released.</p><a href="enquiry.html">Ask the local help desk</a></article>
+      <article class="student-resource-card"><span>Residential services</span><h3>Hostel</h3><p>Hostel forms, allotment-related notices and residence information are available through the dedicated local hostel page.</p><a href="hostel.html">Open local hostel page</a></article>
+      <article id="anti-ragging" class="student-resource-card"><span>Student safety</span><h3>Anti-Ragging</h3><p>Anti-ragging notices, committee information and related student guidance can be maintained locally in this Student Corner section.</p><a href="enquiry.html">Report or ask locally</a></article>
+      <article id="alumni" class="student-resource-card"><span>Community</span><h3>Alumni</h3><p>The Alumni section connects graduates and current students through locally published University updates and engagement opportunities.</p><a href="news-events.html">View local updates</a></article>
+      <article id="dace" class="student-resource-card"><span>DACE</span><h3>DACE</h3><p>Department of Adult, Continuing Education and Extension resources can be maintained in this local section as activities and notices are published.</p><a href="news-events.html?type=event">View local activities</a></article>
+      <article id="capacity-development" class="student-resource-card"><span>Soft Skill</span><h3>Capacity Development and Skill Enhancement Programme</h3><p>Capacity-development and skill-enhancement programme notices can be published locally for students to access.</p><a href="news-events.html?type=event">View local programmes</a></article>
+      <article id="placement-cell" class="student-resource-card"><span>Career support</span><h3>Placement Cell</h3><p>Placement Cell announcements, career guidance and recruitment-related student updates can be added here locally.</p><a href="careers.html">View local career notices</a></article>
+      <article id="counselling-wellbeing" class="student-resource-card"><span>Well-being</span><h3>Students Counselling and Well-being Centre</h3><p>The counselling and well-being section provides a local route for information and student support enquiries.</p><a href="enquiry.html">Open local enquiry form</a></article>
+    </div></div></section>
 
-          <!-- 5. Alumni Association -->
-          <div class="student-service-card" id="alumni">
-            <h3 class="student-service-title" data-en="CUSB Alumni Association" data-hi="सीयूएसबी पूर्व छात्र संघ">CUSB Alumni Association</h3>
-            <p class="student-service-desc" data-en="Build professional relationships with thousands of graduates working across industry, academia, and administration globally. Register for reunions." data-hi="वैश्विक स्तर पर उद्योग, शिक्षा और प्रशासन में काम करने वाले हजारों स्नातकों के साथ पेशेवर संबंध बनाएं। पुनर्मिलन के लिए पंजीकरण करें।">Build professional relationships with thousands of graduates working across industry, academia, and administration globally. Register for reunions.</p>
-            <a href="#" class="btn btn-gold btn-sm" style="display:inline-block;" data-en="Register as Alumni" data-hi="पूर्व छात्र के रूप में जुड़ें">Register as Alumni</a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="section information-alt" aria-labelledby="engagementTitle"><div class="container"><span class="section-tag">Student engagement</span><h2 id="engagementTitle" class="section-title">Participation, conduct and redressal</h2><div class="student-resource-grid student-resource-grid--three">
+      <article id="nss" class="student-resource-card"><span>Service</span><h3>NSS</h3><p>National Service Scheme activities and notices can be maintained here for student participation.</p><a href="news-events.html?type=event">View local activities</a></article>
+      <article id="ncc" class="student-resource-card"><span>Service</span><h3>NCC</h3><p>National Cadet Corps updates and student information can be published locally in this section.</p><a href="news-events.html?type=event">View local activities</a></article>
+      <article id="extracurricular-activities" class="student-resource-card"><span>Campus life</span><h3>Extracurricular Activities</h3><p>Local events and activities help students find opportunities beyond the classroom.</p><a href="news-events.html?type=event">Browse local events</a></article>
+      <article id="code-of-ethics" class="student-resource-card"><span>Conduct</span><h3>Code of Ethics</h3><p>The Code of Ethics section provides a local home for standards of conduct and related student information.</p><a href="policies.html">Open local policies</a></article>
+      <article id="grievance-redressal" class="student-resource-card"><span>Student support</span><h3>Grievance Redressal Committee for Students</h3><p>For an issue not covered by the resources above, submit a local enquiry with the Student Support or General category selected.</p><a href="enquiry.html">Open local enquiry form</a></article>
+    </div></div></section>
   </main>
 
-  <cusb-quick-actions></cusb-quick-actions>
-  <cusb-footer></cusb-footer>
-  <cusb-chatbot></cusb-chatbot>
-
-  <script src="js/components.js" defer></script>
-  <script src="js/main.js" defer></script>
+  <cusb-footer></cusb-footer><cusb-chatbot></cusb-chatbot>
+  <script src="js/components.js" defer></script><script src="js/main.js" defer></script><script src="js/students-page.js" defer></script>
 </body>
 </html>

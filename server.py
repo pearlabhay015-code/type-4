@@ -181,7 +181,90 @@ def init_db():
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
-    
+
+    # Department profile content. These tables back the reusable department
+    # page and keep programmes, faculty, research, and outcome figures editable
+    # without creating a separate hard-coded page for each department.
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS departments (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            slug TEXT UNIQUE NOT NULL,
+            name TEXT NOT NULL,
+            school TEXT,
+            icon TEXT,
+            summary TEXT,
+            vision TEXT,
+            established TEXT,
+            intake_info TEXT,
+            admission_mode TEXT,
+            head_of_department TEXT,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS department_programmes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            department_slug TEXT NOT NULL,
+            name TEXT NOT NULL,
+            level TEXT,
+            duration TEXT,
+            seats TEXT,
+            entrance TEXT,
+            eligibility TEXT,
+            description TEXT,
+            syllabus_url TEXT,
+            sort_order INTEGER DEFAULT 0
+        )
+    ''')
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS department_faculty (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            department_slug TEXT NOT NULL,
+            name TEXT NOT NULL,
+            designation TEXT,
+            specialization TEXT,
+            email TEXT,
+            image_url TEXT,
+            sort_order INTEGER DEFAULT 0
+        )
+    ''')
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS department_research (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            department_slug TEXT NOT NULL,
+            area TEXT NOT NULL,
+            sort_order INTEGER DEFAULT 0
+        )
+    ''')
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS department_statistics (
+            department_slug TEXT PRIMARY KEY,
+            current_students INTEGER,
+            passed_students INTEGER,
+            current_phd_scholars INTEGER,
+            passed_phd_scholars INTEGER,
+            source_note TEXT,
+            is_estimated INTEGER DEFAULT 0,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+
+    # Older local databases predate ordering and timestamp columns. Apply the
+    # small, non-destructive migrations here so upgrading the project preserves
+    # existing department entries.
+    department_migrations = {
+        'departments': [('updated_at', 'TIMESTAMP')],
+        'department_programmes': [('sort_order', 'INTEGER DEFAULT 0')],
+        'department_faculty': [('sort_order', 'INTEGER DEFAULT 0')],
+        'department_research': [('sort_order', 'INTEGER DEFAULT 0')]
+    }
+    for table, columns in department_migrations.items():
+        c.execute(f'PRAGMA table_info({table})')
+        existing_columns = {column[1] for column in c.fetchall()}
+        for column_name, column_type in columns:
+            if column_name not in existing_columns:
+                c.execute(f'ALTER TABLE {table} ADD COLUMN {column_name} {column_type}')
+
     conn.commit()
     conn.close()
 
@@ -770,7 +853,7 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             conn = sqlite3.connect(DB_FILE)
             c = conn.cursor()
             if slug:
-                c.execute('SELECT slug, name, school, icon, summary, vision, established, intake_info, admission_mode, head_of_department FROM departments WHERE slug = ?', (slug,))
+                c.execute('SELECT slug, name, school, icon, summary, vision, established, intake_info, admission_mode, head_of_department, updated_at FROM departments WHERE slug = ?', (slug,))
                 row = c.fetchone()
                 if not row:
                     conn.close()
@@ -779,7 +862,8 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                 dept = {
                     "slug": row[0], "name": row[1], "school": row[2], "icon": row[3],
                     "summary": row[4], "vision": row[5], "established": row[6],
-                    "intake_info": row[7], "admission_mode": row[8], "head_of_department": row[9]
+                    "intake_info": row[7], "admission_mode": row[8], "head_of_department": row[9],
+                    "updated_at": row[10]
                 }
                 # Load programmes
                 c.execute('SELECT name, level, duration, seats, entrance, eligibility, description, syllabus_url FROM department_programmes WHERE department_slug = ?', (slug,))
@@ -798,6 +882,20 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                 c.execute('SELECT area FROM department_research WHERE department_slug = ?', (slug,))
                 res = c.fetchall()
                 dept["research"] = [r[0] for r in res]
+                # Statistics are optional: the page clearly labels its local
+                # illustrative fallback until verified figures are entered.
+                c.execute('''
+                    SELECT current_students, passed_students, current_phd_scholars,
+                           passed_phd_scholars, source_note, is_estimated, updated_at
+                    FROM department_statistics WHERE department_slug = ?
+                ''', (slug,))
+                stats = c.fetchone()
+                if stats:
+                    dept["statistics"] = {
+                        "current_students": stats[0], "passed_students": stats[1],
+                        "current_phd_scholars": stats[2], "passed_phd_scholars": stats[3],
+                        "source_note": stats[4], "is_estimated": bool(stats[5]), "updated_at": stats[6]
+                    }
                 
                 conn.close()
                 self.send_json(200, dept)
@@ -1309,7 +1407,72 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             self.send_json(200, { "success": True })
             return
 
-        # 6. API: Update Department Details (Protected)
+        # 6. API: Replace a complete Department Profile (Protected)
+        elif path == '/api/departments/profile/update':
+            username = self.get_session_username()
+            if not username:
+                self.send_json(401, { "error": "Unauthorized" })
+                return
+            data = self.get_post_data()
+            slug = data.get('slug', '').strip().lower().replace('-', '_')
+            name = data.get('name', '').strip()
+            if not slug or not name:
+                self.send_json(400, { "error": "Slug and name are required." })
+                return
+
+            conn = sqlite3.connect(DB_FILE)
+            c = conn.cursor()
+            c.execute('''
+                INSERT INTO departments (slug, name, school, icon, summary, vision, established, intake_info, admission_mode, head_of_department, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+                ON CONFLICT(slug) DO UPDATE SET
+                    name = excluded.name, school = excluded.school, icon = excluded.icon,
+                    summary = excluded.summary, vision = excluded.vision, established = excluded.established,
+                    intake_info = excluded.intake_info, admission_mode = excluded.admission_mode,
+                    head_of_department = excluded.head_of_department, updated_at = CURRENT_TIMESTAMP
+            ''', (slug, name, data.get('school', ''), data.get('icon', ''), data.get('summary', ''),
+                  data.get('vision', ''), data.get('established', ''), data.get('intake_info', ''),
+                  data.get('admission_mode', ''), data.get('head_of_department', '')))
+
+            for table in ('department_programmes', 'department_faculty', 'department_research'):
+                c.execute(f'DELETE FROM {table} WHERE department_slug = ?', (slug,))
+            for index, programme in enumerate(data.get('programmes', [])):
+                c.execute('''
+                    INSERT INTO department_programmes (department_slug, name, level, duration, seats, entrance, eligibility, description, syllabus_url, sort_order)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ''', (slug, programme.get('name', ''), programme.get('level', ''), programme.get('duration', ''),
+                      programme.get('seats', ''), programme.get('entrance', ''), programme.get('eligibility', ''),
+                      programme.get('description', ''), programme.get('syllabus_url', ''), index))
+            for index, faculty in enumerate(data.get('faculty', [])):
+                c.execute('''
+                    INSERT INTO department_faculty (department_slug, name, designation, specialization, email, image_url, sort_order)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                ''', (slug, faculty.get('name', ''), faculty.get('designation', ''), faculty.get('specialization', ''),
+                      faculty.get('email', ''), faculty.get('image_url', ''), index))
+            for index, area in enumerate(data.get('research', [])):
+                c.execute('INSERT INTO department_research (department_slug, area, sort_order) VALUES (?, ?, ?)',
+                          (slug, area if isinstance(area, str) else area.get('area', ''), index))
+
+            statistics = data.get('statistics')
+            if isinstance(statistics, dict):
+                c.execute('''
+                    INSERT INTO department_statistics (department_slug, current_students, passed_students, current_phd_scholars, passed_phd_scholars, source_note, is_estimated, updated_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+                    ON CONFLICT(department_slug) DO UPDATE SET
+                        current_students = excluded.current_students, passed_students = excluded.passed_students,
+                        current_phd_scholars = excluded.current_phd_scholars, passed_phd_scholars = excluded.passed_phd_scholars,
+                        source_note = excluded.source_note, is_estimated = excluded.is_estimated, updated_at = CURRENT_TIMESTAMP
+                ''', (slug, statistics.get('current_students'), statistics.get('passed_students'),
+                      statistics.get('current_phd_scholars'), statistics.get('passed_phd_scholars'),
+                      statistics.get('source_note', ''), int(bool(statistics.get('is_estimated', False)))))
+            c.execute('INSERT INTO audit_logs (username, action) VALUES (?, ?)',
+                      (username, f"Updated complete department profile: {name}"))
+            conn.commit()
+            conn.close()
+            self.send_json(200, { "success": True, "slug": slug })
+            return
+
+        # 7. API: Update Department Details (Protected)
         elif path == '/api/departments/update':
             username = self.get_session_username()
             if not username:

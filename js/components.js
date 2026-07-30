@@ -350,26 +350,26 @@ class CusbNavbar extends HTMLElement {
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="About University" data-hi="About University">About University</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="about.html"><span class="megamenu-icon">ðŸ›ï¸</span><span data-en="The University" data-hi="The University">The University</span></a></li>
-                    <li class="megamenu-item"><a href="policies.html#act"><span class="megamenu-icon">ðŸ“œ</span><span data-en="Central Universities Act, 2009" data-hi="Central Universities Act, 2009">Central Universities Act, 2009</span></a></li>
-                    <li class="megamenu-item"><a href="about.html#history"><span class="megamenu-icon">ðŸ“š</span><span data-en="History and Development" data-hi="History and Development">History and Development</span></a></li>
-                    <li class="megamenu-item"><a href="policies.html#statutes"><span class="megamenu-icon">ðŸ“‹</span><span data-en="Statutes & Ordinances" data-hi="Statutes & Ordinances">Statutes & Ordinances</span></a></li>
-                    <li class="megamenu-item"><a href="about.html#vision"><span class="megamenu-icon">ðŸ‘ï¸</span><span data-en="Vision & Mission" data-hi="Vision & Mission">Vision & Mission</span></a></li>
-                    <li class="megamenu-item"><a href="policies.html#policies"><span class="megamenu-icon">ðŸ›¡ï¸</span><span data-en="Regulation and Policy Documents" data-hi="Regulation and Policy Documents">Regulation and Policy Documents</span></a></li>
-                    <li class="megamenu-item"><a href="about.html#features"><span class="megamenu-icon">ðŸŽ¯</span><span data-en="Salient Features and Best Practices" data-hi="Salient Features and Best Practices">Salient Features and Best Practices</span></a></li>
-                    <li class="megamenu-item"><a href="policies.html#reports"><span class="megamenu-icon">ðŸ“Š</span><span data-en="Annual Reports and Annual Accounts" data-hi="Annual Reports and Annual Accounts">Annual Reports and Annual Accounts</span></a></li>
-                    <li class="megamenu-item"><a href="about.html#kulgeet"><span class="megamenu-icon">ðŸ“–</span><span data-en="University Kulgeet" data-hi="University Kulgeet">University Kulgeet</span></a></li>
-                    <li class="megamenu-item"><a href="about.html#logo"><span class="megamenu-icon">ðŸ‡®ðŸ‡³</span><span data-en="CUSB Logo" data-hi="CUSB Logo">CUSB Logo</span></a></li>
-                    <li class="megamenu-item"><a href="#footer"><span class="megamenu-icon">ðŸ“</span><span data-en="How to Reach CUSB" data-hi="How to Reach CUSB">How to Reach CUSB</span></a></li>
+                    <li class="megamenu-item"><a href="about-resources.html#the-university"><span class="megamenu-icon">ðŸ›ï¸</span><span data-en="The University" data-hi="The University">The University</span></a></li>
+                    <li class="megamenu-item"><a href="about-resources.html#act"><span class="megamenu-icon">ðŸ“œ</span><span data-en="Central Universities Act, 2009" data-hi="Central Universities Act, 2009">Central Universities Act, 2009</span></a></li>
+                    <li class="megamenu-item"><a href="about-resources.html#history"><span class="megamenu-icon">ðŸ“š</span><span data-en="History and Development" data-hi="History and Development">History and Development</span></a></li>
+                    <li class="megamenu-item"><a href="about-resources.html#statutes"><span class="megamenu-icon">ðŸ“‹</span><span data-en="Statutes & Ordinances" data-hi="Statutes & Ordinances">Statutes & Ordinances</span></a></li>
+                    <li class="megamenu-item"><a href="about-resources.html#vision"><span class="megamenu-icon">ðŸ‘ï¸</span><span data-en="Vision & Mission" data-hi="Vision & Mission">Vision & Mission</span></a></li>
+                    <li class="megamenu-item"><a href="about-resources.html#policy-documents"><span class="megamenu-icon">ðŸ›¡ï¸</span><span data-en="Regulation and Policy Documents" data-hi="Regulation and Policy Documents">Regulation and Policy Documents</span></a></li>
+                    <li class="megamenu-item"><a href="about-resources.html#best-practices"><span class="megamenu-icon">ðŸŽ¯</span><span data-en="Salient Features and Best Practices" data-hi="Salient Features and Best Practices">Salient Features and Best Practices</span></a></li>
+                    <li class="megamenu-item"><a href="about-resources.html#annual-reports"><span class="megamenu-icon">ðŸ“Š</span><span data-en="Annual Reports and Annual Accounts" data-hi="Annual Reports and Annual Accounts">Annual Reports and Annual Accounts</span></a></li>
+                    <li class="megamenu-item"><a href="about-resources.html#kulgeet"><span class="megamenu-icon">ðŸ“–</span><span data-en="University Kulgeet" data-hi="University Kulgeet">University Kulgeet</span></a></li>
+                    <li class="megamenu-item"><a href="about-resources.html#logo"><span class="megamenu-icon">ðŸ‡®ðŸ‡³</span><span data-en="CUSB Logo" data-hi="CUSB Logo">CUSB Logo</span></a></li>
+                    <li class="megamenu-item"><a href="about-resources.html#reach"><span class="megamenu-icon">ðŸ“</span><span data-en="How to Reach CUSB" data-hi="How to Reach CUSB">How to Reach CUSB</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="Statutory Bodies" data-hi="Statutory Bodies">Statutory Bodies</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="leaders.html#court"><span class="megamenu-icon">ðŸ›ï¸</span><span data-en="The Court" data-hi="The Court">The Court</span></a></li>
-                    <li class="megamenu-item"><a href="leaders.html#executive"><span class="megamenu-icon">ðŸ‘¤</span><span data-en="Executive Council" data-hi="Executive Council">Executive Council</span></a></li>
-                    <li class="megamenu-item"><a href="leaders.html#academic"><span class="megamenu-icon">ðŸ“‹</span><span data-en="Academic Council" data-hi="Academic Council">Academic Council</span></a></li>
-                    <li class="megamenu-item"><a href="leaders.html#finance"><span class="megamenu-icon">ðŸ’¼</span><span data-en="Finance Committee" data-hi="Finance Committee">Finance Committee</span></a></li>
+                    <li class="megamenu-item"><a href="about-resources.html#court"><span class="megamenu-icon">ðŸ›ï¸</span><span data-en="The Court" data-hi="The Court">The Court</span></a></li>
+                    <li class="megamenu-item"><a href="about-resources.html#executive-council"><span class="megamenu-icon">ðŸ‘¤</span><span data-en="Executive Council" data-hi="Executive Council">Executive Council</span></a></li>
+                    <li class="megamenu-item"><a href="about-resources.html#academic-council"><span class="megamenu-icon">ðŸ“‹</span><span data-en="Academic Council" data-hi="Academic Council">Academic Council</span></a></li>
+                    <li class="megamenu-item"><a href="about-resources.html#finance-committee"><span class="megamenu-icon">ðŸ’¼</span><span data-en="Finance Committee" data-hi="Finance Committee">Finance Committee</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
@@ -385,7 +385,7 @@ class CusbNavbar extends HTMLElement {
                     <li class="megamenu-item"><a href="news-events.html#recent"><span class="megamenu-icon">ðŸ“¥</span><span data-en="Recent Event" data-hi="Recent Event">Recent Event</span></a></li>
                     <li class="megamenu-item"><a href="news-events.html#academic-highlights"><span class="megamenu-icon">ðŸŽ“</span><span data-en="Academic Highlights" data-hi="Academic Highlights">Academic Highlights</span></a></li>
                     <li class="megamenu-item"><a href="news-events.html?type=circular"><span class="megamenu-icon">ðŸ“œ</span><span data-en="Circular / Notification / Office Order" data-hi="Circular / Notification / Office Order">Circular / Notification / Office Order</span></a></li>
-                    <li class="megamenu-item"><a href="about.html#foundation-day"><span class="megamenu-icon">ðŸ‡®ðŸ‡³</span><span data-en="Foundation Day" data-hi="Foundation Day">Foundation Day</span></a></li>
+                    <li class="megamenu-item"><a href="about-resources.html#foundation-day"><span class="megamenu-icon">ðŸ‡®ðŸ‡³</span><span data-en="Foundation Day" data-hi="Foundation Day">Foundation Day</span></a></li>
                   </ul>
                 </div>
               </div>
@@ -393,7 +393,7 @@ class CusbNavbar extends HTMLElement {
 
             <!-- 2. ABOUT -->
             <li class="navbar-item" data-menu="about">
-              <a href="about.html" class="navbar-link"><span data-en="About" data-hi="परिचय">About</span></a>
+              <a href="about-resources.html" class="navbar-link"><span data-en="About" data-hi="परिचय">About</span></a>
               <div class="megamenu" id="aboutMegamenu" role="region" aria-label="About Menu Links">
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="Overview" data-hi="अवलोकन">Overview</div>
@@ -423,7 +423,7 @@ class CusbNavbar extends HTMLElement {
             
             <!-- 3. ADMINISTRATION -->
             <li class="navbar-item" data-menu="admin">
-              <a href="leaders.html" class="navbar-link"><span data-en="Administration" data-hi="प्रशासन">Administration</span></a>
+              <a href="administration-resources.html" class="navbar-link"><span data-en="Administration" data-hi="प्रशासन">Administration</span></a>
               <div class="megamenu" id="adminMegamenu" role="region" aria-label="Administration Links">
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="Leadership" data-hi="नेतृत्व">Leadership</div>
@@ -479,18 +479,17 @@ class CusbNavbar extends HTMLElement {
               <a href="admissions.html" class="navbar-link"><span data-en="Admissions" data-hi="प्रवेश">Admissions</span></a>
               <div class="megamenu" id="admissionsMegamenu" role="region" aria-label="Admissions Links">
                 <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Overview" data-hi="अवलोकन">Admission 2026</div>
+                  <div class="megamenu-heading" data-en="Admissions" data-hi="प्रवेश">Admissions</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="admissions.html"><span class="megamenu-icon">📝</span><span data-en="Admission Notices & Dates" data-hi="प्रवेश सूचनाएं एवं तिथियां">Admission Notices & Dates</span></a></li>
-                    <li class="megamenu-item"><a href="admissions.html#eligibility"><span class="megamenu-icon">📋</span><span data-en="Eligibility Criteria" data-hi="पात्रता मापदंड">Eligibility Criteria</span></a></li>
-                    <li class="megamenu-item"><a href="https://cuet.samarth.ac.in/" target="_blank"><span class="megamenu-icon">🌐</span><span data-en="CUET UG Portal" data-hi="सीयूईटी यूजी पोर्टल">CUET UG Portal</span></a></li>
+                    <li class="megamenu-item"><a href="admissions.html#admission-2026-27"><span class="megamenu-icon">📝</span><span data-en="Admission 2026-27" data-hi="प्रवेश 2026-27">Admission 2026-27</span></a></li>
+                    <li class="megamenu-item"><a href="admissions.html#international-students"><span class="megamenu-icon">🌐</span><span data-en="International Student" data-hi="अंतरराष्ट्रीय विद्यार्थी">International Student</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Resources" data-hi="संसाधन">Information</div>
+                  <div class="megamenu-heading" data-en="Resources" data-hi="संसाधन">Resources</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="downloads.html#prospectus"><span class="megamenu-icon">📄</span><span data-en="Information Brochure" data-hi="सूचना विवरणिका">Information Brochure</span></a></li>
-                    <li class="megamenu-item"><a href="downloads.html#fee-structure"><span class="megamenu-icon">💰</span><span data-en="Fee Structure" data-hi="शुल्क संरचना">Fee Structure</span></a></li>
+                    <li class="megamenu-item"><a href="courses.html"><span class="megamenu-icon">📚</span><span data-en="Programmes and Courses" data-hi="कार्यक्रम और पाठ्यक्रम">Programmes and Courses</span></a></li>
+                    <li class="megamenu-item"><a href="admissions.html#help-desk"><span class="megamenu-icon">💬</span><span data-en="Help Desk" data-hi="सहायता डेस्क">Help Desk</span></a></li>
                   </ul>
                 </div>
               </div>
@@ -501,18 +500,37 @@ class CusbNavbar extends HTMLElement {
               <a href="research.html" class="navbar-link"><span data-en="Research" data-hi="अनुसंधान">Research</span></a>
               <div class="megamenu" id="researchMegamenu" role="region" aria-label="Research Links">
                 <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Activities" data-hi="गतिविधियाँ">Activities</div>
+                  <div class="megamenu-heading" data-en="Facility and Services" data-hi="सुविधाएं और सेवाएं">Facility and Services</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="research.html#projects"><span class="megamenu-icon">📁</span><span data-en="Sponsored Projects" data-hi="प्रायोजित परियोजनाएं">Sponsored Projects</span></a></li>
-                    <li class="megamenu-item"><a href="research.html#publications"><span class="megamenu-icon">📚</span><span data-en="Faculty Publications" data-hi="संकाय प्रकाशन">Faculty Publications</span></a></li>
-                    <li class="megamenu-item"><a href="research.html#areas"><span class="megamenu-icon">🔬</span><span data-en="Research Thrust Areas" data-hi="अनुसंधान क्षेत्र">Research Thrust Areas</span></a></li>
+                    <li class="megamenu-item"><a href="research.html#central-instrumental-facility"><span class="megamenu-icon">🔬</span><span data-en="Central Instrumental Facility" data-hi="केंद्रीय उपकरण सुविधा">Central Instrumental Facility</span></a></li>
+                    <li class="megamenu-item"><a href="research.html#university-computer-centre"><span class="megamenu-icon">💻</span><span data-en="University Computer Centre" data-hi="विश्वविद्यालय कंप्यूटर केंद्र">University Computer Centre</span></a></li>
+                    <li class="megamenu-item"><a href="research.html#media-studio"><span class="megamenu-icon">🎥</span><span data-en="Media Studio" data-hi="मीडिया स्टूडियो">Media Studio</span></a></li>
+                    <li class="megamenu-item"><a href="research.html#inca-congress"><span class="megamenu-icon">🌐</span><span data-en="45th INCA International Congress" data-hi="45वीं आईएनसीए अंतरराष्ट्रीय कांग्रेस">45th INCA International Congress</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Facilities" data-hi="सुविधाएं">Facilities</div>
+                  <div class="megamenu-heading" data-en="Committee & Cell" data-hi="समिति और प्रकोष्ठ">Committee & Cell</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="cif.html"><span class="megamenu-icon">🏢</span><span data-en="Central Instrumentation (CIF)" data-hi="केंद्रीय उपकरण सुविधा (सीआईएफ)">Central Instrumentation (CIF)</span></a></li>
-                    <li class="megamenu-item"><a href="research.html#incubation"><span class="megamenu-icon">💡</span><span data-en="Incubation Centre" data-hi="इंक्यूबेशन सेंटर">Incubation Centre</span></a></li>
+                    <li class="megamenu-item"><a href="research.html#iic"><span class="megamenu-icon">💡</span><span data-en="IIC-Innovation Council" data-hi="आईआईसी-नवाचार परिषद">IIC-Innovation Council</span></a></li>
+                    <li class="megamenu-item"><a href="research.html#ipr"><span class="megamenu-icon">©</span><span data-en="IPR Cell" data-hi="आईपीआर प्रकोष्ठ">IPR Cell</span></a></li>
+                    <li class="megamenu-item"><a href="research.html#rdc"><span class="megamenu-icon">🧪</span><span data-en="R&D Cell" data-hi="अनुसंधान एवं विकास प्रकोष्ठ">R&D Cell</span></a></li>
+                    <li class="megamenu-item"><a href="research.html#fpac-iaec-rdc"><span class="megamenu-icon">⚖</span><span data-en="FPAC/IAEC/RDC Cell" data-hi="एफपीएसी/आईएईसी/आरडीसी प्रकोष्ठ">FPAC/IAEC/RDC Cell</span></a></li>
+                    <li class="megamenu-item"><a href="research.html#legal-cell"><span class="megamenu-icon">⚖</span><span data-en="Legal Cell" data-hi="कानूनी प्रकोष्ठ">Legal Cell</span></a></li>
+                    <li class="megamenu-item"><a href="research.html#iecbhr-ibsc"><span class="megamenu-icon">🛡</span><span data-en="IECBHR/IBSC Cell" data-hi="आईईसीबीएचआर/आईबीएससी प्रकोष्ठ">IECBHR/IBSC Cell</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="General" data-hi="सामान्य">General</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="research.html#highlights-publications"><span class="megamenu-icon">📚</span><span data-en="Highlights and Publications" data-hi="मुख्य उपलब्धियां और प्रकाशन">Highlights and Publications</span></a></li>
+                    <li class="megamenu-item"><a href="research.html#partnership"><span class="megamenu-icon">🤝</span><span data-en="Partnership" data-hi="साझेदारी">Partnership</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="Grants & Funding" data-hi="अनुदान और वित्त पोषण">Grants & Funding</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="research.html#scholarship-fellowship"><span class="megamenu-icon">🎓</span><span data-en="Scholarship and Fellowship" data-hi="छात्रवृत्ति और फेलोशिप">Scholarship and Fellowship</span></a></li>
+                    <li class="megamenu-item"><a href="research.html#grants-faculties"><span class="megamenu-icon">💰</span><span data-en="Grants for Faculties" data-hi="संकाय के लिए अनुदान">Grants for Faculties</span></a></li>
                   </ul>
                 </div>
               </div>
@@ -523,21 +541,37 @@ class CusbNavbar extends HTMLElement {
               <a href="students.html" class="navbar-link"><span data-en="Student Corner" data-hi="छात्र कॉर्नर">Student Corner</span></a>
               <div class="megamenu" id="studentsMegamenu" role="region" aria-label="Student Links">
                 <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Services" data-hi="सेवाएं">Services</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="https://cusb.samarth.edu.in/index.php/site/login" target="_blank"><span class="megamenu-icon">🧑‍🎓</span><span data-en="Student Portal (Samarth)" data-hi="छात्र पोर्टल (समर्थ)">Student Portal (Samarth)</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#results"><span class="megamenu-icon">🏆</span><span data-en="Results & Grades" data-hi="परीक्षा परिणाम">Results & Grades</span></a></li>
-                    <li class="megamenu-item"><a href="hostel.html"><span class="megamenu-icon">🏠</span><span data-en="Hostels & Wardens" data-hi="छात्रावास और वार्डन">Hostels & Wardens</span></a></li>
-                    <li class="megamenu-item"><a href="pyq.html"><span class="megamenu-icon">📚</span><span data-en="PYQ Portal" data-hi="पुराने प्रश्न पत्र">PYQ Portal</span></a></li>
+                    <li class="megamenu-item"><a href="courses.html"><span class="megamenu-icon">🏫</span><span data-en="Department & Programmes" data-hi="विभाग और कार्यक्रम">Department & Programmes</span></a></li>
+                    <li class="megamenu-item"><a href="students.html#academic-examination-notices"><span class="megamenu-icon">🔔</span><span data-en="Academics/Examination Notices" data-hi="शैक्षणिक/परीक्षा सूचनाएं">Academics/Examination Notices</span></a></li>
+                    <li class="megamenu-item"><a href="students.html#semester-exam-schedule"><span class="megamenu-icon">📅</span><span data-en="Semester Exam Schedule" data-hi="सेमेस्टर परीक्षा कार्यक्रम">Semester Exam Schedule</span></a></li>
+                    <li class="megamenu-item"><a href="students.html#ordinance-manual-regulation"><span class="megamenu-icon">📖</span><span data-en="Ordinance/ Manual/ Regulation" data-hi="अध्यादेश/नियमावली/विनियम">Ordinance/ Manual/ Regulation</span></a></li>
+                    <li class="megamenu-item"><a href="students.html#semester-results"><span class="megamenu-icon">📋</span><span data-en="Semester Result" data-hi="सेमेस्टर परिणाम">Semester Result</span></a></li>
+                    <li class="megamenu-item"><a href="admissions.html#admission-2026-27"><span class="megamenu-icon">📝</span><span data-en="Prospectus" data-hi="विवरणिका">Prospectus</span></a></li>
+                    <li class="megamenu-item"><a href="students.html#convocation"><span class="megamenu-icon">🎓</span><span data-en="Convocation" data-hi="दीक्षांत समारोह">Convocation</span></a></li>
+                    <li class="megamenu-item"><a href="students.html#formats-performa"><span class="megamenu-icon">📄</span><span data-en="Download (Format/Performa)" data-hi="डाउनलोड (प्रारूप/प्रपत्र)">Download (Format/Performa)</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Campus Life" data-hi="परिसर जीवन">Campus & Facilities</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="library.html"><span class="megamenu-icon">📚</span><span data-en="Central Library" data-hi="केंद्रीय पुस्तकालय">Central Library</span></a></li>
-                    <li class="megamenu-item"><a href="cafeteria.html"><span class="megamenu-icon">🍳</span><span data-en="Cafeteria" data-hi="कैफेटेरिया">Cafeteria</span></a></li>
-                    <li class="megamenu-item"><a href="sports.html"><span class="megamenu-icon">⚽</span><span data-en="Sports & Gym" data-hi="खेल एवं जिम">Sports & Gym</span></a></li>
-                    <li class="megamenu-item"><a href="medical.html"><span class="megamenu-icon">🏥</span><span data-en="Medical Center" data-hi="चिकित्सा केंद्र">Medical Center</span></a></li>
+                    <li class="megamenu-item"><a href="courses.html"><span class="megamenu-icon">📚</span><span data-en="Course Structure and Syllabus" data-hi="पाठ्यक्रम संरचना और सिलेबस">Course Structure and Syllabus</span></a></li>
+                    <li class="megamenu-item"><a href="students.html#scholarship-fellowship"><span class="megamenu-icon">💰</span><span data-en="Scholarship and Fellowship" data-hi="छात्रवृत्ति और फेलोशिप">Scholarship and Fellowship</span></a></li>
+                    <li class="megamenu-item"><a href="hostel.html"><span class="megamenu-icon">🏠</span><span data-en="Hostel" data-hi="छात्रावास">Hostel</span></a></li>
+                    <li class="megamenu-item"><a href="students.html#anti-ragging"><span class="megamenu-icon">🛡</span><span data-en="Anti-Ragging" data-hi="एंटी रैगिंग">Anti-Ragging</span></a></li>
+                    <li class="megamenu-item"><a href="students.html#alumni"><span class="megamenu-icon">🤝</span><span data-en="Alumni" data-hi="पूर्व छात्र">Alumni</span></a></li>
+                    <li class="megamenu-item"><a href="students.html#dace"><span class="megamenu-icon">🌱</span><span data-en="DACE" data-hi="डीएसीई">DACE</span></a></li>
+                    <li class="megamenu-item"><a href="students.html#capacity-development"><span class="megamenu-icon">📈</span><span data-en="Capacity Development and Skill Enhancement Programme" data-hi="क्षमता विकास और कौशल संवर्धन कार्यक्रम">Capacity Development and Skill Enhancement Programme</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="students.html#placement-cell"><span class="megamenu-icon">💼</span><span data-en="Placement Cell" data-hi="प्लेसमेंट सेल">Placement Cell</span></a></li>
+                    <li class="megamenu-item"><a href="students.html#counselling-wellbeing"><span class="megamenu-icon">💬</span><span data-en="Students Counselling and Well-being Centre" data-hi="छात्र परामर्श और कल्याण केंद्र">Students Counselling and Well-being Centre</span></a></li>
+                    <li class="megamenu-item"><a href="students.html#nss"><span class="megamenu-icon">🤲</span><span data-en="NSS" data-hi="एनएसएस">NSS</span></a></li>
+                    <li class="megamenu-item"><a href="students.html#ncc"><span class="megamenu-icon">🏅</span><span data-en="NCC" data-hi="एनसीसी">NCC</span></a></li>
+                    <li class="megamenu-item"><a href="students.html#extracurricular-activities"><span class="megamenu-icon">🎭</span><span data-en="Extracurricular Activities" data-hi="पाठ्येतर गतिविधियां">Extracurricular Activities</span></a></li>
+                    <li class="megamenu-item"><a href="students.html#code-of-ethics"><span class="megamenu-icon">⚖</span><span data-en="Code of Ethics" data-hi="आचार संहिता">Code of Ethics</span></a></li>
+                    <li class="megamenu-item"><a href="students.html#grievance-redressal"><span class="megamenu-icon">✉</span><span data-en="Grievance Redressal Committee for Students" data-hi="छात्र शिकायत निवारण समिति">Grievance Redressal Committee for Students</span></a></li>
                   </ul>
                 </div>
               </div>
@@ -569,17 +603,21 @@ class CusbNavbar extends HTMLElement {
               <a href="news-events.html" class="navbar-link"><span data-en="Notices & Media" data-hi="सूचनाएं एवं मीडिया">Notices & Media</span></a>
               <div class="megamenu" id="downloadsMegamenu" role="region" aria-label="Downloads Links">
                 <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Notices" data-hi="सूचनाएं">Notices & Events</div>
+                  <div class="megamenu-heading" data-en="Notices & Events" data-hi="सूचनाएं और कार्यक्रम">Notices & Events</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="news-events.html"><span class="megamenu-icon">🔔</span><span data-en="Latest News & Circulars" data-hi="नवीनतम समाचार एवं परिपत्र">Latest News & Circulars</span></a></li>
-                    <li class="megamenu-item"><a href="news-events.html?type=event"><span class="megamenu-icon">📅</span><span data-en="Events & Seminars" data-hi="कार्यक्रम एवं संगोष्ठी">Events & Seminars</span></a></li>
+                    <li class="megamenu-item"><a href="news-events.html#notices"><span class="megamenu-icon">🔔</span><span data-en="Notices" data-hi="सूचनाएं">Notices</span></a></li>
+                    <li class="megamenu-item"><a href="news-events.html#upcoming-events"><span class="megamenu-icon">📅</span><span data-en="Upcoming Events" data-hi="आगामी कार्यक्रम">Upcoming Events</span></a></li>
+                    <li class="megamenu-item"><a href="news-events.html#archived-events"><span class="megamenu-icon">📁</span><span data-en="Archived Events" data-hi="संग्रहीत कार्यक्रम">Archived Events</span></a></li>
+                    <li class="megamenu-item"><a href="news-events.html#recent-events"><span class="megamenu-icon">✨</span><span data-en="Recent Event" data-hi="हाल की गतिविधि">Recent Event</span></a></li>
+                    <li class="megamenu-item"><a href="news-events.html#academic-highlights"><span class="megamenu-icon">🏆</span><span data-en="Academic Highlights" data-hi="शैक्षणिक मुख्य बातें">Academic Highlights</span></a></li>
+                    <li class="megamenu-item"><a href="news-events.html#circulars"><span class="megamenu-icon">📜</span><span data-en="Circular / Notification / Office Order" data-hi="परिपत्र / अधिसूचना / कार्यालय आदेश">Circular / Notification / Office Order</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Downloads" data-hi="डाउनलोड">Documents</div>
+                  <div class="megamenu-heading" data-en="Media & Documents" data-hi="मीडिया और दस्तावेज">Media & Documents</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="downloads.html"><span class="megamenu-icon">📄</span><span data-en="Download Center" data-hi="डाउनलोड केंद्र">Download Center</span></a></li>
-                    <li class="megamenu-item"><a href="index.html#gallery"><span class="megamenu-icon">📸</span><span data-en="Photo Gallery" data-hi="फोटो गैलरी">Photo Gallery</span></a></li>
+                    <li class="megamenu-item"><a href="news-events.html#photo-gallery"><span class="megamenu-icon">📸</span><span data-en="Photo Gallery" data-hi="फोटो गैलरी">Photo Gallery</span></a></li>
+                    <li class="megamenu-item"><a href="downloads.html"><span class="megamenu-icon">📄</span><span data-en="Download" data-hi="डाउनलोड">Download</span></a></li>
                   </ul>
                 </div>
               </div>
@@ -603,25 +641,25 @@ class CusbNavbar extends HTMLElement {
         <div class="megamenu-column">
           <div class="megamenu-heading" data-en="Administration" data-hi="Administration">Administration</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="leaders.html#visitor"><span data-en="Visitor" data-hi="Visitor">Visitor</span></a></li>
-            <li class="megamenu-item"><a href="leaders.html#chancellor"><span data-en="Chancellor" data-hi="Chancellor">Chancellor</span></a></li>
-            <li class="megamenu-item"><a href="leaders.html#vc"><span data-en="Vice-Chancellor" data-hi="Vice-Chancellor">Vice-Chancellor</span></a></li>
-            <li class="megamenu-item"><a href="leaders.html#pro-vc"><span data-en="Pro-Vice Chancellor" data-hi="Pro-Vice Chancellor">Pro-Vice Chancellor</span></a></li>
-            <li class="megamenu-item"><a href="leaders.html#dean-student-welfare"><span data-en="Dean of Student welfare" data-hi="Dean of Student welfare">Dean of Student welfare</span></a></li>
-            <li class="megamenu-item"><a href="leaders.html#proctorial-board"><span data-en="Proctorial Board" data-hi="Proctorial Board">Proctorial Board</span></a></li>
-            <li class="megamenu-item"><a href="leaders.html#dean-head"><span data-en="Dean/Head" data-hi="Dean/Head">Dean/Head</span></a></li>
+            <li class="megamenu-item"><a href="administration-resources.html#visitor"><span data-en="Visitor" data-hi="Visitor">Visitor</span></a></li>
+            <li class="megamenu-item"><a href="administration-resources.html#chancellor"><span data-en="Chancellor" data-hi="Chancellor">Chancellor</span></a></li>
+            <li class="megamenu-item"><a href="administration-resources.html#vice-chancellor"><span data-en="Vice-Chancellor" data-hi="Vice-Chancellor">Vice-Chancellor</span></a></li>
+            <li class="megamenu-item"><a href="administration-resources.html#pro-vice-chancellor"><span data-en="Pro-Vice Chancellor" data-hi="Pro-Vice Chancellor">Pro-Vice Chancellor</span></a></li>
+            <li class="megamenu-item"><a href="administration-resources.html#dean-student-welfare"><span data-en="Dean of Student welfare" data-hi="Dean of Student welfare">Dean of Student welfare</span></a></li>
+            <li class="megamenu-item"><a href="administration-resources.html#proctorial-board"><span data-en="Proctorial Board" data-hi="Proctorial Board">Proctorial Board</span></a></li>
+            <li class="megamenu-item"><a href="administration-resources.html#dean-head"><span data-en="Dean/Head" data-hi="Dean/Head">Dean/Head</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
           <div class="megamenu-heading admin-divider-heading" aria-hidden="true">----------------------------------------</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="leaders.html#registrar"><span data-en="Registrar" data-hi="Registrar">Registrar</span></a></li>
-            <li class="megamenu-item"><a href="leaders.html#finance-officer"><span data-en="Finance Officer" data-hi="Finance Officer">Finance Officer</span></a></li>
-            <li class="megamenu-item"><a href="leaders.html#controller-examination"><span data-en="Controller of Examination" data-hi="Controller of Examination">Controller of Examination</span></a></li>
-            <li class="megamenu-item"><a href="leaders.html#librarian"><span data-en="Librarian" data-hi="Librarian">Librarian</span></a></li>
-            <li class="megamenu-item"><a href="leaders.html#section-staff"><span data-en="Section & Staff" data-hi="Section & Staff">Section & Staff</span></a></li>
-            <li class="megamenu-item"><a href="leaders.html#committee-cell"><span data-en="Committee/Cell" data-hi="Committee/Cell">Committee/Cell</span></a></li>
-            <li class="megamenu-item"><a href="leaders.html#organogram"><span data-en="Organogram" data-hi="Organogram">Organogram</span></a></li>
+            <li class="megamenu-item"><a href="administration-resources.html#registrar"><span data-en="Registrar" data-hi="Registrar">Registrar</span></a></li>
+            <li class="megamenu-item"><a href="administration-resources.html#finance-officer"><span data-en="Finance Officer" data-hi="Finance Officer">Finance Officer</span></a></li>
+            <li class="megamenu-item"><a href="administration-resources.html#controller-examination"><span data-en="Controller of Examination" data-hi="Controller of Examination">Controller of Examination</span></a></li>
+            <li class="megamenu-item"><a href="administration-resources.html#librarian"><span data-en="Librarian" data-hi="Librarian">Librarian</span></a></li>
+            <li class="megamenu-item"><a href="administration-resources.html#section-staff"><span data-en="Section & Staff" data-hi="Section & Staff">Section & Staff</span></a></li>
+            <li class="megamenu-item"><a href="administration-resources.html#committee-cell"><span data-en="Committee/Cell" data-hi="Committee/Cell">Committee/Cell</span></a></li>
+            <li class="megamenu-item"><a href="administration-resources.html#organogram"><span data-en="Organogram" data-hi="Organogram">Organogram</span></a></li>
           </ul>
         </div>
       `;
@@ -917,27 +955,27 @@ class CusbSidebar extends HTMLElement {
           <button class="sidebar-close" id="quickLinksCloseBtn" type="button" aria-label="Close Quick Links">${iconSvg('close')}</button>
         </div>
         <ul class="sidebar-menu-list">
-          <li><a href="about.html" class="sidebar-link">${iconSvg('file')}<span data-en="Prospectus 2026" data-hi="विवरणिका 2026">Prospectus 2026</span></a></li>
-          <li><a href="courses.html" class="sidebar-link">${iconSvg('file')}<span data-en="Syllabus & Courses" data-hi="पाठ्यक्रम">Syllabus & Courses</span></a></li>
-          <li><a href="students.html#exams" class="sidebar-link">${iconSvg('graduation')}<span data-en="Exams & Grades" data-hi="परीक्षाएं">Exams & Grades</span></a></li>
-          <li><a href="pyq.html" class="sidebar-link">${iconSvg('file')}<span data-en="PYQ Portal" data-hi="पुराने पेपर">PYQ Portal</span></a></li>
-          <li><a href="news-events.html?type=events" class="sidebar-link">${iconSvg('graduation')}<span data-en="Convocation" data-hi="दीक्षांत समारोह">Convocation</span></a></li>
-          <li><a href="https://scholarships.gov.in/" target="_blank" class="sidebar-link">${iconSvg('briefcase')}<span data-en="Scholarship Portal" data-hi="छात्रवृत्ति">Scholarship Portal</span></a></li>
-          <li><a href="hostel.html" class="sidebar-link">${iconSvg('home')}<span data-en="Hostels & Housing" data-hi="छात्रावास">Hostels & Housing</span></a></li>
-          <li><a href="https://rtionline.gov.in/" target="_blank" class="sidebar-link">${iconSvg('globe')}<span data-en="RTI Online Portal" data-hi="आरटीआई ऑनलाइन">RTI Online Portal</span></a></li>
-          <li><a href="https://www.antiragging.in/" target="_blank" class="sidebar-link">${iconSvg('lock')}<span data-en="Anti-Ragging Cell" data-hi="रैगिंग रोधी">Anti-Ragging Cell</span></a></li>
-          <li><a href="https://webmail.cusb.ac.in/" target="_blank" class="sidebar-link">${iconSvg('globe')}<span data-en="CUSB Webmail" data-hi="वेबमेल">CUSB Webmail</span></a></li>
-          <li><a href="https://cusb.samarth.edu.in/" target="_blank" class="sidebar-link">${iconSvg('graduation')}<span data-en="Samarth Student Portal" data-hi="समर्थ छात्र पोर्टल">Samarth Student Portal</span></a></li>
-          <li><a href="https://cusb.samarth.ac.in/" target="_blank" class="sidebar-link">${iconSvg('users')}<span data-en="Samarth Employee Portal" data-hi="समर्थ कर्मचारी पोर्टल">Samarth Employee Portal</span></a></li>
-          <li><a href="about.html#iqac" class="sidebar-link">${iconSvg('building')}<span data-en="IQAC Cell" data-hi="आईक्यूएसी सेल">IQAC Cell</span></a></li>
-          <li><a href="about.html#nirf" class="sidebar-link">${iconSvg('chart')}<span data-en="NIRF Cell" data-hi="एनआईआरएफ सेल">NIRF Cell</span></a></li>
-          <li><a href="cs.html" class="sidebar-link">${iconSvg('laptop')}<span data-en="Computer Science Dept" data-hi="कंप्यूटर साइंस">Computer Science Dept</span></a></li>
-          <li><a href="leaders.html" class="sidebar-link">${iconSvg('briefcase')}<span data-en="Officers & Deans" data-hi="अधिकारी">Officers & Deans</span></a></li>
-          <li><a href="about.html#accreditation" class="sidebar-link">${iconSvg('file')}<span data-en="NAAC Accreditation" data-hi="नेक मान्यता">NAAC Accreditation</span></a></li>
-          <li><a href="enquiry.html" class="sidebar-link">${iconSvg('phone')}<span data-en="Help Desk & Enquiry" data-hi="सहायता डेस्क">Help Desk & Enquiry</span></a></li>
-          <li><a href="tenders.html" class="sidebar-link">${iconSvg('shield')}<span data-en="Active Tenders" data-hi="सक्रिय निविदाएं">Active Tenders</span></a></li>
-          <li><a href="careers.html" class="sidebar-link">${iconSvg('briefcase')}<span data-en="Job Openings" data-hi="भर्ती / नौकरियां">Job Openings</span></a></li>
-          <li><a href="downloads.html" class="sidebar-link">${iconSvg('download')}<span data-en="Download Center" data-hi="डाउनलोड केंद्र">Download Center</span></a></li>
+          <li><a href="tenders.html" class="sidebar-link"><span class="sidebar-icon-box icon-emerald">${iconSvg('shield')}</span><span data-en="Active Tenders" data-hi="सक्रिय निविदाएं">Active Tenders</span></a></li>
+          <li><a href="https://www.antiragging.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-rose">${iconSvg('lock')}</span><span data-en="Anti-Ragging Cell" data-hi="रैगिंग रोधी">Anti-Ragging Cell</span></a></li>
+          <li><a href="cs.html" class="sidebar-link"><span class="sidebar-icon-box icon-cyan">${iconSvg('laptop')}</span><span data-en="Computer Science Dept" data-hi="कंप्यूटर साइंस">Computer Science Dept</span></a></li>
+          <li><a href="news-events.html?type=events" class="sidebar-link"><span class="sidebar-icon-box icon-purple">${iconSvg('graduation')}</span><span data-en="Convocation" data-hi="दीक्षांत समारोह">Convocation</span></a></li>
+          <li><a href="https://webmail.cusb.ac.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-blue">${iconSvg('globe')}</span><span data-en="CUSB Webmail" data-hi="वेबमेल">CUSB Webmail</span></a></li>
+          <li><a href="downloads.html" class="sidebar-link"><span class="sidebar-icon-box icon-indigo">${iconSvg('download')}</span><span data-en="Download Center" data-hi="डाउनलोड केंद्र">Download Center</span></a></li>
+          <li><a href="students.html#exams" class="sidebar-link"><span class="sidebar-icon-box icon-fuchsia">${iconSvg('graduation')}</span><span data-en="Exams & Grades" data-hi="परीक्षाएं">Exams & Grades</span></a></li>
+          <li><a href="enquiry.html" class="sidebar-link"><span class="sidebar-icon-box icon-amber">${iconSvg('phone')}</span><span data-en="Help Desk & Enquiry" data-hi="सहायता डेस्क">Help Desk & Enquiry</span></a></li>
+          <li><a href="hostel.html" class="sidebar-link"><span class="sidebar-icon-box icon-orange">${iconSvg('home')}</span><span data-en="Hostels & Housing" data-hi="छात्रावास">Hostels & Housing</span></a></li>
+          <li><a href="about.html#iqac" class="sidebar-link"><span class="sidebar-icon-box icon-teal">${iconSvg('building')}</span><span data-en="IQAC Cell" data-hi="आईक्यूएसी सेल">IQAC Cell</span></a></li>
+          <li><a href="careers.html" class="sidebar-link"><span class="sidebar-icon-box icon-green">${iconSvg('briefcase')}</span><span data-en="Job Openings" data-hi="भर्ती / नौकरियां">Job Openings</span></a></li>
+          <li><a href="about.html#accreditation" class="sidebar-link"><span class="sidebar-icon-box icon-blue">${iconSvg('file')}</span><span data-en="NAAC Accreditation" data-hi="नेक मान्यता">NAAC Accreditation</span></a></li>
+          <li><a href="about.html#nirf" class="sidebar-link"><span class="sidebar-icon-box icon-violet">${iconSvg('chart')}</span><span data-en="NIRF Cell" data-hi="एनआईआरएफ सेल">NIRF Cell</span></a></li>
+          <li><a href="leaders.html" class="sidebar-link"><span class="sidebar-icon-box icon-amber">${iconSvg('briefcase')}</span><span data-en="Officers & Deans" data-hi="अधिकारी">Officers & Deans</span></a></li>
+          <li><a href="about.html" class="sidebar-link"><span class="sidebar-icon-box icon-crimson">${iconSvg('file')}</span><span data-en="Prospectus 2026" data-hi="विवरणिका 2026">Prospectus 2026</span></a></li>
+          <li><a href="pyq.html" class="sidebar-link"><span class="sidebar-icon-box icon-purple">${iconSvg('file')}</span><span data-en="PYQ Portal" data-hi="पुराने पेपर">PYQ Portal</span></a></li>
+          <li><a href="https://rtionline.gov.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-cyan">${iconSvg('globe')}</span><span data-en="RTI Online Portal" data-hi="आरटीआई ऑनलाइन">RTI Online Portal</span></a></li>
+          <li><a href="https://cusb.samarth.ac.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-sky">${iconSvg('users')}</span><span data-en="Samarth Employee Portal" data-hi="समर्थ कर्मचारी पोर्टल">Samarth Employee Portal</span></a></li>
+          <li><a href="https://cusb.samarth.edu.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-indigo">${iconSvg('graduation')}</span><span data-en="Samarth Student Portal" data-hi="समर्थ छात्र पोर्टल">Samarth Student Portal</span></a></li>
+          <li><a href="https://scholarships.gov.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-gold">${iconSvg('briefcase')}</span><span data-en="Scholarship Portal" data-hi="छात्रवृत्ति">Scholarship Portal</span></a></li>
+          <li><a href="courses.html" class="sidebar-link"><span class="sidebar-icon-box icon-teal">${iconSvg('file')}</span><span data-en="Syllabus & Courses" data-hi="पाठ्यक्रम">Syllabus & Courses</span></a></li>
         </ul>
       </aside>
     `;

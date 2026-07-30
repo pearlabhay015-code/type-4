@@ -287,9 +287,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const m = parseInt(parts[1], 10) - 1;
     const d = parseInt(parts[2], 10);
 
-    const formattedDate = lang === 'en' 
-      ? `${d} ${monthNames['en'][m]} ${y}`
-      : `${d} ${monthNames['hi'][m]} ${y}`;
+    const isHi = lang === 'hi';
+    const formattedDate = isHi
+      ? `${d} ${monthNames['hi'][m]} ${y}`
+      : `${d} ${monthNames['en'][m]} ${y}`;
       
     if (selectedDateDisplay) {
       selectedDateDisplay.textContent = formattedDate;
@@ -300,9 +301,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const category = item.desc_en || 'CUSB Event';
     const categoryHi = item.desc_hi || 'सीयूएसबी कार्यक्रम';
     
-    const title = lang === 'en' ? item.title_en : item.title_hi;
-    const meta = lang === 'en' ? category : categoryHi;
-    const timeStr = item.date_str || (lang === 'en' ? 'Full Day' : 'पूरा दिन');
+    const title = isHi ? item.title_hi : item.title_en;
+    const meta = isHi ? categoryHi : category;
+    const timeStr = item.date_str || (isHi ? 'पूरा दिन' : 'Full Day');
     
     const safeTitle = escapeHTML(title || item.title_en || 'CUSB Event');
     const safeImage = escapeHTML(imgUrl);

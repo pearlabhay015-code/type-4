@@ -115,7 +115,7 @@ function applyFontSize(size) {
 }
 
 /* ==========================================================================
-   3. LANGUAGE CONVERTER
+   3. PERFECT PRISTINE LANGUAGE TRANSLATOR & CONVERTER ENGINE
    ========================================================================== */
 const googleTranslateLanguages = [
   'en', 'hi', 'bn', 'ta', 'te', 'mr', 'gu', 'pa', 'ur', 'kn', 'ml', 'or', 'as',
@@ -128,68 +128,133 @@ function initLanguage() {
   // Set default or stored language
   const storedLang = localStorage.getItem('cusb-lang') || 'en';
   const savedLang = googleTranslateLanguages.includes(storedLang) ? storedLang : 'en';
+  
   if (languageSelect) languageSelect.value = savedLang;
-  setLanguage(savedLang, { skipGoogle: true });
+
+  // Apply initial DOM language attributes without triggering page reloads
+  setLanguage(savedLang, { isInitialLoad: true });
 
   if (languageSelect) {
-    languageSelect.addEventListener('change', (e) => setLanguage(e.target.value));
+    languageSelect.addEventListener('change', (e) => {
+      setLanguage(e.target.value);
+    });
   }
 
   loadGoogleTranslate();
-  watchGoogleTranslateReset();
 }
 
-function setLanguage(lang, options = {}) {
-  localStorage.setItem('cusb-lang', lang);
-  const manualLang = lang === 'en' || lang === 'hi';
-  
-  // Update HTML lang attribute
-  document.documentElement.setAttribute('lang', lang);
-  
-  if (manualLang) {
-    // Scan DOM for fast, hand-authored English/Hindi text content (excluding protected language dropdown)
-    const elements = Array.from(document.querySelectorAll('[data-en], [data-hi]')).filter(el => {
-      return !el.classList.contains('notranslate') && !el.closest('#languageSelect') && !el.closest('.language-controls');
+/**
+ * Robustly clears all Google Translate cookies across root and domain paths.
+ */
+function clearGoogleTranslateCookies() {
+  const host = window.location.hostname;
+  const path = window.location.pathname;
+  const domains = [host, `.${host}`, ''];
+  const paths = ['/', path, '/type%204'];
+
+  domains.forEach(d => {
+    paths.forEach(p => {
+      let cookieStr = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${p}`;
+      if (d) cookieStr += `; domain=${d}`;
+      document.cookie = cookieStr;
     });
-    elements.forEach(el => el.classList.add('text-fade-out'));
-    window.setTimeout(() => {
-      elements.forEach(el => {
-        const text = el.getAttribute(`data-${lang}`);
-        if (text) {
-          if (text.includes('<') && text.includes('>')) {
-            el.innerHTML = text;
-          } else {
-            el.textContent = text;
-          }
-        }
-        el.classList.remove('text-fade-out');
-      });
+  });
+}
 
-      if (window.cusbReplaceEmojiIcons) window.cusbReplaceEmojiIcons(document);
-    }, 120);
+/**
+ * Sets Google Translate cookie directly for instant target language translation.
+ */
+function setGoogleTranslateCookie(lang) {
+  clearGoogleTranslateCookies();
+  const val = `/en/${lang}`;
+  const host = window.location.hostname;
+  document.cookie = `googtrans=${val}; path=/;`;
+  if (host && host !== 'localhost' && host !== '127.0.0.1') {
+    document.cookie = `googtrans=${val}; path=/; domain=.${host};`;
   }
+}
 
-  if (!manualLang && window.cusbReplaceEmojiIcons) window.cusbReplaceEmojiIcons(document);
+/**
+ * Primary Language Selector Handler
+ * Switches English/Hindi instantly (0ms) and performs clean pristine re-translation
+ * for foreign languages so mixed language text (e.g. French + Urdu + Punjabi) NEVER occurs.
+ */
+function setLanguage(lang, options = {}) {
+  const currentStored = localStorage.getItem('cusb-lang') || 'en';
+  const isInitial = options.isInitialLoad === true;
 
-  const languageSelect = document.getElementById('languageSelect');
-  if (languageSelect && languageSelect.value !== lang) {
-    languageSelect.value = lang;
-  }
+  localStorage.setItem('cusb-lang', lang);
+  document.documentElement.setAttribute('lang', lang);
 
-  if (!options.skipGoogle) {
-    if (manualLang) {
-      resetGoogleTranslate();
+  const isManual = (lang === 'en' || lang === 'hi');
+
+  // Synchronize all dropdown elements on the page
+  const languageSelects = document.querySelectorAll('#languageSelect, .language-select');
+  languageSelects.forEach(select => {
+    if (select.value !== lang) select.value = lang;
+  });
+
+  // Apply hand-authored English / Hindi text content immediately
+  const elements = document.querySelectorAll('[data-en], [data-hi]');
+  elements.forEach(el => {
+    if (el.classList.contains('notranslate') || el.closest('#languageSelect') || el.closest('.language-controls')) return;
+    const text = el.getAttribute(`data-${lang}`) || (isManual ? '' : el.getAttribute('data-en'));
+    if (text) {
+      if (text.includes('<') && text.includes('>')) {
+        el.innerHTML = text;
+      } else {
+        el.textContent = text;
+      }
+    }
+  });
+
+  if (window.cusbReplaceEmojiIcons) window.cusbReplaceEmojiIcons(document);
+
+  // User-triggered language switch (not initial load)
+  if (!isInitial && currentStored !== lang) {
+    if (!isManual) {
+      // Switching to a foreign language (e.g. French -> Urdu -> Punjabi)
+      // Set target cookie and reload to translate 100% clean pristine HTML
+      setGoogleTranslateCookie(lang);
+      window.location.reload();
+      return;
     } else {
-      applyGoogleTranslate(lang);
+      // Switching back to English or Hindi from a foreign language
+      if (currentStored !== 'en' && currentStored !== 'hi') {
+        clearGoogleTranslateCookies();
+        window.location.reload();
+        return;
+      } else {
+        // Switching between English and Hindi locally (0ms instant)
+        clearGoogleTranslateCookies();
+        resetGoogleTranslate(lang);
+      }
     }
   }
+
+  // Handle Google Translate widget initialization on first load if foreign language
+  if (isInitial && !isManual) {
+    setGoogleTranslateCookie(lang);
+    applyGoogleTranslate(lang);
+  }
+
+  // Dispatch custom events for reactive components
+  const eventDetail = { detail: { lang } };
+  window.dispatchEvent(new CustomEvent('cusb-language-changed', eventDetail));
+  document.dispatchEvent(new CustomEvent('cusb-language-changed', eventDetail));
 }
 
 function loadGoogleTranslate() {
+  const storedLang = localStorage.getItem('cusb-lang') || 'en';
+  if (storedLang === 'en' || storedLang === 'hi') {
+    return;
+  }
+
   if (!document.getElementById('google_translate_element')) {
     const widget = document.createElement('div');
     widget.id = 'google_translate_element';
     widget.setAttribute('aria-hidden', 'true');
+    widget.style.display = 'none';
     document.body.appendChild(widget);
   }
 
@@ -200,10 +265,9 @@ function loadGoogleTranslate() {
       autoDisplay: false
     }, 'google_translate_element');
 
-    const storedLang = localStorage.getItem('cusb-lang') || 'en';
-    const savedLang = googleTranslateLanguages.includes(storedLang) ? storedLang : 'en';
-    if (savedLang !== 'en' && savedLang !== 'hi') {
-      applyGoogleTranslate(savedLang);
+    const activeLang = localStorage.getItem('cusb-lang') || 'en';
+    if (activeLang !== 'en' && activeLang !== 'hi') {
+      applyGoogleTranslate(activeLang);
     }
   };
 
@@ -219,44 +283,25 @@ function loadGoogleTranslate() {
 function applyGoogleTranslate(lang, attempt = 0) {
   const combo = document.querySelector('.goog-te-combo');
   if (!combo) {
-    if (attempt < 20) {
-      setTimeout(() => applyGoogleTranslate(lang, attempt + 1), 250);
+    if (attempt < 30) {
+      setTimeout(() => applyGoogleTranslate(lang, attempt + 1), 80);
     }
     return;
   }
 
-  combo.value = lang;
-  combo.dispatchEvent(new Event('change'));
+  if (combo.value !== lang) {
+    combo.value = lang;
+    combo.dispatchEvent(new Event('change'));
+  }
 }
 
-function resetGoogleTranslate() {
-  document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-  if (window.location.hostname) {
-    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + window.location.hostname + ';';
-  }
-
+function resetGoogleTranslate(targetLang = 'en') {
+  clearGoogleTranslateCookies();
   const combo = document.querySelector('.goog-te-combo');
   if (combo) {
     combo.value = '';
     combo.dispatchEvent(new Event('change'));
   }
-}
-
-function watchGoogleTranslateReset() {
-  setInterval(() => {
-    const selectedLang = localStorage.getItem('cusb-lang') || 'en';
-    if (selectedLang === 'en' || selectedLang === 'hi') return;
-
-    const combo = document.querySelector('.goog-te-combo');
-    if (!combo) return;
-
-    if (!combo.value || combo.value === 'en') {
-      localStorage.setItem('cusb-lang', 'en');
-      document.documentElement.setAttribute('lang', 'en');
-      const languageSelect = document.getElementById('languageSelect');
-      if (languageSelect) languageSelect.value = 'en';
-    }
-  }, 1000);
 }
 
 /* ==========================================================================
@@ -566,6 +611,13 @@ function initMobileNav() {
   });
 
   navMenu.addEventListener('click', (e) => e.stopPropagation());
+
+  navMenu.querySelectorAll('.megamenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      closeAllDropdowns();
+      if (window.innerWidth <= 991) closeMenu();
+    });
+  });
 
   const navLinks = navMenu.querySelectorAll('.navbar-item > .navbar-link');
   navLinks.forEach(link => {
@@ -1510,19 +1562,26 @@ function initGalleryTicker() {
     card.setAttribute('tabindex', '0');
     card.setAttribute('aria-label', `View details about ${item.title_en}`);
 
-    const title = lang === 'en' ? item.title_en : item.title_hi;
-    const category = lang === 'en' ? item.category_en : item.category_hi;
+    const isHi = lang === 'hi';
+    const title = isHi ? item.title_hi : item.title_en;
+    const category = isHi ? item.category_hi : item.category_en;
 
     card.innerHTML = `
-      <img src="${item.src}" alt="${title}" loading="lazy" onerror="this.src='assets/images/audimg.jpg'">
+      <img src="${item.src}" alt="${item.title_en}" loading="lazy" onerror="this.src='assets/images/audimg.jpg'">
       <div class="gallery-ticker-overlay">
-        <span class="gallery-card-category">${category}</span>
-        <h3 class="gallery-card-title">${title}</h3>
+        <span class="gallery-card-category" data-en="${item.category_en}" data-hi="${item.category_hi}">${category}</span>
+        <h3 class="gallery-card-title" data-en="${item.title_en}" data-hi="${item.title_hi}">${title}</h3>
         <span class="gallery-card-click-hint"><span>🔍</span> <span data-en="Click for details" data-hi="विवरण के लिए क्लिक करें">Click for details</span></span>
       </div>
     `;
 
-    card.addEventListener('click', () => openGalleryDetailModal(item));
+    card.addEventListener('click', () => {
+      if (hasGalleryDragged) {
+        hasGalleryDragged = false;
+        return;
+      }
+      openGalleryDetailModal(item);
+    });
     return card;
   };
 
@@ -1535,42 +1594,128 @@ function initGalleryTicker() {
   row2Items.forEach(item => row2Track.appendChild(createCard(item)));
   row2Items.forEach(item => row2Track.appendChild(createCard(item)));
 
+  let isMoving = true;
+  let isDragging = false;
+  let hasGalleryDragged = false;
+  let startX = 0;
+  let startPos1 = 0;
+  let startPos2 = 0;
+  let animId = null;
+
+  const getHalf1 = () => row1Track.scrollWidth / 2 || 1;
+  const getHalf2 = () => row2Track.scrollWidth / 2 || 1;
+
   // Hardware accelerated motion coordinates
-  let pos1 = -row1Track.scrollWidth / 2;
+  let pos1 = -getHalf1();
   let speed1 = 0.85; // Row 1: Left to Right!
 
   let pos2 = 0;
   let speed2 = -0.85; // Row 2: Right to Left!
 
-  let isMoving = true;
-  let animId = null;
+  const renderPositions = () => {
+    const half1 = getHalf1();
+    while (pos1 >= 0) pos1 -= half1;
+    while (pos1 < -half1) pos1 += half1;
+    row1Track.style.transform = `translate3d(${pos1}px, 0, 0)`;
+
+    const half2 = getHalf2();
+    while (pos2 <= -half2) pos2 += half2;
+    while (pos2 > 0) pos2 -= half2;
+    row2Track.style.transform = `translate3d(${pos2}px, 0, 0)`;
+  };
 
   const animate = () => {
-    if (isMoving) {
-      // Row 1: L -> R
+    if (isMoving && !isDragging) {
       pos1 += speed1;
-      if (pos1 >= 0) {
-        pos1 = -row1Track.scrollWidth / 2;
-      }
-      row1Track.style.transform = `translate3d(${pos1}px, 0, 0)`;
-
-      // Row 2: R -> L
       pos2 += speed2;
-      if (pos2 <= -row2Track.scrollWidth / 2) {
-        pos2 = 0;
-      }
-      row2Track.style.transform = `translate3d(${pos2}px, 0, 0)`;
+      renderPositions();
     }
     animId = requestAnimationFrame(animate);
   };
 
   animId = requestAnimationFrame(animate);
 
-  // Pause movement on hover or touch on mobile for zero lag
-  wrapper.addEventListener('mouseenter', () => { isMoving = false; });
-  wrapper.addEventListener('mouseleave', () => { isMoving = true; });
-  wrapper.addEventListener('touchstart', () => { isMoving = false; }, { passive: true });
-  wrapper.addEventListener('touchend', () => { isMoving = true; }, { passive: true });
+  // Pause movement on hover
+  wrapper.addEventListener('mouseenter', () => { if (!isDragging) isMoving = false; });
+  wrapper.addEventListener('mouseleave', () => { if (!isDragging) isMoving = true; });
+
+  // Manual Drag (Touch & Mouse)
+  const onDragStart = (clientX) => {
+    isDragging = true;
+    isMoving = false;
+    startX = clientX;
+    startPos1 = pos1;
+    startPos2 = pos2;
+    hasGalleryDragged = false;
+    wrapper.style.cursor = 'grabbing';
+  };
+
+  const onDragMove = (clientX) => {
+    if (!isDragging) return;
+    const delta = clientX - startX;
+    if (Math.abs(delta) > 5) {
+      hasGalleryDragged = true;
+    }
+    pos1 = startPos1 + delta;
+    pos2 = startPos2 - delta;
+    renderPositions();
+  };
+
+  const onDragEnd = () => {
+    if (!isDragging) return;
+    isDragging = false;
+    wrapper.style.cursor = '';
+    setTimeout(() => {
+      isMoving = true;
+    }, 100);
+  };
+
+  // Mouse drag events
+  wrapper.addEventListener('mousedown', (e) => {
+    onDragStart(e.clientX);
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+      e.preventDefault();
+      onDragMove(e.clientX);
+    }
+  });
+
+  window.addEventListener('mouseup', () => {
+    onDragEnd();
+  });
+
+  // Touch drag events
+  wrapper.addEventListener('touchstart', (e) => {
+    if (e.touches && e.touches[0]) {
+      onDragStart(e.touches[0].clientX);
+    }
+  }, { passive: true });
+
+  wrapper.addEventListener('touchmove', (e) => {
+    if (isDragging && e.touches && e.touches[0]) {
+      onDragMove(e.touches[0].clientX);
+    }
+  }, { passive: true });
+
+  wrapper.addEventListener('touchend', () => {
+    onDragEnd();
+  });
+
+  // Mouse wheel horizontal scroll
+  wrapper.addEventListener('wheel', (e) => {
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.shiftKey) {
+      e.preventDefault();
+      isMoving = false;
+      const delta = (e.deltaX || e.deltaY) * 0.8;
+      pos1 -= delta;
+      pos2 += delta;
+      renderPositions();
+      clearTimeout(wrapper._wheelTimer);
+      wrapper._wheelTimer = setTimeout(() => { isMoving = true; }, 300);
+    }
+  }, { passive: false });
 
   // Manual Control Buttons
   const prevBtn = document.getElementById('prevGalleryBtn');
@@ -1579,19 +1724,17 @@ function initGalleryTicker() {
 
   if (prevBtn) {
     prevBtn.addEventListener('click', () => {
-      pos1 += 240;
-      pos2 += 240;
-      row1Track.style.transform = `translate3d(${pos1}px, 0, 0)`;
-      row2Track.style.transform = `translate3d(${pos2}px, 0, 0)`;
+      pos1 += 280;
+      pos2 -= 280;
+      renderPositions();
     });
   }
 
   if (nextBtn) {
     nextBtn.addEventListener('click', () => {
-      pos1 -= 240;
-      pos2 -= 240;
-      row1Track.style.transform = `translate3d(${pos1}px, 0, 0)`;
-      row2Track.style.transform = `translate3d(${pos2}px, 0, 0)`;
+      pos1 -= 280;
+      pos2 += 280;
+      renderPositions();
     });
   }
 
@@ -1667,14 +1810,50 @@ function openGalleryDetailModal(item) {
   }
 
   const lang = localStorage.getItem('cusb-lang') || 'en';
-  document.getElementById('galleryModalCategory').textContent = lang === 'en' ? item.category_en : item.category_hi;
-  document.getElementById('galleryModalTag').textContent = lang === 'en' ? item.category_en : item.category_hi;
-  document.getElementById('galleryModalImg').src = item.src;
-  document.getElementById('galleryModalImg').alt = lang === 'en' ? item.title_en : item.title_hi;
-  document.getElementById('galleryModalTitle').textContent = lang === 'en' ? item.title_en : item.title_hi;
-  document.getElementById('galleryModalDesc').textContent = lang === 'en' ? item.desc_en : item.desc_hi;
+  const isHi = lang === 'hi';
+
+  const catEl = document.getElementById('galleryModalCategory');
+  if (catEl) {
+    catEl.textContent = isHi ? item.category_hi : item.category_en;
+    catEl.setAttribute('data-en', item.category_en);
+    catEl.setAttribute('data-hi', item.category_hi);
+  }
+
+  const tagEl = document.getElementById('galleryModalTag');
+  if (tagEl) {
+    tagEl.textContent = isHi ? item.category_hi : item.category_en;
+    tagEl.setAttribute('data-en', item.category_en);
+    tagEl.setAttribute('data-hi', item.category_hi);
+  }
+
+  const imgEl = document.getElementById('galleryModalImg');
+  if (imgEl) {
+    imgEl.src = item.src;
+    imgEl.alt = item.title_en;
+  }
+
+  const titleEl = document.getElementById('galleryModalTitle');
+  if (titleEl) {
+    titleEl.textContent = isHi ? item.title_hi : item.title_en;
+    titleEl.setAttribute('data-en', item.title_en);
+    titleEl.setAttribute('data-hi', item.title_hi);
+  }
+
+  const descEl = document.getElementById('galleryModalDesc');
+  if (descEl) {
+    descEl.textContent = isHi ? item.desc_hi : item.desc_en;
+    descEl.setAttribute('data-en', item.desc_en);
+    descEl.setAttribute('data-hi', item.desc_hi);
+  }
+
   document.getElementById('galleryModalLoc').textContent = item.location || 'CUSB Gaya Campus';
-  document.getElementById('galleryModalCatVal').textContent = lang === 'en' ? item.category_en : item.category_hi;
+
+  const catValEl = document.getElementById('galleryModalCatVal');
+  if (catValEl) {
+    catValEl.textContent = isHi ? item.category_hi : item.category_en;
+    catValEl.setAttribute('data-en', item.category_en);
+    catValEl.setAttribute('data-hi', item.category_hi);
+  }
   document.getElementById('galleryModalAccess').textContent = item.access || 'Students & Staff';
   
   const linkEl = document.getElementById('galleryModalLink');
@@ -1809,24 +1988,31 @@ function initNewsTicker() {
     card.setAttribute('tabindex', '0');
     card.setAttribute('aria-label', `Read news about ${item.title_en}`);
 
-    const title = lang === 'en' ? item.title_en : item.title_hi;
-    const category = lang === 'en' ? item.category_en : item.category_hi;
-    const desc = lang === 'en' ? item.desc_en : item.desc_hi;
+    const isHi = lang === 'hi';
+    const title = isHi ? item.title_hi : item.title_en;
+    const category = isHi ? item.category_hi : item.category_en;
+    const desc = isHi ? item.desc_hi : item.desc_en;
 
     card.innerHTML = `
       <div class="news-ticker-media">
-        <img src="${item.src}" alt="${title}" loading="lazy" onerror="this.src='assets/images/audimg.jpg'">
+        <img src="${item.src}" alt="${item.title_en}" loading="lazy" onerror="this.src='assets/images/audimg.jpg'">
         <div class="news-ticker-date-badge">${item.date}</div>
       </div>
       <div class="news-ticker-body">
-        <span class="news-ticker-meta">${category}</span>
-        <h3 class="news-ticker-title">${title}</h3>
-        <p class="news-ticker-desc">${desc}</p>
+        <span class="news-ticker-meta" data-en="${item.category_en}" data-hi="${item.category_hi}">${category}</span>
+        <h3 class="news-ticker-title" data-en="${item.title_en}" data-hi="${item.title_hi}">${title}</h3>
+        <p class="news-ticker-desc" data-en="${item.desc_en}" data-hi="${item.desc_hi}">${desc}</p>
         <span class="news-ticker-link"><span data-en="Read Full Story →" data-hi="पूरा विवरण पढ़ें →">Read Full Story →</span></span>
       </div>
     `;
 
-    card.addEventListener('click', () => openNewsDetailModal(item));
+    card.addEventListener('click', () => {
+      if (hasNewsDragged) {
+        hasNewsDragged = false;
+        return;
+      }
+      openNewsDetailModal(item);
+    });
     return card;
   };
 
@@ -1835,21 +2021,29 @@ function initNewsTicker() {
   cusbNewsItems.forEach(item => track.appendChild(createNewsCard(item)));
   cusbNewsItems.forEach(item => track.appendChild(createNewsCard(item)));
 
-  // Continuous Right-to-Left Moving Animation (negative speed moves track right-to-left!)
+  // Continuous Right-to-Left Moving Animation & Manual Drag/Scroll
   let position = 0;
   let speed = -0.85; 
   let isMoving = true;
+  let isDragging = false;
+  let hasNewsDragged = false;
+  let startX = 0;
+  let startPos = 0;
   let animId = null;
 
+  const getHalfWidth = () => track.scrollWidth / 2 || 1;
+
+  const renderNewsPosition = () => {
+    const halfWidth = getHalfWidth();
+    while (position <= -halfWidth) position += halfWidth;
+    while (position > 0) position -= halfWidth;
+    track.style.transform = `translateX(${position}px)`;
+  };
+
   const animate = () => {
-    if (isMoving) {
+    if (isMoving && !isDragging) {
       position += speed;
-      if (position <= -track.scrollWidth / 2) {
-        position = 0;
-      } else if (position >= 0) {
-        position = -track.scrollWidth / 2;
-      }
-      track.style.transform = `translateX(${position}px)`;
+      renderNewsPosition();
     }
     animId = requestAnimationFrame(animate);
   };
@@ -1857,8 +2051,83 @@ function initNewsTicker() {
   animId = requestAnimationFrame(animate);
 
   // Pause movement on mouse hover
-  wrapper.addEventListener('mouseenter', () => { isMoving = false; });
-  wrapper.addEventListener('mouseleave', () => { isMoving = true; });
+  wrapper.addEventListener('mouseenter', () => { if (!isDragging) isMoving = false; });
+  wrapper.addEventListener('mouseleave', () => { if (!isDragging) isMoving = true; });
+
+  // Manual Drag (Touch & Mouse)
+  const onDragStart = (clientX) => {
+    isDragging = true;
+    isMoving = false;
+    startX = clientX;
+    startPos = position;
+    hasNewsDragged = false;
+    wrapper.style.cursor = 'grabbing';
+  };
+
+  const onDragMove = (clientX) => {
+    if (!isDragging) return;
+    const delta = clientX - startX;
+    if (Math.abs(delta) > 5) {
+      hasNewsDragged = true;
+    }
+    position = startPos + delta;
+    renderNewsPosition();
+  };
+
+  const onDragEnd = () => {
+    if (!isDragging) return;
+    isDragging = false;
+    wrapper.style.cursor = '';
+    setTimeout(() => {
+      isMoving = true;
+    }, 100);
+  };
+
+  // Mouse drag events
+  wrapper.addEventListener('mousedown', (e) => {
+    onDragStart(e.clientX);
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+      e.preventDefault();
+      onDragMove(e.clientX);
+    }
+  });
+
+  window.addEventListener('mouseup', () => {
+    onDragEnd();
+  });
+
+  // Touch drag events
+  wrapper.addEventListener('touchstart', (e) => {
+    if (e.touches && e.touches[0]) {
+      onDragStart(e.touches[0].clientX);
+    }
+  }, { passive: true });
+
+  wrapper.addEventListener('touchmove', (e) => {
+    if (isDragging && e.touches && e.touches[0]) {
+      onDragMove(e.touches[0].clientX);
+    }
+  }, { passive: true });
+
+  wrapper.addEventListener('touchend', () => {
+    onDragEnd();
+  });
+
+  // Mouse wheel horizontal scroll
+  wrapper.addEventListener('wheel', (e) => {
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.shiftKey) {
+      e.preventDefault();
+      isMoving = false;
+      const delta = (e.deltaX || e.deltaY) * 0.8;
+      position -= delta;
+      renderNewsPosition();
+      clearTimeout(wrapper._wheelTimer);
+      wrapper._wheelTimer = setTimeout(() => { isMoving = true; }, 300);
+    }
+  }, { passive: false });
 
   // Manual Control Buttons
   const prevBtn = document.getElementById('prevNewsBtn');
@@ -1867,15 +2136,15 @@ function initNewsTicker() {
 
   if (prevBtn) {
     prevBtn.addEventListener('click', () => {
-      position += 280;
-      track.style.transform = `translateX(${position}px)`;
+      position += 320;
+      renderNewsPosition();
     });
   }
 
   if (nextBtn) {
     nextBtn.addEventListener('click', () => {
-      position -= 280;
-      track.style.transform = `translateX(${position}px)`;
+      position -= 320;
+      renderNewsPosition();
     });
   }
 
@@ -1951,14 +2220,45 @@ function openNewsDetailModal(item) {
   }
 
   const lang = localStorage.getItem('cusb-lang') || 'en';
-  document.getElementById('newsModalCategory').textContent = lang === 'en' ? item.category_en : item.category_hi;
+  const isHi = lang === 'hi';
+
+  const catEl = document.getElementById('newsModalCategory');
+  if (catEl) {
+    catEl.textContent = isHi ? item.category_hi : item.category_en;
+    catEl.setAttribute('data-en', item.category_en);
+    catEl.setAttribute('data-hi', item.category_hi);
+  }
+
   document.getElementById('newsModalDate').textContent = item.date || '2026';
-  document.getElementById('newsModalImg').src = item.src;
-  document.getElementById('newsModalImg').alt = lang === 'en' ? item.title_en : item.title_hi;
-  document.getElementById('newsModalTitle').textContent = lang === 'en' ? item.title_en : item.title_hi;
-  document.getElementById('newsModalDesc').textContent = lang === 'en' ? item.desc_en : item.desc_hi;
+
+  const imgEl = document.getElementById('newsModalImg');
+  if (imgEl) {
+    imgEl.src = item.src;
+    imgEl.alt = item.title_en;
+  }
+
+  const titleEl = document.getElementById('newsModalTitle');
+  if (titleEl) {
+    titleEl.textContent = isHi ? item.title_hi : item.title_en;
+    titleEl.setAttribute('data-en', item.title_en);
+    titleEl.setAttribute('data-hi', item.title_hi);
+  }
+
+  const descEl = document.getElementById('newsModalDesc');
+  if (descEl) {
+    descEl.textContent = isHi ? item.desc_hi : item.desc_en;
+    descEl.setAttribute('data-en', item.desc_en);
+    descEl.setAttribute('data-hi', item.desc_hi);
+  }
+
   document.getElementById('newsModalPublisher').textContent = item.publisher || 'CUSB Press Office';
-  document.getElementById('newsModalCatVal').textContent = lang === 'en' ? item.category_en : item.category_hi;
+
+  const catValEl = document.getElementById('newsModalCatVal');
+  if (catValEl) {
+    catValEl.textContent = isHi ? item.category_hi : item.category_en;
+    catValEl.setAttribute('data-en', item.category_en);
+    catValEl.setAttribute('data-hi', item.category_hi);
+  }
   document.getElementById('newsModalDateVal').textContent = item.date || '2026';
   
   const linkEl = document.getElementById('newsModalLink');

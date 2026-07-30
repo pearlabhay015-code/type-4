@@ -308,3 +308,114 @@ window.cusbDepartments = {
     research: ['Condensed Matter Physics', 'High Energy Physics', 'Optics', 'Materials Science']
   }
 };
+
+/*
+ * Academic catalogue snapshot
+ * ---------------------------
+ * This layer keeps the public department template data-driven. The programme
+ * names and local syllabus files are taken from CUSB's Course Structure and
+ * Syllabus catalogue (checked July 2026). `department-page.js` can also merge
+ * a newer response from the local /api/departments endpoint, so an editor can
+ * update a department without changing the page template.
+ */
+window.cusbDepartmentAliases = {
+  'life-science': 'life_science',
+  'environmental-sciences': 'environmental_sciences',
+  'historical-studies-archaeology': 'historical_studies',
+  'economic-studies-policy': 'economic_studies',
+  'development-studies': 'development_studies',
+  'political-studies': 'political_studies',
+  'sociological-studies': 'sociological_studies',
+  'library-information-science': 'library_science',
+  'teacher-education': 'teacher_education',
+  'physical-education': 'physical_education',
+  'indian-languages': 'hindi',
+  'mass-communication-media': 'mass_communication',
+  'commerce-business-studies': 'commerce_business',
+  'law-governance': 'law_governance'
+};
+
+window.cusbDepartmentCatalogue = {
+  bioinformatics: {
+    name: 'Bioinformatics', established: '2011 (department status from 2018)', facultyStrength: 'Faculty 07 · Staff 02',
+    programmes: [
+      { name: 'M.Sc. in Bioinformatics', level: 'Postgraduate', duration: '2 years', syllabus_url: 'assets/documents/academics/msc_syllabus_new.pdf' },
+      { name: 'Ph.D. in Bioinformatics', level: 'Doctoral', duration: 'As per ordinance' }
+    ],
+    faculty: ['Prof. R.S. Rathore', 'Dr. Asheesh Shanker', 'Dr. Krishna Kumar Ojha', 'Dr. Durg Vijay Singh', 'Dr. Vijay Kumar Singh']
+  },
+  geology: {
+    established: '2020', facultyStrength: 'Faculty 06 · Staff 02',
+    programmes: [
+      { name: '5 Years Integrated UG-PG in Geology', level: 'Integrated', duration: '5 years' },
+      { name: 'M.Sc. in Geology', level: 'Postgraduate', duration: '2 years', syllabus_url: 'assets/documents/academics/Syllabus_MSc_Geology_NEP2020.pdf' },
+      { name: 'Ph.D. in Geology', level: 'Doctoral', duration: 'As per ordinance', syllabus_url: 'assets/documents/academics/PhD_Syllabus_Geology.pdf' }
+    ],
+    faculty: ['Prof. Prafull Kumar Singh', 'Dr. K. Milankumar Sharma', 'Dr. Devendra Singh Rawat', 'Dr. Vikal Kumar Singh', 'Dr. Longjam Kabita Chanu', 'Dr. Priti Rai', 'Dr. Dhirendra Kumar']
+  },
+  geography: {
+    established: '2022', facultyStrength: 'Faculty 07 · Staff 02',
+    programmes: [
+      { name: '5 Years Integrated UG-PG in Geography', level: 'Integrated', duration: '5 years', syllabus_url: 'assets/documents/academics/5_year_Integrated_UG_PG_Geography_Syllabus.pdf' },
+      { name: 'M.A. in Geography', level: 'Postgraduate', duration: '2 years', syllabus_url: 'assets/documents/academics/MA_MSc_Geography_Syllabus.pdf' },
+      { name: 'Ph.D. in Geography', level: 'Doctoral', duration: 'As per ordinance', syllabus_url: 'assets/documents/academics/Syllabus_PhD.pdf' }
+    ],
+    faculty: ['Prof. Kiran Kumari', 'Dr. Manjit Singh', 'Dr. Sunita Singh', 'Dr. Jogindar Singh Chauhan', 'Dr. Somnath Bera']
+  },
+  life_science: {
+    programmes: [
+      { name: '5 Years Integrated UG-PG in Life Science', level: 'Integrated', duration: '5 years', syllabus_url: 'assets/documents/academics/UGPGlsc_final_compressed.pdf' },
+      { name: 'M.Sc. in Life Science', level: 'Postgraduate', duration: '2 years', syllabus_url: 'assets/documents/academics/NEP_Msc_lifesc_compressed.pdf' },
+      { name: 'Ph.D. in Life Science', level: 'Doctoral', duration: 'As per ordinance' }
+    ]
+  },
+  biotechnology: {
+    programmes: [
+      { name: 'M.Sc. in Biotechnology', level: 'Postgraduate', duration: '2 years', syllabus_url: 'assets/documents/academics/2020_NEP_Msc_Biotechnology_Syllabus.pdf' },
+      { name: 'Ph.D. in Biotechnology', level: 'Doctoral', duration: 'As per ordinance' }
+    ]
+  },
+  environmental_sciences: { programmes: [{ name: 'M.Sc. in Environmental Sciences', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in Environmental Sciences', level: 'Doctoral', duration: 'As per ordinance' }] },
+  historical_studies: { name: 'Historical Studies and Archaeology', programmes: [{ name: '5 Years Integrated UG-PG in History', level: 'Integrated', duration: '5 years' }, { name: 'M.A. in History', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in History', level: 'Doctoral', duration: 'As per ordinance' }] },
+  economic_studies: {
+    name: 'Economic Studies and Policy', programmes: [
+      { name: '5 Years Integrated UG-PG in Economics', level: 'Integrated', duration: '5 years', syllabus_url: 'assets/documents/academics/Syllabus_Integ_eco-1-12.pdf' },
+      { name: 'M.A. in Economics', level: 'Postgraduate', duration: '2 years', syllabus_url: 'assets/documents/academics/MA_Economics_Syllabus_DESP_CUSB_Final.pdf' },
+      { name: 'Ph.D. in Economics', level: 'Doctoral', duration: 'As per ordinance', syllabus_url: 'assets/documents/academics/Syllabus_PhD_Course_work_Economics_2022_September_Final.pdf' }
+    ]
+  },
+  development_studies: { programmes: [{ name: 'M.A. in Development Studies', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in Development Studies', level: 'Doctoral', duration: 'As per ordinance' }] },
+  political_studies: { programmes: [{ name: '5 Years Integrated UG-PG in Political Studies & IR', level: 'Integrated', duration: '5 years' }, { name: 'M.A. in Political Studies & IR', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in Political Studies & IR', level: 'Doctoral', duration: 'As per ordinance' }] },
+  sociological_studies: { programmes: [{ name: '5 Years Integrated UG-PG in Political Studies & IR', level: 'Integrated', duration: '5 years' }, { name: 'M.A. in Sociology', level: 'Postgraduate', duration: '2 years' }, { name: 'M.A. in Social Work', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in Sociology', level: 'Doctoral', duration: 'As per ordinance' }] },
+  library_science: { name: 'Library & Information Science', established: '2025–26 (integrated programme launch)', programmes: [{ name: '2 Years Integrated B.Lib.I.Sc.–M.Lib.I.Sc.', level: 'Integrated', duration: '2 years' }] },
+  mathematics: {
+    facultyStrength: 'Faculty 07 · Staff 01',
+    programmes: [{ name: '5 Years Integrated UG-PG in Mathematics', level: 'Integrated', duration: '5 years' }, { name: 'M.Sc. in Mathematics', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in Mathematics', level: 'Doctoral', duration: 'As per ordinance' }],
+    faculty: ['Prof. H.K. Nigam', 'Prof. Roushan Kumar', 'Prof. Jay Prakash Singh', 'Prof. Vivek Kumar Jain', 'Dr. Rajesh Pratap Singh', 'Dr. Shubh Narayan Singh', 'Dr. Pankaj Mishra', 'Dr. Chandra Shekher Singh', 'Dr. Palash Sarkar']
+  },
+  statistics: { facultyStrength: 'Faculty 05 · Staff 01', programmes: [{ name: '5 Years Integrated UG-PG in Statistics', level: 'Integrated', duration: '5 years' }, { name: 'M.Sc. in Statistics', level: 'Postgraduate', duration: '2 years' }, { name: 'M.Sc. in Data Science', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in Statistics', level: 'Doctoral', duration: 'As per ordinance' }] },
+  computer_science: { facultyStrength: 'Faculty 05 · Staff 02', programmes: [{ name: 'M.Sc. in Computer Science', level: 'Postgraduate', duration: '2 years' }, { name: 'M.Sc. in Artificial Intelligence', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in Computer Science', level: 'Doctoral', duration: 'As per ordinance' }] },
+  teacher_education: { programmes: [{ name: '4 Years Integrated B.A. B.Ed. / B.Sc. B.Ed.', level: 'Integrated', duration: '4 years' }, { name: 'Master of Education (M.Ed.)', level: 'Postgraduate', duration: '2 years', syllabus_url: 'assets/documents/academics/M_Ed_new.pdf' }, { name: 'Ph.D. in Education', level: 'Doctoral', duration: 'As per ordinance' }] },
+  physical_education: { facultyStrength: 'Faculty 05 · Staff 02', programmes: [{ name: 'PG Diploma in Yoga', level: 'Postgraduate Diploma', duration: 'As notified' }, { name: 'M.P.Ed.', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in Physical Education', level: 'Doctoral', duration: 'As per ordinance' }] },
+  chemistry: { programmes: [{ name: '5 Years Integrated UG-PG in Chemistry', level: 'Integrated', duration: '5 years', syllabus_url: 'assets/documents/academics/integrated_syllabus.pdf' }, { name: 'M.Sc. Chemistry', level: 'Postgraduate', duration: '2 years', syllabus_url: 'assets/documents/academics/syllabus_msc_chem.pdf' }, { name: 'Ph.D. in Chemistry', level: 'Doctoral', duration: 'As per ordinance', syllabus_url: 'assets/documents/academics/phd_chem_syll.pdf' }] },
+  physics: { programmes: [{ name: '5 Years Integrated UG-PG in Physics', level: 'Integrated', duration: '5 years' }, { name: 'M.Sc. in Physics', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in Physics', level: 'Doctoral', duration: 'As per ordinance' }] },
+  english: { programmes: [{ name: '5 Years Integrated UG-PG in English', level: 'Integrated', duration: '5 years' }, { name: 'M.A. in English', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in English', level: 'Doctoral', duration: 'As per ordinance' }] },
+  hindi: { name: 'Indian Languages', programmes: [{ name: '5 Years Integrated UG-PG in Hindi', level: 'Integrated', duration: '5 years' }, { name: 'M.A. in Hindi', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in Hindi', level: 'Doctoral', duration: 'As per ordinance' }] },
+  mass_communication: { name: 'Mass Communication and Media', programmes: [{ name: 'M.A. in Journalism and Mass Communication', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in Communication and Media Studies', level: 'Doctoral', duration: 'As per ordinance' }] },
+  commerce_business: { name: 'Commerce and Business Studies', facultyStrength: 'Faculty 06 · Staff 01', programmes: [{ name: '5 Years Integrated UG-PG in Commerce', level: 'Integrated', duration: '5 years' }, { name: 'M.A. in Commerce', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in Commerce', level: 'Doctoral', duration: 'As per ordinance', syllabus_url: 'assets/documents/academics/syllabus-PhD_compressed.pdf' }] },
+  psychological_sciences: { programmes: [{ name: '5 Years Integrated UG-PG in Psychology', level: 'Integrated', duration: '5 years' }, { name: 'M.A. / M.Sc. in Psychology', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in Psychology / Clinical Psychology', level: 'Doctoral', duration: 'As per ordinance' }] },
+  law_governance: {
+    name: 'Law and Governance', facultyStrength: 'Faculty 16 · Staff 02', programmes: [{ name: 'B.A. LL.B. (Hons.)', level: 'Integrated', duration: '5 years' }, { name: 'LL.M.', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in Law', level: 'Doctoral', duration: 'As per ordinance' }],
+    faculty: ['Prof. S. P. Srivastava', 'Prof. Pawan Kumar Mishra', 'Prof. Ashok Kumar', 'Prof. Pradip Kumar Das', 'Dr. Surendra Kumar', 'Dr. Poonam Kumari', 'Dr. Digvijay Singh', 'Dr. Deo Narayan Singh', 'Dr. Pallavi Singh', 'Dr. Anant Prakash Narayan', 'Mr. Mani Pratap', 'Dr. Kumari Nitu', 'Dr. Anurag Agrawal', 'Dr. Anuja Mishra', 'Dr. Neha Shukla', 'Dr. Chandana Suba', 'Dr. Niharika Singh', 'Dr. Sunaina']
+  },
+  pharmacy: { programmes: [{ name: 'M. Pharm. (Pharmaceutics)', level: 'Postgraduate', duration: '2 years' }, { name: 'M. Pharm. (Pharmacology)', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in Pharmacy', level: 'Doctoral', duration: 'As per ordinance' }] },
+  agriculture: { facultyStrength: 'Faculty 04 + 10* · Staff 01', programmes: [{ name: '4 Years B.Sc. in Agriculture', level: 'Undergraduate', duration: '4 years' }, { name: 'Ph.D. in Agriculture', level: 'Doctoral', duration: 'As per ordinance' }] }
+};
+
+Object.entries(window.cusbDepartmentCatalogue).forEach(([slug, profile]) => {
+  window.cusbDepartments[slug] = { ...window.cusbDepartments[slug], ...profile };
+});
+
+// Social Work is offered as a programme under Sociological Studies in the
+// source catalogue, not as a separate Academic-menu department.
+delete window.cusbDepartments.social_work;
