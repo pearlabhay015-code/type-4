@@ -168,7 +168,7 @@ window.cusbDepartments = {
     name: 'Library Science',
     school: 'School of Social Sciences & Policies',
     icon: 'book',
-    heroImage: 'assets/images/libimg.avif',
+    heroImage: 'assets/images/libimg.webp',
     summary: 'The Department of Library Science prepares students for knowledge organisation, information services, and digital library systems.',
     vision: 'The department combines library traditions with information technology, metadata, user services, and digital knowledge management.',
     established: '2009',

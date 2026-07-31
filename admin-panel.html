@@ -337,7 +337,7 @@
   <!-- Header Navigation -->
   <nav class="admin-nav" style="height: 70px; box-sizing: border-box; padding: 0 24px;">
     <div class="admin-nav-brand">
-      <img src="assets/culog.png" class="admin-nav-logo" alt="CUSB Logo" style="height: 38px;">
+      <img src="assets/culog.png" class="admin-nav-logo" alt="CUSB Logo" style="height: 38px;" decoding="async" loading="eager" fetchpriority="high">
       <span class="admin-nav-title" style="font-size: 1.15rem; font-weight: 800; letter-spacing: -0.3px;">CUSB Admin Console <span style="font-size: 0.8rem; opacity: 0.8; font-weight: 500;">| Executive Management Portal</span></span>
     </div>
 
@@ -375,7 +375,7 @@
     <aside class="admin-sidebar">
       <!-- Admin Profile Card -->
       <div class="sidebar-profile-box">
-        <img src="assets/culog.png" class="sidebar-profile-avatar" alt="Admin Avatar">
+        <img src="assets/culog.png" class="sidebar-profile-avatar" alt="Admin Avatar" decoding="async" loading="lazy">
         <div>
           <h4 class="sidebar-profile-name" id="sidebarProfileName">Administrator</h4>
           <span class="sidebar-profile-role"><span class="sidebar-status-dot"></span> Executive Admin</span>
@@ -564,7 +564,7 @@
 
               <div class="notice-item-list">
                 <div class="notice-item-card">
-                  <img src="assets/images/blockB.jpg" class="notice-item-img" alt="Notice thumbnail">
+                  <img src="assets/images/blockB.jpg" class="notice-item-img" alt="Notice thumbnail" decoding="async" loading="lazy">
                   <div class="notice-item-info">
                     <h4 class="notice-item-title">CUSB Admission Bulletin 2026 (CUET-PG)</h4>
                     <p class="notice-item-desc">Official prospectus & online application guidelines released for 28 Postgraduate Degree programs through Samarth portal...</p>
@@ -576,7 +576,7 @@
                 </div>
 
                 <div class="notice-item-card">
-                  <img src="assets/images/admin_good.jpeg" class="notice-item-img" alt="Notice thumbnail">
+                  <img src="assets/images/admin_good.webp" class="notice-item-img" alt="Notice thumbnail" decoding="async" loading="lazy">
                   <div class="notice-item-info">
                     <h4 class="notice-item-title">Recruitment Notification Issued for Non-Teaching Posts</h4>
                     <p class="notice-item-desc">Applications invited for administrative and technical non-teaching positions including Section Officer, Assistant Registrar, & System Analyst...</p>
@@ -588,7 +588,7 @@
                 </div>
 
                 <div class="notice-item-card">
-                  <img src="assets/images/audimg.jpg" class="notice-item-img" alt="Notice thumbnail">
+                  <img src="assets/images/audimg.jpg" class="notice-item-img" alt="Notice thumbnail" decoding="async" loading="lazy">
                   <div class="notice-item-info">
                     <h4 class="notice-item-title">Ph.D. Admission Notice & Vacancy Matrix (All Departments)</h4>
                     <p class="notice-item-desc">Ph.D. admission notifications, eligibility criteria, and seat vacancy matrix published across all academic departments...</p>
@@ -2077,7 +2077,7 @@
           if (noticeContainer) {
             noticeContainer.innerHTML = data.notice_board.map(item => `
               <div class="notice-item-card">
-                <img src="${escapeHTML(item.image_url)}" class="notice-item-img" alt="${escapeHTML(item.title)}">
+                <img src="${escapeHTML(item.image_url)}" class="notice-item-img" alt="${escapeHTML(item.title)}" decoding="async" loading="lazy">
                 <div class="notice-item-info">
                   <h4 class="notice-item-title">${escapeHTML(item.title)}</h4>
                   <p class="notice-item-desc">${escapeHTML(item.desc)}</p>
@@ -2390,7 +2390,7 @@
         card.className = 'gallery-admin-card';
         card.innerHTML = `
           <div class="gallery-admin-media">
-            <img src="${item.image_url}" alt="${item.title_en}" onerror="this.src='assets/images/blockB.jpg'">
+            <img src="${item.image_url}" alt="${item.title_en}" onerror="this.src='assets/images/blockB.jpg'" decoding="async" loading="lazy">
           </div>
           <div class="gallery-admin-details">
             <div>
@@ -2430,9 +2430,9 @@
 
       if (!loadedGallery || loadedGallery.length === 0) {
         loadedGallery = [
-          { id: 1, title_en: "Main Entrance Gate", title_hi: "मुख्य प्रवेश द्वार", image_url: "assets/drone.png" },
+          { id: 1, title_en: "Main Entrance Gate", title_hi: "मुख्य प्रवेश द्वार", image_url: "assets/drone.webp" },
           { id: 2, title_en: "Academic Block Complex", title_hi: "अकादमिक ब्लॉक परिसर", image_url: "assets/images/blockB.jpg" },
-          { id: 3, title_en: "Central Library & Reading Hall", title_hi: "केंद्रीय पुस्तकालय", image_url: "assets/images/libimg.avif" },
+          { id: 3, title_en: "Central Library & Reading Hall", title_hi: "केंद्रीय पुस्तकालय", image_url: "assets/images/libimg.webp" },
           { id: 4, title_en: "University Central Auditorium", title_hi: "विश्वविद्यालय सभागार", image_url: "assets/images/audimg.jpg" },
           { id: 5, title_en: "Computer Science GPU Lab", title_hi: "कंप्यूटर साइंस जीपीयू लैब", image_url: "assets/images/cs_lab.jpg" },
           { id: 6, title_en: "Sports Complex Stadium", title_hi: "खेल परिसर मैदान", image_url: "assets/images/spoim.jpg" }

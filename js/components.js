@@ -316,7 +316,7 @@ class CusbHeader extends HTMLElement {
     this.innerHTML = `
       <div class="container header-wrap" role="banner">
         <a href="index.html" class="header-brand" aria-label="CUSB Homepage">
-          <img src="assets/culog.png" class="header-logo" alt="CUSB Emblem" loading="lazy">
+          <img src="assets/culog.png" class="header-logo" alt="CUSB Emblem" loading="lazy" decoding="async">
           <div class="header-titles">
             <span class="header-title-main" data-en="CENTRAL UNIVERSITY OF SOUTH BIHAR" data-hi="दक्षिण बिहार केन्द्रीय विश्वविद्यालय">CENTRAL UNIVERSITY OF SOUTH BIHAR</span>
             <span class="header-title-sub" data-en="Established by the Central Universities Act, 2009" data-hi="केन्द्रीय विश्वविद्यालय अधिनियम, 2009 द्वारा स्थापित">Established by the Central Universities Act, 2009</span>
@@ -326,8 +326,8 @@ class CusbHeader extends HTMLElement {
         <div class="header-controls">
           <!-- NAAC and Viksit Bharat Badges -->
           <div class="header-badges">
-            <img src="assets/NAAC.png" alt="NAAC A++ Badge" class="header-badge-img" loading="lazy">
-            <img src="assets/viksit.png" alt="Viksit Bharat Banner" class="header-badge-img" loading="lazy">
+            <img src="assets/NAAC.png" alt="NAAC A++ Badge" class="header-badge-img" loading="lazy" decoding="async">
+            <img src="assets/viksit.png" alt="Viksit Bharat Banner" class="header-badge-img" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
@@ -922,7 +922,7 @@ class CusbFooter extends HTMLElement {
         <div class="footer-grid">
           <div class="footer-col">
             <div class="footer-logo-area">
-              <img src="assets/culog.png" class="footer-logo" alt="CUSB Emblem" loading="lazy">
+              <img src="assets/culog.png" class="footer-logo" alt="CUSB Emblem" loading="lazy" decoding="async">
               <div class="footer-title">
                 <span data-en="CENTRAL UNIVERSITY<br>OF SOUTH BIHAR" data-hi="दक्षिण बिहार केन्द्रीय<br>विश्वविद्यालय">CENTRAL UNIVERSITY<br>OF SOUTH BIHAR</span>
               </div>

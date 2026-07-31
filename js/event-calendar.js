@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let autoSlideInterval = null;
 
   const eventImages = {
-    national: 'assets/images/admin_good.jpeg',
+    national: 'assets/images/admin_good.webp',
     gandhi: 'assets/images/2013.jpg',
     holi: 'assets/images/spoim.jpg',
     diwali: 'assets/images/audimg.jpg',

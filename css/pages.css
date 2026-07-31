@@ -235,7 +235,7 @@
 
 /* Homepage Banner */
 .hero-banner {
-  --hero-image: url('../assets/drone.png');
+  --hero-image: url('../assets/drone.webp');
   min-height: 580px;
   padding: 55px 0 140px;
   display: flex;
@@ -262,7 +262,7 @@
 
 /* About University Page */
 .admin-hero[aria-label="About Banner"] {
-  --hero-image: url('../assets/images/admin_good.jpeg');
+  --hero-image: url('../assets/images/admin_good.webp');
 }
 
 /* Academic Courses & Programs Page */
@@ -279,17 +279,17 @@
 /* General Department Page */
 .admin-hero[aria-label="Department Banner"],
 .admin-hero.dept-page-hero {
-  --hero-image: url('../assets/images/dept_hero_new.png');
+  --hero-image: url('../assets/images/dept_hero_new.webp');
 }
 
 /* Hostels & Student Residence Page */
 .admin-hero[aria-label="Hostel Banner"] {
-  --hero-image: url('../assets/images/hostel-girls.png');
+  --hero-image: url('../assets/images/hostel-girls.webp');
 }
 
 /* Central Library Page */
 .admin-hero[aria-label="Library Banner"] {
-  --hero-image: url('../assets/images/libimg.avif');
+  --hero-image: url('../assets/images/libimg.webp');
 }
 
 /* Careers & Faculty Recruitment Page */
@@ -299,7 +299,7 @@
 
 /* Campus Facilities Page */
 .admin-hero[aria-label="Facilities Banner"] {
-  --hero-image: url('../assets/hero_eve.png');
+  --hero-image: url('../assets/hero_eve.webp');
 }
 
 /* Central Instrumentation Facility (CIF) Page */
@@ -345,7 +345,7 @@
 
 /* Medical & Health Center Page */
 .admin-hero[aria-label="Medical Banner"] {
-  --hero-image: url('../assets/images/health-centre-consultation.png');
+  --hero-image: url('../assets/images/health-centre-consultation.webp');
 }
 
 /* Downloads & Archive Forms Page */
@@ -356,7 +356,7 @@
 /* Leadership & Vice-Chancellor Page */
 .admin-hero[aria-label="Leaders Banner"],
 .admin-hero[aria-label="Administration Banner"] {
-  --hero-image: url('../assets/images/convo.png');
+  --hero-image: url('../assets/images/convo.webp');
 }
 .hero-content {
   max-width: 900px;
@@ -2728,7 +2728,7 @@
   inset: 0;
   background:
     linear-gradient(180deg, rgba(66, 11, 29, 0.2), rgba(76, 99, 153, 0.58)),
-    var(--ql-bg, url('../assets/drone.png')) center / cover;
+    var(--ql-bg, url('../assets/drone.webp')) center / cover;
   z-index: -1;
   transition: var(--transition);
 }
@@ -2736,9 +2736,9 @@
   transform: scale(1.06);
   filter: saturate(1.08);
 }
-.quicklink-btn-green:nth-child(6n+1) { --ql-bg: url('../assets/drone.png'); }
+.quicklink-btn-green:nth-child(6n+1) { --ql-bg: url('../assets/drone.webp'); }
 .quicklink-btn-green:nth-child(6n+2) { --ql-bg: url('../assets/images/blockB.jpg'); }
-.quicklink-btn-green:nth-child(6n+3) { --ql-bg: url('../assets/images/libimg.avif'); }
+.quicklink-btn-green:nth-child(6n+3) { --ql-bg: url('../assets/images/libimg.webp'); }
 .quicklink-btn-green:nth-child(6n+4) { --ql-bg: url('../assets/images/hosimg.jpg'); }
 .quicklink-btn-green:nth-child(6n+5) { --ql-bg: url('../assets/images/audimg.jpg'); }
 .quicklink-btn-green:nth-child(6n) { --ql-bg: url('../assets/images/spoim.jpg'); }
@@ -2837,7 +2837,7 @@
 [data-theme="dark"] .quicklink-btn-green::before {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.9)),
-    var(--ql-bg, url('../assets/drone.png')) center / cover;
+    var(--ql-bg, url('../assets/drone.webp')) center / cover;
   filter: grayscale(0.72) brightness(0.74);
 }
 [data-theme="dark"] .quicklink-btn-label {

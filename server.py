@@ -375,7 +375,14 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             self.send_header('Access-Control-Allow-Credentials', 'true')
         self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
         self.send_header('Access-Control-Allow-Headers', 'Content-Type, Cookie, X-Session-Token')
-        self.end_headers()
+    def end_headers(self):
+        parsed = urlparse(self.path)
+        path = parsed.path.lower()
+        if path.endswith(('.png', '.jpg', '.jpeg', '.webp', '.gif', '.svg', '.ico', '.avif')):
+            self.send_header('Cache-Control', 'public, max-age=31536000, immutable')
+        elif path.endswith(('.css', '.js', '.woff', '.woff2', '.ttf')):
+            self.send_header('Cache-Control', 'public, max-age=86400')
+        super().end_headers()
 
     # Helper to parse POST body JSON
     def get_post_data(self):

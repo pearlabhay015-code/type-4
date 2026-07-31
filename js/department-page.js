@@ -25,10 +25,10 @@
     { match: 'Social', src: 'assets/images/blockB.jpg' },
     { match: 'Education', src: 'assets/images/admin.jpeg' },
     { match: 'Pharmaceutical', src: 'assets/images/health.webp' },
-    { match: 'Languages', src: 'assets/images/libimg.avif' },
+    { match: 'Languages', src: 'assets/images/libimg.webp' },
     { match: 'Media', src: 'assets/images/audimg.jpg' },
-    { match: 'Agriculture', src: 'assets/drone.png' },
-    { match: 'Commerce', src: 'assets/images/admin_good.jpeg' },
+    { match: 'Agriculture', src: 'assets/drone.webp' },
+    { match: 'Commerce', src: 'assets/images/admin_good.webp' },
     { match: 'Law', src: 'assets/images/maitreyi.jpeg' },
     { match: 'Physical', src: 'assets/images/sclab.jpg' }
   ];
