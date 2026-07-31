@@ -1,0 +1,5 @@
+.env
+admin.db
+__pycache__/
+tmp/
+db_contents.json

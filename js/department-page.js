@@ -146,7 +146,9 @@
           <h3 class="faculty-name">${escapeHtml(person.name)}</h3>
           <p class="faculty-designation">${escapeHtml(person.designation)}</p>
           <p class="faculty-specialization">${escapeHtml(person.specialization)}</p>
+          ${person.qualification ? `<p class="faculty-specialization"><strong>Qualification:</strong> ${escapeHtml(person.qualification)}</p>` : ''}
           ${person.email ? `<a class="department-email" href="mailto:${escapeHtml(person.email)}">${escapeHtml(person.email)}</a>` : ''}
+          ${person.profile_url ? `<a class="department-email" href="${escapeHtml(person.profile_url)}" target="_blank" rel="noopener">View official profile</a>` : ''}
         </article>`).join('') : `
         <article class="department-empty-card">
           <h3>Faculty directory update</h3>
@@ -191,13 +193,19 @@
   }
 
   const baseData = departments[slug] || fallback;
-  render(baseData);
-  if (!departments[slug]) setText('deptSummary', 'Department not found. Please choose a department from the Courses & Programmes page.');
+  Promise.resolve(window.cusbFacultyDirectoryPromise || {})
+    .then((directory) => {
+      const facultyDirectoryKey = slug === 'social_work' ? 'sociological_studies' : slug;
+      const officialFaculty = Array.isArray(directory[facultyDirectoryKey]) ? directory[facultyDirectoryKey].map(([name, designation, specialization, qualification, image_url, profile_url]) => ({ name, designation, specialization, qualification, image_url, profile_url })) : [];
+      const sourceData = officialFaculty.length ? { ...baseData, faculty: officialFaculty, facultyStrength: `${officialFaculty.length} official faculty profiles` } : baseData;
+      render(sourceData);
+      if (!departments[slug]) setText('deptSummary', 'Department not found. Please choose a department from the Courses & Programmes page to view detailed information.');
 
-  if (departments[slug] && window.location.protocol !== 'file:') {
-    fetch(window.cusbApiUrl(`departments?dept=${encodeURIComponent(slug)}`))
-      .then((response) => response.ok ? response.json() : null)
-      .then((apiData) => { if (apiData) render(mergeApiData(baseData, apiData)); })
-      .catch(() => { /* Local static catalogue remains available if the API is offline. */ });
-  }
+      if (departments[slug] && window.location.protocol !== 'file:') {
+        fetch(window.cusbApiUrl(`departments?dept=${encodeURIComponent(slug)}`))
+          .then((response) => response.ok ? response.json() : null)
+          .then((apiData) => { if (apiData) render(mergeApiData(sourceData, apiData)); })
+          .catch(() => { /* The verified local directory remains available if the API is offline. */ });
+      }
+    });
 })();

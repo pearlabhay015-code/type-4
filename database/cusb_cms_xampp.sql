@@ -1,8 +1,10 @@
 CREATE DATABASE IF NOT EXISTS cusb_website CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE USER IF NOT EXISTS 'cusb_cms'@'localhost' IDENTIFIED BY 'change-this-before-going-live';
 CREATE USER IF NOT EXISTS 'cusb_cms'@'127.0.0.1' IDENTIFIED BY 'change-this-before-going-live';
+CREATE USER IF NOT EXISTS 'cusb_cms'@'%' IDENTIFIED BY 'change-this-before-going-live';
 GRANT SELECT, INSERT, UPDATE, DELETE ON cusb_website.* TO 'cusb_cms'@'localhost';
 GRANT SELECT, INSERT, UPDATE, DELETE ON cusb_website.* TO 'cusb_cms'@'127.0.0.1';
+GRANT SELECT, INSERT, UPDATE, DELETE ON cusb_website.* TO 'cusb_cms'@'%';
 FLUSH PRIVILEGES;
 USE cusb_website;
 

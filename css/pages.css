@@ -455,13 +455,13 @@
   color: var(--acc-navy);
 }
 [data-theme="dark"] .btn-white {
-  background-color: #111111;
-  color: #f5f5f5;
-  border-color: rgba(255, 255, 255, 0.18);
+  background-color: #1e293b;
+  color: #f8fafc;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 [data-theme="dark"] .btn-white:hover {
-  background-color: #ffffff;
-  color: #050505;
+  background-color: #2563eb;
+  color: #ffffff;
 }
 .btn-ghost-light {
   background: rgba(255, 255, 255, 0.15);
@@ -2783,18 +2783,18 @@
   border-color: var(--border-color);
 }
 
-/* Dark theme page palette based on black, graphite, grey, and white. */
+/* Dark theme page palette based on modern dark slate/blue palette */
 [data-theme="dark"] .sec-leaders,
 [data-theme="dark"] .sec-programs,
 [data-theme="dark"] .sec-events,
 [data-theme="dark"] .sec-gallery,
 [data-theme="dark"] .sec-quicklinks {
-  background: #000000 !important;
+  background: #0b0f19 !important;
 }
 [data-theme="dark"] .sec-about-uni,
 [data-theme="dark"] .sec-news,
 [data-theme="dark"] .sec-facilities {
-  background-color: #0d0d0d;
+  background-color: #111827;
 }
 [data-theme="dark"] .leader-card-staggered,
 [data-theme="dark"] .leader-card-staggered.right-align,
@@ -2808,8 +2808,8 @@
 [data-theme="dark"] .pyq-sidebar,
 [data-theme="dark"] .pyq-card,
 [data-theme="dark"] .warden-card {
-  background: linear-gradient(135deg, #0d0d0d 0%, #5c5c5c 145%) !important;
-  border-color: rgba(142, 142, 142, 0.42);
+  background: linear-gradient(135deg, #111827 0%, #1e293b 100%) !important;
+  border-color: rgba(255, 255, 255, 0.15);
   box-shadow: var(--shadow-md);
 }
 [data-theme="dark"] .leader-card-staggered:hover,
@@ -2819,17 +2819,17 @@
 [data-theme="dark"] .event-card:hover,
 [data-theme="dark"] .admin-card:hover,
 [data-theme="dark"] .faculty-card:hover {
-  border-color: rgba(142, 142, 142, 0.9);
+  border-color: rgba(96, 165, 250, 0.6);
 }
 [data-theme="dark"] .leader-avatar-box,
 [data-theme="dark"] .about-uni-icon-card,
 [data-theme="dark"] .facility-card-teal,
 [data-theme="dark"] .quicklink-btn-green {
-  background: linear-gradient(135deg, #5c5c5c, #000000);
-  border-color: rgba(142, 142, 142, 0.48);
+  background: linear-gradient(135deg, #1e293b, #111827);
+  border-color: rgba(255, 255, 255, 0.18);
 }
 [data-theme="dark"] .quicklink-btn-green {
-  background: #0d0d0d;
+  background: #111827;
   border: 1px solid rgba(255, 255, 255, 0.18);
   color: #ffffff;
   box-shadow: 0 12px 26px rgba(0, 0, 0, 0.42);
@@ -2861,7 +2861,7 @@
 [data-theme="dark"] .faculty-designation,
 [data-theme="dark"] .warden-role,
 [data-theme="dark"] .pyq-course-code {
-  color: #ffffff;
+  color: #60a5fa;
 }
 [data-theme="dark"] .about-uni-text,
 [data-theme="dark"] .leader-desc-txt,
@@ -2881,42 +2881,55 @@
 [data-theme="dark"] .pyq-dept-btn.active,
 [data-theme="dark"] .btn-hostel-tab.active,
 [data-theme="dark"] .btn-hostel-tab:hover {
-  background-color: #8e8e8e;
+  background-color: #2563eb;
   color: #ffffff;
 }
 [data-theme="dark"] .btn-school-tab,
 [data-theme="dark"] .pyq-dept-btn,
 [data-theme="dark"] .btn-hostel-tab {
-  background-color: #0d0d0d;
-  border-color: rgba(142, 142, 142, 0.42);
+  background-color: #1e293b;
+  border-color: rgba(255, 255, 255, 0.18);
   color: var(--tx-secondary);
 }
 [data-theme="dark"] .gallery-block {
-  border-color: rgba(142, 142, 142, 0.42);
+  border-color: rgba(255, 255, 255, 0.18);
 }
 [data-theme="dark"] .gallery-block:nth-child(n) {
-  background: linear-gradient(135deg, #5c5c5c, #0d0d0d);
+  background: linear-gradient(135deg, #1e293b, #111827);
 }
 [data-theme="dark"] .facility-icon-wrap,
 [data-theme="dark"] .quicklink-btn-icon {
-  background-color: rgba(255, 255, 255, 0.92);
-  color: #050505;
-  border-color: rgba(255, 255, 255, 0.34);
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #60a5fa;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 [data-theme="dark"] .facility-icon-wrap .icon-holder {
-  background: rgba(142, 142, 142, 0.24);
+  background: rgba(255, 255, 255, 0.12);
   color: #ffffff;
-  border-color: rgba(142, 142, 142, 0.42);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 [data-theme="dark"] .quicklink-btn-green:hover,
 [data-theme="dark"] .facility-card-teal:hover {
-  background: linear-gradient(135deg, #202020, #000000);
+  background: linear-gradient(135deg, #1e293b, #0b0f19);
 }
 [data-theme="dark"] .quicklink-btn-green:hover::before {
   filter: grayscale(0.55) brightness(0.9);
 }
 [data-theme="dark"] .hostel-details-table th {
-  background-color: #0d0d0d;
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+/* High-contrast overrides for dept links and law school cards in dark mode */
+[data-theme="dark"] .program-dept-link {
+  color: #60a5fa !important;
+}
+[data-theme="dark"] .program-dept-link:hover {
+  color: #93c5fd !important;
+}
+[data-theme="dark"] .program-pill-card[data-school="law"],
+[data-theme="dark"] .program-pill-card[data-school="law"] .program-pill-title,
+[data-theme="dark"] .program-pill-card[data-school="law"] .qa-card {
+  color: #f8fafc !important;
 }
 [data-theme="dark"] .hostel-details-table tr:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.08);

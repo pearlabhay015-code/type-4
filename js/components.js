@@ -5,6 +5,10 @@
 
 window.cusbApiUrl = window.cusbApiUrl || ((path) => {
   const route = String(path).replace(/^\/+/, '');
+  const configuredApiBase = '__CUSB_API_URL__'.trim().replace(/\/+$/, '');
+  if (configuredApiBase && configuredApiBase !== '__CUSB_API_URL__') {
+    return `${configuredApiBase}/${route}`;
+  }
   const isPythonPreview = ['localhost', '127.0.0.1'].includes(window.location.hostname) && window.location.port === '8000';
   if (isPythonPreview) return `http://localhost:8080/type4/api/${route}`;
   const base = new URL('.', document.baseURI);
@@ -459,19 +463,90 @@ class CusbNavbar extends HTMLElement {
               <a href="courses.html" class="navbar-link"><span data-en="Academics" data-hi="अकादमिक">Academics</span></a>
               <div class="megamenu" id="academicsMegamenu" role="region" aria-label="Academics Links">
                 <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Structure" data-hi="संरचना">Schools & Depts</div>
+                  <div class="megamenu-heading" data-en="EARTH, BIOLOGICAL AND ENVIRONMENTAL SCIENCES" data-hi="पृथ्वी, जैविक और पर्यावरण विज्ञान">EARTH, BIOLOGICAL AND ENVIRONMENTAL SCIENCES</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="courses.html?section=schools"><span class="megamenu-icon">🏫</span><span data-en="Schools" data-hi="अध्ययन शालाएं">Schools</span></a></li>
-                    <li class="megamenu-item"><a href="courses.html?section=departments"><span class="megamenu-icon">🏛️</span><span data-en="Departments" data-hi="विभाग">Departments</span></a></li>
-                    <li class="megamenu-item"><a href="cs.html"><span class="megamenu-icon">💻</span><span data-en="Computer Science Dept" data-hi="कंप्यूटर साइंस विभाग">Computer Science Dept</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=bioinformatics"><span data-en="Dept. of Bioinformatics" data-hi="बायोइनफॉरमैटिक्स विभाग">Dept. of Bioinformatics</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=geology"><span data-en="Department of Geology" data-hi="भूविज्ञान विभाग">Department of Geology</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=geography"><span data-en="Department of Geography" data-hi="भूगोल विभाग">Department of Geography</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=life-science"><span data-en="Dept. of Life Science" data-hi="जीवन विज्ञान विभाग">Dept. of Life Science</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=biotechnology"><span data-en="Department of Biotechnology" data-hi="बायोटेक्नोलॉजी विभाग">Department of Biotechnology</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=environmental-sciences"><span data-en="Department of Environmental Sciences" data-hi="पर्यावरण विज्ञान विभाग">Department of Environmental Sciences</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
-                  <div class="megamenu-heading" data-en="Programmes" data-hi="कार्यक्रम">Programmes</div>
+                  <div class="megamenu-heading" data-en="SOCIAL SCIENCES AND POLICIES" data-hi="सामाजिक विज्ञान और नीतियां">SOCIAL SCIENCES AND POLICIES</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="courses.html?level=ug"><span class="megamenu-icon">🎓</span><span data-en="Undergraduate (UG)" data-hi="स्नातक (यूजी)">Undergraduate (UG)</span></a></li>
-                    <li class="megamenu-item"><a href="courses.html?level=pg"><span class="megamenu-icon">📜</span><span data-en="Postgraduate (PG)" data-hi="स्नातकोत्तर (पीजी)">Postgraduate (PG)</span></a></li>
-                    <li class="megamenu-item"><a href="courses.html?level=phd"><span class="megamenu-icon">🔬</span><span data-en="Doctoral (Ph.D.)" data-hi="विद्यावाचस्पति (पीएचडी)">Doctoral (Ph.D.)</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=historical-studies-archaeology"><span data-en="Department of Historical Studies and Archaeology" data-hi="ऐतिहासिक अध्ययन एवं पुरातत्व विभाग">Department of Historical Studies and Archaeology</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=economic-studies-policy"><span data-en="Department of Economic Studies and Policy" data-hi="आर्थिक अध्ययन एवं नीति विभाग">Department of Economic Studies and Policy</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=development-studies"><span data-en="Development Studies" data-hi="विकास अध्ययन">Development Studies</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=political-studies"><span data-en="Dept. of Political Studies" data-hi="राजनीतिक अध्ययन विभाग">Dept. of Political Studies</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=sociological-studies"><span data-en="Department of Sociological Studies" data-hi="समाजशास्त्र अध्ययन विभाग">Department of Sociological Studies</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=library-information-science"><span data-en="Dept. of Library &amp; Information Science" data-hi="पुस्तकालय एवं सूचना विज्ञान विभाग">Dept. of Library &amp; Information Science</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="MATHEMATICS, STATISTICS AND COMPUTER SCIENCE" data-hi="गणित, सांख्यिकी एवं कंप्यूटर विज्ञान">MATHEMATICS, STATISTICS AND COMPUTER SCIENCE</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="department.html?dept=mathematics"><span data-en="Dept. of Mathematics" data-hi="गणित विभाग">Dept. of Mathematics</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=statistics"><span data-en="Department of Statistics" data-hi="सांख्यिकी विभाग">Department of Statistics</span></a></li>
+                    <li class="megamenu-item"><a href="cs.html"><span data-en="Department of Computer Science" data-hi="कंप्यूटर विज्ञान विभाग">Department of Computer Science</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="SCHOOL OF EDUCATION (TEACHER &amp; PHYSICAL)" data-hi="शिक्षा अध्ययन शाला (शिक्षक और शारीरिक)">SCHOOL OF EDUCATION (TEACHER &amp; PHYSICAL)</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="department.html?dept=teacher-education"><span data-en="Department of Teacher Education" data-hi="शिक्षक शिक्षा विभाग">Department of Teacher Education</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=physical-education"><span data-en="Department of Physical Education" data-hi="शारीरिक शिक्षा विभाग">Department of Physical Education</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="PHYSICAL &amp; CHEMICAL" data-hi="भौतिक एवं रासायनिक विज्ञान">PHYSICAL &amp; CHEMICAL</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="department.html?dept=chemistry"><span data-en="Department of Chemistry" data-hi="रसायन शास्त्र विभाग">Department of Chemistry</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=physics"><span data-en="Department of Physics" data-hi="भौतिक विज्ञान विभाग">Department of Physics</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="LANGUAGES &amp; LITERATURE" data-hi="भाषा एवं साहित्य">LANGUAGES &amp; LITERATURE</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="department.html?dept=english"><span data-en="Department of English" data-hi="अंग्रेजी विभाग">Department of English</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=indian-languages"><span data-en="Dept. of Indian Languages" data-hi="भारतीय भाषा विभाग">Dept. of Indian Languages</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="MEDIA, ARTS &amp; AESTHETICS" data-hi="मीडिया, कला और सौंदर्यशास्त्र">MEDIA, ARTS &amp; AESTHETICS</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="department.html?dept=mass-communication-media"><span data-en="Mass Communication and Media" data-hi="जनसंचार एवं मीडिया">Mass Communication and Media</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="SCHOOL OF MANAGEMENT" data-hi="प्रबंधन अध्ययन शाला">SCHOOL OF MANAGEMENT</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="department.html?dept=commerce-business-studies"><span data-en="Department of Commerce and Business Studies" data-hi="वाणिज्य एवं व्यवसाय अध्ययन विभाग">Department of Commerce and Business Studies</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="HUMAN SCIENCES" data-hi="मानव विज्ञान">HUMAN SCIENCES</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="department.html?dept=psychological-sciences"><span data-en="Dept. of Psychological Sciences" data-hi="मनोवैज्ञानिक विज्ञान विभाग">Dept. of Psychological Sciences</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="LAW AND GOVERNANCE" data-hi="विधि एवं सुशासन">LAW AND GOVERNANCE</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="department.html?dept=law-governance"><span data-en="Department of Law and Governance" data-hi="विधि एवं सुशासन विभाग">Department of Law and Governance</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="HEALTH SCIENCE" data-hi="स्वास्थ्य विज्ञान">HEALTH SCIENCE</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="department.html?dept=pharmacy"><span data-en="Department of Pharmacy" data-hi="फार्मेसी विभाग">Department of Pharmacy</span></a></li>
+                  </ul>
+                </div>
+                <div class="megamenu-column">
+                  <div class="megamenu-heading" data-en="AGRICULTURE &amp; DEVELOPMENT" data-hi="कृषि एवं विकास">AGRICULTURE &amp; DEVELOPMENT</div>
+                  <ul class="megamenu-list">
+                    <li class="megamenu-item"><a href="department.html?dept=agriculture"><span data-en="Department of Agriculture" data-hi="कृषि विभाग">Department of Agriculture</span></a></li>
                   </ul>
                 </div>
               </div>
@@ -671,90 +746,90 @@ class CusbNavbar extends HTMLElement {
     if (academicsMenu) {
       academicsMenu.innerHTML = `
         <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Maths, Stat & cs" data-hi="Maths, Stat & cs">Maths, Stat & cs</div>
+          <div class="megamenu-heading" data-en="EARTH, BIOLOGICAL AND ENVIRONMENTAL SCIENCES" data-hi="पृथ्वी, जैविक और पर्यावरण विज्ञान">EARTH, BIOLOGICAL AND ENVIRONMENTAL SCIENCES</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=mathematics"><span data-en="Mathematics" data-hi="Mathematics">Mathematics</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=statistics"><span data-en="Statistics" data-hi="Statistics">Statistics</span></a></li>
-            <li class="megamenu-item"><a href="cs.html"><span data-en="CS" data-hi="CS">CS</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=bioinformatics"><span data-en="Dept. of Bioinformatics" data-hi="बायोइनफॉरमैटिक्स विभाग">Dept. of Bioinformatics</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=geology"><span data-en="Department of Geology" data-hi="भूविज्ञान विभाग">Department of Geology</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=geography"><span data-en="Department of Geography" data-hi="भूगोल विभाग">Department of Geography</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=life-science"><span data-en="Dept. of Life Science" data-hi="जीवन विज्ञान विभाग">Dept. of Life Science</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=biotechnology"><span data-en="Department of Biotechnology" data-hi="बायोटेक्नोलॉजी विभाग">Department of Biotechnology</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=environmental-sciences"><span data-en="Department of Environmental Sciences" data-hi="पर्यावरण विज्ञान विभाग">Department of Environmental Sciences</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Earth, Bio & Evs" data-hi="Earth, Bio & Evs">Earth, Bio & Evs</div>
+          <div class="megamenu-heading" data-en="SOCIAL SCIENCES AND POLICIES" data-hi="सामाजिक विज्ञान और नीतियां">SOCIAL SCIENCES AND POLICIES</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=bioinformatics"><span data-en="Bioinformatics" data-hi="Bioinformatics">Bioinformatics</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=geology"><span data-en="Geology" data-hi="Geology">Geology</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=geography"><span data-en="Geography" data-hi="Geography">Geography</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=life-science"><span data-en="Life Science" data-hi="Life Science">Life Science</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=biotechnology"><span data-en="Biotech" data-hi="Biotech">Biotech</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=environmental-sciences"><span data-en="Evs" data-hi="Evs">Evs</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=historical-studies-archaeology"><span data-en="Department of Historical Studies and Archaeology" data-hi="ऐतिहासिक अध्ययन एवं पुरातत्व विभाग">Department of Historical Studies and Archaeology</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=economic-studies-policy"><span data-en="Department of Economic Studies and Policy" data-hi="आर्थिक अध्ययन एवं नीति विभाग">Department of Economic Studies and Policy</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=development-studies"><span data-en="Development Studies" data-hi="विकास अध्ययन">Development Studies</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=political-studies"><span data-en="Dept. of Political Studies" data-hi="राजनीतिक अध्ययन विभाग">Dept. of Political Studies</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=sociological-studies"><span data-en="Department of Sociological Studies" data-hi="समाजशास्त्र अध्ययन विभाग">Department of Sociological Studies</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=library-information-science"><span data-en="Dept. of Library &amp; Information Science" data-hi="पुस्तकालय एवं सूचना विज्ञान विभाग">Dept. of Library &amp; Information Science</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Human Science" data-hi="Human Science">Human Science</div>
+          <div class="megamenu-heading" data-en="MATHEMATICS, STATISTICS AND COMPUTER SCIENCE" data-hi="गणित, सांख्यिकी एवं कंप्यूटर विज्ञान">MATHEMATICS, STATISTICS AND COMPUTER SCIENCE</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=psychological-sciences"><span data-en="Psychology" data-hi="Psychology">Psychology</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=mathematics"><span data-en="Dept. of Mathematics" data-hi="गणित विभाग">Dept. of Mathematics</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=statistics"><span data-en="Department of Statistics" data-hi="सांख्यिकी विभाग">Department of Statistics</span></a></li>
+            <li class="megamenu-item"><a href="cs.html"><span data-en="Department of Computer Science" data-hi="कंप्यूटर विज्ञान विभाग">Department of Computer Science</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Social Sciences & Policies" data-hi="Social Sciences & Policies">Social Sciences & Policies</div>
+          <div class="megamenu-heading" data-en="SCHOOL OF EDUCATION (TEACHER &amp; PHYSICAL)" data-hi="शिक्षा अध्ययन शाला (शिक्षक और शारीरिक)">SCHOOL OF EDUCATION (TEACHER &amp; PHYSICAL)</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=historical-studies-archaeology"><span data-en="Historical Studies" data-hi="Historical Studies">Historical Studies</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=economic-studies-policy"><span data-en="Economics" data-hi="Economics">Economics</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=development-studies"><span data-en="Development Studies" data-hi="Development Studies">Development Studies</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=political-studies"><span data-en="Political Studies" data-hi="Political Studies">Political Studies</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=sociological-studies"><span data-en="Sociological Studies" data-hi="Sociological Studies">Sociological Studies</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=library-information-science"><span data-en="Library & Info Science" data-hi="Library & Info Science">Library & Info Science</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=teacher-education"><span data-en="Department of Teacher Education" data-hi="शिक्षक शिक्षा विभाग">Department of Teacher Education</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=physical-education"><span data-en="Department of Physical Education" data-hi="शारीरिक शिक्षा विभाग">Department of Physical Education</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="School of Education" data-hi="School of Education">School of Education</div>
+          <div class="megamenu-heading" data-en="PHYSICAL &amp; CHEMICAL" data-hi="भौतिक एवं रासायनिक विज्ञान">PHYSICAL &amp; CHEMICAL</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=teacher-education"><span data-en="Teacher Education" data-hi="Teacher Education">Teacher Education</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=physical-education"><span data-en="Physical Ed" data-hi="Physical Ed">Physical Ed</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=chemistry"><span data-en="Department of Chemistry" data-hi="रसायन शास्त्र विभाग">Department of Chemistry</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=physics"><span data-en="Department of Physics" data-hi="भौतिक विज्ञान विभाग">Department of Physics</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Health Science" data-hi="Health Science">Health Science</div>
+          <div class="megamenu-heading" data-en="LANGUAGES &amp; LITERATURE" data-hi="भाषा एवं साहित्य">LANGUAGES &amp; LITERATURE</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=pharmacy"><span data-en="Pharmacy" data-hi="Pharmacy">Pharmacy</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=english"><span data-en="Department of English" data-hi="अंग्रेजी विभाग">Department of English</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=indian-languages"><span data-en="Dept. of Indian Languages" data-hi="भारतीय भाषा विभाग">Dept. of Indian Languages</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Language & Literature" data-hi="Language & Literature">Language & Literature</div>
+          <div class="megamenu-heading" data-en="MEDIA, ARTS &amp; AESTHETICS" data-hi="मीडिया, कला और सौंदर्यशास्त्र">MEDIA, ARTS &amp; AESTHETICS</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=english"><span data-en="English" data-hi="English">English</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=indian-languages"><span data-en="Indian Languages" data-hi="Indian Languages">Indian Languages</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=mass-communication-media"><span data-en="Mass Communication and Media" data-hi="जनसंचार एवं मीडिया">Mass Communication and Media</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Media, Arts & Aesthetics" data-hi="Media, Arts & Aesthetics">Media, Arts & Aesthetics</div>
+          <div class="megamenu-heading" data-en="SCHOOL OF MANAGEMENT" data-hi="प्रबंधन अध्ययन शाला">SCHOOL OF MANAGEMENT</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=mass-communication-media"><span data-en="Mass Communication" data-hi="Mass Communication">Mass Communication</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=commerce-business-studies"><span data-en="Department of Commerce and Business Studies" data-hi="वाणिज्य एवं व्यवसाय अध्ययन विभाग">Department of Commerce and Business Studies</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Agriculture" data-hi="Agriculture">Agriculture</div>
+          <div class="megamenu-heading" data-en="HUMAN SCIENCES" data-hi="मानव विज्ञान">HUMAN SCIENCES</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=agriculture"><span data-en="Agriculture" data-hi="Agriculture">Agriculture</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=psychological-sciences"><span data-en="Dept. of Psychological Sciences" data-hi="मनोवैज्ञानिक विज्ञान विभाग">Dept. of Psychological Sciences</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="School of Management" data-hi="School of Management">School of Management</div>
+          <div class="megamenu-heading" data-en="LAW AND GOVERNANCE" data-hi="विधि एवं सुशासन">LAW AND GOVERNANCE</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=commerce-business-studies"><span data-en="Commerce & Buisness Studies" data-hi="Commerce & Buisness Studies">Commerce & Buisness Studies</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=law-governance"><span data-en="Department of Law and Governance" data-hi="विधि एवं सुशासन विभाग">Department of Law and Governance</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Law & Governance" data-hi="Law & Governance">Law & Governance</div>
+          <div class="megamenu-heading" data-en="HEALTH SCIENCE" data-hi="स्वास्थ्य विज्ञान">HEALTH SCIENCE</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=law-governance"><span data-en="Law & Governance" data-hi="Law & Governance">Law & Governance</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=pharmacy"><span data-en="Department of Pharmacy" data-hi="फार्मेसी विभाग">Department of Pharmacy</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Physical & Chemical" data-hi="Physical & Chemical">Physical & Chemical</div>
+          <div class="megamenu-heading" data-en="AGRICULTURE &amp; DEVELOPMENT" data-hi="कृषि एवं विकास">AGRICULTURE &amp; DEVELOPMENT</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=chemistry"><span data-en="Chemistry" data-hi="Chemistry">Chemistry</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=physics"><span data-en="Physics" data-hi="Physics">Physics</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=agriculture"><span data-en="Department of Agriculture" data-hi="कृषि विभाग">Department of Agriculture</span></a></li>
           </ul>
         </div>
       `;
@@ -966,7 +1041,6 @@ class CusbSidebar extends HTMLElement {
         <ul class="sidebar-menu-list">
           <li><a href="tenders.html" class="sidebar-link"><span class="sidebar-icon-box icon-emerald">${iconSvg('shield')}</span><span data-en="Active Tenders" data-hi="सक्रिय निविदाएं">Active Tenders</span></a></li>
           <li><a href="https://www.antiragging.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-rose">${iconSvg('lock')}</span><span data-en="Anti-Ragging Cell" data-hi="रैगिंग रोधी">Anti-Ragging Cell</span></a></li>
-          <li><a href="cs.html" class="sidebar-link"><span class="sidebar-icon-box icon-cyan">${iconSvg('laptop')}</span><span data-en="Computer Science Dept" data-hi="कंप्यूटर साइंस">Computer Science Dept</span></a></li>
           <li><a href="news-events.html?type=events" class="sidebar-link"><span class="sidebar-icon-box icon-purple">${iconSvg('graduation')}</span><span data-en="Convocation" data-hi="दीक्षांत समारोह">Convocation</span></a></li>
           <li><a href="https://webmail.cusb.ac.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-blue">${iconSvg('globe')}</span><span data-en="CUSB Webmail" data-hi="वेबमेल">CUSB Webmail</span></a></li>
           <li><a href="downloads.html" class="sidebar-link"><span class="sidebar-icon-box icon-indigo">${iconSvg('download')}</span><span data-en="Download Center" data-hi="डाउनलोड केंद्र">Download Center</span></a></li>

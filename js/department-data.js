@@ -320,19 +320,40 @@ window.cusbDepartments = {
  */
 window.cusbDepartmentAliases = {
   'life-science': 'life_science',
+  'life_science': 'life_science',
   'environmental-sciences': 'environmental_sciences',
+  'environmental_sciences': 'environmental_sciences',
   'historical-studies-archaeology': 'historical_studies',
+  'historical_studies_archaeology': 'historical_studies',
+  'historical-studies': 'historical_studies',
   'economic-studies-policy': 'economic_studies',
+  'economic_studies_policy': 'economic_studies',
+  'economic-studies': 'economic_studies',
   'development-studies': 'development_studies',
+  'development_studies': 'development_studies',
   'political-studies': 'political_studies',
+  'political_studies': 'political_studies',
   'sociological-studies': 'sociological_studies',
+  'sociological_studies': 'sociological_studies',
   'library-information-science': 'library_science',
+  'library_information_science': 'library_science',
+  'library-science': 'library_science',
   'teacher-education': 'teacher_education',
+  'teacher_education': 'teacher_education',
   'physical-education': 'physical_education',
+  'physical_education': 'physical_education',
   'indian-languages': 'hindi',
+  'indian_languages': 'hindi',
   'mass-communication-media': 'mass_communication',
+  'mass_communication_media': 'mass_communication',
+  'mass-communication': 'mass_communication',
   'commerce-business-studies': 'commerce_business',
-  'law-governance': 'law_governance'
+  'commerce_business_studies': 'commerce_business',
+  'commerce-business': 'commerce_business',
+  'law-governance': 'law_governance',
+  'law_governance': 'law_governance',
+  'psychological-sciences': 'psychological_sciences',
+  'psychological_sciences': 'psychological_sciences'
 };
 
 window.cusbDepartmentCatalogue = {

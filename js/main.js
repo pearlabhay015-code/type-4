@@ -194,41 +194,20 @@ function setLanguage(lang, options = {}) {
     if (select.value !== lang) select.value = lang;
   });
 
-  // Apply hand-authored English / Hindi text content immediately
-  const elements = document.querySelectorAll('[data-en], [data-hi]');
-  elements.forEach(el => {
-    if (el.classList.contains('notranslate') || el.closest('#languageSelect') || el.closest('.language-controls')) return;
-    const text = el.getAttribute(`data-${lang}`) || (isManual ? '' : el.getAttribute('data-en'));
-    if (text) {
-      if (text.includes('<') && text.includes('>')) {
-        el.innerHTML = text;
-      } else {
-        el.textContent = text;
-      }
-    }
-  });
+  applyDeclaredLanguageText(lang, isManual);
 
   if (window.cusbReplaceEmojiIcons) window.cusbReplaceEmojiIcons(document);
 
   // User-triggered language switch (not initial load)
   if (!isInitial && currentStored !== lang) {
     if (!isManual) {
-      // Switching to a foreign language (e.g. French -> Urdu -> Punjabi)
-      // Set target cookie and reload to translate 100% clean pristine HTML
       setGoogleTranslateCookie(lang);
-      window.location.reload();
+      loadGoogleTranslate();
+      applyGoogleTranslate(lang);
       return;
     } else {
-      // Switching back to English or Hindi from a foreign language
-      if (currentStored !== 'en' && currentStored !== 'hi') {
-        clearGoogleTranslateCookies();
-        window.location.reload();
-        return;
-      } else {
-        // Switching between English and Hindi locally (0ms instant)
-        clearGoogleTranslateCookies();
-        resetGoogleTranslate(lang);
-      }
+      clearGoogleTranslateCookies();
+      resetGoogleTranslate(lang);
     }
   }
 
@@ -244,12 +223,22 @@ function setLanguage(lang, options = {}) {
   document.dispatchEvent(new CustomEvent('cusb-language-changed', eventDetail));
 }
 
-function loadGoogleTranslate() {
-  const storedLang = localStorage.getItem('cusb-lang') || 'en';
-  if (storedLang === 'en' || storedLang === 'hi') {
-    return;
-  }
+function applyDeclaredLanguageText(lang, isManual) {
+  const elements = document.querySelectorAll('[data-en], [data-hi]');
+  elements.forEach(el => {
+    if (el.classList.contains('notranslate') || el.closest('#languageSelect') || el.closest('.language-controls')) return;
+    const text = el.getAttribute(`data-${lang}`) || (isManual ? '' : el.getAttribute('data-en'));
+    if (text) {
+      if (text.includes('<') && text.includes('>')) {
+        el.innerHTML = text;
+      } else {
+        el.textContent = text;
+      }
+    }
+  });
+}
 
+function loadGoogleTranslate() {
   if (!document.getElementById('google_translate_element')) {
     const widget = document.createElement('div');
     widget.id = 'google_translate_element';
@@ -301,6 +290,11 @@ function resetGoogleTranslate(targetLang = 'en') {
   if (combo) {
     combo.value = '';
     combo.dispatchEvent(new Event('change'));
+  }
+  if (targetLang === 'hi') {
+    setTimeout(() => {
+      if (localStorage.getItem('cusb-lang') === 'hi') applyDeclaredLanguageText('hi', true);
+    }, 120);
   }
 }
 
@@ -896,6 +890,7 @@ function initScrollToTop() {
    7. GOOGLE TRANSLATE BANNER SUPPRESSOR & OFFSET CLEANUP
    ========================================================================== */
 function initTranslateOffsetWatcher() {
+  let queued = false;
   const suppressTranslateBanner = () => {
     // Hide and disable any Google Translate banner frames, tooltips, or popups
     document.querySelectorAll('.goog-te-banner-frame, iframe.goog-te-banner-frame, #goog-gt-tt, .goog-te-balloon-frame, .VIpgJd-yDtfdf-l4e2f-Lg2fx, .skiptranslate').forEach(el => {
@@ -916,7 +911,15 @@ function initTranslateOffsetWatcher() {
   };
 
   suppressTranslateBanner();
-  setInterval(suppressTranslateBanner, 200);
+  const queueSuppression = () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => {
+      queued = false;
+      suppressTranslateBanner();
+    });
+  };
+  new MutationObserver(queueSuppression).observe(document.body, { childList: true, subtree: true });
 }
 
 /* ==========================================================================

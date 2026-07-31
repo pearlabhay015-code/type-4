@@ -1,0 +1,45 @@
+name: Deploy public site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify API endpoint configuration
+        env:
+          CUSB_API_URL: ${{ vars.CUSB_API_URL }}
+        run: |
+          test -n "$CUSB_API_URL"
+          case "$CUSB_API_URL" in
+            https://*/api) ;;
+            *) echo "Set the CUSB_API_URL repository variable to your HTTPS API URL ending in /api."; exit 1 ;;
+          esac
+      - name: Build Pages artifact
+        env:
+          CUSB_API_URL: ${{ vars.CUSB_API_URL }}
+        run: |
+          mkdir _site
+          rsync -a --exclude='.git' --exclude='.github' --exclude='api' --exclude='database' --exclude='docker' --exclude='Dockerfile' --exclude='docker-compose.yml' --exclude='server.py' --exclude='admin.db' --exclude='.env' --exclude='.env.example' --exclude='DEPLOYMENT.md' --exclude='XAMPP-SETUP.md' ./ _site/
+          grep -rl '__CUSB_API_URL__' _site | xargs -r sed -i "s|__CUSB_API_URL__|$CUSB_API_URL|g"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -105,8 +105,12 @@
     const savedTheme = localStorage.getItem('cusb-theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
 
-    // The API is served from the same site on both XAMPP and the local server.
-    const API_BASE = new URL('.', window.location.href).pathname.replace(/\/$/, '');
+    // GitHub Pages uses the hosted API; local and XAMPP use the same-origin API.
+    const configuredApiBase = '__CUSB_API_URL__'.trim().replace(/\/+$/, '');
+    const API_BASE = configuredApiBase && configuredApiBase !== '__CUSB_API_URL__'
+      ? configuredApiBase
+      : new URL('.', window.location.href).pathname.replace(/\/$/, '');
+    const HAS_HOSTED_API = configuredApiBase && configuredApiBase !== '__CUSB_API_URL__';
 
     // DOM Elements
     const gatewayTitle = document.getElementById('gatewayTitle');
@@ -188,6 +192,10 @@
           setupForm.classList.add('hidden');
         }
       } catch (err) {
+        if (HAS_HOSTED_API) {
+          showAlert("The CMS service is unavailable. Please try again shortly.");
+          return;
+        }
         console.log("Backend offline, switching to Client-Side Gateway Mode");
         clearAlert();
         
@@ -254,6 +262,10 @@
           return;
         }
       } catch (err) {
+        if (HAS_HOSTED_API) {
+          showAlert("The CMS service is unavailable. Your account was not created.");
+          return;
+        }
         console.log("Backend offline, saving account locally");
       }
 
@@ -307,6 +319,10 @@
           return;
         }
       } catch (err) {
+        if (HAS_HOSTED_API) {
+          showAlert("The CMS service is unavailable. Please try again shortly.");
+          return;
+        }
         console.log("Backend offline, verifying credentials locally");
       }
 

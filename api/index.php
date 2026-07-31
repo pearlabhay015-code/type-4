@@ -6,13 +6,15 @@ header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 header('Cache-Control: no-store, private');
 
-// Permit the local Python preview server to use the XAMPP API during development.
-// Apache-hosted pages stay same-origin and do not need this branch.
+// Allow only the configured public site and local preview to call this API.
 $origin = (string)($_SERVER['HTTP_ORIGIN'] ?? '');
-if (in_array($origin, ['http://localhost:8000', 'http://127.0.0.1:8000'], true)) {
+$allowedOrigins = array_filter(array_map('trim', explode(',', (string)(getenv('CORS_ALLOWED_ORIGINS') ?: ''))));
+$allowedOrigins = array_merge($allowedOrigins, ['http://localhost:8000', 'http://127.0.0.1:8000']);
+if ($origin !== '' && in_array($origin, $allowedOrigins, true)) {
     header('Access-Control-Allow-Origin: ' . $origin);
     header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
     header('Access-Control-Allow-Headers: Content-Type, X-Session-Token');
+    header('Access-Control-Allow-Credentials: true');
     header('Vary: Origin');
 }
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'OPTIONS') {
@@ -20,11 +22,12 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'OPTIONS') {
     exit;
 }
 
-const DB_HOST = '127.0.0.1';
-const DB_NAME = 'cusb_website';
-const DB_USER = 'cusb_cms';
-const DB_PASSWORD = 'change-this-before-going-live';
 const SESSION_TTL = 3600;
+
+function config(string $key, string $default): string {
+    $value = getenv($key);
+    return is_string($value) && $value !== '' ? $value : $default;
+}
 
 function respond(int $status, array $data): never {
     http_response_code($status);
@@ -37,9 +40,9 @@ function db(): PDO {
     if ($connection instanceof PDO) return $connection;
     try {
         $connection = new PDO(
-            'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4',
-            DB_USER,
-            DB_PASSWORD,
+            'mysql:host=' . config('DB_HOST', '127.0.0.1') . ';port=' . config('DB_PORT', '3306') . ';dbname=' . config('DB_NAME', 'cusb_website') . ';charset=utf8mb4',
+            config('DB_USER', 'cusb_cms'),
+            config('DB_PASSWORD', 'change-this-before-going-live'),
             [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]
         );
         return $connection;
