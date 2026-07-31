@@ -195,7 +195,7 @@
   if (!departments[slug]) setText('deptSummary', 'Department not found. Please choose a department from the Courses & Programmes page.');
 
   if (departments[slug] && window.location.protocol !== 'file:') {
-    fetch(`/api/departments?dept=${encodeURIComponent(slug)}`)
+    fetch(window.cusbApiUrl(`departments?dept=${encodeURIComponent(slug)}`))
       .then((response) => response.ok ? response.json() : null)
       .then((apiData) => { if (apiData) render(mergeApiData(baseData, apiData)); })
       .catch(() => { /* Local static catalogue remains available if the API is offline. */ });

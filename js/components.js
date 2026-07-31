@@ -4,8 +4,11 @@
  */
 
 window.cusbApiUrl = window.cusbApiUrl || ((path) => {
+  const route = String(path).replace(/^\/+/, '');
+  const isPythonPreview = ['localhost', '127.0.0.1'].includes(window.location.hostname) && window.location.port === '8000';
+  if (isPythonPreview) return `http://localhost:8080/type4/api/${route}`;
   const base = new URL('.', document.baseURI);
-  return new URL(`api/${String(path).replace(/^\/+/, '')}`, base).toString();
+  return new URL(`api/${route}`, base).toString();
 });
 
 const iconSvg = (name, label = '') => `
@@ -668,90 +671,90 @@ class CusbNavbar extends HTMLElement {
     if (academicsMenu) {
       academicsMenu.innerHTML = `
         <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Earth, Biological and Environmental Sciences" data-hi="Earth, Biological and Environmental Sciences">Earth, Biological and Environmental Sciences</div>
+          <div class="megamenu-heading" data-en="Maths, Stat & cs" data-hi="Maths, Stat & cs">Maths, Stat & cs</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=bioinformatics"><span data-en="Dept. of Bioinformatics" data-hi="Dept. of Bioinformatics">Dept. of Bioinformatics</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=geology"><span data-en="Department of Geology" data-hi="Department of Geology">Department of Geology</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=geography"><span data-en="Department of Geography" data-hi="Department of Geography">Department of Geography</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=life-science"><span data-en="Dept. of Life Science" data-hi="Dept. of Life Science">Dept. of Life Science</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=biotechnology"><span data-en="Department of Biotechnology" data-hi="Department of Biotechnology">Department of Biotechnology</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=environmental-sciences"><span data-en="Department of Environmental Sciences" data-hi="Department of Environmental Sciences">Department of Environmental Sciences</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=mathematics"><span data-en="Mathematics" data-hi="Mathematics">Mathematics</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=statistics"><span data-en="Statistics" data-hi="Statistics">Statistics</span></a></li>
+            <li class="megamenu-item"><a href="cs.html"><span data-en="CS" data-hi="CS">CS</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Social Sciences and Policies" data-hi="Social Sciences and Policies">Social Sciences and Policies</div>
+          <div class="megamenu-heading" data-en="Earth, Bio & Evs" data-hi="Earth, Bio & Evs">Earth, Bio & Evs</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=historical-studies-archaeology"><span data-en="Department of Historical Studies and Archaeology" data-hi="Department of Historical Studies and Archaeology">Department of Historical Studies and Archaeology</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=economic-studies-policy"><span data-en="Department of Economic Studies and Policy" data-hi="Department of Economic Studies and Policy">Department of Economic Studies and Policy</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=bioinformatics"><span data-en="Bioinformatics" data-hi="Bioinformatics">Bioinformatics</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=geology"><span data-en="Geology" data-hi="Geology">Geology</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=geography"><span data-en="Geography" data-hi="Geography">Geography</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=life-science"><span data-en="Life Science" data-hi="Life Science">Life Science</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=biotechnology"><span data-en="Biotech" data-hi="Biotech">Biotech</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=environmental-sciences"><span data-en="Evs" data-hi="Evs">Evs</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Human Science" data-hi="Human Science">Human Science</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=psychological-sciences"><span data-en="Psychology" data-hi="Psychology">Psychology</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Social Sciences & Policies" data-hi="Social Sciences & Policies">Social Sciences & Policies</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=historical-studies-archaeology"><span data-en="Historical Studies" data-hi="Historical Studies">Historical Studies</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=economic-studies-policy"><span data-en="Economics" data-hi="Economics">Economics</span></a></li>
             <li class="megamenu-item"><a href="department.html?dept=development-studies"><span data-en="Development Studies" data-hi="Development Studies">Development Studies</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=political-studies"><span data-en="Dept. of Political Studies" data-hi="Dept. of Political Studies">Dept. of Political Studies</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=sociological-studies"><span data-en="Department of Sociological Studies" data-hi="Department of Sociological Studies">Department of Sociological Studies</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=library-information-science"><span data-en="Dept. of Library & Information Science" data-hi="Dept. of Library & Information Science">Dept. of Library & Information Science</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=political-studies"><span data-en="Political Studies" data-hi="Political Studies">Political Studies</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=sociological-studies"><span data-en="Sociological Studies" data-hi="Sociological Studies">Sociological Studies</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=library-information-science"><span data-en="Library & Info Science" data-hi="Library & Info Science">Library & Info Science</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Mathematics, Statistics and Computer Science" data-hi="Mathematics, Statistics and Computer Science">Mathematics, Statistics and Computer Science</div>
+          <div class="megamenu-heading" data-en="School of Education" data-hi="School of Education">School of Education</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=mathematics"><span data-en="Dept. of Mathematics" data-hi="Dept. of Mathematics">Dept. of Mathematics</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=statistics"><span data-en="Department of Statistics" data-hi="Department of Statistics">Department of Statistics</span></a></li>
-            <li class="megamenu-item"><a href="cs.html"><span data-en="Department of Computer Science" data-hi="Department of Computer Science">Department of Computer Science</span></a></li>
-          </ul>
-        </div>
-        <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="School of Education (Teacher & Physical)" data-hi="School of Education (Teacher & Physical)">School of Education (Teacher & Physical)</div>
-          <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=teacher-education"><span data-en="Department of Teacher Education" data-hi="Department of Teacher Education">Department of Teacher Education</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=physical-education"><span data-en="Department of Physical Education" data-hi="Department of Physical Education">Department of Physical Education</span></a></li>
-          </ul>
-        </div>
-        <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Physical & Chemical" data-hi="Physical & Chemical">Physical & Chemical</div>
-          <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=chemistry"><span data-en="Department of Chemistry" data-hi="Department of Chemistry">Department of Chemistry</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=physics"><span data-en="Department of Physics" data-hi="Department of Physics">Department of Physics</span></a></li>
-          </ul>
-        </div>
-        <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Languages & Literature" data-hi="Languages & Literature">Languages & Literature</div>
-          <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=english"><span data-en="Department of English" data-hi="Department of English">Department of English</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=indian-languages"><span data-en="Dept. of Indian Languages" data-hi="Dept. of Indian Languages">Dept. of Indian Languages</span></a></li>
-          </ul>
-        </div>
-        <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Media, Arts & Aesthetics" data-hi="Media, Arts & Aesthetics">Media, Arts & Aesthetics</div>
-          <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=mass-communication-media"><span data-en="Mass Communication and Media" data-hi="Mass Communication and Media">Mass Communication and Media</span></a></li>
-          </ul>
-        </div>
-        <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="School of Management" data-hi="School of Management">School of Management</div>
-          <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=commerce-business-studies"><span data-en="Department of Commerce and Business Studies" data-hi="Department of Commerce and Business Studies">Department of Commerce and Business Studies</span></a></li>
-          </ul>
-        </div>
-        <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Human Sciences" data-hi="Human Sciences">Human Sciences</div>
-          <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=psychological-sciences"><span data-en="Dept. of Psychological Sciences" data-hi="Dept. of Psychological Sciences">Dept. of Psychological Sciences</span></a></li>
-          </ul>
-        </div>
-        <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Law and Governance" data-hi="Law and Governance">Law and Governance</div>
-          <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=law-governance"><span data-en="Department of Law and Governance" data-hi="Department of Law and Governance">Department of Law and Governance</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=teacher-education"><span data-en="Teacher Education" data-hi="Teacher Education">Teacher Education</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=physical-education"><span data-en="Physical Ed" data-hi="Physical Ed">Physical Ed</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
           <div class="megamenu-heading" data-en="Health Science" data-hi="Health Science">Health Science</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=pharmacy"><span data-en="Department of Pharmacy" data-hi="Department of Pharmacy">Department of Pharmacy</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=pharmacy"><span data-en="Pharmacy" data-hi="Pharmacy">Pharmacy</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
-          <div class="megamenu-heading" data-en="Agriculture & Development" data-hi="Agriculture & Development">Agriculture & Develop...</div>
+          <div class="megamenu-heading" data-en="Language & Literature" data-hi="Language & Literature">Language & Literature</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=agriculture"><span data-en="Department of Agriculture" data-hi="Department of Agriculture">Department of Agriculture</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=english"><span data-en="English" data-hi="English">English</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=indian-languages"><span data-en="Indian Languages" data-hi="Indian Languages">Indian Languages</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Media, Arts & Aesthetics" data-hi="Media, Arts & Aesthetics">Media, Arts & Aesthetics</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=mass-communication-media"><span data-en="Mass Communication" data-hi="Mass Communication">Mass Communication</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Agriculture" data-hi="Agriculture">Agriculture</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=agriculture"><span data-en="Agriculture" data-hi="Agriculture">Agriculture</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="School of Management" data-hi="School of Management">School of Management</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=commerce-business-studies"><span data-en="Commerce & Buisness Studies" data-hi="Commerce & Buisness Studies">Commerce & Buisness Studies</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Law & Governance" data-hi="Law & Governance">Law & Governance</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=law-governance"><span data-en="Law & Governance" data-hi="Law & Governance">Law & Governance</span></a></li>
+          </ul>
+        </div>
+        <div class="megamenu-column">
+          <div class="megamenu-heading" data-en="Physical & Chemical" data-hi="Physical & Chemical">Physical & Chemical</div>
+          <ul class="megamenu-list">
+            <li class="megamenu-item"><a href="department.html?dept=chemistry"><span data-en="Chemistry" data-hi="Chemistry">Chemistry</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=physics"><span data-en="Physics" data-hi="Physics">Physics</span></a></li>
           </ul>
         </div>
       `;
@@ -931,6 +934,12 @@ class CusbChatbot extends HTMLElement {
             <input id="chatbotInput" type="text" autocomplete="off" placeholder="Ask about admissions, courses, hostel..." aria-label="Ask CUSB Assistant">
             <button class="chatbot-send-btn" type="submit" aria-label="Send message">${iconSvg('send')}</button>
           </form>
+          <div class="chatbot-enquiry-bar">
+            <button class="chatbot-enquiry-btn-inner" id="chatbotEnquiryBtnInner" type="button">
+              ${iconSvg('file')}
+              <span data-en="Submit Official Enquiry →" data-hi="आधिकारिक पूछताछ दर्ज करें →">Submit Official Enquiry →</span>
+            </button>
+          </div>
         </section>
         <button class="chatbot-toggle" id="chatbotToggleBtn" type="button" aria-label="Open chatbot" aria-expanded="false">
           ${iconSvg('robot-chat')}

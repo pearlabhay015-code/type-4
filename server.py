@@ -249,6 +249,73 @@ def init_db():
         )
     ''')
 
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS student_achievements (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            description TEXT NOT NULL,
+            tag TEXT NOT NULL,
+            icon TEXT DEFAULT '🏆',
+            icon_color TEXT DEFAULT '#004b9b',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS events_schedule (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            event_date TEXT NOT NULL,
+            event_time TEXT NOT NULL,
+            category TEXT NOT NULL,
+            category_color TEXT DEFAULT '#28a745',
+            border_color TEXT DEFAULT '#28a745',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+
+    # Seed student_achievements if empty
+    c.execute('SELECT COUNT(*) FROM student_achievements')
+    if c.fetchone()[0] == 0:
+        achievements_seed = [
+            ("National Hackathon & Web Competition", "Computer Science team won 1st prize in 24-hr Smart Web & AI Design Competition", "🥇 Gold Winner • 2 days ago", "🏆", "#004b9b"),
+            ("₹1.2 Crore DST-SERB Research Grant", "Physical Sciences & Bioinformatics faculty awarded DST-SERB grant for Quantum Materials", "⭐ Research Grant • 4 days ago", "💡", "#b8860b"),
+            ("Inter-Department Athletics Meet 2026", "800+ student athletes competed in 18 track & field events at CUSB Sports Stadium", "🏃 800+ Athletes • 1 week ago", "🤝", "#28a745"),
+            ("NAAC Institutional Accreditation", "CUSB awarded top rating for excellence in higher education, research & green campus", "🏛️ Top Rating • 2 weeks ago", "🗣️", "#6f42c1")
+        ]
+        c.executemany('''
+            INSERT INTO student_achievements (title, description, tag, icon, icon_color)
+            VALUES (?, ?, ?, ?, ?)
+        ''', achievements_seed)
+
+    # Seed events_schedule if empty
+    c.execute('SELECT COUNT(*) FROM events_schedule')
+    if c.fetchone()[0] == 0:
+        schedule_seed = [
+            ("45th INCA International Congress", "2026-03-18", "9:30 AM - 4:30 PM", "International Conference • Gaya Campus", "rgba(40,167,69,0.12)", "#28a745"),
+            ("National Science Day Exhibition", "2026-03-18", "10:00 AM - 2:00 PM", "School of Physical Sciences", "rgba(214,155,23,0.15)", "#b8860b"),
+            ("CUSB Foundation Day & Cultural Fest", "2026-03-18", "5:00 PM - 9:00 PM", "Annual Celebration • Main Auditorium", "rgba(111,66,193,0.12)", "#6f42c1")
+        ]
+        c.executemany('''
+            INSERT INTO events_schedule (title, event_date, event_time, category, category_color, border_color)
+            VALUES (?, ?, ?, ?, ?, ?)
+        ''', schedule_seed)
+
+    # Seed audit_logs if empty
+    c.execute('SELECT COUNT(*) FROM audit_logs')
+    if c.fetchone()[0] == 0:
+        logs_seed = [
+            ("Abhay Kumar (Admin)", "Published announcement: CUSB PG Admissions Bulletin 2026."),
+            ("Prof. K. N. Singh (VC)", "Approved 45th INCA International Congress schedule."),
+            ("Recruitment Cell", "Updated non-teaching staff recruitment notification & details."),
+            ("Computer Science Dept", "Uploaded M.Sc. CS & Ph.D. course syllabi and PYQ resources."),
+            ("IQAC Coordinator", "Updated NAAC institutional accreditation data and faculty directory.")
+        ]
+        c.executemany('''
+            INSERT INTO audit_logs (username, action)
+            VALUES (?, ?)
+        ''', logs_seed)
+
     # Older local databases predate ordering and timestamp columns. Apply the
     # small, non-destructive migrations here so upgrading the project preserves
     # existing department entries.
@@ -433,6 +500,52 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             
             logs = [{"username": r[0], "action": r[1], "created_at": r[2]} for r in rows]
             self.send_json(200, logs)
+            return
+
+        # 4b. API: Load Dashboard Widgets Data
+        elif path == '/api/dashboard/widgets':
+            conn = sqlite3.connect(DB_FILE)
+            c = conn.cursor()
+
+            # 1. Notice Board
+            c.execute('SELECT id, title_en, desc_en, type, image_url, date_str, created_at FROM announcements ORDER BY id DESC LIMIT 5')
+            ann_rows = c.fetchall()
+            notices = [{
+                "id": r[0], "title": r[1], "desc": r[2], "type": r[3],
+                "image_url": r[4] or 'assets/images/blockB.jpg',
+                "date_str": r[5] or 'March 10, 2026', "created_at": r[6]
+            } for r in ann_rows]
+
+            # 2. Student Achievements
+            c.execute('SELECT id, title, description, tag, icon, icon_color FROM student_achievements ORDER BY id DESC LIMIT 6')
+            ach_rows = c.fetchall()
+            achievements = [{
+                "id": r[0], "title": r[1], "desc": r[2], "tag": r[3],
+                "icon": r[4], "icon_color": r[5]
+            } for r in ach_rows]
+
+            # 3. Schedule
+            c.execute('SELECT id, title, event_date, event_time, category, category_color, border_color FROM events_schedule ORDER BY id ASC LIMIT 6')
+            sch_rows = c.fetchall()
+            schedule = [{
+                "id": r[0], "title": r[1], "event_date": r[2], "event_time": r[3],
+                "category": r[4], "category_color": r[5], "border_color": r[6]
+            } for r in sch_rows]
+
+            # 4. Recent Activities (Audit Logs)
+            c.execute('SELECT id, username, action, created_at FROM audit_logs ORDER BY id DESC LIMIT 6')
+            log_rows = c.fetchall()
+            recent_activities = [{
+                "id": r[0], "username": r[1], "action": r[2], "created_at": r[3]
+            } for r in log_rows]
+
+            conn.close()
+            self.send_json(200, {
+                "notice_board": notices,
+                "achievements": achievements,
+                "schedule": schedule,
+                "recent_activities": recent_activities
+            })
             return
 
         # 5. API: Search Website

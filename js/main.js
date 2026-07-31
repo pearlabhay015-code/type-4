@@ -831,6 +831,7 @@ function initChatbot() {
     windowEl.classList.add('active');
     windowEl.setAttribute('aria-hidden', 'false');
     toggleBtn.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('chatbot-active');
     setTimeout(() => input.focus(), 100);
   };
 
@@ -838,6 +839,7 @@ function initChatbot() {
     windowEl.classList.remove('active');
     windowEl.setAttribute('aria-hidden', 'true');
     toggleBtn.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('chatbot-active');
   };
 
   toggleBtn.addEventListener('click', () => {
@@ -846,6 +848,19 @@ function initChatbot() {
   });
 
   closeBtn.addEventListener('click', closeChat);
+
+  const innerEnquiryBtn = document.getElementById('chatbotEnquiryBtnInner');
+  if (innerEnquiryBtn) {
+    innerEnquiryBtn.addEventListener('click', () => {
+      const modalOverlay = document.getElementById('enquiryModalOverlay');
+      if (modalOverlay) {
+        modalOverlay.classList.add('active');
+        modalOverlay.setAttribute('aria-hidden', 'false');
+      } else {
+        window.location.href = 'enquiry.html';
+      }
+    });
+  }
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -2021,6 +2036,35 @@ function initNewsTicker() {
   cusbNewsItems.forEach(item => track.appendChild(createNewsCard(item)));
   cusbNewsItems.forEach(item => track.appendChild(createNewsCard(item)));
 
+  // Fetch live database announcements through the configured site API.
+  fetch(window.cusbApiUrl('announcements'))
+    .then(res => res.ok ? res.json() : [])
+    .then(dbAnnouncements => {
+      if (Array.isArray(dbAnnouncements) && dbAnnouncements.length > 0) {
+        dbAnnouncements.forEach(cItem => {
+          if (!cusbNewsItems.some(existing => existing.id === 'cusb-db-' + cItem.id)) {
+            cusbNewsItems.unshift({
+              id: 'cusb-db-' + cItem.id,
+              title_en: cItem.title_en,
+              title_hi: cItem.title_hi || cItem.title_en,
+              category_en: cItem.type ? cItem.type.toUpperCase() : "CUSB Announcement",
+              category_hi: cItem.type ? cItem.type.toUpperCase() : "सीयूएसबी घोषणा",
+              date: cItem.date_str || "LATEST",
+              publisher: "CUSB Administration",
+              src: cItem.image_url || "assets/images/blockB.jpg",
+              desc_en: cItem.desc_en,
+              desc_hi: cItem.desc_hi || cItem.desc_en,
+              link: "news-events.html"
+            });
+          }
+        });
+        track.innerHTML = '';
+        cusbNewsItems.forEach(item => track.appendChild(createNewsCard(item)));
+        cusbNewsItems.forEach(item => track.appendChild(createNewsCard(item)));
+      }
+    })
+    .catch(() => {});
+
   // Continuous Right-to-Left Moving Animation & Manual Drag/Scroll
   let position = 0;
   let speed = -0.85; 
@@ -2416,4 +2460,231 @@ document.addEventListener('DOMContentLoaded', () => {
       if (chatWin) makeElementDraggable(chatWin, chatWin.querySelector('.chatbot-header'));
     }
   }, 1000);
+
+  // Initialize Dynamic Hero Carousel
+  initHeroCarousel();
 });
+
+// Dynamic Auto-Changing Hero Carousel based on New Announcements & News Updates
+function initHeroCarousel() {
+  const heroWrapper = document.querySelector('.hero-carousel-wrapper');
+  if (!heroWrapper) return;
+
+  const bgLink = document.getElementById('heroBgLink');
+  const bgSlide = document.getElementById('heroBgSlide');
+  const badgeText = document.getElementById('heroBadgeText');
+  const heroTitle = document.getElementById('heroTitle');
+  const heroSub = document.getElementById('heroSub');
+  const primaryBtn = document.getElementById('heroPrimaryBtn');
+  const dotsContainer = document.getElementById('heroDots');
+  const prevBtn = document.getElementById('heroPrevBtn');
+  const nextBtn = document.getElementById('heroNextBtn');
+
+  if (!bgSlide || !heroTitle) return;
+
+  // Professional curated baseline hero slides featuring university campus, labs, research & achievements
+  let slides = [
+    {
+      badge_en: "Admissions Open 2026–27",
+      badge_hi: "प्रवेश प्रारंभ 2026-27",
+      title_en: "Central University<br>of <span>South Bihar</span>",
+      title_hi: "दक्षिण बिहार<span><br>केन्द्रीय विश्वविद्यालय</span>",
+      sub_en: "A premier central university under the Ministry of Education, Government of India. 300 acres of green learning at Gaya, Bihar.",
+      sub_hi: "भारत सरकार के शिक्षा मंत्रालय के तहत एक प्रमुख केंद्रीय विश्वविद्यालय। गया, बिहार में 300 एकड़ का हरा-भरा शैक्षणिक परिसर।",
+      image: "assets/drone.png",
+      link: "admissions.html",
+      btn_text_en: "Apply Now →",
+      btn_text_hi: "अभी आवेदन करें →"
+    },
+    {
+      badge_en: "National AI & Web Hackathon Winner",
+      badge_hi: "राष्ट्रीय एआई व वेब हैकाथॉन विजेता",
+      title_en: "CUSB Tech Team Wins<br><span>National 1st Prize</span>",
+      title_hi: "सीयूएसबी टेक टीम को मिला<span><br>प्रथम राष्ट्रीय पुरस्कार</span>",
+      sub_en: "Computer Science and Bioinformatics team secures top award in 24-hour Smart Web & AI Design Competition.",
+      sub_hi: "कंप्यूटर विज्ञान और बायोइन्फॉर्मेटिक्स टीम ने 24-घंटे के स्मार्ट वेब एवं एआई प्रतियोगिता में शीर्ष स्थान हासिल किया।",
+      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2000&auto=format&fit=crop",
+      link: "news-events.html",
+      btn_text_en: "Read Achievement →",
+      btn_text_hi: "उपलब्धि देखें →"
+    },
+    {
+      badge_en: "Research & Innovation",
+      badge_hi: "अनुसंधान एवं नवाचार",
+      title_en: "₹1.2 Crore DST-SERB<br><span>Research Grant</span>",
+      title_hi: "₹1.2 करोड़ का<span><br>डीएसटी-एसईआरबी शोध अनुदान</span>",
+      sub_en: "Physical Sciences & Bioinformatics faculty awarded major research grant for Quantum Materials & Advanced Computing.",
+      sub_hi: "भौतिक विज्ञान व बायोइन्फॉर्मेटिक्स संकाय को क्वांटम सामग्री और उन्नत कंप्यूटिंग शोध के लिए प्रतिष्ठित अनुदान मिला।",
+      image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2000&auto=format&fit=crop",
+      link: "research.html",
+      btn_text_en: "Explore Research →",
+      btn_text_hi: "शोध देखें →"
+    },
+    {
+      badge_en: "International Congress 2026",
+      badge_hi: "अंतर्राष्ट्रीय सम्मेलन 2026",
+      title_en: "45th INCA International<br><span>Cartographic Congress</span>",
+      title_hi: "45वां आईएनसीए<span><br>अंतर्राष्ट्रीय सम्मेलन</span>",
+      sub_en: "Hosted at CUSB Gaya Campus featuring global scientists, cartographers, and geospatial research experts.",
+      sub_hi: "सीयूएसबी गया परिसर में वैश्विक वैज्ञानिकों, मानचित्रकारों और भू-स्थानिक विशेषज्ञों की उपस्थिति में आयोजित।",
+      image: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?q=80&w=2000&auto=format&fit=crop",
+      link: "news-events.html",
+      btn_text_en: "View Details →",
+      btn_text_hi: "विवरण देखें →"
+    },
+    {
+      badge_en: "NAAC Top Rating",
+      badge_hi: "नेक (NAAC) सर्वोच्च रेटिंग",
+      title_en: "Excellence in Higher Education<br>& <span>Green Campus</span>",
+      title_hi: "उच्च शिक्षा एवं<span><br>हरित परिसर में उत्कृष्टता</span>",
+      sub_en: "Recognized for modern eco-friendly infrastructure, state-of-the-art laboratories, and high-impact academic outcomes.",
+      sub_hi: "आधुनिक पर्यावरण-अनुकूल बुनियादी ढांचे, अत्याधुनिक प्रयोगशालाओं और उच्च शैक्षणिक परिणामों के लिए मान्यता प्राप्त।",
+      image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2000&auto=format&fit=crop",
+      link: "about.html",
+      btn_text_en: "Learn About CUSB →",
+      btn_text_hi: "सीयूएसबी के बारे में जानें →"
+    }
+  ];
+
+  let currentIndex = 0;
+  let carouselInterval = null;
+
+  // Dynamically load new announcements through the configured site API.
+  fetch(window.cusbApiUrl('announcements'))
+    .then(res => res.ok ? res.json() : [])
+    .then(dbData => {
+      if (Array.isArray(dbData) && dbData.length > 0) {
+        dbData.slice(0, 3).forEach(ann => {
+          slides.unshift({
+            badge_en: ann.type ? ann.type.toUpperCase() : "LATEST ANNOUNCEMENT",
+            badge_hi: ann.type ? ann.type.toUpperCase() : "नवीनतम घोषणा",
+            title_en: ann.title_en,
+            title_hi: ann.title_hi || ann.title_en,
+            sub_en: ann.desc_en,
+            sub_hi: ann.desc_hi || ann.desc_en,
+            image: ann.image_url || "assets/drone.png",
+            link: "news-events.html",
+            btn_text_en: "Read Announcement →",
+            btn_text_hi: "घोषणा पढ़ें →"
+          });
+        });
+        renderDots();
+      }
+    })
+    .catch(() => {});
+
+  function renderDots() {
+    if (!dotsContainer) return;
+    dotsContainer.innerHTML = '';
+    slides.forEach((_, idx) => {
+      const dot = document.createElement('button');
+      dot.className = `hero-dot ${idx === currentIndex ? 'active' : ''}`;
+      dot.setAttribute('aria-label', `Go to slide ${idx + 1}`);
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        goToSlide(idx);
+      });
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  function updateSlide(index) {
+    const slide = slides[index];
+    if (!slide) return;
+
+    const lang = localStorage.getItem('cusb-lang') || 'en';
+    const isHi = lang === 'hi';
+
+    // Trigger smooth fade transition for text
+    const textEls = [badgeText, heroTitle, heroSub];
+    textEls.forEach(el => { if (el) el.classList.add('hero-slide-fade'); });
+
+    setTimeout(() => {
+      // Update background image & clickable link
+      if (bgSlide) {
+        bgSlide.style.backgroundImage = `url('${slide.image}')`;
+        bgSlide.classList.remove('zooming');
+        void bgSlide.offsetWidth; // trigger reflow
+        bgSlide.classList.add('zooming');
+      }
+      if (bgLink) {
+        bgLink.href = slide.link;
+      }
+
+      // Update text content
+      if (badgeText) {
+        badgeText.textContent = isHi ? slide.badge_hi : slide.badge_en;
+        badgeText.setAttribute('data-en', slide.badge_en);
+        badgeText.setAttribute('data-hi', slide.badge_hi);
+      }
+      if (heroTitle) {
+        heroTitle.innerHTML = isHi ? slide.title_hi : slide.title_en;
+        heroTitle.setAttribute('data-en', slide.title_en);
+        heroTitle.setAttribute('data-hi', slide.title_hi);
+      }
+      if (heroSub) {
+        heroSub.textContent = isHi ? slide.sub_hi : slide.sub_en;
+        heroSub.setAttribute('data-en', slide.sub_en);
+        heroSub.setAttribute('data-hi', slide.sub_hi);
+      }
+      if (primaryBtn) {
+        primaryBtn.href = slide.link;
+        primaryBtn.textContent = isHi ? slide.btn_text_hi : slide.btn_text_en;
+        primaryBtn.setAttribute('data-en', slide.btn_text_en);
+        primaryBtn.setAttribute('data-hi', slide.btn_text_hi);
+      }
+
+      // Fade text back in
+      textEls.forEach(el => { if (el) el.classList.remove('hero-slide-fade'); });
+
+      // Update pagination dots
+      const dots = dotsContainer ? dotsContainer.querySelectorAll('.hero-dot') : [];
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }, 220);
+  }
+
+  function goToSlide(index) {
+    currentIndex = (index + slides.length) % slides.length;
+    updateSlide(currentIndex);
+    resetTimer();
+  }
+
+  function nextSlide() {
+    goToSlide(currentIndex + 1);
+  }
+
+  function prevSlide() {
+    goToSlide(currentIndex - 1);
+  }
+
+  function startTimer() {
+    carouselInterval = setInterval(nextSlide, 5500);
+  }
+
+  function resetTimer() {
+    clearInterval(carouselInterval);
+    startTimer();
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      prevSlide();
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      nextSlide();
+    });
+  }
+
+  renderDots();
+  updateSlide(0);
+  startTimer();
+}

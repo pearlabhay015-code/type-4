@@ -6,6 +6,20 @@ header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 header('Cache-Control: no-store, private');
 
+// Permit the local Python preview server to use the XAMPP API during development.
+// Apache-hosted pages stay same-origin and do not need this branch.
+$origin = (string)($_SERVER['HTTP_ORIGIN'] ?? '');
+if (in_array($origin, ['http://localhost:8000', 'http://127.0.0.1:8000'], true)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+    header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+    header('Access-Control-Allow-Headers: Content-Type, X-Session-Token');
+    header('Vary: Origin');
+}
+if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'OPTIONS') {
+    http_response_code(204);
+    exit;
+}
+
 const DB_HOST = '127.0.0.1';
 const DB_NAME = 'cusb_website';
 const DB_USER = 'cusb_cms';
@@ -32,6 +46,22 @@ function db(): PDO {
     } catch (PDOException) {
         respond(503, ['error' => 'The CMS database is unavailable. Check api/index.php database settings.']);
     }
+}
+
+function tableExists(string $table): bool {
+    static $known = [];
+    if (array_key_exists($table, $known)) return $known[$table];
+    $stmt = db()->prepare('SHOW TABLES LIKE ?');
+    $stmt->execute([$table]);
+    return $known[$table] = (bool)$stmt->fetchColumn();
+}
+
+function legacyAnnouncementPayload(array $row): array {
+    return [
+        'id' => (int)$row['id'], 'title_en' => $row['title'], 'title_hi' => $row['title'],
+        'desc_en' => $row['summary'] ?? '', 'desc_hi' => $row['summary'] ?? '', 'type' => 'notice',
+        'image_url' => null, 'date_str' => $row['publish_date'] ?? '', 'created_at' => $row['created_at'] ?? ''
+    ];
 }
 
 function input(): array {
@@ -141,7 +171,13 @@ if ($method === 'GET' && $route === 'announcements') {
     if (!$showAll) $sql .= " AND status = 'published'";
     if ($type !== '') { $sql .= ' AND type = ?'; $values[] = $type; }
     $sql .= ' ORDER BY published_at DESC, id DESC'; $stmt = db()->prepare($sql); $stmt->execute($values);
-    respond(200, array_map('announcementPayload', $stmt->fetchAll()));
+    $records = $stmt->fetchAll();
+    if (!$records && tableExists('announcements')) {
+        $legacySql = "SELECT id,title,summary,publish_date,created_at FROM announcements WHERE status='published' ORDER BY publish_date DESC, id DESC";
+        $records = db()->query($legacySql)->fetchAll();
+        respond(200, array_map('legacyAnnouncementPayload', $records));
+    }
+    respond(200, array_map('announcementPayload', $records));
 }
 if ($method === 'GET' && $route === 'gallery') {
     $stmt = db()->query("SELECT id,title_en,title_hi,image_url,created_at FROM cms_gallery WHERE status = 'published' ORDER BY sort_order, id DESC");
@@ -149,7 +185,44 @@ if ($method === 'GET' && $route === 'gallery') {
 }
 if ($method === 'GET' && $route === 'admissions') {
     $stmt = db()->query("SELECT id,title,academic_year,programme_level,description,eligibility,application_start_date,application_end_date,brochure_url,apply_url FROM cms_admission_notices WHERE status='published' ORDER BY application_end_date IS NULL, application_end_date ASC, id DESC");
-    respond(200, $stmt->fetchAll());
+    $records = $stmt->fetchAll();
+    if (!$records && tableExists('admissions')) {
+        $records = db()->query("SELECT id,title,academic_year,'all' AS programme_level,description,eligibility,application_start_date,application_end_date,NULL AS brochure_url,apply_url FROM admissions WHERE status='published' ORDER BY priority_level DESC, application_end_date IS NULL, application_end_date ASC, id DESC")->fetchAll();
+    }
+    respond(200, $records);
+}
+if ($method === 'GET' && $route === 'departments') {
+    $slug = trim((string)($_GET['dept'] ?? ''));
+    if ($slug === '' || !tableExists('departments')) respond(404, ['error' => 'Department profile not found.']);
+    $stmt = db()->prepare("SELECT d.id,d.name,d.slug,d.description,d.vision,d.mission,d.office_location,d.updated_at,s.name AS school FROM departments d LEFT JOIN schools s ON s.id=d.school_id WHERE d.slug=? AND d.status='published' AND d.is_active=1 LIMIT 1");
+    $stmt->execute([$slug]); $department = $stmt->fetch();
+    if (!$department) respond(404, ['error' => 'Department profile not found.']);
+    $programmes = db()->prepare("SELECT name,level,duration_text AS duration,eligibility AS entrance,description FROM programs WHERE department_id=? AND status='published' AND is_active=1 ORDER BY sort_order,id");
+    $programmes->execute([$department['id']]);
+    $faculty = db()->prepare("SELECT faculty_name AS name,designation,research_interest AS specialization,email FROM faculty WHERE department_id=? AND status='published' AND is_active=1 ORDER BY display_order,id");
+    $faculty->execute([$department['id']]);
+    $research = db()->prepare("SELECT title FROM research_projects WHERE department_id=? AND status='published' ORDER BY id DESC LIMIT 12");
+    $research->execute([$department['id']]);
+    respond(200, [
+        'name' => $department['name'], 'school' => $department['school'] ?: 'Central University of South Bihar',
+        'summary' => $department['description'] ?: '', 'vision' => $department['vision'] ?: ($department['mission'] ?: ''),
+        'established' => $department['office_location'] ?: '', 'updated_at' => $department['updated_at'],
+        'programmes' => $programmes->fetchAll(), 'faculty' => $faculty->fetchAll(),
+        'research' => array_column($research->fetchAll(), 'title')
+    ]);
+}
+if ($method === 'GET' && $route === 'research') {
+    $projects = tableExists('research_projects') ? db()->query("SELECT rp.title,rp.funding_agency,rp.summary,d.slug AS department_slug FROM research_projects rp LEFT JOIN departments d ON d.id=rp.department_id WHERE rp.status='published' ORDER BY rp.id DESC LIMIT 30")->fetchAll() : [];
+    $publications = tableExists('publications') ? db()->query("SELECT p.title,p.authors,p.publication_year,p.journal_or_publisher,f.faculty_name AS faculty_name FROM publications p LEFT JOIN faculty f ON f.id=p.faculty_id WHERE p.status='published' ORDER BY p.publication_year DESC,p.id DESC LIMIT 30")->fetchAll() : [];
+    respond(200, ['projects' => $projects, 'publications' => $publications]);
+}
+if ($method === 'GET' && $route === 'recruitment') {
+    if (!tableExists('recruitment')) respond(200, []);
+    respond(200, db()->query("SELECT r.id,r.title,r.post_name,r.advertisement_no,r.description,r.opening_date,r.closing_date,r.apply_url,r.status,m.public_url AS document_url FROM recruitment r LEFT JOIN media_files m ON m.id=r.document_media_id WHERE r.status IN ('published','archived') ORDER BY r.closing_date IS NULL,r.closing_date DESC,r.id DESC")->fetchAll());
+}
+if ($method === 'GET' && $route === 'tenders') {
+    if (!tableExists('tenders')) respond(200, []);
+    respond(200, db()->query("SELECT t.id,t.title,t.tender_no,t.description,t.opening_date,t.closing_date,t.status,m.public_url AS document_url FROM tenders t LEFT JOIN media_files m ON m.id=t.document_media_id WHERE t.status IN ('published','archived') ORDER BY t.closing_date IS NULL,t.closing_date DESC,t.id DESC")->fetchAll());
 }
 if ($method === 'GET' && $route === 'search') {
     $query = mb_substr(trim((string)($_GET['q'] ?? '')), 0, 120);
@@ -165,6 +238,16 @@ if ($method === 'GET' && $route === 'search') {
     $stmt = $pdo->prepare("SELECT title,description,'admissions.html' AS url FROM cms_admission_notices WHERE status='published' AND (title LIKE ? OR description LIKE ? OR eligibility LIKE ?) LIMIT 8");
     $stmt->execute([$like, $like, $like]);
     foreach ($stmt->fetchAll() as $row) $results[] = ['title' => $row['title'], 'desc' => $row['description'] ?? '', 'url' => $row['url']];
+    if (tableExists('departments')) {
+        $stmt = $pdo->prepare("SELECT name AS title,description,CONCAT('department.html?dept=',slug) AS url FROM departments WHERE status='published' AND is_active=1 AND (name LIKE ? OR description LIKE ? OR vision LIKE ?) LIMIT 8");
+        $stmt->execute([$like, $like, $like]);
+        foreach ($stmt->fetchAll() as $row) $results[] = ['title' => $row['title'], 'desc' => $row['description'] ?? '', 'url' => $row['url']];
+    }
+    if (tableExists('announcements')) {
+        $stmt = $pdo->prepare("SELECT title,summary AS description,'news-events.html' AS url FROM announcements WHERE status='published' AND (title LIKE ? OR summary LIKE ?) ORDER BY publish_date DESC LIMIT 8");
+        $stmt->execute([$like, $like]);
+        foreach ($stmt->fetchAll() as $row) $results[] = ['title' => $row['title'], 'desc' => $row['description'] ?? '', 'url' => $row['url']];
+    }
     respond(200, array_slice($results, 0, 12));
 }
 if ($method === 'GET' && $route === 'chat') {
@@ -180,6 +263,16 @@ if ($method === 'GET' && $route === 'chat') {
     $stmt = db()->prepare("SELECT title_en,desc_en,type,date_str FROM cms_announcements WHERE status='published' AND (title_en LIKE ? OR desc_en LIKE ?) ORDER BY published_at DESC LIMIT 1");
     $stmt->execute([$like, $like]); $notice = $stmt->fetch();
     if ($notice) respond(200, ['en' => $notice['title_en'] . ': ' . $notice['desc_en'] . ($notice['date_str'] ? ' (' . $notice['date_str'] . ')' : ''), 'hi' => $notice['title_en'] . ': ' . $notice['desc_en']]);
+    if (tableExists('hostels')) {
+        $stmt = db()->prepare("SELECT name,description FROM hostels WHERE status='published' AND is_active=1 AND (name LIKE ? OR description LIKE ?) LIMIT 1");
+        $stmt->execute([$like, $like]); $hostel = $stmt->fetch();
+        if ($hostel) respond(200, ['en' => $hostel['name'] . ': ' . ($hostel['description'] ?: 'Details are available on the Hostel page.'), 'hi' => $hostel['name'] . ': ' . ($hostel['description'] ?: 'Details are available on the Hostel page.')]);
+    }
+    if (tableExists('departments')) {
+        $stmt = db()->prepare("SELECT name,description FROM departments WHERE status='published' AND is_active=1 AND (name LIKE ? OR description LIKE ? OR vision LIKE ?) LIMIT 1");
+        $stmt->execute([$like, $like, $like]); $department = $stmt->fetch();
+        if ($department) respond(200, ['en' => $department['name'] . ': ' . ($department['description'] ?: 'Department details are available on the Courses page.'), 'hi' => $department['name'] . ': ' . ($department['description'] ?: 'Department details are available on the Courses page.')]);
+    }
     respond(200, ['en' => 'I could not find a verified answer in the CUSB database. Please use the Enquiry page for an official response.', 'hi' => 'मुझे CUSB डेटाबेस में सत्यापित उत्तर नहीं मिला। कृपया आधिकारिक उत्तर के लिए पूछताछ पृष्ठ का उपयोग करें।']);
 }
 if ($method === 'POST' && $route === 'enquiries') {

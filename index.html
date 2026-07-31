@@ -22,19 +22,33 @@
   <cusb-navbar></cusb-navbar>
 
   <main id="mainContent">
-    <!-- ══════ HERO BANNER ══════ -->
-    <section class="hero-banner" aria-label="University Banner">
+    <!-- ══════ HERO BANNER CAROUSEL ══════ -->
+    <section class="hero-banner hero-carousel-wrapper" aria-label="Featured University News & Announcements">
+      <!-- Clickable Background Link Overlay -->
+      <a id="heroBgLink" href="admissions.html" class="hero-bg-link" aria-label="Featured announcement details">
+        <div id="heroBgSlide" class="hero-bg-slide" style="background-image: url('./assets/drone.png');"></div>
+        <div class="hero-overlay-gradient"></div>
+      </a>
+
       <div class="container hero-content">
-        <div class="hero-eyebrow">
+        <div class="hero-eyebrow" id="heroEyebrow">
           <span class="hero-live-dot"></span>
-          <span data-en="Admissions Open 2026–27" data-hi="प्रवेश प्रारंभ 2026-27">Admissions Open 2026–27</span>
+          <span id="heroBadgeText" data-en="Admissions Open 2026–27" data-hi="प्रवेश प्रारंभ 2026-27">Admissions Open 2026–27</span>
         </div>
-        <h1 class="hero-title" data-en="Central University<br>of <span>South Bihar</span>" data-hi="दक्षिण बिहार<span><br>केन्द्रीय विश्वविद्यालय</span>">Central University<br>of <span>South Bihar</span></h1>
-        <p class="hero-sub" data-en="A premier central university under the Ministry of Education, Government of India. 300 acres of green learning at Gaya, Bihar." data-hi="भारत सरकार के शिक्षा मंत्रालय के तहत एक प्रमुख केंद्रीय विश्वविद्यालय। गया, बिहार में 300 एकड़ का हरा-भरा शैक्षणिक परिसर।">A premier central university under the Ministry of Education, Government of India. 300 acres of green learning at Gaya, Bihar.</p>
+        <h1 class="hero-title" id="heroTitle" data-en="Central University<br>of <span>South Bihar</span>" data-hi="दक्षिण बिहार<span><br>केन्द्रीय विश्वविद्यालय</span>">Central University<br>of <span>South Bihar</span></h1>
+        <p class="hero-sub" id="heroSub" data-en="A premier central university under the Ministry of Education, Government of India. 300 acres of green learning at Gaya, Bihar." data-hi="भारत सरकार के शिक्षा मंत्रालय के तहत एक प्रमुख केंद्रीय विश्वविद्यालय। गया, बिहार में 300 एकड़ का हरा-भरा शैक्षणिक परिसर।">A premier central university under the Ministry of Education, Government of India. 300 acres of green learning at Gaya, Bihar.</p>
+        
         <div class="hero-btns">
-          <a href="https://cuet.samarth.ac.in/" target="_blank" class="btn btn-gold" data-en="Apply Now →" data-hi="अभी आवेदन करें →">Apply Now →</a>
-          <a href="about.html" class="btn btn-white" data-en="Explore CUSB" data-hi="विवरण जानें">Explore CUSB</a>
+          <a id="heroPrimaryBtn" href="https://cuet.samarth.ac.in/" target="_blank" class="btn btn-gold" data-en="Apply Now →" data-hi="अभी आवेदन करें →">Apply Now →</a>
+          <a id="heroSecondaryBtn" href="about.html" class="btn btn-white" data-en="Explore CUSB" data-hi="विवरण जानें">Explore CUSB</a>
           <a href="courses.html" class="btn btn-ghost-light" data-en="View Courses" data-hi="पाठ्यक्रम देखें">View Courses</a>
+        </div>
+
+        <!-- Carousel Navigation Controls -->
+        <div class="hero-carousel-controls" aria-label="Hero Carousel Navigation">
+          <button id="heroPrevBtn" class="hero-control-btn" aria-label="Previous Slide">‹</button>
+          <div id="heroDots" class="hero-dots"></div>
+          <button id="heroNextBtn" class="hero-control-btn" aria-label="Next Slide">›</button>
         </div>
       </div>
     </section>
@@ -300,7 +314,7 @@
         <h2 class="section-title" id="titleGovLinks" data-en="Government Initiatives" data-hi="सरकारी पहल एवं पोर्टल">Government Initiatives</h2>
         <div class="govlinks-grid">
           <!-- National Digital Library -->
-          <a href="https://ndl.iitkgp.ac.in/" target="_blank" class="govlink-card" rel="noopener noreferrer">
+          <a href="https://ndl.iitkgp.ac.in/" target="_blank" class="govlink-card govlink-theme-blue" rel="noopener noreferrer">
             <div class="govlink-img-wrapper">
               <img src="assets/images/ndl_logo.png" alt="National Digital Library" loading="lazy">
             </div>
@@ -308,7 +322,7 @@
           </a>
           
           <!-- SWAYAM -->
-          <a href="https://swayam.gov.in/" target="_blank" class="govlink-card" rel="noopener noreferrer">
+          <a href="https://swayam.gov.in/" target="_blank" class="govlink-card govlink-theme-gold" rel="noopener noreferrer">
             <div class="govlink-img-wrapper">
               <img src="assets/images/swayam_logo.png" alt="SWAYAM" loading="lazy">
             </div>
@@ -316,7 +330,7 @@
           </a>
           
           <!-- SWAYAM Prabha -->
-          <a href="https://www.swayamprabha.gov.in/" target="_blank" class="govlink-card" rel="noopener noreferrer">
+          <a href="https://www.swayamprabha.gov.in/" target="_blank" class="govlink-card govlink-theme-green" rel="noopener noreferrer">
             <div class="govlink-img-wrapper">
               <img src="assets/images/swayam_prabha_logo.png" alt="SWAYAM Prabha" loading="lazy">
             </div>
@@ -324,7 +338,7 @@
           </a>
           
           <!-- AISHE -->
-          <a href="https://aishe.gov.in/" target="_blank" class="govlink-card" rel="noopener noreferrer">
+          <a href="https://aishe.gov.in/" target="_blank" class="govlink-card govlink-theme-crimson" rel="noopener noreferrer">
             <div class="govlink-img-wrapper">
               <img src="assets/images/aishe_logo.png" alt="AISHE" loading="lazy">
             </div>
@@ -332,7 +346,7 @@
           </a>
           
           <!-- MyGov -->
-          <a href="https://www.mygov.in/" target="_blank" class="govlink-card" rel="noopener noreferrer">
+          <a href="https://www.mygov.in/" target="_blank" class="govlink-card govlink-theme-saffron" rel="noopener noreferrer">
             <div class="govlink-img-wrapper">
               <img src="assets/images/mygov_logo.png" alt="MyGov" loading="lazy">
             </div>
@@ -340,7 +354,7 @@
           </a>
           
           <!-- India.gov.in -->
-          <a href="https://www.india.gov.in/" target="_blank" class="govlink-card" rel="noopener noreferrer">
+          <a href="https://www.india.gov.in/" target="_blank" class="govlink-card govlink-theme-cyan" rel="noopener noreferrer">
             <div class="govlink-img-wrapper">
               <img src="assets/images/india_gov_logo.png" alt="India Portal" loading="lazy">
             </div>
@@ -381,19 +395,10 @@
 
       const schoolMap = Object.entries(departments).reduce((map, [slug, dept]) => {
         if (!map.has(dept.school)) map.set(dept.school, []);
-        map.get(dept.school).push({ slug, href: `department.html?dept=${slug}`, ...dept });
+        const href = (slug === 'computer_science' || slug === 'cs') ? 'cs.html' : `department.html?dept=${slug}`;
+        map.get(dept.school).push({ slug, href, ...dept });
         return map;
       }, new Map());
-      const mathSchool = 'School of Mathematics, Statistics & Computer Science';
-      if (schoolMap.has(mathSchool)) {
-        schoolMap.get(mathSchool).unshift({
-          slug: 'computer_science',
-          href: 'cs.html',
-          name: 'Computer Science',
-          school: mathSchool,
-          icon: 'laptop'
-        });
-      }
 
       schoolGrid.innerHTML = Array.from(schoolMap.entries()).map(([school, schoolDepartments], index) => `
         <article class="program-school-card" style="--card-index:${index % 4}">
