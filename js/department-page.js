@@ -140,7 +140,9 @@
     const faculty = (data.faculty || []).map(normaliseFaculty);
     const facultyGrid = document.getElementById('facultyGrid');
     if (facultyGrid) {
-      facultyGrid.innerHTML = faculty.length ? faculty.map((person) => `
+      facultyGrid.innerHTML = faculty.length ? faculty.map((person) => {
+        const profileUrl = (person.profile_url && person.profile_url !== '#') ? person.profile_url : 'https://people.samarth.edu.in/';
+        return `
         <article class="faculty-card department-faculty-card">
           ${person.image_url ? `<img class="faculty-img" src="${escapeHtml(person.image_url)}" alt="${escapeHtml(person.name)}" loading="lazy">` : `<div class="department-faculty-avatar" aria-hidden="true">${escapeHtml(initials(person.name))}</div>`}
           <h3 class="faculty-name">${escapeHtml(person.name)}</h3>
@@ -148,8 +150,11 @@
           <p class="faculty-specialization">${escapeHtml(person.specialization)}</p>
           ${person.qualification ? `<p class="faculty-specialization"><strong>Qualification:</strong> ${escapeHtml(person.qualification)}</p>` : ''}
           ${person.email ? `<a class="department-email" href="mailto:${escapeHtml(person.email)}">${escapeHtml(person.email)}</a>` : ''}
-          ${person.profile_url ? `<a class="department-email" href="${escapeHtml(person.profile_url)}" target="_blank" rel="noopener">View official profile</a>` : ''}
-        </article>`).join('') : `
+          <div class="faculty-profile-box">
+            <a href="${escapeHtml(profileUrl)}" target="_blank" rel="noopener" class="faculty-profile-btn" data-en="View Profile ↗" data-hi="प्रोफ़ाइल देखें ↗">View Profile ↗</a>
+          </div>
+        </article>`;
+      }).join('') : `
         <article class="department-empty-card">
           <h3>Faculty directory update</h3>
           <p>The departmental profile is ready for faculty records from the local content system. No names are shown here until they have been verified.</p>
