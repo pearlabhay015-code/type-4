@@ -1998,10 +1998,10 @@ function initNewsTicker() {
   }
 
   // Create news card element
-  const createNewsCard = (item) => {
+  const createNewsCard = (item, isClone = false) => {
     const lang = localStorage.getItem('cusb-lang') || 'en';
     const card = document.createElement('div');
-    card.className = 'news-ticker-card';
+    card.className = 'news-ticker-card' + (isClone ? ' news-ticker-clone' : '');
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
     card.setAttribute('aria-label', `Read news about ${item.title_en}`);
@@ -2012,32 +2012,61 @@ function initNewsTicker() {
     const desc = isHi ? item.desc_hi : item.desc_en;
 
     card.innerHTML = `
-      <div class="news-ticker-media">
-        <img src="${item.src}" alt="${item.title_en}" loading="lazy" onerror="this.src='assets/images/audimg.jpg'">
-        <div class="news-ticker-date-badge">${item.date}</div>
+      <div class="news-ticker-header-bar">
+        <div class="news-ticker-header-info">
+          <div class="news-ticker-badge-row">
+            <span class="news-ticker-date-badge">${item.date}</span>
+            <span class="news-ticker-meta" data-en="${item.category_en}" data-hi="${item.category_hi}">${category}</span>
+          </div>
+          <h3 class="news-ticker-title" data-en="${item.title_en}" data-hi="${item.title_hi}">${title}</h3>
+        </div>
+        <span class="news-ticker-expand-icon" aria-hidden="true" title="Expand Details">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </span>
       </div>
-      <div class="news-ticker-body">
-        <span class="news-ticker-meta" data-en="${item.category_en}" data-hi="${item.category_hi}">${category}</span>
-        <h3 class="news-ticker-title" data-en="${item.title_en}" data-hi="${item.title_hi}">${title}</h3>
-        <p class="news-ticker-desc" data-en="${item.desc_en}" data-hi="${item.desc_hi}">${desc}</p>
-        <span class="news-ticker-link"><span data-en="Read Full Story →" data-hi="पूरा विवरण पढ़ें →">Read Full Story →</span></span>
+      <div class="news-ticker-content-collapsible">
+        <div class="news-ticker-media">
+          <img src="${item.src}" alt="${item.title_en}" loading="lazy" onerror="this.src='assets/images/audimg.jpg'">
+        </div>
+        <div class="news-ticker-body">
+          <p class="news-ticker-desc" data-en="${item.desc_en}" data-hi="${item.desc_hi}">${desc}</p>
+          <a href="${item.link || 'news-events.html'}" class="news-ticker-link" onclick="event.stopPropagation();"><span data-en="Read Full Story →" data-hi="पूरा विवरण पढ़ें →">Read Full Story →</span></a>
+        </div>
       </div>
     `;
 
-    card.addEventListener('click', () => {
+    card.addEventListener('click', (e) => {
       if (hasNewsDragged) {
         hasNewsDragged = false;
         return;
       }
-      openNewsDetailModal(item);
+      if (e.target.closest('.news-ticker-link')) {
+        return;
+      }
+      const siblings = track.querySelectorAll('.news-ticker-card');
+      siblings.forEach(s => {
+        if (s !== card) s.classList.remove('mobile-expanded');
+      });
+      card.classList.toggle('mobile-expanded');
     });
+
+    card.addEventListener('mouseenter', () => {
+      if (window.innerWidth <= 768) {
+        const siblings = track.querySelectorAll('.news-ticker-card');
+        siblings.forEach(s => {
+          if (s !== card) s.classList.remove('mobile-expanded');
+        });
+        card.classList.add('mobile-expanded');
+      }
+    });
+
     return card;
   };
 
-  // Render 2 duplicate sets for infinite continuous loop
+  // Render original set and duplicate set (marked clone for mobile hiding)
   track.innerHTML = '';
-  cusbNewsItems.forEach(item => track.appendChild(createNewsCard(item)));
-  cusbNewsItems.forEach(item => track.appendChild(createNewsCard(item)));
+  cusbNewsItems.forEach(item => track.appendChild(createNewsCard(item, false)));
+  cusbNewsItems.forEach(item => track.appendChild(createNewsCard(item, true)));
 
   // Fetch live database announcements through the configured site API.
   fetch(window.cusbApiUrl('announcements'))
@@ -2062,8 +2091,8 @@ function initNewsTicker() {
           }
         });
         track.innerHTML = '';
-        cusbNewsItems.forEach(item => track.appendChild(createNewsCard(item)));
-        cusbNewsItems.forEach(item => track.appendChild(createNewsCard(item)));
+        cusbNewsItems.forEach(item => track.appendChild(createNewsCard(item, false)));
+        cusbNewsItems.forEach(item => track.appendChild(createNewsCard(item, true)));
       }
     })
     .catch(() => {});
@@ -2081,6 +2110,10 @@ function initNewsTicker() {
   const getHalfWidth = () => track.scrollWidth / 2 || 1;
 
   const renderNewsPosition = () => {
+    if (window.innerWidth <= 768) {
+      track.style.transform = 'none';
+      return;
+    }
     const halfWidth = getHalfWidth();
     while (position <= -halfWidth) position += halfWidth;
     while (position > 0) position -= halfWidth;
@@ -2088,7 +2121,7 @@ function initNewsTicker() {
   };
 
   const animate = () => {
-    if (isMoving && !isDragging) {
+    if (isMoving && !isDragging && window.innerWidth > 768) {
       position += speed;
       renderNewsPosition();
     }
@@ -2103,6 +2136,7 @@ function initNewsTicker() {
 
   // Manual Drag (Touch & Mouse)
   const onDragStart = (clientX) => {
+    if (window.innerWidth <= 768) return;
     isDragging = true;
     isMoving = false;
     startX = clientX;
@@ -2112,7 +2146,7 @@ function initNewsTicker() {
   };
 
   const onDragMove = (clientX) => {
-    if (!isDragging) return;
+    if (!isDragging || window.innerWidth <= 768) return;
     const delta = clientX - startX;
     if (Math.abs(delta) > 5) {
       hasNewsDragged = true;
@@ -2122,7 +2156,7 @@ function initNewsTicker() {
   };
 
   const onDragEnd = () => {
-    if (!isDragging) return;
+    if (!isDragging || window.innerWidth <= 768) return;
     isDragging = false;
     wrapper.style.cursor = '';
     setTimeout(() => {
@@ -2146,20 +2180,23 @@ function initNewsTicker() {
     onDragEnd();
   });
 
-  // Touch drag events
+  // Touch drag events (Disabled on mobile <=768px to allow standard vertical page scroll)
   wrapper.addEventListener('touchstart', (e) => {
+    if (window.innerWidth <= 768) return;
     if (e.touches && e.touches[0]) {
       onDragStart(e.touches[0].clientX);
     }
   }, { passive: true });
 
   wrapper.addEventListener('touchmove', (e) => {
+    if (window.innerWidth <= 768) return;
     if (isDragging && e.touches && e.touches[0]) {
       onDragMove(e.touches[0].clientX);
     }
   }, { passive: true });
 
   wrapper.addEventListener('touchend', () => {
+    if (window.innerWidth <= 768) return;
     onDragEnd();
   });
 
