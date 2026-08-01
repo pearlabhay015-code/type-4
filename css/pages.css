@@ -2542,8 +2542,6 @@
     transform: none !important;
   }
 
-  .news-ticker-card:hover,
-  .news-ticker-card:focus-within,
   .news-ticker-card.mobile-expanded {
     transform: none !important;
     border-color: var(--acc-gold) !important;
@@ -2620,8 +2618,6 @@
     margin-top: 2px !important;
   }
 
-  .news-ticker-card:hover .news-ticker-expand-icon,
-  .news-ticker-card:focus-within .news-ticker-expand-icon,
   .news-ticker-card.mobile-expanded .news-ticker-expand-icon {
     transform: rotate(180deg) !important;
     background: var(--acc-navy) !important;
@@ -2640,8 +2636,6 @@
     border-top: 1px dashed transparent !important;
   }
 
-  .news-ticker-card:hover .news-ticker-content-collapsible,
-  .news-ticker-card:focus-within .news-ticker-content-collapsible,
   .news-ticker-card.mobile-expanded .news-ticker-content-collapsible {
     max-height: 500px !important;
     opacity: 1 !important;
