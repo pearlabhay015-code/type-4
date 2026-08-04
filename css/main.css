@@ -820,28 +820,22 @@ cusb-navbar .container {
   position: relative;
 }
 .navbar-link {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 6px;
   padding: 15px 18px;
   font-family: var(--ff-body);
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   border-bottom: 3px solid transparent;
-  transition: var(--transition);
-}
-
-/* Ensure nav links change to black on hover in light theme, bright blue in dark theme */
-html:not([data-theme="dark"]) .navbar-link:hover {
-  color: #000000 !important;
-}
-[data-theme="dark"] .navbar-link:hover,
-[data-theme="dark"] .navbar-item.active > .navbar-link {
-  color: #60a5fa !important;
-  background-color: rgba(255, 255, 255, 0.08) !important;
+  transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+              background-color 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.3s ease;
+  overflow: hidden;
 }
 
 /* FIXED SIDEBAR FOR QUICK LINKS */
@@ -1061,15 +1055,111 @@ html:not([data-theme="dark"]) .navbar-link:hover {
     padding-left: 0;
   }
 }
-/* Specific Menu Tab Backgrounds matching the Reference Map */
+/* LAPTOP & DESKTOP NAV LINK HOVER ANIMATION */
+@media (min-width: 992px) {
+  .navbar-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
 
-.navbar-item:hover .navbar-link {
-  filter: brightness(1.2);
-  border-bottom-color: white;
-}
-.navbar-item.active > .navbar-link {
-  filter: brightness(1.2);
-  border-bottom-color: white;
+  .navbar-link {
+    padding: 16px 20px;
+    border-bottom: none !important;
+    border-radius: 4px 4px 0 0;
+  }
+
+  /* Animated Bottom Indicator Line Base */
+  .navbar-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3.5px;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.25s ease;
+    opacity: 0;
+    pointer-events: none;
+    border-radius: 2px 2px 0 0;
+  }
+
+  /* Radial Glow Ripple Effect Base */
+  .navbar-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 140%;
+    height: 100%;
+    transform: translateX(-50%) scale(0);
+    opacity: 0;
+    transition: transform 0.4s ease-out, opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  /* --- LIGHT THEME HOVER ANIMATION & COLORS --- */
+  html:not([data-theme="dark"]) .navbar-link::after {
+    background-color: #ffd950; /* CUSB Gold Indicator Bar */
+    box-shadow: 0 0 12px rgba(255, 217, 80, 0.9);
+  }
+
+  html:not([data-theme="dark"]) .navbar-link::before {
+    background: radial-gradient(circle, rgba(255, 217, 80, 0.35) 0%, rgba(255, 255, 255, 0) 70%);
+  }
+
+  html:not([data-theme="dark"]) .navbar-item:hover > .navbar-link,
+  html:not([data-theme="dark"]) .navbar-link:hover,
+  html:not([data-theme="dark"]) .navbar-item.active > .navbar-link {
+    color: #ffd950 !important; /* Gold Text Highlight */
+    background-color: #071e3d !important; /* Deep Navy Container Box */
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  /* --- DARK THEME HOVER ANIMATION & COLORS --- */
+  [data-theme="dark"] .navbar-link::after {
+    background-color: #ffffff; /* Crisp White Indicator Bar */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+
+  [data-theme="dark"] .navbar-link::before {
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.25) 0%, rgba(255, 255, 255, 0) 70%);
+  }
+
+  [data-theme="dark"] .navbar-item:hover > .navbar-link,
+  [data-theme="dark"] .navbar-link:hover,
+  [data-theme="dark"] .navbar-item.active > .navbar-link {
+    color: #60a5fa !important; /* Sky Blue Text Highlight */
+    background-color: rgba(30, 41, 59, 0.95) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  /* Activate Bottom Line & Glow */
+  .navbar-item:hover > .navbar-link::after,
+  .navbar-link:hover::after,
+  .navbar-item.active > .navbar-link::after {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+
+  .navbar-item:hover > .navbar-link::before,
+  .navbar-link:hover::before {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+
+  /* Interactive Subtle Lift on Text & Icons */
+  .navbar-link > span,
+  .navbar-link .megamenu-icon {
+    display: inline-block;
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .navbar-item:hover > .navbar-link > span,
+  .navbar-link:hover > span {
+    transform: translateY(-1px);
+  }
 }
 
 /* Theme Toggle */
