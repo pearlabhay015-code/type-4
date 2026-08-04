@@ -1028,9 +1028,17 @@ cusb-navbar .container {
   box-shadow: none;
 }
 [data-theme="dark"] .sidebar-link:hover {
-  background: #2563eb;
-  border-color: #3b82f6;
-  color: #ffffff;
+  background-color: #1e293b !important;
+  border-color: rgba(96, 165, 250, 0.4) !important;
+  color: #60a5fa !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+[data-theme="dark"] .sidebar-link:hover .sidebar-icon-box {
+  background: rgba(96, 165, 250, 0.22) !important;
+  color: #60a5fa !important;
+  transform: scale(1.1);
 }
 
 /* Dark mode colorful icon accents */
