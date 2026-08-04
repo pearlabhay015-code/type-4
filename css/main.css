@@ -268,7 +268,7 @@ cusb-ticker {
   color: #ffffff;
 }
 [data-theme="dark"] .header-title-main {
-  color: #ffffff;
+  color: #ff5100 !important;
 }
 [data-theme="dark"] .header-title-sub {
   color: #60a5fa;
@@ -607,11 +607,30 @@ cusb-header {
   align-items: center;
   gap: 18px;
   min-width: 0;
+  text-decoration: none !important;
+  color: inherit !important;
+  cursor: pointer;
+}
+.header-brand:hover,
+.header-brand:focus,
+.header-brand:active,
+.header-brand:visited {
+  text-decoration: none !important;
+  color: inherit !important;
+  opacity: 1 !important;
+  transform: none !important;
 }
 .header-logo {
   height: 92px;
   width: 92px;
   flex: 0 0 auto;
+  transition: none !important;
+}
+.header-brand:hover .header-logo,
+.header-logo:hover {
+  transform: none !important;
+  filter: none !important;
+  opacity: 1 !important;
 }
 .header-titles {
   display: flex;
@@ -624,6 +643,16 @@ cusb-header {
   font-weight: 700;
   letter-spacing: 0.5px;
   line-height: 1.15;
+  color: #ff5100 !important; /* Permanent Orange */
+  transition: none !important;
+}
+.header-brand:hover .header-title-main,
+.header-brand:focus .header-title-main,
+.header-title-main:hover {
+  color: #ff5100 !important; /* Permanent Orange - no hover effect */
+  text-decoration: none !important;
+  opacity: 1 !important;
+  transform: none !important;
 }
 .header-title-sub {
   font-size: 0.98rem;
@@ -631,6 +660,15 @@ cusb-header {
   color: var(--tx-secondary);
   letter-spacing: 0.2px;
   line-height: 1.25;
+  transition: none !important;
+}
+.header-brand:hover .header-title-sub,
+.header-brand:focus .header-title-sub,
+.header-title-sub:hover {
+  color: var(--tx-secondary) !important;
+  text-decoration: none !important;
+  opacity: 1 !important;
+  transform: none !important;
 }
 .header-controls {
   display: flex;
@@ -921,7 +959,7 @@ cusb-navbar .container {
   box-shadow: var(--shadow-sm);
 }
 .sidebar-link:hover {
-  background: var(--acc-navy);
+  background:rgb(0, 102, 255);
   color: #ffffff;
   transform: translateX(4px);
   border-color: var(--acc-navy);
@@ -1226,16 +1264,18 @@ cusb-navbar .container {
   text-transform: uppercase;
 }
 #academicsMegamenu .megamenu-item a {
-  color: #334155;
-  font-size: 0.84rem;
-  font-weight: 400;
+  color: #0f172a;
+  font-size: 0.86rem;
+  font-weight: 600;
   gap: 0;
-  line-height: 1.45;
-  padding: 2px 0;
+  line-height: 1.5;
+  padding: 3px 0;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 #academicsMegamenu .megamenu-item a:hover {
-  color: #0b6cb8;
-  transform: translateX(3px);
+  color: #004b9b;
+  font-weight: 700;
+  transform: translateX(4px);
 }
 #researchMegamenu {
   width: min(920px, calc(100vw - 32px));
@@ -1302,13 +1342,15 @@ cusb-navbar .container {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--tx-primary);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #0f172a;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 .megamenu-item a:hover {
-  color: #000000;
-  transform: translateX(3px);
+  color: #004b9b;
+  font-weight: 700;
+  transform: translateX(4px);
 }
 #aboutMegamenu .megamenu-icon {
   display: none;
@@ -1339,27 +1381,20 @@ cusb-navbar .container {
   color: #f5f5f5;
 }
 [data-theme="dark"] .megamenu-item a,
-[data-theme="dark"] .qa-card {
-  color: var(--tx-primary);
+[data-theme="dark"] #academicsMegamenu .megamenu-item a,
+[data-theme="dark"] #researchMegamenu .megamenu-item a {
+  color: #f8fafc !important;
+  font-weight: 600;
 }
 [data-theme="dark"] #academicsMegamenu .megamenu-heading {
   color: #60a5fa;
   border-bottom-color: rgba(96, 165, 250, 0.3);
 }
-[data-theme="dark"] #academicsMegamenu .megamenu-item a {
-  color: #cbd5e1;
-}
+[data-theme="dark"] .megamenu-item a:hover,
 [data-theme="dark"] #academicsMegamenu .megamenu-item a:hover {
-  color: #93c5fd !important;
+  color: #60a5fa !important;
   background: transparent;
-}
-[data-theme="dark"] #researchMegamenu .megamenu-item a,
-[data-theme="dark"] #adminMegamenu .admin-divider-heading {
-  color: #f5f5f5;
-}
-[data-theme="dark"] .megamenu-item a:hover {
-  color: #ffffff !important;
-  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
 }
 
 /* 5. QUICK ACTIONS */
@@ -1776,10 +1811,6 @@ cusb-footer {
   overflow-y: auto;
   padding-right: 4px;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
   display: flex;
   flex-direction: column;
   gap: 8px;
