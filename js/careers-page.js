@@ -11,9 +11,9 @@
     meta.className = 'opportunity-meta';
     meta.textContent = [item.post_name, item.advertisement_no, item.closing_date ? `Closing: ${item.closing_date}` : ''].filter(Boolean).join(' | ');
     const description = document.createElement('p');
-    description.textContent = item.description || 'Locally published recruitment notice.';
+    description.textContent = item.description || 'Published recruitment notice.';
     card.append(heading, meta, description);
-    [['document_url', 'Open local notification'], ['apply_url', 'Open local application page']].forEach(([key, label]) => {
+    [['document_url', 'Open notification'], ['apply_url', 'Open application page']].forEach(([key, label]) => {
       if (!localLink(item[key])) return;
       const link = document.createElement('a');
       link.href = item[key]; link.textContent = label;
@@ -39,7 +39,7 @@
       render(active, records.filter(item => isActive(item.status)));
       render(archive, records.filter(item => !isActive(item.status)));
     } catch (_) {
-      // Static empty states explain the local publication workflow when the API is offline.
+      // Static empty states explain the publication workflow when the API is offline.
     }
   });
 })();

@@ -105,7 +105,7 @@
     const savedTheme = localStorage.getItem('cusb-theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
 
-    // GitHub Pages uses the hosted API; local and XAMPP use the same-origin API.
+    // GitHub Pages uses the hosted API; and XAMPP use the same-origin API.
     const configuredApiBase = '__CUSB_API_URL__'.trim().replace(/\/+$/, '');
     const API_BASE = configuredApiBase && configuredApiBase !== '__CUSB_API_URL__'
       ? configuredApiBase
@@ -266,7 +266,7 @@
           showAlert("The CMS service is unavailable. Your account was not created.");
           return;
         }
-        console.log("Backend offline, saving account locally");
+        console.log("Backend offline, saving account ");
       }
 
       // Standalone Fallback
@@ -323,7 +323,7 @@
           showAlert("The CMS service is unavailable. Please try again shortly.");
           return;
         }
-        console.log("Backend offline, verifying credentials locally");
+        console.log("Backend offline, verifying credentials ");
       }
 
       // Standalone Fallback Check

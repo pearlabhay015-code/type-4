@@ -10,7 +10,7 @@
     card.className = 'sports-notice-card';
     const type = document.createElement('span'); type.textContent = item.type || 'Sports update';
     const title = document.createElement('h3'); title.textContent = item.title_en || 'Sports update';
-    const description = document.createElement('p'); description.textContent = item.desc_en || 'A locally published sports update is available.';
+    const description = document.createElement('p'); description.textContent = item.desc_en || 'A published sports update is available.';
     const date = document.createElement('small'); date.textContent = item.date_str || '';
     card.append(type, title, description);
     if (date.textContent) card.appendChild(date);
@@ -26,7 +26,7 @@
       const updates = Array.isArray(records) ? records.filter(isSportsUpdate).slice(0, 6) : [];
       if (updates.length) feed.replaceChildren(...updates.map(makeNotice));
     } catch (_) {
-      // Keep the clear local empty state when the local service is unavailable.
+      // Keep the clear empty state when the service is unavailable.
     }
   });
 })();

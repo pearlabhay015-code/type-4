@@ -13,7 +13,7 @@
     const content = document.createElement('div');
     const type = document.createElement('span'); type.textContent = item.type || 'Update';
     const title = document.createElement('h3'); title.textContent = item.title_en || 'Campus update';
-    const description = document.createElement('p'); description.textContent = item.desc_en || 'A locally published University update is available.';
+    const description = document.createElement('p'); description.textContent = item.desc_en || 'A published University update is available.';
     const date = document.createElement('small'); date.textContent = item.date_str || '';
     content.append(type, title, description);
     if (date.textContent) content.appendChild(date);
@@ -57,7 +57,7 @@
         }));
       }
     } catch (_) {
-      // The static empty states remain clear when local data services are unavailable.
+      // The static empty states remain clear when data services are unavailable.
     }
   });
 })();

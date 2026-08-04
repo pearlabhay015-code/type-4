@@ -1345,7 +1345,7 @@
     const savedTheme = localStorage.getItem('cusb-theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
 
-    // GitHub Pages uses the hosted API; local and XAMPP use the same-origin API.
+    // GitHub Pages uses the hosted API; and XAMPP use the same-origin API.
     const configuredApiBase = '__CUSB_API_URL__'.trim().replace(/\/+$/, '');
     const API_BASE = configuredApiBase && configuredApiBase !== '__CUSB_API_URL__'
       ? configuredApiBase
@@ -1465,7 +1465,7 @@
           return;
         }
       } catch (err) {
-        console.log("Backend offline, validating session token locally");
+        console.log("Backend offline, validating session token ");
       }
 
       const token = localStorage.getItem('cusb_session_token');
@@ -2283,10 +2283,10 @@
           showAlert("Announcement published live on website!", "success");
         }
       } catch (err) {
-        console.log("Backend offline, updating announcement locally");
+        console.log("Backend offline, updating announcement ");
       }
 
-      // Save locally to ensure live website synchronization
+      // Save to ensure live website synchronization
       loadedAnnouncements.unshift(newNotice);
       localStorage.setItem('cusb_announcements', JSON.stringify(loadedAnnouncements));
       showAlert("Announcement published live on website!", "success");
@@ -2304,7 +2304,7 @@
           body: JSON.stringify({ id })
         });
       } catch (err) {
-        console.log("Backend offline, deleting announcement locally");
+        console.log("Backend offline, deleting announcement ");
       }
 
       loadedAnnouncements = loadedAnnouncements.filter(item => item.id !== id);
@@ -2350,7 +2350,7 @@
           body: JSON.stringify({ id, titleEn, titleHi, descEn, descHi, type, imageUrl, dateStr })
         });
       } catch (err) {
-        console.log("Backend offline, updating announcement locally");
+        console.log("Backend offline, updating announcement ");
       }
 
       const item = loadedAnnouncements.find(ann => ann.id === id);
@@ -2466,7 +2466,7 @@
           body: JSON.stringify({ titleEn, titleHi, imageUrl })
         });
       } catch (err) {
-        console.log("Backend offline, adding gallery photo locally");
+        console.log("Backend offline, adding gallery photo ");
       }
 
       loadedGallery.unshift(newItem);
@@ -2486,7 +2486,7 @@
           body: JSON.stringify({ id })
         });
       } catch (err) {
-        console.log("Backend offline, deleting gallery photo locally");
+        console.log("Backend offline, deleting gallery photo ");
       }
 
       loadedGallery = loadedGallery.filter(g => g.id !== id);
@@ -2524,7 +2524,7 @@
           body: JSON.stringify({ id, titleEn, titleHi, imageUrl })
         });
       } catch (err) {
-        console.log("Backend offline, updating gallery photo locally");
+        console.log("Backend offline, updating gallery photo ");
       }
 
       const item = loadedGallery.find(g => g.id === id);
@@ -2806,7 +2806,7 @@
           return;
         }
 
-        // Instant local check for single words or common terms
+        // Instant check for single words or common terms
         const lower = val.trim().toLowerCase();
         if (enHiDictionary[lower] && !userManuallyEditedHindi) {
           hiEl.value = enHiDictionary[lower];

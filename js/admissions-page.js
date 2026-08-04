@@ -19,7 +19,7 @@
 
     try {
       const response = await fetch(window.cusbApiUrl('admissions'));
-      if (!response.ok) throw new Error('Unable to load local updates.');
+      if (!response.ok) throw new Error('Unable to load updates.');
       const updates = await response.json();
       const published = Array.isArray(updates)
         ? updates.filter(item => item && item.status === 'published').slice(0, 8)
@@ -35,14 +35,14 @@
         const title = document.createElement('h3');
         title.textContent = item.title || 'Admission update';
         const description = document.createElement('p');
-        description.textContent = item.description || 'A locally published admission update is available.';
-        card.append(year, title, description);
-        addLink(card, item.brochure_url, 'Open local document');
-        addLink(card, item.apply_url, 'Open local application page');
+        description.textContent = item.description || 'A published admission update is available.';
+        const cardAction = document.createElement('div'); cardAction.className = 'admission-action-row'; card.appendChild(cardAction);
+        addLink(card, item.brochure_url, 'Open document');
+        addLink(card, item.apply_url, 'Open application page');
         container.appendChild(card);
       });
     } catch (_) {
-      // The static 2026-27 archive remains available when the optional local feed is offline.
+      // The static 2026-27 archive remains available when the optional feed is offline.
     }
   });
 })();

@@ -62,14 +62,14 @@
     };
   };
   const mergeApiData = (base, apiData) => {
-    // The initial local catalogue remains the source snapshot. A profile only
+    // The initial catalogue remains the source snapshot. A profile only
     // takes precedence after it has been saved through the complete-profile
     // endpoint, which stamps updated_at and avoids replacing source data with
     // legacy partial database rows.
     if (!apiData || apiData.error) return base;
     if (!apiData.updated_at) {
       // Legacy records can still contribute confirmed people and research areas,
-      // while the newer local catalogue continues to own programme metadata.
+      // while the newer catalogue continues to own programme metadata.
       return {
         ...base,
         faculty: Array.isArray(apiData.faculty) && apiData.faculty.length ? apiData.faculty : (base.faculty || []),
@@ -108,7 +108,7 @@
           </article>`;
       }).join('');
     }
-    setText('statisticsNote', statistics.source_note || (statistics.is_estimated ? 'Illustrative placeholder data.' : 'Department statistics from the local content system.'));
+    setText('statisticsNote', statistics.source_note || (statistics.is_estimated ? 'Illustrative placeholder data.' : 'Department statistics from the content system.'));
   }
 
   function render(data) {
@@ -157,10 +157,10 @@
       }).join('') : `
         <article class="department-empty-card">
           <h3>Faculty directory update</h3>
-          <p>The departmental profile is ready for faculty records from the local content system. No names are shown here until they have been verified.</p>
+          <p>The departmental profile is ready for faculty records from the content system. No names are shown here until they have been verified.</p>
         </article>`;
     }
-    setText('facultyStatus', data.facultyStrength ? `${data.facultyStrength}. Named profiles below are from the official faculty pages where available.` : 'Named profiles are shown only when verified; this list can be updated from the local content system.');
+    setText('facultyStatus', data.facultyStrength ? `${data.facultyStrength}. Named profiles below are from the official faculty pages where available.` : 'Named profiles are shown only when verified; this list can be updated from the content system.');
 
     const researchGrid = document.getElementById('researchGrid');
     if (researchGrid) researchGrid.innerHTML = (data.research || []).map((area) => `
@@ -179,8 +179,8 @@
       programmesGrid.innerHTML = visibleProgrammes.length ? visibleProgrammes.map((programme) => {
         const type = programmeType(programme);
         const syllabusAction = programme.syllabus_url
-          ? `<a href="${escapeHtml(programme.syllabus_url)}" class="pyq-download-btn" target="_blank" rel="noopener"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-file"></use></svg><span>Open Local Syllabus</span></a>`
-          : `<span class="department-syllabus-pending">Syllabus document is awaiting local publication.</span>`;
+          ? `<a href="${escapeHtml(programme.syllabus_url)}" class="pyq-download-btn" target="_blank" rel="noopener"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-file"></use></svg><span>Open Syllabus</span></a>`
+          : `<span class="department-syllabus-pending">Syllabus document is awaiting publication.</span>`;
         return `
           <article class="pyq-card department-programme-card">
             <div class="pyq-card-header"><span class="pyq-course-code">${escapeHtml(programme.level)}</span><h3 class="pyq-course-name">${escapeHtml(programme.name)}</h3></div>
@@ -210,7 +210,7 @@
         fetch(window.cusbApiUrl(`departments?dept=${encodeURIComponent(slug)}`))
           .then((response) => response.ok ? response.json() : null)
           .then((apiData) => { if (apiData) render(mergeApiData(sourceData, apiData)); })
-          .catch(() => { /* The verified local directory remains available if the API is offline. */ });
+          .catch(() => { /* The verified directory remains available if the API is offline. */ });
       }
     });
 })();

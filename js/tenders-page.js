@@ -10,9 +10,9 @@
     card.className = 'opportunity-record';
     const heading = document.createElement('h3'); heading.textContent = item.title || 'Tender notice';
     const meta = document.createElement('p'); meta.className = 'opportunity-meta'; meta.textContent = [item.tender_no, item.opening_date ? `Published: ${item.opening_date}` : '', item.closing_date ? `Closing: ${item.closing_date}` : ''].filter(Boolean).join(' | ');
-    const description = document.createElement('p'); description.textContent = item.description || 'Locally published procurement notice.';
+    const description = document.createElement('p'); description.textContent = item.description || 'published procurement notice.';
     card.append(heading, meta, description);
-    if (localLink(item.document_url)) { const link = document.createElement('a'); link.href = item.document_url; link.textContent = 'Open local tender document'; if (String(item.document_url).startsWith('assets/')) { link.target = '_blank'; link.rel = 'noopener'; } card.appendChild(link); }
+    if (localLink(item.document_url)) { const link = document.createElement('a'); link.href = item.document_url; link.textContent = 'Open tender document'; if (String(item.document_url).startsWith('assets/')) { link.target = '_blank'; link.rel = 'noopener'; } card.appendChild(link); }
     return card;
   };
 

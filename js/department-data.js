@@ -313,9 +313,9 @@ window.cusbDepartments = {
  * Academic catalogue snapshot
  * ---------------------------
  * This layer keeps the public department template data-driven. The programme
- * names and local syllabus files are taken from CUSB's Course Structure and
+ * names and syllabus files are taken from CUSB's Course Structure and
  * Syllabus catalogue (checked July 2026). `department-page.js` can also merge
- * a newer response from the local /api/departments endpoint, so an editor can
+ * a newer response from the /api/departments endpoint, so an editor can
  * update a department without changing the page template.
  */
 window.cusbDepartmentAliases = {

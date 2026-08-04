@@ -42,7 +42,7 @@
         });
       }
     } catch (_) {
-      // Static research information remains available when local API records are unavailable.
+      // Static research information remains available when API records are unavailable.
     }
   });
 })();

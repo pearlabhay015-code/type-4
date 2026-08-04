@@ -19,12 +19,12 @@
         const title = document.createElement('h3');
         title.textContent = notice.title_en || 'Student update';
         const description = document.createElement('p');
-        description.textContent = notice.desc_en || 'A local student update is available.';
+        description.textContent = notice.desc_en || 'A student update is available.';
         card.append(type, title, description);
         container.appendChild(card);
       });
     } catch (_) {
-      // Static Student Corner resources remain available if local notice data is unavailable.
+      // Static Student Corner resources remain available if notice data is unavailable.
     }
   });
 })();
