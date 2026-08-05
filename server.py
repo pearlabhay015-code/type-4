@@ -60,6 +60,29 @@ def init_db():
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
+
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS homepage_stats (
+            stat_key TEXT PRIMARY KEY,
+            stats_json TEXT NOT NULL,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+
+    homepage_stats_seed = json.dumps({
+        "metrics": [
+            {"label": "Students", "value": "5,699", "change": "+12.4% vs last year", "icon": "users"},
+            {"label": "Lecturers & Faculty", "value": "297", "change": "+5.1% vs last year", "icon": "graduation"},
+            {"label": "Research Grants & Awards", "value": "368", "change": "+18.2% vs last year", "icon": "chart"},
+            {"label": "Revenue / Budget", "value": "₹8.74 Cr", "change": "+24.0% vs last year", "icon": "briefcase"}
+        ],
+        "academicPerformance": {"title": "Academic Performance", "period": "Last 4 Years", "data": [{"label": "2024", "value": 33}, {"label": "2025", "value": 45}, {"label": "2026", "value": 70}, {"label": "2027", "value": 64}]},
+        "monthlyAdmissions": {"title": "Monthly Admissions", "period": "Last Semester", "data": [{"label": "Jan", "primary": 44, "secondary": 25}, {"label": "Feb", "primary": 60, "secondary": 40}, {"label": "Mar", "primary": 52, "secondary": 35}, {"label": "Apr", "primary": 70, "secondary": 55}, {"label": "May", "primary": 65, "secondary": 45}, {"label": "Jun", "primary": 80, "secondary": 60}]},
+        "studentsByState": {"title": "Students by State", "scope": "All States & UTs", "totalLabel": "Enrolled Students", "data": [{"label": "Bihar", "share": 62, "value": 3533, "colour": "#1c77ff"}, {"label": "Uttar Pradesh", "share": 15, "value": 855, "colour": "#22a447"}, {"label": "Jharkhand", "share": 10, "value": 570, "colour": "#ffd950"}, {"label": "West Bengal", "share": 7, "value": 399, "colour": "#10a9bb"}, {"label": "Other", "share": 6, "value": 342, "colour": "#7a4bc2"}]}
+    }, ensure_ascii=False)
+    c.execute('SELECT 1 FROM homepage_stats WHERE stat_key = ?', ('homepage_dashboard',))
+    if not c.fetchone():
+        c.execute('INSERT INTO homepage_stats (stat_key, stats_json) VALUES (?, ?)', ('homepage_dashboard', homepage_stats_seed))
     
     c.execute('''
         CREATE TABLE IF NOT EXISTS audit_logs (
@@ -911,7 +934,26 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                 })
             return
 
-        # 7. API: Load Announcements (Unprotected for Ticker/News/Events)
+        # 7. API: Load homepage dashboard figures (public)
+        elif path == '/api/homepage-stats':
+            conn = sqlite3.connect(DB_FILE)
+            c = conn.cursor()
+            c.execute('SELECT stats_json, updated_at FROM homepage_stats WHERE stat_key = ?', ('homepage_dashboard',))
+            row = c.fetchone()
+            conn.close()
+            if not row:
+                self.send_json(404, {"error": "Homepage statistics have not been configured."})
+                return
+            try:
+                payload = json.loads(row[0])
+            except (TypeError, json.JSONDecodeError):
+                self.send_json(500, {"error": "Homepage statistics contain invalid JSON."})
+                return
+            payload["updated_at"] = row[1]
+            self.send_json(200, payload)
+            return
+
+        # 8. API: Load Announcements (Unprotected for Ticker/News/Events)
         elif path == '/api/announcements':
             from urllib.parse import parse_qs
             query_params = parse_qs(parsed_path.query)
@@ -1335,7 +1377,30 @@ class AdminHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             self.send_json(200, { "success": True }, { "Set-Cookie": cookie.output(header='') })
             return
 
-        # 4. API: Create Announcement (Protected)
+        # 4. API: Update homepage dashboard figures (Protected)
+        elif path == '/api/homepage-stats':
+            username = self.get_session_username()
+            if not username:
+                self.send_json(401, { "error": "Unauthorized" })
+                return
+            data = self.get_post_data()
+            stats = data.get('stats', data)
+            if not isinstance(stats, dict) or not isinstance(stats.get('metrics'), list):
+                self.send_json(400, { "error": "A valid homepage statistics object is required." })
+                return
+            conn = sqlite3.connect(DB_FILE)
+            c = conn.cursor()
+            c.execute('''
+                INSERT INTO homepage_stats (stat_key, stats_json, updated_at) VALUES (?, ?, CURRENT_TIMESTAMP)
+                ON CONFLICT(stat_key) DO UPDATE SET stats_json = excluded.stats_json, updated_at = CURRENT_TIMESTAMP
+            ''', ('homepage_dashboard', json.dumps(stats, ensure_ascii=False)))
+            c.execute('INSERT INTO audit_logs (username, action) VALUES (?, ?)', (username, 'Updated homepage university snapshot'))
+            conn.commit()
+            conn.close()
+            self.send_json(200, { "success": True })
+            return
+
+        # 5. API: Create Announcement (Protected)
         elif path == '/api/announcements':
             username = self.get_session_username()
             if not username:

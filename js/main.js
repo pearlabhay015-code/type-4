@@ -5,7 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize custom components and attach event handlers
-  initAccessibilityBarOffset();
+  initAccessibilityControls();
   initTheme();
   initFontSize();
   initLanguage();
@@ -28,23 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
  * and updates CSS variable --accessibility-h so <cusb-navbar> is ALWAYS
  * positioned cleanly below it without overlapping on any device or font size.
  */
-function initAccessibilityBarOffset() {
-  const updateOffset = () => {
-    const accessBar = document.querySelector('cusb-accessibility-bar');
-    if (accessBar) {
-      const rect = accessBar.getBoundingClientRect();
-      const h = Math.round(rect.height);
-      if (h > 0) {
-        document.documentElement.style.setProperty('--accessibility-h', `${h}px`);
-      }
-    }
+function initAccessibilityControls() {
+  document.documentElement.style.setProperty('--accessibility-h', '0px');
+  const toggle = document.getElementById('accessibilityToggleBtn');
+  const panel = document.getElementById('accessibilityPanel');
+  const close = document.getElementById('accessibilityCloseBtn');
+  if (!toggle || !panel) return;
+
+  const setOpen = open => {
+    panel.classList.toggle('is-open', open);
+    panel.setAttribute('aria-hidden', String(!open));
+    toggle.setAttribute('aria-expanded', String(open));
   };
 
-  updateOffset();
-  window.addEventListener('resize', updateOffset);
-  window.addEventListener('load', updateOffset);
-  setTimeout(updateOffset, 150);
-  setTimeout(updateOffset, 500);
+  toggle.addEventListener('click', () => setOpen(!panel.classList.contains('is-open')));
+  close?.addEventListener('click', () => setOpen(false));
+  document.addEventListener('click', event => {
+    if (!panel.contains(event.target) && !toggle.contains(event.target)) setOpen(false);
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') setOpen(false);
+  });
 }
 
 /* ==========================================================================
@@ -1007,7 +1011,96 @@ function renderEventCards(eventList) {
   });
 }
 
+const homepageStatsFallback = {
+  metrics: [
+    { label: 'Students', value: '5,699', change: '+12.4% vs last year', icon: 'users' },
+    { label: 'Lecturers & Faculty', value: '297', change: '+5.1% vs last year', icon: 'graduation' },
+    { label: 'Research Grants & Awards', value: '368', change: '+18.2% vs last year', icon: 'chart' },
+    { label: 'Revenue / Budget', value: '₹8.74 Cr', change: '+24.0% vs last year', icon: 'briefcase' }
+  ],
+  academicPerformance: { title: 'Academic Performance', period: 'Last 4 Years', data: [{ label: '2024', value: 33 }, { label: '2025', value: 45 }, { label: '2026', value: 70 }, { label: '2027', value: 64 }] },
+  monthlyAdmissions: { title: 'Monthly Admissions', period: 'Last Semester', data: [{ label: 'Jan', primary: 44, secondary: 25 }, { label: 'Feb', primary: 60, secondary: 40 }, { label: 'Mar', primary: 52, secondary: 35 }, { label: 'Apr', primary: 70, secondary: 55 }, { label: 'May', primary: 65, secondary: 45 }, { label: 'Jun', primary: 80, secondary: 60 }] },
+  studentsByState: { title: 'Students by State', scope: 'All States & UTs', totalLabel: 'Enrolled Students', data: [{ label: 'Bihar', share: 62, value: 3533, colour: '#1c77ff' }, { label: 'Uttar Pradesh', share: 15, value: 855, colour: '#22a447' }, { label: 'Jharkhand', share: 10, value: 570, colour: '#ffd950' }, { label: 'West Bengal', share: 7, value: 399, colour: '#10a9bb' }, { label: 'Other', share: 6, value: 342, colour: '#7a4bc2' }] }
+};
+
+function escapeStatHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+}
+
+function renderHomepageStats(data) {
+  const container = document.getElementById('homepageStats');
+  if (!container) return;
+  const stats = data && Array.isArray(data.metrics) ? data : homepageStatsFallback;
+  const metricCards = stats.metrics.slice(0, 4).map(metric => `
+    <article class="homepage-metric-card">
+      <div><p>${escapeStatHtml(metric.label)}</p><strong>${escapeStatHtml(metric.value)}</strong><small>↑ ${escapeStatHtml(metric.change)}</small></div>
+      <span class="homepage-metric-icon">${window.cusbIconSvg ? window.cusbIconSvg(metric.icon || 'chart') : '→'}</span>
+    </article>`).join('');
+
+  const performance = stats.academicPerformance || homepageStatsFallback.academicPerformance;
+  const performanceData = performance.data || [];
+  const performanceMax = Math.max(100, ...performanceData.map(item => Number(item.value) || 0));
+  const points = performanceData.map((item, index) => {
+    const x = performanceData.length > 1 ? 8 + (index * 84 / (performanceData.length - 1)) : 50;
+    const y = 89 - ((Number(item.value) || 0) / performanceMax * 78);
+    return `${x},${y}`;
+  }).join(' ');
+  const areaPoints = `8,92 ${points} 92,92`;
+
+  const admissions = stats.monthlyAdmissions || homepageStatsFallback.monthlyAdmissions;
+  const admissionData = admissions.data || [];
+  const admissionMax = Math.max(1, ...admissionData.flatMap(item => [Number(item.primary) || 0, Number(item.secondary) || 0]));
+
+  const stateStats = stats.studentsByState || homepageStatsFallback.studentsByState;
+  const stateData = stateStats.data || [];
+  const totalStudents = stateData.reduce((total, item) => total + (Number(item.value) || 0), 0);
+  let progress = 0;
+  const donutParts = stateData.map(item => {
+    const share = Number(item.share) || 0;
+    const next = progress + share;
+    const colour = item.colour || '#1c77ff';
+    const part = `${colour} ${progress}% ${next}%`;
+    progress = next;
+    return part;
+  }).join(', ');
+
+  container.className = '';
+  container.innerHTML = `
+    <div class="homepage-metric-grid">${metricCards}</div>
+    <div class="homepage-dashboard-grid">
+      <article class="homepage-chart-card homepage-performance-card">
+        <div class="homepage-chart-title"><h3>${escapeStatHtml(performance.title)}</h3><span>${escapeStatHtml(performance.period)}</span></div>
+        <div class="performance-graph" role="img" aria-label="${escapeStatHtml(performance.title)} trend">
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="performanceFill" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#22a447" stop-opacity=".35"/><stop offset="1" stop-color="#22a447" stop-opacity="0"/></linearGradient></defs><polygon points="${areaPoints}" fill="url(#performanceFill)"/><polyline points="${points}" fill="none" stroke="#22a447" stroke-width="1.15" vector-effect="non-scaling-stroke"/>${performanceData.map((item, index) => { const x = performanceData.length > 1 ? 8 + (index * 84 / (performanceData.length - 1)) : 50; const y = 89 - ((Number(item.value) || 0) / performanceMax * 78); return `<circle cx="${x}" cy="${y}" r="1.8" fill="#22a447" vector-effect="non-scaling-stroke"/>`; }).join('')}</svg>
+        </div>
+        <div class="performance-labels">${performanceData.map(item => `<span>${escapeStatHtml(item.label)}<b>${escapeStatHtml(item.value)}%</b></span>`).join('')}</div>
+      </article>
+      <article class="homepage-chart-card">
+        <div class="homepage-chart-title"><h3>${escapeStatHtml(admissions.title)}</h3><span>${escapeStatHtml(admissions.period)}</span></div>
+        <div class="admissions-bars" role="img" aria-label="${escapeStatHtml(admissions.title)} bar chart">${admissionData.map(item => `<div class="admissions-bar-group"><div class="admissions-bars-pair"><i style="height:${(Number(item.primary) || 0) / admissionMax * 100}%"></i><i style="height:${(Number(item.secondary) || 0) / admissionMax * 100}%"></i></div><span>${escapeStatHtml(item.label)}</span></div>`).join('')}</div>
+      </article>
+      <article class="homepage-chart-card homepage-state-card">
+        <div class="homepage-chart-title"><h3>${escapeStatHtml(stateStats.title)}</h3><span>${escapeStatHtml(stateStats.scope)}</span></div>
+        <div class="state-donut" style="--donut:${donutParts}"><strong>${totalStudents.toLocaleString('en-IN')}</strong><span>${escapeStatHtml(stateStats.totalLabel)}</span></div>
+        <ul class="state-stat-list">${stateData.map(item => `<li><span><i style="background:${escapeStatHtml(item.colour || '#1c77ff')}"></i>${escapeStatHtml(item.label)} (${escapeStatHtml(item.share)}%)</span><b>${Number(item.value || 0).toLocaleString('en-IN')} students</b></li>`).join('')}</ul>
+      </article>
+    </div>`;
+}
+
+async function initHomepageStats() {
+  if (!document.getElementById('homepageStats')) return;
+  try {
+    const response = await fetch(window.cusbApiUrl('homepage-stats'));
+    if (!response.ok) throw new Error('Homepage statistics are unavailable');
+    renderHomepageStats(await response.json());
+  } catch (error) {
+    console.info('Using homepage statistics fallback.', error);
+    renderHomepageStats(homepageStatsFallback);
+  }
+}
+
 async function initDynamicContent() {
+  initHomepageStats();
   const currentLang = localStorage.getItem('cusb-lang') || 'en';
   const now = Date.now();
   

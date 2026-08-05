@@ -236,12 +236,20 @@ class CusbTopbar extends HTMLElement {
 }
 customElements.define('cusb-topbar', CusbTopbar);
 
-// 2b. Accessibility Bar Component
+// 2b. Accessibility Controls Component
 class CusbAccessibilityBar extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <div class="container accessibility-bar-wrap">
-        <div class="accessibility-left">
+      <div class="accessibility-float">
+        <button class="floating-accessibility-btn" id="accessibilityToggleBtn" type="button" aria-expanded="false" aria-controls="accessibilityPanel" aria-label="Open accessibility settings" title="Accessibility settings">
+          ${iconSvg('eye')}
+          <span data-en="Accessibility" data-hi="सुगम्यता">Accessibility</span>
+        </button>
+        <div class="accessibility-panel" id="accessibilityPanel" aria-hidden="true">
+          <div class="accessibility-panel-heading">
+            <span data-en="Accessibility settings" data-hi="सुगम्यता सेटिंग्स">Accessibility settings</span>
+            <button class="accessibility-panel-close" id="accessibilityCloseBtn" type="button" aria-label="Close accessibility settings">${iconSvg('close')}</button>
+          </div>
           <div class="accessibility-controls" role="group" aria-label="Accessibility Font Controls">
             <span class="size-label" data-en="Text Size:" data-hi="पाठ का आकार:">Text Size:</span>
             <button class="btn-size" id="btnDecSize" title="Decrease Text Size" aria-label="Decrease Font Size">−</button>
@@ -249,8 +257,6 @@ class CusbAccessibilityBar extends HTMLElement {
             <button class="btn-size" id="btnIncSize" title="Increase Text Size" aria-label="Increase Font Size">+</button>
             <span class="size-indicator" id="sizeIndicator">16px</span>
           </div>
-        </div>
-        <div class="accessibility-right">
           <!-- Language Converter (Dropdown protected with notranslate / translate="no") -->
           <div class="language-controls notranslate" translate="no" aria-label="Language Converter">
             <span class="lang-label" data-en="Language:" data-hi="भाषा:">Language:</span>
@@ -286,21 +292,10 @@ class CusbAccessibilityBar extends HTMLElement {
               </optgroup>
             </select>
           </div>
-          <span class="accessibility-divider">|</span>
           <!-- Theme Switcher -->
           <div class="theme-toggle-container">
             <span class="theme-label" data-en="Theme:" data-hi="थीम:">Theme:</span>
             <button class="btn-theme" id="themeToggleBtn" aria-label="Toggle Light/Dark Theme">${iconSvg('moon')}</button>
-          </div>
-          <span class="accessibility-divider">|</span>
-          <!-- Search Bar Area -->
-          <div class="accessibility-search-container" role="search">
-            <div class="search-container" style="width: 260px;">
-              <input type="search" class="search-input" id="headerSearchInput" placeholder="Search courses, syllabs..." aria-label="Search courses, syllabs...">
-              <button type="button" class="search-btn" id="headerSearchTriggerBtn" aria-label="Open Search Modal" title="Search CUSB Website (Ctrl+K)">
-                ${iconSvg('search')}
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -704,6 +699,23 @@ class CusbNavbar extends HTMLElement {
         </nav>
       </div>
     `;
+    this.querySelector('[data-menu="opportunities"]')?.remove();
+    this.querySelector('[data-menu="downloads"]')?.remove();
+
+    const navMenu = this.querySelector('#navbarMenu');
+    if (navMenu) {
+      navMenu.insertAdjacentHTML('beforeend', `
+        <li class="navbar-item navbar-item-apply" data-menu="apply">
+          <a href="https://cuet.samarth.ac.in/" target="_blank" rel="noopener noreferrer" class="navbar-link navbar-apply-link"><span data-en="Apply Now" data-hi="अभी आवेदन करें">Apply Now</span></a>
+        </li>
+        <li class="navbar-search-item" role="search">
+          <div class="search-container navbar-search-container">
+            <input type="search" class="search-input" id="headerSearchInput" placeholder="Search CUSB..." aria-label="Search CUSB website">
+            <button type="button" class="search-btn" id="headerSearchTriggerBtn" aria-label="Open search" title="Search CUSB Website (Ctrl+K)">${iconSvg('search')}</button>
+          </div>
+        </li>
+      `);
+    }
     const homeItem = this.querySelector('[data-menu="home"]');
     const aboutItem = this.querySelector('[data-menu="about"]');
     const referenceAboutMenu = this.querySelector('#referenceAboutMegamenu');
@@ -1062,6 +1074,22 @@ class CusbSidebar extends HTMLElement {
         </ul>
       </aside>
     `;
+    const priorityLinks = [
+      'leaders.html', 'about.html#iqac', 'about.html#accreditation', 'about.html#nirf',
+      'tenders.html', 'careers.html', 'https://webmail.cusb.ac.in/', 'https://cusb.samarth.ac.in/',
+      'https://cusb.samarth.edu.in/', 'students.html#exams', 'hostel.html', 'enquiry.html',
+      'https://scholarships.gov.in/', 'downloads.html', 'courses.html', 'about.html',
+      'https://www.antiragging.in/', 'https://rtionline.gov.in/', 'news-events.html?type=events', 'pyq.html'
+    ];
+    const menu = this.querySelector('.sidebar-menu-list');
+    if (menu) {
+      const links = [...menu.querySelectorAll(':scope > li')];
+      links.sort((a, b) => {
+        const aIndex = priorityLinks.indexOf(a.querySelector('a')?.getAttribute('href'));
+        const bIndex = priorityLinks.indexOf(b.querySelector('a')?.getAttribute('href'));
+        return (aIndex < 0 ? Number.MAX_SAFE_INTEGER : aIndex) - (bIndex < 0 ? Number.MAX_SAFE_INTEGER : bIndex);
+      }).forEach(item => menu.appendChild(item));
+    }
     replaceEmojiIcons(this);
   }
 }

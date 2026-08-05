@@ -182,6 +182,17 @@ if ($method === 'GET' && $route === 'announcements') {
     }
     respond(200, array_map('announcementPayload', $records));
 }
+if ($method === 'GET' && $route === 'homepage-stats') {
+    if (!tableExists('cms_homepage_stats')) respond(404, ['error' => 'Homepage statistics have not been configured.']);
+    $stmt = db()->prepare('SELECT stats_json, updated_at FROM cms_homepage_stats WHERE stat_key = ?');
+    $stmt->execute(['homepage_dashboard']);
+    $record = $stmt->fetch();
+    if (!$record) respond(404, ['error' => 'Homepage statistics have not been configured.']);
+    $stats = json_decode((string)$record['stats_json'], true);
+    if (!is_array($stats)) respond(500, ['error' => 'Homepage statistics contain invalid JSON.']);
+    $stats['updated_at'] = $record['updated_at'];
+    respond(200, $stats);
+}
 if ($method === 'GET' && $route === 'gallery') {
     $stmt = db()->query("SELECT id,title_en,title_hi,image_url,created_at FROM cms_gallery WHERE status = 'published' ORDER BY sort_order, id DESC");
     respond(200, array_map('galleryPayload', $stmt->fetchAll()));
@@ -310,6 +321,13 @@ if ($method === 'GET' && $route === 'admin/admission-applications') {
 
 $user = null;
 if ($method === 'POST') $user = requireUser();
+if ($method === 'POST' && $route === 'homepage-stats') {
+    $user = requireUser(); $data = input(); $stats = $data['stats'] ?? $data;
+    if (!is_array($stats) || !isset($stats['metrics']) || !is_array($stats['metrics'])) respond(400, ['error' => 'A valid homepage statistics object is required.']);
+    $json = json_encode($stats, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    db()->prepare('INSERT INTO cms_homepage_stats (stat_key,stats_json) VALUES (?,?) ON DUPLICATE KEY UPDATE stats_json=?,updated_at=UTC_TIMESTAMP()')->execute(['homepage_dashboard', $json, $json]);
+    audit((int)$user['id'], 'Updated homepage university snapshot'); respond(200, ['success' => true]);
+}
 if ($method === 'POST' && $route === 'announcements') {
     $data = input(); $fields = [text($data,'titleEn'), text($data,'titleHi'), text($data,'descEn'), text($data,'descHi')];
     if (in_array('', $fields, true)) respond(400, ['error' => 'English and Hindi titles and descriptions are required.']);
