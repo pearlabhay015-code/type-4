@@ -59,6 +59,7 @@ const iconDefs = `
     <symbol id="icon-flag" viewBox="0 0 24 24"><path d="M4 2v20M4 4h12l-3 4 3 4H4"/></symbol>
     <symbol id="icon-chevron-left" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></symbol>
     <symbol id="icon-chevron-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+    <symbol id="icon-accessibility" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="6.5" r="1.6" fill="currentColor"/><path d="M6.5 10.5h11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 11.5v5.5M9.5 20.5 12 16.5l2.5 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="icon-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
     <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></symbol>
     <symbol id="icon-admin-key" viewBox="0 0 24 24"><path d="M12 2C9.2 2 7 4.2 7 7c0 1.9 1 3.5 2.5 4.3V22h5V11.3C16 10.5 17 8.9 17 7c0-2.8-2.2-5-5-5Zm0 2a3 3 0 0 1 0 6 3 3 0 0 1 0-6Z"/><path d="M10 15h4M10 18h4"/></symbol>
@@ -80,7 +81,7 @@ const emojiIconMap = {
   '📢': 'file', '📞': 'phone', '✉': 'mail', '🔍': 'search', '☰': 'menu',
   '✕': 'close', '🌙': 'moon', '☀️': 'sun', '🏠': 'home', '🏛️': 'building',
   '👁️': 'eye', '📜': 'file', '📊': 'chart', '📂': 'file', '🛡️': 'shield',
-  '♿': 'users', '👤': 'users', '🎓': 'graduation', '👔': 'briefcase',
+  '♿': 'accessibility', '👤': 'users', '🎓': 'graduation', '👔': 'briefcase',
   '📋': 'file', '💼': 'briefcase', '💻': 'laptop', '🌿': 'book',
   '⚖️': 'shield', '🔬': 'search', '🧬': 'medical', '📚': 'book',
   '📁': 'file', '🏢': 'building', '💡': 'file', '🤝': 'users',
@@ -242,7 +243,7 @@ class CusbAccessibilityBar extends HTMLElement {
     this.innerHTML = `
       <div class="accessibility-float">
         <button class="floating-accessibility-btn" id="accessibilityToggleBtn" type="button" aria-expanded="false" aria-controls="accessibilityPanel" aria-label="Open accessibility settings" title="Accessibility settings">
-          ${iconSvg('eye')}
+          ${iconSvg('accessibility')}
           <span data-en="Accessibility" data-hi="सुगम्यता">Accessibility</span>
         </button>
         <div class="accessibility-panel" id="accessibilityPanel" aria-hidden="true">
@@ -885,6 +886,35 @@ class CusbNavbar extends HTMLElement {
         </div>
       `;
     }
+    const aboutTargets = {
+      'about-resources.html#the-university': 'about-the-university.html', 'about-resources.html#act': 'about-central-universities-act.html',
+      'about-resources.html#history': 'about-history-development.html', 'about-resources.html#statutes': 'about-statutes-ordinances.html',
+      'about-resources.html#vision': 'about-vision-mission.html', 'about-resources.html#policy-documents': 'about-policies-documents.html',
+      'about-resources.html#best-practices': 'about-best-practices.html', 'about-resources.html#annual-reports': 'about-annual-reports.html',
+      'about-resources.html#kulgeet': 'about-university-kulgeet.html', 'about-resources.html#logo': 'about-cusb-logo.html',
+      'about-resources.html#reach': 'about-how-to-reach.html', 'about-resources.html#court': 'about-the-court.html',
+      'about-resources.html#executive-council': 'about-executive-council.html', 'about-resources.html#academic-council': 'about-academic-council.html',
+      'about-resources.html#finance-committee': 'about-finance-committee.html'
+    };
+    this.querySelectorAll('a').forEach(link => {
+      const replacement = aboutTargets[link.getAttribute('href')];
+      if (replacement) link.href = replacement;
+    });
+    const aboutMenu = this.querySelector('#aboutMegamenu');
+    if (aboutMenu) {
+      this.querySelector('[data-menu="about"] > .navbar-link').href = 'about-the-university.html';
+      aboutMenu.innerHTML = `
+        <div class="megamenu-column"><div class="megamenu-heading">About University</div><ul class="megamenu-list">
+          <li class="megamenu-item"><a href="about-the-university.html">The University</a></li><li class="megamenu-item"><a href="about-central-universities-act.html">Central Universities Act, 2009</a></li><li class="megamenu-item"><a href="about-history-development.html">History and Development</a></li><li class="megamenu-item"><a href="about-statutes-ordinances.html">Statutes &amp; Ordinances</a></li><li class="megamenu-item"><a href="about-vision-mission.html">Vision &amp; Mission</a></li><li class="megamenu-item"><a href="about-policies-documents.html">Regulation and Policy Documents</a></li><li class="megamenu-item"><a href="about-best-practices.html">Salient Features and Best Practices</a></li><li class="megamenu-item"><a href="about-annual-reports.html">Annual Reports and Annual Accounts</a></li><li class="megamenu-item"><a href="about-university-kulgeet.html">University Kulgeet</a></li><li class="megamenu-item"><a href="about-cusb-logo.html">CUSB Logo</a></li><li class="megamenu-item"><a href="about-how-to-reach.html">How to Reach CUSB</a></li>
+        </ul></div>
+        <div class="megamenu-column"><div class="megamenu-heading">Statutory Bodies</div><ul class="megamenu-list">
+          <li class="megamenu-item"><a href="about-the-court.html">The Court</a></li><li class="megamenu-item"><a href="about-executive-council.html">Executive Council</a></li><li class="megamenu-item"><a href="about-academic-council.html">Academic Council</a></li><li class="megamenu-item"><a href="about-finance-committee.html">Finance Committee</a></li>
+        </ul></div>
+        <div class="megamenu-column"><div class="megamenu-heading">Others</div><ul class="megamenu-list">
+          <li class="megamenu-item"><a href="about-others-tenders.html">Tenders</a></li><li class="megamenu-item"><a href="about-others-notices.html">Notices</a></li><li class="megamenu-item"><a href="about-others-upcoming-events.html">Upcoming Events</a></li><li class="megamenu-item"><a href="about-others-archived-events.html">Archived Events</a></li><li class="megamenu-item"><a href="about-others-photo-gallery.html">Photo Gallery</a></li><li class="megamenu-item"><a href="about-others-recruitment.html">Recruitment</a></li><li class="megamenu-item"><a href="about-others-download.html">Download</a></li><li class="megamenu-item"><a href="about-others-recent-event.html">Recent Event</a></li><li class="megamenu-item"><a href="about-others-academic-highlights.html">Academic Highlights</a></li><li class="megamenu-item"><a href="about-others-circulars.html">Circular / Notification / Office Order</a></li><li class="megamenu-item"><a href="about-others-foundation-day.html">Foundation Day</a></li>
+        </ul></div>`;
+    }
+    const adminPageMenu=this.querySelector('#adminMegamenu');if(adminPageMenu){const af={visitor:'admin-visitor.html',chancellor:'admin-chancellor.html',vc:'admin-vice-chancellor.html',pvc:'admin-pro-vice-chancellor.html',dsw:'admin-dean-student-welfare.html',proctor:'admin-proctorial-board.html',deans:'admin-dean-head.html',registrar:'admin-registrar.html',finance:'admin-finance-officer.html',coe:'admin-controller-examination.html',librarian:'admin-librarian.html',staff:'admin-section-staff.html',committee:'admin-committee-cell.html',organogram:'admin-organogram.html'};adminPageMenu.innerHTML=`<div class="megamenu-column"><div class="megamenu-heading">Administration</div><ul class="megamenu-list">${[['Visitor','visitor'],['Chancellor','chancellor'],['Vice-Chancellor','vc'],['Pro-Vice Chancellor','pvc'],['Dean of Student Welfare','dsw'],['Proctorial Board','proctor'],['Dean / Head','deans']].map(([n,k])=>`<li class="megamenu-item"><a href="${af[k]}">${n}</a></li>`).join('')}</ul></div><div class="megamenu-column"><div class="megamenu-heading">Offices & Structure</div><ul class="megamenu-list">${[['Registrar','registrar'],['Finance Officer','finance'],['Controller of Examination','coe'],['Librarian','librarian'],['Section & Staff','staff'],['Committee / Cell','committee'],['Organogram','organogram']].map(([n,k])=>`<li class="megamenu-item"><a href="${af[k]}">${n}</a></li>`).join('')}</ul></div>`;}
     replaceEmojiIcons(this);
   }
 }
