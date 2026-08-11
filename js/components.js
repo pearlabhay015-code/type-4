@@ -974,6 +974,26 @@ class CusbFooter extends HTMLElement {
             <p class="footer-desc" data-en="Established by an Act of Parliament, the Central University of South Bihar aims to foster excellence in higher education and research for the socio-economic development of the region and the nation." data-hi="संसद के एक अधिनियम द्वारा स्थापित, दक्षिण बिहार केंद्रीय विश्वविद्यालय का उद्देश्य क्षेत्र और राष्ट्र के सामाजिक-आर्थिक विकास के लिए उच्च शिक्षा और अनुसंधान में उत्कृष्टता को बढ़ावा देना है।">
               Established by an Act of Parliament, the Central University of South Bihar aims to foster excellence in higher education and research for the socio-economic development of the region and the nation.
             </p>
+            <div class="footer-social-wrapper" style="margin-top: 16px;">
+              <div class="footer-social-label" style="font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--tx-secondary); margin-bottom: 8px;" data-en="Connect With CUSB" data-hi="सीयूएसबी से जुड़ें">Connect With CUSB</div>
+              <div class="footer-socials">
+                <a href="https://www.facebook.com/CentralUniversityOfSouthBihar" target="_blank" rel="noopener noreferrer" class="social-icon social-icon-fb" aria-label="CUSB Facebook Page" title="Facebook - Central University of South Bihar">
+                  ${iconSvg('facebook')}
+                </a>
+                <a href="https://twitter.com/CUSB_official" target="_blank" rel="noopener noreferrer" class="social-icon social-icon-x" aria-label="CUSB Official X (Twitter)" title="X (Twitter) - @CUSB_official">
+                  ${iconSvg('x')}
+                </a>
+                <a href="https://www.youtube.com/@CentralUniversityofSouthBihar" target="_blank" rel="noopener noreferrer" class="social-icon social-icon-yt" aria-label="CUSB YouTube Channel" title="YouTube - Central University of South Bihar">
+                  ${iconSvg('youtube')}
+                </a>
+                <a href="https://www.linkedin.com/school/central-university-of-south-bihar/" target="_blank" rel="noopener noreferrer" class="social-icon social-icon-li" aria-label="CUSB LinkedIn" title="LinkedIn - Central University of South Bihar">
+                  ${iconSvg('linkedin')}
+                </a>
+                <a href="https://www.instagram.com/cusb_official/" target="_blank" rel="noopener noreferrer" class="social-icon social-icon-ig" aria-label="CUSB Instagram" title="Instagram - @cusb_official">
+                  ${iconSvg('instagram')}
+                </a>
+              </div>
+            </div>
           </div>
           
           <div class="footer-col">
