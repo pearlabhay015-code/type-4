@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Academic Ordinance, Regulation &amp; Manual — Central University of South Bihar" data-hi="अकादमिक अध्यादेश, विनियमन और नियमावली — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Academic Ordinance, Regulation &amp; Manual — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Official Academic Ordinances, Regulations, Manuals, Fellowship Guidelines, and Research Handbooks for Ph.D. and Postgraduate Scholars at Central University of South Bihar (CUSB).">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .ordinance-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .ordinance-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .ordinance-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .ordinance-crumb a:hover {
+      color: var(--acc-blue);
+    }
+    .ordinance-header-area {
+      margin-bottom: 28px;
+    }
+    .ordinance-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0b6cb8;
+      background: rgba(11, 108, 184, 0.08);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    [data-theme="dark"] .ordinance-badge {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .ordinance-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .ordinance-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+    .ordinance-lead-desc {
+      font-size: 0.96rem;
+      color: var(--tx-secondary);
+      line-height: 1.6;
+      margin: 0;
+      max-width: 880px;
+    }
+
+    /* Search & Filter Bar */
+    .ordinance-search-wrap {
+      width: 100%;
+      max-width: 520px;
+      margin: 20px 0 28px;
+      position: relative;
+    }
+    .ordinance-search-input {
+      width: 100%;
+      padding: 12px 42px 12px 18px;
+      font-size: 0.92rem;
+      border-radius: 24px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      color: var(--tx-primary);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s ease;
+    }
+    .ordinance-search-input:focus {
+      outline: none;
+      border-color: #0b6cb8;
+      box-shadow: 0 4px 14px rgba(11, 108, 184, 0.15);
+    }
+    .ordinance-search-icon {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--tx-muted);
+      pointer-events: none;
+      font-size: 1rem;
+    }
+
+    /* Section Banner Card */
+    .ordinance-section-bar {
+      background: #7a0c0c;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px 8px 0 0;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    [data-theme="dark"] .ordinance-section-bar {
+      background: #881337;
+    }
+
+    /* Block Card */
+    .ordinance-card-block {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
+    }
+
+    .ordinance-tree {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .ordinance-tree > li {
+      position: relative;
+      padding-left: 24px;
+      font-size: 0.92rem;
+      color: var(--tx-primary);
+      line-height: 1.6;
+    }
+    .ordinance-tree > li::before {
+      content: '■';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #7a0c0c;
+      font-size: 0.75rem;
+    }
+    [data-theme="dark"] .ordinance-tree > li::before {
+      color: #f43f5e;
+    }
+
+    .ordinance-sub-group-title {
+      font-weight: 800;
+      color: var(--tx-primary);
+      margin: 16px 0 10px;
+      font-size: 0.95rem;
+      padding-left: 4px;
+      border-left: 3px solid #0b6cb8;
+      padding-left: 10px;
+    }
+    [data-theme="dark"] .ordinance-sub-group-title {
+      border-left-color: #38bdf8;
+    }
+
+    .ordinance-link {
+      color: #0b6cb8;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+    .ordinance-link:hover {
+      color: #004b9b;
+      text-decoration: underline;
+      transform: translateX(3px);
+    }
+    [data-theme="dark"] .ordinance-link {
+      color: #38bdf8;
+    }
+    [data-theme="dark"] .ordinance-link:hover {
+      color: #7dd3fc;
+    }
+
+    .ordinance-icon-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #0369a1;
+      background: rgba(2, 132, 199, 0.08);
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    [data-theme="dark"] .ordinance-icon-pill {
+      color: #7dd3fc;
+      background: rgba(56, 189, 248, 0.12);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="ordinance-page-wrapper">
+    <div class="container">
+      
+      <!-- Clean Breadcrumb -->
+      <nav class="ordinance-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="courses.html" data-en="Student Corner" data-hi="छात्र अनुभाग">Student Corner</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Academic Ordinance, Regulation &amp; Manual</span>
+      </nav>
+
+      <!-- Theme Aligned Header (Hero removed) -->
+      <div class="ordinance-header-area">
+        <span class="ordinance-badge">📜 Academic Regulations &amp; Research Handbooks</span>
+        <h1 class="ordinance-main-title" data-en="Academic Ordinance/ Regulation &amp; Manual For Ph.D. Students" data-hi="पीएच.डी. छात्रों के लिए शैक्षणिक अध्यादेश/विनियमन एवं नियमावली">
+          Academic Ordinance/ Regulation &amp; Manual For Ph.D. Students
+        </h1>
+        <p class="ordinance-lead-desc" data-en="Official ordinances governing Ph.D. programmes, PG Choice Based Credit System (CBCS) regulations, fellowship disbursement guidelines, and research compliance circulars." data-hi="पीएच.डी. कार्यक्रमों को नियंत्रित करने वाले आधिकारिक अध्यादेश, पीजी सीबीसीएस विनियम, फेलोशिप संवितरण दिशानिर्देश और अनुसंधान अनुपालन परिपत्र।">
+          Official ordinances governing Ph.D. programmes, PG Choice Based Credit System (CBCS) regulations, fellowship disbursement guidelines, and research compliance circulars.
+        </p>
+      </div>
+
+      <!-- Search Filter -->
+      <div class="ordinance-search-wrap" role="search">
+        <input type="search" id="ordinanceSearchInput" class="ordinance-search-input" placeholder="Search ordinances, regulations, forms or circulars..." aria-label="Search ordinances and regulations">
+        <span class="ordinance-search-icon">🔍</span>
+      </div>
+
+      <!-- ════════ SECTION 1: ORDINANCE AND REGULATIONS FOR PH.D. ════════ -->
+      <div class="ordinance-section-container" data-section="ordinance-phd">
+        <div class="ordinance-section-bar">
+          <span>⚖️</span>
+          <span data-en="Ordinance And Regulations For Ph.D." data-hi="पीएच.डी. के लिए अध्यादेश और विनियम">Ordinance And Regulations For Ph.D.</span>
+        </div>
+        
+        <div class="ordinance-card-block">
+          <ul class="ordinance-tree">
+            <li>
+              <a href="assets/documents/academics/ordinance-phd-2023.pdf" target="_blank" class="ordinance-link">
+                Ordinance Governing the Award of the Degree of Doctor of Philosophy (Ph.D.)-2023 ↗
+              </a>
+              <span class="ordinance-icon-pill">PDF</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/notice-1116-phd-amendments-2022.pdf" target="_blank" class="ordinance-link">
+                CUSB Notification No.-1116 dated 28.09.2022 regarding Ordinance( Amendments) Relating to the Award of Degree of Doctor of Philosophy-2021 alongwith the said Ordinance ↗
+              </a>
+              <span class="ordinance-icon-pill">Notification</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/notice-ae7007-phd-ordinance-2023.pdf" target="_blank" class="ordinance-link">
+                CUSB/Acad/1-1/2023/AE7007 dated 03.11.2023 regarding "Ordinance Governing the Award of the Degree of Doctor of Philosophy (Ph.D.) - 2023" alongwith copy of the said Ordinance ↗
+              </a>
+              <span class="ordinance-icon-pill">Circular</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/cbcs-model-ordinance-pg.pdf" target="_blank" class="ordinance-link">
+                CBCS Model – Ordinance and Regulation for PG programme ↗
+              </a>
+              <span class="ordinance-icon-pill">Regulations</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/ordinance-phd-2017.pdf" target="_blank" class="ordinance-link">
+                Ordinance Governing the Award of the Degree of Doctor of Philosophy (Ph.D.) - 2017 ↗
+              </a>
+              <span class="ordinance-icon-pill">PDF</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/ordinance-phd-2017-amendment.pdf" target="_blank" class="ordinance-link">
+                Ordinance Governing the Award of the Degree of Doctor of Philosophy (Ph.D.) - 2017 (amendment) ↗
+              </a>
+              <span class="ordinance-icon-pill">Amendment</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/integrated-mphil-phd-regulations-2014.pdf" target="_blank" class="ordinance-link">
+                Integrated MPhil-PhD Regulations 15.09.2014 ↗
+              </a>
+              <span class="ordinance-icon-pill">Regulations</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 2: GENERAL NOTICE FOR PH.D. STUDENTS ════════ -->
+      <div class="ordinance-section-container" data-section="general-phd">
+        <div class="ordinance-section-bar">
+          <span>📢</span>
+          <span data-en="General Notice For Ph.D. Students" data-hi="पीएच.डी. छात्रों के लिए सामान्य सूचना">General Notice For Ph.D. Students</span>
+        </div>
+        
+        <div class="ordinance-card-block">
+          <ul class="ordinance-tree">
+            <li>
+              <a href="assets/documents/academics/notice-phd-thesis-softcopy.pdf" target="_blank" class="ordinance-link">
+                Notice regarding submission of Ph.D. thesis in Soft copy ↗
+              </a>
+              <span class="ordinance-icon-pill">Notice</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/direction-shodhganga-inflibnet.pdf" target="_blank" class="ordinance-link">
+                Direction of Shodhganga Inflibnet ↗
+              </a>
+              <span class="ordinance-icon-pill">Guidelines</span>
+            </li>
+          </ul>
+
+          <div class="ordinance-sub-group-title" data-en="General Notice related to Fellowship for Ph.D (2020-2021)" data-hi="पीएच.डी. फेलोशिप से संबंधित सामान्य सूचना (2020-2021)">
+            General Notice related to Fellowship for Ph.D (2020-2021)
+          </div>
+
+          <ul class="ordinance-tree">
+            <li>
+              <a href="assets/documents/academics/general-notification-13-04-2021.pdf" target="_blank" class="ordinance-link">
+                General Notification (Dated 13/04/2021) ↗
+              </a>
+              <span class="ordinance-icon-pill">Notification</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/claim-form-non-net-fellowship.pdf" target="_blank" class="ordinance-link">
+                Claim Form for Non-Net Fellowship ↗
+              </a>
+              <span class="ordinance-icon-pill">Form</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/claim-form-non-net-contingency.pdf" target="_blank" class="ordinance-link">
+                Claim form for Non-Net Contingency ↗
+              </a>
+              <span class="ordinance-icon-pill">Form</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 3: NOTICE / FORMATS : UGC CANARA BANK FELLOWSHIP WEB PORTAL ════════ -->
+      <div class="ordinance-section-container" data-section="ugc-canara-portal">
+        <div class="ordinance-section-bar">
+          <span>🏦</span>
+          <span data-en="Notice / Formats : UGC Canara Bank Fellowship Web Portal" data-hi="सूचना / प्रारूप : यूजीसी केनरा बैंक फेलोशिप वेब पोर्टल">Notice / Formats : UGC Canara Bank Fellowship Web Portal</span>
+        </div>
+        
+        <div class="ordinance-card-block">
+          <ul class="ordinance-tree">
+            <li>
+              <a href="assets/documents/academics/notice-disbursement-fellowship-ugc-2018.pdf" target="_blank" class="ordinance-link">
+                Notice Regarding Disbursement of Fellowship by UGC (CUSB/DEV/2522/2018 dated 03/11/2018) ↗
+              </a>
+              <span class="ordinance-icon-pill">Notice</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/public-notice-ugc-canara-portal-enhancements.pdf" target="_blank" class="ordinance-link">
+                Public Notice: Enhancements made to UGC-Canara Bank web portal ↗
+              </a>
+              <span class="ordinance-icon-pill">Public Notice</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/canara-bank-guidelines.pdf" target="_blank" class="ordinance-link">
+                Canara Bank Guide lines ↗
+              </a>
+              <span class="ordinance-icon-pill">Manual</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/joining-certification-net-jrf.pdf" target="_blank" class="ordinance-link">
+                Joining and Certification Net JRF ↗
+              </a>
+              <span class="ordinance-icon-pill">Format</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/ugc-exception-format.pdf" target="_blank" class="ordinance-link">
+                UGC Exception format ↗
+              </a>
+              <span class="ordinance-icon-pill">Format</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 4: GENERAL NOTIFICATION FOR NEWLY ENROLLED PH.D ENROLLED STUDENTS ════════ -->
+      <div class="ordinance-section-container" data-section="newly-enrolled-phd">
+        <div class="ordinance-section-bar">
+          <span>🎓</span>
+          <span data-en="General Notification For Newly Enrolled Ph.D Enrolled Students" data-hi="नव नामांकित पीएच.डी. छात्रों के लिए सामान्य अधिसूचना">General Notification For Newly Enrolled Ph.D Enrolled Students</span>
+        </div>
+        
+        <div class="ordinance-card-block">
+          <ul class="ordinance-tree">
+            <li>
+              <a href="assets/documents/academics/general-notification-22-10-2019.pdf" target="_blank" class="ordinance-link">
+                General Notification (Dated 22/10/2019) ↗
+              </a>
+              <span class="ordinance-icon-pill">Notification</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/claim-form-non-net-fellowship-new.pdf" target="_blank" class="ordinance-link">
+                Claim Form for Non-Net Fellowship ↗
+              </a>
+              <span class="ordinance-icon-pill">Form</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 5: GENERAL NOTIFICATION FOR PH.D ENROLLED STUDENTS ════════ -->
+      <div class="ordinance-section-container" data-section="phd-enrolled-general">
+        <div class="ordinance-section-bar">
+          <span>📑</span>
+          <span data-en="General Notification For Ph.D Enrolled Students" data-hi="पीएच.डी. नामांकित छात्रों के लिए सामान्य अधिसूचना">General Notification For Ph.D Enrolled Students</span>
+        </div>
+        
+        <div class="ordinance-card-block">
+          <ul class="ordinance-tree">
+            <li>
+              <a href="assets/documents/academics/general-notification-19-02-2019.pdf" target="_blank" class="ordinance-link">
+                General Notification (Dated 19/02/2019) ↗
+              </a>
+              <span class="ordinance-icon-pill">Notification</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+  
+  <script>
+    // Live Search Filter for Ordinances
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('ordinanceSearchInput');
+      const allListItems = document.querySelectorAll('.ordinance-tree li');
+      const allSections = document.querySelectorAll('.ordinance-section-container');
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+
+          allSections.forEach(section => {
+            let sectionHasVisibleItem = false;
+            const items = section.querySelectorAll('.ordinance-tree li');
+
+            items.forEach(li => {
+              const text = li.textContent.toLowerCase();
+              if (!query || text.includes(query)) {
+                li.style.display = '';
+                sectionHasVisibleItem = true;
+              } else {
+                li.style.display = 'none';
+              }
+            });
+
+            if (!query || sectionHasVisibleItem) {
+              section.style.display = '';
+            } else {
+              section.style.display = 'none';
+            }
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

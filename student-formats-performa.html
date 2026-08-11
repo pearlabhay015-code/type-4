@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Format &amp; Performa (UG/ Integrated and PG) — Central University of South Bihar" data-hi="प्रारूप एवं प्रपत्र (यूजी/एकीकृत और पीजी) — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Download (Format/Performa) — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Download official CUSB student forms, performas, applications for ID Card, No Dues, Hostel Refund, BSCCS adjustment, Backlog Exam forms, and MSc Project Thesis formats.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .format-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .format-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .format-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .format-crumb a:hover {
+      color: var(--acc-blue);
+    }
+    .format-header-area {
+      margin-bottom: 24px;
+    }
+    .format-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0b6cb8;
+      background: rgba(11, 108, 184, 0.08);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    [data-theme="dark"] .format-badge {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .format-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .format-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+    .format-lead-desc {
+      font-size: 0.96rem;
+      color: var(--tx-secondary);
+      line-height: 1.6;
+      margin: 0;
+      max-width: 880px;
+    }
+
+    /* Search & Filter Bar */
+    .format-search-wrap {
+      width: 100%;
+      max-width: 500px;
+      margin: 20px 0 28px;
+      position: relative;
+    }
+    .format-search-input {
+      width: 100%;
+      padding: 12px 42px 12px 18px;
+      font-size: 0.92rem;
+      border-radius: 24px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      color: var(--tx-primary);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s ease;
+    }
+    .format-search-input:focus {
+      outline: none;
+      border-color: #0b6cb8;
+      box-shadow: 0 4px 14px rgba(11, 108, 184, 0.15);
+    }
+    .format-search-icon {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--tx-muted);
+      pointer-events: none;
+      font-size: 1rem;
+    }
+
+    /* Section Banner Card */
+    .format-section-bar {
+      background: #7a0c0c;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px 8px 0 0;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    [data-theme="dark"] .format-section-bar {
+      background: #881337;
+    }
+
+    /* Block Card */
+    .format-card-block {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
+    }
+
+    .format-sub-caption {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--tx-muted);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .format-tree {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .format-tree > li {
+      position: relative;
+      padding-left: 24px;
+      font-size: 0.92rem;
+      color: var(--tx-primary);
+      line-height: 1.6;
+    }
+    .format-tree > li::before {
+      content: '■';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #7a0c0c;
+      font-size: 0.75rem;
+    }
+    [data-theme="dark"] .format-tree > li::before {
+      color: #f43f5e;
+    }
+
+    .format-link {
+      color: #0b6cb8;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+    .format-link:hover {
+      color: #004b9b;
+      text-decoration: underline;
+      transform: translateX(3px);
+    }
+    [data-theme="dark"] .format-link {
+      color: #38bdf8;
+    }
+    [data-theme="dark"] .format-link:hover {
+      color: #7dd3fc;
+    }
+
+    .format-type-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #0369a1;
+      background: rgba(2, 132, 199, 0.08);
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .format-type-pill.word {
+      color: #1d4ed8;
+      background: rgba(29, 78, 216, 0.08);
+    }
+    [data-theme="dark"] .format-type-pill {
+      color: #7dd3fc;
+      background: rgba(56, 189, 248, 0.12);
+    }
+    [data-theme="dark"] .format-type-pill.word {
+      color: #93c5fd;
+      background: rgba(147, 197, 253, 0.15);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="format-page-wrapper">
+    <div class="container">
+      
+      <!-- Clean Breadcrumb -->
+      <nav class="format-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="courses.html" data-en="Student Corner" data-hi="छात्र अनुभाग">Student Corner</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Format/ Performa (UG/ Integrated And PG)</span>
+      </nav>
+
+      <!-- Theme Aligned Header Area -->
+      <div class="format-header-area">
+        <span class="format-badge">📄 Official Forms, Applications &amp; Performas</span>
+        <h1 class="format-main-title" data-en="Format/ Performa (UG/ Integrated And PG)" data-hi="प्रारूप/प्रपत्र (यूजी/एकीकृत और पीजी)">
+          Format/ Performa (UG/ Integrated And PG)
+        </h1>
+        <p class="format-lead-desc" data-en="Download official student application forms, ID card issuance requests, No Dues certificate, fee refund claim forms, backlog examination forms, and postgraduate project templates." data-hi="आधिकारिक छात्र आवेदन प्रपत्र, आईडी कार्ड जारी करने के अनुरोध, नो ड्यूज प्रमाणपत्र, शुल्क वापसी दावा प्रपत्र, बैकलॉग परीक्षा प्रपत्र और स्नातकोत्तर परियोजना टेम्पलेट डाउनलोड करें।">
+          Download official student application forms, ID card issuance requests, No Dues certificate, fee refund claim forms, backlog examination forms, and postgraduate project templates.
+        </p>
+      </div>
+
+      <!-- Live Search Filter -->
+      <div class="format-search-wrap" role="search">
+        <input type="search" id="formatSearchInput" class="format-search-input" placeholder="Search forms, applications, certificates or templates..." aria-label="Search student forms">
+        <span class="format-search-icon">🔍</span>
+      </div>
+
+      <!-- ════════ SECTION 1: STUDENTS I CARD ════════ -->
+      <div class="format-section-container" data-section="id-card">
+        <div class="format-section-bar">
+          <span>🪪</span>
+          <span data-en="Students I Card" data-hi="छात्र पहचान पत्र">Students I Card</span>
+        </div>
+        
+        <div class="format-card-block">
+          <div class="format-sub-caption">Identity Card Related</div>
+          <ul class="format-tree">
+            <li>
+              <a href="assets/documents/academics/notice-issuance-duplicate-id-card-2019.pdf" target="_blank" class="format-link">
+                Notification: Regarding issuance of New / Duplicate Identity Card (CUSB/924/2019 dated 15/07/2019) ↗
+              </a>
+              <span class="format-type-pill">Notification</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/id-card-application-form-students.pdf" target="_blank" class="format-link">
+                Identity Card Application Form for Students ↗
+              </a>
+              <span class="format-type-pill">Form</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 2: ACADEMIC FORM & APPLICATION ════════ -->
+      <div class="format-section-container" data-section="academic-forms">
+        <div class="format-section-bar">
+          <span>📝</span>
+          <span data-en="Academic Form &amp; Application" data-hi="शैक्षणिक प्रपत्र एवं आवेदन">Academic Form &amp; Application</span>
+        </div>
+        
+        <div class="format-card-block">
+          <ul class="format-tree">
+            <li>
+              <a href="assets/documents/academics/form-cancellation-admission.pdf" target="_blank" class="format-link">
+                Application form for cancellation of admission ↗
+              </a>
+              <span class="format-type-pill">Form</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/form-no-dues-certificate.pdf" target="_blank" class="format-link">
+                No Dues Certificate ↗
+              </a>
+              <span class="format-type-pill">Certificate</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/form-refund-hostel-deposit.pdf" target="_blank" class="format-link">
+                Refund of Hostel Deposit ↗
+              </a>
+              <span class="format-type-pill">Form</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/form-refund-security-deposit.pdf" target="_blank" class="format-link">
+                Form for Refund of Security Deposit on Completion of Programme ↗
+              </a>
+              <span class="format-type-pill">Form</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/form-student-information.pdf" target="_blank" class="format-link">
+                Student information form ↗
+              </a>
+              <span class="format-type-pill">Form</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/form-bonafide-fee-structure-certificate.pdf" target="_blank" class="format-link">
+                Application form for issuance of Bonafide Certificate / Fee Structure Certificate ↗
+              </a>
+              <span class="format-type-pill">Application</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/form-refund-bsccs-education-loan.pdf" target="_blank" class="format-link">
+                Application for refund of amount credited and adjusted under Bihar Student Credit Card Scheme (BSCCS) / Bank's Education Loan ↗
+              </a>
+              <span class="format-type-pill">Application</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/form-issuance-university-certificate.pdf" target="_blank" class="format-link">
+                Application for issuance of University Certificate ↗
+              </a>
+              <span class="format-type-pill">Application</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/form-degree-certificate-in-absentia.pdf" target="_blank" class="format-link">
+                Application form for Degree Certificate in absentia ↗
+              </a>
+              <span class="format-type-pill">Application</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/form-issuing-various-certificates.pdf" target="_blank" class="format-link">
+                Application form for issuing various certificate(s) ↗
+              </a>
+              <span class="format-type-pill">Application</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 3: EXAMINATION RELATED ════════ -->
+      <div class="format-section-container" data-section="examination-forms">
+        <div class="format-section-bar">
+          <span>📋</span>
+          <span data-en="Examination Related" data-hi="परीक्षा संबंधी">Examination Related</span>
+        </div>
+        
+        <div class="format-card-block">
+          <ul class="format-tree">
+            <li>
+              <a href="assets/documents/academics/form-backlog-exam-provisionally-promoted.pdf" target="_blank" class="format-link">
+                Application form for provisionally promoted student to appear in end term examination of backlog courses / to repeat backlog courses in next semester [ PDF ] ↗
+              </a>
+              <span class="format-type-pill">PDF</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/form-grade-improvement-courses.doc" target="_blank" class="format-link">
+                Application form for improvement of grade(s)by appearing in end term examination of the courses [ MS-WORD ] ↗
+              </a>
+              <span class="format-type-pill word">DOC</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/form-backlog-exam-provisionally-promoted.doc" target="_blank" class="format-link">
+                Application form for provisionally promoted student to appear in end term examination of backlog courses / to repeat backlog courses in next semester [ MS-WORD ] ↗
+              </a>
+              <span class="format-type-pill word">DOC</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 4: PROJECT AND THESIS FOR PG STUDENTS ════════ -->
+      <div class="format-section-container" data-section="thesis-formats">
+        <div class="format-section-bar">
+          <span>📚</span>
+          <span data-en="Project And Thesis For PG Students" data-hi="पीजी छात्रों के लिए प्रोजेक्ट और थीसिस">Project And Thesis For PG Students</span>
+        </div>
+        
+        <div class="format-card-block">
+          <ul class="format-tree">
+            <li>
+              <a href="assets/documents/academics/msc-project-thesis-format.pdf" target="_blank" class="format-link">
+                MSc Project Thesis Format [pdf] ↗
+              </a>
+              <span class="format-type-pill">PDF Template</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/minor-project-thesis-format.pdf" target="_blank" class="format-link">
+                Minor project thesis format [pdf] ↗
+              </a>
+              <span class="format-type-pill">PDF Template</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+  
+  <script>
+    // Live Search Filter for Format/Performa Page
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('formatSearchInput');
+      const allSections = document.querySelectorAll('.format-section-container');
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+
+          allSections.forEach(section => {
+            let sectionHasVisibleItem = false;
+            const items = section.querySelectorAll('.format-tree li');
+
+            items.forEach(li => {
+              const text = li.textContent.toLowerCase();
+              if (!query || text.includes(query)) {
+                li.style.display = '';
+                sectionHasVisibleItem = true;
+              } else {
+                li.style.display = 'none';
+              }
+            });
+
+            if (!query || sectionHasVisibleItem) {
+              section.style.display = '';
+            } else {
+              section.style.display = 'none';
+            }
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

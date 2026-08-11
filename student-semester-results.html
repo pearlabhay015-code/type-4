@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Semester Results June-2026 — Central University of South Bihar" data-hi="सेमेस्टर परिणाम जून-2026 — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Semester Result June-2026 — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Official End-Semester, Supplementary, Backlog, and Re-evaluation Examination Results for UG, PG, Integrated Programmes, and Teacher Education at CUSB.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .result-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .result-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .result-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .result-crumb a:hover {
+      color: var(--acc-blue);
+    }
+    .result-header-area {
+      margin-bottom: 24px;
+    }
+    .result-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0b6cb8;
+      background: rgba(11, 108, 184, 0.08);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    [data-theme="dark"] .result-badge {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .result-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .result-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+    .result-lead-desc {
+      font-size: 0.96rem;
+      color: var(--tx-secondary);
+      line-height: 1.6;
+      margin: 0;
+      max-width: 880px;
+    }
+
+    /* Section Banner Card */
+    .result-section-bar {
+      background: #7a0c0c;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px 8px 0 0;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    [data-theme="dark"] .result-section-bar {
+      background: #881337;
+    }
+
+    /* Filter Controls */
+    .result-filter-bar {
+      background: var(--bg-primary);
+      border-left: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      padding: 16px 20px 12px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .result-search-box {
+      position: relative;
+      flex: 1;
+      min-width: 280px;
+      max-width: 480px;
+    }
+    .result-search-input {
+      width: 100%;
+      padding: 10px 38px 10px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      color: var(--tx-primary);
+      font-size: 0.88rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    .result-search-input:focus {
+      outline: none;
+      border-color: #0b6cb8;
+    }
+    .result-search-icon {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--tx-muted);
+      pointer-events: none;
+    }
+
+    /* Table Container */
+    .result-table-wrap {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      overflow-x: auto;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 32px;
+    }
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+    .result-table th {
+      background: var(--bg-secondary);
+      color: var(--tx-primary);
+      font-weight: 800;
+      padding: 14px 18px;
+      border-bottom: 2px solid var(--border-color);
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+    .result-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--tx-primary);
+      vertical-align: middle;
+      line-height: 1.5;
+    }
+    .result-table tbody tr:hover {
+      background: rgba(11, 108, 184, 0.04);
+    }
+    [data-theme="dark"] .result-table tbody tr:hover {
+      background: rgba(56, 189, 248, 0.06);
+    }
+
+    .result-link-title {
+      color: #0b6cb8;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .result-link-title:hover {
+      color: #004b9b;
+      text-decoration: underline;
+      transform: translateX(3px);
+    }
+    [data-theme="dark"] .result-link-title {
+      color: #38bdf8;
+    }
+    [data-theme="dark"] .result-link-title:hover {
+      color: #7dd3fc;
+    }
+
+    .result-date-badge {
+      display: inline-block;
+      white-space: nowrap;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--tx-secondary);
+      background: var(--bg-secondary);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+    }
+    .result-pdf-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #0369a1;
+      background: rgba(2, 132, 199, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 6px;
+    }
+    [data-theme="dark"] .result-pdf-tag {
+      color: #7dd3fc;
+      background: rgba(56, 189, 248, 0.12);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="result-page-wrapper">
+    <div class="container">
+      
+      <!-- Clean Breadcrumb -->
+      <nav class="result-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="courses.html" data-en="Student Corner" data-hi="छात्र अनुभाग">Student Corner</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Semester Result June-2026</span>
+      </nav>
+
+      <!-- Theme Aligned Header (Hero removed) -->
+      <div class="result-header-area">
+        <span class="result-badge">📊 Office of the Controller of Examinations</span>
+        <h1 class="result-main-title" data-en="Semester Result June-2026" data-hi="सेमेस्टर परिणाम जून-2026">
+          Semester Result June-2026
+        </h1>
+        <p class="result-lead-desc" data-en="Official end-semester examination results, backlog notifications, integrated programme scorecards, and addendum results published by CUSB Examination Division." data-hi="सीयूएसबी परीक्षा प्रभाग द्वारा प्रकाशित आधिकारिक एंड-सेमेस्टर परीक्षा परिणाम, बैकलॉग अधिसूचनाएं, एकीकृत कार्यक्रम स्कोरकार्ड और परिशिष्ट परिणाम।">
+          Official end-semester examination results, backlog notifications, integrated programme scorecards, and addendum results published by CUSB Examination Division.
+        </p>
+      </div>
+
+      <!-- ════════ SECTION: EXAMINATION RESULT ════════ -->
+      <div class="result-section-bar">
+        <span>📑</span>
+        <span data-en="Examination Result:" data-hi="परीक्षा परिणाम:">Examination Result:</span>
+      </div>
+
+      <div class="result-filter-bar">
+        <div class="result-search-box">
+          <input type="search" id="resultSearchInput" class="result-search-input" placeholder="Search by programme, semester, session or date..." aria-label="Search examination results">
+          <span class="result-search-icon">🔍</span>
+        </div>
+        <div style="font-size: 0.82rem; color: var(--tx-muted);">
+          Showing <span id="resultCount" style="font-weight: 800; color: var(--tx-primary);">103</span> results
+        </div>
+      </div>
+
+      <div class="result-table-wrap">
+        <table class="result-table" id="resultsTable">
+          <thead>
+            <tr>
+              <th style="width: 80%;">Title</th>
+              <th style="width: 20%; text-align: right;">Published Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><a href="assets/documents/academics/result-ma-sociology-2nd-sem.pdf" target="_blank" class="result-link-title">Backlog result of M.A. Sociology -2nd Semester 2024-26 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-economics-4th-sem.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG-PG in Economics-4th Semester with Backlog result 2nd Semester 2024-26 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-history-2nd-sem.pdf" target="_blank" class="result-link-title">Addendum result of 5 Year Integrated UG-PG in History-2nd Semester (2025-30) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-mped-2nd-sem.pdf" target="_blank" class="result-link-title">Result of 2nd Semester, M.P.Ed. Programme, Session 2025-27 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-ma-psir-2nd-sem.pdf" target="_blank" class="result-link-title">Addendum result M.A. PSIR 2nd Semester-2025-27 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-english-4th-sem.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG-PG English 4th Semester (Session 2024-29) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-med-2nd-sem.pdf" target="_blank" class="result-link-title">Result of 2nd Semester, M.Ed. Programme, Session 2025-27 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-statistics-2nd-sem.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG-PG Statistics 2nd Semester (Session 2025-30) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-mcom-2nd-sem.pdf" target="_blank" class="result-link-title">Result of M.COM-2nd Semester (2025-27) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-physics-4th-sem.pdf" target="_blank" class="result-link-title">Result of M.Sc. Physics in 4th semester, session 2024-26 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-hindi-4th-sem.pdf" target="_blank" class="result-link-title">5 Year Integrated UG PG Hindi 4th Semester (Session 2024-29) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-hindi-2nd-sem.pdf" target="_blank" class="result-link-title">5 Year Integrated UG PG Hindi 2nd Semester (Session 2025-30) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-ma-hindi-2nd-sem.pdf" target="_blank" class="result-link-title">Result of M.A. Hindi 2nd (Session 2025-27/2024-26) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-ma-hindi-4th-sem.pdf" target="_blank" class="result-link-title">Result of M.A. Hindi 4th Semester (Session 2025-27/2024-26) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-bsc-agri-6th-sem.pdf" target="_blank" class="result-link-title">Result of B.Sc. Agriculture 6th Semester (Session 2023-27) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-physics-4th-sem.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG-PG in Physics 4th semester, session 2024-29 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msw-2nd-sem.pdf" target="_blank" class="result-link-title">Result of Master of Social Work -2nd Semester (2025-27). <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-babed-2nd-sem.pdf" target="_blank" class="result-link-title">2ND SEM BABED 2025-29 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-bscbed-2nd-sem.pdf" target="_blank" class="result-link-title">2ND SEM BSCBED 2025-29 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-babed-4th-sem.pdf" target="_blank" class="result-link-title">4TH SEM BABED 2024-28 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-babed-6th-sem.pdf" target="_blank" class="result-link-title">6TH SEM BABED 2023-27 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-med-4th-sem.pdf" target="_blank" class="result-link-title">4TH SEM MED 2024-26 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-bscbed-4th-sem.pdf" target="_blank" class="result-link-title">4TH SEM BSCBED 2024-28 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-bscbed-6th-sem.pdf" target="_blank" class="result-link-title">6TH SEM BSCBED 2023-27 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-psir-2nd-sem.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG- PG in PSIR M.A. PSIR 2nd Semester-2025-27 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-psir-4th-sem.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG- PG in PSIR , 4th Semester with backlog result (2024-29) -2025-27 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-commerce-4th-sem.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG-PG Commerce -4th Semester with 2nd Semester Backlog result (2024-29) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-physics-2nd-sem.pdf" target="_blank" class="result-link-title">Notice for result of M.Sc. Physics 2nd semester, session 2025-27 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-physics-backlog.pdf" target="_blank" class="result-link-title">Notice for backlog result of M.Sc. Physics, session 2023-25 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-sociology-4th-sem.pdf" target="_blank" class="result-link-title">Notice for result of 5 Year Integrated UG-PG in Sociology 4th semester,( session( 2024-2029) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-history-4th-sem.pdf" target="_blank" class="result-link-title">Notice for result of 5 Year Integrated UG-PG in History 4th semester,( session( 2024-2029) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">07-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-bsc-agri-6th-sem-july.pdf" target="_blank" class="result-link-title">Result of B.Sc. Agriculture 6th Semester (Session 2023-27) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">03-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-geography-4th-sem.pdf" target="_blank" class="result-link-title">Notice for result of 5 Year Integrated UG PG in Geography 4th semester, session 2024-29 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">03-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-chemistry-4th-sem.pdf" target="_blank" class="result-link-title">Notice for result of 5 Year Integrated UG PG in Chemistry 4th semester, session 2024-29 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">03-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-math-4th-sem.pdf" target="_blank" class="result-link-title">Result of M.Sc. Mathematics 4th Semester (Session 2024-26) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">03-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-bsc-agri-2nd-sem.pdf" target="_blank" class="result-link-title">Result of B.Sc. Agriculture 2nd Semester, Session 2025-29 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">03-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-psychology-4th-sem.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG-PG Psychology 4th Semester (Session 2024-29) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">03-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-physics-2nd-sem.pdf" target="_blank" class="result-link-title">Notice for result of 5 Year Integrated UG PG in Physics 2nd semester, session 2025-30 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">03-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-geography-2nd-sem.pdf" target="_blank" class="result-link-title">Notice for result of 5 Year Integrated UG PG in Geography semester, session 2025-30 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">03-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-chemistry-2nd-sem.pdf" target="_blank" class="result-link-title">Notice for result of 5 Year Integrated UG-PG in Chemistry 2nd semester, session 2025-30 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">03-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-blib-mlib-2nd-sem.pdf" target="_blank" class="result-link-title">Result of 2nd Semester, B.Lib.-M.Lib Programme, Session 2025-27 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">03-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-ma-english-2nd-sem.pdf" target="_blank" class="result-link-title">Result of M.A. English 2nd Semester (Session 2025-27) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">01-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-english-2nd-sem.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG-PG English 2nd Semester (Session 2025-30) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">01-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-english-4th-sem-july.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG-PG English 4th Semester (Session 2024-29) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">01-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-statistics-2nd-sem-july.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG-PG Statistics 2nd Semester (Session 2025-30) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">01-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-geology-sem.pdf" target="_blank" class="result-link-title">Notice for result of 5 Year Integrated UG PG in Geology semester, session 2025-30 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">01-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-life-science-sem.pdf" target="_blank" class="result-link-title">Notice for result of 5 Year Integrated UG-PG in Life Science semester, session 2025-30 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">01-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-life-science-sem-2.pdf" target="_blank" class="result-link-title">Notice for result of 5 Year Integrated UG-PG in Life Science semester, session 2025-30 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">01-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-chemistry-2nd-sem.pdf" target="_blank" class="result-link-title">Notice for result of M.Sc. Chemistry 2nd semester (2025-27). <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">01-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-geography-2nd-sem.pdf" target="_blank" class="result-link-title">Notice for result of 2nd sem 2025-27 M.Sc. Geography <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">01-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-geography-4th-sem.pdf" target="_blank" class="result-link-title">Notice for result of 2nd sem 2024-26 Geography 4th sem <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">01-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-commerce-4th-sem-july.pdf" target="_blank" class="result-link-title">Notice for result of 5 Year Integrated UG-PG in Commerce and Business Studies 4th semester, session 2024-29 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">01-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-pol-science-4th-sem.pdf" target="_blank" class="result-link-title">Notice for result of 5 Year Integrated UG-PG in Political Science &amp; IR 4th semester, session 2024-29 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">01-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-jmc-2nd-sem.pdf" target="_blank" class="result-link-title">Result of 2nd Semester Five-Year Integrated UG-PG Programme in JMC 2025-30 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">01-Jul-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-ma-jmc-2nd-sem.pdf" target="_blank" class="result-link-title">Result of M.A. in JMC 2nd Semester 2025-27 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">30-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-geology-2nd-sem.pdf" target="_blank" class="result-link-title">Notice for result of M.Sc. Geology 2nd semester, session 2025-27 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">29-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-bioinfo-4th-sem.pdf" target="_blank" class="result-link-title">Notice for result of M.Sc. Bioinformatics 4th semester, session 2024-26 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">29-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-statistics-4th-sem.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG-PG Statistics 4th Semester (Session 2024-29) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">29-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-psir-2nd-sem-june.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG- PG in PSIR 2nd Semester (2025-30) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">26-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-ma-jmc-4th-sem.pdf" target="_blank" class="result-link-title">Result of M.A. Journalism and Mass Communication 4th Semester 2024-26 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">26-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-mped-4th-sem.pdf" target="_blank" class="result-link-title">Result of 4th Sem. of M.P.Ed. Programme, Session 2024-26 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">26-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-babed-8th-sem.pdf" target="_blank" class="result-link-title">Result of 8th Semester, B.A. B.Ed. Programme, Session 2022-26 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">26-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-bscbed-8th-sem.pdf" target="_blank" class="result-link-title">Result of 8th Semester B.Sc.B.Ed. Programme, Session 2022-26 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">26-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-pg-soc-4th-sem.pdf" target="_blank" class="result-link-title">Result PG SOC-4th Sem. Session-2024-26. AE-1023 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">26-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-pg-soc-2nd-sem.pdf" target="_blank" class="result-link-title">Result PG Soc -2nd Sem. AE-1029 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">26-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-ugpg-soc-2nd-sem.pdf" target="_blank" class="result-link-title">Result UG-PG SOC-2nd Sem. AE-1066 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">26-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-economics-2nd-sem.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG-PG in Economics-2nd Semester. <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">26-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-ma-economics-2nd-sem.pdf" target="_blank" class="result-link-title">Result of M.A. Economics -2nd Semester (2024-26) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">26-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-commerce-2nd-sem.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG-PG Commerce -2nd Semester (2025-30) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">26-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-history-2nd-sem-june.pdf" target="_blank" class="result-link-title">Result of 5Year Integrated UG-PG in History-2nd Semester (2025-30) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">26-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-geology-4th-sem.pdf" target="_blank" class="result-link-title">Notice for result of M.Sc. Geology 4th semester, session 2024-26 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">26-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-math-4th-sem.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG-PG Mathematics 4th Semester (Session 2024-29) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">25-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-mpharm-pharm-4th-sem.pdf" target="_blank" class="result-link-title">Result of 4th Semester, M.Pharm., Pharmacology, Programme, Session 2024-26 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">24-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-bioinfo-2nd-sem.pdf" target="_blank" class="result-link-title">Result of M.Sc. Bioinformatics, 2nd semester, session 2025-27 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">24-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-env-science-4th-sem.pdf" target="_blank" class="result-link-title">Result of M.Sc. Environmental Science, 4th semester, session 2024-26 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">20-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-math-2nd-sem.pdf" target="_blank" class="result-link-title">Result of M.Sc. Mathematics 2nd Semester (Session 2025-27) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">20-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-psychology-2nd-sem.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG-PG Psychology 2nd Semester (Session 2025-30) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">20-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-math-2nd-sem.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG-PG Mathematics 2nd Semester (Session 2025-30) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">20-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-int-cs-2nd-sem.pdf" target="_blank" class="result-link-title">Result of 5 Year Integrated UG-PG CS 2nd Semester (Session 2025-30) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">20-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-mpharm-pharm-2nd-sem.pdf" target="_blank" class="result-link-title">Result of 2nd Semester, M.Pharm.(Pharmacology) Programme, Session 2025-27 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">20-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-ma-history-2nd-sem.pdf" target="_blank" class="result-link-title">Result of M.A. History-2nd Semester (2025-27) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">20-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msw-4th-sem-backlog.pdf" target="_blank" class="result-link-title">Result of Master of Social Work -4th Semester with backlog (2024-26) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">20-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-ma-economics-4th-sem.pdf" target="_blank" class="result-link-title">Result of M.A. Economics -4th Semester with backlog (2024-26) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">20-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-pol-science-4th-sem.pdf" target="_blank" class="result-link-title">Result of Political Science-4th Semester with backlog (2024-26) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">20-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-ma-history-4th-sem.pdf" target="_blank" class="result-link-title">Result of M.A. History-4th Semester with backlog (2024-26) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">20-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-life-sc-4th-sem.pdf" target="_blank" class="result-link-title">Notice for result of 4th sem 2024-26 Life Sc <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">02-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-life-sc-2nd-sem.pdf" target="_blank" class="result-link-title">Notice for Result M.Sc. Life science 2nd sem 2025-27 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">02-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-biotech-backlog-2nd-sem.pdf" target="_blank" class="result-link-title">Backlog result of Biotechnology 2nd sem <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">02-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-biotech-4th-sem.pdf" target="_blank" class="result-link-title">Notice for result of 4th sem 2024-26 Biotechnology <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">02-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-biotech-2nd-sem.pdf" target="_blank" class="result-link-title">Notice for result of 2nd sem 2025-27 Biotechnology <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">02-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-statistics-4th-sem.pdf" target="_blank" class="result-link-title">Result of M.Sc. Statistics 4th Semester (Session 2024-26) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">02-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-data-science-2nd-sem.pdf" target="_blank" class="result-link-title">Result of M.Sc. Data Science and Applied Statistics 2nd Semester (Session 2025-27) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">02-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-data-science-4th-sem.pdf" target="_blank" class="result-link-title">Result of M.Sc. Data Science and Applied Statistics 4th Semester (Session 2024-26) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">02-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-mcom-4th-sem-backlog.pdf" target="_blank" class="result-link-title">Result of M.com 4th Semester with Backlog Result (2024-26) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">02-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-ai-2nd-sem.pdf" target="_blank" class="result-link-title">Result of M.Sc. AI 2nd Semester (Session 2025-27) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">02-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-mpharm-pharmaceutics-2nd-sem.pdf" target="_blank" class="result-link-title">Result of 2nd Semester, M.Pharm.(Pharmaceutics) Programme, Session 2025-27 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">02-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-mpharm-pharmaceutics-4th-sem.pdf" target="_blank" class="result-link-title">Result of 4th Semester, M.Pharm.(Pharmaceutics) Programme, Session 2024-26 <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">02-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-statistics-2nd-sem.pdf" target="_blank" class="result-link-title">Result of M.Sc. Statistics 2nd Semester (Session 2025-27) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">02-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-msc-cs-2nd-sem.pdf" target="_blank" class="result-link-title">Result of M.Sc. Computer Science 2nd Semester (Session 2025-27) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">02-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-ma-msc-psychology-2nd-sem.pdf" target="_blank" class="result-link-title">Result of M.A./M.Sc. Psychology 2nd Semester (Session 2025-27) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">02-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-ma-msc-psychology-4th-sem.pdf" target="_blank" class="result-link-title">Result of M.A./M.Sc. Psychology 4th Semester (Session 2024-26) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">02-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-ma-history-1st-sem-revised.pdf" target="_blank" class="result-link-title">Revised results M.A. History, 1st Semester (Session 2025-27) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">02-Jun-26</span></td></tr>
+            <tr><td><a href="assets/documents/academics/result-ma-history-3rd-sem-backlog.pdf" target="_blank" class="result-link-title">Backlog (1st Semester) result with revised results M.A. History, 3rd Semester (Session 2024-26) <span class="result-pdf-tag">PDF ↗</span></a></td><td style="text-align: right;"><span class="result-date-badge">02-Jun-26</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+  
+  <script>
+    // Live Search Filter for Results Table
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('resultSearchInput');
+      const tableRows = document.querySelectorAll('#resultsTable tbody tr');
+      const countEl = document.getElementById('resultCount');
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          let visibleCount = 0;
+
+          tableRows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            if (!query || text.includes(query)) {
+              row.style.display = '';
+              visibleCount++;
+            } else {
+              row.style.display = 'none';
+            }
+          });
+
+          if (countEl) countEl.textContent = visibleCount;
+        });
+      }
+    });
+  </script>
+</body>
+</html>

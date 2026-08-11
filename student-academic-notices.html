@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Academics &amp; Examination Notices — Central University of South Bihar" data-hi="अकादमिक एवं परीक्षा सूचनाएं — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Academics &amp; Examination Notices — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Official Academic Calendars, Examination Notices, Semester Registration, Backlog Forms, and Circulars from the Academic Section and Controller of Examinations at CUSB.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .notice-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .notice-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .notice-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .notice-crumb a:hover {
+      color: var(--acc-blue);
+    }
+    .notice-header-area {
+      margin-bottom: 28px;
+    }
+    .notice-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0b6cb8;
+      background: rgba(11, 108, 184, 0.08);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    [data-theme="dark"] .notice-badge {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .notice-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .notice-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+    .notice-lead-desc {
+      font-size: 0.96rem;
+      color: var(--tx-secondary);
+      line-height: 1.6;
+      margin: 0;
+      max-width: 880px;
+    }
+
+    /* Section Banner Card */
+    .notice-section-bar {
+      background: #7a0c0c;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px 8px 0 0;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    [data-theme="dark"] .notice-section-bar {
+      background: #881337;
+    }
+
+    /* Calendar Block */
+    .notice-card-block {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 36px;
+    }
+
+    .calendar-tree {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    .calendar-tree > li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 14px;
+      font-size: 0.92rem;
+      color: var(--tx-primary);
+      line-height: 1.6;
+    }
+    .calendar-tree > li::before {
+      content: '■';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #7a0c0c;
+      font-size: 0.75rem;
+    }
+    [data-theme="dark"] .calendar-tree > li::before {
+      color: #f43f5e;
+    }
+    .calendar-sub-list {
+      list-style: none;
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+    .calendar-sub-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+    }
+    .calendar-sub-list li::before {
+      content: '◇';
+      position: absolute;
+      left: 0;
+      color: #0b6cb8;
+      font-weight: bold;
+    }
+    .calendar-link {
+      color: #0b6cb8;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .calendar-link:hover {
+      text-decoration: underline;
+      color: #004b9b;
+    }
+    [data-theme="dark"] .calendar-link {
+      color: #38bdf8;
+    }
+
+    /* Search & Filter Bar */
+    .notice-filter-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .notice-search-box {
+      position: relative;
+      flex: 1;
+      min-width: 280px;
+      max-width: 480px;
+    }
+    .notice-search-input {
+      width: 100%;
+      padding: 10px 38px 10px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      color: var(--tx-primary);
+      font-size: 0.88rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    .notice-search-input:focus {
+      outline: none;
+      border-color: #0b6cb8;
+    }
+    .notice-search-icon {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--tx-muted);
+      pointer-events: none;
+    }
+
+    /* Notices Table */
+    .notice-table-wrap {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      overflow-x: auto;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 32px;
+    }
+    .notice-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+    .notice-table th {
+      background: var(--bg-secondary);
+      color: var(--tx-primary);
+      font-weight: 800;
+      padding: 14px 18px;
+      border-bottom: 2px solid var(--border-color);
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+    .notice-table td {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--tx-primary);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+    .notice-table tbody tr:hover {
+      background: rgba(11, 108, 184, 0.03);
+    }
+    [data-theme="dark"] .notice-table tbody tr:hover {
+      background: rgba(56, 189, 248, 0.06);
+    }
+    .notice-title-text {
+      color: #0b6cb8;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+    .notice-title-text:hover {
+      text-decoration: underline;
+    }
+    [data-theme="dark"] .notice-title-text {
+      color: #38bdf8;
+    }
+    .notice-sub-links {
+      list-style: none;
+      padding-left: 0;
+      margin: 8px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .notice-sub-item a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #0284c7;
+      text-decoration: none;
+      background: rgba(2, 132, 199, 0.08);
+      padding: 3px 10px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .notice-sub-item a:hover {
+      background: rgba(2, 132, 199, 0.16);
+      text-decoration: underline;
+    }
+    [data-theme="dark"] .notice-sub-item a {
+      color: #7dd3fc;
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .notice-date-badge {
+      display: inline-block;
+      white-space: nowrap;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--tx-secondary);
+      background: var(--bg-secondary);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+    }
+    .notice-new-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      background: #ef4444;
+      color: #ffffff;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+      animation: pulseNew 1.8s infinite;
+    }
+    @keyframes pulseNew {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="notice-page-wrapper">
+    <div class="container">
+      
+      <!-- Clean Breadcrumb -->
+      <nav class="notice-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="courses.html" data-en="Student Corner" data-hi="छात्र अनुभाग">Student Corner</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Academics &amp; Examination Notices</span>
+      </nav>
+
+      <!-- Theme Aligned Header (Hero removed) -->
+      <div class="notice-header-area">
+        <span class="notice-badge">📋 Academic &amp; Examination Portal</span>
+        <h1 class="notice-main-title" data-en="Academics &amp; Examination Notices" data-hi="अकादमिक एवं परीक्षा सूचनाएं">Academics &amp; Examination Notices</h1>
+        <p class="notice-lead-desc" data-en="Official academic calendars, exam schedules, semester registration circulars, backlog examination notices, and notifications from the Office of the Controller of Examinations." data-hi="आधिकारिक शैक्षणिक कैलेंडर, परीक्षा कार्यक्रम, सेमेस्टर पंजीकरण परिपत्र, बैकलॉग परीक्षा नोटिस और परीक्षा नियंत्रक कार्यालय से अधिसूचनाएं।">
+          Official academic calendars, exam schedules, semester registration circulars, backlog examination notices, and notifications from the Office of the Controller of Examinations.
+        </p>
+      </div>
+
+      <!-- ════════ SECTION 1: ACADEMIC CALENDAR ════════ -->
+      <div class="notice-section-bar">
+        <span>📅</span>
+        <span data-en="Academic Calendar:" data-hi="शैक्षणिक कैलेंडर:">Academic Calendar:</span>
+      </div>
+      
+      <div class="notice-card-block">
+        <ul class="calendar-tree">
+          <li>
+            <strong>Academic Calendar for:</strong>
+            <ul class="calendar-sub-list">
+              <li>
+                <a href="assets/documents/academics/academic-calendar-agriculture.pdf" target="_blank" class="calendar-link">
+                  Academic Calendar AY 2025-26 for students admitted in B.Sc.(Hons.) Agriculture programme in or before 2025-26 ↗
+                </a>
+              </li>
+              <li>
+                <a href="assets/documents/academics/academic-calendar-pharmacy.pdf" target="_blank" class="calendar-link">
+                  Academic Calendar AY 2025-26 for students of Diploma in Pharmacy in AY 2025-26 ↗
+                </a>
+              </li>
+              <li>
+                <a href="assets/documents/academics/academic-calendar-phd-new.pdf" target="_blank" class="calendar-link">
+                  Academic Calendar AY 2025-26 for PhD Students admitted in AY 2025-26 ↗
+                </a>
+              </li>
+              <li>
+                <a href="assets/documents/academics/academic-calendar-phd-old.pdf" target="_blank" class="calendar-link">
+                  Academic Calendar -2025-26 for PhD students admitted before 2025-26 ↗
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="assets/documents/academics/notice-ae10-calendar.pdf" target="_blank" class="calendar-link">
+              Notice No.AE10 related to Implementation of Academic Calendar of Even Semester (January June, 2026) ↗
+            </a>
+          </li>
+          <li>
+            <a href="assets/documents/academics/academic-calendar-ug-pg-even.pdf" target="_blank" class="calendar-link">
+              Academic Calendar : 2025-26 (January- June’2026) of Undergraduate and Postgraduate programmes (Except B.Sc. (Hons.) Agriculture programme admitted in and before AY 2025-26) ↗
+            </a>
+          </li>
+          <li>
+            <a href="assets/documents/academics/academic-calendar-ug-pg-odd.pdf" target="_blank" class="calendar-link">
+              Academic Calendar : 2025-26 (July-December’2025) for students of Undergraduate and B.Lib.I.Sc.-M.Lib.I.Sc. programmes admitted in AY 2025-26 ↗
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ════════ SECTION 2: ACADEMIC NOTICES AND NOTIFICATION ════════ -->
+      <div class="notice-section-bar">
+        <span>📢</span>
+        <span data-en="Academic Notices And Notification:" data-hi="अकादमिक सूचनाएं एवं अधिसूचना:">Academic Notices And Notification:</span>
+      </div>
+
+      <div style="background: var(--bg-primary); border-left: 1px solid var(--border-color); border-right: 1px solid var(--border-color); padding: 14px 20px 0;">
+        <div class="notice-filter-wrap">
+          <div class="notice-search-box">
+            <input type="search" id="noticeSearchInput" class="notice-search-input" placeholder="Search notices by title, keyword or date..." aria-label="Search academic notices">
+            <span class="notice-search-icon">🔍</span>
+          </div>
+          <div style="font-size: 0.82rem; color: var(--tx-muted);">
+            Showing <span id="noticeCount">60</span> notices
+          </div>
+        </div>
+      </div>
+
+      <div class="notice-table-wrap">
+        <table class="notice-table" id="noticesTable">
+          <thead>
+            <tr>
+              <th style="width: 78%;">Title</th>
+              <th style="width: 22%; text-align: right;">Published Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.-CUSB/Acad/2-3//Vol-II/2016/AE1316 dated 06.08.2026 regarding submission of six-monthly progress reports (January-June, 2026) of Ph.D. scholars through the Research Advisory Committee (RAC), duly recommended by the Departmental Research Degree Committee (DRDC), by 31st July, 2026</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">06-Aug-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Extension of Last Date for Submission of Supplementary/Backlog Examination Form upto 09.08.2026</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">05-Aug-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span style="font-weight: 700;">Extension of Last Date of Semester Registration for Intermediate Batches (with Late Fine of Rs.1000/-) upto 04.08.2026</span>
+                <ul class="notice-sub-links">
+                  <li class="notice-sub-item"><a href="#">📄 Notice No.AE1294 dated 29.07.2026 ↗</a></li>
+                </ul>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">31-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span style="font-weight: 700;">Extension of Date for Repeating the Course(s) due to Shortage of Attendance upto 04.08.2026</span>
+                <ul class="notice-sub-links">
+                  <li class="notice-sub-item"><a href="#">📄 Notice No.AE1296 dated 31.07.2026 ↗</a></li>
+                </ul>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">31-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span style="font-weight: 700;">Extension of Last Date for Submission of Supplementary/Backlog Examination Form up to 04.08.2026</span>
+                <ul class="notice-sub-links">
+                  <li class="notice-sub-item"><a href="#">📄 Notice No.AE1295 dated 31.07.2026 ↗</a></li>
+                  <li class="notice-sub-item"><a href="#">📄 Supplementary Examination Form for Integ. UG-PG Programmes ↗</a></li>
+                  <li class="notice-sub-item"><a href="#">📄 Backlog form_for_appearing_in_backlog_course for BA B.Ed. &amp; B.SC. B.Ed. ↗</a></li>
+                </ul>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">31-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span style="font-weight: 700;">Notice No.-CUSB/Acad/2-3/Vol-II/2016/AE1291 dated 29.07.2026 regarding submission of Supplementary / Backlog Examination Form for D.Pharm and LLM Student</span>
+                <ul class="notice-sub-links">
+                  <li class="notice-sub-item"><a href="#">📄 Notice No.AE1291 dated 29.07.2026 ↗</a></li>
+                  <li class="notice-sub-item"><a href="#">📄 Supplementary Examination Form for Integ. UG-PG Programmes ↗</a></li>
+                  <li class="notice-sub-item"><a href="#">📄 Backlog form_for_appearing_in_backlog_course for BA B.Ed. &amp; B.SC. B.Ed. ↗</a></li>
+                </ul>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">29-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span style="font-weight: 700;">Notice No.-CUSB/Acad/2-3/Vol-II/2016/AE1284 dated 28.07.2026 regarding submission of Supplementary / Backlog Examination Form</span>
+                <ul class="notice-sub-links">
+                  <li class="notice-sub-item"><a href="#">📄 Notice No.AE1284 dated 28.07.2026 ↗</a></li>
+                  <li class="notice-sub-item"><a href="#">📄 Supplementary Examination Form for Integ. UG-PG Programmes ↗</a></li>
+                  <li class="notice-sub-item"><a href="#">📄 Backlog form_for_appearing_in_backlog_course for BA B.Ed. &amp; B.SC. B.Ed. ↗</a></li>
+                </ul>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">24-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.AE 1277 dated 28.07.2026 regarding extension of last date for fee payment for admission in Four Year Integrated Teacher Education Programme (ITEP) B.A.B.Ed. &amp; B.Sc. B.Ed. For Academic Year 2026-27</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">27-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Regarding the Open Elective for PG Programme for 1st and 3rd Semester</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">27-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Regarding the registration of Ph.D Research scholars enrolled in AY 2018-19/2019-20</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">24-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Regarding the Open Elective for PG Programme for 1st and 3rd Semester</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">24-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.-CUSB/Acad/2-3/Vol-I/2016/AE1241 dated 22.07.2026 regarding repeat courses/s due having shortage of attendance</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">23-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.-CUSB/Acad/2-3/Vol-II/2016/AE1232 dated 20.07.2026 regarding Semester registration of Ph.D. Scholars admitted in AY 2020-21, AY 2022-23, AY 2023-24, AY 2024-25 and AY 2025-26</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">20-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.-CUSB/Acad/2-3/Vol-II/2016/AE1230 dated 17.07.2026 regarding extension of last date for semester registration of Undergraduate of 3rd / 5th /7th / 9th Semesters and Postgraduate programmes of 3rd Semester for the period of July-December 2026</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">17-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span style="font-weight: 700;">Notice No.-CUSB/Acad/6-4/2013/AE1217 dated 14.07.2026 regarding Deeksharambh: Students Induction Programme for Newly Admitted Postgraduate Students in AY 2026-27</span>
+                <ul class="notice-sub-links">
+                  <li class="notice-sub-item"><a href="#">📄 Notice No.AE1217 dated 14.07.2026 ↗</a></li>
+                  <li class="notice-sub-item"><a href="#">📄 DIKSHA SHUBHARAMBH 2026 ↗</a></li>
+                </ul>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">15-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.-CUSB/Acad/2-3/Vol-I/2016/AE1218 dated 15.07.2026 regarding repeat courses/s due having shortage of attendance</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">15-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">CUSB Notice No.AE1805 dated 16.10.2025 regarding certificate -12 B of UGC and offering PhD programmes</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">14-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span style="font-weight: 700;">Notice No.-CUSB/Acad/2-3/Vol-II/2016/AE1215 dated 14.07.2026 regarding semester registration of Undergraduate of 3rd / 5th /7th / 9th Semesters and Postgraduate programmes of 3rd Semester for the period of July-December 2026</span>
+                <ul class="notice-sub-links">
+                  <li class="notice-sub-item"><a href="#">📄 Notice No.AE1215 dated 14.07.2026 ↗</a></li>
+                  <li class="notice-sub-item"><a href="#">📄 Notice No.AE1213 dated 14.07.2026 ↗</a></li>
+                  <li class="notice-sub-item"><a href="#">📄 Annexure-A-1 for UG-PG programme from AY 2024-25 onward ↗</a></li>
+                  <li class="notice-sub-item"><a href="#">📄 Annexure-A-2 Semester Fee Structure for B.Lis.Lib. Sc.-MLis.Lib ↗</a></li>
+                  <li class="notice-sub-item"><a href="#">📄 Annexure-A-3 Semester Fee Structure for UG and PG programme July-December 2026 ↗</a></li>
+                </ul>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">01-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.-CUSB/Acad/6-4/2013/AE1213 dated 14.07.2026 regarding Implementation of Academic Calendar of Odd / Even Semester</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">14-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span style="font-weight: 700;">Notice No.-CUSB/Acad/2-21/AE1216 dated 14.07.2026 regarding Physical Document Verification of Newly Admitted Postgraduate Students in AY 2026-27</span>
+                <ul class="notice-sub-links">
+                  <li class="notice-sub-item"><a href="#">📄 Notice No.AE1216 dated 14.07.2026 regarding Physical Document Verification of newly admitted students in PG progdramme ↗</a></li>
+                  <li class="notice-sub-item"><a href="#">📄 Annexure-1 for document list for physical verification ↗</a></li>
+                </ul>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">15-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.-AE1107 dated 01.07.2026 regarding submission of Examination form through SAMARTH portal for Course work examination of Ph.D. Programme (AY 2025-26)- 1st Semester</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">01-Jul-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span style="font-weight: 700; color: #0b6cb8;">Notification: Clarification regarding English literature as a subject at the Bachelor's level in 4 year integrated B.A.B.Ed. programme.</span> <span class="notice-new-tag">NEW</span>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">19-Jun-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">CUSB Order No. AE968 dated 11.06.2026 regarding period of Ph.D. programme</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">17-Jun-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">CUSB Order No. AE967 dated 11.06.2026 regarding reimbursement / adjustment of bills of expenditure incurred towards conducting End-Term Examination held in the May-2026</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">17-Jun-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span style="font-weight: 700; color: #d97706;">Notice:</span> <a href="#" class="notice-title-text">Notice regarding Engagement of Students under Earn While You Learn (EWYL) Scheme</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">27-May-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">CUSB Notice No. AE845 dated 21.05.2026 regarding conducting viva-voce / assessment /presentation and similar academic activities in Hybrid Mode</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">21-May-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span style="font-weight: 700;">Notice No.-AE888 dated 27.05.2026 regarding submission of supplementary examination form of B.Sc. Agriculture (Hons.) -1st Semester and Time-Table of Supplementary Examination of B.Sc. Agriculture (Hons.)-1st Semester</span>
+                <ul class="notice-sub-links">
+                  <li class="notice-sub-item"><a href="#">📄 Notice Notification ↗</a></li>
+                  <li class="notice-sub-item"><a href="#">📄 Time-Table of Supplementary Examination of B.Sc. Agriculture-1st Semester ↗</a></li>
+                  <li class="notice-sub-item"><a href="#">📄 Supplementary Examination Form ↗</a></li>
+                </ul>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">27-May-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">CUSB Notice No. AE845 dated 21.05.2026 regarding conducting viva-voce / assessment /presentation and similar academic activities in Hybrid Mode</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">21-May-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">CUSB Notice No. AE848 dated 21.05.2026 for showing evaluation answer scripts to students</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">21-May-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.-CUSB/Acad/2-3/Vol-II/2016/AEAE825 dated 18.05.2026 regarding Semester registration of Ph.D. Scholars admitted in AY 2021-22</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">18-May-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No. CUSB/Acad/67-2/2026/AE779 dated 11.05.2026 regarding the prohibition of entry of students having short attendance, despite possessing admit cards due to a technical glitch in the SAMARTH portal</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">11-May-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice regarding Dos &amp; Don'ts at the time of Examination</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">08-May-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <strong style="color: #b91c1c;">Important :</strong> <a href="#" class="notice-title-text">Notice No.-CUSB/CoE/2026/AE749 dated 29.04.2026 regarding students of 5 Year UG-PG programme</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">29-Apr-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Regarding Deposit of Outstanding Semester Fee - 2nd Semester</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">28-Apr-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice regarding Extension of last date of Examination Form of End Term Examination</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">21-Apr-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notification Regarding Extension of Last Date for Examination Form</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">16-Apr-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice for Submission of Backlog Forms Submission of Examination Form for End Term Examination (Even Semester, January-June 2026) through the Samarth Portal</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">08-Apr-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span style="font-weight: 700;">Notice for Submission of Backlog Forms</span>
+                <ul class="notice-sub-links">
+                  <li class="notice-sub-item"><a href="#">📄 Backlog form for appearing in backlog course for BA B.Ed. &amp; B.SC. B.Ed. ↗</a></li>
+                  <li class="notice-sub-item"><a href="#">📄 Backlog_Examination_Form ↗</a></li>
+                </ul>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">02-Apr-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notification No. CUSB/Acad./9-17/2025/AE-633 dated 26/03/2026 regarding the issuance of Character Certificate</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">26-Mar-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.-CUSB/Acad/6-21/2026/AE590 dated 19.03.2026 regarding clarification for submission of Monthly Student Attendance Records and extension of last date for submission pending monthly attendance record</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">19-Mar-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span style="font-weight: 700;">Notice No.-CUSB/Acad/6-21/2026/AE559 dated 12.03.2026 regarding submission of Monthly Student Attendance Records</span>
+                <ul class="notice-sub-links">
+                  <li class="notice-sub-item"><a href="#">📄 Kindly download the Format from Email.</a></li>
+                </ul>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">12-Mar-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <strong style="color: #b91c1c;">Advisory:</strong> <a href="#" class="notice-title-text">Holi Advisory- for CUSB students</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">13-Feb-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Revised list of students applied for Supplementary/Backlog Examination of Undergraduate Programmes as on 13.02.2026</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">13-Feb-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span style="font-weight: 700;">Notice No.-AE410 dated 12.02.2026 regarding Time-Table of Supplementary Examination of 5 year Integrated UG-PG programme / Backlog Examination of Int.BAB.Ed. / B.Sc. B.Ed. programme to be held from 16th February 2026 onwards</span>
+                <ul class="notice-sub-links">
+                  <li class="notice-sub-item"><a href="#">📄 Annexure-I ↗</a></li>
+                </ul>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">12-Feb-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">List of students applied for Supplementary/Backlog Examination of Undergraduate Programmes</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">11-Feb-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Mandatory Course Registration on SAMARTH Portal</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">05-Feb-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.-CUSB/Acad/2-3/Vol-II/2016/AE352 dated 04.02.2026 regarding semester registration of Undergraduate and Postgraduate students whose results for the respective semester have been promoted to the next semester in accordance with the decision of the UFM Committee</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">04-Feb-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">CUSB Notice No.AE322 dated 30.01.2026 regarding registration of newly enrolled Ph.D. Scholars in AY 2025-26 on SAMARTH portal and generation of ABC ID</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">30-Jan-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span style="font-weight: 700;">Notice : CUSB/Acad/274 dated 21.01.2026 regarding Physical Document Verification of Ph.D. Scholars admitted in AY 2025-26</span>
+                <ul class="notice-sub-links">
+                  <li class="notice-sub-item"><a href="#">📄 Document Required - Annexure -I ↗</a></li>
+                  <li class="notice-sub-item"><a href="#">📄 Registration form-Annexure-II ↗</a></li>
+                </ul>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">21-Jan-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.-CUSB/Acad/276 dated 21.01.2026 regarding allotment of supervisor and co-supervisor, if any to the newly admitted PhD Scholar in AY 2025-26</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">21-Jan-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.-CUSB/Acad/275 dated 21.01.2026 regarding submission of six-monthly progress reports (July-December, 2025) of Ph.D. scholars</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">21-Jan-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.-CUSB/Acad/9-17/2025/AE0086 dated 15.01.2026 regarding issuance of Bonafide Certificate and Fee Structure</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">15-Jan-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.-CUSB/Acad/2-3/Vol-II/2016/AE78 dated 15.01.2026 regarding extension of last date for registration to repeat the course/s in Undergraduate and Postgraduate programmes of 2nd /4th /6th / 8th /10th Semester for the period of January-June, 2026</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">15-Jan-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span style="font-weight: 700;">Notice No.-CUSB/Acad/2-2/2013/Vol-II/AE0062 dated 13.01.2026 regarding issuance of Enrolment Number to students admitted in Ph.D. programmes (AY 2025-26)</span>
+                <ul class="notice-sub-links">
+                  <li class="notice-sub-item"><a href="#">📄 Enrolment Number of students admitted in PhD programme in AY 2025-26 ↗</a></li>
+                </ul>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">13-Jan-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.-CUSB/Acad/2-3/Vol-II/2016/AE52 dated 06.01.2026 regarding Extension of last date for semester registration of Undergraduate of 4th / 6th / 8th / 10th Semesters and Postgraduate programmes of 2nd / 4th Semesters for the period of January-June, 2026</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">12-Jan-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.-CUSB/Acad/2-3/Vol-II/2016/AE50 dated 10.01.2026 regarding Semester registration of Ph.D. Scholars admitted in AY 2020-21, AY 2022-23 AY 2023-24 and AY 2024-25</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">10-Jan-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span style="font-weight: 700;">Notice No.-CUSB/Acad/2-3/Vol-II/2016/AE49 dated 10.01.2026 regarding registration for repeat the course/s in Undergraduate and Postgraduate programmes of 2nd /4th /6th / 8th /10th Semester for the period of January-June, 2026</span>
+                <ul class="notice-sub-links">
+                  <li class="notice-sub-item"><a href="#">📄 Form for Repeat Courses ↗</a></li>
+                </ul>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">09-Jan-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.-CUSB/Acad/2-3/Vol-II/2016/AE48 dated 09.01.2026 regarding semester registration of Postgraduate programmes of 2nd Semester under paid seat for the period of January-June, 2026</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">09-Jan-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" class="notice-title-text">Notice No.-CUSB/Acad/2-3/Vol-II/2016/AE34 dated 06.01.2026 regarding Extension of last date for semester registration of Undergraduate of 4th / 6th / 8th / 10th Semesters and Postgraduate programmes of 2nd / 4th Semesters for the period of January-June, 2026</a>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">08-Jan-26</span></td>
+            </tr>
+            <tr>
+              <td>
+                <span style="font-weight: 700;">Notice No.-CUSB/Acad/2-3/Vol-II/2016/AE29 dated 06.01.2026 regarding semester registration of Undergraduate of 4th / 6th / 8th / 10th Semesters and Postgraduate programmes of 2nd / 4th Semesters for the period of January-June, 2026</span>
+                <ul class="notice-sub-links">
+                  <li class="notice-sub-item"><a href="#">📄 Notice No.AE29 dated 06.01.2026 ↗</a></li>
+                  <li class="notice-sub-item"><a href="#">📄 Annexure-A for UG-PG programme from AY 2024-25 onward ↗</a></li>
+                  <li class="notice-sub-item"><a href="#">📄 Annexure-A for UG-PG programme from AY 2024-25 onward ↗</a></li>
+                </ul>
+              </td>
+              <td style="text-align: right;"><span class="notice-date-badge">07-Jan-26</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+  
+  <script>
+    // Live Search Filter for Notices
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('noticeSearchInput');
+      const tableRows = document.querySelectorAll('#noticesTable tbody tr');
+      const countEl = document.getElementById('noticeCount');
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          let visibleCount = 0;
+
+          tableRows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            if (!query || text.includes(query)) {
+              row.style.display = '';
+              visibleCount++;
+            } else {
+              row.style.display = 'none';
+            }
+          });
+
+          if (countEl) countEl.textContent = visibleCount;
+        });
+      }
+    });
+  </script>
+</body>
+</html>

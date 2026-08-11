@@ -4,9 +4,349 @@
   <link rel="icon" type="image/png" href="assets/culog.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-en="Central Instruments Facility (CIF) — CUSB" data-hi="केंद्रीय उपकरण केंद्र (CIF) — सीयूएसबी">Central Instruments Facility (CIF) — CUSB</title>
+  <title data-en="Central Instrumental Facility (CIF) — Central University of South Bihar" data-hi="केंद्रीय उपकरण सुविधा (सीआईएफ) — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Central Instrumental Facility — CUSB</title>
+  <meta name="description" content="Central Instrumental Facility (CIF) established in 2019 at Central University of South Bihar, Gaya. Advanced analytical instrumentation supporting multidisciplinary scientific research.">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pages.css">
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       ELEVATED CIF PAGE STYLES
+    ───────────────────────────────────────────────────────────── */
+    :root {
+      --cif-accent: #0b6cb8;
+      --cif-accent-light: #e0f2fe;
+      --cif-accent-glow: rgba(11, 108, 184, 0.12);
+      --cif-card-bg: #ffffff;
+      --cif-card-border: #e2e8f0;
+      --cif-text-title: #0f172a;
+      --cif-text-body: #334155;
+      --cif-text-muted: #64748b;
+      --cif-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+    }
+
+    [data-theme="dark"] {
+      --cif-accent: #38bdf8;
+      --cif-accent-light: rgba(56, 189, 248, 0.12);
+      --cif-accent-glow: rgba(56, 189, 248, 0.15);
+      --cif-card-bg: #111827;
+      --cif-card-border: #1f2937;
+      --cif-text-title: #f8fafc;
+      --cif-text-body: #cbd5e1;
+      --cif-text-muted: #94a3b8;
+      --cif-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    .cif-hero-section {
+      padding: 32px 0 64px;
+      background: radial-gradient(circle at top right, var(--cif-accent-glow), transparent 45%);
+      min-height: calc(100vh - 200px);
+    }
+
+    .cif-breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--cif-text-muted);
+      margin-bottom: 24px;
+      background: var(--cif-card-bg);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--cif-card-border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .cif-breadcrumb a {
+      color: var(--cif-text-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .cif-breadcrumb a:hover {
+      color: var(--cif-accent);
+    }
+
+    .cif-grid-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    @media (max-width: 991px) {
+      .cif-grid-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+    }
+
+    /* Content Area */
+    .cif-header-area {
+      margin-bottom: 22px;
+    }
+
+    .cif-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--cif-accent);
+      background: var(--cif-accent-light);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(11, 108, 184, 0.2);
+    }
+
+    .cif-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--cif-accent);
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.35);
+      padding-bottom: 12px;
+    }
+
+    [data-theme="dark"] .cif-title {
+      border-bottom-color: rgba(56, 189, 248, 0.35);
+    }
+
+    .cif-meta-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .cif-meta-chip {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--cif-text-muted);
+      background: var(--cif-card-bg);
+      border: 1px solid var(--cif-card-border);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .cif-lead-card {
+      background: var(--cif-card-bg);
+      border: 1px solid var(--cif-card-border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      box-shadow: var(--cif-shadow);
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .cif-lead-text {
+      font-size: 0.96rem;
+      line-height: 1.8;
+      color: var(--cif-text-body);
+      text-align: justify;
+      margin: 0;
+    }
+
+    /* Bento Cards for Vision & Mission */
+    .cif-bento-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 640px) {
+      .cif-bento-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cif-bento-card {
+      background: var(--cif-card-bg);
+      border: 1px solid var(--cif-card-border);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: var(--cif-shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cif-bento-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--cif-accent);
+    }
+
+    .cif-bento-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--cif-accent);
+    }
+
+    .cif-bento-head {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--cif-text-title);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cif-bento-desc {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--cif-text-body);
+      margin: 0;
+    }
+
+    /* Objectives Card */
+    .cif-objectives-card {
+      background: var(--cif-card-bg);
+      border: 1px solid var(--cif-card-border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      box-shadow: var(--cif-shadow);
+      margin-bottom: 24px;
+    }
+
+    .cif-objectives-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--cif-text-title);
+      margin: 0 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cif-objectives-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cif-objective-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--cif-text-body);
+    }
+
+    .cif-check-icon {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      border-radius: 50%;
+      background: var(--cif-accent-light);
+      color: var(--cif-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      margin-top: 3px;
+    }
+
+    /* Notification Action Card */
+    .cif-action-card {
+      background: linear-gradient(135deg, rgba(11, 108, 184, 0.06) 0%, rgba(11, 108, 184, 0.02) 100%);
+      border: 1.5px solid var(--cif-accent);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .cif-action-card:hover {
+      background: linear-gradient(135deg, rgba(11, 108, 184, 0.12) 0%, rgba(11, 108, 184, 0.04) 100%);
+      box-shadow: 0 6px 20px rgba(11, 108, 184, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .cif-notification-text {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--cif-accent);
+      text-decoration: underline;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Visual Media Showcase */
+    .cif-media-sticky {
+      position: sticky;
+      top: 90px;
+    }
+
+    .cif-image-frame {
+      background: var(--cif-card-bg);
+      border: 1px solid var(--cif-card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--cif-shadow);
+    }
+
+    .cif-image-wrapper {
+      position: relative;
+      height: 420px;
+      overflow: hidden;
+    }
+
+    .cif-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+      display: block;
+    }
+
+    .cif-image-frame:hover .cif-image-wrapper img {
+      transform: scale(1.03);
+    }
+
+    .cif-image-caption {
+      padding: 18px 20px;
+      background: var(--cif-card-bg);
+      border-top: 1px solid var(--cif-card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--cif-text-title);
+    }
+
+    .cif-status-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #059669;
+      background: rgba(5, 150, 105, 0.1);
+      padding: 3px 8px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+  </style>
 </head>
 <body>
   <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
@@ -18,89 +358,107 @@
   <cusb-navbar></cusb-navbar>
 
   <main id="mainContent">
-    <!-- ══════ OVERVIEW ══════ -->
-    <section class="section">
+    <section class="section cif-hero-section">
       <div class="container">
-        <div class="about-uni-grid">
-          <div>
-            <h1 class="section-title" style="text-align: left; margin-bottom: 20px;" data-en="Central Instruments Facility (CIF)" data-hi="केंद्रीय उपकरण केंद्र (CIF)">Central Instruments Facility (CIF)</h1>
-            <p style="margin-bottom: 15px; font-size: 0.95rem; line-height: 1.7;" data-en="The Central Instruments Facility (CIF) at the Central University of South Bihar serves as the focal point for cutting-edge scientific research. Established to foster interdisciplinary research collaborations, the facility houses sophisticated instruments that are vital for characterization, imaging, structural analysis, and molecular investigations." data-hi="दक्षिण बिहार केंद्रीय विश्वविद्यालय में केंद्रीय उपकरण केंद्र (CIF) अत्याधुनिक वैज्ञानिक अनुसंधान के लिए मुख्य केंद्र के रूप में कार्य करता है। अंतर-विषयक अनुसंधान सहयोग को बढ़ावा देने के लिए स्थापित, इस केंद्र में परिष्कृत उपकरण हैं जो लक्षण वर्णन, इमेजिंग, संरचनात्मक विश्लेषण और आणविक जांच के लिए महत्वपूर्ण हैं।">The Central Instruments Facility (CIF) at the Central University of South Bihar serves as the focal point for cutting-edge scientific research. Established to foster interdisciplinary research collaborations, the facility houses sophisticated instruments that are vital for characterization, imaging, structural analysis, and molecular investigations.</p>
-            <p style="margin-bottom: 25px; font-size: 0.95rem; line-height: 1.7;" data-en="Our services are open to internal students, research scholars, and faculty members, as well as external researchers from academic institutions, national laboratories, and private R&D industries on a subsidized fee-per-sample basis." data-hi="हमारी सेवाएं आंतरिक छात्रों, अनुसंधान विद्वानों और संकाय सदस्यों के साथ-साथ शैक्षणिक संस्थानों, राष्ट्रीय प्रयोगशालाओं और निजी आरएंडडी उद्योगों के बाहरी शोधकर्ताओं के लिए रियायती शुल्क-प्रति-नमूना आधार पर खुली हैं।">Our services are open to internal students, research scholars, and faculty members, as well as external researchers from academic institutions, national laboratories, and private R&D industries on a subsidized fee-per-sample basis.</p>
+        
+        <!-- Breadcrumb -->
+        <nav class="cif-breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+          <span>/</span>
+          <a href="research.html" data-en="Research" data-hi="अनुसंधान">Research</a>
+          <span>/</span>
+          <span style="color: var(--cif-text-title); font-weight: 700;">Central Instrumental Facility</span>
+        </nav>
 
-            <table class="hostel-details-table">
-              <thead>
-                <tr>
-                  <th data-en="Instrument Name" data-hi="उपकरण का नाम">Instrument Name</th>
-                  <th data-en="Key Application" data-hi="मुख्य अनुप्रयोग">Key Application</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td><strong>X-Ray Diffractometer (XRD)</strong></td><td data-en="Crystal structure analysis, phase identification of powders and thin films" data-hi="क्रिस्टल संरचना विश्लेषण, पाउडर और पतली फिल्मों की चरण पहचान">Crystal structure analysis, phase identification of powders and thin films</td></tr>
-                <tr><td><strong>Scanning Electron Microscope (SEM)</strong></td><td data-en="High-resolution surface topography imaging and elemental analysis (EDX)" data-hi="उच्च-रिज़ॉल्यूशन सतह स्थलाकृति इमेजिंग और मौलिक विश्लेषण (ईडीएक्स)">High-resolution surface topography imaging and elemental analysis (EDX)</td></tr>
-                <tr><td><strong>Fourier Transform Infrared (FTIR)</strong></td><td data-en="Identification of functional groups and molecular structures of organic compounds" data-hi="कार्बनिक यौगिकों के कार्यात्मक समूहों और आणविक संरचनाओं की पहचान">Identification of functional groups and molecular structures of organic compounds</td></tr>
-                <tr><td><strong>Nuclear Magnetic Resonance (NMR - 400 MHz)</strong></td><td data-en="Detailed structure elucidation of organic molecules and complex polymers" data-hi="कार्बनिक अणुओं और जटिल पॉलिमर की विस्तृत संरचना का स्पष्टीकरण">Detailed structure elucidation of organic molecules and complex polymers</td></tr>
-              </tbody>
-            </table>
-          </div>
+        <div class="cif-grid-layout">
+          <!-- Main Information Column -->
           <div>
-            <img src="assets/images/sclab.jpg" alt="Scientific researchers using NMR instrumentation in CUSB laboratory" style="border-radius: 12px; box-shadow: var(--shadow-md); width: 100%; object-fit: cover; height: 350px;" loading="lazy" decoding="async">
-            
-            <div style="margin-top: 30px; background-color: var(--bg-secondary); padding: 24px; border-radius: 12px; border: 1px solid var(--border-color);">
-              <h3 style="font-family: var(--ff-title); font-size: 1.25rem; color: var(--tx-primary); margin-bottom: 12px;" data-en="NABL Aligned Practices" data-hi="एनएबीएल आधारित प्रथाएं">NABL Aligned Practices</h3>
-              <p style="font-size: 0.88rem; color: var(--tx-muted); line-height: 1.6; margin-bottom: 10px;" data-en="The laboratory aligns with National Accreditation Board for Testing and Calibration Laboratories (NABL) safety guidelines and standardization practices. Sample preparation protocols and data analysis routines are overseen by qualified scientific technicians." data-hi="प्रयोगशाला परीक्षण और अंशांकन प्रयोगशालाओं के लिए राष्ट्रीय प्रत्यायन बोर्ड (एनएबीएल) के सुरक्षा दिशानिर्देशों और मानकीकरण प्रथाओं के साथ संरेखित है। नमूना तैयार करने के प्रोटोकॉल और डेटा विश्लेषण रूटीन की देखरेख योग्य वैज्ञानिक तकनीशियनों द्वारा की जाती है।">The laboratory aligns with National Accreditation Board for Testing and Calibration Laboratories (NABL) safety guidelines and standardization practices. Sample preparation protocols and data analysis routines are overseen by qualified scientific technicians.</p>
+            <div class="cif-header-area">
+              <span class="cif-badge">🔬 Advanced Research Infrastructure</span>
+              <h1 class="cif-title" data-en="Central Instrumental Facility" data-hi="केंद्रीय उपकरण सुविधा (सीआईएफ)">Central Instrumental Facility</h1>
+              <div class="cif-meta-chips">
+                <span class="cif-meta-chip">🗓️ Estd. 2019</span>
+                <span class="cif-meta-chip">⚡ Multidisciplinary Research</span>
+                <span class="cif-meta-chip">🌐 Open to Academia &amp; Industry</span>
+              </div>
+            </div>
+
+            <!-- Main Overview Lead Card -->
+            <div class="cif-lead-card">
+              <p class="cif-lead-text" data-en="Central Instrument Facility (CIF) was established at Central university of South Bihar (CUSB), Gaya in the year 2019 with the support from the Departments &amp; University fund. The CIF, is being operated and maintained by a dedicated and qualified group of Faculty and Technical staffs. It aims to provide a central facility consisting of the latest and advanced analytical Instruments to facilitate multidisciplinary research and to cater to the needs of academic research institutes, universities, and industries for high-end material. This facility is open to all the researchers from universities, academic institutes, national research institutes, Private institutes, and industries." data-hi="केंद्रीय उपकरण सुविधा (CIF) की स्थापना 2019 में विभागों और विश्वविद्यालय निधि के सहयोग से दक्षिण बिहार केंद्रीय विश्वविद्यालय (CUSB), गया में की गई थी। CIF का संचालन और रखरखाव संकाय और तकनीकी कर्मचारियों के एक समर्पित और योग्य समूह द्वारा किया जाता है। इसका उद्देश्य बहु-विषयक अनुसंधान की सुविधा के लिए नवीनतम और उन्नत विश्लेषणात्मक उपकरणों से युक्त एक केंद्रीय सुविधा प्रदान करना है। यह सुविधा विश्वविद्यालयों, शैक्षणिक संस्थानों, राष्ट्रीय अनुसंधान संस्थानों, निजी संस्थानों और उद्योगों के सभी शोधकर्ताओं के लिए खुली है।">
+                Central Instrument Facility (CIF) was established at Central university of South Bihar (CUSB), Gaya in the year 2019 with the support from the Departments &amp; University fund. The CIF, is being operated and maintained by a dedicated and qualified group of Faculty and Technical staffs. It aims to provide a central facility consisting of the latest and advanced analytical Instruments to facilitate multidisciplinary research and to cater to the needs of academic research institutes, universities, and industries for high-end material. This facility is open to all the researchers from universities, academic institutes, national research institutes, Private institutes, and industries.
+              </p>
+            </div>
+
+            <!-- Vision & Mission Bento Cards -->
+            <div class="cif-bento-grid">
+              <div class="cif-bento-card">
+                <div class="cif-bento-head" data-en="Vision:" data-hi="दृष्टिकोण:">
+                  <span>🎯</span>
+                  <span>Vision:</span>
+                </div>
+                <p class="cif-bento-desc" data-en="To provide a central facility with the latest and the most advanced analytical techniques for cutting edge research in various areas of science and technology." data-hi="विज्ञान और प्रौद्योगिकी के विभिन्न क्षेत्रों में अत्याधुनिक अनुसंधान के लिए नवीनतम और सबसे उन्नत विश्लेषणात्मक तकनीकों के साथ एक केंद्रीय सुविधा प्रदान करना।">
+                  To provide a central facility with the latest and the most advanced analytical techniques for cutting edge research in various areas of science and technology.
+                </p>
+              </div>
+
+              <div class="cif-bento-card">
+                <div class="cif-bento-head" data-en="Mission:" data-hi="लक्ष्य:">
+                  <span>🚀</span>
+                  <span>Mission:</span>
+                </div>
+                <p class="cif-bento-desc" data-en="Facilitate the researcher with modern technology in science." data-hi="शोधकर्ताओं को विज्ञान में आधुनिक तकनीक की सुविधा प्रदान करना।">
+                  Facilitate the researcher with modern technology in science.
+                </p>
+              </div>
+            </div>
+
+            <!-- Objective Card -->
+            <div class="cif-objectives-card">
+              <div class="cif-objectives-title" data-en="Objective:" data-hi="उद्देश्य:">
+                <span>📋</span>
+                <span>Objective:</span>
+              </div>
+              <ul class="cif-objectives-list">
+                <li class="cif-objective-item">
+                  <span class="cif-check-icon">✓</span>
+                  <span data-en="To provide guidance for acquisition of data using Sophisticated Instruments." data-hi="परिष्कृत उपकरणों का उपयोग करके डेटा प्राप्त करने के लिए मार्गदर्शन प्रदान करना।">To provide guidance for acquisition of data using Sophisticated Instruments.</span>
+                </li>
+                <li class="cif-objective-item">
+                  <span class="cif-check-icon">✓</span>
+                  <span data-en="To organize workshops on the use and application of various spectroscopic and analytical techniques for students, teachers and personnel from other Laboratories, Universities and Industries." data-hi="अन्य प्रयोगशालाओं, विश्वविद्यालयों और उद्योगों के छात्रों, शिक्षकों और कर्मियों के लिए विभिन्न स्पेक्ट्रोस्कोपिक और विश्लेषणात्मक तकनीकों के उपयोग और अनुप्रयोग पर कार्यशालाओं का आयोजन करना।">To organize workshops on the use and application of various spectroscopic and analytical techniques for students, teachers and personnel from other Laboratories, Universities and Industries.</span>
+                </li>
+                <li class="cif-objective-item">
+                  <span class="cif-check-icon">✓</span>
+                  <span data-en="To provide facilities of sophisticated analytical instruments to scientists and other users from academic institutes, R&amp;D laboratories and industries to enable them to carry out measurements for R&amp;D work." data-hi="शैक्षणिक संस्थानों, अनुसंधान एवं विकास प्रयोगशालाओं और उद्योगों के वैज्ञानिकों और अन्य उपयोगकर्ताओं को अनुसंधान एवं विकास कार्य के लिए माप करने में सक्षम बनाने के लिए परिष्कृत विश्लेषणात्मक उपकरणों की सुविधाएं प्रदान करना।">To provide facilities of sophisticated analytical instruments to scientists and other users from academic institutes, R&amp;D laboratories and industries to enable them to carry out measurements for R&amp;D work.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Official Notification Link Card -->
+            <a href="assets/documents/about/ordinance.pdf" target="_blank" class="cif-action-card" style="text-decoration: none;">
+              <div class="cif-notification-text" data-en="Notification: about Central Instrumentation Facility ↗" data-hi="अधिसूचना: केंद्रीय उपकरण सुविधा के बारे में ↗">
+                <span>📄</span>
+                <span>Notification: about Central Instrumentation Facility</span>
+              </div>
+              <span class="btn btn-gold" style="font-size: 0.8rem; padding: 6px 14px;">View Document ↗</span>
+            </a>
+          </div>
+
+          <!-- Laboratory Image Showcase Column -->
+          <div class="cif-media-sticky">
+            <div class="cif-image-frame">
+              <div class="cif-image-wrapper">
+                <img src="assets/images/sclab.jpg" alt="Central Instrumentation Facility Laboratory at Central University of South Bihar" loading="lazy" decoding="async">
+              </div>
+              <div class="cif-image-caption">
+                <span>CUSB CIF Advanced Laboratory</span>
+                <span class="cif-status-badge">● Active Facility</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ══════ BOOKING PROCESS ══════ -->
-    <section class="section" style="background-color: var(--bg-secondary);">
-      <div class="container" style="max-width: 800px; text-align: center;">
-        <h2 class="section-title" data-en="Instrument Booking Process" data-hi="उपकरण बुकिंग प्रक्रिया">Instrument Booking Process</h2>
-        <p style="margin-bottom: 30px; color: var(--tx-muted);" data-en="Follow these steps to book instrument slots and submit samples for analysis." data-hi="उपकरण स्लॉट बुक करने और विश्लेषण के लिए नमूने जमा करने के लिए इन चरणों का पालन करें।">Follow these steps to book instrument slots and submit samples for analysis.</p>
-        
-        <div style="display: flex; flex-direction: column; gap: 20px; text-align: left;">
-          <div style="background-color: var(--bg-primary); padding: 20px; border-radius: 8px; border-left: 5px solid var(--acc-gold);">
-            <strong data-en="Step 1: Download Requisition Form" data-hi="चरण 1: मांग पत्र डाउनलोड करें">Step 1: Download Requisition Form</strong>
-            <p style="font-size: 0.88rem; color: var(--tx-muted); margin-top: 5px;" data-en="Download the specific instrument requisition form from our Downloads section. Indicate chemical safety hazards and solubility info." data-hi="हमारे डाउनलोड अनुभाग से विशिष्ट उपकरण मांग पत्र डाउनलोड करें। रासायनिक सुरक्षा खतरों और घुलनशीलता की जानकारी इंगित करें।">Download the specific instrument requisition form from our Downloads section. Indicate chemical safety hazards and solubility info.</p>
-          </div>
-          <div style="background-color: var(--bg-primary); padding: 20px; border-radius: 8px; border-left: 5px solid var(--acc-gold);">
-            <strong data-en="Step 2: Pay Testing Fees" data-hi="चरण 2: परीक्षण शुल्क का भुगतान करें">Step 2: Pay Testing Fees</strong>
-            <p style="font-size: 0.88rem; color: var(--tx-muted); margin-top: 5px;" data-en="Pay online via the CUSB Samarth Payment Gateway. Retain the e-receipt representing matching testing slots." data-hi="सीयूएसबी समर्थ पेमेंट गेटवे के माध्यम से ऑनलाइन भुगतान करें। मिलान परीक्षण स्लॉट का प्रतिनिधित्व करने वाली ई-रसीद संभाल कर रखें।">Pay online via the CUSB Samarth Payment Gateway. Retain the e-receipt representing matching testing slots.</p>
-          </div>
-          <div style="background-color: var(--bg-primary); padding: 20px; border-radius: 8px; border-left: 5px solid var(--acc-gold);">
-            <strong data-en="Step 3: Sample Submission" data-hi="चरण 3: नमूना जमा करना">Step 3: Sample Submission</strong>
-            <p style="font-size: 0.88rem; color: var(--tx-muted); margin-top: 5px;" data-en="Submit samples physically or mail them to the CIF Coordinator along with the form and payment receipt. Results are shared via official email." data-hi="विवरण पत्र और भुगतान रसीद के साथ भौतिक रूप से नमूने जमा करें या उन्हें सीआईएफ समन्वयक को मेल करें। परिणाम आधिकारिक ईमेल के माध्यम से साझा किए जाते हैं।">Submit samples physically or mail them to the CIF Coordinator along with the form and payment receipt. Results are shared via official email.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════ CIF ADMINISTRATION ══════ -->
-    <section class="section" id="cif-admin">
-      <div class="container">
-        <h2 class="section-title" data-en="CIF Administration" data-hi="सीआईएफ प्रशासन">CIF Administration</h2>
-        
-        <div class="wardens-grid">
-          <!-- Convener -->
-          <div class="warden-card">
-            <img src="assets/images/warden-vipin-singh.jpg" class="warden-img" alt="CIF Coordinator" onerror="this.src='assets/culog.png'" decoding="async" loading="lazy">
-            <h4 class="warden-name" data-en="Dr. Lakhwinder Singh" data-hi="डॉ. लखविंदर सिंह">Dr. Lakhwinder Singh</h4>
-            <div class="warden-role" data-en="Coordinator, CIF" data-hi="समन्वयक, सीआईएफ">Coordinator, CIF</div>
-            <p style="font-size: 0.75rem; color: var(--tx-secondary); margin-bottom: 5px;">Department of Physics</p>
-            <p style="font-size: 0.75rem;"><a href="mailto:cif@cusb.ac.in" style="color: var(--tx-secondary); text-decoration: none; font-weight: 600;">cif@cusb.ac.in</a></p>
-          </div>
-
-          <!-- Scientific Officer -->
-          <div class="warden-card">
-            <img src="assets/images/warden-renu-choudhary.jpg" class="warden-img" alt="Scientific Officer" onerror="this.src='assets/culog.png'" decoding="async" loading="lazy">
-            <h4 class="warden-name" data-en="Dr. Tara Kashav" data-hi="डॉ. तारा काशव">Dr. Tara Kashav</h4>
-            <div class="warden-role" data-en="Convener, CIF Committee" data-hi="संयोजक, सीआईएफ समिति">Convener, CIF Committee</div>
-            <p style="font-size: 0.75rem; color: var(--tx-secondary); margin-bottom: 5px;">Department of Life Science</p>
-            <p style="font-size: 0.75rem;"><a href="mailto:tarakashav@cusb.ac.in" style="color: var(--tx-secondary); text-decoration: none; font-weight: 600;">tarakashav@cusb.ac.in</a></p>
-          </div>
-        </div>
       </div>
     </section>
   </main>

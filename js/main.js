@@ -807,6 +807,11 @@ function initActivePageHighlight() {
   ) {
     activeMenuCategory = 'academics';
   } else if (
+    currentFile.includes('facilit') || 
+    currentFile.includes('infrastruct')
+  ) {
+    activeMenuCategory = 'infrastructure';
+  } else if (
     currentFile.startsWith('about') || 
     ['policies.html', 'executive-council.html', 'academic-council.html', 'finance-committee.html', 'tenders.html', 'upcoming-events.html', 'archived-events.html', 'archive-events.html', 'careers.html', 'recruitment.html', 'downloads.html', 'recent-events.html', 'recent-event.html', 'academic-highlights.html', 'how-to-reach.html'].includes(currentFile)
   ) {
@@ -831,12 +836,33 @@ function initActivePageHighlight() {
     }
   }
 
-  // 2. Highlight specific child link inside megamenu
-  let matchedChildLink = null;
-  const allNavLinks = navbar.querySelectorAll('.megamenu a, .navbar-menu a');
-  
+  // 2. Highlight specific child link inside megamenus
+  const megamenuLinks = navbar.querySelectorAll('.megamenu a');
+  const matchedChildLinks = [];
+
+  // Direct alias and canonical map for pages
+  const pageAliases = {
+    'hostels.html': 'hostel.html',
+    'anti-ragging.html': 'student-anti-ragging.html',
+    'alumni.html': 'student-alumni.html',
+    'dace.html': 'student-dace.html',
+    'placement.html': 'student-placement-cell.html',
+    'placements.html': 'student-placement-cell.html',
+    'nss.html': 'student-nss.html',
+    'ncc.html': 'student-ncc.html',
+    'grievance.html': 'student-grievance-redressal.html',
+    'scholarship.html': 'student-scholarships.html',
+    'scholarships.html': 'student-scholarships.html',
+    'research-scholarships.html': 'student-scholarships.html',
+    'research-scholarship-fellowship.html': 'student-scholarships.html',
+    'programmes.html': 'courses.html',
+    'departments.html': 'courses.html'
+  };
+
+  const targetFile = pageAliases[currentFile] || currentFile;
+
   // First attempt: exact match with page + hash / query
-  for (const link of allNavLinks) {
+  for (const link of megamenuLinks) {
     const href = (link.getAttribute('href') || '').toLowerCase();
     if (!href || href === '#' || href.startsWith('javascript:')) continue;
 
@@ -844,42 +870,31 @@ function initActivePageHighlight() {
     const hrefHash = href.includes('#') ? '#' + href.split('#')[1] : '';
     const hrefSearch = href.includes('?') ? '?' + href.split('?')[1].split('#')[0] : '';
 
-    if (currentHash && hrefHash && hrefHash === currentHash && (hrefFile === currentFile || (hrefFile === '' && currentFile === 'index.html'))) {
-      matchedChildLink = link;
-      break;
-    }
-    if (currentSearch && hrefSearch && hrefSearch === currentSearch && (hrefFile === currentFile || (hrefFile === '' && currentFile === 'index.html'))) {
-      matchedChildLink = link;
-      break;
+    if (currentHash && hrefHash && hrefHash === currentHash && (hrefFile === targetFile || (hrefFile === '' && targetFile === 'index.html'))) {
+      matchedChildLinks.push(link);
+    } else if (currentSearch && hrefSearch && hrefSearch === currentSearch && (hrefFile === targetFile || (hrefFile === '' && targetFile === 'index.html'))) {
+      matchedChildLinks.push(link);
     }
   }
 
-  // Second attempt: match exact file
-  if (!matchedChildLink && currentFile) {
-    for (const link of allNavLinks) {
+  // Second attempt: match exact file name
+  if (matchedChildLinks.length === 0 && targetFile) {
+    for (const link of megamenuLinks) {
       const href = (link.getAttribute('href') || '').toLowerCase();
       if (!href || href === '#' || href.startsWith('javascript:')) continue;
       const hrefFile = href.split('#')[0].split('?')[0].split('/').pop();
-      if (hrefFile === currentFile) {
-        matchedChildLink = link;
-        break;
+      if (hrefFile === targetFile || hrefFile === currentFile) {
+        matchedChildLinks.push(link);
       }
     }
   }
 
-  if (matchedChildLink) {
+  // Apply active classes to all matched child links
+  matchedChildLinks.forEach(matchedChildLink => {
     matchedChildLink.classList.add('is-current-page-link');
     matchedChildLink.setAttribute('aria-current', 'page');
     const parentLi = matchedChildLink.closest('li');
     if (parentLi) parentLi.classList.add('is-current-page-item');
-
-    // Add active marker if inside megamenu
-    if (matchedChildLink.closest('.megamenu') && !matchedChildLink.querySelector('.megamenu-current-badge')) {
-      const badge = document.createElement('span');
-      badge.className = 'megamenu-current-badge';
-      badge.textContent = 'Active';
-      matchedChildLink.appendChild(badge);
-    }
 
     // Ensure parent navbar tab is also activated
     const parentNavbarItem = matchedChildLink.closest('.navbar-item');
@@ -896,7 +911,7 @@ function initActivePageHighlight() {
         }
       }
     }
-  }
+  });
 
   // 3. Highlight active sidebar links in quicklinks drawer
   const sidebar = document.querySelector('.fixed-quicklinks-sidebar');

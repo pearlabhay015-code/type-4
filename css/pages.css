@@ -1290,9 +1290,9 @@
   border-color: #86efac;
 }
 .program-dept-link:nth-child(4n+3) {
-  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
-  color: #c2410c;
-  border-color: #fdba74;
+  background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+  color: #7a0c0c;
+  border-color: #fecdd3;
 }
 .program-dept-link:nth-child(4n+4) {
   background: linear-gradient(135deg, #fae8ff 0%, #f5d0fe 100%);
@@ -1423,488 +1423,145 @@
 }
 
 /* ==========================================================================
-   COLOR-THEMED SCHOOL CARDS (Matching Govt Initiatives Style with Top Borders)
+   PROFESSIONAL SCHOOL & DEPARTMENT CARDS (CUSB Site Theme)
    ========================================================================== */
 .program-pill-card {
   position: relative;
   overflow: hidden;
-  border-radius: 14px !important;
-  border: 1px solid #cbd5e1 !important;
-  border-top-width: 5px !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  background: var(--bg-primary, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-left: 4px solid var(--acc-blue, #0b6cb8);
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-/* 1. Maths, Stat & cs */
-.program-pill-card[data-school="math"] {
-  background: linear-gradient(145deg, #ffffff 0%, #edf4fc 100%) !important;
-  border-color: #cbd5e1 !important;
-  border-top-color: #0b2545 !important;
-}
-.program-pill-card[data-school="math"]:hover {
-  border-color: #0b2545 !important;
-  box-shadow: 0 12px 28px rgba(11, 37, 69, 0.20) !important;
-}
-.program-pill-card[data-school="math"] .program-pill-title { color: #0b2545 !important; }
-
-/* 2. Earth, Bio & Evs */
-.program-pill-card[data-school="earth"] {
-  background: linear-gradient(145deg, #ffffff 0%, #f0fdf4 100%) !important;
-  border-color: #bbf7d0 !important;
-  border-top-color: #0d7a5f !important;
-}
-.program-pill-card[data-school="earth"]:hover {
-  border-color: #0d7a5f !important;
-  box-shadow: 0 12px 28px rgba(13, 122, 95, 0.20) !important;
-}
-.program-pill-card[data-school="earth"] .program-pill-title { color: #0d7a5f !important; }
-
-/* 3. Human Science */
-.program-pill-card[data-school="human"] {
-  background: linear-gradient(145deg, #ffffff 0%, #faf5ff 100%) !important;
-  border-color: #e9d5ff !important;
-  border-top-color: #6b21a8 !important;
-}
-.program-pill-card[data-school="human"]:hover {
-  border-color: #6b21a8 !important;
-  box-shadow: 0 12px 28px rgba(107, 33, 168, 0.20) !important;
-}
-.program-pill-card[data-school="human"] .program-pill-title { color: #6b21a8 !important; }
-
-/* 4. Social Sciences & Policies */
-.program-pill-card[data-school="social"] {
-  background: linear-gradient(145deg, #ffffff 0%, #fff7ed 100%) !important;
-  border-color: #ffedd5 !important;
-  border-top-color: #c2410c !important;
-}
-.program-pill-card[data-school="social"]:hover {
-  border-color: #c2410c !important;
-  box-shadow: 0 12px 28px rgba(194, 65, 12, 0.20) !important;
-}
-.program-pill-card[data-school="social"] .program-pill-title { color: #c2410c !important; }
-
-/* 5. School of Education */
-.program-pill-card[data-school="education"] {
-  background: linear-gradient(145deg, #ffffff 0%, #fffbe6 100%) !important;
-  border-color: #fef08a !important;
-  border-top-color: #d4a017 !important;
-}
-.program-pill-card[data-school="education"]:hover {
-  border-color: #d4a017 !important;
-  box-shadow: 0 12px 28px rgba(212, 160, 23, 0.22) !important;
-}
-.program-pill-card[data-school="education"] .program-pill-title { color: #92400e !important; }
-
-/* 6. Health Science */
-.program-pill-card[data-school="health"] {
-  background: linear-gradient(145deg, #ffffff 0%, #fff1f2 100%) !important;
-  border-color: #fecdd3 !important;
-  border-top-color: #991b1b !important;
-}
-.program-pill-card[data-school="health"]:hover {
-  border-color: #991b1b !important;
-  box-shadow: 0 12px 28px rgba(153, 27, 27, 0.20) !important;
-}
-.program-pill-card[data-school="health"] .program-pill-title { color: #991b1b !important; }
-
-/* 7. Language & Literature */
-.program-pill-card[data-school="lang"] {
-  background: linear-gradient(145deg, #ffffff 0%, #eef2ff 100%) !important;
-  border-color: #c7d2fe !important;
-  border-top-color: #3730a3 !important;
-}
-.program-pill-card[data-school="lang"]:hover {
-  border-color: #3730a3 !important;
-  box-shadow: 0 12px 28px rgba(55, 48, 163, 0.20) !important;
-}
-.program-pill-card[data-school="lang"] .program-pill-title { color: #3730a3 !important; }
-
-/* 8. Media, Arts & Aesthetics */
-.program-pill-card[data-school="media"] {
-  background: linear-gradient(145deg, #ffffff 0%, #fdf2f8 100%) !important;
-  border-color: #fbcfe8 !important;
-  border-top-color: #be185d !important;
-}
-.program-pill-card[data-school="media"]:hover {
-  border-color: #be185d !important;
-  box-shadow: 0 12px 28px rgba(190, 24, 93, 0.20) !important;
-}
-.program-pill-card[data-school="media"] .program-pill-title { color: #be185d !important; }
-
-/* 9. Agriculture */
-.program-pill-card[data-school="agri"] {
-  background: linear-gradient(145deg, #ffffff 0%, #f0fdf4 100%) !important;
-  border-color: #bbf7d0 !important;
-  border-top-color: #15803d !important;
-}
-.program-pill-card[data-school="agri"]:hover {
-  border-color: #15803d !important;
-  box-shadow: 0 12px 28px rgba(21, 128, 61, 0.20) !important;
-}
-.program-pill-card[data-school="agri"] .program-pill-title { color: #15803d !important; }
-
-/* 10. School of Management */
-.program-pill-card[data-school="management"] {
-  background: linear-gradient(145deg, #ffffff 0%, #f0f9ff 100%) !important;
-  border-color: #bae6fd !important;
-  border-top-color: #0284c7 !important;
-}
-.program-pill-card[data-school="management"]:hover {
-  border-color: #0284c7 !important;
-  box-shadow: 0 12px 28px rgba(2, 132, 199, 0.20) !important;
-}
-.program-pill-card[data-school="management"] .program-pill-title { color: #0284c7 !important; }
-
-/* 11. Law & Governance */
-.program-pill-card[data-school="law"] {
-  background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%) !important;
-  border-color: #cbd5e1 !important;
-  border-top-color: #1e293b !important;
-}
-.program-pill-card[data-school="law"]:hover {
-  border-color: #1e293b !important;
-  box-shadow: 0 12px 28px rgba(30, 41, 59, 0.20) !important;
-}
-.program-pill-card[data-school="law"] .program-pill-title { color: #1e293b !important; }
-
-/* 12. Physical & Chemical */
-.program-pill-card[data-school="physical"] {
-  background: linear-gradient(145deg, #ffffff 0%, #eff6ff 100%) !important;
-  border-color: #bfdbfe !important;
-  border-top-color: #1e40af !important;
-}
-.program-pill-card[data-school="physical"]:hover {
-  border-color: #1e40af !important;
-  box-shadow: 0 12px 28px rgba(30, 64, 175, 0.20) !important;
-}
-.program-pill-card[data-school="physical"] .program-pill-title { color: #1e40af !important; }
-/* ==========================================================================
-   VIBRANT CUSTOM COLORS FOR ALL DEPARTMENT CARDS (.qa-card)
-   ========================================================================== */
-.qa-card {
-  padding: 10px 18px;
-  border-radius: 30px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-  transition: all 0.25s ease;
-}
-
-/* 1. Maths, Stat & CS */
-.program-pill-card[data-school="math"] .qa-card:nth-child(1) { /* Mathematics */
-  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%) !important;
-  color: #0369a1 !important;
-  border: 1px solid #7dd3fc !important;
-}
-.program-pill-card[data-school="math"] .qa-card:nth-child(2) { /* Statistics */
-  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%) !important;
-  color: #3730a3 !important;
-  border: 1px solid #a5b4fc !important;
-}
-.program-pill-card[data-school="math"] .qa-card:nth-child(3) { /* CS */
-  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%) !important;
-  color: #1d4ed8 !important;
-  border: 1px solid #93c5fd !important;
-}
-
-/* 2. Earth, Bio & EVS */
-.program-pill-card[data-school="earth"] .qa-card:nth-child(1) { /* Bioinformatics */
-  background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%) !important;
-  color: #0f766e !important;
-  border: 1px solid #5eead4 !important;
-}
-.program-pill-card[data-school="earth"] .qa-card:nth-child(2) { /* Geology */
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%) !important;
-  color: #92400e !important;
-  border: 1px solid #fcd34d !important;
-}
-.program-pill-card[data-school="earth"] .qa-card:nth-child(3) { /* Geography */
-  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%) !important;
-  color: #15803d !important;
-  border: 1px solid #86efac !important;
-}
-.program-pill-card[data-school="earth"] .qa-card:nth-child(4) { /* Life Science */
-  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%) !important;
-  color: #047857 !important;
-  border: 1px solid #6ee7b7 !important;
-}
-.program-pill-card[data-school="earth"] .qa-card:nth-child(5) { /* Biotech */
-  background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%) !important;
-  color: #7e22ce !important;
-  border: 1px solid #c084fc !important;
-}
-.program-pill-card[data-school="earth"] .qa-card:nth-child(6) { /* Evs */
-  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%) !important;
-  color: #065f46 !important;
-  border: 1px solid #a7f3d0 !important;
-}
-
-/* 3. Human Science */
-.program-pill-card[data-school="human"] .qa-card { /* Psychology */
-  background: linear-gradient(135deg, #fae8ff 0%, #f5d0fe 100%) !important;
-  color: #86198f !important;
-  border: 1px solid #f0abfc !important;
-}
-
-/* 4. Social Sciences & Policies */
-.program-pill-card[data-school="social"] .qa-card:nth-child(1) { /* Historical Studies */
-  background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%) !important;
-  color: #9a3412 !important;
-  border: 1px solid #fdba74 !important;
-}
-.program-pill-card[data-school="social"] .qa-card:nth-child(2) { /* Economics */
-  background: linear-gradient(135deg, #fef9c3 0%, #fef08a 100%) !important;
-  color: #854d0e !important;
-  border: 1px solid #fde047 !important;
-}
-.program-pill-card[data-school="social"] .qa-card:nth-child(3) { /* Development Studies */
-  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%) !important;
-  color: #c2410c !important;
-  border: 1px solid #fdba74 !important;
-}
-.program-pill-card[data-school="social"] .qa-card:nth-child(4) { /* Political Studies */
-  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%) !important;
-  color: #0369a1 !important;
-  border: 1px solid #7dd3fc !important;
-}
-.program-pill-card[data-school="social"] .qa-card:nth-child(5) { /* Sociological Studies */
-  background: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%) !important;
-  color: #be123c !important;
-  border: 1px solid #fda4af !important;
-}
-.program-pill-card[data-school="social"] .qa-card:nth-child(6) { /* Library & Info Science */
-  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%) !important;
-  color: #4338ca !important;
-  border: 1px solid #818cf8 !important;
-}
-
-/* 5. School of Education */
-.program-pill-card[data-school="education"] .qa-card:nth-child(1) { /* Teacher Education */
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%) !important;
-  color: #b45309 !important;
-  border: 1px solid #fcd34d !important;
-}
-.program-pill-card[data-school="education"] .qa-card:nth-child(2) { /* Physical Ed */
-  background: linear-gradient(135deg, #dcfce7 0%, #86efac 100%) !important;
-  color: #166534 !important;
-  border: 1px solid #4ade80 !important;
-}
-
-/* 6. Health Science */
-.program-pill-card[data-school="health"] .qa-card { /* Pharmacy */
-  background: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%) !important;
-  color: #9f1239 !important;
-  border: 1px solid #fda4af !important;
-}
-
-/* 7. Language & Literature */
-.program-pill-card[data-school="lang"] .qa-card:nth-child(1) { /* English */
-  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%) !important;
-  color: #3730a3 !important;
-  border: 1px solid #818cf8 !important;
-}
-.program-pill-card[data-school="lang"] .qa-card:nth-child(2) { /* Indian Languages */
-  background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%) !important;
-  color: #9a3412 !important;
-  border: 1px solid #fb923c !important;
-}
-
-/* 8. Media, Arts & Aesthetics */
-.program-pill-card[data-school="media"] .qa-card { /* Mass Communication */
-  background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%) !important;
-  color: #9d174d !important;
-  border: 1px solid #f472b6 !important;
-}
-
-/* 9. Agriculture */
-.program-pill-card[data-school="agri"] .qa-card { /* Agriculture */
-  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%) !important;
-  color: #15803d !important;
-  border: 1px solid #4ade80 !important;
-}
-
-/* 10. School of Management */
-.program-pill-card[data-school="management"] .qa-card { /* Commerce & Business Studies */
-  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%) !important;
-  color: #0369a1 !important;
-  border: 1px solid #38bdf8 !important;
-}
-
-/* 11. Law & Governance */
-.program-pill-card[data-school="law"] .qa-card { /* Law & Governance */
-  background: linear-gradient(145deg, #f1f5f9 0%, #cbd5e1 100%) !important;
-  color: #0f172a !important;
-  border: 1px solid #94a3b8 !important;
-}
-
-/* 12. Physical & Chemical */
-.program-pill-card[data-school="physical"] .qa-card:nth-child(1) { /* Chemistry */
-  background: linear-gradient(135deg, #cff4fc 0%, #9eeaf9 100%) !important;
-  color: #087990 !important;
-  border: 1px solid #6edff6 !important;
-}
-.program-pill-card[data-school="physical"] .qa-card:nth-child(2) { /* Physics */
-  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%) !important;
-  color: #1e40af !important;
-  border: 1px solid #60a5fa !important;
-}
-
-/* Hover effects for department cards */
-.qa-card:hover {
-  transform: translateY(-3px) scale(1.04) !important;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
-}
-
-/* Dark Mode Department Cards */
-[data-theme="dark"] .program-pill-card[data-school="math"] .qa-card {
-  background: rgba(30, 58, 138, 0.4) !important;
-  color: #93c5fd !important;
-  border-color: rgba(59, 130, 246, 0.5) !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="earth"] .qa-card {
-  background: rgba(6, 78, 70, 0.4) !important;
-  color: #6ee7b7 !important;
-  border-color: rgba(16, 185, 129, 0.5) !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="human"] .qa-card {
-  background: rgba(88, 28, 135, 0.4) !important;
-  color: #e9d5ff !important;
-  border-color: rgba(168, 85, 247, 0.5) !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="social"] .qa-card {
-  background: rgba(124, 45, 18, 0.4) !important;
-  color: #fed7aa !important;
-  border-color: rgba(249, 115, 22, 0.5) !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="education"] .qa-card {
-  background: rgba(120, 53, 15, 0.4) !important;
-  color: #fef08a !important;
-  border-color: rgba(234, 179, 8, 0.5) !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="health"] .qa-card {
-  background: rgba(127, 29, 29, 0.4) !important;
-  color: #fecdd3 !important;
-  border-color: rgba(239, 68, 68, 0.5) !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="lang"] .qa-card {
-  background: rgba(49, 46, 129, 0.4) !important;
-  color: #c7d2fe !important;
-  border-color: rgba(99, 102, 241, 0.5) !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="media"] .qa-card {
-  background: rgba(131, 24, 67, 0.4) !important;
-  color: #fbcfe8 !important;
-  border-color: rgba(236, 72, 153, 0.5) !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="agri"] .qa-card {
-  background: rgba(20, 83, 45, 0.4) !important;
-  color: #bbf7d0 !important;
-  border-color: rgba(34, 197, 94, 0.5) !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="management"] .qa-card {
-  background: rgba(12, 74, 110, 0.4) !important;
-  color: #bae6fd !important;
-  border-color: rgba(6, 182, 212, 0.5) !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="law"] .qa-card {
-  background: rgba(30, 41, 59, 0.5) !important;
-  color: #e2e8f0 !important;
-  border-color: rgba(148, 163, 184, 0.5) !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="physical"] .qa-card {
-  background: rgba(30, 58, 138, 0.4) !important;
-  color: #bfdbfe !important;
-  border-color: rgba(59, 130, 246, 0.5) !important;
-}
-
-/* Hover elevation for all school pill cards */
 .program-pill-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md, 0 8px 24px rgba(11, 108, 184, 0.08));
+  border-color: #cbd5e1;
 }
 
-/* Dark Mode Color-Themed School Cards */
-[data-theme="dark"] .program-pill-card[data-school="math"] {
-  background: linear-gradient(145deg, #0f1c30 0%, #070e1a 100%) !important;
-  border-color: rgba(59, 130, 246, 0.3) !important;
-  border-top-color: #3b82f6 !important;
+.program-pill-title {
+  font-family: var(--ff-primary, inherit);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--acc-blue, #0b6cb8);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color, #f1f5f9);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-[data-theme="dark"] .program-pill-card[data-school="earth"] {
-  background: linear-gradient(145deg, #0a2418 0%, #04120b 100%) !important;
-  border-color: rgba(16, 185, 129, 0.3) !important;
-  border-top-color: #10b981 !important;
+
+[data-theme="dark"] .program-pill-card {
+  background: #111827;
+  border-color: rgba(255, 255, 255, 0.1);
+  border-left-color: #38bdf8;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
-[data-theme="dark"] .program-pill-card[data-school="human"] {
-  background: linear-gradient(145deg, #200d30 0%, #0f0518 100%) !important;
-  border-color: rgba(168, 85, 247, 0.3) !important;
-  border-top-color: #a855f7 !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="social"] {
-  background: linear-gradient(145deg, #2a1608 0%, #150903 100%) !important;
-  border-color: rgba(249, 115, 22, 0.3) !important;
-  border-top-color: #f97316 !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="education"] {
-  background: linear-gradient(145deg, #241d08 0%, #120e03 100%) !important;
-  border-color: rgba(234, 179, 8, 0.3) !important;
-  border-top-color: #eab308 !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="health"] {
-  background: linear-gradient(145deg, #280d0d 0%, #150505 100%) !important;
-  border-color: rgba(239, 68, 68, 0.3) !important;
-  border-top-color: #ef4444 !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="lang"] {
-  background: linear-gradient(145deg, #121036 0%, #08071e 100%) !important;
-  border-color: rgba(99, 102, 241, 0.3) !important;
-  border-top-color: #6366f1 !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="media"] {
-  background: linear-gradient(145deg, #2c091d 0%, #18030e 100%) !important;
-  border-color: rgba(236, 72, 153, 0.3) !important;
-  border-top-color: #ec4899 !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="agri"] {
-  background: linear-gradient(145deg, #0b2210 0%, #041207 100%) !important;
-  border-color: rgba(34, 197, 94, 0.3) !important;
-  border-top-color: #22c55e !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="management"] {
-  background: linear-gradient(145deg, #09202f 0%, #030e17 100%) !important;
-  border-color: rgba(6, 182, 212, 0.3) !important;
-  border-top-color: #06b6d4 !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="law"] {
-  background: linear-gradient(145deg, #171e29 0%, #0b0f14 100%) !important;
-  border-color: rgba(148, 163, 184, 0.3) !important;
-  border-top-color: #94a3b8 !important;
-}
-[data-theme="dark"] .program-pill-card[data-school="physical"] {
-  background: linear-gradient(145deg, #0c1b3a 0%, #050d1e 100%) !important;
-  border-color: rgba(59, 130, 246, 0.3) !important;
-  border-top-color: #3b82f6 !important;
+
+[data-theme="dark"] .program-pill-card:hover {
+  border-color: rgba(56, 189, 248, 0.4);
 }
 
 [data-theme="dark"] .program-pill-title {
-  color: #ffffff !important;
+  color: #38bdf8;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
 }
-[data-theme="dark"] .program-pill-card .qa-card {
-  background: #141414 !important;
-  border-color: rgba(255, 255, 255, 0.15) !important;
-  color: #f1f5f9 !important;
+
+/* Department Grid inside School Card */
+.qa-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+  width: 100%;
 }
+
+/* Individual Department Card (.qa-card) */
+.qa-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg-secondary, #f8fafc);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 8px;
+  color: var(--tx-primary, #1e293b);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.qa-card:hover {
+  background: #f0f7ff;
+  border-color: var(--acc-blue, #0b6cb8);
+  color: var(--acc-blue, #0b6cb8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(11, 108, 184, 0.1);
+}
+
+.qa-ico {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(11, 108, 184, 0.08);
+  color: var(--acc-blue, #0b6cb8);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.qa-card:hover .qa-ico {
+  background: var(--acc-blue, #0b6cb8);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .qa-card {
+  background: #1e293b;
+  border-color: #334155;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .qa-card:hover {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: #38bdf8;
+  color: #38bdf8;
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.15);
+}
+
+[data-theme="dark"] .qa-ico {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+}
+
+[data-theme="dark"] .qa-card:hover .qa-ico {
+  background: #38bdf8;
+  color: #0b1120;
+}
+
 .program-pill-action {
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--acc-coral);
+  color: var(--acc-blue, #0b6cb8);
   display: flex;
   align-items: center;
   gap: 8px;
 }
+
 
 /* SECTION 4A: NEWS - Auto-Moving Right-to-Left Slider */
 .sec-news {
@@ -3649,21 +3306,28 @@
   -webkit-overflow-scrolling: touch;
 }
 .btn-school-tab {
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  padding: 8px 16px;
+  background-color: var(--bg-primary, #ffffff);
+  border: 1px solid var(--border-color, #cbd5e1);
+  padding: 8px 18px;
   border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  font-weight: 700;
   cursor: pointer;
   white-space: nowrap;
-  transition: var(--transition);
-  color: var(--tx-secondary);
+  transition: all 0.2s ease;
+  color: var(--tx-secondary, #475569);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
 }
-.btn-school-tab:hover, .btn-school-tab.active {
-  background-color: var(--acc-green);
-  color: white;
-  border-color: var(--acc-green);
+.btn-school-tab:hover {
+  background-color: #f0f7ff;
+  color: var(--acc-blue, #0b6cb8);
+  border-color: var(--acc-blue, #0b6cb8);
+}
+.btn-school-tab.active {
+  background-color: var(--acc-blue, #0b6cb8) !important;
+  color: #ffffff !important;
+  border-color: var(--acc-blue, #0b6cb8) !important;
+  box-shadow: 0 3px 10px rgba(11, 108, 184, 0.25);
 }
 
 .pyq-grid {

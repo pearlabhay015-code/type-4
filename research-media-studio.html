@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="assets/culog.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="Media Studio — Central University of South Bihar" data-hi="मीडिया स्टूडियो — सीयूएसबी">Media Studio — CUSB</title>
+  <meta name="description" content="Media Studio at Central University of South Bihar (CUSB), Gaya. Facility and Services.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .res-page-section {
+      padding: 32px 0 64px;
+      background: radial-gradient(circle at top right, rgba(11, 108, 184, 0.08), transparent 45%);
+      min-height: calc(100vh - 200px);
+    }
+    .res-breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+      background: var(--bg-primary);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+    }
+    .res-breadcrumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .res-breadcrumb a:hover {
+      color: var(--acc-blue);
+    }
+    .res-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 28px 32px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
+    }
+    .res-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0b6cb8;
+      background: rgba(11, 108, 184, 0.08);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    [data-theme="dark"] .res-badge {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .res-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .res-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+    .res-desc {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--tx-primary);
+      text-align: justify;
+      margin: 0 0 20px;
+    }
+    .res-action-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent">
+    <section class="section res-page-section">
+      <div class="container">
+        
+        <nav class="res-breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+          <span>/</span>
+          <a href="cif.html" data-en="Research" data-hi="अनुसंधान">Research</a>
+          <span>/</span>
+          <span style="color: var(--tx-primary); font-weight: 700;">Media Studio</span>
+        </nav>
+
+        <div class="res-card">
+          <span class="res-badge" data-en="Facility and Services" data-hi="सुविधा एवं सेवाएं">Facility and Services</span>
+          <h1 class="res-title" data-en="Media Studio" data-hi="मीडिया स्टूडियो">Media Studio</h1>
+          <p class="res-desc" data-en="The soundproof electronic media production lab includes Sony 4K professional cameras, audio console, video mixer, teleprompter, virtual chroma setup, live-streaming infrastructure, Apple Mac-Pro editing suites, and digital graphic workstations for student broadcasting and educational content production." data-hi="The soundproof electronic media production lab includes Sony 4K professional cameras, audio console, video mixer, teleprompter, virtual chroma setup, live-streaming infrastructure, Apple Mac-Pro editing suites, and digital graphic workstations for student broadcasting and educational content production.">The soundproof electronic media production lab includes Sony 4K professional cameras, audio console, video mixer, teleprompter, virtual chroma setup, live-streaming infrastructure, Apple Mac-Pro editing suites, and digital graphic workstations for student broadcasting and educational content production.</p>
+
+          <div class="res-action-bar">
+            <a href="assets/documents/about/ordinance.pdf" target="_blank" class="btn btn-gold" style="font-size: 0.85rem; padding: 8px 18px;">Official Guidelines &amp; Notifications ↗</a>
+            <button type="button" class="btn btn-white" onclick="window.print()" style="font-size: 0.85rem; padding: 8px 18px;">🖨️ Print Page</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,436 @@
+/* ─────────────────────────────────────────────────────────────
+   RESEARCH COMMITTEE & CELL PAGES STYLESHEET
+   Central University of South Bihar — Clean Theme Aligned
+───────────────────────────────────────────────────────────── */
+
+:root {
+  --rc-bg: #f8fafc;
+  --rc-card-bg: #ffffff;
+  --rc-border: #e2e8f0;
+  --rc-accent: #0b6cb8;
+  --rc-accent-soft: rgba(11, 108, 184, 0.08);
+  --rc-text-main: #0f172a;
+  --rc-text-muted: #64748b;
+  --rc-text-sub: #334155;
+  --rc-gold: #d97706;
+  --rc-gold-soft: rgba(217, 119, 6, 0.1);
+  --rc-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+}
+
+[data-theme="dark"] {
+  --rc-bg: #090d16;
+  --rc-card-bg: #111827;
+  --rc-border: #1f2937;
+  --rc-accent: #38bdf8;
+  --rc-accent-soft: rgba(56, 189, 248, 0.12);
+  --rc-text-main: #f8fafc;
+  --rc-text-muted: #94a3b8;
+  --rc-text-sub: #cbd5e1;
+  --rc-gold: #fbbf24;
+  --rc-gold-soft: rgba(251, 191, 36, 0.15);
+  --rc-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.cell-page-wrapper {
+  background-color: var(--rc-bg);
+  min-height: calc(100vh - 200px);
+  padding: 32px 0 64px;
+}
+
+/* Header & Breadcrumbs */
+.cell-header-area {
+  margin-bottom: 28px;
+}
+
+.cell-crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: var(--rc-text-muted);
+  margin-bottom: 20px;
+  background: var(--rc-card-bg);
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--rc-border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+.cell-crumb a {
+  color: var(--rc-text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.cell-crumb a:hover {
+  color: var(--rc-accent);
+}
+
+.cell-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--rc-accent);
+  background: var(--rc-accent-soft);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(11, 108, 184, 0.2);
+}
+
+.cell-main-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--rc-accent);
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+  border-bottom: 2px dashed rgba(11, 108, 184, 0.35);
+  padding-bottom: 12px;
+}
+
+[data-theme="dark"] .cell-main-title {
+  border-bottom-color: rgba(56, 189, 248, 0.35);
+}
+
+.cell-lead-desc {
+  font-size: 1.05rem;
+  color: var(--rc-text-sub);
+  line-height: 1.7;
+  max-width: 860px;
+  margin: 0 0 20px;
+}
+
+/* Two Column Grid */
+.cell-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 991px) {
+  .cell-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Main Content Cards */
+.cell-card-main {
+  background: var(--rc-card-bg);
+  border: 1px solid var(--rc-border);
+  border-radius: 14px;
+  padding: 28px 32px;
+  box-shadow: var(--rc-shadow);
+  margin-bottom: 28px;
+}
+
+.cell-card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--rc-text-main);
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cell-card-main h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--rc-text-main);
+  margin: 0 0 14px;
+}
+
+.cell-card-main h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--rc-text-main);
+  margin: 24px 0 12px;
+}
+
+.cell-card-main p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--rc-text-sub);
+  margin: 0 0 16px;
+  text-align: justify;
+}
+
+.cell-card-main p:last-child {
+  margin-bottom: 0;
+}
+
+/* Highlight Panel / Box */
+.cell-panel {
+  margin: 24px 0;
+  padding: 22px 26px;
+  border: 1px solid var(--rc-border);
+  border-radius: 12px;
+  background: var(--rc-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.cell-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 4px; height: 100%;
+  background: var(--rc-accent);
+}
+
+.cell-panel h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+/* Structured Checklists */
+.cell-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cell-checklist li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--rc-text-sub);
+}
+
+.cell-checklist li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 800;
+  color: var(--rc-accent);
+  font-size: 0.85rem;
+}
+
+/* Document Download Links */
+.cell-docs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cell-doc-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border: 1px solid var(--rc-border);
+  border-radius: 10px;
+  background: var(--rc-card-bg);
+  color: var(--rc-text-main);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.cell-doc-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--rc-accent);
+  box-shadow: 0 6px 18px rgba(11, 108, 184, 0.1);
+  color: var(--rc-accent);
+}
+
+.cell-doc-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(217, 119, 6, 0.12);
+  color: var(--rc-gold);
+}
+
+/* Side Sticky Menu */
+.cell-side-sticky {
+  position: sticky;
+  top: 90px;
+}
+
+.cell-side-menu {
+  background: var(--rc-card-bg);
+  border: 1px solid var(--rc-border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--rc-shadow);
+  margin-bottom: 24px;
+}
+
+.cell-side-header {
+  padding: 16px 20px;
+  background: var(--rc-accent);
+  color: #ffffff;
+  font-size: 0.96rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cell-side-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cell-side-item a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--rc-border);
+  color: var(--rc-text-sub);
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.cell-side-item:last-child a {
+  border-bottom: none;
+}
+
+.cell-side-item a:hover {
+  background: var(--rc-accent-soft);
+  color: var(--rc-accent);
+  padding-left: 22px;
+}
+
+.cell-side-item a.active {
+  background: var(--rc-accent-soft);
+  color: var(--rc-accent);
+  font-weight: 800;
+  border-left: 4px solid var(--rc-accent);
+}
+
+/* Bento Cards for Vision / Mission */
+.cell-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.cell-bento-card {
+  background: var(--rc-card-bg);
+  border: 1px solid var(--rc-border);
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--rc-shadow);
+}
+
+.cell-bento-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 4px; height: 100%;
+  background: var(--rc-accent);
+}
+
+.cell-bento-card h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--rc-text-main);
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cell-bento-card p {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--rc-text-sub);
+  margin: 0;
+}
+
+/* Gallery Showcase */
+.cell-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin: 24px 0;
+}
+
+.cell-gallery-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--rc-border);
+  background: var(--rc-card-bg);
+  transition: transform 0.25s ease;
+  display: block;
+}
+
+.cell-gallery-img:hover {
+  transform: scale(1.03);
+}
+
+/* Team Grid */
+.cell-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.cell-team-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  border: 1px solid var(--rc-border);
+  border-radius: 12px;
+  background: var(--rc-card-bg);
+  box-shadow: var(--rc-shadow);
+}
+
+.cell-team-avatar {
+  width: 64px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--rc-border);
+  background: #f1f5f9;
+}
+
+.cell-team-info h4 {
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--rc-text-main);
+}
+
+.cell-team-role {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--rc-accent);
+  margin-bottom: 4px;
+}
+
+.cell-team-email {
+  font-size: 0.76rem;
+  color: var(--rc-text-muted);
+  text-decoration: none;
+}
+
+.cell-team-email:hover {
+  color: var(--rc-accent);
+}

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Prospectus — Central University of South Bihar" data-hi="विवरणिका — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Prospectus — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Download official Academic Prospectus, admission guidelines, fee structures, eligibility criteria, and program regulations for Central University of South Bihar (CUSB).">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .prospectus-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .prospectus-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .prospectus-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .prospectus-crumb a:hover {
+      color: var(--acc-blue);
+    }
+    .prospectus-header-area {
+      margin-bottom: 24px;
+    }
+    .prospectus-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0b6cb8;
+      background: rgba(11, 108, 184, 0.08);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    [data-theme="dark"] .prospectus-badge {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .prospectus-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 14px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .prospectus-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+    .prospectus-intro-box {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid #0b6cb8;
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 28px;
+    }
+    [data-theme="dark"] .prospectus-intro-box {
+      border-left-color: #38bdf8;
+    }
+    .prospectus-lead-text {
+      font-size: 0.94rem;
+      color: var(--tx-secondary);
+      line-height: 1.68;
+      margin: 0;
+    }
+
+    /* Section Banner Card */
+    .prospectus-section-bar {
+      background: #7a0c0c;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px 8px 0 0;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    [data-theme="dark"] .prospectus-section-bar {
+      background: #881337;
+    }
+
+    /* Table & Card Container */
+    .prospectus-table-container {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+    .prospectus-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .prospectus-table th {
+      background: var(--bg-secondary);
+      color: var(--tx-primary);
+      font-weight: 800;
+      padding: 14px 20px;
+      border-bottom: 2px solid var(--border-color);
+      font-size: 0.84rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .prospectus-table td {
+      padding: 20px;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+    .prospectus-table tbody tr:nth-child(even) {
+      background: rgba(0, 0, 0, 0.015);
+    }
+    [data-theme="dark"] .prospectus-table tbody tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .prospectus-year-cell {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      text-align: center;
+      width: 130px;
+      border-right: 1px solid var(--border-color);
+    }
+    [data-theme="dark"] .prospectus-year-cell {
+      color: #38bdf8;
+    }
+
+    .prospectus-items-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .prospectus-doc-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px 18px;
+      text-decoration: none;
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    }
+    .prospectus-doc-card:hover {
+      border-color: #0b6cb8;
+      box-shadow: 0 6px 18px rgba(11, 108, 184, 0.12);
+      transform: translateY(-2px);
+    }
+    [data-theme="dark"] .prospectus-doc-card:hover {
+      border-color: #38bdf8;
+      box-shadow: 0 6px 18px rgba(56, 189, 248, 0.18);
+    }
+
+    .prospectus-thumb-box {
+      width: 44px;
+      height: 56px;
+      background: linear-gradient(135deg, rgba(11, 108, 184, 0.1) 0%, rgba(122, 12, 12, 0.08) 100%);
+      border: 1px solid rgba(11, 108, 184, 0.2);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .prospectus-thumb-box img {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+    }
+
+    .prospectus-card-details {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .prospectus-card-title {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--tx-primary);
+    }
+    .prospectus-doc-card:hover .prospectus-card-title {
+      color: #0b6cb8;
+    }
+    [data-theme="dark"] .prospectus-doc-card:hover .prospectus-card-title {
+      color: #38bdf8;
+    }
+    .prospectus-card-sub {
+      font-size: 0.78rem;
+      color: var(--tx-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .prospectus-pdf-badge {
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: #b91c1c;
+      background: rgba(185, 28, 28, 0.08);
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+    [data-theme="dark"] .prospectus-pdf-badge {
+      color: #f87171;
+      background: rgba(248, 113, 113, 0.15);
+    }
+
+    /* Live Search Input */
+    .prospectus-search-box {
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .prospectus-search-input {
+      width: 100%;
+      padding: 10px 38px 10px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      color: var(--tx-primary);
+      font-size: 0.88rem;
+    }
+    .prospectus-search-input:focus {
+      outline: none;
+      border-color: #0b6cb8;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="prospectus-page-wrapper">
+    <div class="container">
+      
+      <!-- Clean Breadcrumb -->
+      <nav class="prospectus-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="courses.html" data-en="Student Corner" data-hi="छात्र अनुभाग">Student Corner</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Prospectus</span>
+      </nav>
+
+      <!-- Theme Aligned Header Area -->
+      <div class="prospectus-header-area">
+        <span class="prospectus-badge">📘 University Admission Brochure &amp; Guidelines</span>
+        <h1 class="prospectus-main-title" data-en="Prospectus" data-hi="विवरणिका">
+          Prospectus
+        </h1>
+        
+        <div class="prospectus-intro-box">
+          <p class="prospectus-lead-text" data-en="Every year, before commencement of examination and admission process, university releases new prospectus. Attempts are made to provide a hard copy of prospectus to all students admitted. Additionally, students can access the copy of prospectus and download from the following links. Rules and regulations described in the prospectus, published in a year-X, applies to the students admitted in that year-X during the entire course of of their program until completion." data-hi="हर साल, परीक्षा और प्रवेश प्रक्रिया शुरू होने से पहले, विश्वविद्यालय नई विवरणिका जारी करता है। प्रवेश पाने वाले सभी छात्रों को विवरणिका की हार्ड कॉपी उपलब्ध कराने का प्रयास किया जाता है। इसके अतिरिक्त, छात्र विवरणिका की प्रति तक पहुँच सकते हैं और दिए गए लिंक से डाउनलोड कर सकते हैं।">
+            Every year, before commencement of examination and admission process, university releases new prospectus. Attempts are made to provide a hard copy of prospectus to all students admitted. Additionally, students can access the copy of prospectus and download from the following links. Rules and regulations described in the prospectus, published in a year-X, applies to the students admitted in that year-X during the entire course of of their program until completion.
+          </p>
+        </div>
+      </div>
+
+      <!-- Live Search Box -->
+      <div class="prospectus-search-box">
+        <input type="search" id="prospectusSearchInput" class="prospectus-search-input" placeholder="Search prospectus by year or keyword..." aria-label="Search prospectus">
+        <span style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--tx-muted);">🔍</span>
+      </div>
+
+      <!-- ════════ SECTION: DOWNLOAD PROSPECTUS ════════ -->
+      <div class="prospectus-section-bar">
+        <span data-en="Download Prospectus:" data-hi="विवरणिका डाउनलोड करें:">Download Prospectus:</span>
+        <span style="font-size: 0.8rem; font-weight: 600; opacity: 0.9;">Archive: 2016 – 2025</span>
+      </div>
+
+      <div class="prospectus-table-container">
+        <table class="prospectus-table" id="prospectusTable">
+          <thead>
+            <tr>
+              <th style="width: 140px; text-align: center;">Year</th>
+              <th>Prospectus Documents &amp; Download Links</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 2025 -->
+            <tr data-year="2025">
+              <td class="prospectus-year-cell">2025</td>
+              <td>
+                <div class="prospectus-items-row">
+                  <a href="assets/documents/prospectus/prospectus-2025-26.pdf" target="_blank" class="prospectus-doc-card">
+                    <div class="prospectus-thumb-box">
+                      <img src="assets/culog.png" alt="CUSB Emblem">
+                    </div>
+                    <div class="prospectus-card-details">
+                      <span class="prospectus-card-title">Prospectus 2025-26</span>
+                      <span class="prospectus-card-sub"><span class="prospectus-pdf-badge">PDF</span> Complete Admission Guide ↗</span>
+                    </div>
+                  </a>
+                </div>
+              </td>
+            </tr>
+
+            <!-- 2024 -->
+            <tr data-year="2024">
+              <td class="prospectus-year-cell">2024</td>
+              <td>
+                <div class="prospectus-items-row">
+                  <a href="assets/documents/prospectus/prospectus-2024-25.pdf" target="_blank" class="prospectus-doc-card">
+                    <div class="prospectus-thumb-box">
+                      <img src="assets/culog.png" alt="CUSB Emblem">
+                    </div>
+                    <div class="prospectus-card-details">
+                      <span class="prospectus-card-title">Prospectus 2024-25</span>
+                      <span class="prospectus-card-sub"><span class="prospectus-pdf-badge">PDF</span> Complete Admission Guide ↗</span>
+                    </div>
+                  </a>
+                </div>
+              </td>
+            </tr>
+
+            <!-- 2023 -->
+            <tr data-year="2023">
+              <td class="prospectus-year-cell">2023</td>
+              <td>
+                <div class="prospectus-items-row">
+                  <a href="assets/documents/prospectus/prospectus-2023-24.pdf" target="_blank" class="prospectus-doc-card">
+                    <div class="prospectus-thumb-box">
+                      <img src="assets/culog.png" alt="CUSB Emblem">
+                    </div>
+                    <div class="prospectus-card-details">
+                      <span class="prospectus-card-title">Prospectus 2023-24</span>
+                      <span class="prospectus-card-sub"><span class="prospectus-pdf-badge">PDF</span> Complete Admission Guide ↗</span>
+                    </div>
+                  </a>
+                </div>
+              </td>
+            </tr>
+
+            <!-- 2022 -->
+            <tr data-year="2022">
+              <td class="prospectus-year-cell">2022</td>
+              <td>
+                <div class="prospectus-items-row">
+                  <a href="assets/documents/prospectus/prospectus-2022-23.pdf" target="_blank" class="prospectus-doc-card">
+                    <div class="prospectus-thumb-box">
+                      <img src="assets/culog.png" alt="CUSB Emblem">
+                    </div>
+                    <div class="prospectus-card-details">
+                      <span class="prospectus-card-title">Prospectus 2022-23</span>
+                      <span class="prospectus-card-sub"><span class="prospectus-pdf-badge">PDF</span> Complete Admission Guide ↗</span>
+                    </div>
+                  </a>
+                </div>
+              </td>
+            </tr>
+
+            <!-- 2021 -->
+            <tr data-year="2021">
+              <td class="prospectus-year-cell">2021</td>
+              <td>
+                <div class="prospectus-items-row">
+                  <a href="assets/documents/prospectus/prospectus-2021-22.pdf" target="_blank" class="prospectus-doc-card">
+                    <div class="prospectus-thumb-box">
+                      <img src="assets/culog.png" alt="CUSB Emblem">
+                    </div>
+                    <div class="prospectus-card-details">
+                      <span class="prospectus-card-title">Prospectus 2021-22</span>
+                      <span class="prospectus-card-sub"><span class="prospectus-pdf-badge">PDF</span> Complete Admission Guide ↗</span>
+                    </div>
+                  </a>
+                </div>
+              </td>
+            </tr>
+
+            <!-- 2020 -->
+            <tr data-year="2020">
+              <td class="prospectus-year-cell">2020</td>
+              <td>
+                <div class="prospectus-items-row">
+                  <a href="assets/documents/prospectus/prospectus-2020-21.pdf" target="_blank" class="prospectus-doc-card">
+                    <div class="prospectus-thumb-box">
+                      <img src="assets/culog.png" alt="CUSB Emblem">
+                    </div>
+                    <div class="prospectus-card-details">
+                      <span class="prospectus-card-title">Prospectus 2020-21</span>
+                      <span class="prospectus-card-sub"><span class="prospectus-pdf-badge">PDF</span> Complete Admission Guide ↗</span>
+                    </div>
+                  </a>
+                </div>
+              </td>
+            </tr>
+
+            <!-- 2019 -->
+            <tr data-year="2019">
+              <td class="prospectus-year-cell">2019</td>
+              <td>
+                <div class="prospectus-items-row">
+                  <a href="assets/documents/prospectus/prospectus-2019-20-part-1.pdf" target="_blank" class="prospectus-doc-card">
+                    <div class="prospectus-thumb-box">
+                      <img src="assets/culog.png" alt="CUSB Emblem">
+                    </div>
+                    <div class="prospectus-card-details">
+                      <span class="prospectus-card-title">Prospectus 2019-20 (Part-I)</span>
+                      <span class="prospectus-card-sub"><span class="prospectus-pdf-badge">PDF</span> General Information &amp; Regulations ↗</span>
+                    </div>
+                  </a>
+                  <a href="assets/documents/prospectus/prospectus-2019-20-part-2.pdf" target="_blank" class="prospectus-doc-card">
+                    <div class="prospectus-thumb-box">
+                      <img src="assets/culog.png" alt="CUSB Emblem">
+                    </div>
+                    <div class="prospectus-card-details">
+                      <span class="prospectus-card-title">Prospectus 2019-20 (Part-II)</span>
+                      <span class="prospectus-card-sub"><span class="prospectus-pdf-badge">PDF</span> Programmes &amp; Fee Details ↗</span>
+                    </div>
+                  </a>
+                </div>
+              </td>
+            </tr>
+
+            <!-- 2018 -->
+            <tr data-year="2018">
+              <td class="prospectus-year-cell">2018</td>
+              <td>
+                <div class="prospectus-items-row">
+                  <a href="assets/documents/prospectus/prospectus-2018-19.pdf" target="_blank" class="prospectus-doc-card">
+                    <div class="prospectus-thumb-box">
+                      <img src="assets/culog.png" alt="CUSB Emblem">
+                    </div>
+                    <div class="prospectus-card-details">
+                      <span class="prospectus-card-title">Prospectus 2018-19</span>
+                      <span class="prospectus-card-sub"><span class="prospectus-pdf-badge">PDF</span> Complete Admission Guide ↗</span>
+                    </div>
+                  </a>
+                </div>
+              </td>
+            </tr>
+
+            <!-- 2017 -->
+            <tr data-year="2017">
+              <td class="prospectus-year-cell">2017</td>
+              <td>
+                <div class="prospectus-items-row">
+                  <a href="assets/documents/prospectus/prospectus-2017-18.pdf" target="_blank" class="prospectus-doc-card">
+                    <div class="prospectus-thumb-box">
+                      <img src="assets/culog.png" alt="CUSB Emblem">
+                    </div>
+                    <div class="prospectus-card-details">
+                      <span class="prospectus-card-title">Prospectus 2017-18</span>
+                      <span class="prospectus-card-sub"><span class="prospectus-pdf-badge">PDF</span> Complete Admission Guide ↗</span>
+                    </div>
+                  </a>
+                </div>
+              </td>
+            </tr>
+
+            <!-- 2016 -->
+            <tr data-year="2016">
+              <td class="prospectus-year-cell">2016</td>
+              <td>
+                <div class="prospectus-items-row">
+                  <a href="assets/documents/prospectus/prospectus-2016-17-part-1.pdf" target="_blank" class="prospectus-doc-card">
+                    <div class="prospectus-thumb-box">
+                      <img src="assets/culog.png" alt="CUSB Emblem">
+                    </div>
+                    <div class="prospectus-card-details">
+                      <span class="prospectus-card-title">Prospectus 2016-17 (Part-I)</span>
+                      <span class="prospectus-card-sub"><span class="prospectus-pdf-badge">PDF</span> General Information &amp; Admission Rules ↗</span>
+                    </div>
+                  </a>
+                  <a href="assets/documents/prospectus/prospectus-2016-17-part-2.pdf" target="_blank" class="prospectus-doc-card">
+                    <div class="prospectus-thumb-box">
+                      <img src="assets/culog.png" alt="CUSB Emblem">
+                    </div>
+                    <div class="prospectus-card-details">
+                      <span class="prospectus-card-title">Prospectus 2016-17 (Part-II)</span>
+                      <span class="prospectus-card-sub"><span class="prospectus-pdf-badge">PDF</span> Course Structures &amp; Intake ↗</span>
+                    </div>
+                  </a>
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+  
+  <script>
+    // Live Search Filter for Prospectus Table
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('prospectusSearchInput');
+      const tableRows = document.querySelectorAll('#prospectusTable tbody tr');
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          tableRows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            if (!query || text.includes(query)) {
+              row.style.display = '';
+            } else {
+              row.style.display = 'none';
+            }
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

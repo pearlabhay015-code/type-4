@@ -314,6 +314,7 @@ class CusbHeader extends HTMLElement {
         <a href="index.html" class="header-brand" aria-label="CUSB Homepage">
           <img src="assets/culog.png" class="header-logo" alt="CUSB Emblem" loading="lazy" decoding="async">
           <div class="header-titles">
+            <span class="header-title-hindi" lang="hi">दक्षिण बिहार केन्द्रीय विश्वविद्यालय</span>
             <span class="header-title-main" data-en="CENTRAL UNIVERSITY OF SOUTH BIHAR" data-hi="दक्षिण बिहार केन्द्रीय विश्वविद्यालय">CENTRAL UNIVERSITY OF SOUTH BIHAR</span>
             <span class="header-title-sub" data-en="Established by the Central Universities Act, 2009" data-hi="केन्द्रीय विश्वविद्यालय अधिनियम, 2009 द्वारा स्थापित">Established by the Central Universities Act, 2009</span>
           </div>
@@ -461,10 +462,10 @@ class CusbNavbar extends HTMLElement {
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="EARTH, BIOLOGICAL AND ENVIRONMENTAL SCIENCES" data-hi="पृथ्वी, जैविक और पर्यावरण विज्ञान">EARTH, BIOLOGICAL AND ENVIRONMENTAL SCIENCES</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="department.html?dept=bioinformatics"><span data-en="Dept. of Bioinformatics" data-hi="बायोइनफॉरमैटिक्स विभाग">Dept. of Bioinformatics</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=bioinformatics"><span data-en="Department of Bioinformatics" data-hi="बायोइनफॉरमैटिक्स विभाग">Department of Bioinformatics</span></a></li>
                     <li class="megamenu-item"><a href="department.html?dept=geology"><span data-en="Department of Geology" data-hi="भूविज्ञान विभाग">Department of Geology</span></a></li>
                     <li class="megamenu-item"><a href="department.html?dept=geography"><span data-en="Department of Geography" data-hi="भूगोल विभाग">Department of Geography</span></a></li>
-                    <li class="megamenu-item"><a href="department.html?dept=life-science"><span data-en="Dept. of Life Science" data-hi="जीवन विज्ञान विभाग">Dept. of Life Science</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=life-science"><span data-en="Department of Life Science" data-hi="जीवन विज्ञान विभाग">Department of Life Science</span></a></li>
                     <li class="megamenu-item"><a href="department.html?dept=biotechnology"><span data-en="Department of Biotechnology" data-hi="बायोटेक्नोलॉजी विभाग">Department of Biotechnology</span></a></li>
                     <li class="megamenu-item"><a href="department.html?dept=environmental-sciences"><span data-en="Department of Environmental Sciences" data-hi="पर्यावरण विज्ञान विभाग">Department of Environmental Sciences</span></a></li>
                   </ul>
@@ -475,15 +476,15 @@ class CusbNavbar extends HTMLElement {
                     <li class="megamenu-item"><a href="department.html?dept=historical-studies-archaeology"><span data-en="Department of Historical Studies and Archaeology" data-hi="ऐतिहासिक अध्ययन एवं पुरातत्व विभाग">Department of Historical Studies and Archaeology</span></a></li>
                     <li class="megamenu-item"><a href="department.html?dept=economic-studies-policy"><span data-en="Department of Economic Studies and Policy" data-hi="आर्थिक अध्ययन एवं नीति विभाग">Department of Economic Studies and Policy</span></a></li>
                     <li class="megamenu-item"><a href="department.html?dept=development-studies"><span data-en="Development Studies" data-hi="विकास अध्ययन">Development Studies</span></a></li>
-                    <li class="megamenu-item"><a href="department.html?dept=political-studies"><span data-en="Dept. of Political Studies" data-hi="राजनीतिक अध्ययन विभाग">Dept. of Political Studies</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=political-studies"><span data-en="Department of Political Studies" data-hi="राजनीतिक अध्ययन विभाग">Department of Political Studies</span></a></li>
                     <li class="megamenu-item"><a href="department.html?dept=sociological-studies"><span data-en="Department of Sociological Studies" data-hi="समाजशास्त्र अध्ययन विभाग">Department of Sociological Studies</span></a></li>
-                    <li class="megamenu-item"><a href="department.html?dept=library-information-science"><span data-en="Dept. of Library &amp; Information Science" data-hi="पुस्तकालय एवं सूचना विज्ञान विभाग">Dept. of Library &amp; Information Science</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=library-information-science"><span data-en="Department of Library &amp; Information Science" data-hi="पुस्तकालय एवं सूचना विज्ञान विभाग">Department of Library &amp; Information Science</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="MATHEMATICS, STATISTICS AND COMPUTER SCIENCE" data-hi="गणित, सांख्यिकी एवं कंप्यूटर विज्ञान">MATHEMATICS, STATISTICS AND COMPUTER SCIENCE</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="department.html?dept=mathematics"><span data-en="Dept. of Mathematics" data-hi="गणित विभाग">Dept. of Mathematics</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=mathematics"><span data-en="Department of Mathematics" data-hi="गणित विभाग">Department of Mathematics</span></a></li>
                     <li class="megamenu-item"><a href="department.html?dept=statistics"><span data-en="Department of Statistics" data-hi="सांख्यिकी विभाग">Department of Statistics</span></a></li>
                     <li class="megamenu-item"><a href="cs.html"><span data-en="Department of Computer Science" data-hi="कंप्यूटर विज्ञान विभाग">Department of Computer Science</span></a></li>
                   </ul>
@@ -506,7 +507,7 @@ class CusbNavbar extends HTMLElement {
                   <div class="megamenu-heading" data-en="LANGUAGES &amp; LITERATURE" data-hi="भाषा एवं साहित्य">LANGUAGES &amp; LITERATURE</div>
                   <ul class="megamenu-list">
                     <li class="megamenu-item"><a href="department.html?dept=english"><span data-en="Department of English" data-hi="अंग्रेजी विभाग">Department of English</span></a></li>
-                    <li class="megamenu-item"><a href="department.html?dept=indian-languages"><span data-en="Dept. of Indian Languages" data-hi="भारतीय भाषा विभाग">Dept. of Indian Languages</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=indian-languages"><span data-en="Department of Indian Languages" data-hi="भारतीय भाषा विभाग">Department of Indian Languages</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
@@ -524,7 +525,7 @@ class CusbNavbar extends HTMLElement {
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="HUMAN SCIENCES" data-hi="मानव विज्ञान">HUMAN SCIENCES</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="department.html?dept=psychological-sciences"><span data-en="Dept. of Psychological Sciences" data-hi="मनोवैज्ञानिक विज्ञान विभाग">Dept. of Psychological Sciences</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=psychological-sciences"><span data-en="Department of Psychological Sciences" data-hi="मनोवैज्ञानिक विज्ञान विभाग">Department of Psychological Sciences</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
@@ -571,40 +572,40 @@ class CusbNavbar extends HTMLElement {
             
             <!-- 6. RESEARCH -->
             <li class="navbar-item" data-menu="research">
-              <a href="research.html" class="navbar-link"><span data-en="Research" data-hi="अनुसंधान">Research</span></a>
+              <a href="research-highlights.html" class="navbar-link"><span data-en="Research" data-hi="अनुसंधान">Research</span></a>
               <div class="megamenu" id="researchMegamenu" role="region" aria-label="Research Links">
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="Facility and Services" data-hi="सुविधाएं और सेवाएं">Facility and Services</div>
                   <ul class="megamenu-list">
                     <li class="megamenu-item"><a href="research.html#central-instrumental-facility"><span class="megamenu-icon">🔬</span><span data-en="Central Instrumental Facility" data-hi="केंद्रीय उपकरण सुविधा">Central Instrumental Facility</span></a></li>
-                    <li class="megamenu-item"><a href="research.html#university-computer-centre"><span class="megamenu-icon">💻</span><span data-en="University Computer Centre" data-hi="विश्वविद्यालय कंप्यूटर केंद्र">University Computer Centre</span></a></li>
-                    <li class="megamenu-item"><a href="research.html#media-studio"><span class="megamenu-icon">🎥</span><span data-en="Media Studio" data-hi="मीडिया स्टूडियो">Media Studio</span></a></li>
-                    <li class="megamenu-item"><a href="research.html#inca-congress"><span class="megamenu-icon">🌐</span><span data-en="45th INCA International Congress" data-hi="45वीं आईएनसीए अंतरराष्ट्रीय कांग्रेस">45th INCA International Congress</span></a></li>
+                    <li class="megamenu-item"><a href="computer-centre.html"><span class="megamenu-icon">💻</span><span data-en="University Computer Centre" data-hi="विश्वविद्यालय कंप्यूटर केंद्र">University Computer Centre</span></a></li>
+                    <li class="megamenu-item"><a href="media-studio.html"><span class="megamenu-icon">🎥</span><span data-en="Media Studio" data-hi="मीडिया स्टूडियो">Media Studio</span></a></li>
+                    <li class="megamenu-item"><a href="inca-congress.html"><span class="megamenu-icon">🌐</span><span data-en="45th INCA International Congress" data-hi="45वीं आईएनसीए अंतरराष्ट्रीय कांग्रेस">45th INCA International Congress</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="Committee & Cell" data-hi="समिति और प्रकोष्ठ">Committee & Cell</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="research.html#iic"><span class="megamenu-icon">💡</span><span data-en="IIC-Innovation Council" data-hi="आईआईसी-नवाचार परिषद">IIC-Innovation Council</span></a></li>
-                    <li class="megamenu-item"><a href="research.html#ipr"><span class="megamenu-icon">©</span><span data-en="IPR Cell" data-hi="आईपीआर प्रकोष्ठ">IPR Cell</span></a></li>
-                    <li class="megamenu-item"><a href="research.html#rdc"><span class="megamenu-icon">🧪</span><span data-en="R&D Cell" data-hi="अनुसंधान एवं विकास प्रकोष्ठ">R&D Cell</span></a></li>
-                    <li class="megamenu-item"><a href="research.html#fpac-iaec-rdc"><span class="megamenu-icon">⚖</span><span data-en="FPAC/IAEC/RDC Cell" data-hi="एफपीएसी/आईएईसी/आरडीसी प्रकोष्ठ">FPAC/IAEC/RDC Cell</span></a></li>
-                    <li class="megamenu-item"><a href="research.html#legal-cell"><span class="megamenu-icon">⚖</span><span data-en="Legal Cell" data-hi="कानूनी प्रकोष्ठ">Legal Cell</span></a></li>
-                    <li class="megamenu-item"><a href="research.html#iecbhr-ibsc"><span class="megamenu-icon">🛡</span><span data-en="IECBHR/IBSC Cell" data-hi="आईईसीबीएचआर/आईबीएससी प्रकोष्ठ">IECBHR/IBSC Cell</span></a></li>
+                    <li class="megamenu-item"><a href="iic-innovation-council.html"><span class="megamenu-icon">💡</span><span data-en="IIC-Innovation Council" data-hi="आईआईसी-नवाचार परिषद">IIC-Innovation Council</span></a></li>
+                    <li class="megamenu-item"><a href="ipr-cell.html"><span class="megamenu-icon">©</span><span data-en="IPR Cell" data-hi="आईपीआर प्रकोष्ठ">IPR Cell</span></a></li>
+                    <li class="megamenu-item"><a href="rd-cell.html"><span class="megamenu-icon">🧪</span><span data-en="R&D Cell" data-hi="अनुसंधान एवं विकास प्रकोष्ठ">R&D Cell</span></a></li>
+                    <li class="megamenu-item"><a href="fpac-iaec-rdc-cell.html"><span class="megamenu-icon">⚖</span><span data-en="FPAC/IAEC/RDC Cell" data-hi="एफपीएसी/आईएईसी/आरडीसी प्रकोष्ठ">FPAC/IAEC/RDC Cell</span></a></li>
+                    <li class="megamenu-item"><a href="legal-cell.html"><span class="megamenu-icon">⚖</span><span data-en="Legal Cell" data-hi="कानूनी प्रकोष्ठ">Legal Cell</span></a></li>
+                    <li class="megamenu-item"><a href="iecbhr-ibsc-cell.html"><span class="megamenu-icon">🛡</span><span data-en="IECBHR/IBSC Cell" data-hi="आईईसीबीएचआर/आईबीएससी प्रकोष्ठ">IECBHR/IBSC Cell</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="General" data-hi="सामान्य">General</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="research.html#highlights-publications"><span class="megamenu-icon">📚</span><span data-en="Highlights and Publications" data-hi="मुख्य उपलब्धियां और प्रकाशन">Highlights and Publications</span></a></li>
-                    <li class="megamenu-item"><a href="research.html#partnership"><span class="megamenu-icon">🤝</span><span data-en="Partnership" data-hi="साझेदारी">Partnership</span></a></li>
+                    <li class="megamenu-item"><a href="research-highlights.html"><span class="megamenu-icon">📚</span><span data-en="Highlights and Publications" data-hi="मुख्य उपलब्धियां और प्रकाशन">Highlights and Publications</span></a></li>
+                    <li class="megamenu-item"><a href="research-partnership.html"><span class="megamenu-icon">🤝</span><span data-en="Partnership" data-hi="साझेदारी">Partnership</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="Grants & Funding" data-hi="अनुदान और वित्त पोषण">Grants & Funding</div>
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="research.html#scholarship-fellowship"><span class="megamenu-icon">🎓</span><span data-en="Scholarship and Fellowship" data-hi="छात्रवृत्ति और फेलोशिप">Scholarship and Fellowship</span></a></li>
-                    <li class="megamenu-item"><a href="research.html#grants-faculties"><span class="megamenu-icon">💰</span><span data-en="Grants for Faculties" data-hi="संकाय के लिए अनुदान">Grants for Faculties</span></a></li>
+                    <li class="megamenu-item"><a href="research-scholarships.html"><span class="megamenu-icon">🎓</span><span data-en="Scholarship and Fellowship" data-hi="छात्रवृत्ति और फेलोशिप">Scholarship and Fellowship</span></a></li>
+                    <li class="megamenu-item"><a href="faculty-grants.html"><span class="megamenu-icon">💰</span><span data-en="Grants for Faculties" data-hi="संकाय के लिए अनुदान">Grants for Faculties</span></a></li>
                   </ul>
                 </div>
               </div>
@@ -612,40 +613,40 @@ class CusbNavbar extends HTMLElement {
             
             <!-- 7. STUDENTS & CAMPUS -->
             <li class="navbar-item" data-menu="students">
-              <a href="students.html" class="navbar-link"><span data-en="Student Corner" data-hi="छात्र कॉर्नर">Student Corner</span></a>
+              <a href="student-academic-notices.html" class="navbar-link"><span data-en="Student Corner" data-hi="छात्र कॉर्नर">Student Corner</span></a>
               <div class="megamenu" id="studentsMegamenu" role="region" aria-label="Student Links">
                 <div class="megamenu-column">
                   <ul class="megamenu-list">
                     <li class="megamenu-item"><a href="courses.html"><span class="megamenu-icon">🏫</span><span data-en="Department & Programmes" data-hi="विभाग और कार्यक्रम">Department & Programmes</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#academic-examination-notices"><span class="megamenu-icon">🔔</span><span data-en="Academics/Examination Notices" data-hi="शैक्षणिक/परीक्षा सूचनाएं">Academics/Examination Notices</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#semester-exam-schedule"><span class="megamenu-icon">📅</span><span data-en="Semester Exam Schedule" data-hi="सेमेस्टर परीक्षा कार्यक्रम">Semester Exam Schedule</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#ordinance-manual-regulation"><span class="megamenu-icon">📖</span><span data-en="Ordinance/ Manual/ Regulation" data-hi="अध्यादेश/नियमावली/विनियम">Ordinance/ Manual/ Regulation</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#semester-results"><span class="megamenu-icon">📋</span><span data-en="Semester Result" data-hi="सेमेस्टर परिणाम">Semester Result</span></a></li>
-                    <li class="megamenu-item"><a href="admissions.html#admission-2026-27"><span class="megamenu-icon">📝</span><span data-en="Prospectus" data-hi="विवरणिका">Prospectus</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#convocation"><span class="megamenu-icon">🎓</span><span data-en="Convocation" data-hi="दीक्षांत समारोह">Convocation</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#formats-performa"><span class="megamenu-icon">📄</span><span data-en="Download (Format/Performa)" data-hi="डाउनलोड (प्रारूप/प्रपत्र)">Download (Format/Performa)</span></a></li>
+                    <li class="megamenu-item"><a href="student-academic-notices.html"><span class="megamenu-icon">🔔</span><span data-en="Academics/Examination Notices" data-hi="शैक्षणिक/परीक्षा सूचनाएं">Academics/Examination Notices</span></a></li>
+                    <li class="megamenu-item"><a href="student-exam-schedule.html"><span class="megamenu-icon">📅</span><span data-en="Semester Exam Schedule" data-hi="सेमेस्टर परीक्षा कार्यक्रम">Semester Exam Schedule</span></a></li>
+                    <li class="megamenu-item"><a href="student-ordinance-regulations.html"><span class="megamenu-icon">📖</span><span data-en="Ordinance/ Manual/ Regulation" data-hi="अध्यादेश/नियमावली/विनियम">Ordinance/ Manual/ Regulation</span></a></li>
+                    <li class="megamenu-item"><a href="student-semester-results.html"><span class="megamenu-icon">📋</span><span data-en="Semester Result" data-hi="सेमेस्टर परिणाम">Semester Result</span></a></li>
+                    <li class="megamenu-item"><a href="student-prospectus.html"><span class="megamenu-icon">📝</span><span data-en="Prospectus" data-hi="विवरणिका">Prospectus</span></a></li>
+                    <li class="megamenu-item"><a href="student-convocation.html"><span class="megamenu-icon">🎓</span><span data-en="Convocation" data-hi="दीक्षांत समारोह">Convocation</span></a></li>
+                    <li class="megamenu-item"><a href="student-formats-performa.html"><span class="megamenu-icon">📄</span><span data-en="Download (Format/Performa)" data-hi="डाउनलोड (प्रारूप/प्रपत्र)">Download (Format/Performa)</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="courses.html"><span class="megamenu-icon">📚</span><span data-en="Course Structure and Syllabus" data-hi="पाठ्यक्रम संरचना और सिलेबस">Course Structure and Syllabus</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#scholarship-fellowship"><span class="megamenu-icon">💰</span><span data-en="Scholarship and Fellowship" data-hi="छात्रवृत्ति और फेलोशिप">Scholarship and Fellowship</span></a></li>
+                    <li class="megamenu-item"><a href="student-course-structure.html"><span class="megamenu-icon">📚</span><span data-en="Course Structure and Syllabus" data-hi="पाठ्यक्रम संरचना और सिलेबस">Course Structure and Syllabus</span></a></li>
+                    <li class="megamenu-item"><a href="student-scholarships.html"><span class="megamenu-icon">💰</span><span data-en="Scholarship and Fellowship" data-hi="छात्रवृत्ति और फेलोशिप">Scholarship and Fellowship</span></a></li>
                     <li class="megamenu-item"><a href="hostel.html"><span class="megamenu-icon">🏠</span><span data-en="Hostel" data-hi="छात्रावास">Hostel</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#anti-ragging"><span class="megamenu-icon">🛡</span><span data-en="Anti-Ragging" data-hi="एंटी रैगिंग">Anti-Ragging</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#alumni"><span class="megamenu-icon">🤝</span><span data-en="Alumni" data-hi="पूर्व छात्र">Alumni</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#dace"><span class="megamenu-icon">🌱</span><span data-en="DACE" data-hi="डीएसीई">DACE</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#capacity-development"><span class="megamenu-icon">📈</span><span data-en="Capacity Development and Skill Enhancement Programme" data-hi="क्षमता विकास और कौशल संवर्धन कार्यक्रम">Capacity Development and Skill Enhancement Programme</span></a></li>
+                    <li class="megamenu-item"><a href="student-anti-ragging.html"><span class="megamenu-icon">🛡</span><span data-en="Anti-Ragging" data-hi="एंटी रैगिंग">Anti-Ragging</span></a></li>
+                    <li class="megamenu-item"><a href="student-alumni.html"><span class="megamenu-icon">🤝</span><span data-en="Alumni" data-hi="पूर्व छात्र">Alumni</span></a></li>
+                    <li class="megamenu-item"><a href="student-dace.html"><span class="megamenu-icon">🌱</span><span data-en="DACE" data-hi="डीएसीई">DACE</span></a></li>
+                    <li class="megamenu-item"><a href="student-capacity-development.html"><span class="megamenu-icon">📈</span><span data-en="Capacity Development and Skill Enhancement Programme" data-hi="क्षमता विकास और कौशल संवर्धन कार्यक्रम">Capacity Development and Skill Enhancement Programme</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
                   <ul class="megamenu-list">
-                    <li class="megamenu-item"><a href="students.html#placement-cell"><span class="megamenu-icon">💼</span><span data-en="Placement Cell" data-hi="प्लेसमेंट सेल">Placement Cell</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#counselling-wellbeing"><span class="megamenu-icon">💬</span><span data-en="Students Counselling and Well-being Centre" data-hi="छात्र परामर्श और कल्याण केंद्र">Students Counselling and Well-being Centre</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#nss"><span class="megamenu-icon">🤲</span><span data-en="NSS" data-hi="एनएसएस">NSS</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#ncc"><span class="megamenu-icon">🏅</span><span data-en="NCC" data-hi="एनसीसी">NCC</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#extracurricular-activities"><span class="megamenu-icon">🎭</span><span data-en="Extracurricular Activities" data-hi="पाठ्येतर गतिविधियां">Extracurricular Activities</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#code-of-ethics"><span class="megamenu-icon">⚖</span><span data-en="Code of Ethics" data-hi="आचार संहिता">Code of Ethics</span></a></li>
-                    <li class="megamenu-item"><a href="students.html#grievance-redressal"><span class="megamenu-icon">✉</span><span data-en="Grievance Redressal Committee for Students" data-hi="छात्र शिकायत निवारण समिति">Grievance Redressal Committee for Students</span></a></li>
+                    <li class="megamenu-item"><a href="student-placement-cell.html"><span class="megamenu-icon">💼</span><span data-en="Placement Cell" data-hi="प्लेसमेंट सेल">Placement Cell</span></a></li>
+                    <li class="megamenu-item"><a href="student-counselling.html"><span class="megamenu-icon">💬</span><span data-en="Students Counselling and Well-being Centre" data-hi="छात्र परामर्श और कल्याण केंद्र">Students Counselling and Well-being Centre</span></a></li>
+                    <li class="megamenu-item"><a href="student-nss.html"><span class="megamenu-icon">🤲</span><span data-en="NSS" data-hi="एनएसएस">NSS</span></a></li>
+                    <li class="megamenu-item"><a href="student-ncc.html"><span class="megamenu-icon">🏅</span><span data-en="NCC" data-hi="एनसीसी">NCC</span></a></li>
+                    <li class="megamenu-item"><a href="student-extracurricular.html"><span class="megamenu-icon">🎭</span><span data-en="Extracurricular Activities" data-hi="पाठ्येतर गतिविधियां">Extracurricular Activities</span></a></li>
+                    <li class="megamenu-item"><a href="student-code-of-ethics.html"><span class="megamenu-icon">⚖</span><span data-en="Code of Ethics" data-hi="आचार संहिता">Code of Ethics</span></a></li>
+                    <li class="megamenu-item"><a href="student-grievance-redressal.html"><span class="megamenu-icon">✉</span><span data-en="Grievance Redressal Committee for Students" data-hi="छात्र शिकायत निवारण समिति">Grievance Redressal Committee for Students</span></a></li>
                   </ul>
                 </div>
               </div>
@@ -706,8 +707,55 @@ class CusbNavbar extends HTMLElement {
     const navMenu = this.querySelector('#navbarMenu');
     if (navMenu) {
       navMenu.insertAdjacentHTML('beforeend', `
-        <li class="navbar-item navbar-item-apply" data-menu="apply">
-          <a href="https://cuet.samarth.ac.in/" target="_blank" rel="noopener noreferrer" class="navbar-link navbar-apply-link"><span data-en="Apply Now" data-hi="अभी आवेदन करें">Apply Now</span></a>
+        <li class="navbar-item" data-menu="infrastructure">
+          <a href="facilities.html" class="navbar-link"><span data-en="Infrastructure" data-hi="बुनियादी ढांचा">Infrastructure</span></a>
+          <div class="megamenu" id="infrastructureMegamenu" role="region" aria-label="Infrastructure Links">
+            <div class="megamenu-column">
+              <div class="megamenu-heading" data-en="PHYSICAL INFRA" data-hi="भौतिक अवसंरचना">PHYSICAL INFRA</div>
+              <ul class="megamenu-list">
+                <li class="megamenu-item"><a href="facilities.html#guest-house"><span data-en="Guest House" data-hi="अतिथि गृह">Guest House</span></a></li>
+                <li class="megamenu-item"><a href="facilities.html#library-services"><span data-en="Library Services" data-hi="पुस्तकालय सेवाएं">Library Services</span></a></li>
+                <li class="megamenu-item"><a href="facilities.html#hostel-facility"><span data-en="Hostel Facility" data-hi="छात्रावास सुविधा">Hostel Facility</span></a></li>
+                <li class="megamenu-item"><a href="facilities.html#health-care"><span data-en="Health Care" data-hi="स्वास्थ्य सेवा">Health Care</span></a></li>
+                <li class="megamenu-item"><a href="facilities.html#sports"><span data-en="Sports" data-hi="खेल" style="color: #0b6cb8; font-weight: 700;">Sports</span></a></li>
+                <li class="megamenu-item"><a href="facilities.html#biodiversity-park"><span data-en="Biodiversity park" data-hi="जैव विविधता पार्क">Biodiversity park</span></a></li>
+              </ul>
+            </div>
+            <div class="megamenu-column">
+              <div class="megamenu-heading" data-en="ICT INFRASTRUCTURE" data-hi="आईसीटी अवसंरचना">ICT INFRASTRUCTURE</div>
+              <ul class="megamenu-list">
+                <li class="megamenu-item"><a href="facilities.html#media-studio"><span data-en="Media Studio" data-hi="मीडिया स्टूडियो">Media Studio</span></a></li>
+                <li class="megamenu-item"><a href="facilities.html#computer-lab"><span data-en="University Computer Lab" data-hi="विश्वविद्यालय कंप्यूटर लैब">University Computer Lab</span></a></li>
+                <li class="megamenu-item"><a href="facilities.html#computer-centre"><span data-en="University Computer Centre" data-hi="विश्वविद्यालय कंप्यूटर केंद्र">University Computer Centre</span></a></li>
+                <li class="megamenu-item"><a href="facilities.html#wifi-campus"><span data-en="Wi-Fi Campus" data-hi="वाई-फाई परिसर">Wi-Fi Campus</span></a></li>
+                <li class="megamenu-item"><a href="facilities.html#smart-classroom"><span data-en="Smart Class Room" data-hi="स्मार्ट क्लास रूम">Smart Class Room</span></a></li>
+              </ul>
+            </div>
+            <div class="megamenu-column">
+              <div class="megamenu-heading" data-en="SECURITY SYSTEM" data-hi="सुरक्षा प्रणाली">SECURITY SYSTEM</div>
+              <ul class="megamenu-list">
+                <li class="megamenu-item"><a href="facilities.html#security-system"><span data-en="Integrated Security System" data-hi="एकीकृत सुरक्षा प्रणाली">Integrated Security System</span></a></li>
+                <li class="megamenu-item"><a href="facilities.html#biometric-attendance"><span data-en="Biometric Attendance" data-hi="बायोमेट्रिक उपस्थिति">Biometric Attendance</span></a></li>
+              </ul>
+            </div>
+            <div class="megamenu-column">
+              <div class="megamenu-heading" data-en="OTHERS" data-hi="अन्य">OTHERS</div>
+              <ul class="megamenu-list">
+                <li class="megamenu-item"><a href="facilities.html#engineering-wing"><span data-en="Engineering Wing" data-hi="इंजीनियरिंग विंग">Engineering Wing</span></a></li>
+                <li class="megamenu-item"><a href="facilities.html#lightning-network"><span data-en="Lightning Location Network" data-hi="तड़ित स्थान नेटवर्क">Lightning Location Network</span></a></li>
+                <li class="megamenu-item"><a href="facilities.html#day-care-centre"><span data-en="Day Care Centre" data-hi="डे केयर सेंटर">Day Care Centre</span></a></li>
+                <li class="megamenu-item"><a href="facilities.html#bank-atm"><span data-en="Bank/ATM" data-hi="बैंक/एटीएम">Bank/ATM</span></a></li>
+                <li class="megamenu-item"><a href="facilities.html#dhanvantari-vatika"><span data-en="Dhanvantari Arogya Vatika" data-hi="धन्वंतरि आरोग्य वाटिका">Dhanvantari Arogya Vatika</span></a></li>
+              </ul>
+            </div>
+            <div class="megamenu-column">
+              <div class="megamenu-heading" data-en="AUDITORIUM" data-hi="सभागार">AUDITORIUM</div>
+              <ul class="megamenu-list">
+                <li class="megamenu-item"><a href="facilities.html#auditorium"><span data-en="Auditorium" data-hi="सभागार">Auditorium</span></a></li>
+                <li class="megamenu-item"><a href="facilities.html#conference-hall"><span data-en="Conference Hall" data-hi="सम्मेलन कक्ष">Conference Hall</span></a></li>
+              </ul>
+            </div>
+          </div>
         </li>
         <li class="navbar-search-item" role="search">
           <div class="search-container navbar-search-container">
@@ -716,6 +764,14 @@ class CusbNavbar extends HTMLElement {
           </div>
         </li>
       `);
+    }
+    // Ensure Admissions appears after Infrastructure in the navbar order
+    try {
+      const infraItem = this.querySelector('[data-menu="infrastructure"]');
+      const admissionsItem = this.querySelector('[data-menu="admissions"]');
+      if (infraItem && admissionsItem) infraItem.after(admissionsItem);
+    } catch (e) {
+      // ignore if DOM methods unsupported
     }
     const homeItem = this.querySelector('[data-menu="home"]');
     const aboutItem = this.querySelector('[data-menu="about"]');
@@ -761,10 +817,10 @@ class CusbNavbar extends HTMLElement {
         <div class="megamenu-column">
           <div class="megamenu-heading" data-en="EARTH, BIOLOGICAL AND ENVIRONMENTAL SCIENCES" data-hi="पृथ्वी, जैविक और पर्यावरण विज्ञान">EARTH, BIOLOGICAL AND ENVIRONMENTAL SCIENCES</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=bioinformatics"><span data-en="Dept. of Bioinformatics" data-hi="बायोइनफॉरमैटिक्स विभाग">Dept. of Bioinformatics</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=bioinformatics"><span data-en="Department of Bioinformatics" data-hi="बायोइनफॉरमैटिक्स विभाग">Department of Bioinformatics</span></a></li>
             <li class="megamenu-item"><a href="department.html?dept=geology"><span data-en="Department of Geology" data-hi="भूविज्ञान विभाग">Department of Geology</span></a></li>
             <li class="megamenu-item"><a href="department.html?dept=geography"><span data-en="Department of Geography" data-hi="भूगोल विभाग">Department of Geography</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=life-science"><span data-en="Dept. of Life Science" data-hi="जीवन विज्ञान विभाग">Dept. of Life Science</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=life-science"><span data-en="Department of Life Science" data-hi="जीवन विज्ञान विभाग">Department of Life Science</span></a></li>
             <li class="megamenu-item"><a href="department.html?dept=biotechnology"><span data-en="Department of Biotechnology" data-hi="बायोटेक्नोलॉजी विभाग">Department of Biotechnology</span></a></li>
             <li class="megamenu-item"><a href="department.html?dept=environmental-sciences"><span data-en="Department of Environmental Sciences" data-hi="पर्यावरण विज्ञान विभाग">Department of Environmental Sciences</span></a></li>
           </ul>
@@ -775,15 +831,15 @@ class CusbNavbar extends HTMLElement {
             <li class="megamenu-item"><a href="department.html?dept=historical-studies-archaeology"><span data-en="Department of Historical Studies and Archaeology" data-hi="ऐतिहासिक अध्ययन एवं पुरातत्व विभाग">Department of Historical Studies and Archaeology</span></a></li>
             <li class="megamenu-item"><a href="department.html?dept=economic-studies-policy"><span data-en="Department of Economic Studies and Policy" data-hi="आर्थिक अध्ययन एवं नीति विभाग">Department of Economic Studies and Policy</span></a></li>
             <li class="megamenu-item"><a href="department.html?dept=development-studies"><span data-en="Development Studies" data-hi="विकास अध्ययन">Development Studies</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=political-studies"><span data-en="Dept. of Political Studies" data-hi="राजनीतिक अध्ययन विभाग">Dept. of Political Studies</span></a></li>
+                    <li class="megamenu-item"><a href="department.html?dept=political-studies"><span data-en="Department of Political Studies" data-hi="राजनीतिक अध्ययन विभाग">Department of Political Studies</span></a></li>
             <li class="megamenu-item"><a href="department.html?dept=sociological-studies"><span data-en="Department of Sociological Studies" data-hi="समाजशास्त्र अध्ययन विभाग">Department of Sociological Studies</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=library-information-science"><span data-en="Dept. of Library &amp; Information Science" data-hi="पुस्तकालय एवं सूचना विज्ञान विभाग">Dept. of Library &amp; Information Science</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=library-information-science"><span data-en="Department of Library &amp; Information Science" data-hi="पुस्तकालय एवं सूचना विज्ञान विभाग">Department of Library &amp; Information Science</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
           <div class="megamenu-heading" data-en="MATHEMATICS, STATISTICS AND COMPUTER SCIENCE" data-hi="गणित, सांख्यिकी एवं कंप्यूटर विज्ञान">MATHEMATICS, STATISTICS AND COMPUTER SCIENCE</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=mathematics"><span data-en="Dept. of Mathematics" data-hi="गणित विभाग">Dept. of Mathematics</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=mathematics"><span data-en="Department of Mathematics" data-hi="गणित विभाग">Department of Mathematics</span></a></li>
             <li class="megamenu-item"><a href="department.html?dept=statistics"><span data-en="Department of Statistics" data-hi="सांख्यिकी विभाग">Department of Statistics</span></a></li>
             <li class="megamenu-item"><a href="cs.html"><span data-en="Department of Computer Science" data-hi="कंप्यूटर विज्ञान विभाग">Department of Computer Science</span></a></li>
           </ul>
@@ -806,7 +862,7 @@ class CusbNavbar extends HTMLElement {
           <div class="megamenu-heading" data-en="LANGUAGES &amp; LITERATURE" data-hi="भाषा एवं साहित्य">LANGUAGES &amp; LITERATURE</div>
           <ul class="megamenu-list">
             <li class="megamenu-item"><a href="department.html?dept=english"><span data-en="Department of English" data-hi="अंग्रेजी विभाग">Department of English</span></a></li>
-            <li class="megamenu-item"><a href="department.html?dept=indian-languages"><span data-en="Dept. of Indian Languages" data-hi="भारतीय भाषा विभाग">Dept. of Indian Languages</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=indian-languages"><span data-en="Department of Indian Languages" data-hi="भारतीय भाषा विभाग">Department of Indian Languages</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
@@ -824,7 +880,7 @@ class CusbNavbar extends HTMLElement {
         <div class="megamenu-column">
           <div class="megamenu-heading" data-en="HUMAN SCIENCES" data-hi="मानव विज्ञान">HUMAN SCIENCES</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="department.html?dept=psychological-sciences"><span data-en="Dept. of Psychological Sciences" data-hi="मनोवैज्ञानिक विज्ञान विभाग">Dept. of Psychological Sciences</span></a></li>
+            <li class="megamenu-item"><a href="department.html?dept=psychological-sciences"><span data-en="Department of Psychological Sciences" data-hi="मनोवैज्ञानिक विज्ञान विभाग">Department of Psychological Sciences</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
@@ -854,34 +910,34 @@ class CusbNavbar extends HTMLElement {
           <div class="megamenu-heading" data-en="Facility and Services" data-hi="Facility and Services">Facility and Services</div>
           <ul class="megamenu-list">
             <li class="megamenu-item"><a href="cif.html"><span data-en="Central Instrumental Facility" data-hi="Central Instrumental Facility">Central Instrumental Facility</span></a></li>
-            <li class="megamenu-item"><a href="facilities.html#computer-centre"><span data-en="University Computer Centre" data-hi="University Computer Centre">University Computer Centre</span></a></li>
-            <li class="megamenu-item"><a href="facilities.html#media-studio"><span data-en="Media Studio" data-hi="Media Studio">Media Studio</span></a></li>
-            <li class="megamenu-item"><a href="research.html#inca-congress"><span data-en="45th INCA International Congress" data-hi="45th INCA International Congress">45th INCA International Congress</span></a></li>
+            <li class="megamenu-item"><a href="computer-centre.html"><span data-en="University Computer Centre" data-hi="University Computer Centre">University Computer Centre</span></a></li>
+            <li class="megamenu-item"><a href="media-studio.html"><span data-en="Media Studio" data-hi="Media Studio">Media Studio</span></a></li>
+            <li class="megamenu-item"><a href="inca-congress.html"><span data-en="45th INCA International Congress" data-hi="45th INCA International Congress">45th INCA International Congress</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
           <div class="megamenu-heading" data-en="Committee & Cell" data-hi="Committee & Cell">Committee & Cell</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="research.html#iic"><span data-en="IIC-Innovation Council" data-hi="IIC-Innovation Council">IIC-Innovation Council</span></a></li>
-            <li class="megamenu-item"><a href="research.html#ipr-cell"><span data-en="IPR Cell" data-hi="IPR Cell">IPR Cell</span></a></li>
-            <li class="megamenu-item"><a href="research.html#rd-cell"><span data-en="R&D Cell" data-hi="R&D Cell">R&D Cell</span></a></li>
-            <li class="megamenu-item"><a href="research.html#fpac-iaec-rdc"><span data-en="FPAC/IAEC/RDC Cell" data-hi="FPAC/IAEC/RDC Cell">FPAC/IAEC/RDC Cell</span></a></li>
-            <li class="megamenu-item"><a href="research.html#legal-cell"><span data-en="Legal Cell" data-hi="Legal Cell">Legal Cell</span></a></li>
-            <li class="megamenu-item"><a href="research.html#iecbhr-ibsc"><span data-en="IECBHR/IBSC Cell" data-hi="IECBHR/IBSC Cell">IECBHR/IBSC Cell</span></a></li>
+            <li class="megamenu-item"><a href="iic-innovation-council.html"><span data-en="IIC-Innovation Council" data-hi="IIC-Innovation Council">IIC-Innovation Council</span></a></li>
+            <li class="megamenu-item"><a href="ipr-cell.html"><span data-en="IPR Cell" data-hi="IPR Cell">IPR Cell</span></a></li>
+            <li class="megamenu-item"><a href="rd-cell.html"><span data-en="R&D Cell" data-hi="R&D Cell">R&D Cell</span></a></li>
+            <li class="megamenu-item"><a href="fpac-iaec-rdc-cell.html"><span data-en="FPAC/IAEC/RDC Cell" data-hi="FPAC/IAEC/RDC Cell">FPAC/IAEC/RDC Cell</span></a></li>
+            <li class="megamenu-item"><a href="legal-cell.html"><span data-en="Legal Cell" data-hi="Legal Cell">Legal Cell</span></a></li>
+            <li class="megamenu-item"><a href="iecbhr-ibsc-cell.html"><span data-en="IECBHR/IBSC Cell" data-hi="IECBHR/IBSC Cell">IECBHR/IBSC Cell</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
           <div class="megamenu-heading" data-en="General" data-hi="General">General</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="research.html#publications"><span data-en="Highlights and Publications" data-hi="Highlights and Publications">Highlights and Publications</span></a></li>
-            <li class="megamenu-item"><a href="research.html#partnership"><span data-en="Partnership" data-hi="Partnership">Partnership</span></a></li>
+            <li class="megamenu-item"><a href="research-highlights.html"><span data-en="Highlights and Publications" data-hi="Highlights and Publications">Highlights and Publications</span></a></li>
+            <li class="megamenu-item"><a href="research-partnership.html"><span data-en="Partnership" data-hi="Partnership">Partnership</span></a></li>
           </ul>
         </div>
         <div class="megamenu-column">
           <div class="megamenu-heading" data-en="Grants & Funding" data-hi="Grants & Funding">Grants & Funding</div>
           <ul class="megamenu-list">
-            <li class="megamenu-item"><a href="research.html#scholarship-fellowship"><span data-en="Scholarship and Fellowship" data-hi="Scholarship and Fellowship">Scholarship and Fellowship</span></a></li>
-            <li class="megamenu-item"><a href="research.html#grants"><span data-en="Grants for Faculties" data-hi="Grants for Faculties">Grants for Faculties</span></a></li>
+            <li class="megamenu-item"><a href="research-scholarships.html"><span data-en="Scholarship and Fellowship" data-hi="Scholarship and Fellowship">Scholarship and Fellowship</span></a></li>
+            <li class="megamenu-item"><a href="faculty-grants.html"><span data-en="Grants for Faculties" data-hi="Grants for Faculties">Grants for Faculties</span></a></li>
           </ul>
         </div>
       `;

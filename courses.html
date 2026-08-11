@@ -4,9 +4,95 @@
   <link rel="icon" type="image/png" href="assets/culog.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-en="Courses & Programmes — CUSB" data-hi="पाठ्यक्रम और कार्यक्रम — सीयूएसबी">Courses & Programmes — CUSB</title>
+  <title data-en="Departments &amp; Programmes — Central University of South Bihar" data-hi="विभाग और कार्यक्रम — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Departments &amp; Programmes — CUSB</title>
+  <meta name="description" content="Explore Academic Schools, Departments, and Degree Programmes offered at Central University of South Bihar (CUSB), Gaya.">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .courses-header-area {
+      margin-bottom: 28px;
+    }
+    .courses-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0b6cb8;
+      background: rgba(11, 108, 184, 0.08);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    [data-theme="dark"] .courses-badge {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .courses-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .courses-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+    .courses-lead-desc {
+      font-size: 0.96rem;
+      color: var(--tx-secondary);
+      line-height: 1.6;
+      margin: 0;
+      max-width: 860px;
+    }
+    .courses-search-wrap {
+      width: 100%;
+      max-width: 520px;
+      margin: 24px 0 20px;
+      position: relative;
+    }
+    .courses-search-input {
+      width: 100%;
+      padding: 12px 42px 12px 18px;
+      font-size: 0.92rem;
+      border-radius: 24px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      color: var(--tx-primary);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s ease;
+    }
+    .courses-search-input:focus {
+      outline: none;
+      border-color: #0b6cb8;
+      box-shadow: 0 4px 14px rgba(11, 108, 184, 0.15);
+    }
+    .courses-search-icon {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--tx-muted);
+      pointer-events: none;
+      font-size: 1rem;
+    }
+    .school-count-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--tx-muted);
+      background: var(--bg-secondary);
+      padding: 3px 8px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      text-transform: none;
+      letter-spacing: normal;
+    }
+  </style>
 </head>
 <body>
   <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
@@ -18,144 +104,197 @@
   <cusb-navbar></cusb-navbar>
 
   <main id="mainContent">
-    <!-- ══════ INTERACTIVE FILTER & SEARCH SECTION ══════ -->
-    <section class="section" id="courses-sec" aria-labelledby="titleCoursesList">
+    <section class="section" id="courses-sec" style="padding-top: 24px;">
       <div class="container">
-        <h1 class="section-title" id="titleCoursesList" style="margin-bottom: 30px;" data-en="Courses & Programmes" data-hi="पाठ्यक्रम और कार्यक्रम">Courses & Programmes</h1>
+        
+        <!-- Breadcrumb -->
+        <nav class="crumb-nav" style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--tx-muted); margin-bottom: 20px;" aria-label="Breadcrumb">
+          <a href="index.html" style="color: var(--tx-muted); text-decoration: none;" data-en="Home" data-hi="होम">Home</a>
+          <span>/</span>
+          <span style="color: var(--tx-muted);" data-en="Academics" data-hi="अकादमिक">Academics</span>
+          <span>/</span>
+          <span style="color: var(--tx-primary); font-weight: 700;" data-en="Departments &amp; Programmes" data-hi="विभाग और कार्यक्रम">Departments &amp; Programmes</span>
+        </nav>
+
+        <!-- Clean Header Area (Hero removed) -->
+        <div class="courses-header-area">
+          <span class="courses-badge">🏫 Academic Schools &amp; Departments</span>
+          <h1 class="courses-main-title" id="titleCoursesList" data-en="Departments &amp; Programmes" data-hi="विभाग और कार्यक्रम">Departments &amp; Programmes</h1>
+          <p class="courses-lead-desc" data-en="The Central University of South Bihar offers Undergraduate, Postgraduate, and Doctoral research programmes conducted across 12 Academic Schools and 25 Departments." data-hi="दक्षिण बिहार केंद्रीय विश्वविद्यालय 12 अध्ययन शालाओं और 25 विभागों के माध्यम से स्नातक, स्नातकोत्तर और डॉक्टरेट अनुसंधान कार्यक्रम प्रदान करता है।">
+            The Central University of South Bihar offers Undergraduate, Postgraduate, and Doctoral research programmes conducted across 12 Academic Schools and 25 Departments.
+          </p>
+        </div>
         
         <!-- Search bar -->
-        <div class="search-container" style="width: 100%; max-width: 500px; margin: 0 auto 30px;" role="search">
-          <input type="search" class="search-input" id="deptFilterInput" placeholder="Search department or school..." style="width:100%; padding:12px 20px; font-size:1rem; border-radius:30px;" aria-label="Filter departments by text query">
-          <span style="position:absolute; right:15px; top:50%; transform:translateY(-50%); color:var(--tx-muted); pointer-events:none;"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-search"></use></svg></span>
+        <div class="courses-search-wrap" role="search">
+          <input type="search" class="courses-search-input" id="deptFilterInput" placeholder="Search department, programme or school..." aria-label="Filter departments by text query">
+          <span class="courses-search-icon">🔍</span>
         </div>
 
         <!-- School Tabs -->
         <div class="school-tab-bar" id="schoolTabBar" role="tablist" aria-label="Filter Departments by School">
-          <button class="btn-school-tab active" data-school="all" role="tab" aria-selected="true" data-en="All Dept." data-hi="सभी विभाग">All Dept.</button>
-          <button class="btn-school-tab" data-school="earth" role="tab" aria-selected="false" data-en="Earth, Biological & Evs" data-hi="पृथ्वी, जैविक और पर्यावरण विज्ञान">Earth, Biological & Evs</button>
-          <button class="btn-school-tab" data-school="social" role="tab" aria-selected="false" data-en="Social Sciences & Policies" data-hi="सामाजिक विज्ञान और नीतियां">Social Sciences & Policies</button>
-          <button class="btn-school-tab" data-school="math" role="tab" aria-selected="false" data-en="Maths, Stat & CS" data-hi="गणित, सांख्यिकी और कंप्यूटर साइंस">Maths, Stat & CS</button>
-          <button class="btn-school-tab" data-school="education" role="tab" aria-selected="false" data-en="School of Education" data-hi="शिक्षा अध्ययन शाला">School of Education</button>
-          <button class="btn-school-tab" data-school="physical" role="tab" aria-selected="false" data-en="Physical & Chemical" data-hi="भौतिक एवं रासायनिक">Physical & Chemical</button>
-          <button class="btn-school-tab" data-school="lang" role="tab" aria-selected="false" data-en="Languages & Literature" data-hi="भाषा एवं साहित्य">Languages & Literature</button>
-          <button class="btn-school-tab" data-school="media" role="tab" aria-selected="false" data-en="Media, Arts & Aesthetics" data-hi="मीडिया, कला एवं सौंदर्यशास्त्र">Media, Arts & Aesthetics</button>
-          <button class="btn-school-tab" data-school="management" role="tab" aria-selected="false" data-en="School of Management" data-hi="प्रबंधन अध्ययन शाला">School of Management</button>
+          <button class="btn-school-tab active" data-school="all" role="tab" aria-selected="true" data-en="All Departments" data-hi="सभी विभाग">All Departments</button>
+          <button class="btn-school-tab" data-school="earth" role="tab" aria-selected="false" data-en="Earth &amp; Environmental" data-hi="पृथ्वी एवं पर्यावरण विज्ञान">Earth &amp; Environmental</button>
+          <button class="btn-school-tab" data-school="social" role="tab" aria-selected="false" data-en="Social Sciences &amp; Policies" data-hi="सामाजिक विज्ञान और नीतियां">Social Sciences &amp; Policies</button>
+          <button class="btn-school-tab" data-school="math" role="tab" aria-selected="false" data-en="Maths, Stat &amp; CS" data-hi="गणित, सांख्यिकी और कंप्यूटर साइंस">Maths, Stat &amp; CS</button>
+          <button class="btn-school-tab" data-school="education" role="tab" aria-selected="false" data-en="Education" data-hi="शिक्षा अध्ययन शाला">Education</button>
+          <button class="btn-school-tab" data-school="physical" role="tab" aria-selected="false" data-en="Physical &amp; Chemical" data-hi="भौतिक एवं रासायनिक">Physical &amp; Chemical</button>
+          <button class="btn-school-tab" data-school="lang" role="tab" aria-selected="false" data-en="Languages &amp; Literature" data-hi="भाषा एवं साहित्य">Languages &amp; Literature</button>
+          <button class="btn-school-tab" data-school="media" role="tab" aria-selected="false" data-en="Media &amp; Arts" data-hi="मीडिया एवं कला">Media &amp; Arts</button>
+          <button class="btn-school-tab" data-school="management" role="tab" aria-selected="false" data-en="Management" data-hi="प्रबंधन अध्ययन शाला">Management</button>
           <button class="btn-school-tab" data-school="human" role="tab" aria-selected="false" data-en="Human Sciences" data-hi="मानव विज्ञान">Human Sciences</button>
-          <button class="btn-school-tab" data-school="law" role="tab" aria-selected="false" data-en="Law & Governance" data-hi="विधि एवं सुशासन">Law & Governance</button>
+          <button class="btn-school-tab" data-school="law" role="tab" aria-selected="false" data-en="Law &amp; Governance" data-hi="विधि एवं सुशासन">Law &amp; Governance</button>
           <button class="btn-school-tab" data-school="health" role="tab" aria-selected="false" data-en="Health Science" data-hi="स्वास्थ्य विज्ञान">Health Science</button>
-          <button class="btn-school-tab" data-school="agri" role="tab" aria-selected="false" data-en="Agriculture & Development" data-hi="कृषि एवं विकास">Agriculture & Development</button>
+          <button class="btn-school-tab" data-school="agri" role="tab" aria-selected="false" data-en="Agriculture &amp; Development" data-hi="कृषि एवं विकास">Agriculture &amp; Development</button>
         </div>
 
         <!-- School List -->
         <div class="programs-list" id="schoolGroupsContainer" style="max-width:100%; margin-top:20px;">
+          
           <!-- 1. Earth, Biological and Environmental Sciences -->
-          <div class="program-pill-card" data-school="earth" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
-            <div class="program-pill-title" style="font-size:1.15rem;" data-en="Earth, Biological and Environmental Sciences" data-hi="पृथ्वी, जैविक एवं पर्यावरण विज्ञान">EARTH, BIOLOGICAL AND ENVIRONMENTAL SCIENCES</div>
-            <div class="qa-grid" style="gap:10px;">
-              <a href="department.html?dept=bioinformatics" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-medical"></use></svg></span><span data-en="Dept. of Bioinformatics" data-hi="बायोइनफॉरमैटिक्स विभाग">Dept. of Bioinformatics</span></a>
-              <a href="department.html?dept=geology" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-globe"></use></svg></span><span data-en="Department of Geology" data-hi="भूविज्ञान विभाग">Department of Geology</span></a>
-              <a href="department.html?dept=geography" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-map-pin"></use></svg></span><span data-en="Department of Geography" data-hi="भूगोल विभाग">Department of Geography</span></a>
-              <a href="department.html?dept=life-science" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-book"></use></svg></span><span data-en="Dept. of Life Science" data-hi="जीवन विज्ञान विभाग">Dept. of Life Science</span></a>
-              <a href="department.html?dept=biotechnology" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-search"></use></svg></span><span data-en="Department of Biotechnology" data-hi="बायोटेक्नोलॉजी विभाग">Department of Biotechnology</span></a>
-              <a href="department.html?dept=environmental-sciences" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-book"></use></svg></span><span data-en="Department of Environmental Sciences" data-hi="पर्यावरण विज्ञान विभाग">Department of Environmental Sciences</span></a>
+          <div class="program-pill-card" data-school="earth">
+            <div class="program-pill-title">
+              <span data-en="Earth, Biological and Environmental Sciences" data-hi="पृथ्वी, जैविक एवं पर्यावरण विज्ञान">Earth, Biological and Environmental Sciences</span>
+              <span class="school-count-badge">6 Departments</span>
+            </div>
+            <div class="qa-grid">
+              <a href="department.html?dept=bioinformatics" class="qa-card"><span class="qa-ico">🧬</span><span data-en="Department of Bioinformatics" data-hi="बायोइनफॉरमैटिक्स विभाग">Department of Bioinformatics</span></a>
+              <a href="department.html?dept=geology" class="qa-card"><span class="qa-ico">🌍</span><span data-en="Department of Geology" data-hi="भूविज्ञान विभाग">Department of Geology</span></a>
+              <a href="department.html?dept=geography" class="qa-card"><span class="qa-ico">🗺️</span><span data-en="Department of Geography" data-hi="भूगोल विभाग">Department of Geography</span></a>
+              <a href="department.html?dept=life-science" class="qa-card"><span class="qa-ico">🌿</span><span data-en="Department of Life Science" data-hi="जीवन विज्ञान विभाग">Department of Life Science</span></a>
+              <a href="department.html?dept=biotechnology" class="qa-card"><span class="qa-ico">🔬</span><span data-en="Department of Biotechnology" data-hi="बायोटेक्नोलॉजी विभाग">Department of Biotechnology</span></a>
+              <a href="department.html?dept=environmental-sciences" class="qa-card"><span class="qa-ico">🌱</span><span data-en="Department of Environmental Sciences" data-hi="पर्यावरण विज्ञान विभाग">Department of Environmental Sciences</span></a>
             </div>
           </div>
 
           <!-- 2. Social Sciences and Policies -->
-          <div class="program-pill-card" data-school="social" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
-            <div class="program-pill-title" style="font-size:1.15rem;" data-en="Social Sciences and Policies" data-hi="सामाजिक विज्ञान और नीतियां">SOCIAL SCIENCES AND POLICIES</div>
-            <div class="qa-grid" style="gap:10px;">
-              <a href="department.html?dept=historical-studies-archaeology" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-building"></use></svg></span><span data-en="Department of Historical Studies and Archaeology" data-hi="ऐतिहासिक अध्ययन एवं पुरातत्व विभाग">Department of Historical Studies and Archaeology</span></a>
-              <a href="department.html?dept=economic-studies-policy" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-chart"></use></svg></span><span data-en="Department of Economic Studies and Policy" data-hi="आर्थिक अध्ययन एवं नीति विभाग">Department of Economic Studies and Policy</span></a>
-              <a href="department.html?dept=development-studies" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-globe"></use></svg></span><span data-en="Development Studies" data-hi="विकास अध्ययन">Development Studies</span></a>
-              <a href="department.html?dept=political-studies" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-file"></use></svg></span><span data-en="Dept. of Political Studies" data-hi="राजनीतिक अध्ययन विभाग">Dept. of Political Studies</span></a>
-              <a href="department.html?dept=sociological-studies" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-users"></use></svg></span><span data-en="Department of Sociological Studies" data-hi="समाजशास्त्र अध्ययन विभाग">Department of Sociological Studies</span></a>
-              <a href="department.html?dept=library-information-science" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-book"></use></svg></span><span data-en="Dept. of Library &amp; Information Science" data-hi="पुस्तकालय एवं सूचना विज्ञान विभाग">Dept. of Library &amp; Information Science</span></a>
+          <div class="program-pill-card" data-school="social">
+            <div class="program-pill-title">
+              <span data-en="Social Sciences and Policies" data-hi="सामाजिक विज्ञान और नीतियां">Social Sciences and Policies</span>
+              <span class="school-count-badge">6 Departments</span>
+            </div>
+            <div class="qa-grid">
+              <a href="department.html?dept=historical-studies-archaeology" class="qa-card"><span class="qa-ico">🏛️</span><span data-en="Department of Historical Studies and Archaeology" data-hi="ऐतिहासिक अध्ययन एवं पुरातत्व विभाग">Department of Historical Studies and Archaeology</span></a>
+              <a href="department.html?dept=economic-studies-policy" class="qa-card"><span class="qa-ico">📊</span><span data-en="Department of Economic Studies and Policy" data-hi="आर्थिक अध्ययन एवं नीति विभाग">Department of Economic Studies and Policy</span></a>
+              <a href="department.html?dept=development-studies" class="qa-card"><span class="qa-ico">🌐</span><span data-en="Development Studies" data-hi="विकास अध्ययन">Development Studies</span></a>
+              <a href="department.html?dept=political-studies" class="qa-card"><span class="qa-ico">🗳️</span><span data-en="Department of Political Studies" data-hi="राजनीतिक अध्ययन विभाग">Department of Political Studies</span></a>
+              <a href="department.html?dept=sociological-studies" class="qa-card"><span class="qa-ico">👥</span><span data-en="Department of Sociological Studies" data-hi="समाजशास्त्र अध्ययन विभाग">Department of Sociological Studies</span></a>
+              <a href="department.html?dept=library-information-science" class="qa-card"><span class="qa-ico">📚</span><span data-en="Department of Library &amp; Information Science" data-hi="पुस्तकालय एवं सूचना विज्ञान विभाग">Department of Library &amp; Information Science</span></a>
             </div>
           </div>
 
           <!-- 3. Mathematics, Statistics and Computer Science -->
-          <div class="program-pill-card" data-school="math" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
-            <div class="program-pill-title" style="font-size:1.15rem;" data-en="Mathematics, Statistics and Computer Science" data-hi="गणित, सांख्यिकी एवं कंप्यूटर विज्ञान">MATHEMATICS, STATISTICS AND COMPUTER SCIENCE</div>
-            <div class="qa-grid" style="gap:10px;">
-              <a href="department.html?dept=mathematics" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-chart"></use></svg></span><span data-en="Dept. of Mathematics" data-hi="गणित विभाग">Dept. of Mathematics</span></a>
-              <a href="department.html?dept=statistics" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-chart"></use></svg></span><span data-en="Department of Statistics" data-hi="सांख्यिकी विभाग">Department of Statistics</span></a>
-              <a href="cs.html" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-laptop"></use></svg></span><span data-en="Department of Computer Science" data-hi="कंप्यूटर विज्ञान विभाग">Department of Computer Science</span></a>
+          <div class="program-pill-card" data-school="math">
+            <div class="program-pill-title">
+              <span data-en="Mathematics, Statistics and Computer Science" data-hi="गणित, सांख्यिकी एवं कंप्यूटर विज्ञान">Mathematics, Statistics and Computer Science</span>
+              <span class="school-count-badge">3 Departments</span>
+            </div>
+            <div class="qa-grid">
+              <a href="department.html?dept=mathematics" class="qa-card"><span class="qa-ico">📐</span><span data-en="Department of Mathematics" data-hi="गणित विभाग">Department of Mathematics</span></a>
+              <a href="department.html?dept=statistics" class="qa-card"><span class="qa-ico">📈</span><span data-en="Department of Statistics" data-hi="सांख्यिकी विभाग">Department of Statistics</span></a>
+              <a href="cs.html" class="qa-card"><span class="qa-ico">💻</span><span data-en="Department of Computer Science" data-hi="कंप्यूटर विज्ञान विभाग">Department of Computer Science</span></a>
             </div>
           </div>
 
-          <!-- 4. School of Education (Teacher & Physical) -->
-          <div class="program-pill-card" data-school="education" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
-            <div class="program-pill-title" style="font-size:1.15rem;" data-en="School of Education (Teacher &amp; Physical)" data-hi="शिक्षा अध्ययन शाला (शिक्षक और शारीरिक)">SCHOOL OF EDUCATION (TEACHER &amp; PHYSICAL)</div>
-            <div class="qa-grid" style="gap:10px;">
-              <a href="department.html?dept=teacher-education" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-file"></use></svg></span><span data-en="Department of Teacher Education" data-hi="शिक्षक शिक्षा विभाग">Department of Teacher Education</span></a>
-              <a href="department.html?dept=physical-education" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-users"></use></svg></span><span data-en="Department of Physical Education" data-hi="शारीरिक शिक्षा विभाग">Department of Physical Education</span></a>
+          <!-- 4. School of Education -->
+          <div class="program-pill-card" data-school="education">
+            <div class="program-pill-title">
+              <span data-en="School of Education (Teacher &amp; Physical Education)" data-hi="शिक्षा अध्ययन शाला (शिक्षक एवं शारीरिक शिक्षा)">School of Education</span>
+              <span class="school-count-badge">2 Departments</span>
+            </div>
+            <div class="qa-grid">
+              <a href="department.html?dept=teacher-education" class="qa-card"><span class="qa-ico">🎓</span><span data-en="Department of Teacher Education" data-hi="शिक्षक शिक्षा विभाग">Department of Teacher Education</span></a>
+              <a href="department.html?dept=physical-education" class="qa-card"><span class="qa-ico">🏃</span><span data-en="Department of Physical Education" data-hi="शारीरिक शिक्षा विभाग">Department of Physical Education</span></a>
             </div>
           </div>
 
-          <!-- 5. Physical & Chemical -->
-          <div class="program-pill-card" data-school="physical" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
-            <div class="program-pill-title" style="font-size:1.15rem;" data-en="Physical &amp; Chemical" data-hi="भौतिक एवं रासायनिक विज्ञान">PHYSICAL &amp; CHEMICAL</div>
-            <div class="qa-grid" style="gap:10px;">
-              <a href="department.html?dept=chemistry" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-medical"></use></svg></span><span data-en="Department of Chemistry" data-hi="रसायन शास्त्र विभाग">Department of Chemistry</span></a>
-              <a href="department.html?dept=physics" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-globe"></use></svg></span><span data-en="Department of Physics" data-hi="भौतिक विज्ञान विभाग">Department of Physics</span></a>
+          <!-- 5. Physical & Chemical Sciences -->
+          <div class="program-pill-card" data-school="physical">
+            <div class="program-pill-title">
+              <span data-en="Physical and Chemical Sciences" data-hi="भौतिक एवं रासायनिक विज्ञान">Physical and Chemical Sciences</span>
+              <span class="school-count-badge">2 Departments</span>
+            </div>
+            <div class="qa-grid">
+              <a href="department.html?dept=chemistry" class="qa-card"><span class="qa-ico">⚗️</span><span data-en="Department of Chemistry" data-hi="रसायन शास्त्र विभाग">Department of Chemistry</span></a>
+              <a href="department.html?dept=physics" class="qa-card"><span class="qa-ico">⚡</span><span data-en="Department of Physics" data-hi="भौतिक विज्ञान विभाग">Department of Physics</span></a>
             </div>
           </div>
 
           <!-- 6. Languages & Literature -->
-          <div class="program-pill-card" data-school="lang" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
-            <div class="program-pill-title" style="font-size:1.15rem;" data-en="Languages &amp; Literature" data-hi="भाषा एवं साहित्य">LANGUAGES &amp; LITERATURE</div>
-            <div class="qa-grid" style="gap:10px;">
-              <a href="department.html?dept=english" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-book"></use></svg></span><span data-en="Department of English" data-hi="अंग्रेजी विभाग">Department of English</span></a>
-              <a href="department.html?dept=indian-languages" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-file"></use></svg></span><span data-en="Dept. of Indian Languages" data-hi="भारतीय भाषा विभाग">Dept. of Indian Languages</span></a>
+          <div class="program-pill-card" data-school="lang">
+            <div class="program-pill-title">
+              <span data-en="Languages and Literature" data-hi="भाषा एवं साहित्य">Languages and Literature</span>
+              <span class="school-count-badge">2 Departments</span>
+            </div>
+            <div class="qa-grid">
+              <a href="department.html?dept=english" class="qa-card"><span class="qa-ico">📖</span><span data-en="Department of English" data-hi="अंग्रेजी विभाग">Department of English</span></a>
+              <a href="department.html?dept=indian-languages" class="qa-card"><span class="qa-ico">✍️</span><span data-en="Department of Indian Languages" data-hi="भारतीय भाषा विभाग">Department of Indian Languages</span></a>
             </div>
           </div>
 
           <!-- 7. Media, Arts & Aesthetics -->
-          <div class="program-pill-card" data-school="media" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
-            <div class="program-pill-title" style="font-size:1.15rem;" data-en="Media, Arts &amp; Aesthetics" data-hi="मीडिया, कला और सौंदर्यशास्त्र">MEDIA, ARTS &amp; AESTHETICS</div>
-            <div class="qa-grid" style="gap:10px;">
-              <a href="department.html?dept=mass-communication-media" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-globe"></use></svg></span><span data-en="Mass Communication and Media" data-hi="जनसंचार एवं मीडिया विभाग">Mass Communication and Media</span></a>
+          <div class="program-pill-card" data-school="media">
+            <div class="program-pill-title">
+              <span data-en="Media, Arts and Aesthetics" data-hi="मीडिया, कला और सौंदर्यशास्त्र">Media, Arts and Aesthetics</span>
+              <span class="school-count-badge">1 Department</span>
+            </div>
+            <div class="qa-grid">
+              <a href="department.html?dept=mass-communication-media" class="qa-card"><span class="qa-ico">🎥</span><span data-en="Mass Communication and Media" data-hi="जनसंचार एवं मीडिया विभाग">Mass Communication and Media</span></a>
             </div>
           </div>
 
           <!-- 8. School of Management -->
-          <div class="program-pill-card" data-school="management" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
-            <div class="program-pill-title" style="font-size:1.15rem;" data-en="School of Management" data-hi="प्रबंधन अध्ययन शाला">SCHOOL OF MANAGEMENT</div>
-            <div class="qa-grid" style="gap:10px;">
-              <a href="department.html?dept=commerce-business-studies" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-briefcase"></use></svg></span><span data-en="Department of Commerce and Business Studies" data-hi="वाणिज्य एवं व्यवसाय अध्ययन विभाग">Department of Commerce and Business Studies</span></a>
+          <div class="program-pill-card" data-school="management">
+            <div class="program-pill-title">
+              <span data-en="School of Management" data-hi="प्रबंधन अध्ययन शाला">School of Management</span>
+              <span class="school-count-badge">1 Department</span>
+            </div>
+            <div class="qa-grid">
+              <a href="department.html?dept=commerce-business-studies" class="qa-card"><span class="qa-ico">💼</span><span data-en="Department of Commerce and Business Studies" data-hi="वाणिज्य एवं व्यवसाय अध्ययन विभाग">Department of Commerce and Business Studies</span></a>
             </div>
           </div>
 
           <!-- 9. Human Sciences -->
-          <div class="program-pill-card" data-school="human" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
-            <div class="program-pill-title" style="font-size:1.15rem;" data-en="Human Sciences" data-hi="मानव विज्ञान">HUMAN SCIENCES</div>
-            <div class="qa-grid" style="gap:10px;">
-              <a href="department.html?dept=psychological-sciences" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-users"></use></svg></span><span data-en="Dept. of Psychological Sciences" data-hi="मनोवैज्ञानिक विज्ञान विभाग">Dept. of Psychological Sciences</span></a>
+          <div class="program-pill-card" data-school="human">
+            <div class="program-pill-title">
+              <span data-en="Human Sciences" data-hi="मानव विज्ञान">Human Sciences</span>
+              <span class="school-count-badge">1 Department</span>
+            </div>
+            <div class="qa-grid">
+              <a href="department.html?dept=psychological-sciences" class="qa-card"><span class="qa-ico">🧠</span><span data-en="Department of Psychological Sciences" data-hi="मनोवैज्ञानिक विज्ञान विभाग">Department of Psychological Sciences</span></a>
             </div>
           </div>
 
           <!-- 10. Law and Governance -->
-          <div class="program-pill-card" data-school="law" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
-            <div class="program-pill-title" style="font-size:1.15rem;" data-en="Law and Governance" data-hi="विधि एवं सुशासन">LAW AND GOVERNANCE</div>
-            <div class="qa-grid" style="gap:10px;">
-              <a href="department.html?dept=law-governance" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-shield"></use></svg></span><span data-en="Department of Law and Governance" data-hi="विधि एवं सुशासन विभाग">Department of Law and Governance</span></a>
+          <div class="program-pill-card" data-school="law">
+            <div class="program-pill-title">
+              <span data-en="Law and Governance" data-hi="विधि एवं सुशासन">Law and Governance</span>
+              <span class="school-count-badge">1 Department</span>
+            </div>
+            <div class="qa-grid">
+              <a href="department.html?dept=law-governance" class="qa-card"><span class="qa-ico">⚖️</span><span data-en="Department of Law and Governance" data-hi="विधि एवं सुशासन विभाग">Department of Law and Governance</span></a>
             </div>
           </div>
 
-          <!-- 11. Health Science -->
-          <div class="program-pill-card" data-school="health" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
-            <div class="program-pill-title" style="font-size:1.15rem;" data-en="Health Science" data-hi="स्वास्थ्य विज्ञान">HEALTH SCIENCE</div>
-            <div class="qa-grid" style="gap:10px;">
-              <a href="department.html?dept=pharmacy" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-medical"></use></svg></span><span data-en="Department of Pharmacy" data-hi="फार्मेसी विभाग">Department of Pharmacy</span></a>
+          <!-- 11. Health Sciences -->
+          <div class="program-pill-card" data-school="health">
+            <div class="program-pill-title">
+              <span data-en="Health Sciences" data-hi="स्वास्थ्य विज्ञान">Health Sciences</span>
+              <span class="school-count-badge">1 Department</span>
+            </div>
+            <div class="qa-grid">
+              <a href="department.html?dept=pharmacy" class="qa-card"><span class="qa-ico">💊</span><span data-en="Department of Pharmacy" data-hi="फार्मेसी विभाग">Department of Pharmacy</span></a>
             </div>
           </div>
 
           <!-- 12. Agriculture & Development -->
-          <div class="program-pill-card" data-school="agri" style="border-radius:12px; flex-direction:column; align-items:flex-start; background:#fff; padding:25px; gap:15px;">
-            <div class="program-pill-title" style="font-size:1.15rem;" data-en="Agriculture &amp; Development" data-hi="कृषि एवं विकास">AGRICULTURE &amp; DEVELOPMENT</div>
-            <div class="qa-grid" style="gap:10px;">
-              <a href="department.html?dept=agriculture" class="qa-card"><span class="qa-ico"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-book"></use></svg></span><span data-en="Department of Agriculture" data-hi="कृषि विभाग">Department of Agriculture</span></a>
+          <div class="program-pill-card" data-school="agri">
+            <div class="program-pill-title">
+              <span data-en="Agriculture and Development" data-hi="कृषि एवं विकास">Agriculture and Development</span>
+              <span class="school-count-badge">1 Department</span>
+            </div>
+            <div class="qa-grid">
+              <a href="department.html?dept=agriculture" class="qa-card"><span class="qa-ico">🌾</span><span data-en="Department of Agriculture" data-hi="कृषि विभाग">Department of Agriculture</span></a>
             </div>
           </div>
         </div>
@@ -181,8 +320,12 @@
       if (activeSchoolParam) {
         const matchingBtn = document.querySelector(`.btn-school-tab[data-school="${activeSchoolParam}"]`);
         if (matchingBtn) {
-          tabButtons.forEach(btn => btn.classList.remove('active'));
+          tabButtons.forEach(btn => {
+            btn.classList.remove('active');
+            btn.setAttribute('aria-selected', 'false');
+          });
           matchingBtn.classList.add('active');
+          matchingBtn.setAttribute('aria-selected', 'true');
           filterSchools(activeSchoolParam);
         }
       }
@@ -198,22 +341,25 @@
           btn.setAttribute('aria-selected', 'true');
           
           const schoolType = btn.getAttribute('data-school');
-          filterSchools(schoolType, textInput.value.toLowerCase().trim());
+          filterSchools(schoolType, textInput ? textInput.value.toLowerCase().trim() : '');
         });
       });
 
       // 2. Search filtering
-      textInput.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase().trim();
-        const activeTab = document.querySelector('.btn-school-tab.active');
-        const schoolType = activeTab ? activeTab.getAttribute('data-school') : 'all';
-        filterSchools(schoolType, query);
-      });
+      if (textInput) {
+        textInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          const activeTab = document.querySelector('.btn-school-tab.active');
+          const schoolType = activeTab ? activeTab.getAttribute('data-school') : 'all';
+          filterSchools(schoolType, query);
+        });
+      }
 
       function filterSchools(schoolType, query = '') {
         schoolCards.forEach(card => {
           const cardSchool = card.getAttribute('data-school');
-          const titleText = card.querySelector('.program-pill-title').textContent.toLowerCase();
+          const titleEl = card.querySelector('.program-pill-title');
+          const titleText = titleEl ? titleEl.textContent.toLowerCase() : '';
           const deptLinks = Array.from(card.querySelectorAll('.qa-card')).map(link => link.textContent.toLowerCase());
           
           // Matches school filter

@@ -1,0 +1,316 @@
+/* ─────────────────────────────────────────────────────────────
+   45th INCA INTERNATIONAL CONGRESS STYLESHEET
+   Central University of South Bihar — Clean Theme Aligned
+───────────────────────────────────────────────────────────── */
+
+:root {
+  --inca-bg: #f8fafc;
+  --inca-card-bg: #ffffff;
+  --inca-border: #e2e8f0;
+  --inca-accent: #0b6cb8;
+  --inca-accent-soft: rgba(11, 108, 184, 0.08);
+  --inca-text-main: #0f172a;
+  --inca-text-muted: #64748b;
+  --inca-text-sub: #334155;
+  --inca-gold: #d97706;
+  --inca-gold-soft: rgba(217, 119, 6, 0.1);
+  --inca-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+}
+
+[data-theme="dark"] {
+  --inca-bg: #090d16;
+  --inca-card-bg: #111827;
+  --inca-border: #1f2937;
+  --inca-accent: #38bdf8;
+  --inca-accent-soft: rgba(56, 189, 248, 0.12);
+  --inca-text-main: #f8fafc;
+  --inca-text-muted: #94a3b8;
+  --inca-text-sub: #cbd5e1;
+  --inca-gold: #fbbf24;
+  --inca-gold-soft: rgba(251, 191, 36, 0.15);
+  --inca-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.inca-page-wrapper {
+  background-color: var(--inca-bg);
+  min-height: calc(100vh - 200px);
+  padding: 32px 0 64px;
+}
+
+/* Header & Breadcrumb */
+.inca-header-area {
+  margin-bottom: 28px;
+}
+
+.inca-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: var(--inca-text-muted);
+  margin-bottom: 20px;
+  background: var(--inca-card-bg);
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--inca-border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+.inca-breadcrumb a {
+  color: var(--inca-text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.inca-breadcrumb a:hover {
+  color: var(--inca-accent);
+}
+
+.inca-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--inca-accent);
+  background: var(--inca-accent-soft);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(11, 108, 184, 0.2);
+}
+
+.inca-main-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--inca-accent);
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+  border-bottom: 2px dashed rgba(11, 108, 184, 0.35);
+  padding-bottom: 12px;
+}
+
+[data-theme="dark"] .inca-main-title {
+  border-bottom-color: rgba(56, 189, 248, 0.35);
+}
+
+.inca-theme-tagline {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--inca-text-main);
+  margin: 0 0 18px;
+}
+
+/* Meta Chips */
+.inca-meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.inca-meta-chip {
+  background: var(--inca-card-bg);
+  border: 1px solid var(--inca-border);
+  border-radius: 10px;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.inca-meta-chip span {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--inca-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.inca-meta-chip strong {
+  font-size: 0.92rem;
+  color: var(--inca-text-main);
+}
+
+/* Two Column Grid */
+.inca-grid-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 991px) {
+  .inca-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Content Cards */
+.inca-card {
+  background: var(--inca-card-bg);
+  border: 1px solid var(--inca-border);
+  border-radius: 14px;
+  padding: 28px 32px;
+  box-shadow: var(--inca-shadow);
+  margin-bottom: 28px;
+}
+
+.inca-card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--inca-text-main);
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inca-copy p {
+  font-size: 0.94rem;
+  line-height: 1.8;
+  color: var(--inca-text-sub);
+  margin: 0 0 16px;
+  text-align: justify;
+}
+
+.inca-signoff {
+  margin-top: 24px;
+  text-align: right;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--inca-accent);
+}
+
+/* Poster Card */
+.inca-poster-card {
+  background: var(--inca-card-bg);
+  border: 1px solid var(--inca-border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--inca-shadow);
+  margin-bottom: 28px;
+}
+
+.inca-poster-img-wrap {
+  position: relative;
+  overflow: hidden;
+  max-height: 480px;
+  background: #f1f5f9;
+}
+
+.inca-poster-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.inca-poster-card:hover .inca-poster-img-wrap img {
+  transform: scale(1.02);
+}
+
+.inca-poster-footer {
+  padding: 18px 24px;
+  background: var(--inca-card-bg);
+  border-top: 1px solid var(--inca-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Sidebar Resources Menu */
+.inca-sidebar-sticky {
+  position: sticky;
+  top: 90px;
+}
+
+.inca-menu-card {
+  background: var(--inca-card-bg);
+  border: 1px solid var(--inca-border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--inca-shadow);
+  margin-bottom: 24px;
+}
+
+.inca-menu-header {
+  padding: 16px 20px;
+  background: var(--inca-accent);
+  color: #ffffff;
+  font-size: 0.98rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inca-menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.inca-menu-item a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--inca-border);
+  color: var(--inca-text-sub);
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.inca-menu-item:last-child a {
+  border-bottom: none;
+}
+
+.inca-menu-item a:hover {
+  background: var(--inca-accent-soft);
+  color: var(--inca-accent);
+  padding-left: 22px;
+}
+
+.inca-menu-item a.active {
+  background: var(--inca-accent-soft);
+  color: var(--inca-accent);
+  font-weight: 800;
+  border-left: 4px solid var(--inca-accent);
+}
+
+.inca-menu-item a span {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+/* Quick Contact Card */
+.inca-contact-card {
+  background: var(--inca-card-bg);
+  border: 1px solid var(--inca-border);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: var(--inca-shadow);
+}
+
+.inca-contact-card h4 {
+  font-size: 0.94rem;
+  font-weight: 800;
+  color: var(--inca-text-main);
+  margin: 0 0 10px;
+}
+
+.inca-contact-card p {
+  font-size: 0.84rem;
+  color: var(--inca-text-muted);
+  line-height: 1.6;
+  margin: 0 0 12px;
+}

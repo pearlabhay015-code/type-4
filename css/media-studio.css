@@ -1,0 +1,325 @@
+/* ─────────────────────────────────────────────────────────────
+   MEDIA STUDIO / MOOCS PRODUCTION LAB STYLESHEET
+   Central University of South Bihar — Clean Theme Aligned
+───────────────────────────────────────────────────────────── */
+
+:root {
+  --ms-bg: #f8fafc;
+  --ms-card-bg: #ffffff;
+  --ms-border: #e2e8f0;
+  --ms-accent: #0b6cb8;
+  --ms-accent-soft: rgba(11, 108, 184, 0.08);
+  --ms-text-main: #0f172a;
+  --ms-text-muted: #64748b;
+  --ms-text-sub: #334155;
+  --ms-gold: #d97706;
+  --ms-gold-soft: rgba(217, 119, 6, 0.1);
+  --ms-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+}
+
+[data-theme="dark"] {
+  --ms-bg: #090d16;
+  --ms-card-bg: #111827;
+  --ms-border: #1f2937;
+  --ms-accent: #38bdf8;
+  --ms-accent-soft: rgba(56, 189, 248, 0.12);
+  --ms-text-main: #f8fafc;
+  --ms-text-muted: #94a3b8;
+  --ms-text-sub: #cbd5e1;
+  --ms-gold: #fbbf24;
+  --ms-gold-soft: rgba(251, 191, 36, 0.15);
+  --ms-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.ms-page-wrapper {
+  background-color: var(--ms-bg);
+  min-height: calc(100vh - 200px);
+  padding: 32px 0 64px;
+}
+
+/* Header & Breadcrumb */
+.ms-header-area {
+  margin-bottom: 28px;
+}
+
+.ms-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: var(--ms-text-muted);
+  margin-bottom: 20px;
+  background: var(--ms-card-bg);
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--ms-border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+.ms-breadcrumb a {
+  color: var(--ms-text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.ms-breadcrumb a:hover {
+  color: var(--ms-accent);
+}
+
+.ms-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ms-accent);
+  background: var(--ms-accent-soft);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(11, 108, 184, 0.2);
+}
+
+.ms-main-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--ms-accent);
+  margin: 0 0 12px;
+  letter-spacing: -0.02em;
+  border-bottom: 2px dashed rgba(11, 108, 184, 0.35);
+  padding-bottom: 12px;
+}
+
+[data-theme="dark"] .ms-main-title {
+  border-bottom-color: rgba(56, 189, 248, 0.35);
+}
+
+.ms-lead-desc {
+  font-size: 1.05rem;
+  color: var(--ms-text-sub);
+  line-height: 1.7;
+  max-width: 860px;
+  margin: 0 0 20px;
+}
+
+/* Metric Pills Bar */
+.ms-metric-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.ms-metric-chip {
+  background: var(--ms-card-bg);
+  border: 1px solid var(--ms-border);
+  border-radius: 10px;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.ms-metric-chip strong {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--ms-accent);
+}
+
+.ms-metric-chip span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ms-text-muted);
+  text-transform: uppercase;
+}
+
+/* Intro Card */
+.ms-card {
+  background: var(--ms-card-bg);
+  border: 1px solid var(--ms-border);
+  border-radius: 14px;
+  padding: 28px 32px;
+  box-shadow: var(--ms-shadow);
+  margin-bottom: 32px;
+}
+
+.ms-card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--ms-text-main);
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ms-card p {
+  font-size: 0.94rem;
+  line-height: 1.75;
+  color: var(--ms-text-sub);
+  margin: 0 0 14px;
+}
+
+.ms-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* Studio Gallery */
+.ms-gallery-grid {
+  display: grid;
+  grid-template-columns: 1.3fr repeat(3, 1fr);
+  grid-auto-rows: 200px;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 900px) {
+  .ms-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 170px;
+  }
+}
+
+@media (max-width: 600px) {
+  .ms-gallery-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 200px;
+  }
+}
+
+.ms-gallery-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--ms-border);
+  background: var(--ms-card-bg);
+  margin: 0;
+}
+
+.ms-gallery-feature {
+  grid-row: span 2;
+  grid-column: span 1;
+}
+
+@media (max-width: 900px) {
+  .ms-gallery-feature {
+    grid-row: span 1;
+    grid-column: span 2;
+  }
+}
+
+.ms-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+  display: block;
+}
+
+.ms-gallery-item:hover img {
+  transform: scale(1.04);
+}
+
+.ms-gallery-item figcaption {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 24px 14px 10px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+/* Equipment 18-item List Grid */
+.ms-equipment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.ms-equipment-item {
+  background: var(--ms-card-bg);
+  border: 1px solid var(--ms-border);
+  border-radius: 10px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ms-text-main);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.ms-equipment-item:hover {
+  transform: translateX(3px);
+  border-color: var(--ms-accent);
+}
+
+.ms-equipment-num {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  border-radius: 50%;
+  background: var(--ms-accent-soft);
+  color: var(--ms-accent);
+  font-size: 0.76rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 4-Step Production Workflow Bento */
+.ms-workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+.ms-workflow-card {
+  background: var(--ms-card-bg);
+  border: 1px solid var(--ms-border);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--ms-shadow);
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.ms-workflow-card:hover {
+  transform: translateY(-3px);
+}
+
+.ms-workflow-step {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ms-accent);
+  background: var(--ms-accent-soft);
+  padding: 3px 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.ms-workflow-card h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--ms-text-main);
+  margin: 0 0 8px;
+}
+
+.ms-workflow-card p {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--ms-text-muted);
+  margin: 0;
+}

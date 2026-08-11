@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="4th Convocation (20th March, 2025) — Central University of South Bihar" data-hi="चौथा दीक्षांत समारोह (20 मार्च, 2025) — दक्षिण बिहार केंद्रीय विश्वविद्यालय">4th Convocation (20th March, 2025) — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Official Portal for the 4th Convocation of Central University of South Bihar (CUSB). Registration dates, gold medalist lists, minute-to-minute schedule, dress code, and official communiques.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .convocation-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .convocation-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .convocation-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .convocation-crumb a:hover {
+      color: var(--acc-blue);
+    }
+    .convocation-header-area {
+      margin-bottom: 24px;
+    }
+    .convocation-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0b6cb8;
+      background: rgba(11, 108, 184, 0.08);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    [data-theme="dark"] .convocation-badge {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .convocation-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .convocation-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+    .convocation-lead-desc {
+      font-size: 0.96rem;
+      color: var(--tx-secondary);
+      line-height: 1.6;
+      margin: 0;
+      max-width: 880px;
+    }
+
+    /* Section Banner Card */
+    .convocation-section-bar {
+      background: #7a0c0c;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px 8px 0 0;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    [data-theme="dark"] .convocation-section-bar {
+      background: #881337;
+    }
+
+    /* Block Card */
+    .convocation-card-block {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
+    }
+
+    .convocation-tree {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .convocation-tree > li {
+      position: relative;
+      padding-left: 24px;
+      font-size: 0.92rem;
+      color: var(--tx-primary);
+      line-height: 1.6;
+    }
+    .convocation-tree > li::before {
+      content: '■';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #7a0c0c;
+      font-size: 0.75rem;
+    }
+    [data-theme="dark"] .convocation-tree > li::before {
+      color: #f43f5e;
+    }
+
+    .convocation-nested-tree {
+      list-style: none;
+      padding-left: 20px;
+      margin: 8px 0 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .convocation-nested-tree > li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 0.9rem;
+    }
+    .convocation-nested-tree > li::before {
+      content: '●';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #0b6cb8;
+      font-size: 0.65rem;
+    }
+    [data-theme="dark"] .convocation-nested-tree > li::before {
+      color: #38bdf8;
+    }
+
+    .convocation-link {
+      color: #0b6cb8;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+    .convocation-link:hover {
+      color: #004b9b;
+      text-decoration: underline;
+      transform: translateX(3px);
+    }
+    [data-theme="dark"] .convocation-link {
+      color: #38bdf8;
+    }
+    [data-theme="dark"] .convocation-link:hover {
+      color: #7dd3fc;
+    }
+
+    .convocation-new-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: #ffffff;
+      background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+      padding: 1px 7px;
+      border-radius: 12px;
+      margin-left: 6px;
+      vertical-align: middle;
+      text-transform: uppercase;
+      box-shadow: 0 2px 5px rgba(239, 68, 68, 0.4);
+      animation: pulseNewTag 2s infinite ease-in-out;
+    }
+    @keyframes pulseNewTag {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    /* Important Dates Box */
+    .convocation-dates-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid #7a0c0c;
+      border-radius: 8px;
+      padding: 18px 24px;
+      margin: 24px 0;
+    }
+    [data-theme="dark"] .convocation-dates-box {
+      border-left-color: #f43f5e;
+    }
+    .convocation-dates-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--tx-primary);
+      margin-bottom: 12px;
+    }
+    .convocation-dates-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.92rem;
+      color: var(--tx-primary);
+    }
+    .convocation-dates-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .convocation-dates-list .date-label {
+      font-weight: 700;
+      min-width: 170px;
+      color: var(--tx-secondary);
+    }
+    .convocation-dates-list .date-val {
+      font-weight: 800;
+      color: #0b6cb8;
+    }
+    [data-theme="dark"] .convocation-dates-list .date-val {
+      color: #38bdf8;
+    }
+    .convocation-fee-line {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #7a0c0c;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border-color);
+    }
+    [data-theme="dark"] .convocation-fee-line {
+      color: #f43f5e;
+    }
+
+    /* Registration Action Button */
+    .convocation-reg-btn-wrap {
+      margin: 20px 0 32px;
+      text-align: center;
+    }
+    .convocation-reg-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #7a0c0c 0%, #991b1b 100%);
+      color: #ffffff !important;
+      font-size: 1.1rem;
+      font-weight: 800;
+      padding: 16px 36px;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(122, 12, 12, 0.35);
+      transition: all 0.22s ease;
+      width: 100%;
+      max-width: 100%;
+    }
+    .convocation-reg-btn:hover {
+      background: linear-gradient(135deg, #5c0707 0%, #7a0c0c 100%);
+      box-shadow: 0 6px 20px rgba(122, 12, 12, 0.5);
+      transform: translateY(-2px);
+    }
+    [data-theme="dark"] .convocation-reg-btn {
+      background: linear-gradient(135deg, #881337 0%, #be123c 100%);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Official Notification Letterhead Card */
+    .notification-letter-card {
+      background: var(--bg-primary);
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      padding: 32px 36px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-sm);
+      font-family: inherit;
+    }
+    .letter-header {
+      text-align: center;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .letter-logos-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .letter-logo-img {
+      height: 60px;
+      width: auto;
+      object-fit: contain;
+    }
+    .letter-title-hi {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--tx-primary);
+      margin: 0 0 4px;
+    }
+    .letter-sub-hi {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--tx-secondary);
+      margin: 0 0 8px;
+    }
+    .letter-title-en {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--tx-primary);
+      margin: 0 0 4px;
+      letter-spacing: 0.04em;
+    }
+    .letter-sub-en {
+      font-size: 0.85rem;
+      color: var(--tx-secondary);
+      margin: 0 0 6px;
+    }
+    .letter-address {
+      font-size: 0.8rem;
+      color: var(--tx-muted);
+      margin: 0;
+    }
+    .letter-ref-bar {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--tx-primary);
+      margin-bottom: 16px;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .letter-notif-heading {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 900;
+      text-decoration: underline;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 18px 0 8px;
+      color: var(--tx-primary);
+    }
+    .letter-communique-title {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-decoration: underline;
+      margin-bottom: 22px;
+      color: #0b6cb8;
+    }
+    [data-theme="dark"] .letter-communique-title {
+      color: #38bdf8;
+    }
+    .letter-body-p {
+      font-size: 0.94rem;
+      line-height: 1.75;
+      color: var(--tx-primary);
+      text-align: justify;
+      margin-bottom: 16px;
+    }
+    .letter-sign-block {
+      text-align: right;
+      margin-top: 32px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    .letter-sign-name {
+      font-weight: 800;
+      color: var(--tx-primary);
+    }
+    .letter-sign-post {
+      color: var(--tx-secondary);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="convocation-page-wrapper">
+    <div class="container">
+      
+      <!-- Clean Breadcrumb -->
+      <nav class="convocation-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="courses.html" data-en="Student Corner" data-hi="छात्र अनुभाग">Student Corner</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">4th Convocation</span>
+      </nav>
+
+      <!-- Theme Aligned Header Area -->
+      <div class="convocation-header-area">
+        <span class="convocation-badge">🎓 Annual Academic Convocation</span>
+        <h1 class="convocation-main-title" data-en="4th Convocation (20th March, 2025)" data-hi="चौथा दीक्षांत समारोह (20 मार्च, 2025)">
+          4th Convocation (20th March, 2025)
+        </h1>
+        <p class="convocation-lead-desc" data-en="Central University of South Bihar invites all eligible graduating scholars, degree recipients (Year-2021 &amp; Year-2022), and gold medalists to participate in the 4th Convocation." data-hi="दक्षिण बिहार केंद्रीय विश्वविद्यालय सभी पात्र स्नातक शोधार्थियों, उपाधि प्राप्तकर्ताओं (वर्ष-2021 और वर्ष-2022) और स्वर्ण पदक विजेताओं को चौथे दीक्षांत समारोह में भाग लेने के लिए आमंत्रित करता है।">
+          Central University of South Bihar invites all eligible graduating scholars, degree recipients (Year-2021 &amp; Year-2022), and gold medalists to participate in the 4th Convocation.
+        </p>
+      </div>
+
+      <!-- ════════ SECTION 1: IMPORTANT NOTICE (4TH CONVOCATION) ════════ -->
+      <div class="convocation-section-bar">
+        <span>📢</span>
+        <span data-en="Important Notice (4th Convocation)" data-hi="महत्वपूर्ण सूचना (चौथा दीक्षांत समारोह)">Important Notice (4th Convocation)</span>
+      </div>
+
+      <div class="convocation-card-block">
+        <ul class="convocation-tree">
+          <li>
+            <a href="assets/documents/academics/minute-to-minute-programme-4th-convocation.pdf" target="_blank" class="convocation-link">
+              Minute to minute Programme - 4th Convocation ↗
+            </a>
+            <span class="convocation-new-badge">NEW</span>
+          </li>
+          <li>
+            <a href="assets/documents/academics/notice-costume-distribution-4th-convocation.pdf" target="_blank" class="convocation-link">
+              Notice for costume distribution of 4th convocation ↗
+            </a>
+            <span class="convocation-new-badge">NEW</span>
+          </li>
+          <li>
+            <a href="assets/documents/academics/instruction-costume-distribution-4th-convocation.pdf" target="_blank" class="convocation-link">
+              Instruction for students in respect of 4th Convocation (Costume Distribution) ↗
+            </a>
+          </li>
+          <li>
+            <strong style="color: var(--tx-primary);">List of final eligible students passed out in Year-2021 &amp; Year-2022 for gold medal in the forthcoming 4th Convocation of the University:</strong>
+            <ul class="convocation-nested-tree">
+              <li>
+                <a href="assets/documents/academics/final-gold-medalist-2022.pdf" target="_blank" class="convocation-link">
+                  Final Gold Medalist- 2022 ↗
+                </a>
+              </li>
+              <li>
+                <a href="assets/documents/academics/final-gold-medalist-2021.pdf" target="_blank" class="convocation-link">
+                  Final Gold Medalist- 2021 ↗
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="assets/documents/academics/notice-dress-code-4th-convocation.pdf" target="_blank" class="convocation-link">
+              CUSB Notice Regarding dress code for 4th Convocation ↗
+            </a>
+          </li>
+          <li>
+            <a href="assets/documents/academics/notification-regarding-4th-convocation.pdf" target="_blank" class="convocation-link">
+              CUSB Notification Regarding 4th Convocation ↗
+            </a>
+          </li>
+          <li>
+            <a href="assets/documents/academics/extension-last-date-4th-convocation.pdf" target="_blank" class="convocation-link">
+              Extension of Last Date for 4th Convocation Registration ↗
+            </a>
+          </li>
+          <li>
+            <a href="assets/documents/academics/notice-ae402-4th-convocation-communique.pdf" target="_blank" class="convocation-link">
+              CUSB Notification No.- CUSB/Acad/9-4/2025/AE 402 dated 14.02.2025 regarding 4th Convocation Communique ↗
+            </a>
+          </li>
+          <li>
+            <a href="assets/documents/academics/notice-gold-medalist-4th-convocation.pdf" target="_blank" class="convocation-link">
+              Notice for Gold Medalist for 4th Convocation ↗
+            </a>
+          </li>
+          <li>
+            <a href="assets/documents/academics/gold-medalist-list-2021.pdf" target="_blank" class="convocation-link">
+              Gold Medalist List 2021 ↗
+            </a>
+          </li>
+          <li>
+            <a href="assets/documents/academics/gold-medalist-list-2022.pdf" target="_blank" class="convocation-link">
+              Gold Medalist List 2022 ↗
+            </a>
+          </li>
+        </ul>
+
+        <!-- Important Dates Callout -->
+        <div class="convocation-dates-box">
+          <div class="convocation-dates-title">📌 Important Dates to Note:</div>
+          <ul class="convocation-dates-list">
+            <li>
+              <span class="date-label">Registration Starts on:</span>
+              <span class="date-val">15 February 2025</span>
+            </li>
+            <li>
+              <span class="date-label">Last date of Registration:</span>
+              <span class="date-val">03 March 2025</span>
+            </li>
+          </ul>
+          <div class="convocation-fee-line">
+            Registration Fee : Rs. 500/- (Non-Refundable)
+          </div>
+        </div>
+
+        <!-- Registration Action Banner -->
+        <div class="convocation-reg-btn-wrap">
+          <a href="http://cusb.samarth.edu.in/convocation" target="_blank" rel="noopener noreferrer" class="convocation-reg-btn">
+            <span>📝</span>
+            <span>Click Here For Registration ↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 2: OFFICIAL NOTIFICATION COMMUNIQUE (20.02.2025) ════════ -->
+      <div class="notification-letter-card">
+        <div class="letter-ref-bar">
+          <span>F.No. - CUSB/Acad/9-4/2025/AE428</span>
+          <span>Date : 20.02.2025</span>
+        </div>
+        <div class="letter-notif-heading">NOTIFICATION</div>
+        <div class="letter-communique-title">4<sup>th</sup> Convocation Communique</div>
+        
+        <p class="letter-body-p">
+          In continuation of Notification No. CUSB/Acad/9-4/2025/AE402 dated 14.02.2025, it is for information of all concerned that the <strong>4<sup>th</sup> Convocation</strong> of Central University of South Bihar will be held on <strong>20<sup>th</sup> March, 2025</strong> to confer Degrees to the students who have passed in the Year - 2021 &amp; 2022.
+        </p>
+        <p class="letter-body-p">
+          This issues with the approval of the Competent Authority.
+        </p>
+
+        <div class="letter-sign-block">
+          <div class="letter-sign-name">Dr. Santigopal Pain</div>
+          <div class="letter-sign-post">Controller of Examinations<br>Central University of South Bihar</div>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 3: OFFICIAL NOTIFICATION COMMUNIQUE (14.02.2025) ════════ -->
+      <div class="notification-letter-card">
+        <div class="letter-header">
+          <div class="letter-logos-row">
+            <img src="assets/culog.png" alt="CUSB Logo" class="letter-logo-img">
+            <img src="assets/NAAC.png" alt="NAAC A++ Logo" class="letter-logo-img">
+          </div>
+          <h2 class="letter-title-hi">दक्षिण बिहार केन्द्रीय विश्वविद्यालय</h2>
+          <div class="letter-sub-hi">(संसद के अधिनियम द्वारा स्थापित)</div>
+          <h3 class="letter-title-en">CENTRAL UNIVERSITY OF SOUTH BIHAR</h3>
+          <div class="letter-sub-en">(Established by an Act of Parliament)</div>
+          <p class="letter-address">SH-7, Gaya – Panchanpur Road, Village – Karhara, Post-Fatehpur, P.S. – Tekari, District – Gaya (Bihar) PIN- 824236</p>
+        </div>
+
+        <div class="letter-ref-bar">
+          <span>F.No. - CUSB/Acad/9-4/2025/AE402</span>
+          <span>Date : 14.02.2025</span>
+        </div>
+
+        <div class="letter-notif-heading">NOTIFICATION</div>
+        <div class="letter-communique-title">4<sup>th</sup> Convocation Communique</div>
+
+        <p class="letter-body-p">
+          The <strong>4<sup>th</sup> Convocation</strong> of Central University of South Bihar will be held in <strong>1<sup>st</sup> Week of March, 2025</strong> at Central University of South Bihar to award Degree to the students who have passed in the Year - 2021 &amp; 2022. The candidates who have passed the Under Graduate, Post Graduate and Ph.D. Examinations during the aforementioned period and qualified for the award of Degree are hereby informed to visit the CUSB website <a href="https://www.cusb.ac.in" target="_blank" style="color: #0b6cb8; font-weight: 700;">www.cusb.ac.in</a> and register themselves through Convocation Registration Link (<a href="http://cusb.samarth.edu.in/convocation" target="_blank" style="color: #0b6cb8; font-weight: 700;">http://cusb.samarth.edu.in/convocation</a>) available at CUSB website latest by <strong>22.02.2025</strong>. An amount of <strong>Rs.500/- (non-refundable)</strong> on account of Convocation fee is required to be paid online for the same.
+        </p>
+
+        <p class="letter-body-p">
+          An amount of <strong>Rs.500/- (refundable)</strong> is to be paid for the costumes (Pagdi &amp; Angvastra) at time to distribution of costumes which will be refunded on return of the costumes. <u>The date of distribution of costumes shall be intimated later</u>.
+        </p>
+
+        <p class="letter-body-p">
+          All candidates registered for participation in the Convocation must submit receipt of Convocation fee, identity proof, a copy of Aadhaar Card alongwith a copy of last Semester Grade Report / Cumulative Grade Report / Provisional Degree Certificate / Migration certificate issued to them while reporting to collect the costumes.
+        </p>
+
+        <p class="letter-body-p" style="background: rgba(11, 108, 184, 0.05); padding: 12px; border-radius: 6px; border-left: 3px solid #0b6cb8;">
+          For any further information, please contact Private Secretary to Controller of Examinations on <strong>0631-2229512 / 2229518</strong> and email to <a href="mailto:convocation@cusb.ac.in" style="color: #0b6cb8; font-weight: 700;">convocation@cusb.ac.in</a>.
+        </p>
+
+        <div class="letter-sign-block">
+          <div style="font-weight: 700;">Sd/-</div>
+          <div class="letter-sign-name">Dr. Santigopal Pain</div>
+          <div class="letter-sign-post">(Controller of Examinations)</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

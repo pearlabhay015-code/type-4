@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Grants for Faculties — Central University of South Bihar" data-hi="संकाय सदस्यों के लिए अनुसंधान अनुदान — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Grants for Faculties — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Extramural Research Grants, Sponsoring Agencies, Funding Schemes, and Seed Money for faculty members and investigators at Central University of South Bihar.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/research-cells.css">
+  <style>
+    .agency-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .agency-card {
+      background: var(--rc-card-bg);
+      border: 1px solid var(--rc-border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .agency-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--rc-accent);
+      box-shadow: 0 6px 16px rgba(11, 108, 184, 0.1);
+    }
+    .agency-bullet {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--rc-accent);
+      flex-shrink: 0;
+    }
+    .agency-card span {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--rc-text-main);
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="cell-page-wrapper">
+    <div class="container">
+      
+      <!-- Clean Breadcrumb -->
+      <nav class="cell-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="cif.html" data-en="Research" data-hi="अनुसंधान">Research</a>
+        <span>/</span>
+        <span style="color: var(--rc-text-main); font-weight: 700;">Grants for Faculties</span>
+      </nav>
+
+      <!-- Theme Aligned Header (Hero removed) -->
+      <div class="cell-header-area">
+        <span class="cell-badge">💼 Extramural Grants &amp; Sponsoring Agencies</span>
+        <h1 class="cell-main-title" data-en="Grants for Faculties &amp; Investigators" data-hi="संकाय सदस्यों एवं शोधकर्ताओं के लिए अनुसंधान अनुदान">Grants for Faculties &amp; Investigators</h1>
+        <p class="cell-lead-desc" data-en="Comprehensive extramural research funding resources, major government sponsoring agencies, grant writing guidance, and project administration." data-hi="व्यापक बाहरी अनुसंधान वित्तपोषण संसाधन, प्रमुख सरकारी प्रायोजक एजेंसियां, अनुदान लेखन मार्गदर्शन और परियोजना प्रशासन।">
+          Comprehensive extramural research funding resources, major government sponsoring agencies, grant writing guidance, and project administration.
+        </p>
+
+        <!-- Metric Chips Bar -->
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; margin-bottom: 24px;">
+          <div style="background: var(--rc-card-bg); border: 1px solid var(--rc-border); border-radius: 10px; padding: 10px 18px; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+            <strong style="color: var(--rc-accent); font-size: 1.15rem;">17+</strong>
+            <span style="font-size: 0.78rem; font-weight: 600; color: var(--rc-text-muted); text-transform: uppercase;">National Sponsoring Agencies</span>
+          </div>
+          <div style="background: var(--rc-card-bg); border: 1px solid var(--rc-border); border-radius: 10px; padding: 10px 18px; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+            <strong style="color: var(--rc-accent); font-size: 1.15rem;">DST-FIST</strong>
+            <span style="font-size: 0.78rem; font-weight: 600; color: var(--rc-text-muted); text-transform: uppercase;">Infrastructure Support</span>
+          </div>
+          <div style="background: var(--rc-card-bg); border: 1px solid var(--rc-border); border-radius: 10px; padding: 10px 18px; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
+            <strong style="color: var(--rc-accent); font-size: 1.15rem;">Single-Window</strong>
+            <span style="font-size: 0.78rem; font-weight: 600; color: var(--rc-text-muted); text-transform: uppercase;">PI Administrative Cell</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Layout -->
+      <div class="cell-layout">
+        
+        <!-- Main Content Column -->
+        <article class="cell-card-main">
+          <h2>Faculty Research Funding Ecosystem</h2>
+          <p data-en="Sponsored research grants are an integral driver of academic career advancement, frontier discoveries, and institutional capacity building. Faculty members at the Central University of South Bihar actively secure extramural competitive research grants across scientific, technological, social science, and legal disciplines." data-hi="प्रायोजित अनुसंधान अनुदान शैक्षणिक करियर की उन्नति, सीमांत खोजों और संस्थागत क्षमता निर्माण का एक अभिन्न चालक हैं।">
+            Sponsored research grants are an integral driver of academic career advancement, frontier discoveries, and institutional capacity building. Faculty members at the Central University of South Bihar actively secure extramural competitive research grants across scientific, technological, social science, and legal disciplines.
+          </p>
+
+          <!-- Bento Grid of Grant Opportunities -->
+          <div class="cell-bento-grid">
+            <div class="cell-bento-card">
+              <h3 data-en="🔬 Extramural Major Projects" data-hi="🔬 प्रमुख अनुसंधान परियोजनाएं">🔬 Extramural Major Projects</h3>
+              <p data-en="Multi-year research grants from apex national bodies including DST, SERB (CRG/SURE/POWER), DBT, CSIR, ICMR, and ICSSR for state-of-the-art laboratory setups." data-hi="डीएसटी, एसईआरबी, डीबीटी, सीएसआईआर, आईसीएमआर और आईसीएसएसआर जैसे शीर्ष राष्ट्रीय निकायों से बहु-वर्षीय अनुसंधान अनुदान।">
+                Multi-year research grants from apex national bodies including DST, SERB (CRG/SURE/POWER), DBT, CSIR, ICMR, and ICSSR for state-of-the-art laboratory setups.
+              </p>
+            </div>
+            <div class="cell-bento-card">
+              <h3 data-en="✈️ Travel &amp; Conference Grants" data-hi="✈️ यात्रा एवं संगोष्ठी अनुदान">✈️ Travel &amp; Conference Grants</h3>
+              <p data-en="Institutional and national funding (UGC/INSA/SERB) for presenting peer-reviewed research papers at prestigious international conferences and symposia." data-hi="प्रतिष्ठित अंतर्राष्ट्रीय सम्मेलनों और संगोष्ठियों में सहकर्मी-समीक्षित शोध पत्र प्रस्तुत करने के लिए संस्थागत और राष्ट्रीय वित्तपोषण।">
+                Institutional and national funding (UGC/INSA/SERB) for presenting peer-reviewed research papers at prestigious international conferences and symposia.
+              </p>
+            </div>
+          </div>
+
+          <!-- Funding Agencies Directory -->
+          <h3 data-en="Major Funding Agencies in India" data-hi="भारत में प्रमुख वित्तपोषण एजेंसियां" style="margin-top: 28px;">Major Funding Agencies in India</h3>
+          <p style="font-size: 0.88rem; color: var(--rc-text-muted); margin-bottom: 14px;">CUSB faculty frequently apply for and receive project grants from the following apex agencies:</p>
+
+          <div class="agency-grid">
+            <div class="agency-card"><span class="agency-bullet"></span><span>Board of Research in Nuclear Sciences (BRNS)</span></div>
+            <div class="agency-card"><span class="agency-bullet"></span><span>Council of Scientific &amp; Industrial Research (CSIR)</span></div>
+            <div class="agency-card"><span class="agency-bullet"></span><span>Defence Research &amp; Development Organisation (DRDO)</span></div>
+            <div class="agency-card"><span class="agency-bullet"></span><span>Department of Biotechnology (DBT)</span></div>
+            <div class="agency-card"><span class="agency-bullet"></span><span>Department of Science &amp; Technology (DST)</span></div>
+            <div class="agency-card"><span class="agency-bullet"></span><span>Science and Engineering Research Board (SERB)</span></div>
+            <div class="agency-card"><span class="agency-bullet"></span><span>Indian Council of Medical Research (ICMR)</span></div>
+            <div class="agency-card"><span class="agency-bullet"></span><span>Indian Council of Agricultural Research (ICAR)</span></div>
+            <div class="agency-card"><span class="agency-bullet"></span><span>Indian Council of Social Science Research (ICSSR)</span></div>
+            <div class="agency-card"><span class="agency-bullet"></span><span>Indian National Science Academy (INSA)</span></div>
+            <div class="agency-card"><span class="agency-bullet"></span><span>Indian Space Research Organisation (ISRO)</span></div>
+            <div class="agency-card"><span class="agency-bullet"></span><span>Ministry of Earth Sciences (MoES)</span></div>
+            <div class="agency-card"><span class="agency-bullet"></span><span>Ministry of Environment, Forest &amp; Climate Change (MoEFCC)</span></div>
+            <div class="agency-card"><span class="agency-bullet"></span><span>National Medicinal Plants Board (NMPB)</span></div>
+            <div class="agency-card"><span class="agency-bullet"></span><span>Petroleum Conservation Research Association (PCRA)</span></div>
+            <div class="agency-card"><span class="agency-bullet"></span><span>University Grants Commission (UGC)</span></div>
+            <div class="agency-card"><span class="agency-bullet"></span><span>Department of Chemicals &amp; Petrochemicals</span></div>
+          </div>
+
+          <h3 style="margin-top: 28px;">Grant Writing Resources &amp; Compendiums</h3>
+          <div class="cell-docs">
+            <a href="https://www.ncbs.res.in/research-development-office/sponsored-research-grants-for-independent-researchers" target="_blank" rel="noopener" class="cell-doc-item">
+              <span>Sponsored Research — Grants for Independent Researchers (NCBS Directory)</span>
+              <span class="cell-doc-badge">Portal ↗</span>
+            </a>
+            <a href="assets/documents/research-cells/msrp-manual.pdf" target="_blank" class="cell-doc-item">
+              <span>CUSB Manual for Sponsored Research Projects (MSRP)</span>
+              <span class="cell-doc-badge">PDF ↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Sticky Sidebar Navigation -->
+        <aside class="cell-side-sticky">
+          <nav class="cell-side-menu" aria-label="Research menu">
+            <div class="cell-side-header">
+              <span>📚</span>
+              <span>Research Resources</span>
+            </div>
+            <ul class="cell-side-list">
+              <li class="cell-side-item"><a href="research-highlights.html"><span>Highlights &amp; Publications</span> <span>→</span></a></li>
+              <li class="cell-side-item"><a href="research-partnership.html"><span>Partnership</span> <span>→</span></a></li>
+              <li class="cell-side-item"><a href="research-scholarships.html"><span>Scholarship and Fellowship</span> <span>→</span></a></li>
+              <li class="cell-side-item"><a class="active" href="faculty-grants.html"><span>Grants for Faculties</span> <span>●</span></a></li>
+            </ul>
+          </nav>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
