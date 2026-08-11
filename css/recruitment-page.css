@@ -1,0 +1,732 @@
+/* ─────────────────────────────────────────────────────────────
+   RECRUITMENT & CAREERS PORTAL STYLESHEET
+   Central University of South Bihar
+   Professional, restrained academic theme with elevated visual hierarchy.
+───────────────────────────────────────────────────────────── */
+
+:root {
+  --rc-bg: #f8fafc;
+  --rc-card-bg: #ffffff;
+  --rc-border: #e2e8f0;
+  --rc-border-focus: #3b82f6;
+  --rc-text-main: #0f172a;
+  --rc-text-muted: #64748b;
+  --rc-text-sub: #475569;
+  --rc-header-bg: #0f172a;
+  --rc-header-text: #ffffff;
+  --rc-accent: #0284c7;
+  --rc-accent-soft: rgba(2, 132, 199, 0.08);
+  --rc-gold: #b45309;
+  --rc-gold-soft: rgba(180, 83, 9, 0.08);
+  --rc-green: #059669;
+  --rc-green-soft: rgba(5, 150, 105, 0.1);
+  --rc-row-hover: #f1f5f9;
+  --rc-zebra: #f8fafc;
+  --rc-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+  --rc-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --rc-shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] {
+  --rc-bg: #090d16;
+  --rc-card-bg: #111827;
+  --rc-border: #1f2937;
+  --rc-border-focus: #60a5fa;
+  --rc-text-main: #f8fafc;
+  --rc-text-muted: #94a3b8;
+  --rc-text-sub: #cbd5e1;
+  --rc-header-bg: #0b1120;
+  --rc-header-text: #f8fafc;
+  --rc-accent: #38bdf8;
+  --rc-accent-soft: rgba(56, 189, 248, 0.12);
+  --rc-gold: #fbbf24;
+  --rc-gold-soft: rgba(251, 191, 36, 0.12);
+  --rc-green: #34d399;
+  --rc-green-soft: rgba(52, 211, 153, 0.15);
+  --rc-row-hover: #1e293b;
+  --rc-zebra: #141d2e;
+  --rc-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --rc-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --rc-shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.5);
+}
+
+/* Page Section */
+.recruitment-portal-section {
+  padding: 32px 0 64px;
+  background-color: var(--rc-bg);
+  min-height: calc(100vh - 200px);
+}
+
+/* Breadcrumbs */
+.recruitment-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--rc-text-muted);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.recruitment-breadcrumb a {
+  color: var(--rc-text-sub);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.recruitment-breadcrumb a:hover {
+  color: var(--rc-accent);
+}
+
+.recruitment-breadcrumb-sep {
+  opacity: 0.4;
+}
+
+.recruitment-breadcrumb-curr {
+  color: var(--rc-text-main);
+  font-weight: 600;
+}
+
+/* Header Banner Card */
+.recruitment-header-card {
+  background: var(--rc-card-bg);
+  border: 1px solid var(--rc-border);
+  border-radius: 14px;
+  padding: 28px 32px;
+  margin-bottom: 24px;
+  box-shadow: var(--rc-shadow-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.recruitment-header-left {
+  max-width: 720px;
+}
+
+.recruitment-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--rc-accent);
+  background: var(--rc-accent-soft);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+.recruitment-title {
+  font-family: var(--ff-title, 'Outfit', 'Inter', sans-serif);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 800;
+  color: var(--rc-text-main);
+  margin: 0 0 8px;
+  line-height: 1.25;
+}
+
+.recruitment-desc {
+  font-size: 0.95rem;
+  color: var(--rc-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.recruitment-stats-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-self: center;
+}
+
+.recruitment-stat-pill {
+  display: flex;
+  flex-direction: column;
+  background: var(--rc-bg);
+  border: 1px solid var(--rc-border);
+  border-radius: 10px;
+  padding: 10px 16px;
+  min-width: 105px;
+  text-align: center;
+}
+
+.recruitment-stat-value {
+  font-family: var(--ff-title, sans-serif);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--rc-text-main);
+  line-height: 1.2;
+}
+
+.recruitment-stat-label {
+  font-size: 0.72rem;
+  color: var(--rc-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* Category Filter Chips */
+.recruitment-chips-bar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  margin-bottom: 18px;
+  scrollbar-width: thin;
+}
+
+.recruitment-chip {
+  background: var(--rc-card-bg);
+  border: 1px solid var(--rc-border);
+  color: var(--rc-text-sub);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+
+.recruitment-chip:hover {
+  border-color: var(--rc-text-muted);
+  color: var(--rc-text-main);
+}
+
+.recruitment-chip.active {
+  background: var(--rc-text-main);
+  color: var(--rc-card-bg);
+  border-color: var(--rc-text-main);
+}
+
+/* Utility Toolbar */
+.recruitment-toolbar {
+  background: var(--rc-card-bg);
+  border: 1px solid var(--rc-border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  box-shadow: var(--rc-shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.recruitment-search-box {
+  position: relative;
+  flex: 1 1 280px;
+  min-width: 240px;
+}
+
+.recruitment-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--rc-text-muted);
+  pointer-events: none;
+  font-size: 0.9rem;
+}
+
+.recruitment-search-input {
+  width: 100%;
+  padding: 9px 12px 9px 36px;
+  border-radius: 8px;
+  border: 1px solid var(--rc-border);
+  background: var(--rc-bg);
+  color: var(--rc-text-main);
+  font-size: 0.88rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.recruitment-search-input:focus {
+  border-color: var(--rc-border-focus);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  background: var(--rc-card-bg);
+}
+
+.recruitment-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.recruitment-filter-select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--rc-border);
+  background: var(--rc-bg);
+  color: var(--rc-text-main);
+  font-size: 0.84rem;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.recruitment-filter-select:focus {
+  border-color: var(--rc-border-focus);
+}
+
+.recruitment-view-toggle {
+  display: inline-flex;
+  background: var(--rc-bg);
+  border: 1px solid var(--rc-border);
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.recruitment-view-btn {
+  background: none;
+  border: none;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--rc-text-muted);
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s ease;
+}
+
+.recruitment-view-btn.active {
+  background: var(--rc-card-bg);
+  color: var(--rc-text-main);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* ─── Table View (Faithful Reference Recreation) ─── */
+.recruitment-table-card {
+  background: var(--rc-card-bg);
+  border: 1px solid var(--rc-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--rc-shadow-sm);
+  margin-bottom: 24px;
+}
+
+.recruitment-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.recruitment-table th {
+  background: var(--rc-zebra);
+  color: var(--rc-text-main);
+  font-weight: 700;
+  padding: 14px 20px;
+  border-bottom: 2px solid var(--rc-border);
+  font-size: 0.84rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.recruitment-table th.col-title {
+  width: 74%;
+}
+
+.recruitment-table th.col-date {
+  width: 26%;
+}
+
+.recruitment-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--rc-border);
+  vertical-align: middle;
+  color: var(--rc-text-main);
+}
+
+.recruitment-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.recruitment-table tbody tr:nth-child(even) {
+  background-color: var(--rc-zebra);
+}
+
+.recruitment-table tbody tr:hover {
+  background-color: var(--rc-row-hover);
+  cursor: pointer;
+}
+
+/* Row Content */
+.recruitment-item-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.recruitment-item-title {
+  font-weight: 600;
+  color: var(--rc-text-main);
+  line-height: 1.45;
+  font-size: 0.92rem;
+  transition: color 0.15s ease;
+}
+
+.recruitment-table tbody tr:hover .recruitment-item-title {
+  color: var(--rc-accent);
+}
+
+.recruitment-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 3px;
+}
+
+.recruitment-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--rc-bg);
+  border: 1px solid var(--rc-border);
+  color: var(--rc-text-muted);
+}
+
+.recruitment-tag.accent {
+  background: var(--rc-accent-soft);
+  color: var(--rc-accent);
+  border-color: transparent;
+}
+
+.recruitment-tag.status-open {
+  background: var(--rc-green-soft);
+  color: var(--rc-green);
+  border-color: transparent;
+  font-weight: 700;
+}
+
+.recruitment-tag.status-closed {
+  background: rgba(100, 116, 139, 0.1);
+  color: var(--rc-text-muted);
+  border-color: transparent;
+}
+
+/* Published Date Cell */
+.recruitment-date-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--rc-text-sub);
+  font-weight: 500;
+  font-size: 0.86rem;
+  white-space: nowrap;
+}
+
+.recruitment-date-icon {
+  color: var(--rc-text-muted);
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* ─── Grid / Card View ─── */
+.recruitment-grid-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.recruitment-card {
+  background: var(--rc-card-bg);
+  border: 1px solid var(--rc-border);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--rc-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.recruitment-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--rc-shadow-md);
+  border-color: var(--rc-border-focus);
+}
+
+.recruitment-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.recruitment-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--rc-text-main);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.recruitment-card-desc {
+  font-size: 0.83rem;
+  color: var(--rc-text-muted);
+  line-height: 1.55;
+  margin: 8px 0 0;
+}
+
+.recruitment-card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--rc-border);
+  font-size: 0.8rem;
+  color: var(--rc-text-muted);
+}
+
+/* ─── Pagination Bar (Recreation of « < 1 2 3 4 > ») ─── */
+.recruitment-pagination-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 12px;
+  padding: 10px 4px;
+}
+
+.recruitment-pagination {
+  display: inline-flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--rc-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--rc-card-bg);
+  box-shadow: var(--rc-shadow-sm);
+}
+
+.recruitment-page-item {
+  margin: 0;
+}
+
+.recruitment-page-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 10px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--rc-border);
+  color: var(--rc-text-sub);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.recruitment-page-item:last-child .recruitment-page-btn {
+  border-right: none;
+}
+
+.recruitment-page-btn:hover:not(:disabled) {
+  background: var(--rc-row-hover);
+  color: var(--rc-text-main);
+}
+
+.recruitment-page-btn.active {
+  background: var(--rc-header-bg);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.recruitment-page-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.recruitment-page-info {
+  font-size: 0.85rem;
+  color: var(--rc-text-muted);
+  font-weight: 500;
+}
+
+/* ─── Detail Modal Dialog ─── */
+.recruitment-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.recruitment-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.recruitment-modal {
+  background: var(--rc-card-bg);
+  border: 1px solid var(--rc-border);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 660px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--rc-shadow-lg);
+  padding: 28px;
+  transform: translateY(20px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.recruitment-modal-overlay.open .recruitment-modal {
+  transform: translateY(0);
+}
+
+.recruitment-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--rc-bg);
+  border: 1px solid var(--rc-border);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--rc-text-muted);
+  font-size: 1.1rem;
+  transition: all 0.15s ease;
+}
+
+.recruitment-modal-close:hover {
+  background: var(--rc-text-main);
+  color: #ffffff;
+}
+
+.recruitment-modal-header {
+  margin-bottom: 18px;
+  padding-right: 32px;
+}
+
+.recruitment-modal-title {
+  font-family: var(--ff-title, sans-serif);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--rc-text-main);
+  margin: 8px 0 0;
+  line-height: 1.35;
+}
+
+.recruitment-modal-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+  background: var(--rc-bg);
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid var(--rc-border);
+  margin-bottom: 18px;
+  font-size: 0.82rem;
+}
+
+.recruitment-modal-meta-item strong {
+  display: block;
+  color: var(--rc-text-muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.recruitment-modal-meta-item span {
+  color: var(--rc-text-main);
+  font-weight: 600;
+}
+
+.recruitment-modal-body {
+  font-size: 0.9rem;
+  color: var(--rc-text-sub);
+  line-height: 1.7;
+}
+
+.recruitment-modal-footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rc-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* ─── Responsive Media Queries ─── */
+@media (max-width: 768px) {
+  .recruitment-header-card {
+    padding: 20px;
+    flex-direction: column;
+  }
+  
+  .recruitment-stats-row {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .recruitment-stat-pill {
+    flex: 1 1 80px;
+  }
+
+  .recruitment-table th.col-title {
+    width: 60%;
+  }
+
+  .recruitment-table th.col-date {
+    width: 40%;
+  }
+
+  .recruitment-table td,
+  .recruitment-table th {
+    padding: 12px 14px;
+    font-size: 0.84rem;
+  }
+
+  .recruitment-pagination-wrap {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}

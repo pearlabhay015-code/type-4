@@ -1,0 +1,143 @@
+/* ─────────────────────────────────────────────────────────────
+   ACADEMIC HIGHLIGHTS DIRECTORY STYLESHEET
+   Central University of South Bihar
+───────────────────────────────────────────────────────────── */
+
+:root {
+  --ah-bg: #f8fafc;
+  --ah-card-bg: #ffffff;
+  --ah-border: #e2e8f0;
+  --ah-border-focus: #3b82f6;
+  --ah-text-main: #0f172a;
+  --ah-text-muted: #64748b;
+  --ah-text-sub: #475569;
+  --ah-header-bg: #0f172a;
+  --ah-accent: #0284c7;
+  --ah-accent-soft: rgba(2, 132, 199, 0.08);
+  --ah-row-hover: #f1f5f9;
+  --ah-zebra: #f8fafc;
+  --ah-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] {
+  --ah-bg: #090d16;
+  --ah-card-bg: #111827;
+  --ah-border: #1f2937;
+  --ah-border-focus: #60a5fa;
+  --ah-text-main: #f8fafc;
+  --ah-text-muted: #94a3b8;
+  --ah-text-sub: #cbd5e1;
+  --ah-header-bg: #0b1120;
+  --ah-accent: #38bdf8;
+  --ah-accent-soft: rgba(56, 189, 248, 0.12);
+  --ah-row-hover: #1e293b;
+  --ah-zebra: #141d2e;
+}
+
+.academic-highlights-section {
+  padding: 32px 0 64px;
+  background-color: var(--ah-bg);
+  min-height: calc(100vh - 200px);
+}
+
+.academic-header-card {
+  background: var(--ah-card-bg);
+  border: 1px solid var(--ah-border);
+  border-radius: 14px;
+  padding: 28px 32px;
+  margin-bottom: 24px;
+  box-shadow: var(--ah-shadow-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.academic-table-card {
+  background: var(--ah-card-bg);
+  border: 1px solid var(--ah-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--ah-shadow-sm);
+  margin-bottom: 24px;
+}
+
+.academic-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.academic-table th {
+  background: var(--ah-zebra);
+  color: var(--ah-text-main);
+  font-weight: 700;
+  padding: 14px 20px;
+  border-bottom: 2px solid var(--ah-border);
+  font-size: 0.84rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.academic-table th.col-title { width: 75%; }
+.academic-table th.col-author { width: 25%; }
+
+.academic-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--ah-border);
+  vertical-align: middle;
+  color: var(--ah-text-main);
+}
+
+.academic-table tbody tr:nth-child(even) {
+  background-color: var(--ah-zebra);
+}
+
+.academic-table tbody tr:hover {
+  background-color: var(--ah-row-hover);
+  cursor: pointer;
+}
+
+.academic-pagination-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.academic-pagination {
+  display: inline-flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--ah-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--ah-card-bg);
+}
+
+.academic-page-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 10px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--ah-border);
+  color: var(--ah-text-sub);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.academic-page-btn:last-child { border-right: none; }
+.academic-page-btn:hover:not(:disabled) { background: var(--ah-row-hover); }
+.academic-page-btn.active { background: var(--ah-header-bg); color: #ffffff; font-weight: 700; }
+.academic-page-btn:disabled { opacity: 0.35; cursor: not-allowed; }

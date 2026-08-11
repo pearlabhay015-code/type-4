@@ -1,0 +1,143 @@
+/* ─────────────────────────────────────────────────────────────
+   RECENT EVENTS DIRECTORY STYLESHEET
+   Central University of South Bihar
+───────────────────────────────────────────────────────────── */
+
+:root {
+  --re-bg: #f8fafc;
+  --re-card-bg: #ffffff;
+  --re-border: #e2e8f0;
+  --re-border-focus: #3b82f6;
+  --re-text-main: #0f172a;
+  --re-text-muted: #64748b;
+  --re-text-sub: #475569;
+  --re-header-bg: #0f172a;
+  --re-accent: #0284c7;
+  --re-accent-soft: rgba(2, 132, 199, 0.08);
+  --re-row-hover: #f1f5f9;
+  --re-zebra: #f8fafc;
+  --re-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] {
+  --re-bg: #090d16;
+  --re-card-bg: #111827;
+  --re-border: #1f2937;
+  --re-border-focus: #60a5fa;
+  --re-text-main: #f8fafc;
+  --re-text-muted: #94a3b8;
+  --re-text-sub: #cbd5e1;
+  --re-header-bg: #0b1120;
+  --re-accent: #38bdf8;
+  --re-accent-soft: rgba(56, 189, 248, 0.12);
+  --re-row-hover: #1e293b;
+  --re-zebra: #141d2e;
+}
+
+.recent-events-section {
+  padding: 32px 0 64px;
+  background-color: var(--re-bg);
+  min-height: calc(100vh - 200px);
+}
+
+.recent-header-card {
+  background: var(--re-card-bg);
+  border: 1px solid var(--re-border);
+  border-radius: 14px;
+  padding: 28px 32px;
+  margin-bottom: 24px;
+  box-shadow: var(--re-shadow-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.recent-table-card {
+  background: var(--re-card-bg);
+  border: 1px solid var(--re-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--re-shadow-sm);
+  margin-bottom: 24px;
+}
+
+.recent-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.recent-table th {
+  background: var(--re-zebra);
+  color: var(--re-text-main);
+  font-weight: 700;
+  padding: 14px 20px;
+  border-bottom: 2px solid var(--re-border);
+  font-size: 0.84rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.recent-table th.col-title { width: 75%; }
+.recent-table th.col-author { width: 25%; }
+
+.recent-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--re-border);
+  vertical-align: middle;
+  color: var(--re-text-main);
+}
+
+.recent-table tbody tr:nth-child(even) {
+  background-color: var(--re-zebra);
+}
+
+.recent-table tbody tr:hover {
+  background-color: var(--re-row-hover);
+  cursor: pointer;
+}
+
+.recent-pagination-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.recent-pagination {
+  display: inline-flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--re-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--re-card-bg);
+}
+
+.recent-page-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 10px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--re-border);
+  color: var(--re-text-sub);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.recent-page-btn:last-child { border-right: none; }
+.recent-page-btn:hover:not(:disabled) { background: var(--re-row-hover); }
+.recent-page-btn.active { background: var(--re-header-bg); color: #ffffff; font-weight: 700; }
+.recent-page-btn:disabled { opacity: 0.35; cursor: not-allowed; }

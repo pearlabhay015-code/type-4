@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/png" href="assets/culog.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-en="Central University of South Bihar — CUSB" data-hi="दक्षिण बिहार केन्द्रीय विश्वविद्यालय — सीयूएसबी">Central University of South Bihar — CUSB</title>
+  <title data-en="Central University of South Bihar — NAAC 'A++' Accredited" data-hi="दक्षिण बिहार केन्द्रीय विश्वविद्यालय — नैक 'ए++' प्रत्यायित">Central University of South Bihar — NAAC 'A++' Accredited</title>
+  <link rel="icon" type="image/png" href="assets/culog.png">
+  <meta name="description" content="Official website of Central University of South Bihar (CUSB), an institution of national importance established by the Parliament under the Central Universities Act, 2009. NAAC 'A++' Grade.">
+  
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pages.css">
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Central University of South Bihar (CUSB) is a premier central university under Ministry of Education, Govt. of India, located at Gaya, Bihar. Committed to excellence, equity and national development.">
-  <meta name="keywords" content="CUSB, Central University of South Bihar, Gaya, Bihar, Higher Education India, Central University, Admissions 2026">
+  <link rel="stylesheet" href="css/home-layout.css">
 </head>
 <body>
-  <!-- Skip to main content link for screen readers -->
   <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
-  
-  <!-- Reusable Components -->
+
+  <!-- Reusable Custom Components -->
   <cusb-ticker></cusb-ticker>
   <cusb-topbar></cusb-topbar>
   <cusb-header></cusb-header>
   <cusb-accessibility-bar></cusb-accessibility-bar>
   <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
 
   <main id="mainContent">
-    <!-- ══════ HERO BANNER CAROUSEL ══════ -->
-    <section class="hero-banner hero-carousel-wrapper" aria-label="Featured University News & Announcements">
-      <!-- Clickable Background Link Overlay -->
-      <a id="heroBgLink" href="admissions.html" class="hero-bg-link" aria-label="Featured announcement details">
-        <div id="heroBgSlide" class="hero-bg-slide" style="background-image: url('./assets/drone.webp');"></div>
-        <div class="hero-overlay-gradient"></div>
+    <!-- ══════ HERO CAROUSEL ══════ -->
+    <section class="hero-banner hero-carousel-wrapper" aria-label="Campus Highlights Carousel">
+      <!-- Background Clickable Link & Slide Image -->
+      <a id="heroBgLink" class="hero-bg-link" href="admissions.html" aria-label="Campus Slide Link">
+        <div id="heroBgSlide" class="hero-bg-slide" style="background-image: url('assets/drone.jpg');"></div>
       </a>
 
+      <!-- Overlay Gradient for contrast -->
+      <div class="hero-overlay-gradient"></div>
+
+      <!-- Hero Content -->
       <div class="container hero-content">
-        <div class="hero-eyebrow" id="heroEyebrow">
-          <span class="hero-live-dot"></span>
-          <span id="heroBadgeText" data-en="Admissions Open 2026–27" data-hi="प्रवेश प्रारंभ 2026-27">Admissions Open 2026–27</span>
-        </div>
-        <h1 class="hero-title" id="heroTitle" data-en="Central University<br>of <span>South Bihar</span>" data-hi="दक्षिण बिहार<span><br>केन्द्रीय विश्वविद्यालय</span>">Central University<br>of <span>South Bihar</span></h1>
+        <span class="hero-badge" id="heroBadge">
+          <span id="heroBadgeText" data-en="NAAC 'A++' Accredited Central University" data-hi="नैक 'ए++' प्रत्यायित केन्द्रीय विश्वविद्यालय">NAAC 'A++' Accredited Central University</span>
+        </span>
+        <h1 class="hero-title" id="heroTitle" data-en="Welcome to Central University of South Bihar" data-hi="दक्षिण बिहार केन्द्रीय विश्वविद्यालय में आपका स्वागत है">Welcome to Central University of South Bihar</h1>
         <p class="hero-sub" id="heroSub" data-en="A premier central university under the Ministry of Education, Government of India. 300 acres of green learning at Gaya, Bihar." data-hi="भारत सरकार के शिक्षा मंत्रालय के तहत एक प्रमुख केंद्रीय विश्वविद्यालय। गया, बिहार में 300 एकड़ का हरा-भरा शैक्षणिक परिसर।">A premier central university under the Ministry of Education, Government of India. 300 acres of green learning at Gaya, Bihar.</p>
         
         <div class="hero-btns">
@@ -47,14 +49,14 @@
 
         <!-- Carousel Navigation Controls -->
         <div class="hero-carousel-controls" aria-label="Hero Carousel Navigation">
-          <button id="heroPrevBtn" class="hero-control-btn" aria-label="Previous Slide">‹</button>
+          <button id="heroPrevBtn" class="hero-control-btn" aria-label="Previous Slide" title="Previous Slide">‹</button>
           <div id="heroDots" class="hero-dots"></div>
-          <button id="heroNextBtn" class="hero-control-btn" aria-label="Next Slide">›</button>
+          <button id="heroNextBtn" class="hero-control-btn" aria-label="Next Slide" title="Next Slide">›</button>
         </div>
       </div>
     </section>
 
-    <!-- 2. LEADERSHIP SECTION -->
+    <!-- 2. LEADERSHIP SECTION (Direct Leader Profile Links) -->
     <section class="home-section leadership-section" aria-labelledby="leaders-title">
       <span class="section-tag" style="display: block; text-align: center; margin-bottom: 8px;">02 / Governance</span>
       <h2 id="leaders-title">← Leaders of CUSB →</h2>
@@ -67,7 +69,7 @@
               <h3>Smt. Draupadi Murmu</h3>
               <p>Visitor &amp; President of India</p>
               <small>Hon'ble President of India and Visitor of the Central University of South Bihar.</small>
-              <a href="leaders.html#visitor">View Profile <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+              <a href="visitor.html">View Profile <i data-lucide="arrow-right" aria-hidden="true"></i></a>
             </div>
           </article>
         </div>
@@ -80,7 +82,7 @@
               <h3>Dr. C.P. Thakur</h3>
               <p>Hon'ble Chancellor</p>
               <small>Hon'ble Chancellor of the Central University of South Bihar and former Union Minister.</small>
-              <a href="leaders.html#chancellor">View Profile <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+              <a href="chancellor.html">View Profile <i data-lucide="arrow-right" aria-hidden="true"></i></a>
             </div>
           </article>
         </div>
@@ -93,7 +95,7 @@
               <h3>Prof. Kameshwar Nath Singh</h3>
               <p>Vice Chancellor</p>
               <small>Ensuring efficient governance, transparency and smooth administration to support the university mission.</small>
-              <a href="leaders.html#vc">View Profile <i data-lucide="arrow-right" aria-hidden="true"></i></a>
+              <a href="vice-chancellor.html">View Profile <i data-lucide="arrow-right" aria-hidden="true"></i></a>
             </div>
           </article>
         </div>
@@ -104,7 +106,6 @@
     <section class="section sec-about-uni" id="about" aria-labelledby="titleAbout">
       <div class="container about-uni-grid">
         <div class="about-uni-left">
-          <!-- Big Teal Icon Card matching Reference Image 1 -->
           <div class="about-uni-icon-card" aria-hidden="true"><img src="assets/aryabhatta.jpeg" alt="university_pic" decoding="async" loading="lazy"></div>
         </div>
         <div class="about-uni-content">
@@ -130,7 +131,6 @@
           </div>
         </div>
 
-        <!-- Infinite Auto-Scrolling Right-to-Left Ticker Track -->
         <div class="news-ticker-wrapper" id="newsTickerWrapper">
           <div class="news-ticker-track" id="newsTickerTrack">
             <!-- Dynamically populated via JS with interactive news cards -->
@@ -182,7 +182,6 @@
               </div>
             </div>
             <div id="eventDetailsList" class="event-details-list">
-              <!-- Dynamically populated event cards or empty state message -->
               <div class="no-events-msg" data-en="Loading upcoming events..." data-hi="आगामी कार्यक्रम लोड हो रहे हैं...">Loading upcoming events...</div>
             </div>
           </div>
@@ -190,7 +189,7 @@
       </div>
     </section>
 
-    <!-- ══════ SECTION 5: GALLERY (Dual-Row Auto-Moving Sliders: Row 1 L→R, Row 2 R→L) ══════ -->
+    <!-- ══════ SECTION 5: GALLERY (Dual-Row Auto-Moving Sliders) ══════ -->
     <section class="section sec-gallery" id="gallery" aria-labelledby="titleGallery">
       <div class="container">
         <div class="gallery-section-header">
@@ -365,19 +364,7 @@
       </div>
     </section>
 
-    <!-- ══════ CTA SECTION ══════ -->
-    <section class="section" style="background-color: var(--bg-secondary); text-align: center;" id="cta" aria-labelledby="titleCTA">
-      <div class="container" style="max-width: 800px; display: flex; flex-direction: column; gap: 20px;">
-        <h2 class="section-title" id="titleCTA" style="margin-bottom: 0;" data-en="Begin Your Journey at CUSB" data-hi="सीयूएसबी में अपनी यात्रा शुरू करें">Begin Your Journey at CUSB</h2>
-        <p data-en="Admissions are open for the academic session 2026–27. Join thousands of students shaping their careers in the land of enlightenment, Bihar." data-hi="अकादमिक सत्र 2026-27 के लिए प्रवेश खुले हैं। बिहार की ज्ञान भूमि में अपना करियर बनाने वाले हजारों छात्रों में शामिल हों।">Admissions are open for the academic session 2026–27. Join thousands of students shaping their careers in the land of enlightenment, Bihar.</p>
-        <div class="hero-btns">
-          <a href="https://cuet.samarth.ac.in/" target="_blank" class="btn btn-gold" data-en="Apply Online (CUET) →" data-hi="ऑनलाइन आवेदन (सीयूईटी) →">Apply Online (CUET) →</a>
-          <a href="#quicklinks" class="btn btn-white" data-en="Download Prospectus" data-hi="विवरणिका डाउनलोड करें">Download Prospectus</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- LIVE UNIVERSITY SNAPSHOT: populated from the homepage-stats API -->
+    <!-- LIVE UNIVERSITY SNAPSHOT: positioned ABOVE Begin Your Journey at CUSB -->
     <section class="homepage-stats-section" id="universitySnapshot" aria-labelledby="universitySnapshotTitle">
       <div class="container">
         <div class="homepage-stats-heading">
@@ -388,6 +375,18 @@
           <p>Key academic, admissions and institutional figures.</p>
         </div>
         <div id="homepageStats" class="homepage-stats-loading" aria-live="polite">Loading university statistics…</div>
+      </div>
+    </section>
+
+    <!-- ══════ CTA SECTION: BEGIN YOUR JOURNEY AT CUSB ══════ -->
+    <section class="section" style="background-color: var(--bg-secondary); text-align: center;" id="cta" aria-labelledby="titleCTA">
+      <div class="container" style="max-width: 800px; display: flex; flex-direction: column; gap: 20px;">
+        <h2 class="section-title" id="titleCTA" style="margin-bottom: 0;" data-en="Begin Your Journey at CUSB" data-hi="सीयूएसबी में अपनी यात्रा शुरू करें">Begin Your Journey at CUSB</h2>
+        <p data-en="Admissions are open for the academic session 2026–27. Join thousands of students shaping their careers in the land of enlightenment, Bihar." data-hi="अकादमिक सत्र 2026-27 के लिए प्रवेश खुले हैं। बिहार की ज्ञान भूमि में अपना करियर बनाने वाले हजारों छात्रों में शामिल हों।">Admissions are open for the academic session 2026–27. Join thousands of students shaping their careers in the land of enlightenment, Bihar.</p>
+        <div class="hero-btns">
+          <a href="https://cuet.samarth.ac.in/" target="_blank" class="btn btn-gold" data-en="Apply Online (CUET) →" data-hi="ऑनलाइन आवेदन (सीयूईटी) →">Apply Online (CUET) →</a>
+          <a href="#quicklinks" class="btn btn-white" data-en="Download Prospectus" data-hi="विवरणिका डाउनलोड करें">Download Prospectus</a>
+        </div>
       </div>
     </section>
   </main>

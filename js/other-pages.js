@@ -26,6 +26,30 @@
     'foundation-day': ['Foundation Day — 27 February 2026', 'Constitution of Committee for Foundation Day'],
     'photo-gallery': ['The official gallery includes CUSB event and convocation photographs. The replica gallery is available through the Campus Photo Gallery section.']
   };
+  const galleryAssets = [
+    ['A1', '6f7be9fec188c10a.jpg'], ['A4', '870dcf2e4146aa93.jpg'], ['A2', '32b8482612fde8c3.jpg'], ['A3', '4ae6cc6e9072fd09.jpg'],
+    ['A5', '286793f9360de714.jpg'], ['A6', '607b7729312cbbef.jpg'], ['A7', '24357b16cebc8df6.jpg'], ['A8', 'a265058e2d45dba6.jpg']
+  ];
+  if (document.body.dataset.otherPage === 'photo-gallery') {
+    document.title = 'Photo Gallery — CUSB';
+    const root = document.getElementById('otherPageContent');
+    if (!root) return;
+    root.innerHTML = `<section class="gallery-page"><div class="container"><header class="gallery-hero"><div><span class="section-tag">Campus Photo Gallery</span><h1>Moments that define <em>our campus</em></h1><p>Explore the official event photographs preserved in the University gallery, beginning with the 3rd Convocation Ceremony collection.</p><div class="gallery-event-pill"><span class="gallery-event-dot"></span> 3rd Convocation Ceremony <strong>8 photographs</strong></div></div><div class="gallery-hero-mark"><span>03</span><small>CONVOCATION<br>COLLECTION</small></div></header><section class="gallery-toolbar" aria-label="Gallery filters"><div><span class="gallery-toolbar-label">Collection</span><button class="gallery-filter is-active" type="button" data-gallery-filter="all">All photographs</button><button class="gallery-filter" type="button" data-gallery-filter="convocation">3rd Convocation</button></div><p><strong>${galleryAssets.length}</strong> curated images</p></section><section class="gallery-event-section" data-gallery-group="convocation"><div class="gallery-section-heading"><div><span class="section-tag">Event collection</span><h2>3rd Convocation Ceremony</h2></div><p>Official gallery sequence</p></div><div class="gallery-grid">${galleryAssets.map(([label, file], index) => `<button class="gallery-card${index === 0 ? ' gallery-card-featured' : ''}" type="button" data-gallery-open="${index}" aria-label="Open photograph ${label}"><img src="assets/gallery/convocation/${file}" alt="3rd Convocation photograph ${label}" loading="${index < 3 ? 'eager' : 'lazy'}"><span class="gallery-card-shade"></span><span class="gallery-card-caption"><small>Photograph ${label}</small><b>View image <i>↗</i></b></span></button>`).join('')}</div></section><section class="gallery-note"><div class="gallery-note-icon">✦</div><div><h2>A record of University life</h2><p>This collection preserves the atmosphere, people and ceremonial moments of the University’s convocation programme in a visual sequence.</p></div></section></div></section><div class="gallery-lightbox" id="galleryLightbox" aria-hidden="true"><button class="gallery-lightbox-close" type="button" aria-label="Close image viewer">×</button><button class="gallery-lightbox-prev" type="button" aria-label="Previous image">‹</button><figure><img id="galleryLightboxImage" src="" alt=""><figcaption id="galleryLightboxCaption"></figcaption></figure><button class="gallery-lightbox-next" type="button" aria-label="Next image">›</button></div>`;
+    const lightbox = document.getElementById('galleryLightbox');
+    const lightboxImage = document.getElementById('galleryLightboxImage');
+    const lightboxCaption = document.getElementById('galleryLightboxCaption');
+    let activeIndex = 0;
+    const showImage = index => { activeIndex = (index + galleryAssets.length) % galleryAssets.length; const item = galleryAssets[activeIndex]; lightboxImage.src = `assets/gallery/convocation/${item[1]}`; lightboxImage.alt = `3rd Convocation photograph ${item[0]}`; lightboxCaption.textContent = `Photograph ${item[0]} · 3rd Convocation Ceremony`; lightbox.classList.add('is-open'); lightbox.setAttribute('aria-hidden', 'false'); document.body.classList.add('gallery-lightbox-open'); };
+    const closeImage = () => { lightbox.classList.remove('is-open'); lightbox.setAttribute('aria-hidden', 'true'); document.body.classList.remove('gallery-lightbox-open'); };
+    root.querySelectorAll('[data-gallery-open]').forEach(card => card.addEventListener('click', () => showImage(Number(card.dataset.galleryOpen))));
+    lightbox.querySelector('.gallery-lightbox-close').addEventListener('click', closeImage);
+    lightbox.querySelector('.gallery-lightbox-prev').addEventListener('click', () => showImage(activeIndex - 1));
+    lightbox.querySelector('.gallery-lightbox-next').addEventListener('click', () => showImage(activeIndex + 1));
+    lightbox.addEventListener('click', event => { if (event.target === lightbox) closeImage(); });
+    document.addEventListener('keydown', event => { if (!lightbox.classList.contains('is-open')) return; if (event.key === 'Escape') closeImage(); if (event.key === 'ArrowLeft') showImage(activeIndex - 1); if (event.key === 'ArrowRight') showImage(activeIndex + 1); });
+    root.querySelectorAll('.gallery-filter').forEach(filter => filter.addEventListener('click', () => { root.querySelectorAll('.gallery-filter').forEach(item => item.classList.remove('is-active')); filter.classList.add('is-active'); }));
+    return;
+  }
   const entry = resources[document.body.dataset.otherPage];
   if (!entry) return;
   const [title, description, localUrl] = entry;

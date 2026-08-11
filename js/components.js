@@ -381,7 +381,7 @@ class CusbNavbar extends HTMLElement {
                     <li class="megamenu-item"><a href="tenders.html"><span class="megamenu-icon">ðŸ“‹</span><span data-en="Tenders" data-hi="Tenders">Tenders</span></a></li>
                     <li class="megamenu-item"><a href="news-events.html?type=notice"><span class="megamenu-icon">ðŸ””</span><span data-en="Notices" data-hi="Notices">Notices</span></a></li>
                     <li class="megamenu-item"><a href="news-events.html?type=event"><span class="megamenu-icon">ðŸ“…</span><span data-en="Upcoming Events" data-hi="Upcoming Events">Upcoming Events</span></a></li>
-                    <li class="megamenu-item"><a href="news-events.html#archived"><span class="megamenu-icon">ðŸ“‚</span><span data-en="Archived Events" data-hi="Archived Events">Archived Events</span></a></li>
+                    <li class="megamenu-item"><a href="about-others-archived-events.html"><span class="megamenu-icon">ðŸ“‚</span><span data-en="Archived Events" data-hi="Archived Events">Archived Events</span></a></li>
                     <li class="megamenu-item"><a href="index.html#gallery"><span class="megamenu-icon">ðŸ“¸</span><span data-en="Photo Gallery" data-hi="Photo Gallery">Photo Gallery</span></a></li>
                     <li class="megamenu-item"><a href="careers.html"><span class="megamenu-icon">ðŸ’¼</span><span data-en="Recruitment" data-hi="Recruitment">Recruitment</span></a></li>
                     <li class="megamenu-item"><a href="downloads.html"><span class="megamenu-icon">ðŸ“„</span><span data-en="Download" data-hi="Download">Download</span></a></li>
@@ -681,7 +681,7 @@ class CusbNavbar extends HTMLElement {
                   <ul class="megamenu-list">
                     <li class="megamenu-item"><a href="news-events.html#notices"><span class="megamenu-icon">🔔</span><span data-en="Notices" data-hi="सूचनाएं">Notices</span></a></li>
                     <li class="megamenu-item"><a href="news-events.html#upcoming-events"><span class="megamenu-icon">📅</span><span data-en="Upcoming Events" data-hi="आगामी कार्यक्रम">Upcoming Events</span></a></li>
-                    <li class="megamenu-item"><a href="news-events.html#archived-events"><span class="megamenu-icon">📁</span><span data-en="Archived Events" data-hi="संग्रहीत कार्यक्रम">Archived Events</span></a></li>
+                    <li class="megamenu-item"><a href="about-others-archived-events.html"><span class="megamenu-icon">📁</span><span data-en="Archived Events" data-hi="संग्रहीत कार्यक्रम">Archived Events</span></a></li>
                     <li class="megamenu-item"><a href="news-events.html#recent-events"><span class="megamenu-icon">✨</span><span data-en="Recent Event" data-hi="हाल की गतिविधि">Recent Event</span></a></li>
                     <li class="megamenu-item"><a href="news-events.html#academic-highlights"><span class="megamenu-icon">🏆</span><span data-en="Academic Highlights" data-hi="शैक्षणिक मुख्य बातें">Academic Highlights</span></a></li>
                     <li class="megamenu-item"><a href="news-events.html#circulars"><span class="megamenu-icon">📜</span><span data-en="Circular / Notification / Office Order" data-hi="परिपत्र / अधिसूचना / कार्यालय आदेश">Circular / Notification / Office Order</span></a></li>
@@ -916,10 +916,12 @@ class CusbNavbar extends HTMLElement {
     }
     const adminPageMenu=this.querySelector('#adminMegamenu');if(adminPageMenu){const af={visitor:'admin-visitor.html',chancellor:'admin-chancellor.html',vc:'admin-vice-chancellor.html',pvc:'admin-pro-vice-chancellor.html',dsw:'admin-dean-student-welfare.html',proctor:'admin-proctorial-board.html',deans:'admin-dean-head.html',registrar:'admin-registrar.html',finance:'admin-finance-officer.html',coe:'admin-controller-examination.html',librarian:'admin-librarian.html',staff:'admin-section-staff.html',committee:'admin-committee-cell.html',organogram:'admin-organogram.html'};adminPageMenu.innerHTML=`<div class="megamenu-column"><div class="megamenu-heading">Administration</div><ul class="megamenu-list">${[['Visitor','visitor'],['Chancellor','chancellor'],['Vice-Chancellor','vc'],['Pro-Vice Chancellor','pvc'],['Dean of Student Welfare','dsw'],['Proctorial Board','proctor'],['Dean / Head','deans']].map(([n,k])=>`<li class="megamenu-item"><a href="${af[k]}">${n}</a></li>`).join('')}</ul></div><div class="megamenu-column"><div class="megamenu-heading">Offices & Structure</div><ul class="megamenu-list">${[['Registrar','registrar'],['Finance Officer','finance'],['Controller of Examination','coe'],['Librarian','librarian'],['Section & Staff','staff'],['Committee / Cell','committee'],['Organogram','organogram']].map(([n,k])=>`<li class="megamenu-item"><a href="${af[k]}">${n}</a></li>`).join('')}</ul></div>`;}
     replaceEmojiIcons(this);
+    if (window.cusbHighlightActiveNavigation) {
+      window.cusbHighlightActiveNavigation();
+    }
   }
 }
 customElements.define('cusb-navbar', CusbNavbar);
-
 // 5. Quick Actions Component
 class CusbQuickActions extends HTMLElement {
   connectedCallback() {
@@ -1013,6 +1015,35 @@ class CusbFooter extends HTMLElement {
               <li><a href="pyq.html" data-en="Previous Papers (PYQ)" data-hi="पुराने प्रश्न पत्र">Previous Papers (PYQ)</a></li>
               <li><a href="policies.html" data-en="Policies & RTI" data-hi="नीतियां और आरटीआई">Policies & RTI</a></li>
             </ul>
+          </div>
+
+          <!-- 5. Campus Location Map & Navigation -->
+          <div class="footer-col footer-col-map">
+            <div class="footer-heading" style="display: flex; justify-content: space-between; align-items: center;">
+              <span data-en="Campus Map" data-hi="परिसर मानचित्र">Campus Map</span>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Central+University+of+South+Bihar+Gaya" target="_blank" rel="noopener noreferrer" class="footer-map-directions-link" title="Open Google Maps Navigation" data-en="Directions ↗" data-hi="दिशा-निर्देश ↗">Directions ↗</a>
+            </div>
+            
+            <div class="footer-map-wrapper">
+              <iframe
+                class="footer-map-frame"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14470.835489437293!2d84.88147285541992!3d24.941984099999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f32de07147b36f%3A0xa59f7d4b4a1b0266!2sCentral%20University%20of%20South%20Bihar!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                title="Central University of South Bihar Campus Location Map"
+                width="100%"
+                height="150"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                aria-label="CUSB Campus Location Google Map">
+              </iframe>
+            </div>
+
+            <div class="footer-map-badges">
+              <span class="footer-map-badge" title="Distance from Gaya Railway Station" data-en="🚆 Gaya Jn: 14 km" data-hi="🚆 गया जंक्शन: 14 किमी">🚆 Gaya Jn: 14 km</span>
+              <span class="footer-map-badge" title="Distance from Gaya Airport" data-en="✈️ Airport: 19 km" data-hi="✈️ गया हवाई अड्डा: 19 किमी">✈️ Airport: 19 km</span>
+              <a href="https://maps.google.com/?q=Central+University+of+South+Bihar+Gaya" target="_blank" rel="noopener noreferrer" class="footer-map-badge footer-map-badge-link" data-en="📍 Open in Maps" data-hi="📍 मैप में खोलें">📍 Open in Maps</a>
+            </div>
           </div>
         </div>
 

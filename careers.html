@@ -1,15 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/png" href="assets/culog.png"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Recruitment - CUSB</title><meta name="description" content="recruitment notices, documents and results for CUSB."><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/pages.css"></head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Careers &amp; Recruitment — Central University of South Bihar</title>
+  <link rel="icon" type="image/png" href="assets/culog.png">
+  <meta name="description" content="Official recruitment notices, faculty openings, non-teaching jobs, and funded research project positions at Central University of South Bihar.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/about-pages.css">
+  <link rel="stylesheet" href="css/recruitment-page.css">
+</head>
 <body>
-  <a href="#mainContent" class="skip-link">Skip to main content</a><cusb-ticker></cusb-ticker><cusb-topbar></cusb-topbar><cusb-header></cusb-header><cusb-accessibility-bar></cusb-accessibility-bar><cusb-navbar></cusb-navbar>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
   <main id="mainContent">
-    <section class="section information-directory"><div class="container"><span class="section-tag">Explore</span><h1 class="section-title">Careers and Recruitment</h1><div class="resource-chip-row"><a href="#recruitment-notices">Recruitment</a><a href="#recruitment-results">Recruitment Results</a><a href="tenders.html">Tenders</a><a href="enquiry.html">Help Desk</a></div></div></section>
-    <section id="recruitment-notices" class="section"><div class="container information-panel"><span class="section-tag">Recruitment</span><h2 class="section-title information-title">Current recruitment notices</h2><p>Recruitment notices are shown from the website's recruitment database. Each document and action link is restricted to a file or page.</p><div id="recruitmentList" class="opportunity-list" aria-live="polite"><article class="opportunity-empty"><h3>No recruitment notices are currently published</h3><p>New faculty, staff and project recruitment notices will appear here when added by the site administrator.</p></article></div></div></section>
-    <section id="recruitment-results" class="section information-alt"><div class="container information-panel"><span class="section-tag">Recruitment Results</span><h2 class="section-title information-title">Recruitment results and archives</h2><p>Completed recruitment notices and published results remain in the recruitment list when they are marked archived or closed by the website administrator.</p><div id="recruitmentArchiveList" class="opportunity-list" aria-live="polite"><article class="opportunity-empty"><h3>No recruitment results are currently published</h3><p>Archived recruitment outcomes will appear here as they are entered .</p></article></div></div></section>
-    <section class="section"><div class="container information-two-column"><div class="information-copy"><span class="section-tag">Candidate help</span><h2 class="section-title information-title">Need help with a notice?</h2><p>Read the relevant notification first. If you need clarification about a published recruitment entry, use the website enquiry form and include the vacancy or advertisement number.</p><a class="btn btn-gold" href="enquiry.html">Open enquiry form</a></div><aside class="opportunity-guidance"><strong>recruitment policy</strong><p>This replica does not send candidates to external recruitment portals. Application instructions are shown only when a application route is added by the administrator.</p></aside></div></section>
+    <div id="recruitmentPortalMount"></div>
   </main>
-  <cusb-footer></cusb-footer><cusb-chatbot></cusb-chatbot><script src="js/components.js" defer></script><script src="js/main.js" defer></script><script src="js/careers-page.js" defer></script>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/recruitment-data.js" defer></script>
+  <script src="js/recruitment-page.js" defer></script>
 </body>
 </html>

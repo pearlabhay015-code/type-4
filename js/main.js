@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initEnquiryModal();
   initGalleryTicker();
   initNewsTicker();
+  initActivePageHighlight();
   if (window.cusbReplaceEmojiIcons) window.cusbReplaceEmojiIcons(document);
 });
 
@@ -753,6 +754,167 @@ function initQuickLinksMenu() {
   }, { passive: true });
   window.addEventListener('scroll', onScrollSidebar, { passive: true });
 }
+
+/* ==========================================================================
+   5B. ACTIVE PAGE & TAB HIGHLIGHTING CONTROLLER
+   ========================================================================== */
+function initActivePageHighlight() {
+  const currentPath = window.location.pathname.toLowerCase();
+  const currentHash = window.location.hash.toLowerCase();
+  const currentSearch = window.location.search.toLowerCase();
+  let currentFile = currentPath.split('/').pop() || 'index.html';
+  if (currentFile === '' || currentFile === '/') currentFile = 'index.html';
+
+  const navbar = document.querySelector('cusb-navbar');
+  if (!navbar) return;
+
+  // Clear previous active states
+  navbar.querySelectorAll('.is-current-page-tab, .is-current-page-item, .is-current-page-link, [aria-current="page"]').forEach(el => {
+    el.classList.remove('is-current-page-tab', 'is-current-page-item', 'is-current-page-link');
+    el.removeAttribute('aria-current');
+    el.querySelectorAll('.nav-active-dot, .megamenu-current-badge').forEach(b => b.remove());
+  });
+
+  // Determine top-level menu category
+  let activeMenuCategory = null;
+
+  if (currentFile === 'index.html' || currentFile === '') {
+    activeMenuCategory = 'home';
+  } else if (
+    currentFile.includes('student') || 
+    ['hostel.html', 'hostels.html', 'library.html', 'ncc.html', 'nss.html', 'sports.html', 'anti-ragging.html', 'grievance.html', 'scholarships.html', 'placement.html', 'placements.html', 'alumni.html', 'icc.html', 'pyq.html', 'samarth.html', 'clubs.html'].includes(currentFile)
+  ) {
+    activeMenuCategory = 'students';
+  } else if (
+    currentFile.includes('admin') || 
+    ['visitor.html', 'chancellor.html', 'vice-chancellor.html', 'vc.html', 'deans.html', 'heads.html'].includes(currentFile)
+  ) {
+    activeMenuCategory = 'admin';
+  } else if (
+    currentFile.includes('admission') || 
+    ['cuet.html', 'fee-structure.html', 'prospectus.html'].includes(currentFile)
+  ) {
+    activeMenuCategory = 'admissions';
+  } else if (
+    currentFile.includes('research') || 
+    ['rdc.html', 'projects.html', 'publications.html', 'patents.html', 'mou.html', 'labs.html', 'cif.html'].includes(currentFile)
+  ) {
+    activeMenuCategory = 'research';
+  } else if (
+    currentFile.includes('school') || 
+    currentFile.includes('department') || 
+    ['courses.html', 'programs.html', 'academic-calendar.html', 'syllabus.html', 'curriculum.html', 'faculties.html', 'faculty.html'].includes(currentFile)
+  ) {
+    activeMenuCategory = 'academics';
+  } else if (
+    currentFile.startsWith('about') || 
+    ['policies.html', 'executive-council.html', 'academic-council.html', 'finance-committee.html', 'tenders.html', 'upcoming-events.html', 'archived-events.html', 'archive-events.html', 'careers.html', 'recruitment.html', 'downloads.html', 'recent-events.html', 'recent-event.html', 'academic-highlights.html', 'how-to-reach.html'].includes(currentFile)
+  ) {
+    activeMenuCategory = 'about';
+  }
+
+  // 1. Highlight matching parent navbar tab
+  if (activeMenuCategory) {
+    const parentItem = navbar.querySelector(`.navbar-item[data-menu="${activeMenuCategory}"]`);
+    if (parentItem) {
+      parentItem.classList.add('is-current-page-tab');
+      const topLink = parentItem.querySelector(':scope > .navbar-link');
+      if (topLink) {
+        topLink.setAttribute('aria-current', 'page');
+        if (!topLink.querySelector('.nav-active-dot')) {
+          const dot = document.createElement('span');
+          dot.className = 'nav-active-dot';
+          dot.setAttribute('aria-hidden', 'true');
+          topLink.appendChild(dot);
+        }
+      }
+    }
+  }
+
+  // 2. Highlight specific child link inside megamenu
+  let matchedChildLink = null;
+  const allNavLinks = navbar.querySelectorAll('.megamenu a, .navbar-menu a');
+  
+  // First attempt: exact match with page + hash / query
+  for (const link of allNavLinks) {
+    const href = (link.getAttribute('href') || '').toLowerCase();
+    if (!href || href === '#' || href.startsWith('javascript:')) continue;
+
+    const hrefFile = href.split('#')[0].split('?')[0].split('/').pop();
+    const hrefHash = href.includes('#') ? '#' + href.split('#')[1] : '';
+    const hrefSearch = href.includes('?') ? '?' + href.split('?')[1].split('#')[0] : '';
+
+    if (currentHash && hrefHash && hrefHash === currentHash && (hrefFile === currentFile || (hrefFile === '' && currentFile === 'index.html'))) {
+      matchedChildLink = link;
+      break;
+    }
+    if (currentSearch && hrefSearch && hrefSearch === currentSearch && (hrefFile === currentFile || (hrefFile === '' && currentFile === 'index.html'))) {
+      matchedChildLink = link;
+      break;
+    }
+  }
+
+  // Second attempt: match exact file
+  if (!matchedChildLink && currentFile) {
+    for (const link of allNavLinks) {
+      const href = (link.getAttribute('href') || '').toLowerCase();
+      if (!href || href === '#' || href.startsWith('javascript:')) continue;
+      const hrefFile = href.split('#')[0].split('?')[0].split('/').pop();
+      if (hrefFile === currentFile) {
+        matchedChildLink = link;
+        break;
+      }
+    }
+  }
+
+  if (matchedChildLink) {
+    matchedChildLink.classList.add('is-current-page-link');
+    matchedChildLink.setAttribute('aria-current', 'page');
+    const parentLi = matchedChildLink.closest('li');
+    if (parentLi) parentLi.classList.add('is-current-page-item');
+
+    // Add active marker if inside megamenu
+    if (matchedChildLink.closest('.megamenu') && !matchedChildLink.querySelector('.megamenu-current-badge')) {
+      const badge = document.createElement('span');
+      badge.className = 'megamenu-current-badge';
+      badge.textContent = 'Active';
+      matchedChildLink.appendChild(badge);
+    }
+
+    // Ensure parent navbar tab is also activated
+    const parentNavbarItem = matchedChildLink.closest('.navbar-item');
+    if (parentNavbarItem) {
+      parentNavbarItem.classList.add('is-current-page-tab');
+      const topLink = parentNavbarItem.querySelector(':scope > .navbar-link');
+      if (topLink) {
+        topLink.setAttribute('aria-current', 'page');
+        if (!topLink.querySelector('.nav-active-dot')) {
+          const dot = document.createElement('span');
+          dot.className = 'nav-active-dot';
+          dot.setAttribute('aria-hidden', 'true');
+          topLink.appendChild(dot);
+        }
+      }
+    }
+  }
+
+  // 3. Highlight active sidebar links in quicklinks drawer
+  const sidebar = document.querySelector('.fixed-quicklinks-sidebar');
+  if (sidebar) {
+    sidebar.querySelectorAll('a').forEach(link => {
+      const href = (link.getAttribute('href') || '').toLowerCase();
+      const hrefFile = href.split('#')[0].split('?')[0].split('/').pop();
+      if (hrefFile === currentFile) {
+        link.classList.add('is-current-page-link');
+        link.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+}
+
+window.cusbHighlightActiveNavigation = initActivePageHighlight;
+window.addEventListener('hashchange', initActivePageHighlight);
+window.addEventListener('popstate', initActivePageHighlight);
 
 /* ==========================================================================
    6. CHATBOT AND SCROLL-TO-TOP
@@ -2617,58 +2779,58 @@ function initHeroCarousel() {
       title_hi: "दक्षिण बिहार<span><br>केन्द्रीय विश्वविद्यालय</span>",
       sub_en: "A premier central university under the Ministry of Education, Government of India. 300 acres of green learning at Gaya, Bihar.",
       sub_hi: "भारत सरकार के शिक्षा मंत्रालय के तहत एक प्रमुख केंद्रीय विश्वविद्यालय। गया, बिहार में 300 एकड़ का हरा-भरा शैक्षणिक परिसर।",
-      image: "assets/drone.webp",
+      image: "assets/drone.jpg",
       link: "admissions.html",
       btn_text_en: "Apply Now →",
       btn_text_hi: "अभी आवेदन करें →"
     },
     {
-      badge_en: "National AI & Web Hackathon Winner",
-      badge_hi: "राष्ट्रीय एआई व वेब हैकाथॉन विजेता",
-      title_en: "CUSB Tech Team Wins<br><span>National 1st Prize</span>",
-      title_hi: "सीयूएसबी टेक टीम को मिला<span><br>प्रथम राष्ट्रीय पुरस्कार</span>",
-      sub_en: "Computer Science and Bioinformatics team secures top award in 24-hour Smart Web & AI Design Competition.",
-      sub_hi: "कंप्यूटर विज्ञान और बायोइन्फॉर्मेटिक्स टीम ने 24-घंटे के स्मार्ट वेब एवं एआई प्रतियोगिता में शीर्ष स्थान हासिल किया।",
-      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2000&auto=format&fit=crop",
-      link: "news-events.html",
-      btn_text_en: "Read Achievement →",
-      btn_text_hi: "उपलब्धि देखें →"
+      badge_en: "NAAC 'A++' Accredited Institution",
+      badge_hi: "नैक 'ए++' प्रत्यायित संस्थान",
+      title_en: "Permanent 300-Acre<br><span>Green Smart Campus</span>",
+      title_hi: "स्थायी 300 एकड़<span><br>हरित स्मार्ट परिसर</span>",
+      sub_en: "Modern eco-friendly infrastructure, smart digital classrooms, high-tech labs, and sports arenas in Panchanpur, Gaya.",
+      sub_hi: "पंचानपुर, गया में आधुनिक पर्यावरण-अनुकूल बुनियादी ढांचा, स्मार्ट डिजिटल कक्षाएं, उच्च तकनीक प्रयोगशालाएं और खेल परिसर।",
+      image: "assets/images/cusb-aerial-entrance.png",
+      link: "about.html",
+      btn_text_en: "Explore Campus →",
+      btn_text_hi: "परिसर देखें →"
     },
     {
       badge_en: "Research & Innovation",
       badge_hi: "अनुसंधान एवं नवाचार",
-      title_en: "₹1.2 Crore DST-SERB<br><span>Research Grant</span>",
-      title_hi: "₹1.2 करोड़ का<span><br>डीएसटी-एसईआरबी शोध अनुदान</span>",
-      sub_en: "Physical Sciences & Bioinformatics faculty awarded major research grant for Quantum Materials & Advanced Computing.",
-      sub_hi: "भौतिक विज्ञान व बायोइन्फॉर्मेटिक्स संकाय को क्वांटम सामग्री और उन्नत कंप्यूटिंग शोध के लिए प्रतिष्ठित अनुदान मिला।",
-      image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2000&auto=format&fit=crop",
+      title_en: "Advanced Laboratories &<br><span>Research Facilities</span>",
+      title_hi: "उन्नत प्रयोगशालाएं एवं<span><br>अनुसंधान सुविधाएं</span>",
+      sub_en: "Fostering interdisciplinary cutting-edge research across Physical, Biological, Social and Computational Sciences.",
+      sub_hi: "भौतिक, जैविक, सामाजिक और कम्प्यूटेशनल विज्ञान में अंतःविषय अत्याधुनिक अनुसंधान को बढ़ावा देना।",
+      image: "assets/images/cusb-act-building.png",
       link: "research.html",
       btn_text_en: "Explore Research →",
       btn_text_hi: "शोध देखें →"
     },
     {
-      badge_en: "International Congress 2026",
-      badge_hi: "अंतर्राष्ट्रीय सम्मेलन 2026",
-      title_en: "45th INCA International<br><span>Cartographic Congress</span>",
-      title_hi: "45वां आईएनसीए<span><br>अंतर्राष्ट्रीय सम्मेलन</span>",
-      sub_en: "Hosted at CUSB Gaya Campus featuring global scientists, cartographers, and geospatial research experts.",
-      sub_hi: "सीयूएसबी गया परिसर में वैश्विक वैज्ञानिकों, मानचित्रकारों और भू-स्थानिक विशेषज्ञों की उपस्थिति में आयोजित।",
-      image: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?q=80&w=2000&auto=format&fit=crop",
-      link: "news-events.html",
-      btn_text_en: "View Details →",
-      btn_text_hi: "विवरण देखें →"
+      badge_en: "Academic Block & Smart Learning",
+      badge_hi: "शैक्षणिक ब्लॉक एवं स्मार्ट शिक्षा",
+      title_en: "World-Class Faculty &<br><span>Innovative Curriculum</span>",
+      title_hi: "विश्व स्तरीय संकाय एवं<span><br>नवोन्मेषी पाठ्यक्रम</span>",
+      sub_en: "Offering comprehensive Undergraduate, Postgraduate, and Doctoral programmes aligned with NEP 2020.",
+      sub_hi: "राष्ट्रीय शिक्षा नीति (NEP 2020) के अनुरूप स्नातक, स्नातकोत्तर और डॉक्टरेट कार्यक्रम।",
+      image: "assets/images/blockB.jpg",
+      link: "courses.html",
+      btn_text_en: "View Courses →",
+      btn_text_hi: "पाठ्यक्रम देखें →"
     },
     {
-      badge_en: "NAAC Top Rating",
-      badge_hi: "नेक (NAAC) सर्वोच्च रेटिंग",
-      title_en: "Excellence in Higher Education<br>& <span>Green Campus</span>",
-      title_hi: "उच्च शिक्षा एवं<span><br>हरित परिसर में उत्कृष्टता</span>",
-      sub_en: "Recognized for modern eco-friendly infrastructure, state-of-the-art laboratories, and high-impact academic outcomes.",
-      sub_hi: "आधुनिक पर्यावरण-अनुकूल बुनियादी ढांचे, अत्याधुनिक प्रयोगशालाओं और उच्च शैक्षणिक परिणामों के लिए मान्यता प्राप्त।",
-      image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2000&auto=format&fit=crop",
+      badge_en: "Campus Life & Vibrant Culture",
+      badge_hi: "परिसर जीवन एवं जीवंत संस्कृति",
+      title_en: "Vibrant Student Life &<br><span>Holistic Development</span>",
+      title_hi: "जीवंत छात्र जीवन एवं<span><br>समग्र विकास</span>",
+      sub_en: "State-of-the-art sports stadium, cultural auditoriums, separate hostels with 24/7 security, and thriving student clubs.",
+      sub_hi: "अत्याधुनिक खेल स्टेडियम, सांस्कृतिक सभागार, 24/7 सुरक्षा वाले छात्रावास और सक्रिय छात्र क्लब।",
+      image: "assets/hero_eve.jpg",
       link: "about.html",
-      btn_text_en: "Learn About CUSB →",
-      btn_text_hi: "सीयूएसबी के बारे में जानें →"
+      btn_text_en: "Campus Tour →",
+      btn_text_hi: "परिसर भ्रमण →"
     }
   ];
 
