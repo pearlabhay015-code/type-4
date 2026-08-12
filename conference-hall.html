@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="Conference Hall — Central University of South Bihar" data-hi="सम्मेलन कक्ष — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Conference Hall — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="State-of-the-art executive Conference Hall at Central University of South Bihar (CUSB) with wooden acoustic paneling, smart digital display, delegate audio systems, and central air conditioning.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .conf-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .conf-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .conf-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .conf-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .conf-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    [data-theme="dark"] .conf-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .conf-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 20px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .conf-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .conf-section-heading {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--tx-primary, #0f172a);
+      margin: 10px 0 20px;
+    }
+    [data-theme="dark"] .conf-section-heading {
+      color: #f8fafc;
+    }
+
+    .conf-desc-text {
+      font-size: 0.98rem;
+      color: var(--tx-primary, #0f172a);
+      line-height: 1.8;
+      margin-bottom: 24px;
+      text-align: justify;
+    }
+
+    /* Metric Chips */
+    .conf-metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .conf-metric-chip {
+      background: rgba(11, 108, 184, 0.04);
+      border: 1px solid rgba(11, 108, 184, 0.14);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    [data-theme="dark"] .conf-metric-chip {
+      background: rgba(56, 189, 248, 0.06);
+      border-color: rgba(56, 189, 248, 0.18);
+    }
+    .conf-metric-chip strong {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      line-height: 1.1;
+    }
+    [data-theme="dark"] .conf-metric-chip strong {
+      color: #38bdf8;
+    }
+    .conf-metric-chip span {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--tx-muted, #475569);
+    }
+
+    /* 2-Column Responsive Photo Showcase */
+    .conf-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 10px;
+    }
+    .conf-gallery-card {
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      background: var(--bg-surface, #ffffff);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .conf-gallery-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+    [data-theme="dark"] .conf-gallery-card {
+      background: #1e293b;
+      border-color: #334155;
+    }
+    .conf-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      background: #000;
+    }
+    .conf-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .conf-gallery-card:hover .conf-img-wrap img {
+      transform: scale(1.03);
+    }
+    .conf-badge-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(4px);
+      color: #ffffff;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .conf-card {
+        padding: 22px 18px;
+      }
+      .conf-main-title {
+        font-size: 1.7rem;
+      }
+      .conf-desc-text {
+        font-size: 0.92rem;
+      }
+      .conf-gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .conf-img-wrap {
+        height: 210px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
+
+  <main id="mainContent" class="conf-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="conf-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="facilities.html" data-en="Infrastructure" data-hi="बुनियादी ढांचा">Infrastructure</a>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="Conference Hall" data-hi="सम्मेलन कक्ष">Conference Hall</span>
+      </nav>
+
+      <!-- Main Content Card -->
+      <article class="conf-card">
+        <h1 class="conf-main-title" data-en="Conference Hall" data-hi="सम्मेलन कक्ष">Conference Hall</h1>
+
+        <!-- Section Subheading -->
+        <h2 class="conf-section-heading" data-en="Conference Hall" data-hi="सम्मेलन कक्ष">
+          Conference Hall
+        </h2>
+
+        <!-- Description Paragraph -->
+        <p class="conf-desc-text" data-en="The University Conference Hall is a state-of-the-art executive meeting and symposium facility equipped with premium acoustic wooden paneling, motorized HD smart display, dedicated delegate microphone systems, high-speed Wi-Fi, and climate-controlled central air conditioning. Designed to host Executive Council meetings, Academic Council sessions, international symposiums, press conferences, and high-level academic deliberations." data-hi="विश्वविद्यालय सम्मेलन कक्ष एक अत्याधुनिक कार्यकारी बैठक और संगोष्ठी सुविधा है जो प्रीमियम ध्वनिक लकड़ी की पैनलिंग, मोटर चालित एचडी स्मार्ट डिस्प्ले, समर्पित प्रतिनिधि माइक्रोफोन सिस्टम, हाई-स्पीड वाई-फाई और जलवायु-नियंत्रित केंद्रीय एयर कंडीशनिंग से सुसज्जित है। यह कार्यकारी परिषद की बैठकों, शैक्षणिक परिषद के सत्रों, अंतर्राष्ट्रीय संगोष्ठियों, प्रेस सम्मेलनों और उच्च-स्तरीय शैक्षणिक विचार-विमर्श की मेजबानी के लिए डिज़ाइन किया गया है।">
+          The University Conference Hall is a state-of-the-art executive meeting and symposium facility equipped with premium acoustic wooden paneling, motorized HD smart display, dedicated delegate microphone systems, high-speed Wi-Fi, and climate-controlled central air conditioning. Designed to host Executive Council meetings, Academic Council sessions, international symposiums, press conferences, and high-level academic deliberations.
+        </p>
+
+        <!-- Metric Chips -->
+        <div class="conf-metric-grid">
+          <div class="conf-metric-chip">
+            <strong>Executive Setup</strong>
+            <span data-en="U-Shaped Deliberation Table" data-hi="यू-आकार की विचार-विमर्श मेज">U-Shaped Deliberation Table</span>
+          </div>
+          <div class="conf-metric-chip">
+            <strong>Microphone System</strong>
+            <span data-en="Individual Delegate Audio" data-hi="व्यक्तिगत प्रतिनिधि ऑडियो">Individual Delegate Audio</span>
+          </div>
+          <div class="conf-metric-chip">
+            <strong>Smart Display</strong>
+            <span data-en="Telepresence &amp; Presentation" data-hi="टेलीप्रेसेंस एवं प्रस्तुति">Telepresence &amp; Presentation</span>
+          </div>
+          <div class="conf-metric-chip">
+            <strong>Central AC</strong>
+            <span data-en="Climate Controlled Ambiance" data-hi="वातानुकूलित वातावरण">Climate Controlled Ambiance</span>
+          </div>
+        </div>
+
+        <!-- 2-Column Photo Showcase -->
+        <div class="conf-gallery-grid">
+          <figure class="conf-gallery-card">
+            <div class="conf-img-wrap">
+              <img src="assets/conference-hall/conference-hall-panoramic.png" alt="CUSB Executive Conference Hall panoramic interior" loading="lazy" decoding="async">
+              <div class="conf-badge-bar" data-en="CONFERENCE HALL" data-hi="सम्मेलन कक्ष">CONFERENCE HALL</div>
+            </div>
+          </figure>
+
+          <figure class="conf-gallery-card">
+            <div class="conf-img-wrap">
+              <img src="assets/conference-hall/conference-hall-smart-display.png" alt="CUSB Conference Hall smart display and delegate seating" loading="lazy" decoding="async">
+              <div class="conf-badge-bar" data-en="CONFERENCE HALL" data-hi="सम्मेलन कक्ष">CONFERENCE HALL</div>
+            </div>
+          </figure>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

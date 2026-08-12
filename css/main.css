@@ -1151,7 +1151,7 @@ cusb-navbar .container {
 
   /* --- LIGHT THEME HOVER ANIMATION & COLORS --- */
   html:not([data-theme="dark"]) .navbar-link::after {
-    background-color: #ffd950; /* CUSB Gold Indicator Bar */
+    background-color: #50cdff; /* CUSB Gold Indicator Bar */
     box-shadow: 0 0 12px rgba(255, 217, 80, 0.9);
   }
 
@@ -1567,9 +1567,32 @@ cusb-footer {
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 0.8fr) minmax(0, 0.8fr) minmax(0, 1.3fr);
-  gap: 28px;
-  margin-bottom: 40px;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1.85fr) minmax(0, 0.85fr) minmax(0, 1.25fr);
+  gap: 24px;
+  margin-bottom: 36px;
+  align-items: start;
+}
+.footer-links-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 7px 14px !important;
+  list-style: none !important;
+  font-size: 0.77rem !important;
+  line-height: 1.4 !important;
+}
+.footer-links-grid li {
+  margin: 0;
+}
+.footer-links-grid a {
+  color: var(--tx-secondary);
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.15s ease;
+  word-break: break-word;
+}
+.footer-links-grid a:hover {
+  color: var(--acc-blue);
+  padding-left: 2px;
 }
 .footer-col {
   display: flex;
@@ -2282,25 +2305,9 @@ cusb-footer {
     padding: 10px 20px;
   }
   
-  cusb-navbar .container {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: space-between !important;
-    padding: 6px 15px !important;
-    gap: 8px;
-  }
-  .mobile-quicklinks-toggle {
-    display: inline-flex;
-    order: 1;
-  }
-  .mobile-nav-toggle {
-    display: flex;
-    order: 2;
-  }
-
   cusb-navbar {
     padding: 0;
-    background-color: var(--acc-green) !important;
+    background-color: #004b9b !important;
     z-index: 9999 !important;
   }
   cusb-navbar .container {
@@ -2308,18 +2315,22 @@ cusb-footer {
     flex-wrap: wrap !important;
     justify-content: space-between !important;
     align-items: center !important;
-    padding: 8px 16px !important;
-    background: var(--acc-green) !important;
-    gap: 8px;
+    min-height: 52px !important;
+    padding: 0 16px !important;
+    background: #004b9b !important;
+    gap: 0 !important;
   }
   .mobile-quicklinks-toggle {
     display: inline-flex !important;
     align-items: center !important;
+    justify-content: center !important;
     gap: 7px !important;
+    height: 36px !important;
     background: rgba(255, 255, 255, 0.15) !important;
     border: 1px solid rgba(255, 255, 255, 0.35) !important;
     border-radius: 999px !important;
-    padding: 6px 14px !important;
+    padding: 0 14px !important;
+    margin: 8px 0 !important;
     color: #ffffff !important;
     font-size: 0.82rem !important;
     font-weight: 700 !important;
@@ -2337,13 +2348,15 @@ cusb-footer {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 38px !important;
-    height: 38px !important;
+    width: 36px !important;
+    height: 36px !important;
     border-radius: 8px !important;
     background: rgba(255, 255, 255, 0.15) !important;
     border: 1px solid rgba(255, 255, 255, 0.35) !important;
     color: #ffffff !important;
     cursor: pointer !important;
+    margin: 8px 0 !important;
+    padding: 0 !important;
     transition: all 0.2s ease !important;
     order: 2;
   }
@@ -2357,6 +2370,8 @@ cusb-footer {
     width: 100% !important;
     min-width: 0 !important;
     order: 3 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   .navbar-menu {
     display: flex !important;
@@ -2374,7 +2389,7 @@ cusb-footer {
     opacity: 0 !important;
     transform: translateY(-6px) !important;
     transition: max-height 0.32s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.22s ease, transform 0.22s ease !important;
-    margin: 4px 0 0 0 !important;
+    margin: 0 !important;
     padding: 0 !important;
     z-index: 10000 !important;
   }
@@ -2384,6 +2399,7 @@ cusb-footer {
     transform: translateY(0) !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
+    margin-bottom: 8px !important;
   }
   .navbar-item {
     width: 100% !important;
@@ -2593,6 +2609,9 @@ cusb-footer {
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
+  }
+  .footer-col-important-links {
+    grid-column: 1 / -1;
   }
   .footer-col-map {
     grid-column: 1 / -1;

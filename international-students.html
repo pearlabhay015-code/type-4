@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="International Students — Central University of South Bihar" data-hi="अंतरराष्ट्रीय विद्यार्थी — दक्षिण बिहार केंद्रीय विश्वविद्यालय">International Students — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Office of International Affairs (OIA) and ICCR partnership at Central University of South Bihar (CUSB) facilitating admissions, FRRO registration, cultural exchange, and student support.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .int-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .int-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .int-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .int-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .int-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    [data-theme="dark"] .int-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .int-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 24px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .int-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* Metric Chips */
+    .int-metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+    .int-metric-chip {
+      background: rgba(11, 108, 184, 0.04);
+      border: 1px solid rgba(11, 108, 184, 0.14);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    [data-theme="dark"] .int-metric-chip {
+      background: rgba(56, 189, 248, 0.06);
+      border-color: rgba(56, 189, 248, 0.18);
+    }
+    .int-metric-chip strong {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0b6cb8;
+    }
+    [data-theme="dark"] .int-metric-chip strong {
+      color: #38bdf8;
+    }
+    .int-metric-chip span {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--tx-muted, #475569);
+    }
+
+    .int-section-heading {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--tx-primary, #0f172a);
+      margin: 28px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    [data-theme="dark"] .int-section-heading {
+      color: #f8fafc;
+    }
+
+    .int-text {
+      font-size: 0.98rem;
+      color: var(--tx-primary, #0f172a);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    /* Sub-list for ICCR aims */
+    .int-alpha-list {
+      list-style: lower-alpha;
+      padding-left: 24px;
+      margin: 12px 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.96rem;
+      color: var(--tx-primary, #1e293b);
+      line-height: 1.65;
+    }
+
+    /* Bullet List for OIA Activities */
+    .int-bullet-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .int-bullet-list li {
+      position: relative;
+      padding-left: 22px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--tx-primary, #1e293b);
+    }
+    .int-bullet-list li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      top: 0;
+      color: #0b6cb8;
+      font-size: 1.3rem;
+      line-height: 1.4;
+    }
+    [data-theme="dark"] .int-bullet-list li::before {
+      color: #38bdf8;
+    }
+
+    /* Committee Table */
+    .int-table-wrap {
+      overflow-x: auto;
+      margin: 20px 0;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+    .int-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+    .int-table th {
+      background: #003a6a;
+      color: #ffffff;
+      padding: 12px 16px;
+      font-weight: 700;
+      text-align: left;
+      border-bottom: 2px solid var(--acc-gold, #f59e0b);
+    }
+    [data-theme="dark"] .int-table th {
+      background: #0f172a;
+      border-bottom-color: #38bdf8;
+    }
+    .int-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color, #e2e8f0);
+      color: var(--tx-primary, #1e293b);
+    }
+    [data-theme="dark"] .int-table td {
+      border-bottom-color: #334155;
+      background: #111827;
+      color: #e2e8f0;
+    }
+    .int-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+    [data-theme="dark"] .int-table tr:nth-child(even) td {
+      background: #0b1120;
+    }
+
+    @media (max-width: 768px) {
+      .int-card {
+        padding: 20px 16px;
+      }
+      .int-main-title {
+        font-size: 1.6rem;
+      }
+      .int-section-heading {
+        font-size: 1.2rem;
+      }
+      .int-text, .int-bullet-list li {
+        font-size: 0.92rem;
+      }
+      .int-table {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
+
+  <main id="mainContent" class="int-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="int-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="admissions.html" data-en="Admissions" data-hi="प्रवेश">Admissions</a>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="International Students" data-hi="अंतरराष्ट्रीय विद्यार्थी">International Students</span>
+      </nav>
+
+      <!-- Main Content Card -->
+      <article class="int-card">
+        <h1 class="int-main-title" data-en="Home (International Student)" data-hi="अंतरराष्ट्रीय विद्यार्थी प्रकोष्ठ (होम)">
+          Home (International Student)
+        </h1>
+
+        <!-- Feature Metric Chips -->
+        <div class="int-metric-grid">
+          <div class="int-metric-chip">
+            <strong>ICCR Partner</strong>
+            <span data-en="Govt. of India Fellowship Support" data-hi="भारत सरकार फेलोशिप सहायता">Govt. of India Fellowship Support</span>
+          </div>
+          <div class="int-metric-chip">
+            <strong>OIA Cell</strong>
+            <span data-en="Dedicated International Affairs Office" data-hi="समर्पित अंतरराष्ट्रीय मामला कार्यालय">Dedicated International Affairs Office</span>
+          </div>
+          <div class="int-metric-chip">
+            <strong>FRRO Assistance</strong>
+            <span data-en="Single Point Visa &amp; e-FRRO Liaison" data-hi="एकल बिंदु वीजा एवं ई-एफआरआरओ समन्वय">Single Point Visa &amp; e-FRRO Liaison</span>
+          </div>
+          <div class="int-metric-chip">
+            <strong>Cultural Exchange</strong>
+            <span data-en="Enriching Academic &amp; Social Stay" data-hi="समृद्ध शैक्षणिक एवं सामाजिक प्रवास">Enriching Academic &amp; Social Stay</span>
+          </div>
+        </div>
+
+        <!-- Section 1: About ICCR -->
+        <h2 class="int-section-heading" data-en="About ICCR" data-hi="आईसीसीआर के बारे में">
+          About ICCR
+        </h2>
+
+        <p class="int-text" data-en="The Indian Council of Cultural Relations (ICCR) is India’s first autonomous organization having been established in 1950. The major purpose of ICCR is to actively participate in the development and implementation of policies and initiatives concerning India’s international cultural relations. ICCR is fully devoted and dedicated for foreign students. ICCR helps to:" data-hi="भारतीय सांस्कृतिक संबंध परिषद (आईसीसीआर) भारत का पहला स्वायत्त संगठन है जिसकी स्थापना 1950 में हुई थी। आईसीसीआर का मुख्य उद्देश्य भारत के अंतरराष्ट्रीय सांस्कृतिक संबंधों से संबंधित नीतियों और पहलों के विकास और कार्यान्वयन में सक्रिय रूप से भाग लेना है। आईसीसीआर विदेशी छात्रों के लिए पूरी तरह समर्पित है। आईसीसीआर निम्नलिखित में मदद करता है:">
+          The Indian Council of Cultural Relations (ICCR) is India’s first autonomous organization having been established in 1950. The major purpose of ICCR is to actively participate in the development and implementation of policies and initiatives concerning India’s international cultural relations. ICCR is fully devoted and dedicated for foreign students. ICCR helps to:
+        </p>
+
+        <ol class="int-alpha-list">
+          <li data-en="To foster and improve cultural links and mutual understanding between India and other countries;" data-hi="भारत और अन्य देशों के बीच सांस्कृतिक संबंधों और आपसी समझ को बढ़ावा देना और सुधारना;">
+            To foster and improve cultural links and mutual understanding between India and other countries;
+          </li>
+          <li data-en="To encourage cultural exchanges with other countries and people;" data-hi="अन्य देशों और लोगों के साथ सांस्कृतिक आदान-प्रदान को प्रोत्साहित करना;">
+            To encourage cultural exchanges with other countries and people;
+          </li>
+          <li data-en="To establish relations with nations." data-hi="राष्ट्रों के साथ संबंध स्थापित करना।">
+            To establish relations with nations.
+          </li>
+        </ol>
+
+        <p class="int-text" data-en="The ICCR’s major vision and mission is to preserve the threads of India’s rich artistic and cultural legacy. Also, ICCR mission is to turn India’s vast and widely dispersed cultural canvass into an objective cultural mapping in order to design a mechanism to meet the hopes of the entire nation’s artists in order to preserve the country’s rich cultural heritage for future generations and to create a strong cultural vibrancy throughout the country." data-hi="आईसीसीआर का मुख्य विजन और मिशन भारत की समृद्ध कलात्मक और सांस्कृतिक विरासत के धागों को संरक्षित करना है। साथ ही, आईसीसीआर का मिशन भारत के विशाल और व्यापक रूप से फैले सांस्कृतिक कैनवास को वस्तुनिष्ठ सांस्कृतिक मानचित्रण में बदलना है ताकि भविष्य की पीढ़ियों के लिए देश की समृद्ध सांस्कृतिक विरासत को संरक्षित करने और पूरे देश में एक मजबूत सांस्कृतिक जीवंतता पैदा करने के लिए पूरे देश के कलाकारों की आशाओं को पूरा करने के लिए एक तंत्र तैयार किया जा सके।">
+          The ICCR’s major vision and mission is to preserve the threads of India’s rich artistic and cultural legacy. Also, ICCR mission is to turn India’s vast and widely dispersed cultural canvass into an objective cultural mapping in order to design a mechanism to meet the hopes of the entire nation’s artists in order to preserve the country’s rich cultural heritage for future generations and to create a strong cultural vibrancy throughout the country.
+        </p>
+
+        <!-- Section 2: International Student -->
+        <h2 class="int-section-heading" data-en="International Student" data-hi="अंतरराष्ट्रीय विद्यार्थी प्रकोष्ठ (OIA)">
+          International Student
+        </h2>
+
+        <p class="int-text" data-en="Office of international affair (OIA) is responsible for receiving and preliminary screening of application from international students for various programs and forwarding to concerned departments, and to address all matters concerning foreign students including grievances if any. OIA undertake the following activities –" data-hi="अंतरराष्ट्रीय मामला कार्यालय (ओआईए) विभिन्न कार्यक्रमों के लिए अंतरराष्ट्रीय छात्रों के आवेदनों को प्राप्त करने, उनकी प्रारंभिक जांच करने और संबंधित विभागों को अग्रेषित करने तथा विदेशी छात्रों से संबंधित सभी मामलों (यदि कोई शिकायत हो तो उसका निवारण सहित) को हल करने के लिए जिम्मेदार है। ओआईए निम्नलिखित गतिविधियों का संचालन करता है:">
+          Office of international affair (OIA) is responsible for receiving and preliminary screening of application from international students for various programs and forwarding to concerned departments, and to address all matters concerning foreign students including grievances if any. OIA undertake the following activities –
+        </p>
+
+        <ul class="int-bullet-list">
+          <li data-en="Coordinate all matters relating to welcoming and supporting foreign students" data-hi="विदेशी छात्रों के स्वागत और सहायता से संबंधित सभी मामलों का समन्वय करना">
+            Coordinate all matters relating to welcoming and supporting foreign students
+          </li>
+          <li data-en="Disseminate information related to admission process among prospective foreign students" data-hi="भावी विदेशी छात्रों के बीच प्रवेश प्रक्रिया से संबंधित जानकारी का प्रसार करना">
+            Disseminate information related to admission process among prospective foreign students
+          </li>
+          <li data-en="Engage in promotional activities and brand building campaign" data-hi="प्रचार गतिविधियों और ब्रांड निर्माण अभियान में संलग्न होना">
+            Engage in promotional activities and brand building campaign
+          </li>
+          <li data-en="Single point contact for carrying out all collaborative activities with foreign institutions" data-hi="विदेशी संस्थानों के साथ सभी सहयोगात्मक गतिविधियों को संचालित करने के लिए एकल बिंदु संपर्क">
+            Single point contact for carrying out all collaborative activities with foreign institutions
+          </li>
+          <li data-en="Act as a liaison body between the foreign students and sponsoring agency" data-hi="विदेशी छात्रों और प्रायोजक एजेंसी के बीच संपर्क निकाय के रूप में कार्य करना">
+            Act as a liaison body between the foreign students and sponsoring agency
+          </li>
+          <li data-en="Address the grievances of foreign students in all matters" data-hi="सभी मामलों में विदेशी छात्रों की शिकायतों का निवारण करना">
+            Address the grievances of foreign students in all matters
+          </li>
+          <li data-en="Single point contact for registration with FRRO/e- FRRO" data-hi="एफआरआरओ/ई-एफआरआरओ के साथ पंजीकरण के लिए एकल बिंदु संपर्क">
+            Single point contact for registration with FRRO/e- FRRO
+          </li>
+          <li data-en="Facilitate networking with fellow students" data-hi="साथी छात्रों के साथ नेटवर्किंग की सुविधा प्रदान करना">
+            Facilitate networking with fellow students
+          </li>
+          <li data-en="Extend all possible help to the foreign students to adapt to the new cultural environment and make their stay in India comfortable and enriching" data-hi="विदेशी छात्रों को नए सांस्कृतिक वातावरण में ढलने और भारत में उनके प्रवास को आरामदायक और समृद्ध बनाने के लिए हर संभव मदद प्रदान करना">
+            Extend all possible help to the foreign students to adapt to the new cultural environment and make their stay in India comfortable and enriching
+          </li>
+        </ul>
+
+        <!-- Section 3: Committee -->
+        <h2 class="int-section-heading" data-en="Committee" data-hi="समिति (अंतरराष्ट्रीय छात्र कल्याण समिति)">
+          Committee
+        </h2>
+
+        <div class="int-table-wrap">
+          <table class="int-table">
+            <thead>
+              <tr>
+                <th style="width: 60px;">#</th>
+                <th data-en="Name &amp; Designation" data-hi="नाम एवं पदनाम">Name &amp; Designation</th>
+                <th data-en="Role / Position" data-hi="भूमिका / पद">Role / Position</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1</strong></td>
+                <td>
+                  <strong>Dr. Rakesh Kumar</strong><br>
+                  <span style="color: var(--tx-secondary); font-size: 0.88rem;">Associate Professor, Department of Biotechnology</span>
+                </td>
+                <td><span style="font-weight: 700; color: #0b6cb8;">Chairperson</span></td>
+              </tr>
+              <tr>
+                <td><strong>2</strong></td>
+                <td>
+                  <strong>Dr. N.L. Devi</strong><br>
+                  <span style="color: var(--tx-secondary); font-size: 0.88rem;">Assistant Professor, Department of Environmental Sciences &amp; Nodal Officer/Advisor, International Student Affairs</span>
+                </td>
+                <td><span style="font-weight: 700; color: #0b6cb8;">Member Secretary</span></td>
+              </tr>
+              <tr>
+                <td><strong>3</strong></td>
+                <td>
+                  <strong>Dr. Sudhanshu Kr. Jha</strong><br>
+                  <span style="color: var(--tx-secondary); font-size: 0.88rem;">Assistant Professor &amp; Head, Department of Historical Studies and Archaeology</span>
+                </td>
+                <td><span style="font-weight: 700;">Member</span></td>
+              </tr>
+              <tr>
+                <td><strong>4</strong></td>
+                <td>
+                  <strong>Dr. Lakhwinder Singh</strong><br>
+                  <span style="color: var(--tx-secondary); font-size: 0.88rem;">Assistant Professor, Department of Physics</span>
+                </td>
+                <td><span style="font-weight: 700;">Member</span></td>
+              </tr>
+              <tr>
+                <td><strong>5</strong></td>
+                <td>
+                  <strong>Mr. Sagar Kumar</strong><br>
+                  <span style="color: var(--tx-secondary); font-size: 0.88rem;">Assistant (Academic)</span>
+                </td>
+                <td><span style="font-weight: 700;">Academic section representative</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </article>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -557,14 +557,14 @@ class CusbNavbar extends HTMLElement {
                   <div class="megamenu-heading" data-en="Admissions" data-hi="प्रवेश">Admissions</div>
                   <ul class="megamenu-list">
                     <li class="megamenu-item"><a href="admissions.html#admission-2026-27"><span class="megamenu-icon">📝</span><span data-en="Admission 2026-27" data-hi="प्रवेश 2026-27">Admission 2026-27</span></a></li>
-                    <li class="megamenu-item"><a href="admissions.html#international-students"><span class="megamenu-icon">🌐</span><span data-en="International Student" data-hi="अंतरराष्ट्रीय विद्यार्थी">International Student</span></a></li>
+                    <li class="megamenu-item"><a href="international-students.html"><span class="megamenu-icon">🌐</span><span data-en="International Student" data-hi="अंतरराष्ट्रीय विद्यार्थी">International Student</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
                   <div class="megamenu-heading" data-en="Resources" data-hi="संसाधन">Resources</div>
                   <ul class="megamenu-list">
                     <li class="megamenu-item"><a href="courses.html"><span class="megamenu-icon">📚</span><span data-en="Programmes and Courses" data-hi="कार्यक्रम और पाठ्यक्रम">Programmes and Courses</span></a></li>
-                    <li class="megamenu-item"><a href="admissions.html#help-desk"><span class="megamenu-icon">💬</span><span data-en="Help Desk" data-hi="सहायता डेस्क">Help Desk</span></a></li>
+                    <li class="megamenu-item"><a href="help-desk.html"><span class="megamenu-icon">💬</span><span data-en="Help Desk" data-hi="सहायता डेस्क">Help Desk</span></a></li>
                   </ul>
                 </div>
               </div>
@@ -1070,15 +1070,20 @@ class CusbFooter extends HTMLElement {
             </div>
           </div>
           
-          <div class="footer-col">
-            <div class="footer-heading" data-en="Quick Links" data-hi="त्वरित लिंक्स">Quick Links</div>
-            <ul class="footer-links">
-              <li><a href="about.html" data-en="About CUSB" data-hi="सीयूएसबी के बारे में">About CUSB</a></li>
-              <li><a href="leaders.html" data-en="University Administration" data-hi="विश्वविद्यालय प्रशासन">University Administration</a></li>
-              <li><a href="courses.html" data-en="Schools & Departments" data-hi="अध्ययन शालाएं एवं विभाग">Schools & Departments</a></li>
-              <li><a href="admissions.html" data-en="Admissions 2026-27" data-hi="प्रवेश 2026-27">Admissions 2026-27</a></li>
-              <li><a href="careers.html" data-en="Careers & Openings" data-hi="करियर और नौकरियां">Careers & Openings</a></li>
-              <li><a href="tenders.html" data-en="Tenders & EOI" data-hi="निविदाएं">Tenders & EOI</a></li>
+          <div class="footer-col footer-col-important-links">
+            <div class="footer-heading" data-en="Important Links" data-hi="महत्वपूर्ण लिंक्स">Important Links</div>
+            <ul class="footer-links footer-links-grid">
+              <li><a href="https://www.education.gov.in/" target="_blank" rel="noopener noreferrer" data-en="Ministry of Human Resource Development" data-hi="मानव संसाधन विकास मंत्रालय">Ministry of Human Resource Development</a></li>
+              <li><a href="https://www.ugc.gov.in/" target="_blank" rel="noopener noreferrer" data-en="University Grant Commission (UGC)" data-hi="विश्वविद्यालय अनुदान आयोग (यूजीसी)">University Grant Commission (UGC)</a></li>
+              <li><a href="https://www.aicte-india.org/" target="_blank" rel="noopener noreferrer" data-en="AICTE" data-hi="एआईसीटीई (AICTE)">AICTE</a></li>
+              <li><a href="https://ncte.gov.in/" target="_blank" rel="noopener noreferrer" data-en="NCTE" data-hi="एनसीटीई (NCTE)">NCTE</a></li>
+              <li><a href="https://www.pci.nic.in/" target="_blank" rel="noopener noreferrer" data-en="Pharmacy council of India" data-hi="भारतीय फार्मेसी परिषद">Pharmacy council of India</a></li>
+              <li><a href="https://goidirectory.gov.in/" target="_blank" rel="noopener noreferrer" data-en="GoI Web Directory" data-hi="भारत सरकार वेब निर्देशिका">GoI Web Directory</a></li>
+              <li><a href="https://scholarships.gov.in/" target="_blank" rel="noopener noreferrer" data-en="National Scholarship Portal" data-hi="राष्ट्रीय छात्रवृत्ति पोर्टल">National Scholarship Portal</a></li>
+              <li><a href="http://www.barcouncilofindia.org/" target="_blank" rel="noopener noreferrer" data-en="The Bar Council of India" data-hi="भारतीय विधिज्ञ परिषद (बीसीआई)">The Bar Council of India</a></li>
+              <li><a href="http://nkn.gov.in/" target="_blank" rel="noopener noreferrer" data-en="National Knowledge Network" data-hi="राष्ट्रीय ज्ञान नेटवर्क">National Knowledge Network</a></li>
+              <li><a href="https://nad.gov.in/" target="_blank" rel="noopener noreferrer" data-en="National Academic Depository (NAD)" data-hi="राष्ट्रीय शैक्षणिक निक्षेपागार (एनएडी)">National Academic Depository (NAD)</a></li>
+              <li><a href="about-policies-documents.html" data-en="Public Self Disclosure" data-hi="सार्वजनिक स्व-प्रकटीकरण">Public Self Disclosure</a></li>
             </ul>
           </div>
 

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="Help Desk — Central University of South Bihar" data-hi="सहायता डेस्क — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Help Desk — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Central University of South Bihar (CUSB) Help Desk, Admission inquiries, Reception helpline numbers, campus address, and admission support email.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .hd-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .hd-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .hd-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .hd-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .hd-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 36px 40px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    [data-theme="dark"] .hd-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .hd-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 20px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .hd-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .hd-sub-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--tx-primary, #0f172a);
+      margin: 0 0 24px;
+    }
+    [data-theme="dark"] .hd-sub-title {
+      color: #f8fafc;
+    }
+
+    /* Content Layout */
+    .hd-layout-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 36px;
+      align-items: center;
+      margin-bottom: 36px;
+    }
+
+    .hd-icon-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hd-icon-img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 16px rgba(11, 108, 184, 0.15));
+      transition: transform 0.3s ease;
+    }
+    .hd-icon-img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Contact Details List */
+    .hd-details-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .hd-details-list li {
+      position: relative;
+      padding-left: 24px;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--tx-primary, #1e293b);
+    }
+    [data-theme="dark"] .hd-details-list li {
+      color: #e2e8f0;
+    }
+    .hd-details-list li::before {
+      content: "•";
+      position: absolute;
+      left: 6px;
+      top: 0;
+      color: #0b6cb8;
+      font-size: 1.4rem;
+      line-height: 1.4;
+    }
+    [data-theme="dark"] .hd-details-list li::before {
+      color: #38bdf8;
+    }
+
+    .hd-label {
+      font-weight: 800;
+      color: var(--tx-primary, #0f172a);
+    }
+    [data-theme="dark"] .hd-label {
+      color: #ffffff;
+    }
+
+    .hd-link {
+      color: #0b6cb8;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .hd-link:hover {
+      color: #004b9b;
+      text-decoration: underline;
+    }
+    [data-theme="dark"] .hd-link {
+      color: #38bdf8;
+    }
+
+    /* Contact Cards Grid */
+    .hd-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border-color, #e2e8f0);
+    }
+    .hd-quick-card {
+      background: linear-gradient(135deg, rgba(11, 108, 184, 0.04), rgba(0, 58, 106, 0.02));
+      border: 1px solid rgba(11, 108, 184, 0.16);
+      border-radius: 10px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .hd-quick-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(11, 108, 184, 0.12);
+    }
+    [data-theme="dark"] .hd-quick-card {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.06), rgba(2, 132, 199, 0.03));
+      border-color: rgba(56, 189, 248, 0.2);
+    }
+    .hd-card-head {
+      font-size: 0.86rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #0b6cb8;
+    }
+    [data-theme="dark"] .hd-card-head {
+      color: #38bdf8;
+    }
+    .hd-card-val {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--tx-primary, #0f172a);
+    }
+    [data-theme="dark"] .hd-card-val {
+      color: #f8fafc;
+    }
+
+    @media (max-width: 768px) {
+      .hd-card {
+        padding: 24px 18px;
+      }
+      .hd-layout-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: left;
+      }
+      .hd-icon-img {
+        width: 150px;
+        height: 150px;
+      }
+      .hd-main-title {
+        font-size: 1.7rem;
+      }
+      .hd-sub-title {
+        font-size: 1.2rem;
+      }
+      .hd-details-list li {
+        font-size: 0.92rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
+
+  <main id="mainContent" class="hd-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="hd-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="admissions.html" data-en="Admissions" data-hi="प्रवेश">Admissions</a>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="Help Desk" data-hi="सहायता डेस्क">Help Desk</span>
+      </nav>
+
+      <!-- Main Content Card -->
+      <article class="hd-card">
+        <h1 class="hd-main-title" data-en="Help Desk" data-hi="सहायता डेस्क">Help Desk</h1>
+
+        <h2 class="hd-sub-title" data-en="CUSB Help Desk" data-hi="सीयूएसबी सहायता डेस्क">
+          CUSB Help Desk
+        </h2>
+
+        <div class="hd-layout-grid">
+          <!-- Left Icon -->
+          <div class="hd-icon-wrap">
+            <img src="assets/help-desk-icon.png" alt="CUSB Help Desk Support Representative" class="hd-icon-img" loading="lazy">
+          </div>
+
+          <!-- Right Contact List -->
+          <div>
+            <ul class="hd-details-list">
+              <li>
+                <span class="hd-label" data-en="Reception :" data-hi="स्वागत कक्ष :">Reception :</span> 
+                <a href="tel:06312229530" class="hd-link">0631 – 2229 530</a>
+              </li>
+
+              <li>
+                <span class="hd-label" data-en="Admission :" data-hi="प्रवेश सहायता :">Admission :</span> 
+                <a href="tel:06312229514" class="hd-link">0631 – 2229 514</a> / 
+                <a href="tel:06312229518" class="hd-link">518</a> – 
+                <a href="tel:9472979367" class="hd-link">9472979367</a>
+              </li>
+
+              <li>
+                <span class="hd-label" data-en="Address :" data-hi="पता :">Address :</span> 
+                <span>SH-7, Gaya Panchanpur Road, Village – Karhara, Post. Fatehpur, Gaya – 824236 (Bihar)</span>
+              </li>
+
+              <li>
+                <span class="hd-label" data-en="EMAIL :" data-hi="ईमेल :">EMAIL :</span> 
+                <a href="mailto:admission@cub.ac.in" class="hd-link">admission@cub.ac.in</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Quick Contact Action Cards -->
+        <div class="hd-cards-grid">
+          <div class="hd-quick-card">
+            <span class="hd-card-head" data-en="📞 General Reception" data-hi="📞 स्वागत कक्ष">📞 General Reception</span>
+            <span class="hd-card-val"><a href="tel:06312229530" class="hd-link">0631 - 2229 530</a></span>
+            <span style="font-size: 0.82rem; color: var(--tx-muted);" data-en="Mon - Fri: 9:30 AM - 5:30 PM" data-hi="सोम - शुक्र: 9:30 AM - 5:30 PM">Mon - Fri: 9:30 AM - 5:30 PM</span>
+          </div>
+
+          <div class="hd-quick-card">
+            <span class="hd-card-head" data-en="🎓 Admission Helpline" data-hi="🎓 प्रवेश हेल्पलाइन">🎓 Admission Helpline</span>
+            <span class="hd-card-val"><a href="tel:9472979367" class="hd-link">9472979367</a></span>
+            <span style="font-size: 0.82rem; color: var(--tx-muted);" data-en="0631-2229514 / 2229518" data-hi="0631-2229514 / 2229518">0631-2229514 / 2229518</span>
+          </div>
+
+          <div class="hd-quick-card">
+            <span class="hd-card-head" data-en="✉️ Official Email" data-hi="✉️ आधिकारिक ईमेल">✉️ Official Email</span>
+            <span class="hd-card-val"><a href="mailto:admission@cub.ac.in" class="hd-link">admission@cub.ac.in</a></span>
+            <span style="font-size: 0.82rem; color: var(--tx-muted);" data-en="Central Admissions Office" data-hi="केंद्रीय प्रवेश कार्यालय">Central Admissions Office</span>
+          </div>
+        </div>
+
+      </article>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

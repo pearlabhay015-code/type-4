@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="Bank &amp; ATM Facilities — Central University of South Bihar" data-hi="बैंक एवं एटीएम सुविधाएं — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Bank — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="State Bank of India (SBI) and ICICI Bank campus branches and ATM facilities located in the Basement of Administrative Building, Central University of South Bihar (CUSB) Gaya.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .bank-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .bank-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .bank-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .bank-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .bank-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    [data-theme="dark"] .bank-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .bank-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 24px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .bank-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* Bank Row Layout */
+    .bank-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      margin: 20px 0;
+    }
+    .bank-info {
+      flex: 1;
+    }
+    .bank-heading {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--tx-primary, #0f172a);
+      margin: 0 0 10px;
+    }
+    .bank-heading strong {
+      color: #0b6cb8;
+    }
+    [data-theme="dark"] .bank-heading strong {
+      color: #38bdf8;
+    }
+    .bank-desc {
+      font-size: 0.98rem;
+      color: var(--tx-primary, #0f172a);
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    .bank-logo-wrap {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 12px 18px;
+      border: 1px solid var(--border-color, #e2e8f0);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    .bank-logo-wrap img {
+      max-height: 70px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+    .bank-logo-wrap.icici-wrap img {
+      max-height: 100px;
+    }
+
+    .bank-divider {
+      height: 1px;
+      background: var(--border-color, #e2e8f0);
+      border: none;
+      margin: 28px 0;
+    }
+    [data-theme="dark"] .bank-divider {
+      background: #334155;
+    }
+
+    /* Address & Details Box */
+    .bank-details-box {
+      background: rgba(11, 108, 184, 0.03);
+      border: 1px solid rgba(11, 108, 184, 0.15);
+      border-left: 4px solid #0b6cb8;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-top: 32px;
+    }
+    [data-theme="dark"] .bank-details-box {
+      background: rgba(56, 189, 248, 0.05);
+      border-color: rgba(56, 189, 248, 0.2);
+      border-left-color: #38bdf8;
+    }
+
+    .bank-address-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--tx-primary, #0f172a);
+      margin: 0 0 10px;
+    }
+    [data-theme="dark"] .bank-address-title {
+      color: #f8fafc;
+    }
+
+    .bank-address-text {
+      font-size: 0.96rem;
+      color: var(--tx-primary, #1e293b);
+      line-height: 1.7;
+      margin: 0 0 16px;
+    }
+
+    .bank-code-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.95rem;
+    }
+    .bank-code-list li {
+      position: relative;
+      padding-left: 20px;
+      color: var(--tx-primary, #1e293b);
+    }
+    .bank-code-list li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      top: 0;
+      color: #0b6cb8;
+      font-size: 1.3rem;
+      line-height: 1.4;
+    }
+    [data-theme="dark"] .bank-code-list li::before {
+      color: #38bdf8;
+    }
+
+    .bank-link {
+      color: #0b6cb8;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .bank-link:hover {
+      text-decoration: underline;
+      color: #004b9b;
+    }
+    [data-theme="dark"] .bank-link {
+      color: #38bdf8;
+    }
+
+    .bank-further-text {
+      font-size: 0.96rem;
+      color: var(--tx-primary);
+      margin: 0;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .bank-card {
+        padding: 22px 18px;
+      }
+      .bank-main-title {
+        font-size: 1.7rem;
+      }
+      .bank-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .bank-logo-wrap {
+        align-self: center;
+      }
+      .bank-details-box {
+        padding: 18px 16px;
+      }
+      .bank-desc, .bank-address-text, .bank-code-list li {
+        font-size: 0.92rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
+
+  <main id="mainContent" class="bank-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="bank-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="facilities.html" data-en="Infrastructure" data-hi="बुनियादी ढांचा">Infrastructure</a>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="Bank" data-hi="बैंक">Bank</span>
+      </nav>
+
+      <!-- Main Content Card -->
+      <article class="bank-card">
+        <h1 class="bank-main-title" data-en="Bank" data-hi="बैंक">Bank</h1>
+
+        <!-- 1. State Bank of India -->
+        <div class="bank-row">
+          <div class="bank-info">
+            <h2 class="bank-heading" data-en="State Bank of India – Branch Cusb Gaya Campus" data-hi="भारतीय स्टेट बैंक – शाखा सीयूएसबी गया परिसर">
+              <strong>State Bank of India – Branch</strong> Cusb Gaya Campus
+            </h2>
+            <p class="bank-desc" data-en="State Bank of India – Cusb Gaya Campus is located Central University of South Bihar, Gaya Campus in the Basement of Administrative Building." data-hi="भारतीय स्टेट बैंक – सीयूएसबी गया परिसर दक्षिण बिहार केंद्रीय विश्वविद्यालय, गया परिसर के प्रशासनिक भवन के बेसमेंट में स्थित है।">
+              State Bank of India – Cusb Gaya Campus is located Central University of South Bihar, Gaya Campus in the Basement of Administrative Building.
+            </p>
+          </div>
+          <div class="bank-logo-wrap">
+            <img src="assets/bank/sbi-logo.png" alt="State Bank of India (SBI) Logo" loading="lazy" decoding="async">
+          </div>
+        </div>
+
+        <hr class="bank-divider">
+
+        <!-- 2. ICICI Bank -->
+        <div class="bank-row">
+          <div class="bank-info">
+            <h2 class="bank-heading" data-en="ICICI Bank – Branch Cusb Gaya Campus" data-hi="आईसीआईसीआई बैंक – शाखा सीयूएसबी गया परिसर">
+              <strong>ICICI Bank – Branch</strong> Cusb Gaya Campus
+            </h2>
+            <p class="bank-desc" data-en="ICICI – Cusb Gaya Campus is located Central University of South Bihar, Gaya Campus in the Basement of Administrative Building." data-hi="आईसीआईसीआई – सीयूएसबी गया परिसर दक्षिण बिहार केंद्रीय विश्वविद्यालय, गया परिसर के प्रशासनिक भवन के बेसमेंट में स्थित है।">
+              ICICI – Cusb Gaya Campus is located Central University of South Bihar, Gaya Campus in the Basement of Administrative Building.
+            </p>
+          </div>
+          <div class="bank-logo-wrap icici-wrap">
+            <img src="assets/bank/icici-logo.png" alt="ICICI Bank Logo" loading="lazy" decoding="async">
+          </div>
+        </div>
+
+        <!-- 3. Address & Branch Details Box -->
+        <div class="bank-details-box">
+          <h3 class="bank-address-title" data-en="Address :" data-hi="पता :">Address :</h3>
+          
+          <p class="bank-address-text" data-en="Basement of Administrative Building<br>Sh-7 Gaya Panchanpur Road Village Karhara Post, Fatehpur, Distt. Gaya, Bihar- 824236. Phone Number <a href='tel:+919262592062' class='bank-link'>9262592062</a>" data-hi="प्रशासनिक भवन का बेसमेंट<br>एसएच-7 गया पंचानपुर रोड ग्राम करहारा पोस्ट, फतेहपुर, जिला गया, बिहार- 824236। फोन नंबर <a href='tel:+919262592062' class='bank-link'>9262592062</a>">
+            Basement of Administrative Building<br>
+            Sh-7 Gaya Panchanpur Road Village Karhara Post, Fatehpur, Distt. Gaya, Bihar- 824236. Phone Number <a href="tel:+919262592062" class="bank-link">9262592062</a>
+          </p>
+
+          <ul class="bank-code-list">
+            <li>
+              <strong data-en="Email ID :" data-hi="ईमेल आईडी :">Email ID :</strong> 
+              <a href="mailto:sbi.61174@sbi.co.in" class="bank-link">sbi.61174@sbi.co.in</a>
+            </li>
+            <li>
+              <strong data-en="IFSC Code :" data-hi="आईएफएससी कोड :">IFSC Code :</strong> 
+              <span>SBIN0061174</span>
+            </li>
+            <li>
+              <strong data-en="MICR Code :" data-hi="एमआईसीआर कोड :">MICR Code :</strong> 
+              <span>823002524</span>
+            </li>
+            <li>
+              <strong data-en="Branch Code :" data-hi="शाखा कोड :">Branch Code :</strong> 
+              <span>061174 (Last 6 Characters of the IFSC Code)</span>
+            </li>
+          </ul>
+
+          <p class="bank-further-text" data-en="Further Details at : - <a href='https://sbi.co.in/web/home/locator/branch' target='_blank' rel='noopener noreferrer' class='bank-link'>https://sbi.co.in/web/home/locator/branch</a>" data-hi="अधिक विवरण यहां देखें : - <a href='https://sbi.co.in/web/home/locator/branch' target='_blank' rel='noopener noreferrer' class='bank-link'>https://sbi.co.in/web/home/locator/branch</a>">
+            <strong>Further Details at :</strong> - <a href="https://sbi.co.in/web/home/locator/branch" target="_blank" rel="noopener noreferrer" class="bank-link">https://sbi.co.in/web/home/locator/branch</a>
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

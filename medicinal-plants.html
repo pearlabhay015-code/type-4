@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="Medicinal Plant Detail — Dhanvantari Arogya Vatika | CUSB" data-hi="औषधीय पौधों का विवरण — धन्वंतरि आरोग्य वाटिका | सीयूएसबी">Medicinal Plant Detail — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Official documentation and PDF details of medicinal plants at Dhanvantari Arogya Vatika, Central University of South Bihar (CUSB) Gaya.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .mp-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .mp-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .mp-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .mp-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .mp-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 24px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .mp-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* 2-Column Split Grid */
+    .mp-layout-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* Left Sidebar - Theme Colors */
+    .mp-sidebar-box {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="dark"] .mp-sidebar-box {
+      background: #111827;
+      border-color: #1e293b;
+    }
+    .mp-sidebar-header {
+      background: linear-gradient(135deg, #003a6a, #0b6cb8);
+      color: #ffffff;
+      padding: 14px 18px;
+      font-size: 0.98rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      border-bottom: 2px solid var(--acc-gold, #f59e0b);
+    }
+    [data-theme="dark"] .mp-sidebar-header {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+    }
+    .mp-sidebar-list {
+      list-style: none;
+      padding: 12px 14px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .mp-sidebar-link {
+      display: block;
+      padding: 10px 16px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #0b6cb8;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      text-align: left;
+      border-left: 4px solid transparent;
+    }
+    .mp-sidebar-link:hover {
+      background: #004d8c;
+      transform: translateX(3px);
+      color: #ffffff;
+    }
+    .mp-sidebar-link.active {
+      background: #002d59;
+      border-left-color: var(--acc-gold, #f59e0b);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 45, 89, 0.3);
+    }
+    [data-theme="dark"] .mp-sidebar-link {
+      background: #1e293b;
+      color: #cbd5e1;
+    }
+    [data-theme="dark"] .mp-sidebar-link:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+    [data-theme="dark"] .mp-sidebar-link.active {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border-left-color: #38bdf8;
+    }
+
+    /* Main Content Area */
+    .mp-main-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    [data-theme="dark"] .mp-main-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    /* PDF Action Bar */
+    .mp-pdf-hero-box {
+      background: linear-gradient(135deg, rgba(11, 108, 184, 0.06), rgba(0, 58, 106, 0.03));
+      border: 1px solid rgba(11, 108, 184, 0.18);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    [data-theme="dark"] .mp-pdf-hero-box {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(2, 132, 199, 0.04));
+      border-color: rgba(56, 189, 248, 0.2);
+    }
+
+    .mp-pdf-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .mp-pdf-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    [data-theme="dark"] .mp-pdf-title {
+      color: #38bdf8;
+    }
+
+    .mp-btn-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .mp-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0b6cb8;
+      color: #ffffff !important;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 10px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(11, 108, 184, 0.25);
+    }
+    .mp-btn-primary:hover {
+      background: #004b9b;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(11, 108, 184, 0.35);
+    }
+    .mp-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      border: 1px solid #0b6cb8;
+      color: #0b6cb8 !important;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 9px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .mp-btn-secondary:hover {
+      background: rgba(11, 108, 184, 0.08);
+      color: #004b9b !important;
+    }
+    [data-theme="dark"] .mp-btn-primary {
+      background: #0284c7;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+    }
+    [data-theme="dark"] .mp-btn-primary:hover {
+      background: #0369a1;
+    }
+    [data-theme="dark"] .mp-btn-secondary {
+      border-color: #38bdf8;
+      color: #38bdf8 !important;
+    }
+    [data-theme="dark"] .mp-btn-secondary:hover {
+      background: rgba(56, 189, 248, 0.12);
+    }
+
+    /* Embedded PDF Frame Card */
+    .mp-pdf-frame-card {
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      background: #ffffff;
+    }
+    [data-theme="dark"] .mp-pdf-frame-card {
+      background: #1e293b;
+      border-color: #334155;
+    }
+    .mp-pdf-frame {
+      width: 100%;
+      height: 650px;
+      border: none;
+      display: block;
+    }
+
+    /* Text Overview Sections */
+    .mp-section-title {
+      font-size: 1.22rem;
+      font-weight: 800;
+      color: var(--tx-primary, #0f172a);
+      margin: 28px 0 14px;
+    }
+    [data-theme="dark"] .mp-section-title {
+      color: #f8fafc;
+    }
+
+    .mp-doc-text {
+      font-size: 0.98rem;
+      color: var(--tx-primary, #0f172a);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .mp-points-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .mp-points-list li {
+      position: relative;
+      padding-left: 24px;
+      font-size: 0.96rem;
+      line-height: 1.75;
+      color: var(--tx-primary, #1e293b);
+    }
+    .mp-points-list li::before {
+      content: "▪";
+      position: absolute;
+      left: 6px;
+      top: 0;
+      color: #0b6cb8;
+      font-size: 1.2rem;
+      line-height: 1.4;
+    }
+    [data-theme="dark"] .mp-points-list li::before {
+      color: #38bdf8;
+    }
+
+    @media (max-width: 880px) {
+      .mp-layout-grid {
+        grid-template-columns: 1fr;
+      }
+      .mp-main-card {
+        padding: 22px 18px;
+      }
+      .mp-main-title {
+        font-size: 1.7rem;
+      }
+      .mp-pdf-frame {
+        height: 480px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
+
+  <main id="mainContent" class="mp-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="mp-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="facilities.html" data-en="Infrastructure" data-hi="बुनियादी ढांचा">Infrastructure</a>
+        <span>/</span>
+        <a href="dhanvantari-vatika.html" data-en="Dhanvantari Arogya Vatika" data-hi="धन्वंतरि आरोग्य वाटिका">Dhanvantari Arogya Vatika</a>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="Medicinal Plant Detail" data-hi="औषधीय पौधों का विवरण">Medicinal Plant Detail</span>
+      </nav>
+
+      <h1 class="mp-main-title" data-en="Medicinal Plant Detail" data-hi="औषधीय पौधों का विवरण">Medicinal Plant Detail</h1>
+
+      <!-- Split Layout Grid -->
+      <div class="mp-layout-grid">
+        
+        <!-- Left Sidebar Navigation - Theme Colors -->
+        <aside class="mp-sidebar-box">
+          <div class="mp-sidebar-header" data-en="Dhanvantari Arogya Vatika" data-hi="धन्वंतरि आरोग्य वाटिका">
+            Dhanvantari Arogya Vatika
+          </div>
+          <ul class="mp-sidebar-list">
+            <li>
+              <a href="dhanvantari-vatika.html" class="mp-sidebar-link" data-en="Dhanvantari Arogya Vatika" data-hi="धन्वंतरि आरोग्य वाटिका">
+                Dhanvantari Arogya Vatika
+              </a>
+            </li>
+            <li>
+              <a href="medicinal-plants.html" class="mp-sidebar-link active" data-en="Medicinal Plant Detail" data-hi="औषधीय पौधों का विवरण">
+                Medicinal Plant Detail
+              </a>
+            </li>
+          </ul>
+        </aside>
+
+        <!-- Right Main Content Card -->
+        <article class="mp-main-card">
+
+          <!-- PDF Download Action Box -->
+          <div class="mp-pdf-hero-box">
+            <div class="mp-pdf-title-row">
+              <h2 class="mp-pdf-title" data-en="📄 Official Medicinal Plant Document (PDF)" data-hi="📄 आधिकारिक औषधीय पादप दस्तावेज (पीडीएफ)">
+                <span>📄</span> 
+                <span data-en="Official Medicinal Plant Document" data-hi="आधिकारिक औषधीय पादप दस्तावेज">Official Medicinal Plant Document</span>
+              </h2>
+
+              <div class="mp-btn-group">
+                <a href="assets/dhanvantari-vatika/medicinal-plants-detail.pdf" download="CUSB_Dhanvantari_Vatika_Medicinal_Plants_Detail.pdf" class="mp-btn-primary" data-en="⬇ Download PDF" data-hi="⬇ डाउनलोड पीडीएफ">
+                  ⬇ Download PDF
+                </a>
+                <a href="assets/dhanvantari-vatika/medicinal-plants-detail.pdf" target="_blank" rel="noopener noreferrer" class="mp-btn-secondary" data-en="↗ Open Full PDF" data-hi="↗ पूर्ण पीडीएफ खोलें">
+                  ↗ Open Full PDF
+                </a>
+              </div>
+            </div>
+            <p style="margin: 0; font-size: 0.92rem; color: var(--tx-secondary);" data-en="Complete official documentation and details of Dhanvantari Arogya Vatika (Medicinal Plant Garden) at CUSB Gaya campus." data-hi="दक्षिण बिहार केंद्रीय विश्वविद्यालय, गया परिसर में धन्वंतरि आरोग्य वाटिका (औषधीय पादप उद्यान) का संपूर्ण आधिकारिक दस्तावेज एवं विवरण।">
+              Complete official documentation and details of Dhanvantari Arogya Vatika (Medicinal Plant Garden) at CUSB Gaya campus.
+            </p>
+          </div>
+
+          <!-- Embedded PDF Viewer -->
+          <div class="mp-pdf-frame-card">
+            <iframe 
+              src="assets/dhanvantari-vatika/medicinal-plants-detail.pdf" 
+              class="mp-pdf-frame" 
+              title="CUSB Dhanvantari Arogya Vatika Medicinal Plants Detail PDF" 
+              loading="lazy">
+            </iframe>
+          </div>
+
+          <!-- Document Full Readable Text (Bilingual) -->
+          <h2 class="mp-section-title" data-en="Document Overview &amp; Key Details" data-hi="दस्तावेज अवलोकन एवं मुख्य विवरण">
+            Document Overview &amp; Key Details
+          </h2>
+
+          <p class="mp-doc-text" data-en="<strong>Dhanvantari</strong>, the god of medicine and health, is the divine physician in Indian tradition. He holds a special place in Ayurveda, the ancient Indian system of medicine, and is often worshipped for healing and good health. The Medicinal Plant Garden is named after Lord Dhanvantari as <strong>“Dhanvantari Arogya Vatika”</strong> and was jointly developed by the Department of Pharmacy and Department of Agriculture in 2025 under the visionary leadership of <strong>Prof. Kameshwar Nath Singh, Hon'ble Vice Chancellor</strong>, Central University of South Bihar. The garden was inaugurated by <strong>Shri Vijay Kumar Sinha, Deputy Chief Minister, Govt. of Bihar</strong>, on 31st July 2025. Currently, Dhanvantari Arogya Vatika has more than 50 species of medicinal plants with provisions to expand the number of species." data-hi="<strong>धन्वंतरि</strong>, भारतीय ज्ञान परंपरा में औषधि एवं आरोग्य के देवता हैं। वे प्राचीन भारतीय चिकित्सा प्रणाली, आयुर्वेद, में दिव्य वैद्य के रूप में प्रतिष्ठित हैं तथा स्वास्थ्य व रोग निवारण हेतु लोकमानस में पूजनीय हैं। विश्वविद्यालय स्थित औषधीय पौधों का यह उद्यान 'धन्वंतरि आरोग्य वाटिका' उन्हीं पूज्य ऋषि धन्वंतरि की स्मृति को समर्पित है। दक्षिण बिहार केंद्रीय विश्वविद्यालय स्थित औषधीय पादपों का यह उद्यान हमारे माननीय कुलपति <strong>प्रो. कामेश्वर नाथ सिंह</strong> के दूरदर्शी नेतृत्व एवं मार्गदर्शन में विश्वविद्यालय के फार्मेसी विभाग एवं कृषि विभाग के संयुक्त उद्यम द्वारा वर्ष २०२५ में स्थापित किया गया है। इस वाटिका का उद्घाटन <strong>श्री विजय कुमार सिन्हा, उपमुख्यमंत्री, बिहार सरकार</strong> द्वारा ३१ जुलाई २०२५ को किया गया। वर्तमान में धन्वंतरि आरोग्य वाटिका में ५० से अधिक औषधीय पौधों की प्रजातियाँ उपलब्ध हैं। भविष्य में उद्यान को औषधीय पादपों की दूसरी महत्वपूर्ण प्रजातियों से भी समृद्ध करने की योजना पर फार्मेसी विभाग एवं कृषि विभाग कार्यरत हैं।">
+            <strong>धन्वंतरि</strong>, भारतीय ज्ञान परंपरा में औषधि एवं आरोग्य के देवता हैं। वे प्राचीन भारतीय चिकित्सा प्रणाली, आयुर्वेद, में दिव्य वैद्य के रूप में प्रतिष्ठित हैं तथा स्वास्थ्य व रोग निवारण हेतु लोकमानस में पूजनीय हैं। विश्वविद्यालय स्थित औषधीय पौधों का यह उद्यान 'धन्वंतरि आरोग्य वाटिका' उन्हीं पूज्य ऋषि धन्वंतरि की स्मृति को समर्पित है। दक्षिण बिहार केंद्रीय विश्वविद्यालय स्थित औषधीय पादपों का यह उद्यान हमारे माननीय कुलपति प्रो. कामेश्वर नाथ सिंह के दूरदर्शी नेतृत्व एवं मार्गदर्शन में विश्वविद्यालय के फार्मेसी विभाग एवं कृषि विभाग के संयुक्त उद्यम द्वारा वर्ष २०२५ में स्थापित किया गया है। इस वाटिका का उद्घाटन श्री विजय कुमार सिन्हा, उपमुख्यमंत्री, बिहार सरकार द्वारा ३१ जुलाई २०२५ को किया गया। वर्तमान में धन्वंतरि आरोग्य वाटिका में ५० से अधिक औषधीय पौधों की प्रजातियाँ उपलब्ध हैं। भविष्य में उद्यान को औषधीय पादपों की दूसरी महत्वपूर्ण प्रजातियों से भी समृद्ध करने की योजना पर फार्मेसी विभाग एवं कृषि विभाग कार्यरत हैं।
+          </p>
+
+          <ul class="mp-points-list">
+            <li data-en="<strong>Relevance:</strong> The establishment and maintenance of ‘Dhanvantari Arogya Vatika’ hold significant relevance in conservation, holistic health promotion and as the centre of knowledge of Medicinal plants." data-hi="<strong>प्रासंगिकता:</strong> धन्वंतरि आरोग्य वाटिका की स्थापना विश्वविद्यालय में औषधीय पौधों के संरक्षण, समग्र स्वास्थ्य संवर्धन तथा औषधीय पौधों के ज्ञान के एक केंद्र के रूप में स्थापित करने की दृष्टि से अत्यंत महत्वपूर्ण है।">
+              <strong>प्रासंगिकता:</strong> धन्वंतरि आरोग्य वाटिका की स्थापना विश्वविद्यालय में औषधीय पौधों के संरक्षण, समग्र स्वास्थ्य संवर्धन तथा औषधीय पौधों के ज्ञान के एक केंद्र के रूप में स्थापित करने की दृष्टि से अत्यंत महत्वपूर्ण है।
+            </li>
+            <li data-en="<strong>Purpose:</strong> Dhanvantari Arogya Vatika will serve the University as a “living library” that bridges traditional knowledge and modern science. It will support healthcare innovation, agricultural applications and ecological sustainability through its multifaceted utilisations in education, research, extension, training, and conservation." data-hi="<strong>प्रयोजन:</strong> धन्वंतरि आरोग्य वाटिका विश्वविद्यालय में एक “जीवंत पुस्तकालय” के रूप में पारंपरिक ज्ञान और आधुनिक विज्ञान के बीच सेतु का कार्य करेगी। धन्वंतरि आरोग्य वाटिका का वृहद् उद्देश्य स्वास्थ्य देखभाल आधारित नवाचार, कृषि अनुप्रयोग और पारिस्थितिकीय स्थिरता एवं सततता से संबंधित ज्ञान को शिक्षा, प्रशिक्षण, अनुसंधान, संरक्षण तथा चिकित्सीय अनुप्रयोग जैसे व्यापक माध्यमों से धरातल पर उतारना है।">
+              <strong>प्रयोजन:</strong> धन्वंतरि आरोग्य वाटिका विश्वविद्यालय में एक “जीवंत पुस्तकालय” के रूप में पारंपरिक ज्ञान और आधुनिक विज्ञान के बीच सेतु का कार्य करेगी। धन्वंतरि आरोग्य वाटिका का वृहद् उद्देश्य स्वास्थ्य देखभाल आधारित नवाचार, कृषि अनुप्रयोग और पारिस्थितिकीय स्थिरता एवं सततता से संबंधित ज्ञान को शिक्षा, प्रशिक्षण, अनुसंधान, संरक्षण तथा चिकित्सीय अनुप्रयोग जैसे व्यापक माध्यमों से धरातल पर उतारना है।
+            </li>
+            <li data-en="<strong>Key Objectives:</strong>" data-hi="<strong>विशिष्ट उद्देश्य:</strong>">
+              <strong>विशिष्ट उद्देश्य:</strong>
+              <ul style="list-style-type: circle; padding-left: 24px; margin-top: 8px; display: flex; flex-direction: column; gap: 10px;">
+                <li data-en="To educate students, researchers, and rural youth community on medicinal plants in traditional and modern medicine." data-hi="छात्रों, शोधकर्ताओं (औषधियां और कृषि), और ग्रामीण युवा समुदाय को औषधीय पौधों और पारंपरिक और आधुनिक चिकित्सा में उनके उपयोग के बारे में जागरूक करना।">
+                  छात्रों, शोधकर्ताओं (औषधियां और कृषि), और ग्रामीण युवा समुदाय को औषधीय पौधों और पारंपरिक और आधुनिक चिकित्सा में उनके उपयोग के बारे में जागरूक करना।
+                </li>
+                <li data-en="To promote safe use of medicinal plants and support Ayurveda, Siddha, and Unani healthcare traditions." data-hi="सामान्य जनता को समग्र स्वास्थ्य देखभाल प्रथाओं में औषधीय पौधों के महत्व और सुरक्षित उपयोग के प्रति जागरूक करना, और आयुर्वेद, सिद्ध, और यूनानी जैसी पारंपरिक चिकित्सा प्रणालियों को बढ़ावा देना। यह सामुदायिक स्वास्थ्य परंपराओं और स्थानीय ज्ञान प्रणालियों का समर्थन करने का एक अवसर प्रदान करता है।">
+                  सामान्य जनता को समग्र स्वास्थ्य देखभाल प्रथाओं में औषधीय पौधों के महत्व और सुरक्षित उपयोग के प्रति जागरूक करना, और आयुर्वेद, सिद्ध, और यूनानी जैसी पारंपरिक चिकित्सा प्रणालियों को बढ़ावा देना। यह सामुदायिक स्वास्थ्य परंपराओं और स्थानीय ज्ञान प्रणालियों का समर्थन करने का एक अवसर प्रदान करता है।
+                </li>
+                <li data-en="To demonstrate production technology, propagation methods and promote sustainable uses &amp; biodiversity." data-hi="औषधीय पौधों की उत्पादन तकनीक, प्रजनन विधियों को प्रदर्शित करने और उनके सतत उपयोग और जैव विविधता को बढ़ावा देने के लिए।">
+                  औषधीय पौधों की उत्पादन तकनीक, प्रजनन विधियों को प्रदर्शित करने और उनके सतत उपयोग और जैव विविधता को बढ़ावा देने के लिए।
+                </li>
+                <li data-en="To serve as a model for rural entrepreneurs and encourage herbal formulation startups." data-hi="ग्रामीण युवाओं और उद्यमियों के लिए औषधीय पौधों के उत्पादन और वाणिज्यीकरण के लिए एक आदर्श के रूप में सेवा करना। इसके अलावा, जड़ी-बूटियों की तैयारियों और उत्पादों की स्टार्ट-अप संभावनाएँ।">
+                  ग्रामीण युवाओं और उद्यमियों के लिए औषधीय पौधों के उत्पादन और वाणिज्यीकरण के लिए एक आदर्श के रूप में सेवा करना। इसके अलावा, जड़ी-बूटियों की तैयारियों और उत्पादों की स्टार्ट-अप संभावनाएँ।
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="University Computer Lab — Central University of South Bihar" data-hi="विश्वविद्यालय कंप्यूटर लैब — दक्षिण बिहार केंद्रीय विश्वविद्यालय">University Computer Lab — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="University Computer Labs (CCL-1 & CCL-2) at Central University of South Bihar equipped with high-end Core i5 & i7 workstations, Gbps high-speed internet, licensed software, printing and scanning facilities.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .cl-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .cl-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .cl-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .cl-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .cl-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    [data-theme="dark"] .cl-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .cl-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 20px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .cl-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* Lab Image Card */
+    .cl-image-card {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-color, #e2e8f0);
+      margin-bottom: 24px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      background: #000;
+    }
+    .cl-image-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .cl-image-card:hover img {
+      transform: scale(1.01);
+    }
+
+    .cl-desc-text {
+      font-size: 0.98rem;
+      color: var(--tx-primary, #0f172a);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .cl-lab-box {
+      background: rgba(11, 108, 184, 0.035);
+      border-left: 4px solid #0b6cb8;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 20px 0 24px;
+      font-size: 0.96rem;
+      line-height: 1.75;
+      color: var(--tx-primary, #1e293b);
+    }
+    [data-theme="dark"] .cl-lab-box {
+      background: rgba(56, 189, 248, 0.06);
+      border-left-color: #38bdf8;
+      color: #e2e8f0;
+    }
+
+    .cl-lab-box strong {
+      color: #0b6cb8;
+      font-weight: 700;
+    }
+    [data-theme="dark"] .cl-lab-box strong {
+      color: #38bdf8;
+    }
+
+    @media (max-width: 768px) {
+      .cl-card {
+        padding: 22px 18px;
+      }
+      .cl-main-title {
+        font-size: 1.7rem;
+      }
+      .cl-desc-text, .cl-lab-box {
+        font-size: 0.92rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
+
+  <main id="mainContent" class="cl-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="cl-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="facilities.html" data-en="Infrastructure" data-hi="बुनियादी ढांचा">Infrastructure</a>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="University Computer Lab" data-hi="विश्वविद्यालय कंप्यूटर लैब">University Computer Lab</span>
+      </nav>
+
+      <!-- Main Content Card -->
+      <article class="cl-card">
+        <h1 class="cl-main-title" data-en="University Computer Lab" data-hi="विश्वविद्यालय कंप्यूटर लैब">University Computer Lab</h1>
+
+        <!-- Top Lab Photo (Workstations) -->
+        <figure class="cl-image-card">
+          <img src="assets/computer-lab/computer-lab-workstations.png" alt="University Computer Lab Workstations and Desktops" loading="lazy" decoding="async">
+        </figure>
+
+        <!-- Description Paragraph -->
+        <p class="cl-desc-text" data-en="The computer labs provides a central computing facility to the students, teachers and staffs of the University for their assignments, projects, dissertation and research related works. In computer lab, printing and scanning facilities are provided. In each of School buildings, there are common computer labs established" data-hi="कंप्यूटर लैब विश्वविद्यालय के छात्रों, शिक्षकों और कर्मचारियों को उनके असाइनमेंट, प्रोजेक्ट, शोध प्रबंध और अनुसंधान से संबंधित कार्यों के लिए एक केंद्रीय कंप्यूटिंग सुविधा प्रदान करती है। कंप्यूटर लैब में प्रिंटिंग और स्कैनिंग की सुविधा प्रदान की जाती है। प्रत्येक स्कूल भवन में सामान्य कंप्यूटर लैब स्थापित हैं।">
+          The computer labs provides a central computing facility to the students, teachers and staffs of the University for their assignments, projects, dissertation and research related works. In computer lab, printing and scanning facilities are provided. In each of School buildings, there are common computer labs established
+        </p>
+
+        <!-- Science Building Lab Details -->
+        <div class="cl-lab-box">
+          <p style="margin: 0;" data-en="Science Building Lab (CCL-2)- Equiped with 30 High-End end Computers (Core i5 &amp; i7) with all licences Software, Antivirus, Gbps internet. Uses: open for all stream students for their academic and research work" data-hi="साइंस बिल्डिंग लैब (सीसीएल-2) - सभी लाइसेंस प्राप्त सॉफ्टवेयर, एंटीवायरस, जीबीपीएस इंटरनेट के साथ 30 हाई-एंड कंप्यूटर (कोर i5 और i7) से सुसज्जित। उपयोग: सभी स्ट्रीम के छात्रों के लिए उनके शैक्षणिक और शोध कार्य के लिए खुला है।">
+            <strong>Science Building Lab (CCL-2)-</strong> Equiped with 30 High-End end Computers (Core i5 &amp; i7) with all licences Software, Antivirus, Gbps internet. Uses: open for all stream students for their academic and research work
+          </p>
+        </div>
+
+        <!-- Middle Interactive Session Photo -->
+        <figure class="cl-image-card">
+          <img src="assets/computer-lab/computer-lab-interactive-session.png" alt="Students and faculty inside CUSB Computer Lab interactive session" loading="lazy" decoding="async">
+        </figure>
+
+        <!-- Social Science Building Lab Details -->
+        <div class="cl-lab-box">
+          <p style="margin: 0;" data-en="Social Science Building Lab (CCL-1): Equiped with 64 High-End Computers (Core i5 &amp; i7) with all licences Software, Antivirus, Gbps internet and good ambience. Uses: open for all stream students for their academic and research work" data-hi="सोशल साइंस बिल्डिंग लैब (सीसीएल-1): सभी लाइसेंस प्राप्त सॉफ्टवेयर, एंटीवायरस, जीबीपीएस इंटरनेट और अच्छे माहौल के साथ 64 हाई-एंड कंप्यूटर (कोर i5 और i7) से सुसज्जित। उपयोग: सभी स्ट्रीम के छात्रों के लिए उनके शैक्षणिक और शोध कार्य के लिए खुला है।">
+            <strong>Social Science Building Lab (CCL-1):</strong> Equiped with 64 High-End Computers (Core i5 &amp; i7) with all licences Software, Antivirus, Gbps internet and good ambience. Uses: open for all stream students for their academic and research work
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

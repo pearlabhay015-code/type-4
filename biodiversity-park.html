@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="Biodiversity Park — Central University of South Bihar" data-hi="जैव विविधता पार्क — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Biodiversity Park — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Proposed Biodiversity Park at Central University of South Bihar (CUSB) housing wetlands, greenhouse, flora and fauna, conservatory of medicinal plants, and research nursery.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .bio-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .bio-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .bio-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .bio-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .bio-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    [data-theme="dark"] .bio-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .bio-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 16px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .bio-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .bio-desc-text {
+      font-size: 0.98rem;
+      color: var(--tx-primary, #0f172a);
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    .bio-section-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--tx-primary, #0f172a);
+      margin: 28px 0 14px;
+    }
+    [data-theme="dark"] .bio-section-title {
+      color: #f8fafc;
+    }
+
+    /* Numbered Support List */
+    .bio-support-list {
+      margin: 0 0 28px;
+      padding-left: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .bio-support-list li {
+      font-size: 0.96rem;
+      line-height: 1.7;
+      color: var(--tx-primary, #1e293b);
+    }
+
+    /* Committee List */
+    .bio-committee-list {
+      margin: 0;
+      padding-left: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      list-style-type: disc;
+    }
+    .bio-committee-list li {
+      font-size: 0.96rem;
+      line-height: 1.6;
+      color: var(--tx-primary, #1e293b);
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .bio-card {
+        padding: 22px 18px;
+      }
+      .bio-main-title {
+        font-size: 1.7rem;
+      }
+      .bio-desc-text {
+        font-size: 0.92rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
+
+  <main id="mainContent" class="bio-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="bio-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="facilities.html" data-en="Infrastructure" data-hi="बुनियादी ढांचा">Infrastructure</a>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="Biodiversity Park" data-hi="जैव विविधता पार्क">Biodiversity Park</span>
+      </nav>
+
+      <!-- Main Biodiversity Park Content Card -->
+      <article class="bio-card">
+        <h1 class="bio-main-title" data-en="Biodiversity Park" data-hi="जैव विविधता पार्क">Biodiversity Park</h1>
+        
+        <p class="bio-desc-text" data-en="A proposal for Biodiversity Park to be built in CUSB campus that will house Wetland, green house &amp; nursery to support teaching &amp; research programs of University in Biological and environmental sciences. The proposed biodiversity park would house wetlands, flora and fauna, conservatory of medicinal plants for drug discovery research and plants of regional importance, a greenhouse and a nursery to support several on-going and proposed research and training programs." data-hi="सीयूएसबी परिसर में जैव विविधता पार्क बनाने का एक प्रस्ताव है जिसमें जैविक और पर्यावरण विज्ञान में विश्वविद्यालय के शिक्षण और अनुसंधान कार्यक्रमों का समर्थन करने के लिए वेटलैंड, ग्रीन हाउस और नर्सरी होगी। प्रस्तावित जैव विविधता पार्क में वेटलैंड्स, वनस्पतियां और जीव, औषधि खोज अनुसंधान के लिए औषधीय पौधों का संरक्षण गृह और क्षेत्रीय महत्व के पौधे, एक ग्रीनहाउस और कई चल रहे और प्रस्तावित अनुसंधान एवं प्रशिक्षण कार्यक्रमों का समर्थन करने के लिए एक नर्सरी होगी।">
+          A proposal for Biodiversity Park to be built in CUSB campus that will house Wetland, green house &amp; nursery to support teaching &amp; research programs of University in Biological and environmental sciences. The proposed biodiversity park would house wetlands, flora and fauna, conservatory of medicinal plants for drug discovery research and plants of regional importance, a greenhouse and a nursery to support several on-going and proposed research and training programs.
+        </p>
+
+        <h2 class="bio-section-title" data-en="The Park aim to support the following:" data-hi="पार्क का उद्देश्य निम्नलिखित का समर्थन करना है:">
+          The Park aim to support the following:
+        </h2>
+
+        <ol class="bio-support-list">
+          <li data-en="Teaching programs of MSc (Env Sci), MSc (Life Sci), MSc (Biotech) &amp; MSc (Bioinforamtics), BSc-BEd, BSc-LLB, proposed BSc (Env Sci), undergrad programs of Biological sciences" data-hi="एमएससी (पर्यावरण विज्ञान), एमएससी (जीवन विज्ञान), एमएससी (बायोटेक) और एमएससी (बायोइनफॉरमैटिक्स), बीएससी-बीएड, बीएससी-एलएलबी, प्रस्तावित बीएससी (पर्यावरण विज्ञान), जैविक विज्ञान के स्नातक कार्यक्रमों के शिक्षण कार्यक्रम">
+            Teaching programs of MSc (Env Sci), MSc (Life Sci), MSc (Biotech) &amp; MSc (Bioinforamtics), BSc-BEd, BSc-LLB, proposed BSc (Env Sci), undergrad programs of Biological sciences
+          </li>
+          <li data-en="For on-going research of faculties in ecology &amp; environmental sciences, transgenics and plant sciences, natural products &amp; Drug discovery." data-hi="पारिस्थितिकी और पर्यावरण विज्ञान, ट्रांसजेनिक्स और पादप विज्ञान, प्राकृतिक उत्पाद और औषधि खोज में संकायों के चल रहे अनुसंधान के लिए।">
+            For on-going research of faculties in ecology &amp; environmental sciences, transgenics and plant sciences, natural products &amp; Drug discovery.
+          </li>
+        </ol>
+
+        <h2 class="bio-section-title" data-en="Committee to guide this project" data-hi="इस परियोजना का मार्गदर्शन करने वाली समिति">
+          Committee to guide this project
+        </h2>
+
+        <ul class="bio-committee-list">
+          <li data-en="Prof. R.S. Rathore – Chairman" data-hi="प्रो. आर.एस. राठौर – अध्यक्ष">
+            Prof. R.S. Rathore – Chairman
+          </li>
+          <li data-en="Executive Engineer– Coordinator" data-hi="अधिशासी अभियंता – समन्वयक">
+            Executive Engineer– Coordinator
+          </li>
+        </ul>
+      </article>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

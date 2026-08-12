@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="Smart Class Room — Central University of South Bihar" data-hi="स्मार्ट क्लास रूम — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Smart Class Room — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="70 modern Smart Classrooms at Central University of South Bihar equipped with interactive digital boards, audio-visual systems, projection facilities, and high-speed internet.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .sc-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .sc-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .sc-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .sc-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .sc-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    [data-theme="dark"] .sc-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .sc-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 16px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .sc-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .sc-desc-text {
+      font-size: 0.98rem;
+      color: var(--tx-primary, #0f172a);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    /* Metric Chips */
+    .sc-metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .sc-metric-chip {
+      background: rgba(11, 108, 184, 0.04);
+      border: 1px solid rgba(11, 108, 184, 0.12);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    [data-theme="dark"] .sc-metric-chip {
+      background: rgba(56, 189, 248, 0.06);
+      border-color: rgba(56, 189, 248, 0.18);
+    }
+    .sc-metric-chip strong {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      line-height: 1.1;
+    }
+    [data-theme="dark"] .sc-metric-chip strong {
+      color: #38bdf8;
+    }
+    .sc-metric-chip span {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--tx-muted, #475569);
+    }
+
+    /* 2-Column Responsive Image Grid */
+    .sc-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 20px;
+    }
+    .sc-gallery-item {
+      margin: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-color, #e2e8f0);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      background: #000000;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .sc-gallery-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+    .sc-gallery-item img {
+      width: 100%;
+      height: 270px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .sc-gallery-item:hover img {
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 768px) {
+      .sc-card {
+        padding: 22px 18px;
+      }
+      .sc-main-title {
+        font-size: 1.7rem;
+      }
+      .sc-desc-text {
+        font-size: 0.92rem;
+      }
+      .sc-gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .sc-gallery-item img {
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
+
+  <main id="mainContent" class="sc-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="sc-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="facilities.html" data-en="Infrastructure" data-hi="बुनियादी ढांचा">Infrastructure</a>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="Smart Class Room" data-hi="स्मार्ट क्लास रूम">Smart Class Room</span>
+      </nav>
+
+      <!-- Main Content Card -->
+      <article class="sc-card">
+        <h1 class="sc-main-title" data-en="Smart Class Room" data-hi="स्मार्ट क्लास रूम">Smart Class Room</h1>
+
+        <!-- Description Paragraph -->
+        <p class="sc-desc-text" data-en="CUSB Smart Class Rooms are equipped with all necessary equipment to meet the academic needs. Out of 85 Class room in university 70 of them having smart Class Rooms (37 in Social Science Building, 25 Earth and Biological Building 6 in School of Education Building and 8 in Lecture Hall." data-hi="सीयूएसबी स्मार्ट क्लास रूम शैक्षणिक आवश्यकताओं को पूरा करने के लिए सभी आवश्यक उपकरणों से सुसज्जित हैं। विश्वविद्यालय के 85 क्लास रूम में से 70 स्मार्ट क्लास रूम हैं (सामाजिक विज्ञान भवन में 37, पृथ्वी एवं जैविक भवन में 25, शिक्षा संकाय भवन में 6 और व्याख्यान कक्ष में 8)।">
+          CUSB Smart Class Rooms are equipped with all necessary equipment to meet the academic needs. Out of 85 Class room in university 70 of them having smart Class Rooms (37 in Social Science Building, 25 Earth and Biological Building 6 in School of Education Building and 8 in Lecture Hall.
+        </p>
+
+        <!-- Metric Distribution Chips -->
+        <div class="sc-metric-grid">
+          <div class="sc-metric-chip">
+            <strong>70 / 85</strong>
+            <span data-en="Total Smart Classrooms" data-hi="कुल स्मार्ट क्लासरूम">Total Smart Classrooms</span>
+          </div>
+          <div class="sc-metric-chip">
+            <strong>37</strong>
+            <span data-en="Social Science Building" data-hi="सामाजिक विज्ञान भवन">Social Science Building</span>
+          </div>
+          <div class="sc-metric-chip">
+            <strong>25</strong>
+            <span data-en="Earth &amp; Biological Sciences" data-hi="पृथ्वी एवं जैविक विज्ञान">Earth &amp; Biological Sciences</span>
+          </div>
+          <div class="sc-metric-chip">
+            <strong>6</strong>
+            <span data-en="School of Education" data-hi="शिक्षा संकाय">School of Education</span>
+          </div>
+          <div class="sc-metric-chip">
+            <strong>8</strong>
+            <span data-en="Lecture Hall Block" data-hi="व्याख्यान कक्ष ब्लॉक">Lecture Hall Block</span>
+          </div>
+        </div>
+
+        <!-- 2-Column Photo Gallery Grid (All 8 Smart Classrooms) -->
+        <div class="sc-gallery-grid">
+          <figure class="sc-gallery-item">
+            <img src="assets/smart-classroom/smart-class-1.png" alt="Smart Classroom interactive lecture session" loading="lazy" decoding="async">
+          </figure>
+          <figure class="sc-gallery-item">
+            <img src="assets/smart-classroom/smart-class-2.png" alt="Faculty explaining concepts on smart digital board" loading="lazy" decoding="async">
+          </figure>
+          <figure class="sc-gallery-item">
+            <img src="assets/smart-classroom/smart-class-3.png" alt="Students in smart classroom at CUSB campus" loading="lazy" decoding="async">
+          </figure>
+          <figure class="sc-gallery-item">
+            <img src="assets/smart-classroom/smart-class-4.png" alt="Faculty teaching with smart presentation setup" loading="lazy" decoding="async">
+          </figure>
+          <figure class="sc-gallery-item">
+            <img src="assets/smart-classroom/smart-class-5.png" alt="Interactive digital classroom setup and student seating" loading="lazy" decoding="async">
+          </figure>
+          <figure class="sc-gallery-item">
+            <img src="assets/smart-classroom/smart-class-6.png" alt="Smart lecture hall session in progress" loading="lazy" decoding="async">
+          </figure>
+          <figure class="sc-gallery-item">
+            <img src="assets/smart-classroom/smart-class-7.png" alt="Smart digital interactive whiteboard and projector equipment" loading="lazy" decoding="async">
+          </figure>
+          <figure class="sc-gallery-item">
+            <img src="assets/smart-classroom/smart-class-8.png" alt="Smart classroom front view with instructor and students" loading="lazy" decoding="async">
+          </figure>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

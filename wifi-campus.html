@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="University Wi-Fi Facility — Central University of South Bihar" data-hi="विश्वविद्यालय वाई-फाई सुविधा — दक्षिण बिहार केंद्रीय विश्वविद्यालय">University Wi-Fi Facility — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="University Wi-Fi Facility (CUSB1 via National Knowledge Network / NKN and CUSB2 via Bharat Net) covering academic blocks, administrative building, hostels, guest house, and campus open areas.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .wifi-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .wifi-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .wifi-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .wifi-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .wifi-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    [data-theme="dark"] .wifi-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .wifi-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 20px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .wifi-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .wifi-desc-text {
+      font-size: 0.98rem;
+      color: var(--tx-primary, #0f172a);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    /* Diagram Image Showcase */
+    .wifi-diagram-card {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-color, #e2e8f0);
+      margin: 24px 0 28px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      background: #ffffff;
+      padding: 12px;
+      text-align: center;
+    }
+    [data-theme="dark"] .wifi-diagram-card {
+      background: #1e293b;
+      border-color: #334155;
+    }
+    .wifi-diagram-card img {
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+      display: inline-block;
+      border-radius: 6px;
+    }
+
+    .wifi-divider {
+      height: 3px;
+      background: #e2e8f0;
+      border-radius: 2px;
+      margin: 28px 0 20px;
+    }
+    [data-theme="dark"] .wifi-divider {
+      background: #334155;
+    }
+
+    .wifi-action-link {
+      display: inline-block;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0b6cb8;
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: color 0.15s ease;
+    }
+    .wifi-action-link:hover {
+      color: #004b9b;
+      text-decoration: underline;
+    }
+    [data-theme="dark"] .wifi-action-link {
+      color: #38bdf8;
+    }
+
+    .wifi-section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--tx-primary, #0f172a);
+      margin: 0 0 16px;
+    }
+    [data-theme="dark"] .wifi-section-title {
+      color: #f8fafc;
+    }
+
+    .wifi-info-box {
+      background: rgba(11, 108, 184, 0.035);
+      border-left: 4px solid #0b6cb8;
+      border-radius: 0 8px 8px 0;
+      padding: 18px 22px;
+      margin: 16px 0;
+      font-size: 0.96rem;
+      line-height: 1.75;
+      color: var(--tx-primary, #1e293b);
+    }
+    [data-theme="dark"] .wifi-info-box {
+      background: rgba(56, 189, 248, 0.06);
+      border-left-color: #38bdf8;
+      color: #e2e8f0;
+    }
+
+    @media (max-width: 768px) {
+      .wifi-card {
+        padding: 22px 18px;
+      }
+      .wifi-main-title {
+        font-size: 1.7rem;
+      }
+      .wifi-desc-text, .wifi-info-box {
+        font-size: 0.92rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
+
+  <main id="mainContent" class="wifi-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="wifi-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="facilities.html" data-en="Infrastructure" data-hi="बुनियादी ढांचा">Infrastructure</a>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="University Wi-Fi Facility" data-hi="विश्वविद्यालय वाई-फाई सुविधा">University Wi-Fi Facility</span>
+      </nav>
+
+      <!-- Main Content Card -->
+      <article class="wifi-card">
+        <h1 class="wifi-main-title" data-en="University Wi-Fi Facility" data-hi="विश्वविद्यालय वाई-फाई सुविधा">University Wi-Fi Facility</h1>
+
+        <!-- Overview Paragraph -->
+        <p class="wifi-desc-text" data-en="University campus is equipped with high speed Wi-Fi connection. There are two Wi-Fi connections available within the entire campus (including all buildings like Admin, Earth Biological, School of Education, Social Science, LT Hall, Girls Hostel, Boys Hostel, Guest House, VC Residence and all open area of campus). The main Wi-Fi connection named as CUSB1 is supported by the scheme of National Knowledge Network (NKN) implemented by NIC, Government of India. The Other Wi-Fi Connection named as CUSB2 is provided by Department of Information Technology, Government of Bihar under Bharat Net Scheme." data-hi="विश्वविद्यालय परिसर हाई-स्पीड वाई-फाई कनेक्शन से सुसज्जित है। पूरे परिसर में दो वाई-फाई कनेक्शन उपलब्ध हैं (प्रशासन, पृथ्वी जैविक, शिक्षा स्कूल, सामाजिक विज्ञान, एलटी हॉल, गर्ल्स हॉस्टल, बॉयज हॉस्टल, गेस्ट हाउस, वीसी निवास और परिसर के सभी खुले क्षेत्रों सहित)। CUSB1 नाम का मुख्य वाई-फाई कनेक्शन भारत सरकार के एनआईसी द्वारा कार्यान्वित राष्ट्रीय ज्ञान नेटवर्क (एनकेएन) की योजना द्वारा समर्थित है। CUSB2 नाम का अन्य वाई-फाई कनेक्शन भारत नेट योजना के तहत सूचना प्रौद्योगिकी विभाग, बिहार सरकार द्वारा प्रदान किया गया है।">
+          University campus is equipped with high speed Wi-Fi connection. There are two Wi-Fi connections available within the entire campus (including all buildings like Admin, Earth Biological, School of Education, Social Science, LT Hall, Girls Hostel, Boys Hostel, Guest House, VC Residence and all open area of campus). The main Wi-Fi connection named as <strong>CUSB1</strong> is supported by the scheme of National Knowledge Network (NKN) implemented by NIC, Government of India. The Other Wi-Fi Connection named as <strong>CUSB2</strong> is provided by Department of Information Technology, Government of Bihar under Bharat Net Scheme.
+        </p>
+
+        <!-- Fibre Cable Diagram Showcase -->
+        <figure class="wifi-diagram-card">
+          <img src="assets/wifi/cusb-fibre-cable-diagram.png" alt="Fibre Cable Diagram of Central University of South Bihar Gaya (Bihar)" loading="lazy" decoding="async">
+        </figure>
+
+        <!-- Divider -->
+        <div class="wifi-divider"></div>
+
+        <!-- How to Access Wi-Fi Link & Section -->
+        <a href="#howToAccess" class="wifi-action-link" data-en="Click to know How to Access Wi-Fi" data-hi="वाई-फाई एक्सेस करने का तरीका जानने के लिए क्लिक करें">
+          Click to know How to Access Wi-Fi
+        </a>
+
+        <h2 id="howToAccess" class="wifi-section-title" data-en="How to Access Wi-Fi?" data-hi="वाई-फाई कैसे एक्सेस करें?">
+          How to Access Wi-Fi?
+        </h2>
+
+        <!-- How to Access Paragraph / Info Box -->
+        <div class="wifi-info-box">
+          <p style="margin: 0;" data-en="All the students, faculties and staffs of the university are provided user ID and password, which is common to access the both CUSB1 and CUSB2 Wi-Fi Network. New students/ employee need to submit a form to obtain user ID and password. The form can be obtained from IT cell located in the Room No. 303 (Admin Building), CCL-1, Room No. 137 (Chanakya Bhawan) and CCL-2, Room No. 321 ( Aryabhatta Bhawan). Visitors are also provided short-term Wi-Fi access and they need to request to IT Cell through the hosting department." data-hi="विश्वविद्यालय के सभी छात्रों, संकायों और कर्मचारियों को यूजर आईडी और पासवर्ड प्रदान किया जाता है, जो CUSB1 और CUSB2 दोनों वाई-फाई नेटवर्क तक पहुंचने के लिए सामान्य है। नए छात्रों/कर्मचारियों को यूजर आईडी और पासवर्ड प्राप्त करने के लिए एक फॉर्म जमा करना होगा। यह फॉर्म कमरा नंबर 303 (एडमिन बिल्डिंग), सीसीएल-1, कमरा नंबर 137 (चाणक्य भवन) और सीसीएल-2, कमरा नंबर 321 (आर्यभट्ट भवन) में स्थित आईटी सेल से प्राप्त किया जा सकता है। आगंतुकों को अल्पकालिक वाई-फाई एक्सेस भी प्रदान किया जाता है और उन्हें मेजबान विभाग के माध्यम से आईटी सेल से अनुरोध करना होगा।">
+            All the students, faculties and staffs of the university are provided user ID and password, which is common to access the both CUSB1 and CUSB2 Wi-Fi Network. New students/ employee need to submit a form to obtain user ID and password. The form can be obtained from IT cell located in the Room No. 303 (Admin Building), CCL-1, Room No. 137 (Chanakya Bhawan) and CCL-2, Room No. 321 ( Aryabhatta Bhawan). Visitors are also provided short-term Wi-Fi access and they need to request to IT Cell through the hosting department.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

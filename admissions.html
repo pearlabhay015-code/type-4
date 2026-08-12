@@ -2,178 +2,930 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admissions 2026-27 - CUSB</title>
-  <meta name="description" content="admission notices, eligibility, fee documents and applicant help for CUSB Admissions 2026-27.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="Admission Process (UG/ PG/ ITEP: 2026-27) — Central University of South Bihar" data-hi="प्रवेश प्रक्रिया (यूजी/ पीजी/ आईटीईपी: 2026-27) — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Admission Process (UG/ PG/ ITEP: 2026-27) — CUSB</title>
   <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Official Admission notifications, cut-off lists, merit lists, fee structures, annexures, and seat matrices for Undergraduate (UG), Postgraduate (PG), and 4-Year ITEP Programmes for Academic Year 2026-27 at Central University of South Bihar (CUSB).">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .adm-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .adm-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .adm-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .adm-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .adm-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    [data-theme="dark"] .adm-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .adm-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 20px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .adm-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* Jump Pills Navigation */
+    .adm-jump-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border-color, #e2e8f0);
+    }
+    .adm-jump-pill {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #0b6cb8;
+      background: rgba(11, 108, 184, 0.06);
+      border: 1px solid rgba(11, 108, 184, 0.15);
+      border-radius: 20px;
+      padding: 6px 14px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .adm-jump-pill:hover {
+      background: #0b6cb8;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+    [data-theme="dark"] .adm-jump-pill {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.08);
+      border-color: rgba(56, 189, 248, 0.2);
+    }
+    [data-theme="dark"] .adm-jump-pill:hover {
+      background: #0284c7;
+      color: #ffffff;
+    }
+
+    /* Maroon Banner Heading */
+    .adm-banner-heading {
+      background: #800000;
+      color: #ffffff;
+      padding: 10px 16px;
+      font-size: 0.98rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      border-radius: 4px;
+      margin: 32px 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      text-transform: uppercase;
+    }
+    [data-theme="dark"] .adm-banner-heading {
+      background: #881337;
+    }
+
+    /* New Badge GIF / Tag */
+    .adm-new-tag {
+      background: #eab308;
+      color: #713f12;
+      font-size: 0.72rem;
+      font-weight: 900;
+      padding: 2px 6px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      animation: pulseNew 2s infinite ease-in-out;
+    }
+    @keyframes pulseNew {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    /* Links Lists */
+    .adm-links-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .adm-links-list > li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 0.94rem;
+      line-height: 1.6;
+    }
+    .adm-links-list > li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      top: 0;
+      color: #0b6cb8;
+      font-size: 1.3rem;
+      line-height: 1.4;
+    }
+    [data-theme="dark"] .adm-links-list > li::before {
+      color: #38bdf8;
+    }
+
+    .adm-sub-links {
+      list-style: none;
+      padding-left: 18px;
+      margin: 8px 0 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .adm-sub-links li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 0.91rem;
+    }
+    .adm-sub-links li::before {
+      content: "◦";
+      position: absolute;
+      left: 4px;
+      top: 0;
+      color: #0b6cb8;
+      font-size: 1.1rem;
+    }
+    [data-theme="dark"] .adm-sub-links li::before {
+      color: #38bdf8;
+    }
+
+    .adm-link {
+      color: #0b6cb8;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .adm-link:hover {
+      text-decoration: underline;
+      color: #004b9b;
+    }
+    [data-theme="dark"] .adm-link {
+      color: #38bdf8;
+    }
+
+    /* Grid Table for UG-PG and Subjects */
+    .adm-subject-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 28px;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 6px;
+      overflow: hidden;
+      font-size: 0.91rem;
+    }
+    .adm-subject-table td {
+      padding: 10px 14px;
+      border: 1px solid var(--border-color, #e2e8f0);
+      color: var(--tx-primary, #1e293b);
+      vertical-align: middle;
+      background: var(--bg-surface, #ffffff);
+    }
+    [data-theme="dark"] .adm-subject-table td {
+      border-color: #334155;
+      background: #1e293b;
+      color: #e2e8f0;
+    }
+    .adm-subject-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+    [data-theme="dark"] .adm-subject-table tr:nth-child(even) td {
+      background: #0f172a;
+    }
+    .adm-subject-table td a {
+      color: #0b6cb8;
+      text-decoration: none;
+      font-weight: 600;
+      display: block;
+    }
+    .adm-subject-table td a:hover {
+      text-decoration: underline;
+      color: #004b9b;
+    }
+    [data-theme="dark"] .adm-subject-table td a {
+      color: #38bdf8;
+    }
+
+    .adm-subhead-bold {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--tx-primary, #0f172a);
+      margin: 24px 0 10px;
+    }
+    [data-theme="dark"] .adm-subhead-bold {
+      color: #f8fafc;
+    }
+
+    @media (max-width: 768px) {
+      .adm-card {
+        padding: 20px 16px;
+      }
+      .adm-main-title {
+        font-size: 1.6rem;
+      }
+      .adm-banner-heading {
+        font-size: 0.88rem;
+        padding: 8px 12px;
+      }
+      .adm-links-list > li {
+        font-size: 0.88rem;
+      }
+      .adm-subject-table {
+        font-size: 0.82rem;
+      }
+      .adm-subject-table td {
+        padding: 8px 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <a href="#mainContent" class="skip-link">Skip to main content</a>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
   <cusb-ticker></cusb-ticker>
   <cusb-topbar></cusb-topbar>
   <cusb-header></cusb-header>
   <cusb-accessibility-bar></cusb-accessibility-bar>
   <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
 
-  <main id="mainContent">
-    <section class="section information-directory" aria-labelledby="admissionDirectoryTitle">
-      <div class="container">
-        <span class="section-tag">Explore</span>
-        <h1 id="admissionDirectoryTitle" class="section-title">Admissions 2026-27</h1>
-        <div class="resource-chip-row" aria-label="Admission page sections">
-          <a href="#admission-2026-27">Admission 2026-27</a>
-          <a href="#undergraduate">Undergraduate</a>
-          <a href="#itep">ITEP</a>
-          <a href="#postgraduate">Postgraduate</a>
-          <a href="#international-students">International Student</a>
-          <a href="courses.html">Programmes and Courses</a>
-          <a href="#help-desk">Help Desk</a>
+  <main id="mainContent" class="adm-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="adm-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <span data-en="Admissions" data-hi="प्रवेश">Admissions</span>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="Admission Process (UG/ PG/ ITEP: 2026-27)" data-hi="प्रवेश प्रक्रिया (2026-27)">Admission Process (UG/ PG/ ITEP: 2026-27)</span>
+      </nav>
+
+      <!-- Main Content Card -->
+      <article class="adm-card">
+        <h1 class="adm-main-title" data-en="Admission Process (UG/ PG/ ITEP: 2026-27)" data-hi="प्रवेश प्रक्रिया (यूजी/ पीजी/ आईटीईपी: 2026-27)">
+          Admission Process (UG/ PG/ ITEP: 2026-27)
+        </h1>
+
+        <!-- Quick Jump Filter Navigation -->
+        <nav class="adm-jump-nav" aria-label="Admissions Quick Navigation">
+          <a href="#induction" class="adm-jump-pill" data-en="Induction Programme" data-hi="दीक्षारंभ कार्यक्रम">Induction</a>
+          <a href="#ug-notifications" class="adm-jump-pill" data-en="UG Notifications" data-hi="यूजी अधिसूचनाएं">UG Notifications</a>
+          <a href="#itep-programmes" class="adm-jump-pill" data-en="ITEP (B.A./B.Sc. B.Ed)" data-hi="आईटीईपी कार्यक्रम">ITEP Programmes</a>
+          <a href="#ug-pg-merit" class="adm-jump-pill" data-en="UG-PG Merit Lists" data-hi="यूजी-पीजी मेरिट सूची">UG-PG Merit Lists</a>
+          <a href="#dbt-biotech" class="adm-jump-pill" data-en="DBT M.Sc. Biotech" data-hi="डीबीटी एम.एससी. बायोटेक">DBT M.Sc. Biotech</a>
+          <a href="#msc-agri" class="adm-jump-pill" data-en="M.Sc. Agriculture" data-hi="एम.एससी. कृषि">M.Sc. Agriculture</a>
+          <a href="#pg-admitted" class="adm-jump-pill" data-en="PG Admitted &amp; Cut-Offs" data-hi="पीजी प्रवेश एवं कट-ऑफ">PG Admitted Lists</a>
+        </nav>
+
+        <!-- Initial Induction Link -->
+        <ul class="adm-links-list" id="induction">
+          <li>
+            <a href="about-policies-documents.html" class="adm-link" data-en="Deeksharambh: Students Induction Programme for Newly Admitted Undergraduate Students in AY 2026-27" data-hi="दीक्षारंभ: शैक्षणिक वर्ष 2026-27 में नवप्रवेशित स्नातक छात्रों के लिए छात्र दीक्षा कार्यक्रम">
+              Deeksharambh: Students Induction Programme for Newly Admitted Undergraduate Students in AY 2026-27
+            </a>
+          </li>
+        </ul>
+
+        <!-- 1. Merit List Of 4-Year Integrated (ITEP) -->
+        <div class="adm-banner-heading">
+          <span data-en="Merit List Of 4-Year Integrated (ITEP) B.A. B.Ed. And B.Sc. B.Ed Programmes After Second Round Of Admission For The AY 2026-27" data-hi="शैक्षणिक वर्ष 2026-27 के लिए दूसरे दौर के प्रवेश के बाद 4-वर्षीय एकीकृत (ITEP) B.A. B.Ed. और B.Sc. B.Ed कार्यक्रमों की मेरिट सूची">
+            Merit List Of 4-Year Integrated (ITEP) B.A. B.Ed. And B.Sc. B.Ed Programmes After Second Round Of Admission For The AY 2026-27
+          </span>
+          <span class="adm-new-tag">NEW</span>
         </div>
-      </div>
-    </section>
+        <ul class="adm-links-list">
+          <li><a href="about-policies-documents.html" class="adm-link">B.Sc B.Ed</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">B.A. B.Ed</a></li>
+        </ul>
 
-    <section id="admission-2026-27" class="section">
-      <div class="container information-two-column admission-intro-grid">
-        <div class="information-copy">
-          <span class="section-tag">Academic year 2026-27</span>
-          <h2 class="section-title information-title">Admission notices and documents</h2>
-          <p>Use the notices below to check programme-wise eligibility, intake, category-wise seats, fee structure and document requirements. Every document opens from this website, so applicants can continue browsing without being sent to an external CUSB page.</p>
-          <p class="admission-source-note">The document archive reflects the published 2026 admission material. The updates area is ready to show new notices added through the website administration database.</p>
+        <!-- 2. CUSB Admission Notification for UG Programmes -->
+        <div class="adm-banner-heading" id="ug-notifications">
+          <span data-en="CUSB ADMISSION NOTIFICATION FOR UNDERGRADUATE (UG) PROGRAMMES FOR ACADEMIC YEAR 2026-27" data-hi="शैक्षणिक वर्ष 2026-27 के लिए स्नातक (यूजी) कार्यक्रमों के लिए सीयूएसबी प्रवेश अधिसूचना">
+            CUSB ADMISSION NOTIFICATION FOR UNDERGRADUATE (UG) PROGRAMMES FOR ACADEMIC YEAR 2026-27
+          </span>
+          <span class="adm-new-tag">NEW</span>
         </div>
-        <aside class="admission-status-card" aria-label="Admissions status">
-          <span class="admission-status-label">Current archive</span>
-          <strong>2026-27 admission cycle</strong>
-          <p>UG, ITEP and PG notices are arranged by programme level. Check the relevant cutoff list and annexures before reporting.</p>
-          <a class="btn btn-gold" href="#undergraduate">Browse admission notices</a>
-        </aside>
-      </div>
-    </section>
+        <ul class="adm-links-list">
+          <li>
+            <a href="about-policies-documents.html" class="adm-link" data-en="CUSB Notification No.CUSB/Acad/2-25/2025/AE1325 dated 07.08.2026 regarding admission in Undergraduate programmes being offered by Central University of South Bihar in AY 2026-27 under Staff Ward Quota (SWQ)" data-hi="स्टाफ वार्ड कोटा (एसडब्ल्यूक्यू) के तहत सीयूएसबी में यूजी कार्यक्रमों में प्रवेश के संबंध में अधिसूचना">
+              CUSB Notification No.CUSB/Acad/2-25/2025/AE1325 dated 07.08.2026 regarding admission in Undergraduate programmes being offered by Central University of South Bihar in AY 2026-27 under Staff Ward Quota (SWQ)
+            </a> <span class="adm-new-tag">NEW</span>
+            <ul class="adm-sub-links">
+              <li><a href="about-policies-documents.html" class="adm-link">Undertaking of the Employee</a></li>
+              <li><a href="about-policies-documents.html" class="adm-link">Format for Ward Quota Certificate</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="about-policies-documents.html" class="adm-link">Corrigendum for Announcemnt of Third Cut Off for Admission in Undergraduate Programmes for AY 2026-27</a> <span class="adm-new-tag">NEW</span>
+          </li>
+          <li>
+            <a href="about-policies-documents.html" class="adm-link">ANNOUNCEMENT OF THIRD (3rd) CUT-OFF FOR ADMISSION IN UNDERGRADUATE PROGRAMMES FOR ACADEMIC YEAR 2026-27</a> <span class="adm-new-tag">NEW</span>
+          </li>
+          <li>
+            <a href="about-policies-documents.html" class="adm-link">ANNOUNCEMENT OF SECOND (2nd) CUT-OFF FOR ADMISSION IN UNDERGRADUATE PROGRAMMES FOR ACADEMIC YEAR 2026-27</a>
+          </li>
+          <li>
+            <a href="about-policies-documents.html" class="adm-link">Last date for fee payment for admission in Undergraduate programmes (AY 2026-27)</a>
+          </li>
+          <li>
+            <a href="about-policies-documents.html" class="adm-link">Corrigendum for Announcement of 1st Cut Off for admission in Undergraduate Programme for AY 2026-27</a>
+          </li>
+          <li>
+            <a href="about-policies-documents.html" class="adm-link">ANNOUNCEMENT OF FIRST (1st) CUT-OFF FOR ADMISSION IN UNDERGRADUATE PROGRAMMES FOR ACADEMIC YEAR 2026-27</a>
+          </li>
+          <li>
+            <a href="about-policies-documents.html" class="adm-link">Opening of Correction Window on SAMARTH portal for admission in Undergraduate programmes being offered by Central University of South Bihar in AY 2026-27</a>
+          </li>
+          <li>
+            <a href="about-policies-documents.html" class="adm-link">Notice No.AE 1227 dated 16.07.2026 regarding extension of registration on SAMARTH portal for admission in Undergraduate programmes being offered by Central University of South Bihar in AY 2026-27</a>
+          </li>
+          <li>
+            <a href="about-policies-documents.html" class="adm-link">Corrigendum Admission Notification for UG-PG in EVS</a>
+          </li>
+          <li>
+            <a href="about-policies-documents.html" class="adm-link">Admission Notification for Under Graduate (UG) Programme (UG-2026-27 )</a>
+          </li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure - I (Intake, Eligibility criteria and required Subject of all the respective programmes)</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure - II Fee Structure of all the programmes</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure - III Document/Certificates required to be uploaded for online Registration</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure - IV Undertaking</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Reservation Policy</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Category Wise Seat</a></li>
+        </ul>
 
-    <section class="section information-alt" aria-labelledby="localUpdatesTitle">
-      <div class="container information-panel">
-        <span class="section-tag">Live feed</span>
-        <h2 id="localUpdatesTitle" class="section-title information-title">Additional admission updates</h2>
-        <p>New notices entered by the site administrator will appear here. Links are displayed only when they point to a file or page.</p>
-        <div id="localAdmissionUpdates" class="admission-update-list" aria-live="polite">
-          <article class="admission-update-card"><span>2026-27</span><h3>Admission archive is available below</h3><p>Browse the programme-level notices and annexures for the current admission cycle.</p></article>
+        <!-- 3. Four Year Integrated Teacher Education Programme (ITEP) -->
+        <div class="adm-banner-heading" id="itep-programmes">
+          <span data-en="Four Year Integrated Teacher Education Programme (ITEP) B.A.B.Ed &amp; B.Sc. B.Ed Academic Year 2026-27" data-hi="चार वर्षीय एकीकृत शिक्षक शिक्षा कार्यक्रम (आईटीईपी) 2026-27">
+            Four Year Integrated Teacher Education Programme (ITEP) B.A.B.Ed &amp; B.Sc. B.Ed Academic Year 2026-27
+          </span>
+          <span class="adm-new-tag">NEW</span>
         </div>
-      </div>
-    </section>
+        <ul class="adm-links-list">
+          <li>
+            <a href="about-policies-documents.html" class="adm-link">ANNOUNCEMENT OF SECOND (2nd) CUT-OFF FOR FOUR YEAR INTEGRATED TEACHER EDUCATION PROGRAMME (ITEP) B.A.B.ED. &amp; B.SC. B.ED. FOR ACADEMIC YEAR 2026-27</a> <span class="adm-new-tag">NEW</span>
+          </li>
+          <li>
+            <a href="about-policies-documents.html" class="adm-link">Notice No.AE 1277 dated 28.07.2026 regarding extension of last date for fee payment for admission in Four Year Integrated Teacher Education Programme (ITEP) B.A.B.Ed. &amp; B.Sc. B.Ed. For Academic Year 2026-27</a>
+          </li>
+          <li>
+            <a href="about-policies-documents.html" class="adm-link">ANNOUNCEMENT OF FIRST (1st) CUT-OFF FOR FOUR YEAR INTEGRATED TEACHER EDUCATION PROGRAMME (ITEP) B.A.B.ED. &amp; B.SC. B.ED. FOR ACADEMIC YEAR 2026-27</a>
+          </li>
+          <li>
+            <a href="about-policies-documents.html" class="adm-link">Admission Notification for Four Year Integrated Teacher Education Programme (ITEP) B.A.B.Ed &amp; B.Sc. B.Ed Academic Year 2026-27</a>
+          </li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure - I (Intake, Eligibility criteria and required Subject of all the respective programmes)</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure - II Fee Structure of all the programmes</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure - III Document/Certificates required to be uploaded for online Registration</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure - IV Undertaking</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Category Wise Seat</a></li>
+        </ul>
 
-    <section id="undergraduate" class="section" aria-labelledby="ugTitle">
-      <div class="container information-panel">
-        <span class="section-tag">Undergraduate programmes</span>
-        <h2 id="ugTitle" class="section-title information-title">UG admissions</h2>
-        <p>Undergraduate applicants can consult the admission notification, programme intake and eligibility, fee structure, required documents, reservation policy and category-wise seat matrix.</p>
-        <div class="admission-notice-layout">
-          <article class="admission-feature-card">
-            <span>Latest published notice</span>
-            <h3>UG second cutoff list</h3>
-            <p>Review the current cutoff notice before completing the relevant admission steps.</p>
-            <a href="assets/documents/admissions/ug-second-cutoff-2026.pdf" target="_blank">Open cutoff notice <span>PDF</span></a>
-          </article>
-          <div class="document-list-grid admission-document-grid">
-            <a href="assets/documents/admissions/ug-admission-notification-2026.pdf" target="_blank">UG admission notification <span>PDF</span></a>
-            <a href="assets/documents/admissions/ug-intake-eligibility-2026.pdf" target="_blank">UG intake and eligibility <span>PDF</span></a>
-            <a href="assets/documents/admissions/ug-fee-structure-2026.pdf" target="_blank">UG fee structure <span>PDF</span></a>
-            <a href="assets/documents/admissions/ug-required-documents-2026.pdf" target="_blank">Required documents and certificates <span>PDF</span></a>
-            <a href="assets/documents/admissions/ug-reservation-policy-2026.pdf" target="_blank">Reservation policy <span>PDF</span></a>
-            <a href="assets/documents/admissions/ug-category-seat-matrix-2026.pdf" target="_blank">Category-wise seat matrix <span>PDF</span></a>
-          </div>
+        <!-- 4. Merit Lists Of UG-PG Programme For The AY 2026-27 -->
+        <div class="adm-banner-heading" id="ug-pg-merit">
+          <span data-en="Merit Lists Of UG-PG Programme For The AY 2026-27" data-hi="शैक्षणिक वर्ष 2026-27 के लिए यूजी-पीजी कार्यक्रमों की मेरिट सूची">
+            Merit Lists Of UG-PG Programme For The AY 2026-27
+          </span>
+          <span class="adm-new-tag">NEW</span>
         </div>
-      </div>
-    </section>
 
-    <section id="itep" class="section information-alt" aria-labelledby="itepTitle">
-      <div class="container information-panel">
-        <span class="section-tag">Four-year integrated teacher education</span>
-        <h2 id="itepTitle" class="section-title information-title">ITEP admissions</h2>
-        <p>Information for the four-year B.A.B.Ed. and B.Sc.B.Ed. integrated teacher education programme is available in the notices and annexures below.</p>
-        <div class="admission-notice-layout">
-          <article class="admission-feature-card">
-            <span>Latest published notice</span>
-            <h3>ITEP first cutoff list</h3>
-            <p>Refer to the cutoff notice together with the admission notification and programme annexures.</p>
-            <a href="assets/documents/admissions/itep-first-cutoff-2026.pdf" target="_blank">Open cutoff notice <span>PDF</span></a>
-          </article>
-          <div class="document-list-grid admission-document-grid">
-            <a href="assets/documents/admissions/itep-admission-notification-2026.pdf" target="_blank">ITEP admission notification <span>PDF</span></a>
-            <a href="assets/documents/admissions/itep-intake-eligibility-2026.pdf" target="_blank">ITEP intake and eligibility <span>PDF</span></a>
-            <a href="assets/documents/admissions/itep-fee-structure-2026.pdf" target="_blank">ITEP fee structure <span>PDF</span></a>
-          </div>
+        <table class="adm-subject-table">
+          <tbody>
+            <tr>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in Chemistry</a></td>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in Hindi</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in Commerce</a></td>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in History</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in Computer Science</a></td>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in Life Science</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in Economics</a></td>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in Mathematics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in English</a></td>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in Journalism and Mass Comm.</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in Geography</a></td>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in Physics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in Psychology</a></td>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in Political Science</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in Statistics</a></td>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in Sociology</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in Geology</a></td>
+              <td><a href="about-policies-documents.html">B. Sc. (H) Agriculture</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">B. A. LLB</a></td>
+              <td><a href="about-policies-documents.html">BBA LLB</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">D Pharma</a></td>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in Environmental Science</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in Bioinformatics</a></td>
+              <td><a href="about-policies-documents.html">5 Years Integrated UG-PG in Biotechnology</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 5. Merit List Of 4-Year Integrated (ITEP) -->
+        <div class="adm-banner-heading">
+          <span data-en="Merit List Of 4-Year Integrated (ITEP) B.A. B.Ed. And B.Sc. B.Ed Programme For The AY 2026-27" data-hi="4-वर्षीय एकीकृत (आईटीईपी) बीए बीएड और बीएससी बीएड कार्यक्रम मेरिट सूची">
+            Merit List Of 4-Year Integrated (ITEP) B.A. B.Ed. And B.Sc. B.Ed Programme For The AY 2026-27
+          </span>
+          <span class="adm-new-tag">NEW</span>
         </div>
-      </div>
-    </section>
+        <ul class="adm-links-list">
+          <li><a href="about-policies-documents.html" class="adm-link">B.Sc B.Ed</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">BA B.Ed</a></li>
+          <li style="margin-top: 10px;">
+            <a href="about-policies-documents.html" class="adm-link">Reporting / commencement of classes of students admitted in PG programme AY 2026-27 under 3rd merit list</a>
+          </li>
+        </ul>
 
-    <section id="postgraduate" class="section" aria-labelledby="pgTitle">
-      <div class="container information-panel">
-        <span class="section-tag">Postgraduate programmes</span>
-        <h2 id="pgTitle" class="section-title information-title">PG admissions</h2>
-        <p>Postgraduate applicants can find the admission notification, category-wise intake, eligibility conditions, relevant CUET subject codes, fee structure, document checklist and latest published cutoff list here.</p>
-        <div class="admission-notice-layout">
-          <article class="admission-feature-card">
-            <span>Latest published notice</span>
-            <h3>PG third cutoff list</h3>
-            <p>Check the programme name and cutoff details carefully before moving ahead with the admission process.</p>
-            <a href="assets/documents/admissions/pg-third-cutoff-2026.pdf" target="_blank">Open cutoff notice <span>PDF</span></a>
-          </article>
-          <div class="document-list-grid admission-document-grid">
-            <a href="assets/documents/admissions/pg-admission-notification-2026.pdf" target="_blank">PG admission notification <span>PDF</span></a>
-            <a href="assets/documents/admissions/pg-intake-category-2026.pdf" target="_blank">PG category-wise intake <span>PDF</span></a>
-            <a href="assets/documents/admissions/pg-eligibility-2026.pdf" target="_blank">PG eligibility conditions <span>PDF</span></a>
-            <a href="assets/documents/admissions/pg-cuet-subject-codes-2026.pdf" target="_blank">Relevant CUET subject codes <span>PDF</span></a>
-            <a href="assets/documents/admissions/pg-fee-structure-2026.pdf" target="_blank">PG fee structure <span>PDF</span></a>
-            <a href="assets/documents/admissions/pg-required-documents-2026.pdf" target="_blank">Required documents and certificates <span>PDF</span></a>
-          </div>
+        <!-- 6. Announcement of 3rd Cut-Off for PG -->
+        <div class="adm-banner-heading">
+          <span data-en="ANNOUNCEMENT OF THIRD (3RD) CUT-OFF FOR ADMISSION IN POSTGRADUATE PROGRAMMES FOR ACADEMIC YEAR 2026-27" data-hi="स्नातकोत्तर (पीजी) कार्यक्रमों के लिए तृतीय कट-ऑफ की घोषणा">
+            ANNOUNCEMENT OF THIRD (3RD) CUT-OFF FOR ADMISSION IN POSTGRADUATE PROGRAMMES FOR ACADEMIC YEAR 2026-27
+          </span>
+          <span class="adm-new-tag">NEW</span>
         </div>
-      </div>
-    </section>
+        <ul class="adm-links-list">
+          <li><a href="about-policies-documents.html" class="adm-link">Corrigendum of announcement of Third (3rd) Cut-Off for admission in Postgraduate Programmes for AY 2026-27</a> <span class="adm-new-tag">NEW</span></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Announcement of Third (3rd) Cut-Off for admission in Postgraduate Programmes for AY 2026-27</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Notice of Third (3rd) Round Cut Off</a></li>
+        </ul>
 
-    <section id="international-students" class="section information-alt" aria-labelledby="internationalTitle">
-      <div class="container information-two-column">
-        <div class="information-copy">
-          <span class="section-tag">International Student</span>
-          <h2 id="internationalTitle" class="section-title information-title">International student information</h2>
-          <p>The Indian Council for Cultural Relations supports international cultural exchange and educational cooperation. Its scholarship programmes help overseas students pursue higher education in India and encourage mutual understanding between India and partner countries.</p>
-          <p>International applicants should use the help desk for guidance on the programme documents and application process, then follow the admission instructions applicable to their programme.</p>
+        <!-- 7. DBT-Supported M.Sc. In Biotechnology Programme -->
+        <div class="adm-banner-heading" id="dbt-biotech">
+          <span data-en="Admission Notification For Admission In The DBT-Supported M.Sc. In Biotechnology Programme For The Academic Year 2026-27" data-hi="डीबीटी समर्थित एम.एससी. जैव प्रौद्योगिकी कार्यक्रम में प्रवेश के लिए अधिसूचना">
+            Admission Notification For Admission In The DBT-Supported M.Sc. In Biotechnology Programme For The Academic Year 2026-27
+          </span>
+          <span class="adm-new-tag">NEW</span>
         </div>
-        <aside class="admission-status-card admission-status-card--light">
-          <span class="admission-status-label">Need guidance?</span>
-          <strong>International applicant help</strong>
-          <p>Keep your academic records, identity and programme details ready before submitting a question.</p>
-          <a class="btn btn-navy" href="#help-desk">Go to Help Desk</a>
-        </aside>
-      </div>
-    </section>
+        <ul class="adm-links-list">
+          <li><a href="about-policies-documents.html" class="adm-link">Merit List of M. Sc. Biotechnology (DBT) as on 31.07.2026</a> <span class="adm-new-tag">NEW</span></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Second Merit List of M. Sc. Biotechnology (DBT)</a> <span class="adm-new-tag">NEW</span></li>
+          <li><a href="about-policies-documents.html" class="adm-link">2nd cut off for admission in DBT supported M.Sc. Biotechnology : A.Y 2026-27</a> <span class="adm-new-tag">NEW</span></li>
+          <li>
+            <a href="about-policies-documents.html" class="adm-link">1st cut off for admission in DBT supported M.Sc. Biotechnology : A.Y 2026-27</a>
+            <ul class="adm-sub-links">
+              <li><a href="about-policies-documents.html" class="adm-link">1st Merit list DBT (Biotechnology)</a></li>
+            </ul>
+          </li>
+          <li><a href="about-policies-documents.html" class="adm-link">Notice for for submission of google form for admission in the DBT-Supported M.Sc. in Biotechnology programme for the academic year 2026-27</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Admission Notification for DBT Sponsored M.Sc. in Biotechnology</a> <span class="adm-new-tag">NEW</span></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure-I Fee Structure M. Sc. Biotechnology</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure - II Undertaking</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure - III Document Certificates required to be uploaded for online registration</a></li>
+        </ul>
 
-    <section id="programmes-courses" class="section" aria-labelledby="programmesTitle">
-      <div class="container information-panel admission-programmes-panel">
-        <span class="section-tag">Programmes and Courses</span>
-        <h2 id="programmesTitle" class="section-title information-title">Find a programme before you apply</h2>
-        <p>Department pages hold the maintained programme, syllabus and faculty information. Use them with the appropriate admission annexure to verify programme-specific eligibility and subject requirements.</p>
-        <a class="btn btn-gold" href="courses.html">Browse programmes and courses</a>
-      </div>
-    </section>
-
-    <section id="help-desk" class="section information-alt" aria-labelledby="helpDeskTitle">
-      <div class="container information-panel">
-        <span class="section-tag">CUSB Help Desk</span>
-        <h2 id="helpDeskTitle" class="section-title information-title">Applicant help desk</h2>
-        <div class="admission-help-grid">
-          <article><h3>Before you ask</h3><p>Open the programme-level notification and annexures first. They contain the published eligibility, fee, document and seat information.</p></article>
-          <article><h3>Submit an enquiry</h3><p>For a question that is not answered in the archive, use the enquiry page and select the Admissions category.</p><a href="enquiry.html">Open enquiry form</a></article>
-          <article><h3>Keep a reference</h3><p>When contacting the help desk, state your programme level, programme name and the notice or annexure you are referring to.</p></article>
+        <!-- 8. M.Sc. (Agriculture) Programmes -->
+        <div class="adm-banner-heading" id="msc-agri">
+          <span data-en="Admission Notification For Admission In M.Sc. (Agriculture) Programmes For AY 2026-27" data-hi="एम.एससी. (कृषि) कार्यक्रमों में प्रवेश के लिए अधिसूचना 2026-27">
+            Admission Notification For Admission In M.Sc. (Agriculture) Programmes For AY 2026-27
+          </span>
+          <span class="adm-new-tag">NEW</span>
         </div>
-      </div>
-    </section>
+        <ul class="adm-links-list">
+          <li>
+            <a href="about-policies-documents.html" class="adm-link">Merit List for M. Sc. (Agriculture) in Agronomy, Horticulture &amp; Genetics &amp; Plant Breeding for the AY 2026-27 as on 31.07.2026</a>
+            <ul class="adm-sub-links">
+              <li><a href="about-policies-documents.html" class="adm-link">Merit list Genetics and Plant Breeding</a></li>
+              <li><a href="about-policies-documents.html" class="adm-link">Merit list Horticulture</a></li>
+              <li><a href="about-policies-documents.html" class="adm-link">Merit list Agronomy</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="about-policies-documents.html" class="adm-link">Merit List for M. Sc. (Agriculture) in Agronomy, Horticulture &amp; Genetics &amp; Plant Breeding for the AY 2026-27</a>
+            <ul class="adm-sub-links">
+              <li><a href="about-policies-documents.html" class="adm-link">2nd Merit list Genetics and Plant Breeding</a></li>
+              <li><a href="about-policies-documents.html" class="adm-link">2nd Merit list Horticulture</a></li>
+              <li><a href="about-policies-documents.html" class="adm-link">2nd Merit list Agronomy</a></li>
+            </ul>
+          </li>
+          <li><a href="about-policies-documents.html" class="adm-link">2nd Cut-Off for second round of admission</a> <span class="adm-new-tag">NEW</span></li>
+          <li>
+            <a href="about-policies-documents.html" class="adm-link">Merit List for M. Sc. (Agriculture) in Agronomy, Horticulture &amp; Genetics &amp; Plant Breeding for the AY 2026-27</a>
+            <ul class="adm-sub-links">
+              <li><a href="about-policies-documents.html" class="adm-link">1st Merit list of Genetic and Plant Breeding</a></li>
+              <li><a href="about-policies-documents.html" class="adm-link">1st Merit list of Horticulture</a></li>
+              <li><a href="about-policies-documents.html" class="adm-link">1st Merit list of Agronomy</a></li>
+            </ul>
+          </li>
+          <li><a href="about-policies-documents.html" class="adm-link">Declaration of Result of Written Test for M.Sc. (Agriculture) Programmes and announcement of first Cut-Off for first round of admission</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Notification No. AE1165 dated 08.07.2026 regarding Entrance Examination for admission in M.Sc. (Agriculture) Programmes (Agronomy, Horticulture and Genetics &amp; Plant Breeding) for the AY 2026-27</a> <span class="adm-new-tag">NEW</span></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Notification for admission in M.Sc. Agriculture Programmes</a> <span class="adm-new-tag">NEW</span></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure-I Category-wise Intake</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure-II Fee Structure Agriculture</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure - III Document Certificates required to be uploaded for online registration</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure - IV Undertaking</a></li>
+        </ul>
+
+        <!-- 9. Notice For Admitted Students & Multi-Round PG Merit Lists -->
+        <div class="adm-banner-heading" id="pg-admitted">
+          <span data-en="Notice For Admitted Students" data-hi="प्रवेशित छात्रों के लिए सूचना">
+            Notice For Admitted Students
+          </span>
+          <span class="adm-new-tag">NEW</span>
+        </div>
+
+        <!-- 9.1 List of Admitted Candidates as on 09.08.2026 -->
+        <h3 class="adm-subhead-bold">
+          • <a href="about-policies-documents.html" class="adm-link">List of admitted and waitlisted candidates of Postgraduate Programmes as on 09.08.2026 under CUET (PG) 2026 for the AY 2026-27</a>
+        </h3>
+        <table class="adm-subject-table">
+          <tbody>
+            <tr>
+              <td><a href="about-policies-documents.html">Artificial Intelligence</a></td>
+              <td><a href="about-policies-documents.html">Environmental Science</a></td>
+              <td><a href="about-policies-documents.html">Bioinformatics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Biotechnology</a></td>
+              <td><a href="about-policies-documents.html">Chemistry</a></td>
+              <td><a href="about-policies-documents.html">Commerce</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Computer Science</a></td>
+              <td><a href="about-policies-documents.html">Data Science</a></td>
+              <td><a href="about-policies-documents.html">Economics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">English</a></td>
+              <td><a href="about-policies-documents.html">Geography</a></td>
+              <td><a href="about-policies-documents.html">Geology</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Hindi</a></td>
+              <td><a href="about-policies-documents.html">History</a></td>
+              <td><a href="about-policies-documents.html">Journalism &amp; Mass Comm.</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Life Science</a></td>
+              <td><a href="about-policies-documents.html">LLM</a></td>
+              <td><a href="about-policies-documents.html">Mathematics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">M.Ed.</a></td>
+              <td><a href="about-policies-documents.html">M.P.Ed.</a></td>
+              <td><a href="about-policies-documents.html">Statistics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">B.Lib. M.Lib</a></td>
+              <td><a href="about-policies-documents.html">Physics</a></td>
+              <td><a href="about-policies-documents.html">Political Science</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Psychology</a></td>
+              <td><a href="about-policies-documents.html">Social Work</a></td>
+              <td><a href="about-policies-documents.html">Sociology</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">PHARMACEUTICS</a></td>
+              <td><a href="about-policies-documents.html">PHARMACOLOGY</a></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 9.2 List as on 31.07.2026 -->
+        <h3 class="adm-subhead-bold">
+          • <a href="about-policies-documents.html" class="adm-link">List of admitted and waitlisted candidates of Postgraduate Programmes as on 31.07.2026 for the AY 2026-27</a>
+        </h3>
+        <table class="adm-subject-table">
+          <tbody>
+            <tr>
+              <td><a href="about-policies-documents.html">Artificial Intelligence</a></td>
+              <td><a href="about-policies-documents.html">Environmental Science</a></td>
+              <td><a href="about-policies-documents.html">Bioinformatics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Biotechnology</a></td>
+              <td><a href="about-policies-documents.html">Chemistry</a></td>
+              <td><a href="about-policies-documents.html">Commerce</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Computer Science</a></td>
+              <td><a href="about-policies-documents.html">Data Science</a></td>
+              <td><a href="about-policies-documents.html">Economics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">English</a></td>
+              <td><a href="about-policies-documents.html">Geography</a></td>
+              <td><a href="about-policies-documents.html">Geology</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Hindi</a></td>
+              <td><a href="about-policies-documents.html">History</a></td>
+              <td><a href="about-policies-documents.html">Journalism &amp; Mass Comm.</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Life Science</a></td>
+              <td><a href="about-policies-documents.html">LLM</a></td>
+              <td><a href="about-policies-documents.html">Mathematics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">M.Ed.</a></td>
+              <td><a href="about-policies-documents.html">M.P.Ed.</a></td>
+              <td><a href="about-policies-documents.html">Statistics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">B.Lib. M.Lib</a></td>
+              <td><a href="about-policies-documents.html">Physics</a></td>
+              <td><a href="about-policies-documents.html">Political Science</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Psychology</a></td>
+              <td><a href="about-policies-documents.html">Social Work</a></td>
+              <td><a href="about-policies-documents.html">Sociology</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">PHARMACEUTICS</a></td>
+              <td><a href="about-policies-documents.html">PHARMACOLOGY</a></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 9.3 List After 3rd Round -->
+        <h3 class="adm-subhead-bold">
+          • <a href="about-policies-documents.html" class="adm-link">List Of Admitted And Waitlisted Candidates Of Postgraduate Programmes After 3rd Round Of Admission Under CUET (PG) 2026 For The AY 2026-27</a>
+        </h3>
+        <table class="adm-subject-table">
+          <tbody>
+            <tr>
+              <td><a href="about-policies-documents.html">Artificial Intelligence</a></td>
+              <td><a href="about-policies-documents.html">Environmental Science</a></td>
+              <td><a href="about-policies-documents.html">Bioinformatics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Biotechnology</a></td>
+              <td><a href="about-policies-documents.html">Chemistry</a></td>
+              <td><a href="about-policies-documents.html">Commerce</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Computer Science</a></td>
+              <td><a href="about-policies-documents.html">Data Science</a></td>
+              <td><a href="about-policies-documents.html">Economics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">English</a></td>
+              <td><a href="about-policies-documents.html">Geography</a></td>
+              <td><a href="about-policies-documents.html">Geology</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Hindi</a></td>
+              <td><a href="about-policies-documents.html">History</a></td>
+              <td><a href="about-policies-documents.html">Journalism &amp; Mass Comm.</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Life Science</a></td>
+              <td><a href="about-policies-documents.html">LLM</a></td>
+              <td><a href="about-policies-documents.html">Mathematics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">M.Ed.</a></td>
+              <td><a href="about-policies-documents.html">M.P.Ed.</a></td>
+              <td><a href="about-policies-documents.html">Statistics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">B.Lib. M.Lib</a></td>
+              <td><a href="about-policies-documents.html">Physics</a></td>
+              <td><a href="about-policies-documents.html">Political Science</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Psychology</a></td>
+              <td><a href="about-policies-documents.html">Social Work</a></td>
+              <td><a href="about-policies-documents.html">Sociology</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">PHARMACEUTICS</a></td>
+              <td><a href="about-policies-documents.html">PHARMACOLOGY</a></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 9.4 List After 2nd Round -->
+        <h3 class="adm-subhead-bold">
+          • <a href="about-policies-documents.html" class="adm-link">List Of Admitted And Waitlisted Candidates Of Postgraduate Programmes After 2nd Round Of Admission Under CUET (PG) 2026 For The AY 2026-27</a>
+        </h3>
+        <table class="adm-subject-table">
+          <tbody>
+            <tr>
+              <td><a href="about-policies-documents.html">Artificial Intelligence</a></td>
+              <td><a href="about-policies-documents.html">Environmental Science</a></td>
+              <td><a href="about-policies-documents.html">Bioinformatics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Biotechnology</a></td>
+              <td><a href="about-policies-documents.html">Chemistry</a></td>
+              <td><a href="about-policies-documents.html">Commerce</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Computer Science</a></td>
+              <td><a href="about-policies-documents.html">Data Science</a></td>
+              <td><a href="about-policies-documents.html">Economics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">English</a></td>
+              <td><a href="about-policies-documents.html">Geography</a></td>
+              <td><a href="about-policies-documents.html">Geology</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Hindi</a></td>
+              <td><a href="about-policies-documents.html">History</a></td>
+              <td><a href="about-policies-documents.html">Journalism &amp; Mass Comm.</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Life Science</a></td>
+              <td><a href="about-policies-documents.html">LLM</a></td>
+              <td><a href="about-policies-documents.html">Mathematics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">M.Ed.</a></td>
+              <td><a href="about-policies-documents.html">M.P.Ed.</a></td>
+              <td><a href="about-policies-documents.html">Statistics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">B.Lib. M.Lib</a></td>
+              <td><a href="about-policies-documents.html">Physics</a></td>
+              <td><a href="about-policies-documents.html">Political Science</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Psychology</a></td>
+              <td><a href="about-policies-documents.html">Social Work</a></td>
+              <td><a href="about-policies-documents.html">Sociology</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">PHARMACEUTICS</a></td>
+              <td><a href="about-policies-documents.html">PHARMACOLOGY</a></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 9.5 List After 1st Round -->
+        <h3 class="adm-subhead-bold">
+          • <a href="about-policies-documents.html" class="adm-link">List Of Admitted And Waitlisted Candidates Of Postgraduate Programmes After 1st Round Of Admission Under CUET (PG) 2026 For The AY 2026-27</a>
+        </h3>
+        <table class="adm-subject-table">
+          <tbody>
+            <tr>
+              <td><a href="about-policies-documents.html">Artificial Intelligence</a></td>
+              <td><a href="about-policies-documents.html">Environmental Science</a></td>
+              <td><a href="about-policies-documents.html">Bioinformatics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Biotechnology</a></td>
+              <td><a href="about-policies-documents.html">Chemistry</a></td>
+              <td><a href="about-policies-documents.html">Commerce</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Computer Science</a></td>
+              <td><a href="about-policies-documents.html">Data Science</a></td>
+              <td><a href="about-policies-documents.html">Economics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">English</a></td>
+              <td><a href="about-policies-documents.html">Geography</a></td>
+              <td><a href="about-policies-documents.html">Geology</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Hindi</a></td>
+              <td><a href="about-policies-documents.html">History</a></td>
+              <td><a href="about-policies-documents.html">Journalism &amp; Mass Comm.</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Life Science</a></td>
+              <td><a href="about-policies-documents.html">LLM</a></td>
+              <td><a href="about-policies-documents.html">Mathematics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">M.Ed.</a></td>
+              <td><a href="about-policies-documents.html">M.P.Ed.</a></td>
+              <td><a href="about-policies-documents.html">Statistics</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">B.Lib. M.Lib</a></td>
+              <td><a href="about-policies-documents.html">Physics</a></td>
+              <td><a href="about-policies-documents.html">Political Science</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">Psychology</a></td>
+              <td><a href="about-policies-documents.html">Social Work</a></td>
+              <td><a href="about-policies-documents.html">Sociology</a></td>
+            </tr>
+            <tr>
+              <td><a href="about-policies-documents.html">PHARMACEUTICS</a></td>
+              <td><a href="about-policies-documents.html">PHARMACOLOGY</a></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 10. PG Second Cut-Off -->
+        <div class="adm-banner-heading">
+          <span data-en="ANNOUNCEMENT OF SECOND (2ND) CUT-OFF FOR ADMISSION IN POSTGRADUATE PROGRAMMES FOR ACADEMIC YEAR 2026-27" data-hi="स्नातकोत्तर (पीजी) द्वितीय कट-ऑफ की घोषणा">
+            ANNOUNCEMENT OF SECOND (2ND) CUT-OFF FOR ADMISSION IN POSTGRADUATE PROGRAMMES FOR ACADEMIC YEAR 2026-27
+          </span>
+        </div>
+        <ul class="adm-links-list">
+          <li><a href="about-policies-documents.html" class="adm-link">Clarification regarding 2nd round of Admission</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Corrigendum of 2nd cut off</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">SECOND (2ND) CUT-OFF FOR ADMISSION IN POSTGRADUATE PROGRAMMES FOR ACADEMIC YEAR 2026-27</a></li>
+        </ul>
+
+        <!-- 11. PG First Cut-Off -->
+        <div class="adm-banner-heading">
+          <span data-en="ANNOUNCEMENT OF FIRST (1st) CUT-OFF FOR ADMISSION IN POSTGRADUATE PROGRAMMES FOR ACADEMIC YEAR 2026-27" data-hi="स्नातकोत्तर (पीजी) प्रथम कट-ऑफ की घोषणा">
+            ANNOUNCEMENT OF FIRST (1st) CUT-OFF FOR ADMISSION IN POSTGRADUATE PROGRAMMES FOR ACADEMIC YEAR 2026-27
+          </span>
+        </div>
+        <ul class="adm-links-list">
+          <li><a href="about-policies-documents.html" class="adm-link">Notice: Extension of Last Date for Fee Payment – M. Pharm (Pharmaceutics) &amp; (Pharmacology) Admissions 2026-27</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Notice: Extension of Last Date for Payment of Admission Fees for PG Admissions 2026-27</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">FIRST (1st) CUT-OFF FOR ADMISSION IN POSTGRADUATE PROGRAMMES FOR ACADEMIC YEAR 2026-27</a></li>
+        </ul>
+
+        <!-- 12. PG General Admission Notification -->
+        <div class="adm-banner-heading">
+          <span data-en="CUSB ADMISSION NOTIFICATION FOR POSTGRADUATE PROGRAMMES FOR ACADEMIC YEAR 2026-27" data-hi="स्नातकोत्तर (पीजी) कार्यक्रमों के लिए सीयूएसबी प्रवेश अधिसूचना">
+            CUSB ADMISSION NOTIFICATION FOR POSTGRADUATE PROGRAMMES FOR ACADEMIC YEAR 2026-27
+          </span>
+        </div>
+        <ul class="adm-links-list">
+          <li><a href="about-policies-documents.html" class="adm-link">Extension of Last Date – CUSB Admission Notification for PG Programmes for AY 2026-27</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Admission Notification for Post Graduate Programme 2026-27</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure - I (Category-wise Sanctioned Intake)</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure - II (Programme wise Eligibility Criteria)</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure - III - Programme-wise relevant Question Paper (QP) Codes of CUET (PG) 2026</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure - IV Fee Structure of all the programmes</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure - V Document Certificates required to be uploaded for online Registration</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Annexure - VI Undertaking</a></li>
+          <li><a href="about-policies-documents.html" class="adm-link">Reservation Policy for Admission in PG and UG Programmes – Academic Year 2026-27</a></li>
+        </ul>
+
+      </article>
+
+    </div>
   </main>
 
   <cusb-footer></cusb-footer>
-  <cusb-chatbot></cusb-chatbot>
-  <script src="js/components.js" defer></script>
-  <script src="js/main.js" defer></script>
-  <script src="js/admissions-page.js" defer></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

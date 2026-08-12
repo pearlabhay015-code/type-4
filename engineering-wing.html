@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="Engineering Wing — Central University of South Bihar" data-hi="इंजीनियरिंग विंग — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Engineering Wing — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Engineering Wing of Central University of South Bihar (CUSB) responsible for campus planning, construction of academic & residential blocks, 280 KLD STP, 11kV substation, water supply, and civil/electrical maintenance.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .eng-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .eng-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .eng-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .eng-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .eng-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    [data-theme="dark"] .eng-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .eng-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 20px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .eng-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .eng-desc-text {
+      font-size: 0.98rem;
+      color: var(--tx-primary, #0f172a);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .eng-feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .eng-feature-list li {
+      position: relative;
+      padding-left: 24px;
+      font-size: 0.96rem;
+      line-height: 1.7;
+      color: var(--tx-primary, #1e293b);
+    }
+    .eng-feature-list li::before {
+      content: "•";
+      position: absolute;
+      left: 6px;
+      top: 0;
+      color: #0b6cb8;
+      font-size: 1.3rem;
+      line-height: 1.5;
+    }
+    [data-theme="dark"] .eng-feature-list li::before {
+      color: #38bdf8;
+    }
+
+    .eng-lead-box {
+      background: rgba(11, 108, 184, 0.04);
+      border-left: 4px solid #0b6cb8;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin: 20px 0 28px;
+      font-size: 0.96rem;
+      line-height: 1.7;
+      color: var(--tx-primary, #1e293b);
+      font-weight: 500;
+    }
+    [data-theme="dark"] .eng-lead-box {
+      background: rgba(56, 189, 248, 0.06);
+      border-left-color: #38bdf8;
+      color: #e2e8f0;
+    }
+
+    /* Section Subheadings */
+    .eng-section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--tx-primary, #0f172a);
+      margin: 32px 0 16px;
+    }
+    [data-theme="dark"] .eng-section-title {
+      color: #f8fafc;
+    }
+
+    /* Blue Table Banner Heading */
+    .eng-table-banner {
+      background: #0b6cb8;
+      color: #ffffff;
+      padding: 12px 18px;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      border-radius: 8px 8px 0 0;
+      text-transform: uppercase;
+    }
+    [data-theme="dark"] .eng-table-banner {
+      background: #0284c7;
+    }
+
+    /* Pink Strip Heading */
+    .eng-pink-bar {
+      height: 4px;
+      background: #dfb2b2;
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+    [data-theme="dark"] .eng-pink-bar {
+      background: #7a3e3e;
+    }
+
+    /* Modern Table Styling */
+    .eng-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin-bottom: 28px;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 0 0 8px 8px;
+    }
+    .eng-table-wrap.standalone {
+      border-radius: 8px;
+    }
+    .eng-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      text-align: left;
+    }
+    .eng-table th {
+      background: #f8fafc;
+      color: #0b6cb8;
+      font-weight: 800;
+      padding: 12px 16px;
+      border-bottom: 2px solid var(--border-color, #e2e8f0);
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      letter-spacing: 0.03em;
+    }
+    [data-theme="dark"] .eng-table th {
+      background: #1e293b;
+      color: #38bdf8;
+      border-bottom-color: #334155;
+    }
+    .eng-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color, #e2e8f0);
+      color: var(--tx-primary, #1e293b);
+      vertical-align: middle;
+    }
+    [data-theme="dark"] .eng-table td {
+      border-bottom-color: #334155;
+      color: #cbd5e1;
+    }
+    .eng-table tr:last-child td {
+      border-bottom: none;
+    }
+    .eng-table tr:hover td {
+      background: rgba(11, 108, 184, 0.02);
+    }
+    [data-theme="dark"] .eng-table tr:hover td {
+      background: rgba(56, 189, 248, 0.04);
+    }
+
+    .eng-avatar {
+      width: 58px;
+      height: 64px;
+      border-radius: 6px;
+      object-fit: cover;
+      display: block;
+      border: 1px solid var(--border-color, #e2e8f0);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .eng-avatar-placeholder {
+      width: 58px;
+      height: 64px;
+      border-radius: 6px;
+      background: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    [data-theme="dark"] .eng-avatar-placeholder {
+      background: #334155;
+      color: #94a3b8;
+    }
+
+    .eng-link {
+      color: #0b6cb8;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .eng-link:hover {
+      text-decoration: underline;
+      color: #004b9b;
+    }
+    [data-theme="dark"] .eng-link {
+      color: #38bdf8;
+    }
+
+    @media (max-width: 768px) {
+      .eng-card {
+        padding: 22px 18px;
+      }
+      .eng-main-title {
+        font-size: 1.7rem;
+      }
+      .eng-desc-text, .eng-feature-list li {
+        font-size: 0.92rem;
+      }
+      .eng-table th, .eng-table td {
+        padding: 10px 12px;
+        font-size: 0.86rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
+
+  <main id="mainContent" class="eng-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="eng-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="facilities.html" data-en="Infrastructure" data-hi="बुनियादी ढांचा">Infrastructure</a>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="Engineering Wing" data-hi="इंजीनियरिंग विंग">Engineering Wing</span>
+      </nav>
+
+      <!-- Main Content Card -->
+      <article class="eng-card">
+        <h1 class="eng-main-title" data-en="Engineering Wing" data-hi="इंजीनियरिंग विंग">Engineering Wing</h1>
+
+        <!-- Overview Paragraph -->
+        <p class="eng-desc-text" data-en="Engineering section of Central University of South Bihar came into existence from 2016 at Gaya for construction of new buildings under its supervision, attending the repair/maintenance of the University buildings which includes all the buildings of Academics/Administration and residential of the University have been constructed hitherto." data-hi="दक्षिण बिहार केंद्रीय विश्वविद्यालय का इंजीनियरिंग अनुभाग अपने पर्यवेक्षण में नए भवनों के निर्माण, विश्वविद्यालय के भवनों की मरम्मत/रखरखाव के लिए गया में 2016 से अस्तित्व में आया, जिसमें विश्वविद्यालय के शैक्षणिक/प्रशासनिक और आवासीय सभी भवन शामिल हैं जो अब तक बनाए गए हैं।">
+          Engineering section of Central University of South Bihar came into existence from 2016 at Gaya for construction of new buildings under its supervision, attending the repair/maintenance of the University buildings which includes all the buildings of Academics/Administration and residential of the University have been constructed hitherto.
+        </p>
+
+        <!-- Feature List -->
+        <ul class="eng-feature-list">
+          <li data-en="Engineering section works on planning on new projects and executes the same on close supervision. Various building and infrastructure related maintenance and allied works are executed by inviting E-tendering, quotations and correspondence with construction agency of Central Government and State Government for execution of building projects, services etc." data-hi="इंजीनियरिंग अनुभाग नई परियोजनाओं की योजना पर काम करता है और कड़ी निगरानी में उन्हें निष्पादित करता है। भवन निर्माण परियोजनाओं, सेवाओं आदि के निष्पादन के लिए केंद्र सरकार और राज्य सरकार की निर्माण एजेंसियों के साथ ई-निविदा, कोटेशन और पत्राचार आमंत्रित करके विभिन्न भवन और बुनियादी ढांचे से संबंधित रखरखाव और संबद्ध कार्यों को निष्पादित किया जाता है।">
+            Engineering section works on planning on new projects and executes the same on close supervision. Various building and infrastructure related maintenance and allied works are executed by inviting E-tendering, quotations and correspondence with construction agency of Central Government and State Government for execution of building projects, services etc.
+          </li>
+          <li data-en="Civil and Electrical related facility works are undertaken by engineering section after administrative and financial approval by the CA from time to time depending upon the requirement from various departments through requisition form." data-hi="मांग प्रपत्र के माध्यम से विभिन्न विभागों की आवश्यकता के आधार पर समय-समय पर सक्षम प्राधिकारी द्वारा प्रशासनिक और वित्तीय अनुमोदन के बाद इंजीनियरिंग अनुभाग द्वारा सिविल और इलेक्ट्रिकल संबंधित सुविधा कार्य किए जाते हैं।">
+            Civil and Electrical related facility works are undertaken by engineering section after administrative and financial approval by the CA from time to time depending upon the requirement from various departments through requisition form.
+          </li>
+          <li data-en="The water supply to the Academic, Admin-, hostels, Residence of the University campus are maintained through UGT with underground water line networks and similarly the electrical supply of the University buildings/campus are maintained through 1 no. of power 11kV / 433 V substation." data-hi="विश्वविद्यालय परिसर के शैक्षणिक, प्रशासनिक, छात्रावासों, आवासों में जल आपूर्ति को भूमिगत जल लाइन नेटवर्क के साथ यूजीसी के माध्यम से बनाए रखा जाता है और इसी तरह विश्वविद्यालय भवनों/परिसर की विद्युत आपूर्ति 1 नंबर पावर 11kV / 433 V सबस्टेशन के माध्यम से बनाए रखी जाती है।">
+            The water supply to the Academic, Admin-, hostels, Residence of the University campus are maintained through UGT with underground water line networks and similarly the electrical supply of the University buildings/campus are maintained through 1 no. of power 11kV / 433 V substation.
+          </li>
+          <li data-en="University has its own STP (Sewage Treatment Plant) of capacity of 280 KLD to cater irrigation water and flush water" data-hi="विश्वविद्यालय के पास सिंचाई के पानी और फ्लश के पानी को पूरा करने के लिए 280 केएलडी की क्षमता वाला अपना एसटीपी (सीवेज ट्रीटमेंट प्लांट) है।">
+            University has its own STP (Sewage Treatment Plant) of capacity of 280 KLD to cater irrigation water and flush water
+          </li>
+          <li data-en="Engineering section prepares agendas and minutes for building works committee and provides data to the ministry related to buildings and services time to time." data-hi="इंजीनियरिंग अनुभाग भवन निर्माण कार्य समिति के लिए कार्यसूची और कार्यवृत्त तैयार करता है और समय-समय पर भवनों और सेवाओं से संबंधित आंकड़े मंत्रालय को उपलब्ध कराता है।">
+            Engineering section prepares agendas and minutes for building works committee and provides data to the ministry related to buildings and services time to time.
+          </li>
+        </ul>
+
+        <!-- Ongoing Works Note -->
+        <div class="eng-lead-box" data-en="Presently, a new work has been awarded for construction of Library Building, Hostels, Staff Quarters, Health Centre, Animal House, Food Court etc. is going on." data-hi="वर्तमान में, पुस्तकालय भवन, छात्रावास, कर्मचारी क्वार्टर, स्वास्थ्य केंद्र, पशु गृह, फूड कोर्ट आदि के निर्माण के लिए एक नया कार्य प्रदान किया गया है जो प्रगति पर है।">
+          Presently, a new work has been awarded for construction of Library Building, Hostels, Staff Quarters, Health Centre, Animal House, Food Court etc. is going on.
+        </div>
+
+        <!-- 1. Staff Hierarchy Table -->
+        <h2 class="eng-section-title" data-en="Staff Hierarchy:-" data-hi="कर्मचारी पदानुक्रम:-">
+          Staff Hierarchy:-
+        </h2>
+
+        <div class="eng-table-wrap standalone">
+          <table class="eng-table">
+            <thead>
+              <tr>
+                <th data-en="Name" data-hi="नाम">Name</th>
+                <th data-en="E-mail" data-hi="ई-मेल">E-mail</th>
+                <th data-en="Contact No." data-hi="संपर्क नंबर">Contact No.</th>
+                <th style="width: 80px;" data-en="Photo/Image" data-hi="फोटो">Photo/Image</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong data-en="Sh. Kalyan Saha (Executive Engineer)" data-hi="श्री कल्याण साहा (अधिशासी अभियंता)">Sh. Kalyan Saha (Executive Engineer)</strong></td>
+                <td><a href="mailto:ee@cusb.ac.in" class="eng-link">ee@cusb.ac.in</a></td>
+                <td><a href="tel:06312229526" class="eng-link">0631-2229-526</a></td>
+                <td>
+                  <img src="assets/engineering/kalyan-saha.png" alt="Sh. Kalyan Saha" class="eng-avatar" loading="lazy" decoding="async">
+                </td>
+              </tr>
+              <tr>
+                <td><strong data-en="Sh. Atul Singh (Assistant Engineer-Electrical)" data-hi="श्री अतुल सिंह (सहायक अभियंता-विद्युत)">Sh. Atul Singh (Assistant Engineer-Electrical)</strong></td>
+                <td><a href="mailto:atulsingh@cusb.ac.in" class="eng-link">atulsingh@cusb.ac.in</a></td>
+                <td><a href="tel:06312229231" class="eng-link">0631-2229-231</a></td>
+                <td>
+                  <img src="assets/engineering/atul-singh.png" alt="Sh. Atul Singh" class="eng-avatar" loading="lazy" decoding="async">
+                </td>
+              </tr>
+              <tr>
+                <td><strong data-en="Sh. Kaushlesh Kr. Singh (Assistant Engineer-Civil)" data-hi="श्री कौशलेश कुमार सिंह (सहायक अभियंता-सिविल)">Sh. Kaushlesh Kr. Singh (Assistant Engineer-Civil)</strong></td>
+                <td><a href="mailto:kaushlesh@cusb.ac.in" class="eng-link">kaushlesh@cusb.ac.in</a></td>
+                <td>—</td>
+                <td>
+                  <img src="assets/engineering/kaushlesh-singh.png" alt="Sh. Kaushlesh Kr. Singh" class="eng-avatar" loading="lazy" decoding="async">
+                </td>
+              </tr>
+              <tr>
+                <td><strong data-en="Sh. Shatrujit Singh (Junior Engineer) Civil" data-hi="श्री शत्रुजीत सिंह (कनिष्ठ अभियंता) सिविल">Sh. Shatrujit Singh (Junior Engineer) Civil</strong></td>
+                <td><a href="mailto:shatrujitsingh@cusb.ac.in" class="eng-link">shatrujitsingh@cusb.ac.in</a></td>
+                <td>—</td>
+                <td>
+                  <img src="assets/engineering/shatrujit-singh.png" alt="Sh. Shatrujit Singh" class="eng-avatar" loading="lazy" decoding="async">
+                </td>
+              </tr>
+              <tr>
+                <td><strong data-en="Sh. Mr. Amit Chaudhary (LDC)" data-hi="श्री अमित चौधरी (एलडीसी)">Sh. Mr. Amit Chaudhary (LDC)</strong></td>
+                <td><a href="mailto:amitchaudhary@cusb.ac.in" class="eng-link">amitchaudhary@cusb.ac.in</a></td>
+                <td>—</td>
+                <td>
+                  <div class="eng-avatar-placeholder">AC</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 2. Constructed Building Table -->
+        <div style="margin-top: 36px;">
+          <div class="eng-table-banner" data-en="CONSTRUCTED BUILDING" data-hi="निर्मित भवन">
+            CONSTRUCTED BUILDING
+          </div>
+          <div class="eng-table-wrap">
+            <table class="eng-table">
+              <thead>
+                <tr>
+                  <th style="width: 50px;">S.N.</th>
+                  <th data-en="NAME OF BUILDINGS" data-hi="भवनों के नाम">NAME OF BUILDINGS</th>
+                  <th data-en="NO OF FLOORS" data-hi="मंजिलों की संख्या">NO OF FLOORS</th>
+                  <th data-en="PLINTH AREA (Sq.m)" data-hi="प्लिंथ क्षेत्र (वर्ग मीटर)">PLINTH AREA (Sq.m)</th>
+                  <th data-en="TOTAL BUILT UP AREA (Sq.m)" data-hi="कुल निर्मित क्षेत्र (वर्ग मीटर)">TOTAL BUILT UP AREA (Sq.m)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><strong data-en="ADMINISTRATION BUILDING" data-hi="प्रशासनिक भवन">ADMINISTRATION BUILDING</strong></td>
+                  <td>S+3</td>
+                  <td>1720</td>
+                  <td>6880</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td><strong data-en="ARYABHATTA BHAWAN (SCHOOL OF EARTH BIOLOGICAL &amp; ENVIRONMENTAL SCIENCE)" data-hi="आर्यभट्ट भवन (पृथ्वी जैविक एवं पर्यावरण विज्ञान संकाय)">ARYABHATTA BHAWAN (SCHOOL OF EARTH BIOLOGICAL &amp; ENVIRONMENTAL SCIENCE)</strong></td>
+                  <td>G+3</td>
+                  <td>2650</td>
+                  <td>10131</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><strong data-en="MALAVIYA BHAWAN (SCHOOL OF EDUCATION)" data-hi="मालवीय भवन (शिक्षा संकाय)">MALAVIYA BHAWAN (SCHOOL OF EDUCATION)</strong></td>
+                  <td>G+2</td>
+                  <td>1776</td>
+                  <td>5492</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td><strong data-en="CHANAKYA BHAWAN (SCHOOL OF SOCIAL SCIENCES &amp; POLICY)" data-hi="चाणक्य भवन (सामाजिक विज्ञान एवं नीति संकाय)">CHANAKYA BHAWAN (SCHOOL OF SOCIAL SCIENCES &amp; POLICY)</strong></td>
+                  <td>G+3</td>
+                  <td>2840</td>
+                  <td>11919</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td><strong data-en="GARGI SADAN (GIRLS HOSTEL)" data-hi="गार्गी सदन (छात्रावास - छात्राएं)">GARGI SADAN (GIRLS HOSTEL)</strong></td>
+                  <td>G+3</td>
+                  <td>1535</td>
+                  <td>6141</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td><strong data-en="MAITREYI SADAN (BOYS HOSTEL, BOTH BLOCK)" data-hi="मैत्रेयी सदन (छात्रावास - छात्र, दोनों ब्लॉक)">MAITREYI SADAN (BOYS HOSTEL, BOTH BLOCK)</strong></td>
+                  <td>G+3</td>
+                  <td>3070</td>
+                  <td>12318</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td><strong data-en="SANGHARAMA (GUEST HOUSE)" data-hi="संघाराम (अतिथि गृह)">SANGHARAMA (GUEST HOUSE)</strong></td>
+                  <td>G+3</td>
+                  <td>1075</td>
+                  <td>3140</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td><strong data-en="VIVEKANANDA LECTURE COMPLEX" data-hi="विवेकानंद व्याख्यान परिसर">VIVEKANANDA LECTURE COMPLEX</strong></td>
+                  <td>G+2</td>
+                  <td>1212</td>
+                  <td>3036</td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td><strong data-en="VC RESIDENCE (INCLUDING STAFF QUARTER)" data-hi="कुलपति आवास (कर्मचारी आवास सहित)">VC RESIDENCE (INCLUDING STAFF QUARTER)</strong></td>
+                  <td>G+2</td>
+                  <td>443</td>
+                  <td>670</td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td><strong data-en="MESS BUILDING" data-hi="मेस भवन">MESS BUILDING</strong></td>
+                  <td>G</td>
+                  <td>1537</td>
+                  <td>1537</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 3. Details of Upcoming Building Project -->
+        <div style="margin-top: 36px;">
+          <div class="eng-table-banner" data-en="THE DETAILS OF UPCOMING BUILDING PROJECT" data-hi="आगामी भवन परियोजना का विवरण">
+            THE DETAILS OF UPCOMING BUILDING PROJECT
+          </div>
+          <div class="eng-table-wrap">
+            <table class="eng-table">
+              <thead>
+                <tr>
+                  <th style="width: 50px;">S.N.</th>
+                  <th data-en="NAME OF BUILDINGS" data-hi="भवनों के नाम">NAME OF BUILDINGS</th>
+                  <th data-en="NO. OF FLOORS" data-hi="मंजिलों की संख्या">NO. OF FLOORS</th>
+                  <th data-en="BUILD UP AREA / PLINTH AREA (IN SQM)" data-hi="निर्मित क्षेत्र / प्लिंथ क्षेत्र (वर्ग मीटर में)">BUILD UP AREA / PLINTH AREA (IN SQM)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><strong data-en="HEALTH CENTRE" data-hi="स्वास्थ्य केंद्र">HEALTH CENTRE</strong></td>
+                  <td>G</td>
+                  <td>679</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td><strong data-en="CENTRAL LIBRARY" data-hi="केंद्रीय पुस्तकालय">CENTRAL LIBRARY</strong></td>
+                  <td>G+2</td>
+                  <td>4094</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><strong data-en="BOYS HOSTEL" data-hi="छात्र छात्रावास">BOYS HOSTEL</strong></td>
+                  <td>G+3</td>
+                  <td>8674</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td><strong data-en="MESS BLOCK" data-hi="मेस ब्लॉक">MESS BLOCK</strong></td>
+                  <td>G</td>
+                  <td>870</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td><strong data-en="TYPE –III QUARTER" data-hi="टाइप-III क्वार्टर">TYPE –III QUARTER</strong></td>
+                  <td>G+7</td>
+                  <td>3946</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td><strong data-en="TYPE –IV QUARTER" data-hi="टाइप-IV क्वार्टर">TYPE –IV QUARTER</strong></td>
+                  <td>G+7</td>
+                  <td>4204</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td><strong data-en="FOOD COURT" data-hi="फूड कोर्ट">FOOD COURT</strong></td>
+                  <td>G</td>
+                  <td>280</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td><strong data-en="ANIMAL HOUSE" data-hi="एनिमल हाउस">ANIMAL HOUSE</strong></td>
+                  <td>G</td>
+                  <td>310</td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td><strong data-en="STORE ROOM &amp; HORTICULTURE OFFICE" data-hi="स्टोर रूम एवं बागवानी कार्यालय">STORE ROOM &amp; HORTICULTURE OFFICE</strong></td>
+                  <td>G</td>
+                  <td>300</td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td><strong data-en="FOUR NO. SHOP" data-hi="चार दुकानें">FOUR NO. SHOP</strong></td>
+                  <td>G</td>
+                  <td>55</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p class="eng-desc-text" style="margin-top: 14px;" data-en="Along with above building details the University have its own substation, water pump house, allied services and STP." data-hi="उपरोक्त भवन विवरण के साथ विश्वविद्यालय के पास अपना स्वयं का सबस्टेशन, वाटर पंप हाउस, संबद्ध सेवाएं और एसटीपी है।">
+          Along with above building details the University have its own substation, water pump house, allied services and STP.
+        </p>
+
+        <!-- 4. Details are as under:- (Pink Bar + Bullet Points) -->
+        <h2 class="eng-section-title" data-en="Details are as under:-" data-hi="विवरण निम्नानुसार है:-">
+          Details are as under:-
+        </h2>
+        <div class="eng-pink-bar"></div>
+
+        <ul class="eng-feature-list">
+          <li data-en="Zero water discharge campus:-" data-hi="शून्य जल निर्वहन परिसर:-">Zero water discharge campus:-</li>
+          <li data-en="Rain water harvesting" data-hi="वर्षा जल संचयन (रेन वाटर हार्वेस्टिंग)">Rain water harvesting</li>
+          <li data-en="Excess water storage pond" data-hi="अतिरिक्त जल भंडारण तालाब">Excess water storage pond</li>
+          <li data-en="280 KLD STP (Sewage Treatment Plant)" data-hi="280 केएलडी एसटीपी (सीवेज ट्रीटमेंट प्लांट)">280 KLD STP</li>
+          <li data-en="11/0.433 KV substation" data-hi="11/0.433 केवी सबस्टेशन">11/0.433 KV substation</li>
+          <li data-en="Horticulture water supply system" data-hi="बागवानी जल आपूर्ति प्रणाली">Horticulture water supply system</li>
+          <li data-en="Garbage disposal management system" data-hi="कचरा निपटान प्रबंधन प्रणाली">Garbage disposal management system</li>
+          <li data-en="Wet-riser fire fighting system along with fire extinguisher" data-hi="अग्निशामक यंत्र के साथ वेट-राइजर अग्निशमन प्रणाली">Wet-riser fire fighting system along with fire extinguisher</li>
+          <li data-en="Lift in all buildings" data-hi="सभी भवनों में लिफ्ट">Lift in all buildings</li>
+          <li data-en="Handicapped toilet for physically disabled person in each building" data-hi="प्रत्येक भवन में दिव्यांग व्यक्तियों के लिए विशेष शौचालय">Handicapped toilet for physically disabled person in each building</li>
+          <li data-en="Ramp for physically disabled person in each building" data-hi="प्रत्येक भवन में दिव्यांग व्यक्तियों के लिए रैंप">Ramp for physically disabled person in each building</li>
+          <li data-en="DG back up in all building" data-hi="सभी भवनों में डीजी पावर बैकअप">DG back up in all building</li>
+        </ul>
+      </article>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

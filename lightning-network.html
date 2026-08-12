@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="Lightning Location Network — Central University of South Bihar" data-hi="तड़ित स्थान नेटवर्क — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Lightning Location Network — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Lightning Location Network (LLN) by Ministry of Earth Sciences (MoES) and IITM Pune installed at Aryabhatta Bhawan, Central University of South Bihar (CUSB) Gaya for 24x7 early thunderstorm and lightning detection.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .lln-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .lln-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .lln-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .lln-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .lln-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    [data-theme="dark"] .lln-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .lln-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 16px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .lln-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .lln-subtitle {
+      font-size: 1.22rem;
+      font-weight: 800;
+      color: var(--tx-primary, #0f172a);
+      margin: 20px 0 10px;
+    }
+    [data-theme="dark"] .lln-subtitle {
+      color: #f8fafc;
+    }
+
+    .lln-pink-bar {
+      height: 4px;
+      background: #dfb2b2;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    [data-theme="dark"] .lln-pink-bar {
+      background: #7a3e3e;
+    }
+
+    .lln-desc-text {
+      font-size: 0.98rem;
+      color: var(--tx-primary, #0f172a);
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    .lln-coordinator-box {
+      background: rgba(11, 108, 184, 0.04);
+      border-left: 4px solid #0b6cb8;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 24px 0 32px;
+      font-size: 0.96rem;
+      line-height: 1.7;
+      color: var(--tx-primary, #1e293b);
+    }
+    [data-theme="dark"] .lln-coordinator-box {
+      background: rgba(56, 189, 248, 0.06);
+      border-left-color: #38bdf8;
+      color: #e2e8f0;
+    }
+
+    .lln-link {
+      color: #0b6cb8;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .lln-link:hover {
+      text-decoration: underline;
+      color: #004b9b;
+    }
+    [data-theme="dark"] .lln-link {
+      color: #38bdf8;
+    }
+
+    /* 2-Column Side-by-Side Gallery */
+    .lln-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .lln-gallery-item {
+      margin: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-color, #e2e8f0);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      background: #000000;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .lln-gallery-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+    .lln-gallery-item img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .lln-gallery-item:hover img {
+      transform: scale(1.02);
+    }
+    .lln-gallery-caption {
+      background: #f8fafc;
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--tx-primary);
+      border-top: 1px solid var(--border-color, #e2e8f0);
+      text-align: center;
+    }
+    [data-theme="dark"] .lln-gallery-caption {
+      background: #1e293b;
+      border-top-color: #334155;
+      color: #f1f5f9;
+    }
+
+    @media (max-width: 768px) {
+      .lln-card {
+        padding: 22px 18px;
+      }
+      .lln-main-title {
+        font-size: 1.7rem;
+      }
+      .lln-subtitle {
+        font-size: 1.08rem;
+      }
+      .lln-desc-text, .lln-coordinator-box {
+        font-size: 0.92rem;
+      }
+      .lln-gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .lln-gallery-item img {
+        height: 280px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
+
+  <main id="mainContent" class="lln-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="lln-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="facilities.html" data-en="Infrastructure" data-hi="बुनियादी ढांचा">Infrastructure</a>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="Lightning Location Network" data-hi="तड़ित स्थान नेटवर्क">Lightning Location Network</span>
+      </nav>
+
+      <!-- Main Content Card -->
+      <article class="lln-card">
+        <h1 class="lln-main-title" data-en="Lightning Location Network" data-hi="तड़ित स्थान नेटवर्क">Lightning Location Network</h1>
+
+        <!-- Subheading -->
+        <h2 class="lln-subtitle" data-en="Lightning Location Network (Ministry of Earth Science, GoI)" data-hi="तड़ित स्थान नेटवर्क (पृथ्वी विज्ञान मंत्रालय, भारत सरकार)">
+          Lightning Location Network (Ministry of Earth Science, GoI)
+        </h2>
+        <div class="lln-pink-bar"></div>
+
+        <!-- Paragraph 1 -->
+        <p class="lln-desc-text" data-en="Owing to the importance of early warning of lightning discharge through thunderstorm clouds in different seasons, the Ministry of Earth Sciences (MoES), Govt. of India has taken up a project to study and detect the location of lightning by installing the Lightning Location Network (LLN) at different locations of India. Under this scheme, Indian Institute of Tropical Meteorology (IITM), Pune (under MoES) has installed Lightning sensor at the roof top of at the rooftop of Aryabhatta Bhawan of School of Earth, Biological and Environmental Science, Central University of South Bihar (CUSB) Gaya campus." data-hi="विभिन्न मौसमों में गरज वाले बादलों के माध्यम से बिजली के डिस्चार्ज की प्रारंभिक चेतावनी के महत्व के कारण, पृथ्वी विज्ञान मंत्रालय (एमओईएस), भारत सरकार ने भारत के विभिन्न स्थानों पर लाइटनिंग लोकेशन नेटवर्क (एलएलएन) स्थापित करके बिजली के स्थान का अध्ययन और पता लगाने के लिए एक परियोजना शुरू की है। इस योजना के तहत, भारतीय उष्णकटिबंधीय मौसम विज्ञान संस्थान (आईआईटीएम), पुणे (एमओईएस के तहत) ने दक्षिण बिहार केंद्रीय विश्वविद्यालय (सीयूएसबी) गया परिसर के पृथ्वी, जैविक और पर्यावरण विज्ञान स्कूल के आर्यभट्ट भवन की छत पर लाइटनिंग सेंसर स्थापित किया है।">
+          Owing to the importance of early warning of lightning discharge through thunderstorm clouds in different seasons, the Ministry of Earth Sciences (MoES), Govt. of India has taken up a project to study and detect the location of lightning by installing the Lightning Location Network (LLN) at different locations of India. Under this scheme, Indian Institute of Tropical Meteorology (IITM), Pune (under MoES) has installed Lightning sensor at the roof top of at the rooftop of Aryabhatta Bhawan of School of Earth, Biological and Environmental Science, Central University of South Bihar (CUSB) Gaya campus.
+        </p>
+
+        <!-- Paragraph 2 -->
+        <p class="lln-desc-text" data-en="This lighting sensor is providing live data to a fully online system accessible 24 x7 on a interactive web map hosted by IITM, Pune. The recorded data through sensor is being sent continuously, without manual intervention, to the central processor at IITM, Pune. This is helpful to the general public awareness especially to the farmers, and others working in an open field or space. The collected data by the sensor will be used for research on thunderstorm, lightning and rainfall study." data-hi="यह लाइटनिंग सेंसर आईआईटीएम, पुणे द्वारा होस्ट किए गए इंटरैक्टिव वेब मैप पर 24x7 सुलभ एक पूरी तरह से ऑनलाइन सिस्टम को लाइव डेटा प्रदान कर रहा है। सेंसर के माध्यम से दर्ज किया गया डेटा आईआईटीएम, पुणे में केंद्रीय प्रोसेसर को बिना किसी मानवीय हस्तक्षेप के लगातार भेजा जा रहा है। यह आम जनता में जागरूकता के लिए विशेष रूप से किसानों और खुले खेत या स्थान में काम करने वाले अन्य लोगों के लिए उपयोगी है। सेंसर द्वारा एकत्र किए गए डेटा का उपयोग गरज, बिजली और वर्षा के अध्ययन पर अनुसंधान के लिए किया जाएगा।">
+          This lighting sensor is providing live data to a fully online system accessible 24 x7 on an <a href="https://www.tropmet.res.in/lightning/" target="_blank" rel="noopener noreferrer" class="lln-link" data-en="interactive web map" data-hi="इंटरैक्टिव वेब मैप">interactive web map</a> hosted by IITM, Pune. The recorded data through sensor is being sent continuously, without manual intervention, to the central processor at IITM, Pune. This is helpful to the general public awareness especially to the farmers, and others working in an open field or space. The collected data by the sensor will be used for research on thunderstorm, lightning and rainfall study.
+        </p>
+
+        <!-- Coordinator Box -->
+        <div class="lln-coordinator-box">
+          <p style="margin: 0;" data-en="Prof. Pradhan Parth Sarthi (ppsarthi@cub.ac.in), Department of Environmental Science, CUSB is coordinating this program." data-hi="प्रो. प्रधान पार्थ सारथी (ppsarthi@cub.ac.in), पर्यावरण विज्ञान विभाग, सीयूएसबी इस कार्यक्रम का समन्वय कर रहे हैं।">
+            <strong data-en="Program Coordinator:" data-hi="कार्यक्रम समन्वयक:">Program Coordinator:</strong> 
+            <span data-en="Prof. Pradhan Parth Sarthi" data-hi="प्रो. प्रधान पार्थ सारथी">Prof. Pradhan Parth Sarthi</span> 
+            (<a href="mailto:ppsarthi@cub.ac.in" class="lln-link">ppsarthi@cub.ac.in</a>), 
+            <span data-en="Department of Environmental Science, CUSB." data-hi="पर्यावरण विज्ञान विभाग, सीयूएसबी।">Department of Environmental Science, CUSB.</span>
+          </p>
+        </div>
+
+        <!-- 2-Column Photo Gallery -->
+        <div class="lln-gallery-grid">
+          <figure class="lln-gallery-item">
+            <img src="assets/lightning-network/rooftop-sensor.png" alt="Lightning sensor unit on rooftop of Aryabhatta Bhawan, CUSB Campus" loading="lazy" decoding="async">
+            <figcaption class="lln-gallery-caption" data-en="Rooftop Lightning Sensor at Aryabhatta Bhawan" data-hi="आर्यभट्ट भवन की छत पर तड़ित सेंसर">
+              Rooftop Lightning Sensor at Aryabhatta Bhawan
+            </figcaption>
+          </figure>
+          <figure class="lln-gallery-item">
+            <img src="assets/lightning-network/server-rack-unit.png" alt="IITM Pune real-time processing and network rack unit" loading="lazy" decoding="async">
+            <figcaption class="lln-gallery-caption" data-en="IITM Pune Live Data Processing &amp; Network Rack" data-hi="आईआईटीएम पुणे लाइव डेटा प्रोसेसिंग एवं नेटवर्क रैक">
+              IITM Pune Live Data Processing &amp; Network Rack
+            </figcaption>
+          </figure>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

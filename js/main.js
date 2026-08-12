@@ -1141,7 +1141,7 @@ function renderGallery(galleryList) {
     const block = document.createElement('div');
     block.className = 'gallery-block';
     block.innerHTML = `
-      <img src="${item.image_url}" alt="${item.title_en}" loading="lazy" onerror="this.src='assets/images/blockB.jpg'">
+      <img src="${item.image_url}" alt="${item.title_en}" loading="lazy" onerror="this.src='assets/images/convo.png'">
       <div class="gallery-overlay" data-en="${item.title_en}" data-hi="${item.title_hi}">${item.title_en}</div>
     `;
     container.appendChild(block);
@@ -1154,7 +1154,7 @@ function renderNewsCards(newsList) {
 
   container.innerHTML = '';
   newsList.slice(0, 3).forEach(item => {
-    const defaultImage = 'assets/images/blockB.jpg';
+    const defaultImage = 'assets/images/convo.png';
     const imgUrl = item.image_url || defaultImage;
     
     let dateObj = new Date(item.created_at);
@@ -1167,7 +1167,7 @@ function renderNewsCards(newsList) {
     article.className = 'news-card';
     article.innerHTML = `
       <div class="news-card-media">
-        <img src="${imgUrl}" alt="${item.title_en}" loading="lazy" onerror="this.src='assets/images/blockB.jpg'">
+        <img src="${imgUrl}" alt="${item.title_en}" loading="lazy" onerror="this.src='assets/images/convo.png'">
         <div class="news-card-date"><span>${day}</span>${month}</div>
       </div>
       <div class="news-card-details">
@@ -1672,7 +1672,7 @@ function initGalleryTicker() {
       title_hi: "अकादमिक ब्लॉक परिसर",
       category_en: "Academic Infrastructure",
       category_hi: "शैक्षणिक अवसंरचना",
-      src: "assets/images/blockB.jpg",
+      src: "assets/images/convo.png",
       location: "Central Academic Sector",
       access: "25 Academic Departments & Labs",
       desc_en: "State-of-the-art multi-storey academic blocks housing 25+ academic departments, smart multimedia lecture halls, advanced research laboratories, departmental reading halls, and faculty rooms connected via high-speed campus Wi-Fi.",
@@ -1853,7 +1853,7 @@ function initGalleryTicker() {
             title_hi: item.title_hi || item.titleHi || item.title_en || "परिसर दृश्य",
             category_en: item.category_en || 'Campus Landmark',
             category_hi: item.category_hi || 'परिसर लैंडमार्क',
-            src: item.image_url || item.src || 'assets/images/blockB.jpg',
+            src: item.image_url || item.src || 'assets/images/convo.png',
             location: 'CUSB Panchanpur Campus',
             access: 'Students & Visitors',
             desc_en: item.desc_en || item.title_en || "CUSB Campus Landmark",
@@ -2195,7 +2195,7 @@ function initNewsTicker() {
       category_hi: "सीयूईटी पीजी प्रवेश",
       date: "10 MAR 2026",
       publisher: "Central Admission Cell, CUSB",
-      src: "assets/images/blockB.jpg",
+      src: "assets/images/convo.png",
       desc_en: "Central University of South Bihar has officially released the admission prospectus and application guidelines for 28 Postgraduate Degree (MA, MSc, MTech, LLM, MPharm, MEd) programs for Academic Session 2026-27 through CUET PG 2026 scores.",
       desc_hi: "दक्षिण बिहार केंद्रीय विश्वविद्यालय ने सीयूईटी पीजी 2026 के माध्यम से शैक्षणिक सत्र 2026-27 के लिए 28 स्नातकोत्तर पाठ्यक्रमों का प्रवेश बुलेटिन जारी किया है।",
       link: "admissions.html"
@@ -2283,7 +2283,7 @@ function initNewsTicker() {
             category_hi: cItem.type ? cItem.type.toUpperCase() : "सीयूएसबी घोषणा",
             date: cItem.date_str || "LATEST",
             publisher: "CUSB Administration",
-            src: cItem.image_url || "assets/images/blockB.jpg",
+            src: cItem.image_url || "assets/images/convo.png",
             desc_en: cItem.desc_en,
             desc_hi: cItem.desc_hi || cItem.desc_en,
             link: "news-events.html"
@@ -2372,7 +2372,7 @@ function initNewsTicker() {
               category_hi: cItem.type ? cItem.type.toUpperCase() : "सीयूएसबी घोषणा",
               date: cItem.date_str || "LATEST",
               publisher: "CUSB Administration",
-              src: cItem.image_url || "assets/images/blockB.jpg",
+              src: cItem.image_url || "assets/images/convo.png",
               desc_en: cItem.desc_en,
               desc_hi: cItem.desc_hi || cItem.desc_en,
               link: "news-events.html"
@@ -2820,7 +2820,7 @@ function initHeroCarousel() {
       title_hi: "दक्षिण बिहार<span><br>केन्द्रीय विश्वविद्यालय</span>",
       sub_en: "A premier central university under the Ministry of Education, Government of India. 300 acres of green learning at Gaya, Bihar.",
       sub_hi: "भारत सरकार के शिक्षा मंत्रालय के तहत एक प्रमुख केंद्रीय विश्वविद्यालय। गया, बिहार में 300 एकड़ का हरा-भरा शैक्षणिक परिसर।",
-      image: "assets/drone.jpg",
+      image: "assets/drone.png",
       link: "admissions.html",
       btn_text_en: "Apply Now →",
       btn_text_hi: "अभी आवेदन करें →"
@@ -2844,7 +2844,7 @@ function initHeroCarousel() {
       title_hi: "उन्नत प्रयोगशालाएं एवं<span><br>अनुसंधान सुविधाएं</span>",
       sub_en: "Fostering interdisciplinary cutting-edge research across Physical, Biological, Social and Computational Sciences.",
       sub_hi: "भौतिक, जैविक, सामाजिक और कम्प्यूटेशनल विज्ञान में अंतःविषय अत्याधुनिक अनुसंधान को बढ़ावा देना।",
-      image: "assets/images/cusb-act-building.png",
+      image: "assets/images/dept_hero_new.png",
       link: "research.html",
       btn_text_en: "Explore Research →",
       btn_text_hi: "शोध देखें →"
@@ -2856,7 +2856,7 @@ function initHeroCarousel() {
       title_hi: "विश्व स्तरीय संकाय एवं<span><br>नवोन्मेषी पाठ्यक्रम</span>",
       sub_en: "Offering comprehensive Undergraduate, Postgraduate, and Doctoral programmes aligned with NEP 2020.",
       sub_hi: "राष्ट्रीय शिक्षा नीति (NEP 2020) के अनुरूप स्नातक, स्नातकोत्तर और डॉक्टरेट कार्यक्रम।",
-      image: "assets/images/blockB.jpg",
+      image: "assets/images/convo.png",
       link: "courses.html",
       btn_text_en: "View Courses →",
       btn_text_hi: "पाठ्यक्रम देखें →"
@@ -2868,7 +2868,7 @@ function initHeroCarousel() {
       title_hi: "जीवंत छात्र जीवन एवं<span><br>समग्र विकास</span>",
       sub_en: "State-of-the-art sports stadium, cultural auditoriums, separate hostels with 24/7 security, and thriving student clubs.",
       sub_hi: "अत्याधुनिक खेल स्टेडियम, सांस्कृतिक सभागार, 24/7 सुरक्षा वाले छात्रावास और सक्रिय छात्र क्लब।",
-      image: "assets/hero_eve.jpg",
+      image: "assets/hero_eve.png",
       link: "about.html",
       btn_text_en: "Campus Tour →",
       btn_text_hi: "परिसर भ्रमण →"
@@ -2891,7 +2891,7 @@ function initHeroCarousel() {
             title_hi: ann.title_hi || ann.title_en,
             sub_en: ann.desc_en,
             sub_hi: ann.desc_hi || ann.desc_en,
-            image: ann.image_url || "assets/drone.webp",
+            image: ann.image_url || "assets/drone.png",
             link: "news-events.html",
             btn_text_en: "Read Announcement →",
             btn_text_hi: "घोषणा पढ़ें →"

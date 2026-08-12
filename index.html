@@ -27,7 +27,7 @@
     <section class="hero-banner hero-carousel-wrapper" aria-label="Campus Highlights Carousel">
       <!-- Background Clickable Link & Slide Image -->
       <a id="heroBgLink" class="hero-bg-link" href="admissions.html" aria-label="Campus Slide Link">
-        <div id="heroBgSlide" class="hero-bg-slide" style="background-image: url('assets/drone.jpg');"></div>
+        <div id="heroBgSlide" class="hero-bg-slide" style="background-image: url('assets/drone.png');"></div>
       </a>
 
       <!-- Overlay Gradient for contrast -->
@@ -46,13 +46,15 @@
           <a id="heroSecondaryBtn" href="about.html" class="btn btn-white" data-en="Explore CUSB" data-hi="विवरण जानें">Explore CUSB</a>
           <a href="courses.html" class="btn btn-ghost-light" data-en="View Courses" data-hi="पाठ्यक्रम देखें">View Courses</a>
         </div>
+      </div>
 
-        <!-- Carousel Navigation Controls -->
-        <div class="hero-carousel-controls" aria-label="Hero Carousel Navigation">
-          <button id="heroPrevBtn" class="hero-control-btn" aria-label="Previous Slide" title="Previous Slide">‹</button>
-          <div id="heroDots" class="hero-dots"></div>
-          <button id="heroNextBtn" class="hero-control-btn" aria-label="Next Slide" title="Next Slide">›</button>
-        </div>
+      <!-- Carousel Navigation Arrows at far left and right edges -->
+      <button id="heroPrevBtn" class="hero-control-btn hero-prev-arrow" aria-label="Previous Slide" title="Previous Slide">‹</button>
+      <button id="heroNextBtn" class="hero-control-btn hero-next-arrow" aria-label="Next Slide" title="Next Slide">›</button>
+
+      <!-- Fixed Bottom Indicator Dots -->
+      <div class="hero-indicators-container" aria-label="Hero Carousel Navigation">
+        <div id="heroDots" class="hero-dots"></div>
       </div>
     </section>
 

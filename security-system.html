@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="Integrated Security System — Central University of South Bihar" data-hi="एकीकृत सुरक्षा प्रणाली — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Integrated Security System — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="24x7 Multi-Tiered Integrated Security System at Central University of South Bihar (CUSB) covering 300 acres campus with IP CCTV surveillance, VHF communication, QRT, fire-fighting systems, and security personnel.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .sec-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .sec-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .sec-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .sec-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .sec-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    [data-theme="dark"] .sec-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .sec-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 20px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .sec-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .sec-desc-text {
+      font-size: 0.98rem;
+      color: var(--tx-primary, #0f172a);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .sec-feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .sec-feature-list li {
+      position: relative;
+      padding-left: 24px;
+      font-size: 0.96rem;
+      line-height: 1.7;
+      color: var(--tx-primary, #1e293b);
+    }
+    .sec-feature-list li::before {
+      content: "•";
+      position: absolute;
+      left: 6px;
+      top: 0;
+      color: #0b6cb8;
+      font-size: 1.3rem;
+      line-height: 1.5;
+    }
+    [data-theme="dark"] .sec-feature-list li::before {
+      color: #38bdf8;
+    }
+
+    /* Command Center Box */
+    .sec-command-box {
+      background: rgba(11, 108, 184, 0.04);
+      border: 1px solid rgba(11, 108, 184, 0.18);
+      border-left: 4px solid #0b6cb8;
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin: 24px 0 32px;
+    }
+    [data-theme="dark"] .sec-command-box {
+      background: rgba(56, 189, 248, 0.06);
+      border-color: rgba(56, 189, 248, 0.2);
+      border-left-color: #38bdf8;
+    }
+    .sec-command-title {
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 12px;
+    }
+    [data-theme="dark"] .sec-command-title {
+      color: #38bdf8;
+    }
+    .sec-command-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.95rem;
+      color: var(--tx-primary);
+    }
+    .sec-command-list a {
+      color: #0b6cb8;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .sec-command-list a:hover {
+      text-decoration: underline;
+    }
+    [data-theme="dark"] .sec-command-list a {
+      color: #38bdf8;
+    }
+
+    /* Section Subheadings */
+    .sec-section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--tx-primary, #0f172a);
+      margin: 32px 0 16px;
+    }
+    [data-theme="dark"] .sec-section-title {
+      color: #f8fafc;
+    }
+
+    /* Modern Table Styling */
+    .sec-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin-bottom: 28px;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 8px;
+    }
+    .sec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.93rem;
+      text-align: left;
+    }
+    .sec-table th {
+      background: #f8fafc;
+      color: #0b6cb8;
+      font-weight: 800;
+      padding: 12px 16px;
+      border-bottom: 2px solid var(--border-color, #e2e8f0);
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      letter-spacing: 0.03em;
+    }
+    [data-theme="dark"] .sec-table th {
+      background: #1e293b;
+      color: #38bdf8;
+      border-bottom-color: #334155;
+    }
+    .sec-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color, #e2e8f0);
+      color: var(--tx-primary, #1e293b);
+      vertical-align: middle;
+    }
+    [data-theme="dark"] .sec-table td {
+      border-bottom-color: #334155;
+      color: #cbd5e1;
+    }
+    .sec-table tr:last-child td {
+      border-bottom: none;
+    }
+    .sec-table tr:hover td {
+      background: rgba(11, 108, 184, 0.02);
+    }
+    [data-theme="dark"] .sec-table tr:hover td {
+      background: rgba(56, 189, 248, 0.04);
+    }
+
+    .sec-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 6px;
+      object-fit: cover;
+      display: block;
+      border: 1px solid var(--border-color, #e2e8f0);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .sec-link {
+      color: #0b6cb8;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .sec-link:hover {
+      text-decoration: underline;
+      color: #004b9b;
+    }
+    [data-theme="dark"] .sec-link {
+      color: #38bdf8;
+    }
+
+    @media (max-width: 768px) {
+      .sec-card {
+        padding: 22px 18px;
+      }
+      .sec-main-title {
+        font-size: 1.7rem;
+      }
+      .sec-desc-text, .sec-feature-list li {
+        font-size: 0.92rem;
+      }
+      .sec-table th, .sec-table td {
+        padding: 10px 12px;
+        font-size: 0.86rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
+
+  <main id="mainContent" class="sec-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="sec-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="facilities.html" data-en="Infrastructure" data-hi="बुनियादी ढांचा">Infrastructure</a>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="Integrated Security System" data-hi="एकीकृत सुरक्षा प्रणाली">Integrated Security System</span>
+      </nav>
+
+      <!-- Main Content Card -->
+      <article class="sec-card">
+        <h1 class="sec-main-title" data-en="Integrated Security System" data-hi="एकीकृत सुरक्षा प्रणाली">Integrated Security System</h1>
+
+        <!-- Overview Paragraphs -->
+        <p class="sec-desc-text" data-en="Central University of South Bihar takes the security and safety of its students and faculty members very seriously. The CUSB campus, spread over 300 acres, is constantly protected, monitored and surveillance by a multi-tiered, 24X7 integrated security system that is intense yet non-intrusive. The CUSB Security Team is on duty 24 hours a day, 7 days a week, 365 days in a year - including holidays and academic breaks. The security personnel patrol the campus round-the-clock and IP base high definition CCTV cameras monitor the hostel blocks, academic areas and residential areas in the campus." data-hi="दक्षिण बिहार केंद्रीय विश्वविद्यालय अपने छात्रों और संकाय सदस्यों की सुरक्षा और संरक्षा को बहुत गंभीरता से लेता है। 300 एकड़ से अधिक में फैला सीयूएसबी परिसर, एक बहु-स्तरीय, 24X7 एकीकृत सुरक्षा प्रणाली द्वारा लगातार संरक्षित, निगरानी और सतर्कता में है जो गहन लेकिन गैर-दखल देने वाली है। सीयूएसबी सुरक्षा दल साल के 365 दिन, सप्ताह के 7 दिन, दिन के 24 घंटे ड्यूटी पर रहता है - जिसमें छुट्टियां और शैक्षणिक अवकाश शामिल हैं। सुरक्षा कर्मी चौबीसों घंटे परिसर में गश्त करते हैं और आईपी आधारित हाई डेफिनिशन सीसीटीवी कैमरे परिसर में छात्रावास ब्लॉकों, शैक्षणिक क्षेत्रों और आवासीय क्षेत्रों की निगरानी करते हैं।">
+          Central University of South Bihar takes the security and safety of its students and faculty members very seriously. The CUSB campus, spread over 300 acres, is constantly protected, monitored and surveillance by a multi-tiered, 24X7 integrated security system that is intense yet non-intrusive. The CUSB Security Team is on duty 24 hours a day, 7 days a week, 365 days in a year - including holidays and academic breaks. The security personnel patrol the campus round-the-clock and IP base high definition CCTV cameras monitor the hostel blocks, academic areas and residential areas in the campus.
+        </p>
+
+        <ul class="sec-feature-list">
+          <li data-en="An efficient Visitors and material Management System along with hostel out pass system ensures the safety of the Campus community." data-hi="छात्रावास आउट पास प्रणाली के साथ एक कुशल आगंतुक और सामग्री प्रबंधन प्रणाली परिसर समुदाय की सुरक्षा सुनिश्चित करती है।">
+            An efficient Visitors and material Management System along with hostel out pass system ensures the safety of the Campus community.
+          </li>
+          <li data-en="All the guards deployed at various buildings are equipped with VHF walkie talkies with a base station at control room." data-hi="विभिन्न भवनों में तैनात सभी गार्ड नियंत्रण कक्ष में एक बेस स्टेशन के साथ वीएचएफ वॉकी टॉकी से लैस हैं।">
+            All the guards deployed at various buildings are equipped with VHF walkie talkies with a base station at control room.
+          </li>
+          <li data-en="Within the University Campus, the traffic is regulated and parking earmarked to create designated/exclusive zones for pedestrian movements to support CUSB's commitment to maintaining Green Campus." data-hi="विश्वविद्यालय परिसर के भीतर, हरित परिसर बनाए रखने की सीयूएसबी की प्रतिबद्धता का समर्थन करने के लिए पैदल यात्रियों की आवाजाही के लिए नामित/विशिष्ट क्षेत्र बनाने के लिए यातायात को विनियमित किया जाता है और पार्किंग निर्धारित की जाती है।">
+            Within the University Campus, the traffic is regulated and parking earmarked to create designated/exclusive zones for pedestrian movements to support CUSB's commitment to maintaining Green Campus.
+          </li>
+          <li data-en="All the buildings in the campus are equipped with automatic integrated alarm based fire-fighting systems manned by qualified fire fighters 24X7." data-hi="परिसर के सभी भवन योग्य अग्निशामकों द्वारा 24X7 संचालित स्वचालित एकीकृत अलार्म आधारित अग्निशमन प्रणालियों से सुसज्जित हैं।">
+            All the buildings in the campus are equipped with automatic integrated alarm based fire-fighting systems manned by qualified fire fighters 24X7.
+          </li>
+        </ul>
+
+        <!-- Command and Control Center Contact Box -->
+        <div class="sec-command-box">
+          <h2 class="sec-command-title" data-en="Integrated Security Command and Control center" data-hi="एकीकृत सुरक्षा कमान और नियंत्रण केंद्र">
+            Integrated Security Command and Control center
+          </h2>
+          <ul class="sec-command-list">
+            <li>
+              <strong data-en="OIC:" data-hi="प्रभारी अधिकारी (OIC):">OIC:</strong> 
+              <span data-en="Mr. Sunil Pratap, Security Officer" data-hi="श्री सुनील प्रताप, सुरक्षा अधिकारी">Mr. Sunil Pratap, Security Officer</span>
+            </li>
+            <li>
+              <strong data-en="Phone No:" data-hi="फोन नंबर:">Phone No:</strong> 
+              <a href="tel:+917462953490">7462953490</a>
+            </li>
+            <li>
+              <strong data-en="Email Id:" data-hi="ईमेल आईडी:">Email Id:</strong> 
+              <a href="mailto:securityofficer@cusb.ac.in">securityofficer@cusb.ac.in</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- University Employee Section -->
+        <h2 class="sec-section-title" data-en="University Employee:" data-hi="विश्वविद्यालय कर्मचारी:">
+          University Employee:
+        </h2>
+
+        <div class="sec-table-wrap">
+          <table class="sec-table">
+            <thead>
+              <tr>
+                <th style="width: 60px;">SI/NO</th>
+                <th style="width: 80px;" data-en="PHOTO" data-hi="फोटो">PHOTO</th>
+                <th data-en="NAME" data-hi="नाम">NAME</th>
+                <th data-en="DESIGNATION" data-hi="पदनाम">DESIGNATION</th>
+                <th data-en="MOB" data-hi="मोबाइल">MOB</th>
+                <th data-en="EMAIL" data-hi="ईमेल">EMAIL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>
+                  <img src="assets/security/sunil-pratap.png" alt="Mr. Sunil Pratap" class="sec-avatar" loading="lazy" decoding="async">
+                </td>
+                <td><strong data-en="Sunil Pratap" data-hi="सुनील प्रताप">Sunil Pratap</strong></td>
+                <td data-en="Security Officer" data-hi="सुरक्षा अधिकारी">Security Officer</td>
+                <td><a href="tel:+917462953490" class="sec-link">7462953490</a></td>
+                <td><a href="mailto:securityofficer@cusb.ac.in" class="sec-link">securityofficer@cusb.ac.in</a></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>
+                  <img src="assets/security/sunil-kr-karan.png" alt="Mr. Sunil Kr. Karan" class="sec-avatar" loading="lazy" decoding="async">
+                </td>
+                <td><strong data-en="Sunil Kr. Karan" data-hi="सुनील कुमार कर्ण">Sunil Kr. Karan</strong></td>
+                <td data-en="Security Inspector" data-hi="सुरक्षा निरीक्षक">Security Inspector</td>
+                <td><a href="tel:+919013080627" class="sec-link">9013080627</a></td>
+                <td><a href="mailto:sunilkarn@cusb.ac.in" class="sec-link">sunilkarn@cusb.ac.in</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Security Supervision & Posts Section -->
+        <h2 class="sec-section-title" data-en="Campus Security Supervision &amp; Duty Posts:" data-hi="परिसर सुरक्षा पर्यवेक्षण एवं ड्यूटी पोस्ट:">
+          Campus Security Supervision &amp; Duty Posts:
+        </h2>
+
+        <div class="sec-table-wrap">
+          <table class="sec-table">
+            <thead>
+              <tr>
+                <th style="width: 60px;">Sl.No.</th>
+                <th data-en="NAME" data-hi="नाम">NAME</th>
+                <th data-en="DESIGNATION / POST" data-hi="पदनाम / पोस्ट">DESIGNATION / POST</th>
+                <th data-en="CONTACT NUMBER" data-hi="संपर्क नंबर">CONTACT NUMBER</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><strong data-en="Binod Prasad sinha" data-hi="विनोद प्रसाद सिन्हा">Binod Prasad sinha</strong></td>
+                <td data-en="Supervisor (outsourced)" data-hi="पर्यवेक्षक (आउटसोर्स)">Supervisor (outsourced)</td>
+                <td><a href="tel:+919471873187" class="sec-link">9471873187</a></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><strong data-en="S P gupta" data-hi="एस पी गुप्ता">S P gupta</strong></td>
+                <td data-en="Supervisor (outsourced)" data-hi="पर्यवेक्षक (आउटसोर्स)">Supervisor (outsourced)</td>
+                <td><a href="tel:+919471873187" class="sec-link">9471873187</a></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><strong data-en="Ramakant Verma" data-hi="रमाकांत वर्मा">Ramakant Verma</strong></td>
+                <td data-en="Supervisor (outsourced)" data-hi="पर्यवेक्षक (आउटसोर्स)">Supervisor (outsourced)</td>
+                <td><a href="tel:+919471873187" class="sec-link">9471873187</a></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><strong data-en="Siddeswar Prasad" data-hi="सिद्धेश्वर प्रसाद">Siddeswar Prasad</strong></td>
+                <td data-en="Supervisor (outsourced)" data-hi="पर्यवेक्षक (आउटसोर्स)">Supervisor (outsourced)</td>
+                <td><a href="tel:+919471873187" class="sec-link">9471873187</a></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><strong data-en="Main gate security" data-hi="मुख्य द्वार सुरक्षा">Main gate security</strong></td>
+                <td data-en="Main Gate Security Post" data-hi="मुख्य द्वार सुरक्षा पोस्ट">Main Gate Security Post</td>
+                <td><a href="tel:+919471873187" class="sec-link">9471873187</a></td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td><strong data-en="Administration security" data-hi="प्रशासनिक भवन सुरक्षा">Administration security</strong></td>
+                <td data-en="Security guard" data-hi="सुरक्षा गार्ड">Security guard</td>
+                <td><a href="tel:06312229530" class="sec-link">0631-2229530</a></td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td><strong data-en="Ashutosh jha" data-hi="आशुतोष झा">Ashutosh jha</strong></td>
+                <td data-en="Resident engineer CCTV (vantage)" data-hi="रेजिडेंट इंजीनियर सीसीटीवी (वांटेज)">Resident engineer CCTV (vantage)</td>
+                <td><a href="tel:+919027279275" class="sec-link">9027279275</a></td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td><strong data-en="Quick Response Team" data-hi="क्विक रिस्पांस टीम (QRT)">Quick Response Team</strong></td>
+                <td data-en="QRT Patrol &amp; Emergency" data-hi="क्यूआरटी गश्त एवं आपातकालीन">QRT Patrol &amp; Emergency</td>
+                <td><a href="tel:+919471873187" class="sec-link">9471873187</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
