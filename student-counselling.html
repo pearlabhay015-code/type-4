@@ -1,1 +1,459 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Students Counselling and Well-being Centre - CUSB</title><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/student-subpage.css"></head><body><cusb-ticker></cusb-ticker><cusb-topbar></cusb-topbar><cusb-header></cusb-header><cusb-accessibility-bar></cusb-accessibility-bar><cusb-navbar></cusb-navbar><main class="student-subpage"><div class="container"><article class="student-subpage__card"><span class="section-tag">Student Corner</span><h1>Students Counselling and Well-being Centre</h1><p>Information will be added here.</p></article></div></main><cusb-footer></cusb-footer><cusb-chatbot></cusb-chatbot><script src="js/components.js" defer></script><script src="js/main.js" defer></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Students Counselling And Well- Being Centre — Central University of South Bihar" data-hi="छात्र परामर्श एवं कल्याण केंद्र — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Students Counselling &amp; Well-Being — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Students Career Counselling Cum Well-being Centre at Central University of South Bihar. Confidential psychological, academic, and clinical counselling for students.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .counselling-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .counselling-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .counselling-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .counselling-crumb a:hover {
+      color: var(--acc-blue);
+    }
+
+    .counselling-header-area {
+      margin-bottom: 24px;
+    }
+    .counselling-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0b6cb8;
+      background: rgba(11, 108, 184, 0.08);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    [data-theme="dark"] .counselling-badge {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .counselling-main-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .counselling-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .counselling-lead-p {
+      font-size: 0.98rem;
+      color: var(--tx-secondary);
+      line-height: 1.7;
+      margin: 0 0 16px;
+    }
+
+    /* Confidentiality Banner */
+    .counselling-trust-banner {
+      background: linear-gradient(135deg, rgba(11, 108, 184, 0.08) 0%, rgba(122, 12, 12, 0.06) 100%);
+      border: 1.5px solid rgba(11, 108, 184, 0.25);
+      border-radius: 12px;
+      padding: 16px 22px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 20px 0 32px;
+    }
+    [data-theme="dark"] .counselling-trust-banner {
+      background: rgba(56, 189, 248, 0.08);
+      border-color: rgba(56, 189, 248, 0.25);
+    }
+
+    /* Counsellors Grid & Cards */
+    .counsellors-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .counsellor-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-left: 5px solid #0b6cb8;
+      border-radius: 14px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 26px;
+      align-items: start;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .counsellor-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(11, 108, 184, 0.14);
+    }
+    @media (max-width: 680px) {
+      .counsellor-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+
+    /* Big Image Box (>=130px) */
+    .counsellor-photo-wrap {
+      width: 140px;
+      height: 155px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 3px solid #0b6cb8;
+      box-shadow: 0 4px 14px rgba(11, 108, 184, 0.25);
+      background: #f1f5f9;
+      flex-shrink: 0;
+      margin: 0 auto;
+    }
+    [data-theme="dark"] .counsellor-photo-wrap {
+      border-color: #38bdf8;
+      background: #0f172a;
+    }
+    .counsellor-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .counsellor-details {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .counsellor-name {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 2px;
+      letter-spacing: -0.01em;
+    }
+    [data-theme="dark"] .counsellor-name {
+      color: #38bdf8;
+    }
+
+    .counsellor-desig {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--tx-primary);
+      margin: 0;
+    }
+    .counsellor-qual {
+      font-size: 0.88rem;
+      color: var(--tx-secondary);
+      margin: 0 0 6px;
+    }
+
+    .counsellor-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 4px 0 10px;
+    }
+    .spec-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: rgba(11, 108, 184, 0.1);
+      color: #0b6cb8;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+    [data-theme="dark"] .spec-chip {
+      background: rgba(56, 189, 248, 0.14);
+      color: #38bdf8;
+    }
+    .exp-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: rgba(122, 12, 12, 0.08);
+      color: #7a0c0c;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+    [data-theme="dark"] .exp-chip {
+      background: rgba(251, 113, 133, 0.14);
+      color: #fb7185;
+    }
+
+    .counsellor-contact-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 8px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.9rem;
+    }
+    .counsellor-contact-list > li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--tx-primary);
+    }
+    @media (max-width: 680px) {
+      .counsellor-contact-list > li {
+        justify-content: center;
+      }
+    }
+    .counsellor-contact-list a {
+      color: #0b6cb8;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .counsellor-contact-list a:hover {
+      text-decoration: underline;
+    }
+    [data-theme="dark"] .counsellor-contact-list a {
+      color: #38bdf8;
+    }
+
+    .counselling-action-bar {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    @media (max-width: 680px) {
+      .counselling-action-bar {
+        justify-content: center;
+      }
+    }
+    .counselling-call-btn {
+      background: #0b6cb8;
+      color: #ffffff !important;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.18s ease;
+    }
+    .counselling-call-btn:hover {
+      background: #004b9b;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="counselling-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="counselling-crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="courses.html">Student Corner</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Students Counselling And Well- Being Centre</span>
+      </nav>
+
+      <!-- Header Area -->
+      <div class="counselling-header-area">
+        <span class="counselling-badge">🧠 Psychological Support &amp; Well-Being</span>
+        <h1 class="counselling-main-title" data-en="Students Counselling And Well- Being Centre" data-hi="छात्र परामर्श एवं कल्याण केंद्र">
+          Students Counselling And Well- Being Centre
+        </h1>
+        
+        <p class="counselling-lead-p">
+          Students Career Counselling Cum Well-being Centre of the Central University of South Bihar aims to providing counselling services for students of Central university of south bihar.
+        </p>
+      </div>
+
+      <!-- Trust / Confidentiality Banner -->
+      <div class="counselling-trust-banner">
+        <div>
+          <h2 style="font-size: 1.05rem; font-weight: 800; color: #0b6cb8; margin: 0 0 4px;">
+            🔒 100% Confidential &amp; Dedicated Support
+          </h2>
+          <p style="font-size: 0.86rem; color: var(--tx-secondary); margin: 0;">
+            Students can reach out directly via Phone, Email, or visit during offline office hours for academic, personal, or emotional guidance.
+          </p>
+        </div>
+        <div>
+          <span style="background: #0b6cb8; color: #ffffff; padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 700;">
+            Online &amp; Offline Available
+          </span>
+        </div>
+      </div>
+
+      <!-- Section Title -->
+      <h2 style="font-size: 1.25rem; font-weight: 800; color: var(--tx-primary); margin: 0 0 16px;">
+        Details of the counsellors for online/offline counselling:
+      </h2>
+
+      <!-- Counsellors Grid (All 3 with Big Portraits & Exact Metadata) -->
+      <div class="counsellors-grid">
+
+        <!-- Counsellor 1: Dr. Dharmendra Kumar Singh -->
+        <article class="counsellor-card">
+          <div class="counsellor-photo-wrap">
+            <img src="assets/counsellors/dharmendra-kumar-singh.png" alt="Dr. Dharmendra Kumar Singh - Associate Professor Clinical Psychology CUSB" class="counsellor-photo" loading="lazy">
+          </div>
+          <div class="counsellor-details">
+            <h3 class="counsellor-name">Dr. Dharmendra Kumar Singh</h3>
+            <p class="counsellor-desig">Associate Professor</p>
+            <p class="counsellor-qual">Ph.D in Clinical Psychology( RINPAS,Kanke,Ranchi</p>
+            
+            <div class="counsellor-chips">
+              <span class="spec-chip">🎯 Specialization: Clinical psychology</span>
+              <span class="exp-chip">⏳ Experience: 13 yrs</span>
+            </div>
+
+            <ul class="counsellor-contact-list">
+              <li>
+                <span>📧</span>
+                <span>Email ID: <a href="mailto:dharmendrakr@cusb.ac.in">dharmendrakr@cusb.ac.in</a></span>
+              </li>
+              <li>
+                <span>📧</span>
+                <span>Alternate: <a href="mailto:dharmendra.gla2012@gmail.com">dharmendra.gla2012@gmail.com</a></span>
+              </li>
+              <li>
+                <span>📞</span>
+                <span>Contact No.: <a href="tel:+919955357147">+91 - 9955357147</a></span>
+              </li>
+            </ul>
+
+            <div class="counselling-action-bar">
+              <a href="tel:+919955357147" class="counselling-call-btn">
+                <span>📞 Call Counsellor</span>
+              </a>
+              <a href="mailto:dharmendrakr@cusb.ac.in" class="counselling-call-btn" style="background: #7a0c0c;">
+                <span>✉️ Send Email</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Counsellor 2: Dr. Manglesh Kumar Manglam -->
+        <article class="counsellor-card">
+          <div class="counsellor-photo-wrap">
+            <img src="assets/counsellors/manglesh-kumar-manglam.png" alt="Dr. Manglesh Kumar Manglam - Assistant Professor Clinical Psychology CUSB" class="counsellor-photo" loading="lazy">
+          </div>
+          <div class="counsellor-details">
+            <h3 class="counsellor-name">Dr. Manglesh Kumar Manglam</h3>
+            <p class="counsellor-desig">Assistant Professor</p>
+            <p class="counsellor-qual">M. Phil, Ph.D. (C.I.P., Ranchi)</p>
+            
+            <div class="counsellor-chips">
+              <span class="spec-chip">🎯 Specialization: Clinical Psychology</span>
+              <span class="exp-chip">⏳ Experience: 09 Years</span>
+            </div>
+
+            <ul class="counsellor-contact-list">
+              <li>
+                <span>📧</span>
+                <span>Email ID: <a href="mailto:manglesh@cusb.ac.in">manglesh@cusb.ac.in</a></span>
+              </li>
+              <li>
+                <span>📞</span>
+                <span>Contact No.: <a href="tel:+919263540698">+91 - 9263540698</a></span>
+              </li>
+            </ul>
+
+            <div class="counselling-action-bar">
+              <a href="tel:+919263540698" class="counselling-call-btn">
+                <span>📞 Call Counsellor</span>
+              </a>
+              <a href="mailto:manglesh@cusb.ac.in" class="counselling-call-btn" style="background: #7a0c0c;">
+                <span>✉️ Send Email</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Counsellor 3: Dr. Pragya Gupta -->
+        <article class="counsellor-card">
+          <div class="counsellor-photo-wrap">
+            <img src="assets/counsellors/pragya-gupta.png" alt="Dr. Pragya Gupta - Assistant Professor Education CUSB" class="counsellor-photo" loading="lazy">
+          </div>
+          <div class="counsellor-details">
+            <h3 class="counsellor-name">Dr. Pragya Gupta</h3>
+            <p class="counsellor-desig">Assistant Professor</p>
+            <p class="counsellor-qual">MA M.Ed. PhD (Edu), NET-JRF (Edu)</p>
+            
+            <div class="counsellor-chips">
+              <span class="spec-chip">🎯 Field: Education &amp; Academic Guidance</span>
+              <span class="exp-chip">⏳ Experience: 5 years of teaching and research experiences</span>
+            </div>
+
+            <ul class="counsellor-contact-list">
+              <li>
+                <span>📧</span>
+                <span>Email ID: <a href="mailto:pragyagupta@cusb.ac.in">pragyagupta@cusb.ac.in</a></span>
+              </li>
+              <li>
+                <span>📧</span>
+                <span>Alternate: <a href="mailto:scholar.pragya@gmail.com">scholar.pragya@gmail.com</a></span>
+              </li>
+              <li>
+                <span>📞</span>
+                <span>Contact No.: <a href="tel:+919508376400">+91 - 9508376400</a></span>
+              </li>
+            </ul>
+
+            <div class="counselling-action-bar">
+              <a href="tel:+919508376400" class="counselling-call-btn">
+                <span>📞 Call Counsellor</span>
+              </a>
+              <a href="mailto:pragyagupta@cusb.ac.in" class="counselling-call-btn" style="background: #7a0c0c;">
+                <span>✉️ Send Email</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

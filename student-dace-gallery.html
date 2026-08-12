@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="DACE: Gallery — Central University of South Bihar" data-hi="डीएसीई: गैलरी — दक्षिण बिहार केंद्रीय विश्वविद्यालय">DACE: Gallery — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Media coverage, inaugurations, lectures, workshops, and photo gallery of Dr. Ambedkar Centre of Excellence (DACE) at Central University of South Bihar.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .dace-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .dace-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .dace-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .dace-crumb a:hover {
+      color: var(--acc-blue);
+    }
+
+    /* 2-Column Layout with Side Menu */
+    .dace-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .dace-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Side Menu */
+    .dace-sidebar {
+      position: sticky;
+      top: 120px;
+    }
+    .dace-menu-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+    .dace-menu-header {
+      background: #00569b;
+      color: #ffffff;
+      padding: 14px 18px;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      line-height: 1.35;
+    }
+    [data-theme="dark"] .dace-menu-header {
+      background: #0284c7;
+    }
+    .dace-menu-list {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+    }
+    .dace-menu-btn {
+      display: block;
+      width: 100%;
+      padding: 12px 16px;
+      background: #0b6cb8;
+      color: #ffffff !important;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(11, 108, 184, 0.25);
+      transition: all 0.2s ease;
+    }
+    .dace-menu-btn:hover {
+      background: #004b9b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(11, 108, 184, 0.35);
+    }
+    .dace-menu-btn.active {
+      background: #004b9b;
+      box-shadow: inset 0 0 0 2px #ffd950;
+    }
+    [data-theme="dark"] .dace-menu-btn {
+      background: #0284c7;
+    }
+    [data-theme="dark"] .dace-menu-btn:hover {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+    [data-theme="dark"] .dace-menu-btn.active {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+
+    /* Main Content Styling */
+    .dace-header-area {
+      margin-bottom: 24px;
+    }
+    .dace-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .dace-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* Big Image Gallery Grid */
+    .dace-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 28px;
+      margin-top: 20px;
+    }
+    .dace-photo-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .dace-photo-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(11, 108, 184, 0.18);
+    }
+    .dace-photo-img-wrap {
+      width: 100%;
+      background: #f8fafc;
+      text-align: center;
+      padding: 16px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 380px;
+    }
+    [data-theme="dark"] .dace-photo-img-wrap {
+      background: #0f172a;
+    }
+    .dace-photo-img {
+      width: 100%;
+      max-width: 540px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 14px rgba(0, 0, 0, 0.12);
+      display: block;
+      margin: 0 auto;
+      object-fit: contain;
+    }
+    .dace-photo-caption {
+      padding: 18px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .dace-photo-title {
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 8px;
+      line-height: 1.4;
+    }
+    [data-theme="dark"] .dace-photo-title {
+      color: #38bdf8;
+    }
+    .dace-photo-meta {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #7a0c0c;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    [data-theme="dark"] .dace-photo-meta {
+      color: #fb7185;
+    }
+    .dace-photo-desc {
+      font-size: 0.88rem;
+      color: var(--tx-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="dace-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="dace-crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="courses.html">Student Corner</a>
+        <span>/</span>
+        <a href="student-dace.html">DACE</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">DACE: Gallery</span>
+      </nav>
+
+      <!-- 2-Column Layout with Side Menu -->
+      <div class="dace-layout">
+        
+        <!-- Left Side Menu (Dr Ambedkar Centre of Excellence) -->
+        <aside class="dace-sidebar" aria-label="DACE Side Navigation">
+          <div class="dace-menu-card">
+            <div class="dace-menu-header">
+              Dr Ambedkar Centre of Excellence (DACE)
+            </div>
+            <ul class="dace-menu-list">
+              <li>
+                <a href="student-dace.html" class="dace-menu-btn">About Us</a>
+              </li>
+              <li>
+                <a href="student-dace-admission.html" class="dace-menu-btn">Detail Information for Admission</a>
+              </li>
+              <li>
+                <a href="https://cusb.samarth.edu.in" target="_blank" rel="noopener noreferrer" class="dace-menu-btn">Click Here to Apply</a>
+              </li>
+              <li>
+                <a href="student-dace.html#examination" class="dace-menu-btn">DACE: Examination</a>
+              </li>
+              <li>
+                <a href="student-dace.html#result" class="dace-menu-btn">DACE: Result</a>
+              </li>
+              <li>
+                <a href="student-dace-gallery.html" class="dace-menu-btn active">DACE: Gallery</a>
+              </li>
+              <li>
+                <a href="student-dace-contacts.html" class="dace-menu-btn">Contact Detail</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Right Main Content Area -->
+        <div class="dace-main-col">
+
+          <div class="dace-header-area">
+            <h1 class="dace-main-title" data-en="DACE: Gallery" data-hi="डीएसीई: गैलरी">
+              DACE: Gallery
+            </h1>
+            <p style="font-size: 0.95rem; color: var(--tx-secondary); line-height: 1.6; margin: 0;">
+              Photo gallery, media reports, inaugurations, and special lecture sessions of Dr. Ambedkar Centre of Excellence (DACE) at CUSB.
+            </p>
+          </div>
+
+          <!-- Gallery 8 Big Image Cards Grid -->
+          <div class="dace-gallery-grid">
+
+            <!-- Card 1: Rashtriya Khabar IAS Aditya Pandey -->
+            <article class="dace-photo-card">
+              <div class="dace-photo-img-wrap">
+                <a href="assets/images/dace-rashtriya-khabar-ias-aditya-pandey-2023.png" target="_blank" title="Click to view full size">
+                  <img src="assets/images/dace-rashtriya-khabar-ias-aditya-pandey-2023.png" alt="निरंतर मेहनत एवं सकारात्मक सोच से यूपीएससी में मिलेगी सफलता : आदित्य पांडेय" class="dace-photo-img" loading="lazy">
+                </a>
+              </div>
+              <div class="dace-photo-caption">
+                <div class="dace-photo-meta">राष्ट्रीय ख़बर · 19.07.2023</div>
+                <h2 class="dace-photo-title">सीयूएसबी में विद्यार्थियों को सफलता के सिखाए गए गुर</h2>
+                <p class="dace-photo-desc">
+                  यूपीएससी-2022 परीक्षा में एआईआर-48 प्राप्त करने वाले आदित्य पांडेय ने डीएसीई निःशुल्क यूपीएससी कोचिंग सेंटर में आयोजित संगोष्ठी में छात्रों को सफलता के गुर बताए।
+                </p>
+              </div>
+            </article>
+
+            <!-- Card 2: Dainik Jagran IAS Aditya Pandey -->
+            <article class="dace-photo-card">
+              <div class="dace-photo-img-wrap">
+                <a href="assets/images/dace-dainik-jagran-ias-aditya-pandey-2023.png" target="_blank" title="Click to view full size">
+                  <img src="assets/images/dace-dainik-jagran-ias-aditya-pandey-2023.png" alt="निर्धारित दिनचर्या में पढ़ाई से मिल सकती है सफलता - दैनिक जागरण" class="dace-photo-img" loading="lazy">
+                </a>
+              </div>
+              <div class="dace-photo-caption">
+                <div class="dace-photo-meta">दैनिक जागरण (पटना) · 19 जुलाई, 2023</div>
+                <h2 class="dace-photo-title">निर्धारित दिनचर्या में पढ़ाई से मिल सकती है सफलता</h2>
+                <p class="dace-photo-desc">
+                  कठोर परिश्रम एवं सकारात्मक सोच यूपीएससी की परीक्षा में आपको सफल बनाती है। आईएएस आदित्य पांडेय ने अपने निजी अनुभवों को साझा करते हुए तैयारी के तरीके बताए।
+                </p>
+              </div>
+            </article>
+
+            <!-- Card 3: Dainik Bhaskar IAS Aditya Pandey -->
+            <article class="dace-photo-card">
+              <div class="dace-photo-img-wrap">
+                <a href="assets/images/dace-dainik-bhaskar-ias-aditya-pandey-2023.png" target="_blank" title="Click to view full size">
+                  <img src="assets/images/dace-dainik-bhaskar-ias-aditya-pandey-2023.png" alt="निर्धारित दिनचर्या से यूपीएससी में मिल सकती है सफलता - गया भास्कर" class="dace-photo-img" loading="lazy">
+                </a>
+              </div>
+              <div class="dace-photo-caption">
+                <div class="dace-photo-meta">गया भास्कर · 19-07-2023</div>
+                <h2 class="dace-photo-title">विद्यार्थियों के साथ विशेष सेमिनार का आयोजन</h2>
+                <p class="dace-photo-desc">
+                  डीएसीई के नोडल अधिकारी प्रो. रथिकांत कुम्भर, संकाय सदस्य पूर्णिमा एवं कुणाल राज द्वारा स्वागत। डीएसीई यूपीएससी कोचिंग के नए सत्र की विस्तृत रूपरेखा।
+                </p>
+              </div>
+            </article>
+
+            <!-- Card 4: Dainik Bhaskar Inauguration -->
+            <article class="dace-photo-card">
+              <div class="dace-photo-img-wrap">
+                <a href="assets/images/dace-inauguration-news-2022.png" target="_blank" title="Click to view full size">
+                  <img src="assets/images/dace-inauguration-news-2022.png" alt="सीयूएसबी में निःशुल्क सिविल सर्विसेज कोचिंग का उद्घाटन" class="dace-photo-img" loading="lazy">
+                </a>
+              </div>
+              <div class="dace-photo-caption">
+                <div class="dace-photo-meta">दैनिक भास्कर · 18.11.2022</div>
+                <h2 class="dace-photo-title">सीयूएसबी में निःशुल्क सिविल सर्विसेज कोचिंग का उद्घाटन</h2>
+                <p class="dace-photo-desc">
+                  केंद्रीय आवासन और शहरी कार्य राज्यमंत्री श्री कौशल किशोर ने सीयूएसबी में डॉ. अंबेडकर सेंटर ऑफ एक्सीलेंस (डीएसीई) के तहत अनुसूचित जाति वर्ग के छात्रों हेतु निःशुल्क सिविल सर्विसेज कोचिंग का शुभारंभ किया।
+                </p>
+              </div>
+            </article>
+
+            <!-- Card 5: Prabhat Khabar Gaya Inauguration -->
+            <article class="dace-photo-card">
+              <div class="dace-photo-img-wrap">
+                <a href="assets/images/dace-prabhat-khabar-inauguration-2022.png" target="_blank" title="Click to view full size">
+                  <img src="assets/images/dace-prabhat-khabar-inauguration-2022.png" alt="सीयूएसबी में डॉ आंबेडकर सेंटर ऑफ एक्सीलेंस का उद्घाटन - प्रभात खबर" class="dace-photo-img" loading="lazy">
+                </a>
+              </div>
+              <div class="dace-photo-caption">
+                <div class="dace-photo-meta">प्रभात खबर (गया प्रभात) · 18.11.2022</div>
+                <h2 class="dace-photo-title">समाज के हर वर्ग को सशक्त करने के उद्देश्य से स्थापित की गयी कोचिंग : मंत्री</h2>
+                <p class="dace-photo-desc">
+                  माननीय राज्यमंत्री कौशल किशोर एवं कुलपति प्रो. कामेश्वर नाथ सिंह द्वारा दीप प्रज्वलन कर कोचिंग का शुभारंभ।
+                </p>
+              </div>
+            </article>
+
+            <!-- Card 6: Rashtriya Khabar Patna Inauguration -->
+            <article class="dace-photo-card">
+              <div class="dace-photo-img-wrap">
+                <a href="assets/images/dace-rashtriya-khabar-inauguration-2022.png" target="_blank" title="Click to view full size">
+                  <img src="assets/images/dace-rashtriya-khabar-inauguration-2022.png" alt="केंद्रीय विश्वविद्यालय में डॉ आंबेडकर सेंटर ऑफ एक्सीलेंस खुला" class="dace-photo-img" loading="lazy">
+                </a>
+              </div>
+              <div class="dace-photo-caption">
+                <div class="dace-photo-meta">राष्ट्रीय ख़बर (पटना) · 18.11.2022</div>
+                <h2 class="dace-photo-title">केंद्रीय विश्वविद्यालय में डॉ आंबेडकर सेंटर ऑफ एक्सीलेंस खुला, राज्यमंत्री ने किया उद्घाटन</h2>
+                <p class="dace-photo-desc">
+                  नशा मुक्त समाज आंदोलन अभियान के तहत नशा मुक्त भारत बनाने की शपथ और डीएसीई यूपीएससी कोचिंग के प्रथम बैच का भव्य स्वागत।
+                </p>
+              </div>
+            </article>
+
+            <!-- Card 7: Prabhat Khabar Patna Swachhata & Yoga -->
+            <article class="dace-photo-card">
+              <div class="dace-photo-img-wrap">
+                <a href="assets/images/dace-prabhat-khabar-swachhata-yoga-2023.png" target="_blank" title="Click to view full size">
+                  <img src="assets/images/dace-prabhat-khabar-swachhata-yoga-2023.png" alt="हमारे जीवन में स्वच्छता अभिन्न हिस्सा - प्रभात खबर" class="dace-photo-img" loading="lazy">
+                </a>
+              </div>
+              <div class="dace-photo-caption">
+                <div class="dace-photo-meta">प्रभात खबर (पटना) · 08.02.2023</div>
+                <h2 class="dace-photo-title">हमारे जीवन में स्वच्छता अभिन्न हिस्सा : योगाभ्यास व स्वच्छता अभियान</h2>
+                <p class="dace-photo-desc">
+                  सीयूएसबी के शिक्षक शिक्षा विभाग द्वारा विद्यालय इंटर्नशिप कार्यक्रम के तहत स्वच्छता व योगाभ्यास कार्यक्रम।
+                </p>
+              </div>
+            </article>
+
+            <!-- Card 8: Hindustan Gaya School Outreach -->
+            <article class="dace-photo-card">
+              <div class="dace-photo-img-wrap">
+                <a href="assets/images/dace-hindustan-school-activities-2023.png" target="_blank" title="Click to view full size">
+                  <img src="assets/images/dace-hindustan-school-activities-2023.png" alt="चम्मच दौड़ में पुष्पा और सुई-धागे में खुशी अव्वल - हिन्दुस्तान" class="dace-photo-img" loading="lazy">
+                </a>
+              </div>
+              <div class="dace-photo-caption">
+                <div class="dace-photo-meta">हिन्दुस्तान (गया) · 08.02.2023</div>
+                <h2 class="dace-photo-title">चम्मच दौड़ में पुष्पा और सुई-धागे में खुशी अव्वल : स्कूल प्रतियोगिताएं</h2>
+                <p class="dace-photo-desc">
+                  सीयूएसबी प्रशिक्षु शिक्षकों द्वारा ग्रामीण विद्यालयों में खेलकूद, स्वच्छता, योग एवं सांस्कृतिक प्रतियोगिताओं का सफल आयोजन।
+                </p>
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

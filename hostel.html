@@ -1,228 +1,530 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/png" href="assets/culog.png">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Residential facilities, hostel guidance, forms and notices for the Central University of South Bihar.">
-  <title>Hostels | CUSB</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Hostels &amp; Residential Life — Central University of South Bihar" data-hi="छात्रावास एवं आवासीय जीवन — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Hostels — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Hostels and Residential Accommodation at CUSB. Boys and Girls hostel subpages, wardens roster, allotment lists, Google form application links, and official hostel forms.">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .hostel-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .hostel-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .hostel-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .hostel-crumb a:hover {
+      color: var(--acc-blue);
+    }
+
+    /* Subpage Switcher Navigation */
+    .hostel-tab-nav-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 12px;
+    }
+    .hostel-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--tx-secondary);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      transition: all 0.2s ease;
+    }
+    .hostel-nav-btn:hover {
+      color: #0b6cb8;
+      border-color: #0b6cb8;
+    }
+    .hostel-nav-btn.active {
+      background: #0b6cb8;
+      color: #ffffff !important;
+      border-color: #0b6cb8;
+      box-shadow: 0 4px 12px rgba(11, 108, 184, 0.25);
+    }
+    [data-theme="dark"] .hostel-nav-btn.active {
+      background: #38bdf8;
+      color: #0f172a !important;
+      border-color: #38bdf8;
+    }
+
+    .hostel-header-area {
+      margin-bottom: 28px;
+    }
+    .hostel-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0b6cb8;
+      background: rgba(11, 108, 184, 0.08);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    [data-theme="dark"] .hostel-badge {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .hostel-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .hostel-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* Subpage Cards Grid */
+    .hostel-subpage-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+    .hostel-choice-card {
+      background: var(--bg-primary);
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .hostel-choice-card:hover {
+      border-color: #0b6cb8;
+      box-shadow: 0 12px 30px rgba(11, 108, 184, 0.16);
+      transform: translateY(-4px);
+    }
+    [data-theme="dark"] .hostel-choice-card:hover {
+      border-color: #38bdf8;
+      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.2);
+    }
+    .hostel-choice-img {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+    }
+    .hostel-choice-content {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+    .hostel-choice-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #0b6cb8;
+      letter-spacing: 0.05em;
+    }
+    [data-theme="dark"] .hostel-choice-label {
+      color: #38bdf8;
+    }
+    .hostel-choice-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--tx-primary);
+      margin: 0;
+    }
+    .hostel-choice-desc {
+      font-size: 0.88rem;
+      color: var(--tx-secondary);
+      line-height: 1.55;
+      margin: 0;
+      flex: 1;
+    }
+    .hostel-choice-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #0b6cb8;
+    }
+    [data-theme="dark"] .hostel-choice-btn {
+      color: #38bdf8;
+    }
+
+    /* Section Banner Card */
+    .hostel-section-bar {
+      background: #7a0c0c;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px 8px 0 0;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    [data-theme="dark"] .hostel-section-bar {
+      background: #881337;
+    }
+
+    .hostel-card-block {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 28px;
+    }
+
+    .tree-notice-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+    .tree-notice-list > li {
+      position: relative;
+      padding-left: 24px;
+      font-size: 0.92rem;
+      color: var(--tx-primary);
+      line-height: 1.6;
+    }
+    .tree-notice-list > li::before {
+      content: '■';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #7a0c0c;
+      font-size: 0.75rem;
+    }
+    [data-theme="dark"] .tree-notice-list > li::before {
+      color: #f43f5e;
+    }
+
+    .tree-nested-list {
+      list-style: none;
+      padding-left: 18px;
+      margin: 6px 0 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .tree-nested-list > li {
+      position: relative;
+      padding-left: 18px;
+    }
+    .tree-nested-list > li::before {
+      content: '●';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #0b6cb8;
+      font-size: 0.65rem;
+    }
+    [data-theme="dark"] .tree-nested-list > li::before {
+      color: #38bdf8;
+    }
+
+    .hostel-link {
+      color: #0b6cb8;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+    .hostel-link:hover {
+      color: #004b9b;
+      text-decoration: underline;
+      transform: translateX(3px);
+    }
+    [data-theme="dark"] .hostel-link {
+      color: #38bdf8;
+    }
+    [data-theme="dark"] .hostel-link:hover {
+      color: #7dd3fc;
+    }
+
+    .google-form-banner {
+      background: linear-gradient(135deg, rgba(234, 88, 12, 0.1) 0%, rgba(194, 65, 12, 0.05) 100%);
+      border: 1px dashed #ea580c;
+      border-radius: 8px;
+      padding: 12px 20px;
+      text-align: center;
+      margin: 14px 0;
+    }
+    .google-form-link {
+      color: #ea580c;
+      font-size: 1.05rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .google-form-link:hover {
+      text-decoration: underline;
+    }
+    [data-theme="dark"] .google-form-banner {
+      background: rgba(251, 146, 60, 0.12);
+      border-color: #fb923c;
+    }
+    [data-theme="dark"] .google-form-link {
+      color: #fb923c;
+    }
+
+    .convocation-new-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: #ffffff;
+      background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+      padding: 1px 7px;
+      border-radius: 12px;
+      margin-left: 6px;
+      vertical-align: middle;
+      text-transform: uppercase;
+      animation: pulseNewTag 2s infinite ease-in-out;
+    }
+
+    /* Forms Grid */
+    .forms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+    .form-item-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 14px 18px;
+      text-decoration: none;
+      color: #0b6cb8;
+      font-size: 0.9rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+    .form-item-card:hover {
+      border-color: #0b6cb8;
+      background: rgba(11, 108, 184, 0.08);
+      transform: translateY(-2px);
+    }
+    [data-theme="dark"] .form-item-card {
+      color: #38bdf8;
+    }
+  </style>
 </head>
 <body>
-  <a href="#mainContent" class="skip-link">Skip to main content</a>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
   <cusb-ticker></cusb-ticker>
   <cusb-topbar></cusb-topbar>
   <cusb-header></cusb-header>
   <cusb-accessibility-bar></cusb-accessibility-bar>
   <cusb-navbar></cusb-navbar>
 
-  <main id="mainContent">
-    <nav class="hostel-anchor-nav" aria-label="Hostel page sections">
-      <div class="container">
-        <a href="#accommodation">Accommodation</a>
-        <a href="#facilities">Facilities</a>
-        <a href="#wardens">Wardens</a>
-        <a href="#hostel-forms">Forms</a>
-        <a href="#allotment-notices">Notices</a>
-        <a href="#residential-guidance">Guidance</a>
-      </div>
-    </nav>
+  <main id="mainContent" class="hostel-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="hostel-crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="courses.html">Student Corner</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Hostels</span>
+      </nav>
 
-    <section class="section hostel-intro" id="accommodation" aria-labelledby="accommodationTitle">
-      <div class="container">
-        <div class="hostel-intro-copy">
-          <div>
-            <span class="section-kicker">Residential life at CUSB</span>
-            <h1 id="accommodationTitle" class="section-title section-title-left">Hostel Accommodation</h1>
+      <!-- Subpage Switcher Navigation -->
+      <div class="hostel-tab-nav-bar">
+        <a href="hostel.html" class="hostel-nav-btn active">🏢 Hostels Overview &amp; Allotment Notices</a>
+        <a href="hostel-boys.html" class="hostel-nav-btn">👦 Boys' Hostel (Savarkar Sadan)</a>
+        <a href="hostel-girls.html" class="hostel-nav-btn">👧 Girls' Hostel (Maitreyi &amp; Gargi)</a>
+      </div>
+
+      <!-- Theme Aligned Header Area -->
+      <div class="hostel-header-area">
+        <span class="hostel-badge">🏠 Campus Residential Facilities</span>
+        <h1 class="hostel-main-title" data-en="Hostel Accommodation &amp; Residential Life" data-hi="छात्रावास आवास एवं आवासीय जीवन">
+          Hostel Accommodation &amp; Residential Life
+        </h1>
+        <p style="font-size: 0.96rem; color: var(--tx-secondary); line-height: 1.6; margin: 0; max-width: 880px;">
+          Central University of South Bihar provides modern on-campus residential facilities for undergraduate, postgraduate, and Ph.D. students with 24/7 security, high-speed Wi-Fi, hygienic dining mess, gymnasiums, and study halls.
+        </p>
+      </div>
+
+      <!-- Two Interactive Subpage Choice Cards -->
+      <div class="hostel-subpage-cards-grid">
+        <a href="hostel-boys.html" class="hostel-choice-card">
+          <img src="assets/images/hostel-boys.jpg" alt="Boys Hostel Building" class="hostel-choice-img" loading="lazy">
+          <div class="hostel-choice-content">
+            <span class="hostel-choice-label">Boys' Residential Life</span>
+            <h2 class="hostel-choice-title">V. D. Savarkar Boys' Hostel</h2>
+            <p class="hostel-choice-desc">Blocks A &amp; B accommodating 550+ students with 2 fitness gyms, reading rooms, mess, outdoor courts, and residential warden administration.</p>
+            <div class="hostel-choice-btn">Explore Boys' Hostel &amp; Wardens →</div>
           </div>
-          <p>Hostel allotment is administered under the University's rules and regulations governing hostel administration and residency. The residence programme is designed to support study, research, mutual respect, and participation in campus life.</p>
-          <a class="hostel-manual-link" href="assets/documents/about/hostel-manual.pdf" target="_blank" rel="noopener">Read the Hostel Manual <span aria-hidden="true">↗</span></a>
-          <article class="hostel-showcase-card hostel-showcase-girls" id="girls-hostels">
-            <div class="hostel-showcase-photo"><img src="assets/images/hostel-girls.webp" alt="CUSB girls hostel building" loading="lazy" decoding="async"></div>
-            <div class="hostel-showcase-content">
-              <span class="hostel-card-label">Girls' Hostels</span>
-              <h3>Maitreyi Sadan &amp; Gargi Sadan</h3>
-              <p>Two blocks with a separate mess building and open space serve more than 300 students. Rooms are provided with a cot and bed, study table, chair, and wardrobe.</p>
-              <ul class="hostel-feature-list">
-                <li>Reading and recreation rooms with television and indoor games</li>
-                <li>Badminton and volleyball courts, plus fitness facilities</li>
-                <li>Dedicated hostel office, female security guards, and support staff</li>
-              </ul>
-            </div>
-          </article>
+        </a>
 
-          <article class="hostel-showcase-card hostel-showcase-boys" id="boys-hostel">
-            <div class="hostel-showcase-photo"><img src="assets/images/hostel-boys.jpg" alt="CUSB boys hostel building" loading="lazy" decoding="async"></div>
-            <div class="hostel-showcase-content">
-              <span class="hostel-card-label">Boys' Hostel</span>
-              <h3>V. D. Savarkar Hostel — Blocks A &amp; B</h3>
-              <p>Two residential blocks with a separate mess building and open space accommodate more than 550 students. Each room is furnished with a cot and bed, table, chair, and wardrobe.</p>
-              <ul class="hostel-feature-list">
-                <li>Reading, recreation, visitor, and medical rooms</li>
-                <li>Badminton courts and two gym / fitness centres</li>
-                <li>Dedicated hostel office, security, and residential support staff</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section hostel-boys-detail-section" aria-labelledby="boysDetailTitle">
-      <div class="container">
-        <div class="hostel-section-heading">
-          <div><span class="section-kicker">Boys' residential life</span><h2 id="boysDetailTitle" class="section-title section-title-left">V. D. Savarkar Hostel in detail</h2></div>
-          <p>Blocks A and B provide a complete residential setting with shared accommodation, on-site support, recreation, and practical daily-life services.</p>
-        </div>
-        <div class="hostel-boys-detail-grid">
-          <article><strong>550+</strong><span>Students accommodated</span></article>
-          <article><strong>2</strong><span>Residential blocks with a separate mess building</span></article>
-          <article><strong>24/7</strong><span>Water, electricity, medical assistance, and security support</span></article>
-          <article><strong>On campus</strong><span>Reading, visitor, medical, recreation, and fitness spaces</span></article>
-        </div>
-        <div class="hostel-boys-amenities">
-          <span>Shared furnished rooms</span><span>RO drinking water</span><span>Wi-Fi connectivity</span><span>CCTV &amp; safety supervision</span><span>Laundry &amp; housekeeping</span><span>Indoor and outdoor sports</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section hostel-services-section" id="facilities" aria-labelledby="facilitiesTitle">
-      <div class="container">
-        <span class="section-kicker">Shared services</span>
-        <h2 id="facilitiesTitle" class="section-title section-title-left">Facilities that support daily life</h2>
-        <p class="hostel-section-lead">The hostel facilities bring together accommodation, study support, recreation, and a managed residential environment.</p>
-        <div class="hostel-services-grid">
-          <article class="hostel-service-card"><span class="hostel-service-number">01</span><h3>Furnished stay</h3><p>Residence rooms are equipped with the essential furniture students need for study and rest.</p></article>
-          <article class="hostel-service-card"><span class="hostel-service-number">02</span><h3>Study &amp; connectivity</h3><p>Reading spaces and campus Wi-Fi connectivity support study and research beyond class hours.</p></article>
-          <article class="hostel-service-card"><span class="hostel-service-number">03</span><h3>Sport &amp; recreation</h3><p>Courts, gyms, indoor games, television rooms, and open spaces create room to recharge.</p></article>
-          <article class="hostel-service-card"><span class="hostel-service-number">04</span><h3>Managed support</h3><p>The residential administration includes wardens, attendants, security personnel, and a dedicated office.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section hostel-administration-section" id="wardens" aria-labelledby="administrationTitle">
-      <div class="container">
-        <div class="hostel-section-heading">
-          <div><span class="section-kicker">Residence administration</span><h2 id="administrationTitle" class="section-title section-title-left">Hostel wardens</h2></div>
-          <p>The complete published residential warden roster for the girls' hostels and V. D. Savarkar Boys' Hostel.</p>
-        </div>
-        <div class="hostel-warden-group">
-          <h3>Maitreyi Sadan</h3>
-          <div class="hostel-warden-grid">
-            <article class="hostel-warden-card"><img src="assets/images/hostel-warden-tara-kashav.jpg" alt="Dr Tara Kashav" loading="lazy" decoding="async"><div><h4>Dr Tara Kashav</h4><p>Chief Warden (Non-resident)</p></div></article>
-            <article class="hostel-warden-card"><img src="assets/images/hostel-warden-chetna-jaiswal.jpg" alt="Dr Chetna Jaiswal" loading="lazy" decoding="async"><div><h4>Dr Chetna Jaiswal</h4><p>Warden</p></div></article>
-            <article class="hostel-warden-card"><img src="assets/images/hostel-warden-priti-rai.jpg" alt="Dr Priti Rai" loading="lazy" decoding="async"><div><h4>Dr Priti Rai</h4><p>Warden</p></div></article>
+        <a href="hostel-girls.html" class="hostel-choice-card">
+          <img src="assets/images/hostel-girls.webp" alt="Girls Hostel Building" class="hostel-choice-img" loading="lazy">
+          <div class="hostel-choice-content">
+            <span class="hostel-choice-label">Girls' Residential Life</span>
+            <h2 class="hostel-choice-title">Maitreyi Sadan &amp; Gargi Sadan</h2>
+            <p class="hostel-choice-desc">Two dedicated high-security blocks for 300+ female scholars with dedicated dining, indoor recreation, 24/7 female guards, and warden roster.</p>
+            <div class="hostel-choice-btn">Explore Girls' Hostel &amp; Wardens →</div>
           </div>
-        </div>
-        <div class="hostel-warden-group hostel-warden-group-gargi">
-          <h3>Gargi Sadan</h3>
-          <div class="hostel-warden-grid">
-            <article class="hostel-warden-card"><img src="assets/images/hostel-warden-renu.jpg" alt="Ms Renu" loading="lazy" decoding="async"><div><h4>Ms Renu</h4><p>Chief Warden (Resident)</p></div></article>
-            <article class="hostel-warden-card"><img src="assets/images/hostel-warden-sunaina.jpeg" alt="Dr Sunaina" loading="lazy" decoding="async"><div><h4>Dr Sunaina</h4><p>Warden</p></div></article>
-            <article class="hostel-warden-card"><img src="assets/images/hostel-warden-udrishna-deori.jpg" alt="Dr R. L. Udrishna Deori" loading="lazy" decoding="async"><div><h4>Dr R. L. Udrishna Deori</h4><p>Warden</p></div></article>
-          </div>
-        </div>
-        <div class="hostel-warden-group hostel-warden-group-boys">
-          <h3>V. D. Savarkar Boys' Hostel</h3>
-          <div class="hostel-warden-grid hostel-warden-grid-boys">
-            <article class="hostel-warden-card"><img src="assets/images/hostel-warden-manjit-singh.jpg" alt="Dr Manjit Singh" loading="lazy" decoding="async"><div><h4>Dr Manjit Singh</h4><p>Chief Warden · Geology</p></div></article>
-            <article class="hostel-warden-card"><img src="assets/images/hostel-warden-surendra-kumar.jpg" alt="Dr Surendra Kumar" loading="lazy" decoding="async"><div><h4>Dr Surendra Kumar</h4><p>Warden · Law and Governance</p></div></article>
-            <article class="hostel-warden-card"><img src="assets/images/hostel-warden-jadhav-pratap-singh.jpg" alt="Dr Jadhav Pratap Singh" loading="lazy" decoding="async"><div><h4>Dr Jadhav Pratap Singh</h4><p>Resident Warden · Political Studies</p></div></article>
-            <article class="hostel-warden-card"><img src="assets/images/hostel-warden-anurag-kumar-singh.jpg" alt="Dr Anurag Kumar Singh" loading="lazy" decoding="async"><div><h4>Dr Anurag Kumar Singh</h4><p>Resident Warden · Agriculture</p></div></article>
-            <article class="hostel-warden-card"><img src="assets/images/hostel-warden-deovrat.jpeg" alt="Dr Deovrat" loading="lazy" decoding="async"><div><h4>Dr Deovrat</h4><p>Resident Warden · Physics</p></div></article>
-          </div>
-        </div>
+        </a>
       </div>
-    </section>
 
-    <section class="section" id="hostel-forms" aria-labelledby="formsTitle">
-      <div class="container">
-        <div class="hostel-section-heading">
-          <div><span class="section-kicker">Documents</span><h2 id="formsTitle" class="section-title section-title-left">Hostel forms and records</h2></div>
-          <p>Official downloadable forms and records published for hostel administration. Click any form card below to open and download the official PDF document directly.</p>
-        </div>
-        <div class="hostel-forms-grid">
-          <a class="hostel-form-card" href="assets/documents/hostel/hostel-no-dues-form.pdf" target="_blank" rel="noopener">
-            <span>01</span>
-            <h3>No Dues Form for Hostel</h3>
-            <div class="hostel-form-action">Download Form PDF <span aria-hidden="true">↗</span></div>
-          </a>
-          <a class="hostel-form-card" href="assets/documents/hostel/room-allotment-slip.pdf" target="_blank" rel="noopener">
-            <span>02</span>
-            <h3>Room Allotment Slip</h3>
-            <div class="hostel-form-action">Download Form PDF <span aria-hidden="true">↗</span></div>
-          </a>
-          <a class="hostel-form-card" href="assets/documents/hostel/anti-ragging-affidavit-student.pdf" target="_blank" rel="noopener">
-            <span>03</span>
-            <h3>Anti-Ragging Affidavit — Student</h3>
-            <div class="hostel-form-action">Download Form PDF <span aria-hidden="true">↗</span></div>
-          </a>
-          <a class="hostel-form-card" href="assets/documents/hostel/anti-ragging-affidavit-parent.pdf" target="_blank" rel="noopener">
-            <span>04</span>
-            <h3>Anti-Ragging Affidavit — Parent / Guardian</h3>
-            <div class="hostel-form-action">Download Form PDF <span aria-hidden="true">↗</span></div>
-          </a>
-          <a class="hostel-form-card" href="assets/documents/hostel/girls-hostel-undertaking.pdf" target="_blank" rel="noopener">
-            <span>05</span>
-            <h3>Undertaking for Girls' Hostel</h3>
-            <div class="hostel-form-action">Download Form PDF <span aria-hidden="true">↗</span></div>
-          </a>
-          <a class="hostel-form-card" href="assets/documents/hostel/boys-hostel-undertaking.pdf" target="_blank" rel="noopener">
-            <span>06</span>
-            <h3>Undertaking for Boys' Hostel</h3>
-            <div class="hostel-form-action">Download Form PDF <span aria-hidden="true">↗</span></div>
-          </a>
-          <a class="hostel-form-card" href="assets/documents/about/hostel-manual.pdf" target="_blank" rel="noopener">
-            <span>07</span>
-            <h3>Research Scholar Allotment Rules</h3>
-            <div class="hostel-form-action">Open Manual <span aria-hidden="true">↗</span></div>
-          </a>
-          <a class="hostel-form-card" href="assets/documents/hostel/parent-consent-letter.pdf" target="_blank" rel="noopener">
-            <span>08</span>
-            <h3>Parent / Guardian Consent Letter</h3>
-            <div class="hostel-form-action">Download Form PDF <span aria-hidden="true">↗</span></div>
-          </a>
-          <a class="hostel-form-card" href="assets/documents/hostel/hostel-dossier-form.pdf" target="_blank" rel="noopener">
-            <span>09</span>
-            <h3>Hostel Dossier Form</h3>
-            <div class="hostel-form-action">Download Form PDF <span aria-hidden="true">↗</span></div>
-          </a>
-        </div>
-      </div>
-    </section>
+      <!-- ════════ SECTION: HOSTEL RELATED NOTIFICATIONS ════════ -->
+      <h2 style="font-size: 1.4rem; font-weight: 800; color: #0b6cb8; border-bottom: 2px dashed rgba(11, 108, 184, 0.3); padding-bottom: 8px; margin: 32px 0 16px;">
+        Hostel Related Notifications
+      </h2>
 
-    <section class="section hostel-notices-section" id="allotment-notices" aria-labelledby="noticesTitle">
-      <div class="container">
-        <div class="hostel-section-heading">
-          <div><span class="section-kicker">updates</span><h2 id="noticesTitle" class="section-title section-title-left">Allotment and hostel notices</h2></div>
-          <a class="hostel-text-link" href="news-events.html#notices">View all notices <span aria-hidden="true">→</span></a>
-        </div>
-        <div id="hostelNoticeFeed" class="hostel-notice-feed" aria-live="polite">
-          <p class="hostel-empty-state">Hostel allotment notices published in this site will appear here.</p>
-        </div>
+      <!-- 5th Round Girls Banner -->
+      <div class="hostel-section-bar">
+        <span>📢</span>
+        <span>Provisional Allotment List Of Girls Hostels Of All Semesters Of UG, UG-PG (Integrated) And PG 5th Round <span class="convocation-new-badge">NEW</span></span>
       </div>
-    </section>
+      <div class="hostel-card-block">
+        <ul class="tree-notice-list">
+          <li><a href="assets/documents/hostel/allotment-girls-5th-round-notice.pdf" target="_blank" class="hostel-link">5th Round Allotment Notice ↗</a> <span class="convocation-new-badge">NEW</span></li>
+          <li><a href="assets/documents/hostel/allotment-girls-5th-round-1st-sem.pdf" target="_blank" class="hostel-link">5th Round Provisional Hostel Allotment for Girls Hostel 1st Semester ↗</a> <span class="convocation-new-badge">NEW</span></li>
+          <li><a href="assets/documents/hostel/allotment-girls-5th-round-all-sem.pdf" target="_blank" class="hostel-link">5th Provisional Hostel Allotment List for Girls' Hostel of All Semester ↗</a></li>
+          <li><a href="assets/documents/hostel/allotment-girls-2nd-round-ug.pdf" target="_blank" class="hostel-link">2nd Provisional Hostel Allotment for Girls Hostel of All Under Graduate programme for 1st Semester ↗</a></li>
+        </ul>
+      </div>
 
-    <section class="section hostel-guidance-section" id="residential-guidance" aria-labelledby="guidanceTitle">
-      <div class="container hostel-guidance-grid">
-        <div>
-          <span class="section-kicker">A shared campus home</span>
-          <h2 id="guidanceTitle" class="section-title section-title-left">Residential guidance</h2>
-          <p>Hostel residents are expected to use the residential environment constructively: to pursue study and research, develop mutual cooperation and goodwill across backgrounds, and take part in curricular and co-curricular activities.</p>
+      <!-- Allotment Archive & Application Rounds Block -->
+      <div class="hostel-card-block" style="border-top: 1px solid var(--border-color); border-radius: 12px;">
+        <ul class="tree-notice-list">
+          <li><a href="assets/documents/hostel/allotment-boys-replacement-ug.pdf" target="_blank" class="hostel-link">1st round provisional hostel allotment replacement list of the Boys of 1st Semesters for UG Students ↗</a> <span class="convocation-new-badge">NEW</span></li>
+          <li><a href="assets/documents/hostel/allotment-boys-ug-1st-sem.pdf" target="_blank" class="hostel-link">1st Provisional Hostel Allotment for Boys Hostel of All Under Graduate programme for 1st Semester ↗</a> <span class="convocation-new-badge">NEW</span></li>
+          <li><a href="assets/documents/hostel/notice-allotment-1st-round-ug.pdf" target="_blank" class="hostel-link">Notice 1st Round Allotment of Boys and Girls Hostel for Under Graduate - 1st Semester ↗</a></li>
+          <li><a href="assets/documents/hostel/allotment-girls-ug-1st-sem.pdf" target="_blank" class="hostel-link">1st Provisional Hostel Allotment for Girls Hostel of All Under Graduate programme for 1st Semester ↗</a> <span class="convocation-new-badge">NEW</span></li>
+          <li><a href="assets/documents/hostel/notice-google-form-allotment-ug.pdf" target="_blank" class="hostel-link">Notification for Submission of Google Form for Hostel Allotment - Newly Admitted UG Students (Academic Year 2026–27) ↗</a> <span class="convocation-new-badge">NEW</span></li>
+        </ul>
+
+        <!-- Google Form Banner 1 -->
+        <div class="google-form-banner">
+          <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" class="google-form-link">Click here for &lt;&lt;Google Form Link&gt;&gt; ↗</a>
         </div>
-        <div class="hostel-guidance-actions">
-          <a href="assets/documents/about/hostel-manual.pdf" target="_blank" rel="noopener">Hostel Manual <span aria-hidden="true">↗</span></a>
-          <a href="enquiry.html">Hostel enquiry <span aria-hidden="true">→</span></a>
+
+        <ul class="tree-notice-list">
+          <li><a href="assets/documents/hostel/notice-4th-round-allotment.pdf" target="_blank" class="hostel-link">Notice for 4th Round Hostel Allotment ↗</a></li>
+          <li><a href="assets/documents/hostel/allotment-list-4th-round.pdf" target="_blank" class="hostel-link">4th List for Hostel Allotment for Boys and Girls Hostel ↗</a></li>
+          <li><a href="assets/documents/hostel/allotment-list-4th-round-1st-sem.pdf" target="_blank" class="hostel-link">4th List for Hostel Allotment for Boys and Girls Hostel of 1st Sem ↗</a></li>
+          <li><a href="assets/documents/hostel/notice-3rd-round-allotment.pdf" target="_blank" class="hostel-link">Notice for 3rd Round Hostel Allotment ↗</a></li>
+          <li><a href="assets/documents/hostel/allotment-3rd-round-1st-sem.pdf" target="_blank" class="hostel-link">3rd Hostel Allotment List for Boys and Girls (1st Semester) ↗</a></li>
+          <li><a href="assets/documents/hostel/allotment-girls-round-3.pdf" target="_blank" class="hostel-link">3rd Hostel Allotment List for Girls ↗</a></li>
+          <li><a href="assets/documents/hostel/allotment-boys-round-3.pdf" target="_blank" class="hostel-link">3rd Hostel Allotment List for Boys ↗</a></li>
+          <li><a href="assets/documents/hostel/notice-invitation-pg-hostel-2026.pdf" target="_blank" class="hostel-link">Notice for Invitation for Fresh Applications for Hostel Accommodation from the PG Student of First Semester for the Academic Session 2026–27 ↗</a></li>
+        </ul>
+
+        <!-- Google Form Banner 2 -->
+        <div class="google-form-banner">
+          <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" class="google-form-link">Click here for &lt;&lt;Google Form Link&gt;&gt; ↗</a>
+        </div>
+
+        <ul class="tree-notice-list">
+          <li><a href="assets/documents/hostel/allotment-2nd-round-old.pdf" target="_blank" class="hostel-link">Provisional Hostel Allotment for Boys and Girls for 2nd Round (Old Student) ↗</a> <span class="convocation-new-badge">NEW</span></li>
+          <li><a href="assets/documents/hostel/allotment-notice-2nd-round.pdf" target="_blank" class="hostel-link">2nd Round Allotment Notice for Boys' and Girls Hostel ↗</a></li>
+          <li><a href="assets/documents/hostel/allotment-2nd-round-1st-sem.pdf" target="_blank" class="hostel-link">Provisional Hostel Allotment for Boys and Girls for 2nd Round (1st Semester) ↗</a></li>
+          <li>
+            <strong style="color: var(--tx-primary);">Provisional Allotment List of Boys and Girls Hostels of 1st Semester Student:</strong>
+            <ul class="tree-nested-list">
+              <li><a href="assets/documents/hostel/notice-allotment-1st-sem.pdf" target="_blank" class="hostel-link">Hostel Allotment Notice for 1st Semester Student ↗</a></li>
+              <li><a href="assets/documents/hostel/allotment-boys-1st-sem-list.pdf" target="_blank" class="hostel-link">1st Provisional hostel allotment list for boys hostel of 1st Semester Student ↗</a></li>
+              <li><a href="assets/documents/hostel/allotment-girls-1st-sem-list.pdf" target="_blank" class="hostel-link">1st Provisional Hostel Allotment List for Girls' Hostel of 1st Semester Student ↗</a></li>
+            </ul>
+          </li>
+          <li><a href="assets/documents/hostel/allotment-list-general.pdf" target="_blank" class="hostel-link">Allotment List ↗</a></li>
+          <li><a href="assets/documents/hostel/provisional-3rd-allotment-list.pdf" target="_blank" class="hostel-link">Provisional 3rd Hostel Allotment List of Boys and Girls Hostels ↗</a></li>
+          <li><a href="assets/documents/hostel/provisional-2nd-allotment-list.pdf" target="_blank" class="hostel-link">Provisional 2nd Hostel Allotment List of Boys and Girls Hostels ↗</a></li>
+          <li>
+            <strong style="color: var(--tx-primary);">Provisional Allotment List of Boys and Girls Hostels:</strong>
+            <ul class="tree-nested-list">
+              <li><a href="assets/documents/hostel/allotment-girls-round-1.pdf" target="_blank" class="hostel-link">1st Hostel allotment list for Girls Hostel ↗</a></li>
+              <li><a href="assets/documents/hostel/allotment-boys-round-1.pdf" target="_blank" class="hostel-link">1st Hostel Allotment List for Boys hostel ↗</a></li>
+            </ul>
+          </li>
+          <li><a href="assets/documents/hostel/notice-swayam-hostel.pdf" target="_blank" class="hostel-link">Circulation of Hostel Notice for Students Enrolled through the SWAYAM Portal ↗</a></li>
+          <li>
+            <strong style="color: var(--tx-primary);">Hostel Related Forms and Notification:</strong>
+            <ul class="tree-nested-list">
+              <li><a href="https://cusb.samarth.edu.in" target="_blank" class="hostel-link">Click here for &lt;&lt;Samarth Portal Steps&gt;&gt; ↗</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <!-- Google Form Banner 3 -->
+        <div class="google-form-banner">
+          <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" class="google-form-link">Click here for &lt;&lt;Google Form Link&gt;&gt; ↗</a>
+        </div>
+
+        <ul class="tree-notice-list">
+          <li><a href="assets/documents/hostel/notice-extension-payment.pdf" target="_blank" class="hostel-link">Notice regarding extension of hostel Semester Payment ↗</a></li>
+          <li><a href="assets/documents/hostel/notice-adjustment-fee.pdf" target="_blank" class="hostel-link">Notice Regarding adjustment of excess hostel fee payment ↗</a></li>
+          <li><a href="assets/documents/hostel/date-extension-notice-payment.pdf" target="_blank" class="hostel-link">Date Extension Notice- Hostel Semester Payment ↗</a></li>
+        </ul>
+      </div>
+
+      <!-- ════════ SECTION: HOSTEL FORMS ════════ -->
+      <div class="hostel-section-bar">
+        <span>📄</span>
+        <span>Hostel Application Forms &amp; Undertakings (Downloads)</span>
+      </div>
+      <div class="hostel-card-block">
+        <div class="forms-grid">
+          <a href="assets/documents/hostel/boys-hostel-undertaking.pdf" target="_blank" class="form-item-card"><span>Undertaking for Boys' Hostel</span><span>PDF ↗</span></a>
+          <a href="assets/documents/hostel/girls-hostel-undertaking.pdf" target="_blank" class="form-item-card"><span>Undertaking for Girls' Hostel</span><span>PDF ↗</span></a>
+          <a href="assets/documents/hostel/hostel-no-dues-form.pdf" target="_blank" class="form-item-card"><span>No Dues Form for Hostel</span><span>PDF ↗</span></a>
+          <a href="assets/documents/hostel/room-allotment-slip.pdf" target="_blank" class="form-item-card"><span>Room Allotment Slip</span><span>PDF ↗</span></a>
+          <a href="assets/documents/hostel/anti-ragging-affidavit-student.pdf" target="_blank" class="form-item-card"><span>Anti-Ragging Affidavit — Student</span><span>PDF ↗</span></a>
+          <a href="assets/documents/hostel/anti-ragging-affidavit-parent.pdf" target="_blank" class="form-item-card"><span>Anti-Ragging Affidavit — Parent</span><span>PDF ↗</span></a>
+          <a href="assets/documents/hostel/parent-consent-letter.pdf" target="_blank" class="form-item-card"><span>Parent / Guardian Consent Letter</span><span>PDF ↗</span></a>
+          <a href="assets/documents/hostel/hostel-dossier-form.pdf" target="_blank" class="form-item-card"><span>Hostel Dossier Form</span><span>PDF ↗</span></a>
         </div>
       </div>
-    </section>
+
+    </div>
   </main>
 
   <cusb-footer></cusb-footer>
   <cusb-chatbot></cusb-chatbot>
   <script src="js/components.js" defer></script>
   <script src="js/main.js" defer></script>
-  <script src="js/hostel-page.js" defer></script>
 </body>
 </html>

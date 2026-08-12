@@ -1,1 +1,486 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Semester Exam Schedule - CUSB</title><link rel="icon" href="assets/culog.png"><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/student-subpage.css"></head><body><cusb-ticker></cusb-ticker><cusb-topbar></cusb-topbar><cusb-header></cusb-header><cusb-accessibility-bar></cusb-accessibility-bar><cusb-navbar></cusb-navbar><main class="student-subpage"><div class="container"><nav class="student-subpage__crumb"><a href="courses.html">Student Corner</a><span>/</span><span>Semester Exam Schedule</span></nav><article class="student-subpage__card"><span class="section-tag">Student Corner</span><h1>Semester Exam Schedule</h1><p>Information will be added here.</p></article></div></main><cusb-footer></cusb-footer><cusb-chatbot></cusb-chatbot><script src="js/components.js" defer></script><script src="js/main.js" defer></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Semester Examination Schedule 2026 — Central University of South Bihar" data-hi="सेमेस्टर परीक्षा कार्यक्रम 2026 — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Semester Examination 2026 — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Official End-Term, Supplementary, Backlog, and Ph.D. Course Work examination schedules, timetables, and hall ticket download links at Central University of South Bihar.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .schedule-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .schedule-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .schedule-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .schedule-crumb a:hover {
+      color: var(--acc-blue);
+    }
+    .schedule-header-area {
+      margin-bottom: 24px;
+    }
+    .schedule-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0b6cb8;
+      background: rgba(11, 108, 184, 0.08);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    [data-theme="dark"] .schedule-badge {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .schedule-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .schedule-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+    .schedule-lead-desc {
+      font-size: 0.96rem;
+      color: var(--tx-secondary);
+      line-height: 1.6;
+      margin: 0;
+      max-width: 880px;
+    }
+
+    /* Hall Ticket Action Card */
+    .hall-ticket-banner {
+      background: linear-gradient(135deg, #7a0c0c 0%, #991b1b 100%);
+      border-radius: 10px;
+      padding: 20px 28px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 16px rgba(122, 12, 12, 0.25);
+    }
+    [data-theme="dark"] .hall-ticket-banner {
+      background: linear-gradient(135deg, #881337 0%, #be123c 100%);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+    .hall-ticket-title {
+      color: #ffffff;
+      font-size: 1.25rem;
+      font-weight: 800;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hall-ticket-title:hover {
+      text-decoration: underline;
+    }
+    .archive-timetables-link {
+      color: #ffd950;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: background 0.18s ease;
+    }
+    .archive-timetables-link:hover {
+      background: rgba(0, 0, 0, 0.35);
+      text-decoration: underline;
+    }
+
+    /* Live Search Input */
+    .schedule-search-wrap {
+      width: 100%;
+      max-width: 520px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .schedule-search-input {
+      width: 100%;
+      padding: 12px 42px 12px 18px;
+      font-size: 0.92rem;
+      border-radius: 24px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      color: var(--tx-primary);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s ease;
+    }
+    .schedule-search-input:focus {
+      outline: none;
+      border-color: #0b6cb8;
+      box-shadow: 0 4px 14px rgba(11, 108, 184, 0.15);
+    }
+
+    /* Section Banner Card */
+    .schedule-section-bar {
+      background: #7a0c0c;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px 8px 0 0;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+      line-height: 1.4;
+    }
+    [data-theme="dark"] .schedule-section-bar {
+      background: #881337;
+    }
+
+    /* Grid Table Card Block */
+    .schedule-card-block {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 28px;
+    }
+
+    .schedule-2col-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 10px;
+    }
+
+    .schedule-item-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 12px 16px;
+      text-decoration: none;
+      color: #0b6cb8;
+      font-size: 0.88rem;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: all 0.2s ease;
+    }
+    .schedule-item-card:hover {
+      background: rgba(11, 108, 184, 0.08);
+      border-color: #0b6cb8;
+      color: #004b9b;
+      transform: translateY(-1px);
+    }
+    [data-theme="dark"] .schedule-item-card {
+      color: #38bdf8;
+    }
+    [data-theme="dark"] .schedule-item-card:hover {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: #38bdf8;
+      color: #7dd3fc;
+    }
+
+    .schedule-pdf-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #0369a1;
+      background: rgba(2, 132, 199, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    [data-theme="dark"] .schedule-pdf-tag {
+      color: #7dd3fc;
+      background: rgba(56, 189, 248, 0.16);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="schedule-page-wrapper">
+    <div class="container">
+      
+      <!-- Clean Breadcrumb -->
+      <nav class="schedule-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="courses.html" data-en="Student Corner" data-hi="छात्र अनुभाग">Student Corner</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Semester Exam Schedule</span>
+      </nav>
+
+      <!-- Theme Aligned Header Area -->
+      <div class="schedule-header-area">
+        <span class="schedule-badge">📅 Examination &amp; Evaluation Division</span>
+        <h1 class="schedule-main-title" data-en="Semester Examination 2026" data-hi="सेमेस्टर परीक्षा 2026">
+          Semester Examination 2026
+        </h1>
+        <p class="schedule-lead-desc" data-en="Official end-semester, backlog, and Ph.D. course work examination schedules and time-tables for Undergraduate, Postgraduate, and Integrated programmes." data-hi="स्नातक, स्नातकोत्तर और एकीकृत कार्यक्रमों के लिए आधिकारिक एंड-सेमेस्टर, बैकलॉग और पीएचडी कोर्स वर्क परीक्षा कार्यक्रम और समय सारिणी।">
+          Official end-semester, backlog, and Ph.D. course work examination schedules and time-tables for Undergraduate, Postgraduate, and Integrated programmes.
+        </p>
+      </div>
+
+      <!-- Hall Ticket Download Action Banner -->
+      <div class="hall-ticket-banner">
+        <a href="https://cusb.samarth.edu.in/" target="_blank" rel="noopener noreferrer" class="hall-ticket-title">
+          <span>🎟️</span>
+          <span data-en="Click Here to Download Hall Ticket" data-hi="हॉल टिकट डाउनलोड करने के लिए यहां क्लिक करें">Click Here to Download Hall Ticket ↗</span>
+        </a>
+        <a href="student-academic-notices.html" class="archive-timetables-link">
+          <span>📁</span>
+          <span>Old Time Table Archive</span>
+        </a>
+      </div>
+
+      <!-- Live Search Box -->
+      <div class="schedule-search-wrap">
+        <input type="search" id="scheduleSearchInput" class="schedule-search-input" placeholder="Search exam schedule by program, semester or subject..." aria-label="Search exam schedules">
+        <span style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--tx-muted);">🔍</span>
+      </div>
+
+      <!-- ════════ SECTION 1: PHD PROGRAMME COURSE WORK EXAMINATION ════════ -->
+      <div class="schedule-section-container" data-section="phd-coursework">
+        <div class="schedule-section-bar">
+          <span>🎓</span>
+          <span data-en="Time-Table of Course Work Examination of Ph.D. Programme-1st Semester" data-hi="पीएचडी कार्यक्रम-प्रथम सेमेस्टर के कोर्स वर्क परीक्षा की समय सारिणी">Time-Table of Course Work Examination of Ph.D. Programme-1st Semester</span>
+        </div>
+        
+        <div class="schedule-card-block">
+          <div class="schedule-2col-grid">
+            <a href="assets/documents/academics/tt-phd-statistics.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in Statistics</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-phd-sociology.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in Sociology</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-phd-psychology.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in Psychology</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-phd-political-science.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in Political Science</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-phd-physical-education.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in Physical Education</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-phd-pharmacy.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in Pharmacy</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-phd-mathematics.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in Mathematics</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-phd-life-science.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in Life Science</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-phd-jmc.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in Journalism and Mass Communication</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-phd-history.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in History</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-phd-geology.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in Geology</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-phd-geography.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in Geography</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-phd-env-science.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in Environmental Science</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-phd-economics.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in Economics</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-phd-computer-science.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in Computer Science</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-phd-commerce.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in Commerce</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-phd-chemistry.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in Chemistry</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-phd-biotechnology.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in Biotechnology</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-phd-chemistry-2.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Course Work Examination of PhD in Chemistry</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 2: REVISED -2 DATED 05.05.2026 UG/PG (PART A) ════════ -->
+      <div class="schedule-section-container" data-section="revised-ugpg-a">
+        <div class="schedule-section-bar">
+          <span>📝</span>
+          <span data-en="Revised -2 dated 05.05.2026, Time-Tables of End-Term examination of Undergraduate and Postgraduate programmes to be held in May, 2026" data-hi="संशोधित -2 दिनांक 05.05.2026, मई 2026 में आयोजित होने वाली यूजी एवं पीजी एंड-टर्म परीक्षा की समय सारिणी">Revised -2 dated 05.05.2026, Time-Tables of End-Term examination of Undergraduate and Postgraduate programmes to be held in May, 2026</span>
+        </div>
+        
+        <div class="schedule-card-block">
+          <div class="schedule-2col-grid">
+            <a href="assets/documents/academics/tt-revised-int-sociology-2-4.pdf" target="_blank" class="schedule-item-card"><span>Revised Time-Table Format for End-Term Examination 5 Year UG PG (II and IV) -Sociology</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-revised-int-commerce-mcom.pdf" target="_blank" class="schedule-item-card"><span>Revised Time-Table Format for End-Term Examination 5 Year UG PG -Commerce and M.Com</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-revised-bsc-agri.pdf" target="_blank" class="schedule-item-card"><span>Revised Time-Table Format for End-Term Examination B.Sc. (Hons.) Agriculture</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-revised-ma-sociology-2-4.pdf" target="_blank" class="schedule-item-card"><span>Revised Time-Table Format for End-Term Examination M.A. Sociology-2nd &amp; 4th Semester</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-updated-life-science.pdf" target="_blank" class="schedule-item-card"><span>Updated Time table Department of Life Science</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 3: REVISED -2 DATED 05.05.2026 UG/PG (PART B) ════════ -->
+      <div class="schedule-section-container" data-section="revised-ugpg-b">
+        <div class="schedule-section-bar">
+          <span>📋</span>
+          <span data-en="Revised -2 dated 05.05.2026, Time-Tables of End-Term examination of Undergraduate and Postgraduate programmes to be held in May, 2026" data-hi="संशोधित -2 दिनांक 05.05.2026, मई 2026 यूजी/पीजी एंड-टर्म परीक्षा समय सारिणी (भाग-2)">Revised -2 dated 05.05.2026, Time-Tables of End-Term examination of Undergraduate and Postgraduate programmes to be held in May, 2026</span>
+        </div>
+        
+        <div class="schedule-card-block">
+          <div class="schedule-2col-grid">
+            <a href="assets/documents/academics/tt-revised-ugpg-statistics.pdf" target="_blank" class="schedule-item-card"><span>Revised Time-Table for End-Term Examination of UG-PG -Statistics Sem-II, IV dated 05.05.2026</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-revised-ugpg-geography.pdf" target="_blank" class="schedule-item-card"><span>Revised Time-Table for End-Term Examination of UG-PG -Geography Sem-II, dated 05.05.2026</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-revised-ugpg-math.pdf" target="_blank" class="schedule-item-card"><span>Revised Time-Table for End-Term Examination of UG-PG -Mathematics Sem-II, IV dated 05.05.2026</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-revised-ugpg-cs.pdf" target="_blank" class="schedule-item-card"><span>Revised Time-Table for End-Term Examination of UG-PG -Computer Science Sem-II, dated 05.05.2026</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-revised-msc-cs-backlog.pdf" target="_blank" class="schedule-item-card"><span>Revised Time-Table for End-Term Examination of MSc Computer-Backlog dt. 05.05.2026</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-revised-ma-economics-4.pdf" target="_blank" class="schedule-item-card"><span>Revised Time-Table for End-Term Examination of MA Economics-4th Semester dt. 05.05.2026</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 4: REVISED TIME-TABLES MAY 2026 ════════ -->
+      <div class="schedule-section-container" data-section="revised-may">
+        <div class="schedule-section-bar">
+          <span>📑</span>
+          <span data-en="Revised Time-Tables of End-Term examination of Undergraduate and Postgraduate programmes to be held in May, 2026" data-hi="मई 2026 में आयोजित होने वाले यूजी एवं पीजी कार्यक्रमों की संशोधित एंड-टर्म परीक्षा समय सारिणी">Revised Time-Tables of End-Term examination of Undergraduate and Postgraduate programmes to be held in May, 2026</span>
+        </div>
+        
+        <div class="schedule-card-block">
+          <div class="schedule-2col-grid">
+            <a href="assets/documents/academics/tt-revised-chemistry-ugpg.pdf" target="_blank" class="schedule-item-card"><span>Revised Time-Table of End-Term Examination of M.Sc. Chemistry and UG-PG in Chemistry</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-revised-ma-economics-4th.pdf" target="_blank" class="schedule-item-card"><span>Revised Time-Table of End-Term Examination of MA Economics-4th Semester</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-revised-med-babed-bscbed.pdf" target="_blank" class="schedule-item-card"><span>Revised Time-Table of End-Term Examination of M.Ed., BA BEd and BSc BEd</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-revised-ma-hindi-ugpg.pdf" target="_blank" class="schedule-item-card"><span>Revised Time-Table of End-Term Examination of M.A. in Hindi and UG-PG in Hindi</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-bioinfo-life-science.pdf" target="_blank" class="schedule-item-card"><span>End-Term examination of paper of Bioinformatics for UG-PG in Life Science</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-common-paper-ugpg.pdf" target="_blank" class="schedule-item-card"><span>End-Term examination of Common paper of all UG-PG programmes</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-revised-ugpg-psychology-2.pdf" target="_blank" class="schedule-item-card"><span>Revised Time-Table of End-Term Examination of UG-PG in Psychology - 2nd Semester</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 5: NOTICE AE740 POSTGRADUATE PROGRAMMES ════════ -->
+      <div class="schedule-section-container" data-section="notif-ae740-pg">
+        <div class="schedule-section-bar">
+          <span>📢</span>
+          <span data-en="Notice No.-CUSB/Acad/67-2/2026/AE740 dated 27.04.2026 and Time-Table of End-Term examination of all Postgraduate programmes" data-hi="अधिसूचना संख्या AE740 एवं सभी स्नातकोत्तर (पीजी) कार्यक्रमों की एंड-टर्म परीक्षा समय सारिणी">Notice No.-CUSB/Acad/67-2/2026/AE740 dated 27.04.2026 and Time-Table of End-Term examination of all Postgraduate programmes</span>
+        </div>
+        
+        <div class="schedule-card-block">
+          <div class="schedule-2col-grid">
+            <a href="assets/documents/academics/tt-mcom-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of M.Com.-2nd &amp; 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-med-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of M.Ed.-2nd and 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-mpharm-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of M.Pharm.-Pharmaceutics and M.Pharm- Pharmacology -2nd &amp; 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-msw-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of M.S.W. -2nd &amp; 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ma-economics-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MA in Economics-2nd &amp; 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ma-english-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MA in English-2nd &amp; 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ma-hindi-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MA in Hindi-2nd &amp; 4th Sem and UG-PG in Hindi-2nd &amp; 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ma-history-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MA in History-2nd &amp; 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ma-jmc-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MA in Journalism and Mass Communication-2nd &amp; 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ma-psir-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MA in Political Science and IR-2nd &amp; 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ma-sociology-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MA in Sociology -2nd &amp; 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-physics-lab-exam.pdf" target="_blank" class="schedule-item-card"><span>Physics Lab exam time table</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-pg-electives.pdf" target="_blank" class="schedule-item-card"><span>Time -Table of Elective courses of PG programmes opted by students of other depts</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-mped-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination M.P.Ed. -2nd &amp; 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-blib-mlib-2.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of int.Blib ISc and Mlib ISc-2nd Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-llm-2.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of LLM-2nd Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ma-msc-psychology-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MA or M.Sc. in Psychology-2nd &amp; 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-msc-bioinfo-2.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MSc in Bioinformatics -2nd Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-msc-biotech-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MSc in Biotechnology-2nd and 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-msc-chemistry-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MSc in Chemistry- 2nd and 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-msc-cs-ai-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MSc in Computer Science and M.Sc. in Artificial Intelligence- 2nd and 4th Sem with backlog exam</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-msc-env-science-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MSc in Environmental Science- 2nd and 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-msc-geography-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MSc in Geography -2nd and 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-msc-geology-2.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MSc in Geology- 2nd Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-msc-life-science-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MSc in Life Science-2nd and 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-msc-math-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MSc in Mathematics-2nd and 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-msc-physics-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MSc in Physics- 2nd and 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-msc-statistics-data-science-2-4.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of MSc in Statistics and M.Sc. in Data Science and AS- 2nd and 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 6: NOTICE AE740 UNDERGRADUATE PROGRAMMES ════════ -->
+      <div class="schedule-section-container" data-section="notif-ae740-ug">
+        <div class="schedule-section-bar">
+          <span>📚</span>
+          <span data-en="Notice No.-CUSB/Acad/67-2/2026/AE740 dated 27.04.2026 and Time-Table of End-Term examination of all Undergraduate programmes" data-hi="अधिसूचना संख्या AE740 एवं सभी स्नातक (यूजी) कार्यक्रमों की एंड-टर्म परीक्षा समय सारिणी">Notice No.-CUSB/Acad/67-2/2026/AE740 dated 27.04.2026 and Time-Table of End-Term examination of all Undergraduate programmes</span>
+        </div>
+        
+        <div class="schedule-card-block">
+          <div class="schedule-2col-grid">
+            <a href="assets/documents/academics/tt-ballb-bballb-semesters.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of BALLB programme - 2nd,4th,6th,8th &amp; 10th semester and BBALLB - 2nd &amp; 4th Sem</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ballb-backlogs.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of BALLB programme -Backlogs paper</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-dpharm.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of Diploma in Pharmacy</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-dpharm-2.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of Diploma in Pharmacy</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ugpg-chemistry.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of UG-PG in Chemistry</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ugpg-commerce.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of UG-PG in Commerce</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-common-ugpg-2-4.pdf" target="_blank" class="schedule-item-card"><span>Common paper Time-Table of End term UG-PG Semester 2nd &amp; 4th Semester</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-bsc-agriculture.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of B.Sc. Agriculture (Hons.)</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-babed-bscbed-semesters.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of BA BEd and BSc BEd-2nd,4th,6th and 8th Semester</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ugpg-cs.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of UG-PG in Computer Science</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ugpg-economics.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of UG-PG in Economics</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ugpg-english.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of UG-PG in English</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ugpg-geography.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of UG-PG in Geography</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ugpg-geology.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of UG-PG in Geology</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ugpg-history.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of UG-PG in History</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ugpg-jmc.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of UG-PG in Journalism &amp; Mass Communication</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ugpg-life-science.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of UG-PG in Life Science</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ugpg-math.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of UG-PG in Mathematics</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ugpg-physics.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of UG-PG in Physics</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ugpg-pol-science.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of UG-PG in Political Science</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ugpg-psychology.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of UG-PG in Psychology</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ugpg-sociology.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of UG-PG in Sociology</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+            <a href="assets/documents/academics/tt-ugpg-statistics.pdf" target="_blank" class="schedule-item-card"><span>Time-Table of End-Term Examination of UG-PG in Statistics</span><span class="schedule-pdf-tag">PDF ↗</span></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+  
+  <script>
+    // Live Search Filter for Exam Schedule Page
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('scheduleSearchInput');
+      const allSections = document.querySelectorAll('.schedule-section-container');
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+
+          allSections.forEach(section => {
+            let sectionHasVisibleItem = false;
+            const items = section.querySelectorAll('.schedule-item-card');
+
+            items.forEach(card => {
+              const text = card.textContent.toLowerCase();
+              if (!query || text.includes(query)) {
+                card.style.display = '';
+                sectionHasVisibleItem = true;
+              } else {
+                card.style.display = 'none';
+              }
+            });
+
+            if (!query || sectionHasVisibleItem) {
+              section.style.display = '';
+            } else {
+              section.style.display = 'none';
+            }
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Aim And Objective — National Service Scheme — Central University of South Bihar" data-hi="उद्देश्य एवं लक्ष्य (एनएसएस) — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Aim and Objective — NSS — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Aims, objectives, and motto of National Service Scheme (NSS) at Central University of South Bihar. Education through community service.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .nss-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .nss-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .nss-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .nss-crumb a:hover {
+      color: var(--acc-blue);
+    }
+
+    /* 2-Column Layout with Side Menu */
+    .nss-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .nss-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Side Menu */
+    .nss-sidebar {
+      position: sticky;
+      top: 120px;
+    }
+    .nss-menu-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+    .nss-menu-header {
+      background: #00569b;
+      color: #ffffff;
+      padding: 14px 18px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+    [data-theme="dark"] .nss-menu-header {
+      background: #0284c7;
+    }
+    .nss-menu-list {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+    }
+    .nss-menu-btn {
+      display: block;
+      width: 100%;
+      padding: 11px 16px;
+      background: #0b6cb8;
+      color: #ffffff !important;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(11, 108, 184, 0.25);
+      transition: all 0.2s ease;
+      line-height: 1.35;
+    }
+    .nss-menu-btn:hover {
+      background: #004b9b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(11, 108, 184, 0.35);
+    }
+    .nss-menu-btn.active {
+      background: #004b9b;
+      box-shadow: inset 0 0 0 2px #ffd950;
+    }
+    [data-theme="dark"] .nss-menu-btn {
+      background: #0284c7;
+    }
+    [data-theme="dark"] .nss-menu-btn:hover {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+    [data-theme="dark"] .nss-menu-btn.active {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+
+    /* Main Content Styling */
+    .nss-header-area {
+      margin-bottom: 24px;
+    }
+    .nss-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .nss-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .nss-body-p {
+      font-size: 0.96rem;
+      color: var(--tx-secondary);
+      line-height: 1.72;
+      margin: 0 0 20px;
+    }
+
+    /* Motto Section Card */
+    .nss-motto-block {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-left: 5px solid #0b6cb8;
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-top: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+    [data-theme="dark"] .nss-motto-block {
+      border-left-color: #38bdf8;
+    }
+    .nss-motto-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+    }
+    [data-theme="dark"] .nss-motto-title {
+      color: #38bdf8;
+    }
+    .nss-motto-quote {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #7a0c0c;
+      font-style: italic;
+      margin: 0 0 12px;
+      display: block;
+    }
+    [data-theme="dark"] .nss-motto-quote {
+      color: #fb7185;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="nss-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="nss-crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="courses.html">Student Corner</a>
+        <span>/</span>
+        <a href="student-nss.html">NSS</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Aim And Objective</span>
+      </nav>
+
+      <!-- 2-Column Layout with Side Menu -->
+      <div class="nss-layout">
+        
+        <!-- Left Side Menu (NSS) -->
+        <aside class="nss-sidebar" aria-label="NSS Side Navigation">
+          <div class="nss-menu-card">
+            <div class="nss-menu-header">NSS</div>
+            <ul class="nss-menu-list">
+              <li>
+                <a href="student-nss-vbyp.html" class="nss-menu-btn">About VBYP</a>
+              </li>
+              <li>
+                <a href="student-nss.html" class="nss-menu-btn">About Us</a>
+              </li>
+              <li>
+                <a href="student-nss-objectives.html" class="nss-menu-btn active">Aim and Objective</a>
+              </li>
+              <li>
+                <a href="student-nss-symbol.html" class="nss-menu-btn">NSS Symbol and Badge</a>
+              </li>
+              <li>
+                <a href="student-nss-join.html" class="nss-menu-btn">Join NSS ( Registration For 2025-26 )</a>
+              </li>
+              <li>
+                <a href="student-nss-programmes.html" class="nss-menu-btn">NSS Programme Classification/ Implementation</a>
+              </li>
+              <li>
+                <a href="student-nss-activities.html" class="nss-menu-btn">Activities &amp; Others</a>
+              </li>
+              <li>
+                <a href="student-nss-members.html" class="nss-menu-btn">Member</a>
+              </li>
+              <li>
+                <a href="student-nss-gallery.html" class="nss-menu-btn">Gallery</a>
+              </li>
+              <li>
+                <a href="student-nss-contacts.html" class="nss-menu-btn">Contact Details</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Right Main Content Area (Verbatim Transcription) -->
+        <div class="nss-main-col">
+
+          <div class="nss-header-area">
+            <h1 class="nss-main-title" data-en="Aim And Objective" data-hi="उद्देश्य एवं लक्ष्य">
+              Aim And Objective
+            </h1>
+          </div>
+
+          <p class="nss-body-p">
+            The wide-ranging aim of National Service Scheme is to provide student youth a developmental dimension of service to others, in addition to classroom education, for development to a complete and better human being. The experience and training of service to villages and community helps student youth in future to perform various professional and leadership roles with a sense of responsibility towards community in which they live. The purposes of the NSS cell completes the essence of true and complete education to a youth. And also, NSS is to developing the personality and character of the student youth through voluntary community service. 'Education through Service' is the purpose of the NSS. An NSS volunteer places the 'community' before 'self'.
+          </p>
+
+          <!-- Motto Section Block -->
+          <div class="nss-motto-block">
+            <h2 class="nss-motto-title">Motto :</h2>
+            <span class="nss-motto-quote">"Not me, But you.</span>
+            <p class="nss-body-p" style="margin: 0;">
+              The Motto of NSS "Not Me but You", reflects the essence of democratic living and upholds the need for self-less service. NSS helps the student's development &amp; appreciation to other person's point of view and also show consideration towards other living beings. The philosophy of the NSS is a good doctrine in this motto, which underlines on the belief that the welfare of an individual is ultimately dependent on the welfare of the society as a whole and therefore, the NSS volunteers shall strive for the well-being of the society.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

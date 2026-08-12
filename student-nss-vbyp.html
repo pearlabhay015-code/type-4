@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Visit Bharat Youth Parliament (VBYP) — Central University of South Bihar" data-hi="विकसित भारत युवा संसद (वीबीवाईपी) — दक्षिण बिहार केंद्रीय विश्वविद्यालय">About VBYP — NSS — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Viksit Bharat Youth Parliament (VBYP) 2025 at Central University of South Bihar. MY Bharat Portal registration, district nodal rounds, and minute-to-minute schedule.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .nss-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .nss-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .nss-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .nss-crumb a:hover {
+      color: var(--acc-blue);
+    }
+
+    /* 2-Column Layout with Side Menu */
+    .nss-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .nss-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Side Menu */
+    .nss-sidebar {
+      position: sticky;
+      top: 120px;
+    }
+    .nss-menu-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+    .nss-menu-header {
+      background: #00569b;
+      color: #ffffff;
+      padding: 14px 18px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+    [data-theme="dark"] .nss-menu-header {
+      background: #0284c7;
+    }
+    .nss-menu-list {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+    }
+    .nss-menu-btn {
+      display: block;
+      width: 100%;
+      padding: 11px 16px;
+      background: #0b6cb8;
+      color: #ffffff !important;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(11, 108, 184, 0.25);
+      transition: all 0.2s ease;
+      line-height: 1.35;
+    }
+    .nss-menu-btn:hover {
+      background: #004b9b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(11, 108, 184, 0.35);
+    }
+    .nss-menu-btn.active {
+      background: #004b9b;
+      box-shadow: inset 0 0 0 2px #ffd950;
+    }
+    [data-theme="dark"] .nss-menu-btn {
+      background: #0284c7;
+    }
+    [data-theme="dark"] .nss-menu-btn:hover {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+    [data-theme="dark"] .nss-menu-btn.active {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+
+    /* Main Content Styling */
+    .nss-header-area {
+      margin-bottom: 20px;
+    }
+    .nss-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .nss-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .vbyp-section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--tx-primary);
+      margin: 20px 0 10px;
+    }
+    .nss-body-p {
+      font-size: 0.95rem;
+      color: var(--tx-secondary);
+      line-height: 1.72;
+      margin: 0 0 18px;
+    }
+
+    .vbyp-bullets {
+      list-style: disc;
+      padding-left: 24px;
+      margin: 0 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .vbyp-bullets > li {
+      font-size: 0.94rem;
+      color: var(--tx-primary);
+      line-height: 1.65;
+    }
+
+    .vbyp-minutes-banner {
+      text-align: center;
+      margin: 28px 0 16px;
+    }
+    .vbyp-minutes-link {
+      display: inline-block;
+      color: #0b6cb8;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.18s ease;
+    }
+    .vbyp-minutes-link:hover {
+      text-decoration: underline;
+      color: #004b9b;
+    }
+    [data-theme="dark"] .vbyp-minutes-link {
+      color: #38bdf8;
+    }
+
+    /* Embedded PDF Viewer Component - Large & Clear */
+    .pdf-viewer-frame-container {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+      margin: 24px 0 36px;
+    }
+    .pdf-toolbar {
+      background: #00569b;
+      color: #ffffff;
+      padding: 14px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    [data-theme="dark"] .pdf-toolbar {
+      background: #0284c7;
+    }
+    .pdf-tool-left, .pdf-tool-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pdf-tool-btn {
+      background: rgba(255, 255, 255, 0.18);
+      color: #ffffff !important;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 7px 16px;
+      border-radius: 6px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .pdf-tool-btn:hover {
+      background: #ffffff;
+      color: #00569b !important;
+    }
+    .pdf-embed-wrapper {
+      position: relative;
+      width: 100%;
+      min-height: 850px;
+      background: #3f4245;
+    }
+    .pdf-embed-wrapper object,
+    .pdf-embed-wrapper embed,
+    .pdf-embed-wrapper iframe {
+      width: 100%;
+      height: 900px;
+      border: none;
+    }
+    .pdf-pages-scroll {
+      max-height: 950px;
+      overflow-y: auto;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      background: #3f4245;
+    }
+    .pdf-page-card {
+      max-width: 920px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+    }
+    .pdf-page-img {
+      width: 100%;
+      height: auto;
+      min-height: 550px;
+      display: block;
+    }
+
+    /* Big Poster Box */
+    .vbyp-poster-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+      margin: 16px 0 24px;
+    }
+    .vbyp-poster-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Apply Now Button (Maroon) */
+    .vbyp-apply-btn {
+      display: block;
+      width: 100%;
+      background: #7a0c0c;
+      color: #ffffff !important;
+      font-size: 1.15rem;
+      font-weight: 800;
+      text-align: center;
+      padding: 14px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(122, 12, 12, 0.3);
+      transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+      letter-spacing: 0.02em;
+    }
+    .vbyp-apply-btn:hover {
+      background: #991b1b;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(122, 12, 12, 0.45);
+    }
+    [data-theme="dark"] .vbyp-apply-btn {
+      background: #881337;
+    }
+    [data-theme="dark"] .vbyp-apply-btn:hover {
+      background: #be123c;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="nss-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="nss-crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="courses.html">Student Corner</a>
+        <span>/</span>
+        <a href="student-nss.html">NSS</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">About VBYP</span>
+      </nav>
+
+      <!-- 2-Column Layout with Side Menu -->
+      <div class="nss-layout">
+        
+        <!-- Left Side Menu (NSS) -->
+        <aside class="nss-sidebar" aria-label="NSS Side Navigation">
+          <div class="nss-menu-card">
+            <div class="nss-menu-header">NSS</div>
+            <ul class="nss-menu-list">
+              <li>
+                <a href="student-nss-vbyp.html" class="nss-menu-btn active">About VBYP</a>
+              </li>
+              <li>
+                <a href="student-nss.html" class="nss-menu-btn">About Us</a>
+              </li>
+              <li>
+                <a href="student-nss-objectives.html" class="nss-menu-btn">Aim and Objective</a>
+              </li>
+              <li>
+                <a href="student-nss-symbol.html" class="nss-menu-btn">NSS Symbol and Badge</a>
+              </li>
+              <li>
+                <a href="student-nss-join.html" class="nss-menu-btn">Join NSS ( Registration For 2025-26 )</a>
+              </li>
+              <li>
+                <a href="student-nss-programmes.html" class="nss-menu-btn">NSS Programme Classification/ Implementation</a>
+              </li>
+              <li>
+                <a href="student-nss-activities.html" class="nss-menu-btn">Activities &amp; Others</a>
+              </li>
+              <li>
+                <a href="student-nss-members.html" class="nss-menu-btn">Member</a>
+              </li>
+              <li>
+                <a href="student-nss-gallery.html" class="nss-menu-btn">Gallery</a>
+              </li>
+              <li>
+                <a href="student-nss-contacts.html" class="nss-menu-btn">Contact Details</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Right Main Content Area (Verbatim Transcription) -->
+        <div class="nss-main-col">
+
+          <div class="nss-header-area">
+            <h1 class="nss-main-title" data-en="Visit Bharat Youth Parliament" data-hi="विकसित भारत युवा संसद">
+              Visit Bharat Youth Parliament
+            </h1>
+          </div>
+
+          <!-- Section: About -->
+          <h2 class="vbyp-section-title">About</h2>
+          <p class="nss-body-p">
+            The National Youth Parliament Festival has been reimagined as into the <strong>Viksit Bharat Youth Parliament</strong>, a platform for young minds to contribute to the vision of Viksit Bharat @2047, as envisioned by Hon'ble Prime Minister. This is a unique opportunity for youth to express their perspectives and ideas on the future of our nation.
+          </p>
+
+          <!-- Section: How to Participate -->
+          <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--tx-primary); margin: 20px 0 10px;">
+            How to Participate:
+          </h3>
+          <ul class="vbyp-bullets">
+            <li>
+              <strong>Registration:</strong> To participate in the Viksit Bharat Youth Parliament, please register your profile on the MY Bharat Portal by clicking on the <a href="https://mybharat.gov.in/" target="_blank" style="color: #0b6cb8; font-weight: 700;">'APPLY NOW'</a> button.
+            </li>
+            <li>
+              <strong>Video Submission:</strong> Following profile completion, upload a one-minute video on the platform addressing the topic: <em>"What does Viksit Bharat mean to you?"</em> This video is crucial for your eligibility in the District Nodal Round.
+            </li>
+            <li>
+              <strong>Districts Covered:</strong> This nodal center covers the following district: <strong>Aurangabad, Nawada, Jehanabad, Gaya</strong>
+            </li>
+            <li>
+              <strong>Registration Deadline:</strong> Registration closes on <strong>March 9th at 11:59 PM</strong>.
+            </li>
+          </ul>
+
+          <!-- Section: Event Partner -->
+          <h3 style="font-size: 1.02rem; font-weight: 800; color: var(--tx-primary); margin: 20px 0 8px;">
+            EVENT PARTNER:
+          </h3>
+          <ul class="vbyp-bullets" style="margin-bottom: 20px;">
+            <li>Universities and Colleges</li>
+          </ul>
+
+          <!-- Minutes Link Callout -->
+          <div class="vbyp-minutes-banner">
+            <a href="assets/documents/nss/youth-parliament-minutes-2025.pdf" target="_blank" class="vbyp-minutes-link">
+              YOUTH PARLIAMENT MINUTES TO MINUTES two days 24-25 march 2025 ↗
+            </a>
+          </div>
+
+          <!-- Embedded Official Minutes PDF Viewer -->
+          <div class="pdf-viewer-frame-container">
+            <div class="pdf-toolbar">
+              <div class="pdf-tool-left">
+                <span style="font-size: 1.1rem;">📄</span>
+                <strong>Minute-to-Minute Programme Schedule (24-25 March 2025)</strong>
+              </div>
+              <div class="pdf-tool-right">
+                <a href="assets/documents/nss/youth-parliament-minutes-2025.pdf" target="_blank" class="pdf-tool-btn">
+                  <span>📥 Download PDF</span>
+                </a>
+                <a href="assets/documents/nss/youth-parliament-minutes-2025.pdf" target="_blank" class="pdf-tool-btn">
+                  <span>⛶ Open Fullscreen</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- PDF Embed & Visual Document Viewer -->
+            <div class="pdf-embed-wrapper" style="height: auto; min-height: 600px; background: #525659;">
+              <object data="assets/documents/nss/youth-parliament-minutes-2025.pdf#toolbar=1&navpanes=0" type="application/pdf" width="100%" height="650px" style="display: block;">
+                <div class="pdf-pages-scroll">
+                  <div class="pdf-page-card">
+                    <img src="assets/documents/nss/youth-parliament-minutes-p1.png" alt="Youth Parliament Minutes to Minutes Schedule Day 1" class="pdf-page-img" loading="lazy">
+                  </div>
+                  <div class="pdf-page-card">
+                    <img src="assets/documents/nss/youth-parliament-minutes-p2.png" alt="Youth Parliament Minutes to Minutes Schedule Day 2" class="pdf-page-img" loading="lazy">
+                  </div>
+                </div>
+              </object>
+            </div>
+          </div>
+
+          <!-- Official Banner Poster (Big Box >=120px) -->
+          <div class="vbyp-poster-card">
+            <img src="assets/images/nss-viksit-bharat-youth-parliament-2025.png" alt="Viksit Bharat Youth Parliament 2025 - Central University of South Bihar & Nehru Yuva Kendra" class="vbyp-poster-img" loading="lazy">
+          </div>
+
+          <!-- Apply Now Button (Maroon) -->
+          <div style="margin-top: 24px;">
+            <a href="https://mybharat.gov.in/" target="_blank" rel="noopener noreferrer" class="vbyp-apply-btn">
+              Apply Now ↗
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

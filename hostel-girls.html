@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Girls' Hostels (Maitreyi &amp; Gargi Sadan) — Central University of South Bihar" data-hi="छात्रा छात्रावास (मैत्रेयी एवं गार्गी सदन) — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Girls' Hostels — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Maitreyi Sadan and Gargi Sadan Girls Hostels at Central University of South Bihar. Accommodation, wardens, facilities, mess, allotment lists, and official forms.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .hostel-sub-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .hostel-sub-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .hostel-sub-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .hostel-sub-crumb a:hover {
+      color: var(--acc-blue);
+    }
+    .hostel-tab-nav-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 28px;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 12px;
+    }
+    .hostel-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--tx-secondary);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      transition: all 0.2s ease;
+    }
+    .hostel-nav-btn:hover {
+      color: #0b6cb8;
+      border-color: #0b6cb8;
+    }
+    .hostel-nav-btn.active {
+      background: #0b6cb8;
+      color: #ffffff !important;
+      border-color: #0b6cb8;
+      box-shadow: 0 4px 12px rgba(11, 108, 184, 0.25);
+    }
+    [data-theme="dark"] .hostel-nav-btn.active {
+      background: #38bdf8;
+      color: #0f172a !important;
+      border-color: #38bdf8;
+    }
+
+    .hostel-hero-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 24px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    @media (max-width: 860px) {
+      .hostel-hero-card {
+        grid-template-columns: 1fr;
+      }
+    }
+    .hostel-hero-img-wrap {
+      min-height: 280px;
+      position: relative;
+    }
+    .hostel-hero-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hostel-hero-body {
+      padding: 28px 28px 28px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+    @media (max-width: 860px) {
+      .hostel-hero-body {
+        padding: 0 24px 24px;
+      }
+    }
+    .hostel-sub-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+    [data-theme="dark"] .hostel-sub-title {
+      color: #38bdf8;
+    }
+
+    .hostel-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .hostel-stat-box {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid #0b6cb8;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .hostel-stat-val {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      line-height: 1.2;
+    }
+    [data-theme="dark"] .hostel-stat-val {
+      color: #38bdf8;
+    }
+    .hostel-stat-label {
+      font-size: 0.84rem;
+      color: var(--tx-secondary);
+      margin-top: 4px;
+    }
+
+    /* Section Banner Card */
+    .hostel-section-bar {
+      background: #7a0c0c;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px 8px 0 0;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    [data-theme="dark"] .hostel-section-bar {
+      background: #881337;
+    }
+
+    .hostel-card-block {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 28px;
+    }
+
+    /* Wardens Grid */
+    .wardens-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+    }
+    .warden-profile-card {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+    .warden-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 12px;
+      object-fit: cover;
+      object-position: center top;
+      border: 2.5px solid #0b6cb8;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(11, 108, 184, 0.15);
+    }
+    .warden-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--tx-primary);
+      margin: 0 0 4px;
+    }
+    .warden-role {
+      font-size: 0.86rem;
+      color: #0b6cb8;
+      font-weight: 600;
+      margin: 0;
+    }
+    [data-theme="dark"] .warden-role {
+      color: #38bdf8;
+    }
+
+    /* Facilities List */
+    .facility-pill-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .facility-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      padding: 8px 16px;
+      border-radius: 20px;
+      color: var(--tx-primary);
+    }
+
+    /* Forms Grid */
+    .forms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+    .form-item-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 14px 18px;
+      text-decoration: none;
+      color: #0b6cb8;
+      font-size: 0.9rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+    .form-item-card:hover {
+      border-color: #0b6cb8;
+      background: rgba(11, 108, 184, 0.08);
+      transform: translateY(-2px);
+    }
+    [data-theme="dark"] .form-item-card {
+      color: #38bdf8;
+    }
+
+    .tree-notice-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .tree-notice-list > li {
+      position: relative;
+      padding-left: 24px;
+      font-size: 0.92rem;
+      color: var(--tx-primary);
+      line-height: 1.6;
+    }
+    .tree-notice-list > li::before {
+      content: '■';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #7a0c0c;
+      font-size: 0.75rem;
+    }
+    [data-theme="dark"] .tree-notice-list > li::before {
+      color: #f43f5e;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="hostel-sub-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="hostel-sub-crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="courses.html">Student Corner</a>
+        <span>/</span>
+        <a href="hostel.html">Hostels</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Girls' Hostel</span>
+      </nav>
+
+      <!-- Subpage Switcher Navigation -->
+      <div class="hostel-tab-nav-bar">
+        <a href="hostel.html" class="hostel-nav-btn">🏢 Hostels Overview &amp; Allotment Notices</a>
+        <a href="hostel-boys.html" class="hostel-nav-btn">👦 Boys' Hostel (Savarkar Sadan)</a>
+        <a href="hostel-girls.html" class="hostel-nav-btn active">👧 Girls' Hostel (Maitreyi &amp; Gargi)</a>
+      </div>
+
+      <!-- Hero Showcase Card -->
+      <div class="hostel-hero-card">
+        <div class="hostel-hero-img-wrap">
+          <img src="assets/images/hostel-girls.webp" alt="CUSB Maitreyi and Gargi Sadan Girls Hostel Building" loading="lazy">
+        </div>
+        <div class="hostel-hero-body">
+          <span style="font-size: 0.78rem; font-weight: 800; text-transform: uppercase; color: #0b6cb8; letter-spacing: 0.05em;">Girls' Residential Complex</span>
+          <h1 class="hostel-sub-title">Maitreyi Sadan &amp; Gargi Sadan</h1>
+          <p style="font-size: 0.94rem; color: var(--tx-secondary); line-height: 1.65; margin: 0;">
+            Two serene and high-security residential blocks equipped with an attached dining hall, reading rooms, indoor recreational areas, and sports courts accommodating over 300 female scholars under 24/7 dedicated surveillance and female warden supervision.
+          </p>
+          <div style="display: flex; gap: 10px; margin-top: 8px;">
+            <a href="assets/documents/about/hostel-manual.pdf" target="_blank" class="prog-action-link" style="padding: 8px 16px; font-weight: 700;">Read Hostel Manual ↗</a>
+            <a href="assets/documents/hostel/girls-hostel-undertaking.pdf" target="_blank" class="prog-action-link" style="padding: 8px 16px; font-weight: 700;">Girls' Undertaking ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="hostel-stats-grid">
+        <div class="hostel-stat-box">
+          <div class="hostel-stat-val">300+</div>
+          <div class="hostel-stat-label">Female Scholars Capacity</div>
+        </div>
+        <div class="hostel-stat-box">
+          <div class="hostel-stat-val">2 Blocks</div>
+          <div class="hostel-stat-label">Maitreyi &amp; Gargi Sadan</div>
+        </div>
+        <div class="hostel-stat-box">
+          <div class="hostel-stat-val">24/7</div>
+          <div class="hostel-stat-label">Female Security &amp; CCTV</div>
+        </div>
+        <div class="hostel-stat-box">
+          <div class="hostel-stat-val">On Campus</div>
+          <div class="hostel-stat-label">Mess, Reading Hall &amp; Gym</div>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 1: WARDENS ROSTER ════════ -->
+      <div class="hostel-section-bar">
+        <span>👩‍🏫</span>
+        <span>Residential Wardens — Maitreyi Sadan &amp; Gargi Sadan</span>
+      </div>
+      <div class="hostel-card-block">
+        <h3 style="font-size: 1.05rem; font-weight: 800; color: #0b6cb8; margin: 0 0 14px;">Maitreyi Sadan</h3>
+        <div class="wardens-grid" style="margin-bottom: 24px;">
+          <div class="warden-profile-card">
+            <img src="assets/images/hostel-warden-tara-kashav.jpg" alt="Dr Tara Kashav" class="warden-photo">
+            <div>
+              <h4 class="warden-name">Dr. Tara Kashav</h4>
+              <p class="warden-role">Chief Warden (Non-resident)</p>
+            </div>
+          </div>
+          <div class="warden-profile-card">
+            <img src="assets/images/hostel-warden-chetna-jaiswal.jpg" alt="Dr Chetna Jaiswal" class="warden-photo">
+            <div>
+              <h4 class="warden-name">Dr. Chetna Jaiswal</h4>
+              <p class="warden-role">Warden</p>
+            </div>
+          </div>
+          <div class="warden-profile-card">
+            <img src="assets/images/hostel-warden-priti-rai.jpg" alt="Dr Priti Rai" class="warden-photo">
+            <div>
+              <h4 class="warden-name">Dr. Priti Rai</h4>
+              <p class="warden-role">Warden</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.05rem; font-weight: 800; color: #0b6cb8; margin: 0 0 14px;">Gargi Sadan</h3>
+        <div class="wardens-grid">
+          <div class="warden-profile-card">
+            <img src="assets/images/hostel-warden-renu.jpg" alt="Ms Renu" class="warden-photo">
+            <div>
+              <h4 class="warden-name">Ms. Renu</h4>
+              <p class="warden-role">Chief Warden (Resident)</p>
+            </div>
+          </div>
+          <div class="warden-profile-card">
+            <img src="assets/images/hostel-warden-sunaina.jpeg" alt="Dr Sunaina" class="warden-photo">
+            <div>
+              <h4 class="warden-name">Dr. Sunaina</h4>
+              <p class="warden-role">Warden</p>
+            </div>
+          </div>
+          <div class="warden-profile-card">
+            <img src="assets/images/hostel-warden-udrishna-deori.jpg" alt="Dr R. L. Udrishna Deori" class="warden-photo">
+            <div>
+              <h4 class="warden-name">Dr. R. L. Udrishna Deori</h4>
+              <p class="warden-role">Warden</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 2: FACILITIES & AMENITIES ════════ -->
+      <div class="hostel-section-bar">
+        <span>⚡</span>
+        <span>Girls' Hostel Amenities &amp; Support</span>
+      </div>
+      <div class="hostel-card-block">
+        <div class="facility-pill-grid">
+          <span class="facility-pill">🛏️ Fully Furnished Shared Rooms with Study Desks &amp; Storage</span>
+          <span class="facility-pill">📶 High-Speed Campus Wi-Fi Network</span>
+          <span class="facility-pill">🛡️ 24/7 Female Guards, Gate Registers &amp; Biometric Security</span>
+          <span class="facility-pill">💧 RO Drinking Water Dispenser Units on all Floors</span>
+          <span class="facility-pill">📖 Silent Reading &amp; Study Room</span>
+          <span class="facility-pill">📺 Common Recreation Room with Television</span>
+          <span class="facility-pill">🏸 Badminton &amp; Volleyball Open Courts</span>
+          <span class="facility-pill">🍽️ Dedicated In-House Hygienic Mess</span>
+          <span class="facility-pill">🧺 Washing &amp; Ironing Areas</span>
+          <span class="facility-pill">🩺 Health Checkup &amp; Ambulance Standby Services</span>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 3: GIRLS ALLOTMENT NOTICES ════════ -->
+      <div class="hostel-section-bar">
+        <span>📢</span>
+        <span>Girls' Hostel Allotment Notices &amp; Links</span>
+      </div>
+      <div class="hostel-card-block">
+        <ul class="tree-notice-list">
+          <li><a href="assets/documents/hostel/allotment-girls-5th-round-notice.pdf" target="_blank" class="prog-action-link">5th Round Allotment Notice ↗</a> <span class="convocation-new-badge">NEW</span></li>
+          <li><a href="assets/documents/hostel/allotment-girls-5th-round-1st-sem.pdf" target="_blank" class="prog-action-link">5th Round Provisional Hostel Allotment for Girls Hostel 1st Semester ↗</a> <span class="convocation-new-badge">NEW</span></li>
+          <li><a href="assets/documents/hostel/allotment-girls-5th-round-all-sem.pdf" target="_blank" class="prog-action-link">5th Provisional Hostel Allotment List for Girls' Hostel of All Semester ↗</a></li>
+          <li><a href="assets/documents/hostel/allotment-girls-2nd-round-ug.pdf" target="_blank" class="prog-action-link">2nd Provisional Hostel Allotment for Girls Hostel of All Under Graduate programme for 1st Semester ↗</a></li>
+          <li><a href="assets/documents/hostel/allotment-girls-ug-1st-sem.pdf" target="_blank" class="prog-action-link">1st Provisional Hostel Allotment for Girls Hostel of All Under Graduate programme for 1st Semester ↗</a> <span class="convocation-new-badge">NEW</span></li>
+          <li><a href="assets/documents/hostel/allotment-girls-round-3.pdf" target="_blank" class="prog-action-link">3rd Hostel Allotment List for Girls ↗</a></li>
+          <li><a href="assets/documents/hostel/allotment-girls-round-1.pdf" target="_blank" class="prog-action-link">1st Hostel allotment list for Girls Hostel ↗</a></li>
+        </ul>
+      </div>
+
+      <!-- ════════ SECTION 4: HOSTEL FORMS (Available in Both) ════════ -->
+      <div class="hostel-section-bar">
+        <span>📄</span>
+        <span>Hostel Application Forms &amp; Undertakings</span>
+      </div>
+      <div class="hostel-card-block">
+        <div class="forms-grid">
+          <a href="assets/documents/hostel/girls-hostel-undertaking.pdf" target="_blank" class="form-item-card"><span>Undertaking for Girls' Hostel</span><span>PDF ↗</span></a>
+          <a href="assets/documents/hostel/hostel-no-dues-form.pdf" target="_blank" class="form-item-card"><span>No Dues Form for Hostel</span><span>PDF ↗</span></a>
+          <a href="assets/documents/hostel/room-allotment-slip.pdf" target="_blank" class="form-item-card"><span>Room Allotment Slip</span><span>PDF ↗</span></a>
+          <a href="assets/documents/hostel/anti-ragging-affidavit-student.pdf" target="_blank" class="form-item-card"><span>Anti-Ragging Affidavit — Student</span><span>PDF ↗</span></a>
+          <a href="assets/documents/hostel/anti-ragging-affidavit-parent.pdf" target="_blank" class="form-item-card"><span>Anti-Ragging Affidavit — Parent</span><span>PDF ↗</span></a>
+          <a href="assets/documents/hostel/parent-consent-letter.pdf" target="_blank" class="form-item-card"><span>Parent / Guardian Consent Letter</span><span>PDF ↗</span></a>
+          <a href="assets/documents/hostel/hostel-dossier-form.pdf" target="_blank" class="form-item-card"><span>Hostel Dossier Form</span><span>PDF ↗</span></a>
+          <a href="assets/documents/about/hostel-manual.pdf" target="_blank" class="form-item-card"><span>Hostel Manual &amp; Rules</span><span>PDF ↗</span></a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

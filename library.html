@@ -1,47 +1,991 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/png" href="assets/culog.png">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Central Library - CUSB</title>
-  <meta name="description" content="Collections, sections, services and research support of the CUSB Central Library.">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Rajarshi Janak Central Library — Central University of South Bihar" data-hi="राजर्षि जनक केंद्रीय पुस्तकालय — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Central Library — CUSB</title>
+  <link rel="icon" type="image/png" href="assets/culog.png">
+  <meta name="description" content="Rajarshi Janak Central Library at Central University of South Bihar: collections, services, e-resources, RFID automation, reading halls, research support, team directory and downloads.">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .library-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .library-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .library-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .library-crumb a:hover {
+      color: var(--acc-blue);
+    }
+
+    .library-main-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 16px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .library-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* Section Jump Navigation Pills */
+    .library-nav-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .lib-pill {
+      display: inline-block;
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      text-decoration: none;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--tx-primary) !important;
+      transition: all 0.2s ease;
+    }
+    .lib-pill:hover {
+      background: #00569b;
+      color: #ffffff !important;
+      border-color: #00569b;
+      transform: translateY(-2px);
+    }
+    [data-theme="dark"] .lib-pill:hover {
+      background: #0284c7;
+      border-color: #0284c7;
+    }
+
+    /* Featured Reading Space & Automation Dual-Card Showcase */
+    .library-featured-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+      margin-bottom: 38px;
+    }
+    @media (max-width: 820px) {
+      .library-featured-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .lib-featured-card {
+      background: var(--bg-primary);
+      border: 1.5px solid var(--border-color);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .lib-featured-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.14);
+      border-color: #0b6cb8;
+    }
+    .lib-featured-img-wrap {
+      width: 100%;
+      height: 420px;
+      background: #0f172a;
+      overflow: hidden;
+    }
+    .lib-featured-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .lib-featured-card:hover .lib-featured-img {
+      transform: scale(1.03);
+    }
+    .lib-featured-caption {
+      padding: 18px 22px;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+    }
+    .lib-featured-caption strong {
+      display: block;
+      font-size: 1.12rem;
+      color: #00569b;
+      margin-bottom: 6px;
+    }
+    [data-theme="dark"] .lib-featured-caption strong {
+      color: #38bdf8;
+    }
+    .lib-featured-caption span {
+      font-size: 0.92rem;
+      color: var(--tx-secondary);
+      line-height: 1.55;
+    }
+
+    /* Key Statistics Metric Counter Ribbon */
+    .library-stat-ribbon {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .lib-stat-box {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-top: 4px solid #00569b;
+      border-radius: 8px;
+      padding: 18px 14px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease;
+    }
+    .lib-stat-box:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-top-color: #0b6cb8;
+    }
+    [data-theme="dark"] .lib-stat-box {
+      border-top-color: #38bdf8;
+    }
+    .lib-stat-num {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #00569b;
+      margin-bottom: 4px;
+      line-height: 1.1;
+    }
+    [data-theme="dark"] .lib-stat-num {
+      color: #38bdf8;
+    }
+    .lib-stat-lbl {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--tx-secondary);
+    }
+
+    /* Section Cards & Panels */
+    .lib-card-block {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .lib-section-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #00569b;
+      margin: 0 0 16px;
+    }
+    [data-theme="dark"] .lib-section-title {
+      color: #38bdf8;
+    }
+
+    /* Split Overview Layout */
+    .lib-split-layout {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 28px;
+    }
+    @media (max-width: 820px) {
+      .lib-split-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .lib-contact-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 20px 24px;
+    }
+    .lib-contact-box h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--tx-primary);
+      margin: 0 0 12px;
+    }
+
+    /* Official Images Gallery */
+    .lib-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 18px;
+    }
+    .lib-gallery-item {
+      background: var(--bg-primary);
+      border: 1.5px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .lib-gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.13);
+      border-color: #0b6cb8;
+    }
+    .lib-gallery-img-wrap {
+      width: 100%;
+      height: 260px;
+      background: #f1f5f9;
+      overflow: hidden;
+    }
+    [data-theme="dark"] .lib-gallery-img-wrap {
+      background: #0f172a;
+    }
+    .lib-gallery-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .lib-gallery-item:hover .lib-gallery-img {
+      transform: scale(1.04);
+    }
+    .lib-gallery-caption {
+      padding: 12px 16px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--tx-primary);
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      line-height: 1.45;
+    }
+
+    /* Services Grid */
+    .lib-services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+      margin-top: 16px;
+    }
+    .lib-service-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 18px 20px;
+      transition: all 0.2s ease;
+    }
+    .lib-service-card:hover {
+      border-color: #0b6cb8;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+    .lib-service-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #00569b;
+      margin: 0 0 8px;
+    }
+    [data-theme="dark"] .lib-service-card h3 {
+      color: #38bdf8;
+    }
+    .lib-service-card p {
+      font-size: 0.88rem;
+      color: var(--tx-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Clean Data Tables */
+    .lib-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      margin-top: 14px;
+    }
+    .lib-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      text-align: left;
+    }
+    .lib-table th {
+      background: #00569b;
+      color: #ffffff;
+      padding: 12px 16px;
+      font-weight: 700;
+      border: 1px solid var(--border-color);
+    }
+    [data-theme="dark"] .lib-table th {
+      background: #0284c7;
+    }
+    .lib-table td {
+      padding: 12px 16px;
+      border: 1px solid var(--border-color);
+      color: var(--tx-primary);
+    }
+    .lib-table tr:nth-child(even) td {
+      background: var(--bg-secondary);
+    }
+
+    /* Team Directory */
+    .lib-team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 22px;
+      margin-top: 18px;
+    }
+    .lib-member-card {
+      background: var(--bg-primary);
+      border: 1.5px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      text-align: center;
+      padding: 20px 16px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .lib-member-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.11);
+      border-color: #0b6cb8;
+    }
+    .lib-member-img-box {
+      width: 125px;
+      height: 140px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #00569b;
+      margin: 0 auto 14px;
+      background: #ffffff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    [data-theme="dark"] .lib-member-img-box {
+      border-color: #38bdf8;
+      background: #0f172a;
+    }
+    .lib-member-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .lib-member-card h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--tx-primary);
+      margin: 0 0 5px;
+    }
+    .lib-member-card span {
+      font-size: 0.86rem;
+      color: var(--tx-secondary);
+      font-weight: 600;
+    }
+
+    /* Digital Initiatives Logos */
+    .lib-logos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .lib-logo-card {
+      background: var(--bg-primary);
+      border: 1.5px solid var(--border-color);
+      border-radius: 12px;
+      padding: 18px 14px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.22s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+    .lib-logo-card:hover {
+      background: var(--bg-secondary);
+      border-color: #0b6cb8;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .lib-logo-img-box {
+      width: 90px;
+      height: 90px;
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .lib-logo-card img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .lib-logo-card span {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--tx-primary);
+      line-height: 1.3;
+    }
+
+    /* Download Links */
+    .lib-downloads-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .lib-download-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 11px 16px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #0b6cb8 !important;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .lib-download-btn:hover {
+      background: #00569b;
+      color: #ffffff !important;
+      border-color: #00569b;
+      transform: translateY(-2px);
+    }
+    [data-theme="dark"] .lib-download-btn {
+      color: #38bdf8 !important;
+    }
+    [data-theme="dark"] .lib-download-btn:hover {
+      background: #0284c7;
+      color: #ffffff !important;
+    }
+  </style>
 </head>
 <body>
-  <a href="#mainContent" class="skip-link">Skip to main content</a>
-  <cusb-ticker></cusb-ticker><cusb-topbar></cusb-topbar><cusb-header></cusb-header><cusb-accessibility-bar></cusb-accessibility-bar><cusb-navbar></cusb-navbar>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
 
-  <main id="mainContent">
-    <section class="section information-directory"><div class="container"><span class="section-tag">Explore</span><h1 class="section-title">Central Library</h1><div class="resource-chip-row"><a href="#about-library">About</a><a href="#collections">Collections</a><a href="#library-sections">Library Sections</a><a href="#circulation">Circulation</a><a href="#e-resources">E-Resources</a><a href="#research-corner">Research Corner</a><a href="#library-team">Our Team</a><a href="#library-contact">Contact</a></div></div></section>
+  <main id="mainContent" class="library-page-wrapper">
+    <div class="container" style="max-width: 1120px;">
+      
+      <!-- Breadcrumb -->
+      <nav class="library-crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="javascript:void(0)">Infrastructure</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Library Services</span>
+      </nav>
 
-    <section id="about-library" class="section"><div class="container information-two-column"><div class="information-copy"><span class="section-tag">About the library</span><h2 class="section-title information-title">Central Library</h2><p>The Central Library is a key division of CUSB supporting the University’s academic, research, training and consultancy programmes. Its print and electronic collections, modern information technology and designed study spaces support the information needs of students, researchers, faculty and other users.</p><p>The Library operates from the third floor of the Administrative Building and provides managed academic-resource information alongside its physical services.</p><a class="btn btn-gold" href="assets/documents/about/library-policies-and-guidelines.pdf" target="_blank">Open library policies <span>PDF</span></a></div><figure class="library-image-card"><img src="assets/images/libimg.webp" alt="CUSB Central Library interior" decoding="async" loading="lazy"><figcaption>Central Library, Administrative Building</figcaption></figure></div></section>
+      <!-- Main Title -->
+      <h1 class="library-main-title" data-en="Rajarshi Janak Central Library" data-hi="राजर्षि जनक केंद्रीय पुस्तकालय">
+        Rajarshi Janak Central Library
+      </h1>
 
-    <section id="collections" class="section information-alt"><div class="container information-panel"><span class="section-tag">Collections</span><h2 class="section-title information-title">Collections summary</h2><p>The published collection summary below records the Central Library’s holdings to date.</p><div class="library-stat-grid"><article><strong>49,922</strong><span>Print books</span></article><article><strong>143</strong><span>Print journals</span></article><article><strong>6,400</strong><span>E-books</span></article><article><strong>7,005</strong><span>E-journals</span></article><article><strong>5</strong><span>E-databases</span></article><article><strong>2,819</strong><span>Bound-volume journals</span></article><article><strong>45</strong><span>Theses</span></article><article><strong>496</strong><span>Dissertations</span></article><article><strong>15</strong><span>Magazines</span></article><article><strong>11</strong><span>Newspapers</span></article><article><strong>1,028</strong><span>CDs / DVDs</span></article></div></div></section>
+      <!-- Section Navigation Pills -->
+      <nav class="library-nav-pills" aria-label="Library Section Jump Links">
+        <a href="#about" class="lib-pill">About</a>
+        <a href="#collections" class="lib-pill">Collections</a>
+        <a href="#spaces" class="lib-pill">Spaces &amp; Gallery</a>
+        <a href="#services" class="lib-pill">Services</a>
+        <a href="#rules" class="lib-pill">Rules &amp; Borrowing</a>
+        <a href="#eresources" class="lib-pill">E-Resources</a>
+        <a href="#research" class="lib-pill">Research Corners</a>
+        <a href="#digital" class="lib-pill">Digital Initiatives</a>
+        <a href="#team" class="lib-pill">Team</a>
+        <a href="#downloads" class="lib-pill">Downloads</a>
+      </nav>
 
-    <section id="library-sections" class="section"><div class="container"><span class="section-tag">Library Sections</span><h2 class="section-title">Services and sections</h2><div class="library-section-grid">
-      <article><h3>Circulation Section</h3><p>The entry-point service desk supports lending, book availability enquiries, fines, membership forms, no-dues certificates and usage records. The RFID-enabled library supports self-issue through KIOSK and return through the drop box.</p></article>
-      <article><h3>Stack Section</h3><p>Books are arranged in Dewey Decimal Classification order, from 000 to 999. The Library follows an open-access system with bay guides to help users find material.</p></article>
-      <article><h3>Reference Section</h3><p>Reference material includes encyclopaedias, dictionaries, bibliographies, indexes, atlases, government publications, reports, theses and dissertations, journals, newspapers and magazines for in-library consultation.</p></article>
-      <article><h3>Binding Section</h3><p>The Binding Section repairs damaged reading material, old journals, rare books and reference print resources to extend their usable life.</p></article>
-      <article><h3>Central Library Office</h3><p>The office manages routine administration, correspondence, invoice processing, activity records and resource requirements.</p></article>
-      <article><h3>Acquisition Section</h3><p>This section coordinates recommended book lists, duplicate checking, purchase-committee processing, supply orders, verification and accessioning of approved resources.</p></article>
-      <article><h3>Technical Section</h3><p>Technical processing includes classification, cataloguing, subject headings, transcription, barcoding, RFID tagging and release for circulation.</p></article>
-      <article><h3>Reading Section</h3><p>The Reading Section provides access to books, periodicals and newspapers for users of the Library’s collection.</p></article>
-      <article><h3>Upcoming Sections</h3><p>The Library identifies Online Resource and Braille sections as developing services for its users.</p></article>
-    </div></div></section>
+      <!-- Key Statistics Counter Ribbon -->
+      <div class="library-stat-ribbon">
+        <div class="lib-stat-box">
+          <div class="lib-stat-num">49,922+</div>
+          <div class="lib-stat-lbl">Print Books</div>
+        </div>
+        <div class="lib-stat-box">
+          <div class="lib-stat-num">7,005+</div>
+          <div class="lib-stat-lbl">E-Journals</div>
+        </div>
+        <div class="lib-stat-box">
+          <div class="lib-stat-num">6,400+</div>
+          <div class="lib-stat-lbl">E-Books</div>
+        </div>
+        <div class="lib-stat-box">
+          <div class="lib-stat-num">5 Major</div>
+          <div class="lib-stat-lbl">E-Databases</div>
+        </div>
+        <div class="lib-stat-box">
+          <div class="lib-stat-num">RFID</div>
+          <div class="lib-stat-lbl">Self-Service</div>
+        </div>
+        <div class="lib-stat-box">
+          <div class="lib-stat-num">KOHA</div>
+          <div class="lib-stat-lbl">100% Automated</div>
+        </div>
+      </div>
 
-    <section id="circulation" class="section information-alt"><div class="container information-panel"><span class="section-tag">Circulation</span><h2 class="section-title information-title">Borrowing and circulation service</h2><p>The Central Library was automated with KOHA and barcode technology in 2011; RFID technology and KOHA were implemented in 2020. Users can search books through Web OPAC, receive circulation assistance at the desk and use RFID self-service facilities.</p><div class="library-rules-grid"><article><h3>Borrowing access</h3><p>Faculty, officers, research scholars, UG/PG students, non-teaching staff and inter-library-loan users have borrowing entitlements according to their patron category and item type.</p></article><article><h3>Returns and renewal</h3><p>Renewal must be completed on or before the due date. Student stack books are not renewed, though they may be borrowed again where no reservation has been placed.</p></article><article><h3>Fine and replacement</h3><p>Overdue charges for general-shelf books are Rs. 1 per book per day. Lost or unusably damaged material is settled by replacement or the applicable Library charge; no-dues certificates are issued after dues are cleared.</p></article><article><h3>Inter-library loan</h3><p>General-shelf/stack books may be borrowed. Journals, current magazines/newspapers, theses, dissertations, reference works and audio-visual media are for in-library use and are not issued.</p></article></div></div></section>
+      <!-- Featured Visual Showcase: Reading Hall & RFID Automation -->
+      <div class="library-featured-grid" id="spaces">
+        <div class="lib-featured-card">
+          <div class="lib-featured-img-wrap">
+            <img src="assets/images/library-reading-hall.png" alt="Air-conditioned reading hall and individual study desks at Central Library" class="lib-featured-img" loading="eager">
+          </div>
+          <div class="lib-featured-caption">
+            <strong>Air-Conditioned Reading Hall &amp; Study Desks</strong>
+            <span>Expansive, fully air-conditioned quiet study desks with high-speed internet and focused learning ambiance.</span>
+          </div>
+        </div>
 
-    <section id="e-resources" class="section"><div class="container information-panel"><span class="section-tag">E-Resources</span><h2 class="section-title information-title">E-books, journals and databases</h2><div class="library-two-list"><article><h3>E-book collection</h3><p>The Library reports 6,400+ subscribed e-books across disciplines including life sciences, chemistry, commerce, computer science, education, languages, earth and environmental sciences, law, mathematics, pharmacy, physics, psychology and sociological studies.</p><a href="#collections">View collection totals</a></article><article><h3>E-databases</h3><p>Five named databases support Law &amp; Governance and multidisciplinary study: Manupatra Online, SCC Online, HeinOnline, DELNET and ISID. The Library also lists e-ShodhSindhu resources including Ouriginal, World e-Book Library and South Asia Archive.</p><a href="#research-corner">Explore research support</a></article></div></div></section>
+        <div class="lib-featured-card">
+          <div class="lib-featured-img-wrap">
+            <img src="assets/library/200.jpg" alt="Central Library automated RFID issue and return service" class="lib-featured-img" loading="eager">
+          </div>
+          <div class="lib-featured-caption">
+            <strong>RFID Self-Service Issue &amp; Return Kiosk</strong>
+            <span>Biometric registration, KOHA automation, self-checkout kiosks, and smart RFID drop boxes for seamless circulation.</span>
+          </div>
+        </div>
+      </div>
 
-    <section id="research-corner" class="section information-alt"><div class="container information-two-column"><div class="information-copy"><span class="section-tag">Research support</span><h2 class="section-title information-title">INFLIBNET Research Corner and RJCL Corner</h2><p>Rajarshi Janak Central Library has established the INFLIBNET Research Corner and RJCL Corner to strengthen research support and scholarly engagement. These resources complement the Library’s research-writing, literature-searching and e-resource guidance.</p><a class="btn btn-navy" href="research.html">Open research resources</a></div><aside class="library-support-card"><strong>Research assistance</strong><p>Use the enquiry form for guidance related to library resources, research support or access questions.</p><a href="enquiry.html">Open enquiry form</a></aside></div></section>
+      <!-- About Section -->
+      <div class="lib-card-block" id="about">
+        <h2 class="lib-section-title">About the Central Library</h2>
+        <div class="lib-split-layout">
+          <div>
+            <p style="font-size: 0.95rem; color: var(--tx-secondary); line-height: 1.74; margin: 0 0 14px;">
+              The Central Library began functioning in 2009 when the University campus was temporarily housed at BIT Patna. It is now a focal academic resource for students, researchers, faculty and staff at CUSB, Gaya.
+            </p>
+            <p style="font-size: 0.95rem; color: var(--tx-secondary); line-height: 1.74; margin: 0 0 14px;">
+              The Library is fully automated with KOHA and RFID technology. Users can search the collection through Web OPAC, issue books through biometric enabled self-service KIOSK, return books through the RFID drop box, and receive circulation notifications.
+            </p>
+            <p style="font-size: 0.95rem; color: var(--tx-secondary); line-height: 1.74; margin: 0;">
+              The official library records also note remote access to subscribed e-books, e-journals and databases through a single platform, plus CCTV surveillance, dedicated library servers, air-conditioned reading/reference areas and expanding reading spaces.
+            </p>
+          </div>
 
-    <section id="library-team" class="section"><div class="container"><span class="section-tag">Our Team</span><h2 class="section-title">Central Library team</h2><div class="library-team-grid"><article><h3>Dr. Pramod Kumar Singh</h3><span>University Librarian</span></article><article><h3>Md. Arshad Ali</h3><span>Professional Assistant</span></article><article><h3>Mr Devendra Kumar Mishra</h3><span>Semi Professional Assistant</span></article><article><h3>Mr Sudhir Kumar</h3><span>Semi Professional Assistant</span></article><article><h3>Mr Amarjit Kumar Singh</h3><span>Library Assistant</span></article><article><h3>Mr Jitaditya Jana</h3><span>Library Assistant</span></article><article><h3>Mr Amit</h3><span>Library Assistant</span></article><article><h3>Mr Kuldip Kumar</h3><span>Library Attendant</span></article><article><h3>Akansha</h3><span>Library Attendant</span></article><article><h3>Ranjeet Kumar Das</h3><span>Library Attendant</span></article><article><h3>Anisha Kumari</h3><span>Library Attendant</span></article><article><h3>Ankit Kumar Singh</h3><span>Library team member</span></article></div></div></section>
+          <div class="lib-contact-box">
+            <h3>Contact &amp; Location</h3>
+            <p style="font-size: 0.9rem; color: var(--tx-secondary); line-height: 1.65; margin: 0 0 12px;">
+              Central Library, 3rd Floor, Administrative Building,<br>
+              SH-7, Gaya Panchanpur Road, Village Karhara,<br>
+              Post Fatehpur, Gaya – 824236, Bihar.
+            </p>
+            <div style="font-size: 0.9rem; color: var(--tx-primary); display: flex; flex-direction: column; gap: 6px;">
+              <div><strong>Phone:</strong> <a href="tel:06312229530" style="color: #0b6cb8;">0631-2229 530</a></div>
+              <div><strong>Email:</strong> <a href="mailto:centrallibrary@cusb.ac.in" style="color: #0b6cb8;">centrallibrary@cusb.ac.in</a></div>
+              <div><strong>Web OPAC:</strong> <a href="http://library.cusb.ac.in/site/opac" target="_blank" rel="noopener" style="color: #0b6cb8; font-weight: 700;">library.cusb.ac.in/site/opac ↗</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <section id="library-contact" class="section information-alt"><div class="container information-panel"><span class="section-tag">Contact</span><h2 class="section-title information-title">Central Library contact</h2><div class="library-contact-grid"><article><h3>Location</h3><p>Central Library, 3rd Floor, Administrative Building<br>SH-7, Gaya Panchanpur Road, Village Karhara, Post Fatehpur, Gaya - 824236, Bihar.</p></article><article><h3>Contact details</h3><p>Phone: 0631-2229 530<br>Email: centrallibrary@cusb.ac.in</p></article><article><h3>help desk</h3><p>For a question about this library page or resources, use the enquiry form.</p><a href="enquiry.html">Open enquiry form</a></article></div></div></section>
+      <!-- Library Spaces and Automation Gallery -->
+      <div class="lib-card-block">
+        <h2 class="lib-section-title">Library Spaces &amp; Automation Gallery</h2>
+        <div class="lib-gallery-grid">
+          <div class="lib-gallery-item">
+            <div class="lib-gallery-img-wrap">
+              <img src="assets/images/library-reading-hall.png" alt="Air-conditioned reading hall and study desks" class="lib-gallery-img" loading="lazy">
+            </div>
+            <div class="lib-gallery-caption">Reading Hall &amp; Study Desks</div>
+          </div>
+
+          <div class="lib-gallery-item">
+            <div class="lib-gallery-img-wrap">
+              <img src="assets/library/300.jpg" alt="Central Library reading area" class="lib-gallery-img" loading="lazy">
+            </div>
+            <div class="lib-gallery-caption">Reading Area &amp; Study Space</div>
+          </div>
+
+          <div class="lib-gallery-item">
+            <div class="lib-gallery-img-wrap">
+              <img src="assets/library/400.jpg" alt="Biometric registration station" class="lib-gallery-img" loading="lazy">
+            </div>
+            <div class="lib-gallery-caption">Biometric &amp; RFID Station</div>
+          </div>
+
+          <div class="lib-gallery-item">
+            <div class="lib-gallery-img-wrap">
+              <img src="assets/library/500.jpg" alt="Central Library service view" class="lib-gallery-img" loading="lazy">
+            </div>
+            <div class="lib-gallery-caption">Library Services &amp; Desk</div>
+          </div>
+
+          <div class="lib-gallery-item">
+            <div class="lib-gallery-img-wrap">
+              <img src="assets/library/one.png" alt="Print and digital collections" class="lib-gallery-img" loading="lazy">
+            </div>
+            <div class="lib-gallery-caption">Print &amp; Digital Collections</div>
+          </div>
+
+          <div class="lib-gallery-item">
+            <div class="lib-gallery-img-wrap">
+              <img src="assets/library/two.png" alt="Technology enabled access" class="lib-gallery-img" loading="lazy">
+            </div>
+            <div class="lib-gallery-caption">Technology-Enabled Access</div>
+          </div>
+
+          <div class="lib-gallery-item">
+            <div class="lib-gallery-img-wrap">
+              <img src="assets/library/three.png" alt="Academic reading support" class="lib-gallery-img" loading="lazy">
+            </div>
+            <div class="lib-gallery-caption">Academic Reading Support</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collections Summary -->
+      <div class="lib-card-block" id="collections">
+        <h2 class="lib-section-title">Official Collection Summary</h2>
+        <div class="lib-table-wrap">
+          <table class="lib-table">
+            <thead>
+              <tr>
+                <th>Resource Type</th>
+                <th>Count / Volume</th>
+                <th>Resource Type</th>
+                <th>Count / Volume</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Print Books</strong></td>
+                <td>49,922</td>
+                <td><strong>Print Journals</strong></td>
+                <td>143</td>
+              </tr>
+              <tr>
+                <td><strong>E-Books</strong></td>
+                <td>6,400</td>
+                <td><strong>E-Journals</strong></td>
+                <td>7,005</td>
+              </tr>
+              <tr>
+                <td><strong>E-Databases</strong></td>
+                <td>5</td>
+                <td><strong>Bound Volume Journals</strong></td>
+                <td>2,819</td>
+              </tr>
+              <tr>
+                <td><strong>PhD Theses</strong></td>
+                <td>45</td>
+                <td><strong>Dissertations</strong></td>
+                <td>496</td>
+              </tr>
+              <tr>
+                <td><strong>Magazines</strong></td>
+                <td>15</td>
+                <td><strong>Newspapers</strong></td>
+                <td>11</td>
+              </tr>
+              <tr>
+                <td><strong>CDs / DVDs</strong></td>
+                <td>1,028</td>
+                <td><strong>Automation Platform</strong></td>
+                <td>KOHA &amp; RFID</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Sections and Services -->
+      <div class="lib-card-block" id="services">
+        <h2 class="lib-section-title">Sections and Services</h2>
+        <div class="lib-services-grid">
+          <div class="lib-service-card">
+            <h3>Circulation Section</h3>
+            <p>Handles front desk service, membership, issue/return support, no-dues certificates, user statistics, self-checkout support and OPAC guidance.</p>
+          </div>
+          <div class="lib-service-card">
+            <h3>Stack Section</h3>
+            <p>Maintains books arranged by Dewey Decimal Classification from 000 to 999, with open access shelves and bay guides.</p>
+          </div>
+          <div class="lib-service-card">
+            <h3>Reference Section</h3>
+            <p>Provides encyclopedias, dictionaries, bibliographies, indexes, atlases, government publications, reports, theses, dissertations, journals, newspapers and magazines.</p>
+          </div>
+          <div class="lib-service-card">
+            <h3>Acquisition Section</h3>
+            <p>Coordinates departmental book recommendations, duplicate checking, purchase committee approval, supply orders, verification and accessioning.</p>
+          </div>
+          <div class="lib-service-card">
+            <h3>Technical Section</h3>
+            <p>Classifies, catalogues, assigns subject headings, barcodes, RFID tags and prepares resources for circulation.</p>
+          </div>
+          <div class="lib-service-card">
+            <h3>Binding Section</h3>
+            <p>Repairs damaged books, rare material, old journals and reference resources to increase their usable life.</p>
+          </div>
+          <div class="lib-service-card">
+            <h3>Research Support Service</h3>
+            <p>Supports researchers with learning material, inter-library loan, reprography, e-books, e-journals, e-databases and MyLoft remote access.</p>
+          </div>
+          <div class="lib-service-card">
+            <h3>Reprography Service</h3>
+            <p>Photocopying follows copyright rules. Only up to 20 percent of a document may be photocopied; cover-to-cover photocopying is prohibited.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rules and Borrowing Entitlement -->
+      <div class="lib-card-block" id="rules">
+        <h2 class="lib-section-title">Rules &amp; Borrowing Entitlement</h2>
+        <div class="lib-split-layout">
+          <div>
+            <ul style="list-style: disc; padding-left: 20px; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 0.92rem; color: var(--tx-secondary); line-height: 1.62;">
+              <li>Only registered CUSB students, research fellows, faculty and staff are authorized to use Central Library services.</li>
+              <li>Valid ID card is required for entry; silence, decorum and discipline must be maintained.</li>
+              <li>Cell phones are not allowed inside the library.</li>
+              <li>Reference books, printed journals and current/previous journal volumes are non-issuable and must be used in the library.</li>
+              <li>Personal books, bags, umbrellas, folders and water bottles must not be brought inside; laptops and stationery may be used.</li>
+              <li>No-dues certificate is issued only after all borrowed books are returned and dues are cleared.</li>
+            </ul>
+          </div>
+          <div>
+            <div class="lib-table-wrap" style="margin-top: 0;">
+              <table class="lib-table">
+                <thead>
+                  <tr><th>Patron Category</th><th>Books</th><th>Period</th><th>Text Books</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Teacher / Faculty</td><td>8</td><td>120 days</td><td>2 (3 days)</td></tr>
+                  <tr><td>Officer</td><td>6</td><td>30 days</td><td>1 (3 days)</td></tr>
+                  <tr><td>Research Scholar</td><td>4</td><td>10 days</td><td>1 (3 days)</td></tr>
+                  <tr><td>UG / PG Student</td><td>3</td><td>10 days</td><td>1 (3 days)</td></tr>
+                  <tr><td>Non-Teaching Staff</td><td>1</td><td>10 days</td><td>1 (3 days)</td></tr>
+                  <tr><td>Inter-Library Loan</td><td>2</td><td>2 days</td><td>–</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subscribed E-Resources -->
+      <div class="lib-card-block" id="eresources">
+        <h2 class="lib-section-title">Subscribed E-Resources &amp; Databases</h2>
+        <div class="lib-services-grid">
+          <div class="lib-service-card" style="background: var(--bg-primary);">
+            <h3 style="margin-bottom: 10px;">E-Journals (7,005 Total)</h3>
+            <ul style="list-style: square; padding-left: 18px; margin: 0; font-size: 0.88rem; color: var(--tx-secondary); line-height: 1.6;">
+              <li>JSTOR: 3,166 journals</li>
+              <li>Springer Link: 1,779 journals</li>
+              <li>Taylor &amp; Francis: 1,078 journals</li>
+              <li>Project Muse: 676 journals</li>
+              <li>Oxford University Press: 262 journals</li>
+              <li>Annual Reviews: 43 journals</li>
+              <li>Economic &amp; Political Weekly: 1 journal</li>
+            </ul>
+          </div>
+
+          <div class="lib-service-card" style="background: var(--bg-primary);">
+            <h3 style="margin-bottom: 10px;">E-Books (6,400 Total)</h3>
+            <ul style="list-style: square; padding-left: 18px; margin: 0; font-size: 0.88rem; color: var(--tx-secondary); line-height: 1.6;">
+              <li>Earth &amp; Environmental Science: 1,026</li>
+              <li>Sociological Studies: 1,004</li>
+              <li>Physics: 629</li>
+              <li>Law &amp; Governance: 500</li>
+              <li>Education: 436</li>
+              <li>Chemistry: 363</li>
+              <li>Life Science: 355</li>
+            </ul>
+          </div>
+
+          <div class="lib-service-card" style="background: var(--bg-primary);">
+            <h3 style="margin-bottom: 10px;">Subscribed Databases</h3>
+            <ul style="list-style: square; padding-left: 18px; margin: 0; font-size: 0.88rem; color: var(--tx-secondary); line-height: 1.6;">
+              <li><strong>Manupatra Online:</strong> Law &amp; Governance</li>
+              <li><strong>SCC Online:</strong> Law &amp; Governance</li>
+              <li><strong>HeinOnline:</strong> Law &amp; Governance</li>
+              <li><strong>DELNET:</strong> Multidisciplinary</li>
+              <li><strong>ISID:</strong> Multidisciplinary</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Research Corners -->
+      <div class="lib-card-block" id="research">
+        <h2 class="lib-section-title">Research Corners</h2>
+        <div class="lib-split-layout">
+          <div>
+            <h3 style="font-size: 1.1rem; color: #00569b; margin: 0 0 8px;">INFLIBNET Research Corner &amp; RJCL Corner</h3>
+            <p style="font-size: 0.93rem; color: var(--tx-secondary); line-height: 1.7; margin: 0 0 12px;">
+              Rajarshi Janak Central Library established the INFLIBNET Research Corner and RJCL Corner to strengthen research support and scholarly engagement. The corners were inaugurated by the Hon'ble Vice-Chancellor, Prof. K. N. Singh.
+            </p>
+            <p style="font-size: 0.93rem; color: var(--tx-secondary); line-height: 1.7; margin: 0;">
+              The INFLIBNET Research Corner supports awareness and guided use of e-ShodhSindhu, Shodhganga, Shodhgangotri, IRINS, VIDWAN and related platforms. The RJCL Corner showcases university publications, faculty research outputs and academic achievements.
+            </p>
+          </div>
+          <div class="lib-contact-box" style="display: flex; flex-direction: column; justify-content: center;">
+            <div style="font-size: 1.05rem; font-weight: 800; color: #00569b; margin-bottom: 8px;">Web OPAC Online Catalog</div>
+            <p style="font-size: 0.88rem; color: var(--tx-secondary); margin: 0 0 14px;">Web OPAC is officially accessible from the Central University of South Bihar LAN &amp; Campus network.</p>
+            <a href="http://library.cusb.ac.in/site/opac" target="_blank" rel="noopener" class="lib-download-btn" style="text-align: center; justify-content: center;">
+              Launch Web OPAC ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Digital Initiatives -->
+      <div class="lib-card-block" id="digital">
+        <h2 class="lib-section-title">Government &amp; Academic Digital Initiatives</h2>
+        <div class="lib-logos-grid">
+          <a href="https://nad.gov.in/" target="_blank" rel="noopener" class="lib-logo-card"><div class="lib-logo-img-box"><img src="assets/library/nad.jpg" alt="NAD"></div><span>NAD</span></a>
+          <a href="http://epgp.inflibnet.ac.in/" target="_blank" rel="noopener" class="lib-logo-card"><div class="lib-logo-img-box"><img src="assets/library/e-pg-pathshala.jpg" alt="e-PG Pathshala"></div><span>e-PG Pathshala</span></a>
+          <a href="https://nta.ac.in/" target="_blank" rel="noopener" class="lib-logo-card"><div class="lib-logo-img-box"><img src="assets/library/nta.jpg" alt="NTA"></div><span>NTA</span></a>
+          <a href="https://aishe.nic.in/aishe/home" target="_blank" rel="noopener" class="lib-logo-card"><div class="lib-logo-img-box"><img src="assets/library/aisha.jpg" alt="AISHE"></div><span>AISHE</span></a>
+          <a href="https://deb.ugc.ac.in" target="_blank" rel="noopener" class="lib-logo-card"><div class="lib-logo-img-box"><img src="assets/library/deb.jpg" alt="DEB"></div><span>DEB</span></a>
+          <a href="https://ugcmoocs.inflibnet.ac.in/" target="_blank" rel="noopener" class="lib-logo-card"><div class="lib-logo-img-box"><img src="assets/library/mooc.png" alt="UGC MOOCs"></div><span>UGC MOOCs</span></a>
+          <a href="https://swayamprabha.gov.in/" target="_blank" rel="noopener" class="lib-logo-card"><div class="lib-logo-img-box"><img src="assets/library/swayam-prabha.jpg" alt="Swayam Prabha"></div><span>Swayam Prabha</span></a>
+          <a href="https://shodhgangotri.inflibnet.ac.in" target="_blank" rel="noopener" class="lib-logo-card"><div class="lib-logo-img-box"><img src="assets/library/shodhgangotri.jpg" alt="Shodhgangotri"></div><span>Shodhgangotri</span></a>
+          <a href="https://uamp.ugc.ac.in/" target="_blank" rel="noopener" class="lib-logo-card"><div class="lib-logo-img-box"><img src="assets/library/uamp.jpg" alt="UAMP"></div><span>UAMP</span></a>
+          <a href="https://shodhganga.inflibnet.ac.in" target="_blank" rel="noopener" class="lib-logo-card"><div class="lib-logo-img-box"><img src="assets/library/shodhganga.png" alt="Shodhganga"></div><span>Shodhganga</span></a>
+          <a href="https://swayam.gov.in" target="_blank" rel="noopener" class="lib-logo-card"><div class="lib-logo-img-box"><img src="assets/library/swayam.png" alt="SWAYAM"></div><span>SWAYAM</span></a>
+          <a href="https://shodhchakra.inflibnet.ac.in" target="_blank" rel="noopener" class="lib-logo-card"><div class="lib-logo-img-box"><img src="assets/library/shodhchakra.png" alt="Shodh-Chakra"></div><span>Shodh-Chakra</span></a>
+          <a href="https://vidwan.inflibnet.ac.in" target="_blank" rel="noopener" class="lib-logo-card"><div class="lib-logo-img-box"><img src="assets/library/vidwan.png" alt="VIDWAN"></div><span>VIDWAN</span></a>
+          <a href="http://vidyamitra.inflibnet.ac.in" target="_blank" rel="noopener" class="lib-logo-card"><div class="lib-logo-img-box"><img src="assets/library/vidyamitra.png" alt="Vidya-Mitra"></div><span>Vidya-Mitra</span></a>
+          <a href="https://imprint-india.org" target="_blank" rel="noopener" class="lib-logo-card"><div class="lib-logo-img-box"><img src="assets/library/imprint.jpg" alt="IMPRINT India"></div><span>IMPRINT India</span></a>
+        </div>
+      </div>
+
+      <!-- Library Team Directory -->
+      <div class="lib-card-block" id="team">
+        <h2 class="lib-section-title">University Library Team</h2>
+        <div class="lib-team-grid">
+          <div class="lib-member-card">
+            <div class="lib-member-img-box"><img src="assets/library/team-6.jpg" alt="Dr. Pramod Kumar Singh" class="lib-member-img"></div>
+            <h3>Dr. Pramod Kumar Singh</h3>
+            <span>University Librarian</span>
+          </div>
+
+          <div class="lib-member-card">
+            <div class="lib-member-img-box"><img src="assets/library/team-7.jpeg" alt="Dr. Pankaj Mathur" class="lib-member-img"></div>
+            <h3>Dr. Pankaj Mathur</h3>
+            <span>Deputy Librarian</span>
+          </div>
+
+          <div class="lib-member-card">
+            <div class="lib-member-img-box"><img src="assets/library/team-8.jpg" alt="Dr. Mayank Yuvraj" class="lib-member-img"></div>
+            <h3>Dr. Mayank Yuvraj</h3>
+            <span>Assistant Librarian</span>
+          </div>
+
+          <div class="lib-member-card">
+            <div class="lib-member-img-box"><img src="assets/library/team-9.jpg" alt="Dr. Md. Gulnawaz Azam" class="lib-member-img"></div>
+            <h3>Dr. Md. Gulnawaz Azam</h3>
+            <span>Assistant Librarian</span>
+          </div>
+
+          <div class="lib-member-card">
+            <div class="lib-member-img-box"><img src="assets/library/team-10.jpg" alt="Mr. Kshitiz Singh" class="lib-member-img"></div>
+            <h3>Mr. Kshitiz Singh</h3>
+            <span>Information Scientist</span>
+          </div>
+
+          <div class="lib-member-card">
+            <div class="lib-member-img-box"><img src="assets/library/team-11.jpg" alt="Mr. Virendra Kumar Shukla" class="lib-member-img"></div>
+            <h3>Mr. Virendra Kumar Shukla</h3>
+            <span>Professional Assistant</span>
+          </div>
+
+          <div class="lib-member-card">
+            <div class="lib-member-img-box"><img src="assets/library/team-13.jpg" alt="Md. Arshad Ali" class="lib-member-img"></div>
+            <h3>Md. Arshad Ali</h3>
+            <span>Professional Assistant</span>
+          </div>
+
+          <div class="lib-member-card">
+            <div class="lib-member-img-box"><img src="assets/library/team-14.jpg" alt="Mr. Devendra Kumar Mishra" class="lib-member-img"></div>
+            <h3>Mr. Devendra Kumar Mishra</h3>
+            <span>Semi Professional Assistant</span>
+          </div>
+
+          <div class="lib-member-card">
+            <div class="lib-member-img-box"><img src="assets/library/team-15.jpg" alt="Mr. Sudhir Kumar" class="lib-member-img"></div>
+            <h3>Mr. Sudhir Kumar</h3>
+            <span>Semi Professional Assistant</span>
+          </div>
+
+          <div class="lib-member-card">
+            <div class="lib-member-img-box"><img src="assets/library/team-16.jpeg" alt="Mr. Amarjit Kumar Singh" class="lib-member-img"></div>
+            <h3>Mr. Amarjit Kumar Singh</h3>
+            <span>Library Assistant</span>
+          </div>
+
+          <div class="lib-member-card">
+            <div class="lib-member-img-box"><img src="assets/library/team-17.jpeg" alt="Mr. Jitaditya Jana" class="lib-member-img"></div>
+            <h3>Mr. Jitaditya Jana</h3>
+            <span>Library Assistant</span>
+          </div>
+
+          <div class="lib-member-card">
+            <div class="lib-member-img-box"><img src="assets/library/team-18.jpg" alt="Library Staff" class="lib-member-img"></div>
+            <h3>Library Staff</h3>
+            <span>Support Team</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Downloads Section -->
+      <div class="lib-card-block" id="downloads">
+        <h2 class="lib-section-title">Official Library Forms &amp; Files</h2>
+        <div class="lib-downloads-grid">
+          <a href="http://library.cusb.ac.in/custom/download/agreement-form.pdf" target="_blank" rel="noopener" class="lib-download-btn">📄 Agreement Form</a>
+          <a href="http://library.cusb.ac.in/custom/download/Annexure_F-Plagiarism-Report.pdf" target="_blank" rel="noopener" class="lib-download-btn">📄 Annexure F Plagiarism Report</a>
+          <a href="http://library.cusb.ac.in/custom/download/Bank-Guarantee.pdf" target="_blank" rel="noopener" class="lib-download-btn">📄 Bank Guarantee</a>
+          <a href="http://library.cusb.ac.in/custom/download/BOOK-REQUSITION.pdf" target="_blank" rel="noopener" class="lib-download-btn">📄 Book Requisition Form</a>
+          <a href="http://library.cusb.ac.in/custom/download/Full-Text-E-Resources_Database.pdf" target="_blank" rel="noopener" class="lib-download-btn">📄 Full Text E-Resources Database</a>
+          <a href="http://library.cusb.ac.in/custom/download/Inter-library-Loan.pdf" target="_blank" rel="noopener" class="lib-download-btn">📄 Inter Library Loan</a>
+          <a href="http://library.cusb.ac.in/custom/download/Journal-Requisition-Format.pdf" target="_blank" rel="noopener" class="lib-download-btn">📄 Journal Requisition Format</a>
+          <a href="http://library.cusb.ac.in/custom/download/Membership-Faculty-Staff.pdf" target="_blank" rel="noopener" class="lib-download-btn">📄 Membership Form (Faculty/Staff)</a>
+          <a href="http://library.cusb.ac.in/custom/download/Membership-Student.pdf" target="_blank" rel="noopener" class="lib-download-btn">📄 Membership Form (Student)</a>
+          <a href="http://library.cusb.ac.in/custom/download/Plagiarism-Check-Report-Form.pdf" target="_blank" rel="noopener" class="lib-download-btn">📄 Plagiarism Check Report Form</a>
+          <a href="http://library.cusb.ac.in/custom/download/Requisition-For-Stationary-Items.pdf" target="_blank" rel="noopener" class="lib-download-btn">📄 Stationery Requisition</a>
+          <a href="http://library.cusb.ac.in/custom/download/URKUND.pdf" target="_blank" rel="noopener" class="lib-download-btn">📄 URKUND Guide</a>
+          <a href="http://library.cusb.ac.in/custom/download/Vender-Registration-Form.pdf" target="_blank" rel="noopener" class="lib-download-btn">📄 Vendor Registration Form</a>
+          <a href="http://library.cusb.ac.in/custom/pdf/library/library-policy-2019-2021.pdf" target="_blank" rel="noopener" class="lib-download-btn">📄 University Library Policy</a>
+        </div>
+      </div>
+
+    </div>
   </main>
-  <cusb-footer></cusb-footer><cusb-chatbot></cusb-chatbot><script src="js/components.js" defer></script><script src="js/main.js" defer></script>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>

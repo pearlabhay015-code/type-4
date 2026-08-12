@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Awareness Of Trend Technology — Central University of South Bihar" data-hi="प्रचलित प्रौद्योगिकी की जागरूकता — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Awareness Of Trend Technology — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="ICT integration, Big Data, AI, Cyber Security, startup innovation, and emerging technology awareness workshops at Central University of South Bihar.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .skill-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .skill-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .skill-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .skill-crumb a:hover {
+      color: var(--acc-blue);
+    }
+
+    /* 2-Column Layout with Side Menu */
+    .skill-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .skill-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Side Menu */
+    .skill-sidebar {
+      position: sticky;
+      top: 120px;
+    }
+    .skill-menu-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+    .skill-menu-header {
+      background: #00569b;
+      color: #ffffff;
+      padding: 14px 18px;
+      font-size: 0.96rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      line-height: 1.35;
+    }
+    [data-theme="dark"] .skill-menu-header {
+      background: #0284c7;
+    }
+    .skill-menu-list {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+    }
+    .skill-menu-btn {
+      display: block;
+      width: 100%;
+      padding: 12px 16px;
+      background: #0b6cb8;
+      color: #ffffff !important;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(11, 108, 184, 0.25);
+      transition: all 0.2s ease;
+      line-height: 1.35;
+    }
+    .skill-menu-btn:hover {
+      background: #004b9b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(11, 108, 184, 0.35);
+    }
+    .skill-menu-btn.active {
+      background: #004b9b;
+      box-shadow: inset 0 0 0 2px #ffd950;
+    }
+    [data-theme="dark"] .skill-menu-btn {
+      background: #0284c7;
+    }
+    [data-theme="dark"] .skill-menu-btn:hover {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+    [data-theme="dark"] .skill-menu-btn.active {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+
+    /* Main Content Styling */
+    .skill-header-area {
+      margin-bottom: 24px;
+    }
+    .skill-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .skill-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .skill-body-p {
+      font-size: 0.95rem;
+      color: var(--tx-secondary);
+      line-height: 1.7;
+      margin: 0 0 16px;
+    }
+
+    /* Table Search */
+    .table-search-wrap {
+      margin: 20px 0 12px;
+      position: relative;
+    }
+    .table-search-input {
+      width: 100%;
+      padding: 10px 38px 10px 14px;
+      font-size: 0.9rem;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      color: var(--tx-primary);
+    }
+    .table-search-input:focus {
+      outline: none;
+      border-color: #0b6cb8;
+    }
+
+    /* Table Styles */
+    .skill-table-wrap {
+      overflow-x: auto;
+      margin-top: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+    }
+    .skill-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      text-align: left;
+    }
+    .skill-table th {
+      background: #00569b;
+      color: #ffffff;
+      padding: 12px 18px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border-color);
+    }
+    [data-theme="dark"] .skill-table th {
+      background: #0284c7;
+    }
+    .skill-table td {
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--tx-primary);
+    }
+    .skill-table tr:last-child td {
+      border-bottom: none;
+    }
+    .skill-table tr:nth-child(even) td {
+      background: var(--bg-secondary);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="skill-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="skill-crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="courses.html">Student Corner</a>
+        <span>/</span>
+        <a href="student-capacity-development.html">Capacity Development and Skill Enhancement Programme</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Awareness Of Trend Technology</span>
+      </nav>
+
+      <!-- 2-Column Layout with Side Menu -->
+      <div class="skill-layout">
+        
+        <!-- Left Side Menu (Capacity Development and Skill Enhancement Programme) -->
+        <aside class="skill-sidebar" aria-label="Skill Enhancement Navigation">
+          <div class="skill-menu-card">
+            <div class="skill-menu-header">
+              Capacity Development and Skill Enhancement Programme
+            </div>
+            <ul class="skill-menu-list">
+              <li>
+                <a href="student-capacity-development.html" class="skill-menu-btn">Soft Skill</a>
+              </li>
+              <li>
+                <a href="student-skill-language.html" class="skill-menu-btn">Language and Communication Skills</a>
+              </li>
+              <li>
+                <a href="student-skill-life.html" class="skill-menu-btn">Life Skills (Yoga, Physical Fitness, Health and Hygiene)</a>
+              </li>
+              <li>
+                <a href="student-skill-technology.html" class="skill-menu-btn active">Awareness of Trend Technology</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Right Main Content Area (Verbatim Transcription) -->
+        <div class="skill-main-col">
+
+          <div class="skill-header-area">
+            <h1 class="skill-main-title" data-en="Awareness Of Trend Technology" data-hi="प्रचलित प्रौद्योगिकी की जागरूकता">
+              Awareness Of Trend Technology
+            </h1>
+          </div>
+
+          <p class="skill-body-p">
+            Knowledge of technology allows a student access to widely available information and research. Moreover, various job opportunities are technology-specific and a student needs to develop these skills to keep in tune with the fast age of technology growth. The COVID-19 pandemic significantly shifted education from traditional to an online version, which was an emergent state for teachers and students.
+          </p>
+
+          <p class="skill-body-p">
+            Moreover, the effective integration of ICT is essential in systematizing an efficient educational programs in online mode. The successful application of ICT not only contributes to learners' satisfaction but also helps individuals to acquire their desired outcomes. It is, therefore, essential to develop competencies in teachers to use ICT effectively in their pedagogical practices by organizing professional development programs.
+          </p>
+
+          <p class="skill-body-p">
+            The substantive situation thus raises the importance of technology integration in education, and teachers and students are required to update their competencies, respectively.
+          </p>
+
+          <p class="skill-body-p">
+            Programs are organized frequently to underline the importance of staying updated and to help students learn technology skills. Students actively participate in these workshops, seminars, conferences, software training, and tech events.
+          </p>
+
+          <div class="table-search-wrap">
+            <input type="search" id="techSearchInput" class="table-search-input" placeholder="Search 57 technology events (e.g. AI, Big Data, ICT, STATA, Research)..." aria-label="Search tech events">
+            <span style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--tx-muted);">🔍</span>
+          </div>
+
+          <!-- Events Schedule Table (All 57 Events) -->
+          <div class="skill-table-wrap">
+            <table class="skill-table" id="techTable">
+              <thead>
+                <tr>
+                  <th style="width: 72%;">Name of Title</th>
+                  <th style="width: 28%;">Date of Event</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Talk by BARC Scientist Prof. Hari S. Misra</strong></td><td>16/9/2019</td></tr>
+                <tr><td><strong>National Science Day</strong></td><td>28-02-2022</td></tr>
+                <tr><td><strong>Information Literacy Library Programme</strong></td><td>10-02-2020</td></tr>
+                <tr><td><strong>Workshop on INFLIBNET Regional Training Programme in Library Automation</strong></td><td>03-12-2018</td></tr>
+                <tr><td><strong>Earth Day</strong></td><td>22/4/2019</td></tr>
+                <tr><td><strong>Discussion on Union Budget</strong></td><td>02-02-2022</td></tr>
+                <tr><td><strong>Discussion on Union Budget</strong></td><td>02-09-2021</td></tr>
+                <tr><td><strong>Workshop on Big Data Analytics</strong></td><td>14-03-2019</td></tr>
+                <tr><td><strong>Engineers Day</strong></td><td>16-09-2017</td></tr>
+                <tr><td><strong>Talk on Ambedkar</strong></td><td>14-04-2018</td></tr>
+                <tr><td><strong>Talk on Social Science Research</strong></td><td>20-04-2018</td></tr>
+                <tr><td><strong>Vigilance Awareness Week</strong></td><td>26-10-2021</td></tr>
+                <tr><td><strong>Webinar on "AI-based Speech Emotion Recognition</strong></td><td>25-05-2022</td></tr>
+                <tr><td><strong>Capacity Building training programme on Groundwater Resources Development</strong></td><td>—</td></tr>
+                <tr><td><strong>Cath the Rain Water Dialogue programme</strong></td><td>27-03-2022</td></tr>
+                <tr><td><strong>Panel Discussion on New Directions in Development Research</strong></td><td>15-11-2019</td></tr>
+                <tr><td><strong>Webinar on use of Technology in education</strong></td><td>10-08-2021</td></tr>
+                <tr><td><strong>Talk on Science of Water Conservation</strong></td><td>28-06-2021</td></tr>
+                <tr><td><strong>National Workshop Applications of STATA</strong></td><td>26-03-2019</td></tr>
+                <tr><td><strong>Talk on 'Is Sustainable development a myth?'</strong></td><td>25-07-2019</td></tr>
+                <tr><td><strong>Training Programme on Disaster Management</strong></td><td>27-01-2021</td></tr>
+                <tr><td><strong>Capacity Building training programme on Groundwater Resources Development</strong></td><td>07-04-2022</td></tr>
+                <tr><td><strong>Webinar on 'Role of teachers in New Education Policy'</strong></td><td>19-02-2021</td></tr>
+                <tr><td><strong>Talk on historical Method of Research</strong></td><td>17-01-2019</td></tr>
+                <tr><td><strong>National Seminar on "Indian National Movement: New Perspectives"</strong></td><td>31/04/2022</td></tr>
+                <tr><td><strong>Webinar on Fullbright-Nehru fellowship</strong></td><td>31-05-2022</td></tr>
+                <tr><td><strong>Webinar on "Entrepreneurship: How to Build a Start-up from Scratch?"</strong></td><td>28-06-2022</td></tr>
+                <tr><td><strong>Special talk of Per Sapien Innovation Startup founder Dr. Shashi Ranjan</strong></td><td>29-01-2022</td></tr>
+                <tr><td><strong>Colloquium to celebrate World Innovation Day</strong></td><td>21-04-2022</td></tr>
+                <tr><td><strong>Webinar on Copyright Issues in Academic Research</strong></td><td>28-01-2021</td></tr>
+                <tr><td><strong>Training program on "RNA isolation and transcriptomic analysis" at CUSB</strong></td><td>29-07-2022</td></tr>
+                <tr><td><strong>Model Exhibition on Molecular Biology</strong></td><td>07-01-2022</td></tr>
+                <tr><td><strong>Hindi Patrikarita Diwas</strong></td><td>30-05-2017</td></tr>
+                <tr><td><strong>Guest lecture on Social Entrepreneurship</strong></td><td>13-09-2017</td></tr>
+                <tr><td><strong>Webinar on research innovation and ranking</strong></td><td>09-08-2021</td></tr>
+                <tr><td><strong>National webinar on effect of NEP on youth empowerment</strong></td><td>04-08-2021</td></tr>
+                <tr><td><strong>Webinar on "NEP 2020- Impact of Physical Education"</strong></td><td>05-11-2020</td></tr>
+                <tr><td><strong>Workshop on Data Analysis</strong></td><td>30-08-2022</td></tr>
+                <tr><td><strong>Webinar on Cyber Jagrukta</strong></td><td>01-12-2021</td></tr>
+                <tr><td><strong>Webinar on 'Computer Viruses and Spyware: Threats and Prevention</strong></td><td>—</td></tr>
+                <tr><td><strong>Workshop on Project Based Learning</strong></td><td>31-07-2017</td></tr>
+                <tr><td><strong>Training on Development e-Resource</strong></td><td>08-08-2017</td></tr>
+                <tr><td><strong>Workshop on Effective Teaching</strong></td><td>24-08-2017</td></tr>
+                <tr><td><strong>Workshop on Innovative Practices in Teaching</strong></td><td>28-08-2017</td></tr>
+                <tr><td><strong>Training on Pedagogical Techniques for Teachers</strong></td><td>04-09-2017</td></tr>
+                <tr><td><strong>Workshop-Cum-training Programme on Innovation Skills</strong></td><td>24-11-2018</td></tr>
+                <tr><td><strong>Workshop on Pedagogic and Assessment techniques</strong></td><td>13-03-2019</td></tr>
+                <tr><td><strong>Six day Workshop on Innovation in Pedagogy</strong></td><td>03-12-2019</td></tr>
+                <tr><td><strong>Workshop on Emerging Trends for Teaching</strong></td><td>15-03-2021</td></tr>
+                <tr><td><strong>Workshop on Innovation Pedagogy</strong></td><td>15-03-2021</td></tr>
+                <tr><td><strong>Emerging Trends in Pedagogy of Social Sciences</strong></td><td>18-03-2021</td></tr>
+                <tr><td><strong>Webinar on financial transaction: Frauds and precautions</strong></td><td>06-10-2021</td></tr>
+                <tr><td><strong>Workshop-cum-Training on Innovation Pedagogy</strong></td><td>02-03-2020</td></tr>
+                <tr><td><strong>Online Lecture Series on NEP</strong></td><td>02-10-2020</td></tr>
+                <tr><td><strong>Talk by Prof. Deshdeep Sahdev, founder of Quazar Technologies start-up</strong></td><td>03-11-2022</td></tr>
+                <tr><td><strong>Quiz-o-Pedia</strong></td><td>26-11-2021</td></tr>
+                <tr><td><strong>Plenary lecture On birth anniversary of prof. G.N. Ramchandran</strong></td><td>08-10-2021</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+
+  <script>
+    // Live Search Filter for Tech Events Table
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('techSearchInput');
+      const rows = document.querySelectorAll('#techTable tbody tr');
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          rows.forEach(tr => {
+            const text = tr.textContent.toLowerCase();
+            if (!query || text.includes(query)) {
+              tr.style.display = '';
+            } else {
+              tr.style.display = 'none';
+            }
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

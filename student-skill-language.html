@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Language And Communication Skills — Central University of South Bihar" data-hi="भाषा एवं संचार कौशल — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Language And Communication Skills — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Language and communication skills development, English phonetics, Hindi pakhwada, mother language day, workshops, and linguistic events at CUSB.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .skill-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .skill-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .skill-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .skill-crumb a:hover {
+      color: var(--acc-blue);
+    }
+
+    /* 2-Column Layout with Side Menu */
+    .skill-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .skill-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Side Menu */
+    .skill-sidebar {
+      position: sticky;
+      top: 120px;
+    }
+    .skill-menu-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+    .skill-menu-header {
+      background: #00569b;
+      color: #ffffff;
+      padding: 14px 18px;
+      font-size: 0.96rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      line-height: 1.35;
+    }
+    [data-theme="dark"] .skill-menu-header {
+      background: #0284c7;
+    }
+    .skill-menu-list {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+    }
+    .skill-menu-btn {
+      display: block;
+      width: 100%;
+      padding: 12px 16px;
+      background: #0b6cb8;
+      color: #ffffff !important;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(11, 108, 184, 0.25);
+      transition: all 0.2s ease;
+      line-height: 1.35;
+    }
+    .skill-menu-btn:hover {
+      background: #004b9b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(11, 108, 184, 0.35);
+    }
+    .skill-menu-btn.active {
+      background: #004b9b;
+      box-shadow: inset 0 0 0 2px #ffd950;
+    }
+    [data-theme="dark"] .skill-menu-btn {
+      background: #0284c7;
+    }
+    [data-theme="dark"] .skill-menu-btn:hover {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+    [data-theme="dark"] .skill-menu-btn.active {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+
+    /* Main Content Styling */
+    .skill-header-area {
+      margin-bottom: 24px;
+    }
+    .skill-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .skill-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .skill-body-p {
+      font-size: 0.95rem;
+      color: var(--tx-secondary);
+      line-height: 1.7;
+      margin: 0 0 16px;
+    }
+
+    /* Table Styles */
+    .skill-table-wrap {
+      overflow-x: auto;
+      margin-top: 24px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+    }
+    .skill-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      text-align: left;
+    }
+    .skill-table th {
+      background: #00569b;
+      color: #ffffff;
+      padding: 12px 18px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border-color);
+    }
+    [data-theme="dark"] .skill-table th {
+      background: #0284c7;
+    }
+    .skill-table td {
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--tx-primary);
+    }
+    .skill-table tr:last-child td {
+      border-bottom: none;
+    }
+    .skill-table tr:nth-child(even) td {
+      background: var(--bg-secondary);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="skill-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="skill-crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="courses.html">Student Corner</a>
+        <span>/</span>
+        <a href="student-capacity-development.html">Capacity Development and Skill Enhancement Programme</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Language And Communication Skills</span>
+      </nav>
+
+      <!-- 2-Column Layout with Side Menu -->
+      <div class="skill-layout">
+        
+        <!-- Left Side Menu (Capacity Development and Skill Enhancement Programme) -->
+        <aside class="skill-sidebar" aria-label="Skill Enhancement Navigation">
+          <div class="skill-menu-card">
+            <div class="skill-menu-header">
+              Capacity Development and Skill Enhancement Programme
+            </div>
+            <ul class="skill-menu-list">
+              <li>
+                <a href="student-capacity-development.html" class="skill-menu-btn">Soft Skill</a>
+              </li>
+              <li>
+                <a href="student-skill-language.html" class="skill-menu-btn active">Language and Communication Skills</a>
+              </li>
+              <li>
+                <a href="student-skill-life.html" class="skill-menu-btn">Life Skills (Yoga, Physical Fitness, Health and Hygiene)</a>
+              </li>
+              <li>
+                <a href="student-skill-technology.html" class="skill-menu-btn">Awareness of Trend Technology</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Right Main Content Area (Verbatim Transcription) -->
+        <div class="skill-main-col">
+
+          <div class="skill-header-area">
+            <h1 class="skill-main-title" data-en="Language And Communication Skills" data-hi="भाषा एवं संचार कौशल">
+              Language And Communication Skills
+            </h1>
+          </div>
+
+          <p class="skill-body-p">
+            In general, while a lot of emphasis is given on teaching-learning of a specific subject limited attention to the communication skills of the students, particularly in the English language. Every year, many students who are admitted to the different programmes of studies offered by Central University of South Bihar come from rural and semi-urban background where medium of instruction is often in the vernacular.
+          </p>
+
+          <p class="skill-body-p">
+            Many admitted students usually have poor communication skills particularly in English which is the language of the market as well as the medium of instruction in many courses of study, particularly those that are professionally inclined. Hence, it was felt that their communication skills be improved, so that they can be more at ease in the CUSB campus academic environment and also be better equipped to face market forces after completion of their studies.
+          </p>
+
+          <p class="skill-body-p">
+            CUSB ensures that from the begining, the students learn the nuances of the languages particularly English language which includes the four skills of listening, reading, writing, and speaking. It aims at making students fluent in English, and enabling them through soft-skills, ready for corporate and other employment avenues.
+          </p>
+
+          <!-- Events Schedule Table -->
+          <div class="skill-table-wrap">
+            <table class="skill-table">
+              <thead>
+                <tr>
+                  <th style="width: 70%;">Name of Title</th>
+                  <th style="width: 30%;">Date of Event</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Hindi Pakhwada</strong></td>
+                  <td>12-09-2017</td>
+                </tr>
+                <tr>
+                  <td><strong>Webinar on Bhartiya Bhasha &amp; Shahitya</strong></td>
+                  <td>17-08-2021</td>
+                </tr>
+                <tr>
+                  <td><strong>International Mother Language Day</strong></td>
+                  <td>21-02-2022</td>
+                </tr>
+                <tr>
+                  <td><strong>Hindi Diwas &amp; Hindi Pakhwada</strong></td>
+                  <td>13-09-2019</td>
+                </tr>
+                <tr>
+                  <td><strong>Satya Nishtha Ki Sapath</strong></td>
+                  <td>02-11-2020</td>
+                </tr>
+                <tr>
+                  <td><strong>Hindi Diwas &amp; Hindi Pakhwada</strong></td>
+                  <td>14-09-2021</td>
+                </tr>
+                <tr>
+                  <td><strong>Antar-Rashtritya Matribhasha Diwas</strong></td>
+                  <td>21-02-2019</td>
+                </tr>
+                <tr>
+                  <td><strong>Matribhasha Diwas</strong></td>
+                  <td>21-02-2020</td>
+                </tr>
+                <tr>
+                  <td><strong>Hindi Diwas &amp; Hindi Pakhwada</strong></td>
+                  <td>14-09-2020</td>
+                </tr>
+                <tr>
+                  <td><strong>Workshop on Phonetics and Communication Skills</strong></td>
+                  <td>13-03-2019</td>
+                </tr>
+                <tr>
+                  <td><strong>Creative Writing Workshop</strong></td>
+                  <td>04-02-2020</td>
+                </tr>
+                <tr>
+                  <td><strong>Panel Discussion on Dr. Rajendra Prasad</strong></td>
+                  <td>03-12-2019</td>
+                </tr>
+                <tr>
+                  <td><strong>Screening of Documentary- Nibhritochari</strong></td>
+                  <td>08-08-2017</td>
+                </tr>
+                <tr>
+                  <td><strong>Aarohan by heritage club of Cusb</strong></td>
+                  <td>05-10-2022</td>
+                </tr>
+                <tr>
+                  <td><strong>Bhiti Patrika ka Lokyarpan</strong></td>
+                  <td>01-12-2021</td>
+                </tr>
+                <tr>
+                  <td><strong>International webinar on Hindi ka vaishvik Paridrishya</strong></td>
+                  <td>28-09-2021</td>
+                </tr>
+                <tr>
+                  <td><strong>Sahitya-Sanskritik Paricharcha pe Sangosthi</strong></td>
+                  <td>29-01-2021</td>
+                </tr>
+                <tr>
+                  <td><strong>Street Show at Nepa Village under Azadi Ka Amrit Mahotsav</strong></td>
+                  <td>08-08-2022</td>
+                </tr>
+                <tr>
+                  <td><strong>Debate 'One Nation, One Education System'</strong></td>
+                  <td>23-05-2021</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

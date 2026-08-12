@@ -708,51 +708,51 @@ class CusbNavbar extends HTMLElement {
     if (navMenu) {
       navMenu.insertAdjacentHTML('beforeend', `
         <li class="navbar-item" data-menu="infrastructure">
-          <a href="facilities.html" class="navbar-link"><span data-en="Infrastructure" data-hi="बुनियादी ढांचा">Infrastructure</span></a>
+          <a href="javascript:void(0)" class="navbar-link"><span data-en="Infrastructure" data-hi="बुनियादी ढांचा">Infrastructure</span></a>
           <div class="megamenu" id="infrastructureMegamenu" role="region" aria-label="Infrastructure Links">
             <div class="megamenu-column">
               <div class="megamenu-heading" data-en="PHYSICAL INFRA" data-hi="भौतिक अवसंरचना">PHYSICAL INFRA</div>
               <ul class="megamenu-list">
-                <li class="megamenu-item"><a href="facilities.html#guest-house"><span data-en="Guest House" data-hi="अतिथि गृह">Guest House</span></a></li>
-                <li class="megamenu-item"><a href="facilities.html#library-services"><span data-en="Library Services" data-hi="पुस्तकालय सेवाएं">Library Services</span></a></li>
-                <li class="megamenu-item"><a href="facilities.html#hostel-facility"><span data-en="Hostel Facility" data-hi="छात्रावास सुविधा">Hostel Facility</span></a></li>
-                <li class="megamenu-item"><a href="facilities.html#health-care"><span data-en="Health Care" data-hi="स्वास्थ्य सेवा">Health Care</span></a></li>
-                <li class="megamenu-item"><a href="facilities.html#sports"><span data-en="Sports" data-hi="खेल" style="color: #0b6cb8; font-weight: 700;">Sports</span></a></li>
-                <li class="megamenu-item"><a href="facilities.html#biodiversity-park"><span data-en="Biodiversity park" data-hi="जैव विविधता पार्क">Biodiversity park</span></a></li>
+                <li class="megamenu-item"><a href="guest-house.html"><span data-en="Guest House" data-hi="अतिथि गृह">Guest House</span></a></li>
+                <li class="megamenu-item"><a href="library.html"><span data-en="Library Services" data-hi="पुस्तकालय सेवाएं">Library Services</span></a></li>
+                <li class="megamenu-item"><a href="hostel.html"><span data-en="Hostel Facility" data-hi="छात्रावास सुविधा">Hostel Facility</span></a></li>
+                <li class="megamenu-item"><a href="health-care.html"><span data-en="Health Care" data-hi="स्वास्थ्य सेवा">Health Care</span></a></li>
+                <li class="megamenu-item"><a href="sports.html"><span data-en="Sports" data-hi="खेल" style="color: #0b6cb8; font-weight: 700;">Sports</span></a></li>
+                <li class="megamenu-item"><a href="biodiversity-park.html"><span data-en="Biodiversity park" data-hi="जैव विविधता पार्क">Biodiversity park</span></a></li>
               </ul>
             </div>
             <div class="megamenu-column">
               <div class="megamenu-heading" data-en="ICT INFRASTRUCTURE" data-hi="आईसीटी अवसंरचना">ICT INFRASTRUCTURE</div>
               <ul class="megamenu-list">
-                <li class="megamenu-item"><a href="facilities.html#media-studio"><span data-en="Media Studio" data-hi="मीडिया स्टूडियो">Media Studio</span></a></li>
-                <li class="megamenu-item"><a href="facilities.html#computer-lab"><span data-en="University Computer Lab" data-hi="विश्वविद्यालय कंप्यूटर लैब">University Computer Lab</span></a></li>
-                <li class="megamenu-item"><a href="facilities.html#computer-centre"><span data-en="University Computer Centre" data-hi="विश्वविद्यालय कंप्यूटर केंद्र">University Computer Centre</span></a></li>
-                <li class="megamenu-item"><a href="facilities.html#wifi-campus"><span data-en="Wi-Fi Campus" data-hi="वाई-फाई परिसर">Wi-Fi Campus</span></a></li>
-                <li class="megamenu-item"><a href="facilities.html#smart-classroom"><span data-en="Smart Class Room" data-hi="स्मार्ट क्लास रूम">Smart Class Room</span></a></li>
+                <li class="megamenu-item"><a href="media-studio.html"><span data-en="Media Studio" data-hi="मीडिया स्टूडियो">Media Studio</span></a></li>
+                <li class="megamenu-item"><a href="computer-lab.html"><span data-en="University Computer Lab" data-hi="विश्वविद्यालय कंप्यूटर लैब">University Computer Lab</span></a></li>
+                <li class="megamenu-item"><a href="computer-centre.html"><span data-en="University Computer Centre" data-hi="विश्वविद्यालय कंप्यूटर केंद्र">University Computer Centre</span></a></li>
+                <li class="megamenu-item"><a href="wifi-campus.html"><span data-en="Wi-Fi Campus" data-hi="वाई-फाई परिसर">Wi-Fi Campus</span></a></li>
+                <li class="megamenu-item"><a href="smart-classroom.html"><span data-en="Smart Class Room" data-hi="स्मार्ट क्लास रूम">Smart Class Room</span></a></li>
               </ul>
             </div>
             <div class="megamenu-column">
               <div class="megamenu-heading" data-en="SECURITY SYSTEM" data-hi="सुरक्षा प्रणाली">SECURITY SYSTEM</div>
               <ul class="megamenu-list">
-                <li class="megamenu-item"><a href="facilities.html#security-system"><span data-en="Integrated Security System" data-hi="एकीकृत सुरक्षा प्रणाली">Integrated Security System</span></a></li>
-                <li class="megamenu-item"><a href="facilities.html#biometric-attendance"><span data-en="Biometric Attendance" data-hi="बायोमेट्रिक उपस्थिति">Biometric Attendance</span></a></li>
+                <li class="megamenu-item"><a href="security-system.html"><span data-en="Integrated Security System" data-hi="एकीकृत सुरक्षा प्रणाली">Integrated Security System</span></a></li>
+                <li class="megamenu-item"><a href="biometric-attendance.html"><span data-en="Biometric Attendance" data-hi="बायोमेट्रिक उपस्थिति">Biometric Attendance</span></a></li>
               </ul>
             </div>
             <div class="megamenu-column">
               <div class="megamenu-heading" data-en="OTHERS" data-hi="अन्य">OTHERS</div>
               <ul class="megamenu-list">
-                <li class="megamenu-item"><a href="facilities.html#engineering-wing"><span data-en="Engineering Wing" data-hi="इंजीनियरिंग विंग">Engineering Wing</span></a></li>
-                <li class="megamenu-item"><a href="facilities.html#lightning-network"><span data-en="Lightning Location Network" data-hi="तड़ित स्थान नेटवर्क">Lightning Location Network</span></a></li>
-                <li class="megamenu-item"><a href="facilities.html#day-care-centre"><span data-en="Day Care Centre" data-hi="डे केयर सेंटर">Day Care Centre</span></a></li>
-                <li class="megamenu-item"><a href="facilities.html#bank-atm"><span data-en="Bank/ATM" data-hi="बैंक/एटीएम">Bank/ATM</span></a></li>
-                <li class="megamenu-item"><a href="facilities.html#dhanvantari-vatika"><span data-en="Dhanvantari Arogya Vatika" data-hi="धन्वंतरि आरोग्य वाटिका">Dhanvantari Arogya Vatika</span></a></li>
+                <li class="megamenu-item"><a href="engineering-wing.html"><span data-en="Engineering Wing" data-hi="इंजीनियरिंग विंग">Engineering Wing</span></a></li>
+                <li class="megamenu-item"><a href="lightning-network.html"><span data-en="Lightning Location Network" data-hi="तड़ित स्थान नेटवर्क">Lightning Location Network</span></a></li>
+                <li class="megamenu-item"><a href="day-care-centre.html"><span data-en="Day Care Centre" data-hi="डे केयर सेंटर">Day Care Centre</span></a></li>
+                <li class="megamenu-item"><a href="bank-atm.html"><span data-en="Bank/ATM" data-hi="बैंक/एटीएम">Bank/ATM</span></a></li>
+                <li class="megamenu-item"><a href="dhanvantari-vatika.html"><span data-en="Dhanvantari Arogya Vatika" data-hi="धन्वंतरि आरोग्य वाटिका">Dhanvantari Arogya Vatika</span></a></li>
               </ul>
             </div>
             <div class="megamenu-column">
               <div class="megamenu-heading" data-en="AUDITORIUM" data-hi="सभागार">AUDITORIUM</div>
               <ul class="megamenu-list">
-                <li class="megamenu-item"><a href="facilities.html#auditorium"><span data-en="Auditorium" data-hi="सभागार">Auditorium</span></a></li>
-                <li class="megamenu-item"><a href="facilities.html#conference-hall"><span data-en="Conference Hall" data-hi="सम्मेलन कक्ष">Conference Hall</span></a></li>
+                <li class="megamenu-item"><a href="auditorium.html"><span data-en="Auditorium" data-hi="सभागार">Auditorium</span></a></li>
+                <li class="megamenu-item"><a href="conference-hall.html"><span data-en="Conference Hall" data-hi="सम्मेलन कक्ष">Conference Hall</span></a></li>
               </ul>
             </div>
           </div>
@@ -1193,7 +1193,7 @@ class CusbSidebar extends HTMLElement {
           <li><a href="news-events.html?type=events" class="sidebar-link"><span class="sidebar-icon-box icon-purple">${iconSvg('graduation')}</span><span data-en="Convocation" data-hi="दीक्षांत समारोह">Convocation</span></a></li>
           <li><a href="https://webmail.cusb.ac.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-blue">${iconSvg('globe')}</span><span data-en="CUSB Webmail" data-hi="वेबमेल">CUSB Webmail</span></a></li>
           <li><a href="downloads.html" class="sidebar-link"><span class="sidebar-icon-box icon-indigo">${iconSvg('download')}</span><span data-en="Download Center" data-hi="डाउनलोड केंद्र">Download Center</span></a></li>
-          <li><a href="students.html#exams" class="sidebar-link"><span class="sidebar-icon-box icon-fuchsia">${iconSvg('graduation')}</span><span data-en="Exams & Grades" data-hi="परीक्षाएं">Exams & Grades</span></a></li>
+          <li><a href="student-semester-results.html" class="sidebar-link"><span class="sidebar-icon-box icon-fuchsia">${iconSvg('graduation')}</span><span data-en="Exams & Grades" data-hi="परीक्षाएं">Exams & Grades</span></a></li>
           <li><a href="enquiry.html" class="sidebar-link"><span class="sidebar-icon-box icon-amber">${iconSvg('phone')}</span><span data-en="Help Desk & Enquiry" data-hi="सहायता डेस्क">Help Desk & Enquiry</span></a></li>
           <li><a href="hostel.html" class="sidebar-link"><span class="sidebar-icon-box icon-orange">${iconSvg('home')}</span><span data-en="Hostels & Housing" data-hi="छात्रावास">Hostels & Housing</span></a></li>
           <li><a href="about.html#iqac" class="sidebar-link"><span class="sidebar-icon-box icon-teal">${iconSvg('building')}</span><span data-en="IQAC Cell" data-hi="आईक्यूएसी सेल">IQAC Cell</span></a></li>
@@ -1214,7 +1214,7 @@ class CusbSidebar extends HTMLElement {
     const priorityLinks = [
       'leaders.html', 'about.html#iqac', 'about.html#accreditation', 'about.html#nirf',
       'tenders.html', 'careers.html', 'https://webmail.cusb.ac.in/', 'https://cusb.samarth.ac.in/',
-      'https://cusb.samarth.edu.in/', 'students.html#exams', 'hostel.html', 'enquiry.html',
+      'https://cusb.samarth.edu.in/', 'student-semester-results.html', 'hostel.html', 'enquiry.html',
       'https://scholarships.gov.in/', 'downloads.html', 'courses.html', 'about.html',
       'https://www.antiragging.in/', 'https://rtionline.gov.in/', 'news-events.html?type=events', 'pyq.html'
     ];
@@ -1228,6 +1228,21 @@ class CusbSidebar extends HTMLElement {
       }).forEach(item => menu.appendChild(item));
     }
     replaceEmojiIcons(this);
+
+    const updatePosition = () => {
+      const sidebar = this.querySelector('.fixed-quicklinks-sidebar');
+      const navbar = document.querySelector('cusb-navbar');
+      if (sidebar) {
+        const navBottom = navbar ? Math.max(0, Math.round(navbar.getBoundingClientRect().bottom)) : 0;
+        if (window.innerWidth > 991) {
+          sidebar.style.top = `${navBottom}px`;
+          sidebar.style.height = `calc(100vh - ${navBottom}px)`;
+        }
+      }
+    };
+    window.addEventListener('scroll', updatePosition, { passive: true });
+    window.addEventListener('resize', updatePosition, { passive: true });
+    requestAnimationFrame(updatePosition);
   }
 }
 customElements.define('cusb-sidebar', CusbSidebar);

@@ -1,1 +1,508 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Anti-Ragging - CUSB</title><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/student-subpage.css"></head><body><cusb-ticker></cusb-ticker><cusb-topbar></cusb-topbar><cusb-header></cusb-header><cusb-accessibility-bar></cusb-accessibility-bar><cusb-navbar></cusb-navbar><main class="student-subpage"><div class="container"><article class="student-subpage__card"><span class="section-tag">Student Corner</span><h1>Anti-Ragging</h1><p>Information will be added here.</p></article></div></main><cusb-footer></cusb-footer><cusb-chatbot></cusb-chatbot><script src="js/components.js" defer></script><script src="js/main.js" defer></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Anti-Ragging Cell &amp; Zero Tolerance Policy — Central University of South Bihar" data-hi="एंटी-रैगिंग सेल एवं शून्य सहिष्णुता नीति — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Anti-Ragging — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Anti-Ragging Cell, 24x7 National Helpline, UGC Regulations, online undertakings, affidavits in Hindi and English, and Nodal Officers at Central University of South Bihar.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .antiragging-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .antiragging-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .antiragging-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .antiragging-crumb a:hover {
+      color: var(--acc-blue);
+    }
+
+    /* Main Layout with Right Menu */
+    .antiragging-layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .antiragging-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .antiragging-header-area {
+      margin-bottom: 24px;
+    }
+    .antiragging-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #b91c1c;
+      background: rgba(239, 68, 68, 0.08);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    [data-theme="dark"] .antiragging-badge {
+      color: #f87171;
+      background: rgba(248, 113, 113, 0.14);
+    }
+    .antiragging-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .antiragging-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* Action Banners */
+    .antiragging-hero-actions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .antiragging-action-card {
+      background: linear-gradient(135deg, #7a0c0c 0%, #991b1b 100%);
+      color: #ffffff !important;
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(122, 12, 12, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .antiragging-action-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(122, 12, 12, 0.35);
+    }
+    [data-theme="dark"] .antiragging-action-card {
+      background: linear-gradient(135deg, #881337 0%, #be123c 100%);
+    }
+
+    /* Download Affidavits Cards */
+    .affidavit-download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .affidavit-btn-card {
+      background: var(--bg-primary);
+      border: 1.5px solid #0b6cb8;
+      border-radius: 8px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      text-decoration: none;
+      color: #0b6cb8;
+      font-weight: 700;
+      font-size: 0.92rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+    }
+    .affidavit-btn-card:hover {
+      background: #0b6cb8;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+    [data-theme="dark"] .affidavit-btn-card {
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+    [data-theme="dark"] .affidavit-btn-card:hover {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+
+    /* National Poster Block */
+    .national-programme-box {
+      border: 2px solid #b91c1c;
+      border-radius: 12px;
+      background: var(--bg-primary);
+      padding: 24px;
+      margin-top: 28px;
+      box-shadow: 0 4px 20px rgba(185, 28, 28, 0.08);
+      text-align: center;
+    }
+    .national-title-red {
+      color: #b91c1c;
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin: 0 0 20px;
+    }
+    [data-theme="dark"] .national-title-red {
+      color: #f87171;
+    }
+
+    .helpline-contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    .helpline-panel {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .helpline-panel-title {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 8px;
+    }
+    [data-theme="dark"] .helpline-panel-title {
+      color: #38bdf8;
+    }
+
+    /* Table Styles */
+    .officers-table-wrap {
+      overflow-x: auto;
+      margin: 20px 0;
+    }
+    .officers-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      text-align: left;
+    }
+    .officers-table th {
+      background: #7a0c0c;
+      color: #ffffff;
+      padding: 12px 14px;
+      font-weight: 700;
+      border: 1px solid var(--border-color);
+    }
+    [data-theme="dark"] .officers-table th {
+      background: #881337;
+    }
+    .officers-table td {
+      padding: 12px 14px;
+      border: 1px solid var(--border-color);
+      color: var(--tx-primary);
+      vertical-align: top;
+    }
+    .officers-table tr:nth-child(even) td {
+      background: var(--bg-secondary);
+    }
+
+    .punitive-warning-banner {
+      background: rgba(185, 28, 28, 0.08);
+      border: 1px solid #b91c1c;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-top: 24px;
+      color: #b91c1c;
+      font-weight: 800;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+    [data-theme="dark"] .punitive-warning-banner {
+      background: rgba(248, 113, 113, 0.12);
+      color: #f87171;
+      border-color: #f87171;
+    }
+
+    /* ════════ RIGHT SIDEBAR MENU ════════ */
+    .antiragging-sidebar {
+      position: sticky;
+      top: 120px;
+    }
+    .right-menu-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+    .right-menu-header {
+      background: #00569b;
+      color: #ffffff;
+      padding: 14px 18px;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+    [data-theme="dark"] .right-menu-header {
+      background: #0284c7;
+    }
+    .right-menu-list {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+    }
+    .right-menu-btn {
+      display: block;
+      width: 100%;
+      padding: 12px 16px;
+      background: #0b6cb8;
+      color: #ffffff !important;
+      font-size: 0.94rem;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(11, 108, 184, 0.25);
+      transition: all 0.2s ease;
+    }
+    .right-menu-btn:hover {
+      background: #004b9b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(11, 108, 184, 0.35);
+    }
+    .right-menu-btn.active {
+      background: #004b9b;
+      box-shadow: inset 0 0 0 2px #ffd950;
+    }
+    [data-theme="dark"] .right-menu-btn {
+      background: #0284c7;
+    }
+    [data-theme="dark"] .right-menu-btn:hover {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+    [data-theme="dark"] .right-menu-btn.active {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="antiragging-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="antiragging-crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="courses.html">Student Corner</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Anti-Ragging</span>
+      </nav>
+
+      <!-- 2-Column Layout with Right Menu -->
+      <div class="antiragging-layout">
+        
+        <!-- Left Main Content Column -->
+        <div class="antiragging-main-col">
+
+          <!-- Section: Anti Ragging Overview -->
+          <div class="antiragging-header-area">
+            <span class="antiragging-badge">🛡️ Zero Tolerance Policy</span>
+            <h1 class="antiragging-main-title" data-en="Anti-Ragging" data-hi="एंटी-रैगिंग">
+              Anti-Ragging
+            </h1>
+            <p style="font-size: 0.96rem; color: var(--tx-secondary); line-height: 1.68; margin: 0 0 16px;">
+              The University Grants Commission has recommended strong action against ragging in the institutions of higher learning. In pursuance of the Judgment of the Hon'ble Supreme Court of India dated 08.05.2009 in Civil Appeal No. 887/2009, the University Grants Commission has framed <strong>"UGC Regulations on curbing the menace of ragging in higher educational institutions, 2009"</strong> and notified on 4th July, 2009 in the Gazette of India. These regulations are mandatory for all universities / institutions. The UGC has made it mandatory for all students / parents to submit anti-ragging related affidavits to the institutions at the time of admission.
+            </p>
+          </div>
+
+          <!-- Action Banners -->
+          <div class="antiragging-hero-actions">
+            <a href="https://www.antiragging.in/affidavit_registration_disclaimer.html" target="_blank" rel="noopener noreferrer" class="antiragging-action-card">
+              <div style="font-size: 1.02rem; font-weight: 800;">
+                📝 &lt;&lt; Online fill up the Anti-Ragging undertaking &gt;&gt;
+              </div>
+              <span style="font-size: 1.2rem;">↗</span>
+            </a>
+            <a href="https://www.youtube.com/watch?v=0wusO1W-GI8" target="_blank" rel="noopener noreferrer" class="antiragging-action-card" style="background: linear-gradient(135deg, #0b6cb8 0%, #0369a1 100%);">
+              <div style="font-size: 1.02rem; font-weight: 800;">
+                🎥 RAGGING an avoidable Crime - Click to view the video (Part-1)
+              </div>
+              <span style="font-size: 1.2rem;">↗</span>
+            </a>
+          </div>
+
+          <!-- Format of Affidavits Downloads -->
+          <h3 style="font-size: 1.1rem; font-weight: 800; color: var(--tx-primary); margin: 24px 0 12px;">
+            Format of Affidavits can be downloaded from the links below:
+          </h3>
+          <div class="affidavit-download-grid">
+            <a href="assets/documents/hostel/anti-ragging-affidavit-hindi.pdf" target="_blank" class="affidavit-btn-card">
+              <span>📄 1. Download the Affidavit in Hindi</span>
+              <span style="font-size: 0.78rem; font-weight: 800; background: rgba(11, 108, 184, 0.1); padding: 3px 8px; border-radius: 4px;">PDF ↗</span>
+            </a>
+            <a href="assets/documents/hostel/anti-ragging-affidavit-english.pdf" target="_blank" class="affidavit-btn-card">
+              <span>📄 2. Download the Affidavit in English</span>
+              <span style="font-size: 0.78rem; font-weight: 800; background: rgba(11, 108, 184, 0.1); padding: 3px 8px; border-radius: 4px;">PDF ↗</span>
+            </a>
+          </div>
+
+          <!-- ════════ NATIONAL RAGGING PREVENTION PROGRAMME ════════ -->
+          <div class="national-programme-box">
+            <h2 class="national-title-red">NATIONAL RAGGING PREVENTION PROGRAMME</h2>
+
+            <div class="helpline-contact-grid">
+              <div class="helpline-panel">
+                <h3 class="helpline-panel-title">📞 National Anti-Ragging Helpline</h3>
+                <div style="font-size: 1.25rem; font-weight: 800; color: #b91c1c; margin-bottom: 6px;">24x7 Toll Free: 1800-180-5522</div>
+                <div style="font-size: 0.88rem; color: var(--tx-secondary); line-height: 1.6;">
+                  Email: <a href="mailto:helpline@antiragging.in" style="color: #0b6cb8; font-weight: 600;">helpline@antiragging.in</a><br>
+                  Web Portal: <a href="https://www.antiragging.in" target="_blank" style="color: #0b6cb8; font-weight: 600;">www.antiragging.in ↗</a>
+                </div>
+              </div>
+
+              <div class="helpline-panel">
+                <h3 class="helpline-panel-title">🏢 UGC Monitoring Agency</h3>
+                <div style="font-size: 1.1rem; font-weight: 800; color: var(--tx-primary); margin-bottom: 6px;">Centre for Youth (C4Y)</div>
+                <div style="font-size: 0.88rem; color: var(--tx-secondary); line-height: 1.6;">
+                  Email: <a href="mailto:antiragging@c4yindia.org" style="color: #0b6cb8; font-weight: 600;">antiragging@c4yindia.org</a><br>
+                  Web Portal: <a href="https://www.c4yindia.org" target="_blank" style="color: #0b6cb8; font-weight: 600;">www.c4yindia.org ↗</a>
+                </div>
+              </div>
+            </div>
+
+            <h3 style="font-size: 1.1rem; font-weight: 800; color: var(--tx-primary); margin: 20px 0 10px;">
+              Contact Details of the Nodal Officers of Anti-Ragging Committee and Squad
+            </h3>
+            <p style="font-size: 0.88rem; font-weight: 700; color: #b91c1c; margin: 0 0 16px;">
+              <u>Anti-Ragging Committee (ARC)</u> | <u>Anti-Ragging Squad (ARS)</u>
+            </p>
+
+            <!-- Officers Table -->
+            <div class="officers-table-wrap">
+              <table class="officers-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Department/Office</th>
+                    <th>Designation</th>
+                    <th>Contact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Dr. Jawaid Ahsan</strong></td>
+                    <td>Department of Biotechnology</td>
+                    <td>Nodal Officer Anti-Ragging CUSB</td>
+                    <td>
+                      <a href="mailto:jahsan@cub.ac.in" style="color: #0b6cb8; font-weight: 600;">jahsan@cub.ac.in</a><br>
+                      Contact No. <strong>8521627799</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Prof. Rathi Kanta Kumbhar</strong></td>
+                    <td>Department of Economic Studies &amp; Policy</td>
+                    <td>Chairperson, Anti-Ragging Squad (ARS) for Campus</td>
+                    <td>
+                      <a href="mailto:rathikanta@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">rathikanta@cusb.ac.in</a><br>
+                      Contact No. <strong>9438120655</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Prof. Vipin Kumar Singh</strong></td>
+                    <td>Department of English</td>
+                    <td>Chairperson, Anti-Ragging Squad (ARS) for Boys' Hostel</td>
+                    <td>
+                      <a href="mailto:vipinsingh@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">vipinsingh@cusb.ac.in</a><br>
+                      Contact No. <strong>9407343432</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Prof. Kiran Kumari</strong></td>
+                    <td>Department of Geography</td>
+                    <td>Chairperson, Anti-Ragging Squad (ARS) for Girls' Hostel</td>
+                    <td>
+                      <a href="mailto:kirankumari@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">kirankumari@cusb.ac.in</a><br>
+                      Contact No. <strong>9451368621</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Sh. Kumar Kaushal</strong></td>
+                    <td>Deputy Registrar</td>
+                    <td>Member Secretary, Anti-Ragging Committee (ARC)</td>
+                    <td>
+                      <a href="mailto:ar2@cub.ac.in" style="color: #0b6cb8; font-weight: 600;">ar2@cub.ac.in</a><br>
+                      Contact No. <strong>9572011500</strong>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="punitive-warning-banner">
+              RAGGING IS A CRIMINAL OFFENCE AND THE CULPRITS WILL ATTRACT PUNITIVE ACTION AS MENTIONED IN THE UGC REGULATIONS.<br>
+              <a href="https://www.antiragging.in/assets/pdf/annexure/Annexure-I.pdf" target="_blank" style="color: inherit; text-decoration: underline; font-size: 0.86rem;">(www.antiragging.in/assets/pdf/annexure/Annexure-I.pdf) ↗</a>
+            </div>
+
+            <div style="margin-top: 14px;">
+              <a href="https://www.ugc.ac.in" target="_blank" style="font-size: 1.15rem; font-weight: 800; color: #0b6cb8; text-decoration: none;">www.ugc.ac.in ↗</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Menu Sidebar -->
+        <aside class="antiragging-sidebar" aria-label="Anti Ragging Navigation Menu">
+          <div class="right-menu-card">
+            <div class="right-menu-header">Anti Ragging Right Menu</div>
+            <ul class="right-menu-list">
+              <li>
+                <a href="student-anti-ragging.html" class="right-menu-btn active">Anti Ragging</a>
+              </li>
+              <li>
+                <a href="student-anti-ragging-notices.html" class="right-menu-btn">Anti Ragging Notices</a>
+              </li>
+              <li>
+                <a href="student-anti-ragging-committee.html" class="right-menu-btn">Anti-Ragging Committee</a>
+              </li>
+              <li>
+                <a href="student-anti-ragging-contacts.html" class="right-menu-btn">Contacts</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

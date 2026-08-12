@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Activities &amp; Others — National Service Scheme — Central University of South Bihar" data-hi="गतिविधियाँ एवं अन्य — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Activities &amp; Others — NSS — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="NSS Activities, Advisory Board meetings, female youth workshops, blood donation drives, finance, incentives, and NSS Day celebrations at CUSB.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .nss-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .nss-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .nss-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .nss-crumb a:hover {
+      color: var(--acc-blue);
+    }
+
+    /* 2-Column Layout with Side Menu */
+    .nss-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .nss-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Side Menu */
+    .nss-sidebar {
+      position: sticky;
+      top: 120px;
+    }
+    .nss-menu-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+    .nss-menu-header {
+      background: #00569b;
+      color: #ffffff;
+      padding: 14px 18px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+    [data-theme="dark"] .nss-menu-header {
+      background: #0284c7;
+    }
+    .nss-menu-list {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+    }
+    .nss-menu-btn {
+      display: block;
+      width: 100%;
+      padding: 11px 16px;
+      background: #0b6cb8;
+      color: #ffffff !important;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(11, 108, 184, 0.25);
+      transition: all 0.2s ease;
+      line-height: 1.35;
+    }
+    .nss-menu-btn:hover {
+      background: #004b9b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(11, 108, 184, 0.35);
+    }
+    .nss-menu-btn.active {
+      background: #004b9b;
+      box-shadow: inset 0 0 0 2px #ffd950;
+    }
+    [data-theme="dark"] .nss-menu-btn {
+      background: #0284c7;
+    }
+    [data-theme="dark"] .nss-menu-btn:hover {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+    [data-theme="dark"] .nss-menu-btn.active {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+
+    /* Main Content Styling */
+    .nss-header-area {
+      margin-bottom: 20px;
+    }
+    .nss-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .nss-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .nss-section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #00569b;
+      margin: 28px 0 14px;
+    }
+    [data-theme="dark"] .nss-section-title {
+      color: #38bdf8;
+    }
+
+    .nss-body-p {
+      font-size: 0.95rem;
+      color: var(--tx-secondary);
+      line-height: 1.72;
+      margin: 0 0 16px;
+    }
+
+    .nss-card-block {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nss-bullet-list {
+      list-style: disc;
+      padding-left: 20px;
+      margin: 0 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .nss-bullet-list > li {
+      font-size: 0.94rem;
+      color: var(--tx-primary);
+      line-height: 1.65;
+    }
+
+    .nss-sub-bullet-list {
+      list-style: circle;
+      padding-left: 24px;
+      margin: 8px 0 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .nss-sub-bullet-list > li {
+      font-size: 0.92rem;
+      color: var(--tx-secondary);
+      line-height: 1.62;
+    }
+
+    /* Day Banner */
+    .nss-day-card {
+      background: linear-gradient(135deg, rgba(0, 86, 155, 0.08) 0%, rgba(122, 12, 12, 0.06) 100%);
+      border: 1.5px solid rgba(0, 86, 155, 0.25);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="nss-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="nss-crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="courses.html">Student Corner</a>
+        <span>/</span>
+        <a href="student-nss.html">NSS</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Activities &amp; Others</span>
+      </nav>
+
+      <!-- 2-Column Layout with Side Menu -->
+      <div class="nss-layout">
+        
+        <!-- Left Side Menu (NSS) -->
+        <aside class="nss-sidebar" aria-label="NSS Side Navigation">
+          <div class="nss-menu-card">
+            <div class="nss-menu-header">NSS</div>
+            <ul class="nss-menu-list">
+              <li>
+                <a href="student-nss-vbyp.html" class="nss-menu-btn">About VBYP</a>
+              </li>
+              <li>
+                <a href="student-nss.html" class="nss-menu-btn">About Us</a>
+              </li>
+              <li>
+                <a href="student-nss-objectives.html" class="nss-menu-btn">Aim and Objective</a>
+              </li>
+              <li>
+                <a href="student-nss-symbol.html" class="nss-menu-btn">NSS Symbol and Badge</a>
+              </li>
+              <li>
+                <a href="student-nss-join.html" class="nss-menu-btn">Join NSS ( Registration For 2025-26 )</a>
+              </li>
+              <li>
+                <a href="student-nss-programmes.html" class="nss-menu-btn">NSS Programme Classification/ Implementation</a>
+              </li>
+              <li>
+                <a href="student-nss-activities.html" class="nss-menu-btn active">Activities &amp; Others</a>
+              </li>
+              <li>
+                <a href="student-nss-members.html" class="nss-menu-btn">Member</a>
+              </li>
+              <li>
+                <a href="student-nss-gallery.html" class="nss-menu-btn">Gallery</a>
+              </li>
+              <li>
+                <a href="student-nss-contacts.html" class="nss-menu-btn">Contact Details</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Right Main Content Area (Verbatim Transcription) -->
+        <div class="nss-main-col">
+
+          <div class="nss-header-area">
+            <h1 class="nss-main-title" data-en="Activities &amp; Others" data-hi="गतिविधियाँ एवं अन्य">
+              Activities &amp; Others
+            </h1>
+          </div>
+
+          <!-- Section 1: Major Activities List -->
+          <div class="nss-card-block">
+            <ul class="nss-bullet-list">
+              <li>
+                District-wise &amp; University wise NSS Programme Officers meetings are convened at every year for planning of NSS activities.
+              </li>
+              <li>
+                NSS Advisory Board Meetings are convened 02 times every year for sanctioning the budget and planning other innovative activities.
+              </li>
+              <li>
+                District-wise youth leadership camps are organized every year.
+              </li>
+              <li>
+                <strong>NSS Female Youth Workshop</strong> is organized for every year. This is the unique and permanent feature of this University.
+              </li>
+              <li>
+                Annual Planning Meeting and Evaluation Workshop for N.S.S. Programme Officer is organized every year.
+              </li>
+              <li>
+                Arts of living camps are organized in every district.
+              </li>
+              <li>
+                University gives more stress on <strong>AIDS awareness programme</strong> to create the awareness amongst N.S.S. Volunteers and the community regarding to this deadly disease.
+              </li>
+              <li>
+                <strong>Blood donation camps</strong> are arranged in every year and collected blood is given to certified blood bank. List of blood donors is prepared to provide blood for emergency patients.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Section 2: Finance and Accounts -->
+          <div class="nss-card-block">
+            <h2 class="nss-section-title" style="margin-top: 0;">
+              Finance and Accounts :
+            </h2>
+
+            <ul class="nss-bullet-list">
+              <li>
+                <strong>Expenditure on Regular activities :</strong> An amount of Rs. 250/- per volunteer per annum is earmarked for expenditure on regular activities. The expenditure is shared in the ratio of 7%: 5% between Centre and State Governments.
+                <ul class="nss-sub-bullet-list">
+                  <li>Out of Rs. 250/-, an amount of Rs. 25/- per volunteer is spent on establishment/administration expenses at University level.</li>
+                  <li>Similarly, an amount of Rs. 225/- per volunteer is incurred on establishment at college level.</li>
+                  <li>Balance of Rs. 25/- is spent on Programme development at grass root level.</li>
+                </ul>
+              </li>
+              <li>
+                <strong>Incentives to the students:</strong> The NSS volunteers may get appropriate weightage if he/she completes 2 years in NSS and gets the certificate signed by the Vice-Chancellor of the university.
+                <ul class="nss-sub-bullet-list">
+                  <li>Universities may give preference to such NSS volunteers in matters of admission, promotion and other privileges as decided by them.</li>
+                  <li>NSS volunteers should be honoured at university level for their excellent and outstanding work in NSS. The universities may prepare guidelines for such incentives.</li>
+                  <li>The states may also institute state level/district level awards for outstanding NSS volunteers.</li>
+                  <li>NSS volunteers may be nominated for Indira Gandhi Awards at National Level.</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Section 3: NSS Day -->
+          <div class="nss-day-card">
+            <h2 class="nss-section-title" style="margin-top: 0; color: #7a0c0c;">
+              NSS Day :
+            </h2>
+            <p class="nss-body-p" style="margin-bottom: 0;">
+              National Service Scheme (NSS) was introduced in 1969 with the primary objective of developing the personality and character of the student youth through voluntary community service. Every year, NSS day is observed on <strong>September 24</strong> across the Nation. The National Service Scheme was officially launched in 1969, the birth centenary year of Mahatma Gandhi. Therefore, this day is celebrated every year as NSS Day with suitable programmes and events.
+            </p>
+          </div>
+
+          <!-- Section 4: NSS Activities -->
+          <div class="nss-card-block">
+            <h2 class="nss-section-title" style="margin-top: 0;">
+              NSS Activities :
+            </h2>
+            <p class="nss-body-p" style="margin-bottom: 0;">
+              (all the activities related NSS)
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

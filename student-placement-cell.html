@@ -1,1 +1,718 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Placement Cell - CUSB</title><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/student-subpage.css"></head><body><cusb-ticker></cusb-ticker><cusb-topbar></cusb-topbar><cusb-header></cusb-header><cusb-accessibility-bar></cusb-accessibility-bar><cusb-navbar></cusb-navbar><main class="student-subpage"><div class="container"><article class="student-subpage__card"><span class="section-tag">Student Corner</span><h1>Placement Cell</h1><p>Information will be added here.</p></article></div></main><cusb-footer></cusb-footer><cusb-chatbot></cusb-chatbot><script src="js/components.js" defer></script><script src="js/main.js" defer></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Career Counselling and Placement Cell — Central University of South Bihar" data-hi="कैरियर परामर्श एवं नियोजन प्रकोष्ठ — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Placement Cell — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Career Counselling and Placement Cell at Central University of South Bihar. Campus recruitments, industry partnerships, training sessions, and student testimonials.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .placement-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .placement-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .placement-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .placement-crumb a:hover {
+      color: var(--acc-blue);
+    }
+
+    .placement-header-area {
+      margin-bottom: 24px;
+    }
+    .placement-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0b6cb8;
+      background: rgba(11, 108, 184, 0.08);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    [data-theme="dark"] .placement-badge {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .placement-main-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+    }
+    [data-theme="dark"] .placement-main-title {
+      color: #38bdf8;
+    }
+    .placement-sub-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--tx-primary);
+      margin: 0 0 16px;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+
+    /* Hero Invitation Banner */
+    .company-invite-banner {
+      background: linear-gradient(135deg, #00569b 0%, #0b6cb8 100%);
+      color: #ffffff !important;
+      border-radius: 12px;
+      padding: 22px 28px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 20px 0 28px;
+      box-shadow: 0 6px 20px rgba(11, 108, 184, 0.25);
+    }
+    [data-theme="dark"] .company-invite-banner {
+      background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+    }
+    .company-invite-btn {
+      background: #ffd950;
+      color: #002e5b !important;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 10px 22px;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+    .company-invite-btn:hover {
+      background: #ffea79;
+      transform: translateY(-2px);
+    }
+
+    /* Section Bar */
+    .placement-section-bar {
+      background: #7a0c0c;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px 8px 0 0;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 36px;
+    }
+    [data-theme="dark"] .placement-section-bar {
+      background: #881337;
+    }
+
+    .placement-card-block {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
+    }
+
+    /* Interactive Tab Bar */
+    .placement-tab-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 24px 0 16px;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 12px;
+    }
+    .placement-tab-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--tx-primary);
+      padding: 9px 18px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .placement-tab-btn:hover {
+      border-color: #0b6cb8;
+      color: #0b6cb8;
+    }
+    .placement-tab-btn.active {
+      background: #0b6cb8;
+      color: #ffffff;
+      border-color: #0b6cb8;
+      box-shadow: 0 2px 8px rgba(11, 108, 184, 0.25);
+    }
+    [data-theme="dark"] .placement-tab-btn.active {
+      background: #38bdf8;
+      color: #0f172a;
+      border-color: #38bdf8;
+    }
+
+    /* Responsibilities Grid */
+    .responsibilities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .resp-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid #0b6cb8;
+      border-radius: 8px;
+      padding: 16px 18px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    [data-theme="dark"] .resp-card {
+      border-left-color: #38bdf8;
+    }
+    .resp-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #0b6cb8;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    [data-theme="dark"] .resp-num {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+
+    /* Coordinator Profile Box with Bigger Image (>=120px) */
+    .coordinator-profile-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 24px;
+      margin: 20px 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .coordinator-img-wrap {
+      width: 130px;
+      height: 130px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 3px solid #0b6cb8;
+      flex-shrink: 0;
+      background: #ffffff;
+      box-shadow: 0 4px 14px rgba(11, 108, 184, 0.2);
+    }
+    .coordinator-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Testimonials Grid with Bigger Images (>=120px) */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin-top: 16px;
+    }
+    .testimonial-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+    .testi-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .testi-img-box {
+      width: 120px;
+      height: 120px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2.5px solid #0b6cb8;
+      flex-shrink: 0;
+      background: var(--bg-primary);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .testi-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .testi-quote {
+      font-size: 0.91rem;
+      color: var(--tx-primary);
+      line-height: 1.65;
+      font-style: italic;
+      position: relative;
+    }
+
+    /* Tables */
+    .placement-table-wrap {
+      overflow-x: auto;
+      margin-top: 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+    }
+    .placement-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      text-align: left;
+    }
+    .placement-table th {
+      background: #00569b;
+      color: #ffffff;
+      padding: 11px 14px;
+      font-weight: 700;
+      border: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+    [data-theme="dark"] .placement-table th {
+      background: #0284c7;
+    }
+    .placement-table td {
+      padding: 10px 14px;
+      border: 1px solid var(--border-color);
+      color: var(--tx-primary);
+    }
+    .placement-table tr:nth-child(even) td {
+      background: var(--bg-secondary);
+    }
+
+    /* Live Search */
+    .filter-search-box {
+      width: 100%;
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      color: var(--tx-primary);
+      margin-bottom: 14px;
+    }
+    .filter-search-box:focus {
+      outline: none;
+      border-color: #0b6cb8;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="placement-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="placement-crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="courses.html">Student Corner</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Placement Cell</span>
+      </nav>
+
+      <!-- Header Area -->
+      <div class="placement-header-area">
+        <span class="placement-badge">💼 Career &amp; Corporate Relations</span>
+        <h1 class="placement-main-title" data-en="Placement Cell" data-hi="प्लेसमेंट सेल">
+          Placement Cell
+        </h1>
+        <h2 class="placement-sub-title" data-en="Career Counselling and Placement Cell" data-hi="कैरियर परामर्श एवं नियोजन प्रकोष्ठ">
+          Career Counselling and Placement Cell
+        </h2>
+      </div>
+
+      <!-- Invitation to Companies Banner -->
+      <div class="company-invite-banner">
+        <div>
+          <h3 style="font-size: 1.15rem; font-weight: 800; margin: 0 0 6px;">
+            Invitation to Companies for Placement Drive
+          </h3>
+          <p style="font-size: 0.88rem; opacity: 0.9; margin: 0;">
+            Partner with CUSB to recruit talented scholars across Sciences, Humanities, Law, Technology, and Management.
+          </p>
+        </div>
+        <a href="assets/documents/placement/placement-brochure.pdf" target="_blank" class="company-invite-btn">
+          Click Here for: Invitation to Company for Placement →
+        </a>
+      </div>
+
+      <!-- Main Overview Paragraph -->
+      <p style="font-size: 0.96rem; color: var(--tx-secondary); line-height: 1.72; margin: 0 0 24px;">
+        The University has a Career Counselling and Placement Cell which takes care of the campus placements and job opportunities for the students. The cell conducts the Campus Placement activities time-to-time which is participated by the students of UG (Undergraduate) and Postgraduate (PG) levels. In the previous years, many students from different departments of the University got job placements in reputed organisations. Some of the reputed organisations visit the University campus every year include <strong>Azim Premji Foundation, Care India (NGO), Gandhi Fellowship – Piramal Foundation</strong>, etc. Students from Media department got placements in <strong>Times of India, Hindustan Times, ETV Bharat, Hindustan Dainik and Prabhat Khabar</strong> and along with many other organisations.
+      </p>
+
+      <!-- Interactive Tab Controls -->
+      <div class="placement-tab-nav" role="tablist">
+        <button class="placement-tab-btn active" onclick="showPlacementSection('responsibilities', this)">Key Responsibilities</button>
+        <button class="placement-tab-btn" onclick="showPlacementSection('members', this)">Placement Cell Members (24)</button>
+        <button class="placement-tab-btn" onclick="showPlacementSection('statistics', this)">Placement Statistics (2012–19)</button>
+        <button class="placement-tab-btn" onclick="showPlacementSection('opportunities', this)">Job Opportunities &amp; Results</button>
+        <button class="placement-tab-btn" onclick="showPlacementSection('testimonials', this)">Testimonials</button>
+        <button class="placement-tab-btn" onclick="showPlacementSection('contact', this)">Coordinator &amp; Contacts</button>
+      </div>
+
+      <!-- ════════ SECTION 1: KEY RESPONSIBILITIES ════════ -->
+      <div id="section-responsibilities" class="placement-section-content">
+        <div class="placement-section-bar">
+          <span>🎯 Key Responsibilities of the Career Counselling and Placement Cell</span>
+        </div>
+        <div class="placement-card-block">
+          <div class="responsibilities-grid">
+            <div class="resp-card">
+              <div class="resp-num">1</div>
+              <div style="font-size: 0.92rem; color: var(--tx-primary); line-height: 1.55;">
+                To organise the job-oriented awareness related workshops time-to-time for the university students.
+              </div>
+            </div>
+            <div class="resp-card">
+              <div class="resp-num">2</div>
+              <div style="font-size: 0.92rem; color: var(--tx-primary); line-height: 1.55;">
+                To provide placement training to students with sessions on Resume / CV writing, conducting mock interviews, group discussion, etc.
+              </div>
+            </div>
+            <div class="resp-card">
+              <div class="resp-num">3</div>
+              <div style="font-size: 0.92rem; color: var(--tx-primary); line-height: 1.55;">
+                To invite the experts from corporate organisation for interactive sessions, lectures on soft skills and giving away placement training to the students.
+              </div>
+            </div>
+            <div class="resp-card">
+              <div class="resp-num">4</div>
+              <div style="font-size: 0.92rem; color: var(--tx-primary); line-height: 1.55;">
+                To disseminate the job opportunities related information in the concerned (related) centres / departments.
+              </div>
+            </div>
+            <div class="resp-card">
+              <div class="resp-num">5</div>
+              <div style="font-size: 0.92rem; color: var(--tx-primary); line-height: 1.55;">
+                To organise job fairs / career related fairs for the job seekers in the University premises.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 2: PLACEMENT CELL MEMBERS (24) ════════ -->
+      <div id="section-members" class="placement-section-content" style="display: none;">
+        <div class="placement-section-bar">
+          <span>👥 Members of the Career Counselling and Placement Cell</span>
+          <span style="font-size: 0.84rem; font-weight: 600; opacity: 0.9;">24 Department Coordinators</span>
+        </div>
+        <div class="placement-card-block">
+          <input type="search" id="memberSearch" class="filter-search-box" placeholder="Search faculty name, department, designation..." aria-label="Search members">
+          <div class="placement-table-wrap">
+            <table class="placement-table" id="membersTable">
+              <thead>
+                <tr>
+                  <th>Name of Faculty</th>
+                  <th>Designation</th>
+                  <th>Department</th>
+                  <th>E-Mail ID</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Dr. Asheesh Shanker</strong></td><td>Associate Professor, Head</td><td>Bioinformatics</td><td><a href="mailto:asheesh@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">asheesh@cusb.ac.in</a></td></tr>
+                <tr><td><strong>Prof. Durg Vijai Singh</strong></td><td>Professor, Head</td><td>Biotechnology</td><td><a href="mailto:dvsingh@cub.ac.in" style="color: #0b6cb8; font-weight: 600;">dvsingh@cub.ac.in</a></td></tr>
+                <tr><td><strong>Prof. Umesh Kumar Singh</strong></td><td>Professor, Head</td><td>Environmental Sciences</td><td><a href="mailto:umeshsingh@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">umeshsingh@cusb.ac.in</a></td></tr>
+                <tr><td><strong>Prof. Dhirendra Kumar Pandey</strong></td><td>Professor, Head</td><td>Geology</td><td><a href="mailto:dhirendrap@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">dhirendrap@cusb.ac.in</a></td></tr>
+                <tr><td><strong>Dr. Ram Pratap Singh</strong></td><td>Associate Professor, Head</td><td>Life Science</td><td><a href="mailto:rampratap@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">rampratap@cusb.ac.in</a></td></tr>
+                <tr><td><strong>Dr. Ashish Kumar Singh</strong></td><td>Associate Professor, Head</td><td>Physical Education</td><td><a href="mailto:ashishsingh@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">ashishsingh@cusb.ac.in</a></td></tr>
+                <tr><td><strong>Prof. Kaushal Kishore</strong></td><td>Professor, Head</td><td>Teacher Education</td><td><a href="mailto:kaushalkishore@cub.ac.in" style="color: #0b6cb8; font-weight: 600;">kaushalkishore@cub.ac.in</a></td></tr>
+                <tr><td><strong>Dr. Vivek Dave</strong></td><td>Associate Professor, Head</td><td>Pharmacy</td><td><a href="mailto:vivekdave@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">vivekdave@cusb.ac.in</a></td></tr>
+                <tr><td><strong>Dr. Dharmendra Kumar Singh</strong></td><td>Associate Professor, Head</td><td>Psychology</td><td><a href="mailto:dharmendrakr@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">dharmendrakr@cusb.ac.in</a></td></tr>
+                <tr><td><strong>Dr. Vipin Kumar Singh</strong></td><td>Associate Professor, Head</td><td>English</td><td><a href="mailto:vipinsingh@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">vipinsingh@cusb.ac.in</a></td></tr>
+                <tr><td><strong>Prof. Suresh Chandra</strong></td><td>Professor, Head</td><td>Hindi</td><td><a href="mailto:sureshchandra@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">sureshchandra@cusb.ac.in</a></td></tr>
+                <tr><td><strong>Prof. Pawan Kumar Mishra</strong></td><td>Professor, Head</td><td>Law &amp; Governance</td><td><a href="mailto:pawanmishra@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">pawanmishra@cusb.ac.in</a></td></tr>
+                <tr><td><strong>Prof. Brajesh Kumar</strong></td><td>Professor, Head</td><td>Commerce</td><td><a href="mailto:brajesh@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">brajesh@cusb.ac.in</a></td></tr>
+                <tr><td><strong>Dr. Jainath Yadav</strong></td><td>Assistant Prof., Head (I/C)</td><td>Computer Science</td><td><a href="mailto:jainath@cub.ac.in" style="color: #0b6cb8; font-weight: 600;">jainath@cub.ac.in</a></td></tr>
+                <tr><td><strong>Prof. Hare Krishna Nigam</strong></td><td>Professor, Head</td><td>Mathematics</td><td><a href="mailto:hknigam@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">hknigam@cusb.ac.in</a></td></tr>
+                <tr><td><strong>Dr. Sunit Kumar</strong></td><td>Associate Professor, Head</td><td>Statistics</td><td><a href="mailto:sunit@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">sunit@cusb.ac.in</a></td></tr>
+                <tr><td><strong>Prof. Atish Prashar</strong></td><td>Professor, Head</td><td>Mass Communication</td><td><a href="mailto:atishprashar@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">atishprashar@cusb.ac.in</a></td></tr>
+                <tr><td><strong>Dr. Amiya Priyam</strong></td><td>Associate Professor, Head</td><td>Chemistry</td><td><a href="mailto:apriyam@cub.ac.in" style="color: #0b6cb8; font-weight: 600;">apriyam@cub.ac.in</a></td></tr>
+                <tr><td><strong>Prof. Venktesh Singh</strong></td><td>Professor, Head</td><td>Physics</td><td><a href="mailto:venktesh@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">venktesh@cusb.ac.in</a></td></tr>
+                <tr><td><strong>Prof. Krishnan Chalil</strong></td><td>Professor, Head</td><td>Development Studies</td><td><a href="mailto:krishnan@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">krishnan@cusb.ac.in</a></td></tr>
+                <tr><td><strong>Dr. Rathi Kanta Kumbhar</strong></td><td>Associate Professor, Head</td><td>Economics</td><td><a href="mailto:rathikanta@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">rathikanta@cusb.ac.in</a></td></tr>
+                <tr><td><strong>Dr. Sudhanshu Kumar Jha</strong></td><td>Assistant Prof., Head(I/C)</td><td>History</td><td><a href="mailto:sudhanshujha@cub.ac.in" style="color: #0b6cb8; font-weight: 600;">sudhanshujha@cub.ac.in</a></td></tr>
+                <tr><td><strong>Dr. Praveen Kumar</strong></td><td>Associate Professor, Head</td><td>Political Studies</td><td><a href="mailto:praveenkr@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">praveenkr@cusb.ac.in</a></td></tr>
+                <tr><td><strong>Dr. Anil Kumar Singh Jha</strong></td><td>Associate Professor, Head</td><td>Sociological Studies</td><td><a href="mailto:anilsinghjha@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">anilsinghjha@cusb.ac.in</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 3: STATISTICS ════════ -->
+      <div id="section-statistics" class="placement-section-content" style="display: none;">
+        <div class="placement-section-bar">
+          <span>📊 Placement Statistics (Academic Years 2012 – 2019)</span>
+        </div>
+        <div class="placement-card-block">
+          <div class="placement-table-wrap">
+            <table class="placement-table">
+              <thead>
+                <tr>
+                  <th style="width: 32%;">Academic Year</th>
+                  <th>2012</th>
+                  <th>2013</th>
+                  <th>2014</th>
+                  <th>2015</th>
+                  <th>2016</th>
+                  <th>2017</th>
+                  <th>2018</th>
+                  <th>2019</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Total number of students</strong></td>
+                  <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+                </tr>
+                <tr>
+                  <td><strong>Total number of students employed</strong></td>
+                  <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+                </tr>
+                <tr>
+                  <td><strong>Total number of students pursuing higher studies</strong></td>
+                  <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+                </tr>
+                <tr>
+                  <td><strong>Student Entrepreneur</strong></td>
+                  <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 4: OPPORTUNITIES & RESULTS ════════ -->
+      <div id="section-opportunities" class="placement-section-content" style="display: none;">
+        <div class="placement-section-bar">
+          <span>📢 Upcoming Job Opportunities &amp; Results</span>
+        </div>
+        <div class="placement-card-block">
+          <h3 style="font-size: 1.1rem; font-weight: 800; color: #0b6cb8; margin: 0 0 10px;">Upcoming Job Opportunities:</h3>
+          <p style="font-size: 0.92rem; color: var(--tx-secondary); margin-bottom: 20px;">
+            Notices for ongoing campus placement drives, off-campus recruitment opportunities, and internship openings are updated regularly by the cell.
+          </p>
+
+          <h3 style="font-size: 1.1rem; font-weight: 800; color: var(--tx-primary); margin: 20px 0 8px;">In Campus Result</h3>
+          <ul style="padding-left: 20px; color: var(--tx-secondary); font-size: 0.92rem; margin-bottom: 20px;">
+            <li>19 CUSB Students selected for Azim Premji Foundation Placement Drive.</li>
+            <li>4 Students from Mass Communication and Media placed at Prabhat Khabar.</li>
+            <li>8 Students from Department of Sociological Studies placed at Kshamtalaya Foundation.</li>
+          </ul>
+
+          <h3 style="font-size: 1.1rem; font-weight: 800; color: var(--tx-primary); margin: 20px 0 8px;">Off Campus Result</h3>
+          <ul style="padding-left: 20px; color: var(--tx-secondary); font-size: 0.92rem;">
+            <li>Recruitment notices and verified opportunities with partner NGOs, media houses, and corporate organizations.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 5: TESTIMONIALS (>=120px Image Boxes) ════════ -->
+      <div id="section-testimonials" class="placement-section-content" style="display: none;">
+        <div class="placement-section-bar">
+          <span>💬 Testimonials</span>
+          <span style="font-size: 0.84rem; font-weight: 600; opacity: 0.9;">Alumni &amp; Corporate Partners</span>
+        </div>
+        <div class="placement-card-block">
+          <div class="testimonials-grid">
+            
+            <!-- Testimonial 1: Kaushal Kr Sinha -->
+            <article class="testimonial-card">
+              <div class="testi-header">
+                <div class="testi-img-box">
+                  <img src="assets/wardens/warden-placeholder.svg" alt="Mr. Kaushal Kr Sinha" class="testi-img" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div>
+                  <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--tx-primary); margin: 0 0 4px;">Mr. Kaushal Kr Sinha</h4>
+                  <div style="font-size: 0.84rem; color: #0b6cb8; font-weight: 700;">Senior Associate - Multimedia Content Management</div>
+                  <div style="font-size: 0.8rem; color: var(--tx-muted);">(Verse Innovation) DailyHunt-Josh</div>
+                </div>
+              </div>
+              <p class="testi-quote">
+                "An Investment in knowledge always pays the best interest and this is what a Mass Communication degree from Central University Of South Bihar (CUSB) did for me. I would like to express my gratitude to all the faculties and special thanks to PRO - Md Mudassir Alam, whose Diligence &amp; Direction have inspired my Inner Confidence. CUSB has provided me with an Ample number of opportunities to showcase my talent which has immensely helped me to reach the pinnacle of my Ambition. I am blessed to be a part of CUSB &amp; Proud to be an CUSBian."
+              </p>
+            </article>
+
+            <!-- Testimonial 2: Ravi Prakash Gupta -->
+            <article class="testimonial-card">
+              <div class="testi-header">
+                <div class="testi-img-box">
+                  <img src="assets/wardens/warden-placeholder.svg" alt="Mr. Ravi Prakash Gupta" class="testi-img" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div>
+                  <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--tx-primary); margin: 0 0 4px;">Mr. Ravi Prakash Gupta</h4>
+                  <div style="font-size: 0.84rem; color: #0b6cb8; font-weight: 700;">Alumnus &amp; Professional</div>
+                  <div style="font-size: 0.8rem; color: var(--tx-muted);">Piramal Foundation Ranchi, Jharkhand</div>
+                </div>
+              </div>
+              <p class="testi-quote">
+                "I am highly privileged to be a student of this university and fortunate enough to be an alumnus of this university. It is a place of civility, friendship, and good cheer. I should be thankful to the whole administration for such a co-ordination and co-operation in placement of students for enlighten of their future."
+              </p>
+            </article>
+
+            <!-- Testimonial 3: Parikshit Munda -->
+            <article class="testimonial-card">
+              <div class="testi-header">
+                <div class="testi-img-box">
+                  <img src="assets/wardens/warden-placeholder.svg" alt="Parikshit Munda" class="testi-img" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div>
+                  <h4 style="font-size: 1.05rem; font-weight: 800; color: var(--tx-primary); margin: 0 0 4px;">Parikshit Munda</h4>
+                  <div style="font-size: 0.84rem; color: #0b6cb8; font-weight: 700;">Corporate Recruiter</div>
+                  <div style="font-size: 0.8rem; color: var(--tx-muted);">Gandhi Fellowship Marketing &amp; Recruitment Team</div>
+                </div>
+              </div>
+              <p class="testi-quote">
+                "On behalf of the Gandhi Fellowship Marketing and Recruitment team, I would like to express my heartfelt gratitude to Central University of South Bihar (CUSB) for all the bright young nation builders they have provided us in the past years. The placement cell at CUSB has been of great support to us and we look forward to their continued support in this regard."
+              </p>
+            </article>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION 6: COORDINATOR & CONTACTS ════════ -->
+      <div id="section-contact" class="placement-section-content" style="display: none;">
+        <div class="placement-section-bar">
+          <span>📞 Training &amp; Placement Coordinator &amp; Office</span>
+        </div>
+        <div class="placement-card-block">
+          
+          <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--tx-primary); margin: 0 0 14px;">
+            Training and Placement Coordinator
+          </h3>
+
+          <div class="coordinator-profile-card">
+            <div class="coordinator-img-wrap">
+              <img src="assets/wardens/warden-placeholder.svg" alt="Md Mudassir Alam" class="coordinator-img">
+            </div>
+            <div>
+              <h4 style="font-size: 1.2rem; font-weight: 800; color: #0b6cb8; margin: 0 0 4px;">
+                Md Mudassir Alam
+              </h4>
+              <div style="font-size: 0.94rem; color: var(--tx-secondary); font-weight: 600; margin-bottom: 12px;">
+                Public Relation Officer (PRO) - Co-ordinator, Career Counselling and Placement Cell
+              </div>
+              <div style="font-size: 0.9rem; color: var(--tx-primary); line-height: 1.7;">
+                📧 Email: <a href="mailto:pro@cub.ac.in" style="color: #0b6cb8; font-weight: 700;">pro@cub.ac.in</a><br>
+                📞 Contact No.: <span style="font-weight: 700;">0631-2229523</span>
+              </div>
+            </div>
+          </div>
+
+          <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--tx-primary); margin: 24px 0 10px;">
+            Notifications &amp; Downloads:
+          </h3>
+          <ul style="padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <li>
+              <a href="assets/documents/placement/placement-cell-minutes.pdf" target="_blank" class="prog-action-link">
+                Placement Cell Minutes ↗
+              </a>
+            </li>
+            <li>
+              <a href="assets/documents/placement/notification-placement-cell.pdf" target="_blank" class="prog-action-link">
+                Notification Placement Cell ↗
+              </a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+
+  <script>
+    // Tab Switcher
+    function showPlacementSection(sectionId, btn) {
+      document.querySelectorAll('.placement-section-content').forEach(el => {
+        el.style.display = 'none';
+      });
+      document.querySelectorAll('.placement-tab-btn').forEach(b => {
+        b.classList.remove('active');
+      });
+
+      const target = document.getElementById('section-' + sectionId);
+      if (target) {
+        target.style.display = 'block';
+      }
+      if (btn) {
+        btn.classList.add('active');
+      }
+    }
+
+    // Live Member Filter
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('memberSearch');
+      const rows = document.querySelectorAll('#membersTable tbody tr');
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          rows.forEach(tr => {
+            const text = tr.textContent.toLowerCase();
+            if (!query || text.includes(query)) {
+              tr.style.display = '';
+            } else {
+              tr.style.display = 'none';
+            }
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="Health Care Centre — Central University of South Bihar" data-hi="स्वास्थ्य सेवा केंद्र — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Health Care Centre — CUSB</title>
+  <link rel="icon" type="image/png" href="assets/culog.png">
+  <meta name="description" content="Health Care Centre at Central University of South Bihar: 24/7 medical services, consultation room, separate male and female wards, dressing room, staff, and ambulance service.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .health-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .health-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .health-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .health-crumb a:hover {
+      color: var(--acc-blue);
+    }
+
+    .health-main-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 16px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .health-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* Info Cards & Highlights */
+    .health-overview-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .health-lead-text {
+      font-size: 1.02rem;
+      color: var(--tx-primary);
+      line-height: 1.7;
+      margin: 0 0 20px;
+    }
+
+    .health-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+    .health-meta-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid #00569b;
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+    [data-theme="dark"] .health-meta-box {
+      border-left-color: #38bdf8;
+    }
+    .health-meta-box h3 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #00569b;
+      margin: 0 0 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    [data-theme="dark"] .health-meta-box h3 {
+      color: #38bdf8;
+    }
+    .health-meta-box p {
+      font-size: 0.92rem;
+      color: var(--tx-secondary);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .health-notice-note {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: #b91c1c;
+      background: rgba(185, 28, 28, 0.06);
+      border: 1px solid rgba(185, 28, 28, 0.2);
+      padding: 10px 16px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+    [data-theme="dark"] .health-notice-note {
+      color: #f87171;
+      background: rgba(248, 113, 113, 0.1);
+      border-color: rgba(248, 113, 113, 0.2);
+    }
+
+    /* Facility Image Showcase Grid */
+    .health-gallery-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #00569b;
+      margin: 0 0 20px;
+    }
+    [data-theme="dark"] .health-gallery-title {
+      color: #38bdf8;
+    }
+
+    .health-facility-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      margin-bottom: 36px;
+    }
+    @media (max-width: 768px) {
+      .health-facility-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .health-photo-card {
+      background: var(--bg-primary);
+      border: 1.5px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .health-photo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.13);
+      border-color: #0b6cb8;
+    }
+    .health-img-container {
+      width: 100%;
+      height: 380px;
+      background: #0f172a;
+      overflow: hidden;
+    }
+    .health-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .health-photo-card:hover .health-img {
+      transform: scale(1.03);
+    }
+    .health-card-label {
+      padding: 16px 20px;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: #00569b;
+      letter-spacing: -0.01em;
+    }
+    [data-theme="dark"] .health-card-label {
+      color: #38bdf8;
+    }
+
+    /* Contact Box */
+    .health-contact-panel {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px 28px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .health-contact-info h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--tx-primary);
+      margin: 0 0 6px;
+    }
+    .health-contact-info p {
+      font-size: 0.9rem;
+      color: var(--tx-secondary);
+      margin: 0;
+    }
+    .health-actions {
+      display: flex;
+      gap: 12px;
+    }
+    .health-btn {
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .health-btn-navy {
+      background: #00569b;
+      color: #ffffff !important;
+    }
+    .health-btn-navy:hover {
+      background: #0b6cb8;
+    }
+    [data-theme="dark"] .health-btn-navy {
+      background: #0284c7;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="health-page-wrapper">
+    <div class="container" style="max-width: 1120px;">
+      
+      <!-- Breadcrumb -->
+      <nav class="health-crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="javascript:void(0)">Infrastructure</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Health Care</span>
+      </nav>
+
+      <!-- Main Title -->
+      <h1 class="health-main-title" data-en="Health Care" data-hi="स्वास्थ्य सेवा">
+        Health Care
+      </h1>
+
+      <!-- Overview Card -->
+      <div class="health-overview-card">
+        <p class="health-lead-text">
+          CUSB Health centre is presently situated inside <strong>"Chanakya Bhavan"</strong> having consultation room, separate male and female wards, dressing room and nursing station.
+        </p>
+
+        <div class="health-meta-grid">
+          <div class="health-meta-box">
+            <h3>Hours of Operation</h3>
+            <p><strong>Round the clock, 365 days</strong> (24/7 Medical Care)</p>
+          </div>
+
+          <div class="health-meta-box">
+            <h3>Staffs &amp; Medical Officers</h3>
+            <p>1 Medical Officer (Male), 1 Nurse (Female), 1 Pharmacist, 1 Dresser, Ambulance Driver(s)</p>
+          </div>
+
+          <div class="health-meta-box">
+            <h3>Emergency Services</h3>
+            <p>Round-the-clock emergency medical response &amp; dedicated university ambulance</p>
+          </div>
+        </div>
+
+        <div class="health-notice-note">
+          *Permanent health center is under construction
+        </div>
+      </div>
+
+      <!-- Facility Photo Showcase -->
+      <div class="health-overview-card">
+        <h2 class="health-gallery-title">Health Centre Facilities &amp; Wards</h2>
+
+        <div class="health-facility-grid">
+          <!-- Consultation Room -->
+          <div class="health-photo-card">
+            <div class="health-img-container">
+              <img src="assets/images/healthcare/consultation-room.png" alt="Consultation Room at CUSB Health Centre" class="health-img" loading="eager">
+            </div>
+            <div class="health-card-label">Consultation Room</div>
+          </div>
+
+          <!-- Dressing Room -->
+          <div class="health-photo-card">
+            <div class="health-img-container">
+              <img src="assets/images/healthcare/dressing-room.png" alt="Dressing Room at CUSB Health Centre" class="health-img" loading="eager">
+            </div>
+            <div class="health-card-label">Dressing Room</div>
+          </div>
+
+          <!-- Female Ward -->
+          <div class="health-photo-card">
+            <div class="health-img-container">
+              <img src="assets/images/healthcare/female-ward.png" alt="Female Ward at CUSB Health Centre" class="health-img" loading="lazy">
+            </div>
+            <div class="health-card-label">Female Ward</div>
+          </div>
+
+          <!-- Male Ward -->
+          <div class="health-photo-card">
+            <div class="health-img-container">
+              <img src="assets/images/healthcare/male-ward.png" alt="Male Ward at CUSB Health Centre" class="health-img" loading="lazy">
+            </div>
+            <div class="health-card-label">Male Ward</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Staff Directory Section -->
+      <div class="health-overview-card">
+        <h2 class="health-gallery-title">Health Centre Staff &amp; Medical Officers</h2>
+        <div style="overflow-x: auto; border: 1px solid var(--border-color); border-radius: 8px; margin-top: 14px;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left;">
+            <thead>
+              <tr style="background: #00569b; color: #ffffff;">
+                <th style="padding: 12px 14px; border: 1px solid var(--border-color); width: 50px; text-align: center;">S.No.</th>
+                <th style="padding: 12px 14px; border: 1px solid var(--border-color);">Name of Employee</th>
+                <th style="padding: 12px 14px; border: 1px solid var(--border-color);">Designation</th>
+                <th style="padding: 12px 14px; border: 1px solid var(--border-color);">Highest Qualification</th>
+                <th style="padding: 12px 14px; border: 1px solid var(--border-color);">Email</th>
+                <th style="padding: 12px 14px; border: 1px solid var(--border-color);">Telephone / Ext. No.</th>
+                <th style="padding: 12px 14px; border: 1px solid var(--border-color); text-align: center; width: 90px;">Images</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color); text-align: center;">1</td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);"><strong>Dr. Vivek Narayan</strong></td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);">Medical Officer (CUSB Health Centre)</td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);">MBBS</td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);"><a href="mailto:viveknarayan@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">viveknarayan@cusb.ac.in</a></td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);">0631-2229530</td>
+                <td style="padding: 8px 10px; border: 1px solid var(--border-color); text-align: center;">
+                  <div style="width: 65px; height: 75px; background: rgba(0,0,0,0.05); border: 1px dashed var(--border-color); border-radius: 6px; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: var(--tx-muted); font-size: 0.72rem;">No Photo</div>
+                </td>
+              </tr>
+              <tr style="background: var(--bg-secondary);">
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color); text-align: center;">2</td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);"><strong>Dr. Avnish Kumar Mridul</strong></td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);">Medical Officer (CUSB Health Centre)</td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);">MBBS</td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);"><a href="mailto:avnish@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">avnish@cusb.ac.in</a></td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);">0631-2229530</td>
+                <td style="padding: 8px 10px; border: 1px solid var(--border-color); text-align: center;">
+                  <img src="assets/images/healthcare/dr-avnish.png" alt="Dr. Avnish Kumar Mridul" style="width: 65px; height: 75px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border-color); display: block; margin: 0 auto;">
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color); text-align: center;">3</td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);"><strong>Mrs. Madhu Kanchan</strong></td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);">Nurse (CUSB Health Centre)</td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);">GNM</td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);"><a href="mailto:madhu@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">madhu@cusb.ac.in</a></td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);">0631-2229530</td>
+                <td style="padding: 8px 10px; border: 1px solid var(--border-color); text-align: center;">
+                  <img src="assets/images/healthcare/madhu-kanchan.png" alt="Mrs. Madhu Kanchan" style="width: 65px; height: 75px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border-color); display: block; margin: 0 auto;">
+                </td>
+              </tr>
+              <tr style="background: var(--bg-secondary);">
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color); text-align: center;">4</td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);"><strong>Sunny Kumar Gupta</strong></td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);">Medical Attendant / Dresser (CUSB Health Centre)</td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);">CMD, Graduate</td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);"><a href="mailto:sunnykrgupta@cusb.ac.in" style="color: #0b6cb8; font-weight: 600;">sunnykrgupta@cusb.ac.in</a></td>
+                <td style="padding: 12px 14px; border: 1px solid var(--border-color);">0631-2229530</td>
+                <td style="padding: 8px 10px; border: 1px solid var(--border-color); text-align: center;">
+                  <img src="assets/images/healthcare/sunny-gupta.png" alt="Sunny Kumar Gupta" style="width: 65px; height: 75px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border-color); display: block; margin: 0 auto;">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Medical Claim & Billing Downloads Section -->
+      <div class="health-overview-card">
+        <h2 class="health-gallery-title">Billing Process &amp; Medical Claim (Medical Cell Section)</h2>
+        <p style="font-size: 0.94rem; color: var(--tx-secondary); line-height: 1.6; margin: 0 0 16px;">
+          For Billing process and Medical Claim, students, faculty and staff can download official Medical Referral Slips below:
+        </p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 14px;">
+          <a href="downloads.html?type=medical" target="_blank" rel="noopener" class="health-btn health-btn-navy">
+            📄 Referral Slip (PDF Format)
+          </a>
+          <a href="downloads.html?type=medical" target="_blank" rel="noopener" class="health-btn health-btn-navy" style="background: #0284c7;">
+            📝 Referral Slip (DOC Format)
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact Panel -->
+      <div class="health-contact-panel">
+        <div class="health-contact-info">
+          <h3>Emergency Medical Support &amp; Health Centre Helpline</h3>
+          <p>Location: Chanakya Bhavan, CUSB Campus, SH-7, Gaya-Panchanpur Road, Gaya, Bihar – 824236</p>
+        </div>
+        <div class="health-actions">
+          <a href="tel:06312229530" class="health-btn health-btn-navy">📞 Call Helpline: 0631-2229530</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

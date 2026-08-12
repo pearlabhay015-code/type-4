@@ -1,1 +1,284 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Alumni - CUSB</title><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/student-subpage.css"></head><body><cusb-ticker></cusb-ticker><cusb-topbar></cusb-topbar><cusb-header></cusb-header><cusb-accessibility-bar></cusb-accessibility-bar><cusb-navbar></cusb-navbar><main class="student-subpage"><div class="container"><article class="student-subpage__card"><span class="section-tag">Student Corner</span><h1>Alumni</h1><p>Information will be added here.</p></article></div></main><cusb-footer></cusb-footer><cusb-chatbot></cusb-chatbot><script src="js/components.js" defer></script><script src="js/main.js" defer></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Alumni Association &amp; Ordinances — Central University of South Bihar" data-hi="पूर्व छात्र परिषद् (अलुमनाई) — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Alumni — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Official Alumni Association (पूर्व छात्र परिषद्) Ordinance (Amendments) 2021, registration link, bylaws, and alumni network at Central University of South Bihar.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .alumni-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .alumni-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .alumni-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .alumni-crumb a:hover {
+      color: var(--acc-blue);
+    }
+
+    .alumni-header-area {
+      margin-bottom: 20px;
+    }
+    .alumni-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0b6cb8;
+      background: rgba(11, 108, 184, 0.08);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    [data-theme="dark"] .alumni-badge {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .alumni-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .alumni-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* Orange Callout Link */
+    .alumni-reg-callout {
+      text-align: center;
+      margin: 20px 0 24px;
+    }
+    .alumni-reg-link {
+      display: inline-block;
+      color: #ea580c;
+      font-size: 1.15rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 0.2s ease, color 0.2s ease;
+      letter-spacing: 0.02em;
+    }
+    .alumni-reg-link:hover {
+      color: #c2410c;
+      text-decoration: underline;
+      transform: scale(1.02);
+    }
+    [data-theme="dark"] .alumni-reg-link {
+      color: #fb923c;
+    }
+    [data-theme="dark"] .alumni-reg-link:hover {
+      color: #fdba74;
+    }
+
+    /* PDF Viewer Container */
+    .pdf-viewer-frame-container {
+      background: #2b2b2b;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      margin-bottom: 36px;
+    }
+    .pdf-toolbar {
+      background: #333333;
+      color: #ffffff;
+      padding: 10px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid #444444;
+      font-size: 0.88rem;
+    }
+    .pdf-tool-left, .pdf-tool-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pdf-tool-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.18s ease;
+    }
+    .pdf-tool-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .pdf-embed-wrapper {
+      width: 100%;
+      position: relative;
+      width: 100%;
+      min-height: 850px;
+      background: #3f4245;
+    }
+    .pdf-embed-wrapper iframe,
+    .pdf-embed-wrapper embed,
+    .pdf-embed-wrapper object {
+      width: 100%;
+      height: 900px;
+      border: none;
+    }
+
+    .pdf-fallback-view {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 20px;
+      gap: 20px;
+      background: #3f4245;
+    }
+    .pdf-fallback-img {
+      max-width: 920px;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Action Download Bar */
+    .alumni-dl-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid #0b6cb8;
+      border-radius: 8px;
+      padding: 16px 22px;
+      box-shadow: var(--shadow-sm);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="alumni-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="alumni-crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="courses.html">Student Corner</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Alumni</span>
+      </nav>
+
+      <!-- Theme Aligned Header Area -->
+      <div class="alumni-header-area">
+        <span class="alumni-badge">🎓 Alumni Association &amp; Statutes</span>
+        <h1 class="alumni-main-title" data-en="Alumni" data-hi="पूर्व छात्र (अलुमनाई)">
+          Alumni
+        </h1>
+        <p style="font-size: 0.96rem; color: var(--tx-secondary); line-height: 1.6; margin: 0; max-width: 880px;">
+          The Central University of South Bihar Alumni Association (पूर्व छात्र परिषद्) connects graduates worldwide to foster collaboration, mentorship, and institutional development.
+        </p>
+      </div>
+
+      <!-- Registration Callout Link -->
+      <div class="alumni-reg-callout">
+        <a href="https://cusb.samarth.edu.in/" target="_blank" rel="noopener noreferrer" class="alumni-reg-link">
+          &lt;&lt;click here for Alumni Registration &gt;&gt;
+        </a>
+      </div>
+
+      <!-- PDF Viewer Frame Container -->
+      <div class="pdf-viewer-frame-container">
+        <div class="pdf-toolbar">
+          <div class="pdf-tool-left">
+            <span style="font-weight: 700;">📄 The Alumni Association Ordinance (Amendments) 2021</span>
+            <span style="background: rgba(255, 255, 255, 0.15); padding: 2px 8px; border-radius: 4px; font-size: 0.78rem;">PDF</span>
+          </div>
+          <div class="pdf-tool-right">
+            <a href="assets/documents/alumni/alumni-association-ordinance-2021.pdf" target="_blank" class="pdf-tool-btn">
+              <span>📥 Download PDF</span>
+            </a>
+            <a href="assets/documents/alumni/alumni-association-ordinance-2021.pdf" target="_blank" class="pdf-tool-btn">
+              <span>⛶ Open Fullscreen ↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Embedded Viewer with Fallback -->
+        <div class="pdf-embed-wrapper">
+          <object data="assets/documents/alumni/alumni-association-ordinance-2021.pdf#toolbar=1&navpanes=0" type="application/pdf" width="100%" height="100%">
+            <div class="pdf-fallback-view">
+              <img src="assets/documents/alumni/alumni-ordinance-2021-cover.png" alt="The Alumni Association Ordinance Amendments 2021 CUSB" class="pdf-fallback-img">
+              <div>
+                <a href="assets/documents/alumni/alumni-association-ordinance-2021.pdf" target="_blank" class="pdf-tool-btn" style="background: #0b6cb8; padding: 10px 22px; font-size: 0.95rem;">
+                  📥 Click here to open/download full PDF document (2 Pages) ↗
+                </a>
+              </div>
+            </div>
+          </object>
+        </div>
+      </div>
+
+      <!-- Action Download Bar -->
+      <div class="alumni-dl-bar">
+        <div>
+          <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--tx-primary); margin: 0 0 4px;">
+            The Alumni Association (पूर्व छात्र परिषद्) Ordinance (Amendments) 2021
+          </h3>
+          <p style="font-size: 0.86rem; color: var(--tx-secondary); margin: 0;">
+            Central University of South Bihar official statutory guidelines and amendments governing alumni association operations.
+          </p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <a href="assets/documents/alumni/alumni-association-ordinance-2021.pdf" target="_blank" class="prog-action-link" style="padding: 8px 18px; font-weight: 700;">
+            Download Official Ordinance PDF ↗
+          </a>
+          <a href="https://cusb.samarth.edu.in/" target="_blank" rel="noopener noreferrer" class="prog-action-link" style="padding: 8px 18px; font-weight: 700; background: #0b6cb8; color: #ffffff;">
+            Alumni Registration Portal ↗
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

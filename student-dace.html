@@ -1,1 +1,312 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DACE - CUSB</title><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/student-subpage.css"></head><body><cusb-ticker></cusb-ticker><cusb-topbar></cusb-topbar><cusb-header></cusb-header><cusb-accessibility-bar></cusb-accessibility-bar><cusb-navbar></cusb-navbar><main class="student-subpage"><div class="container"><article class="student-subpage__card"><span class="section-tag">Student Corner</span><h1>DACE</h1><p>Information will be added here.</p></article></div></main><cusb-footer></cusb-footer><cusb-chatbot></cusb-chatbot><script src="js/components.js" defer></script><script src="js/main.js" defer></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Dr. Ambedkar Centre of Excellence (DACE) — Central University of South Bihar" data-hi="डॉ. अंबेडकर सेंटर ऑफ एक्सीलेंस (डीएसीई) — दक्षिण बिहार केंद्रीय विश्वविद्यालय">DACE — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Dr. Ambedkar Centre of Excellence (DACE) at Central University of South Bihar. Ministry of Social Justice and Empowerment, Government of India.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .dace-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .dace-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .dace-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .dace-crumb a:hover {
+      color: var(--acc-blue);
+    }
+
+    /* 2-Column Layout with Side Menu */
+    .dace-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .dace-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Side Menu */
+    .dace-sidebar {
+      position: sticky;
+      top: 120px;
+    }
+    .dace-menu-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+    .dace-menu-header {
+      background: #00569b;
+      color: #ffffff;
+      padding: 14px 18px;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      line-height: 1.35;
+    }
+    [data-theme="dark"] .dace-menu-header {
+      background: #0284c7;
+    }
+    .dace-menu-list {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+    }
+    .dace-menu-btn {
+      display: block;
+      width: 100%;
+      padding: 12px 16px;
+      background: #0b6cb8;
+      color: #ffffff !important;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(11, 108, 184, 0.25);
+      transition: all 0.2s ease;
+    }
+    .dace-menu-btn:hover {
+      background: #004b9b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(11, 108, 184, 0.35);
+    }
+    .dace-menu-btn.active {
+      background: #004b9b;
+      box-shadow: inset 0 0 0 2px #ffd950;
+    }
+    [data-theme="dark"] .dace-menu-btn {
+      background: #0284c7;
+    }
+    [data-theme="dark"] .dace-menu-btn:hover {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+    [data-theme="dark"] .dace-menu-btn.active {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+
+    /* Main Content Styling */
+    .dace-header-area {
+      margin-bottom: 24px;
+    }
+    .dace-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .dace-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .dace-section-heading {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--tx-primary);
+      margin: 24px 0 10px;
+    }
+    .dace-subheading {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--tx-primary);
+      margin: 0 0 10px;
+    }
+    .dace-body-p {
+      font-size: 0.95rem;
+      color: var(--tx-secondary);
+      line-height: 1.68;
+      margin: 0 0 18px;
+    }
+
+    .dace-objectives-list {
+      list-style: disc;
+      padding-left: 24px;
+      margin: 0 0 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .dace-objectives-list > li {
+      font-size: 0.94rem;
+      color: var(--tx-primary);
+      line-height: 1.6;
+    }
+
+    /* Important Notices Block */
+    .dace-notices-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 24px 0 10px;
+    }
+    [data-theme="dark"] .dace-notices-title {
+      color: #38bdf8;
+    }
+
+    .dace-notices-list {
+      list-style: disc;
+      padding-left: 24px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .dace-notices-list > li {
+      font-size: 0.94rem;
+      color: var(--tx-primary);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="dace-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="dace-crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="courses.html">Student Corner</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">DACE</span>
+      </nav>
+
+      <!-- 2-Column Layout with Side Menu -->
+      <div class="dace-layout">
+        
+        <!-- Left Side Menu (Dr Ambedkar Centre of Excellence) -->
+        <aside class="dace-sidebar" aria-label="DACE Side Navigation">
+          <div class="dace-menu-card">
+            <div class="dace-menu-header">
+              Dr Ambedkar Centre of Excellence (DACE)
+            </div>
+            <ul class="dace-menu-list">
+              <li>
+                <a href="student-dace.html" class="dace-menu-btn active">About Us</a>
+              </li>
+              <li>
+                <a href="student-dace-admission.html" class="dace-menu-btn">Detail Information for Admission</a>
+              </li>
+              <li>
+                <a href="https://cusb.samarth.edu.in" target="_blank" rel="noopener noreferrer" class="dace-menu-btn">Click Here to Apply</a>
+              </li>
+              <li>
+                <a href="student-dace-examination.html" class="dace-menu-btn">DACE: Examination</a>
+              </li>
+              <li>
+                <a href="student-dace-result.html" class="dace-menu-btn">DACE: Result</a>
+              </li>
+              <li>
+                <a href="student-dace-gallery.html" class="dace-menu-btn">DACE: Gallery</a>
+              </li>
+              <li>
+                <a href="student-dace-contacts.html" class="dace-menu-btn">Contact Detail</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Right Main Content Area (Upto Objectives & Notices as shown in reference) -->
+        <div class="dace-main-col">
+
+          <div class="dace-header-area">
+            <h1 class="dace-main-title" data-en="DACE" data-hi="डीएसीई">
+              DACE
+            </h1>
+          </div>
+
+          <!-- Section: About Us -->
+          <div id="about">
+            <h2 class="dace-section-heading">About Us</h2>
+            <h3 class="dace-subheading">Dr. Ambedkar Centre of Excellence (DACE) at Central University of South Bihar</h3>
+            <p class="dace-body-p">
+              The Ministry of Social Justice &amp; Empowerment, Government of India, through the Dr. Ambedkar Foundation (DAF) has approved for setting up "Dr. Ambedkar Centre of Excellence" (DACE) in 30 Central Universities to coach SC candidates in competitive exams by providing the best of coaching facilities.
+            </p>
+          </div>
+
+          <!-- Section: Objectives -->
+          <div id="objectives">
+            <h2 class="dace-section-heading">Objectives</h2>
+            <p class="dace-body-p">
+              The scheme for creating Dr. Ambedkar Chairs in various universities/institutions was for befitting tribute to this illustrious son of India and study the present-day relevance of Babasaheb Dr. Ambedkar, which includes the following objectives:
+            </p>
+            <ul class="dace-objectives-list">
+              <li>To excel in the achievement of quality of services for students of scheduled castes.</li>
+              <li>To create a corpus of aspiring civil servants who can uphold the virtues of liberty, equality, and fraternity.</li>
+              <li>To instill the values of honesty, commitment, and social justice in the enrolled students; and inculcate the culture of serving the nation and the community.</li>
+              <li>To prepare a digital library of the relevant lectures (audio/video) of the covered disciplines for the candidates.</li>
+            </ul>
+          </div>
+
+          <!-- Section: Important Notices -->
+          <div id="notices">
+            <h3 class="dace-notices-title">
+              Important Notices
+            </h3>
+            <ul class="dace-notices-list">
+              <li>
+                <a href="assets/documents/academics/dace-interview-selected-candidates.pdf" target="_blank" class="prog-action-link">
+                  List Of Candidates Provisionally Selected For Interview ↗
+                </a>
+              </li>
+              <li>
+                <a href="assets/documents/academics/dace-recruitment-faculty.pdf" target="_blank" class="prog-action-link">
+                  Recruitment Of Temporary/co-terminus Faculty (DACE) ↗
+                </a>
+              </li>
+              <li>
+                <a href="assets/documents/academics/dace-application-form.pdf" target="_blank" class="prog-action-link">
+                  Application Form ↗
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

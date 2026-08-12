@@ -1,1 +1,497 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Scholarship and Fellowship - CUSB</title><link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/student-subpage.css"></head><body><cusb-ticker></cusb-ticker><cusb-topbar></cusb-topbar><cusb-header></cusb-header><cusb-accessibility-bar></cusb-accessibility-bar><cusb-navbar></cusb-navbar><main class="student-subpage"><div class="container"><article class="student-subpage__card"><span class="section-tag">Student Corner</span><h1>Scholarship and Fellowship</h1><p>Information will be added here.</p></article></div></main><cusb-footer></cusb-footer><cusb-chatbot></cusb-chatbot><script src="js/components.js" defer></script><script src="js/main.js" defer></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="Scholarship and Fellowship — Central University of South Bihar" data-hi="छात्रवृत्ति और फेलोशिप — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Scholarship And Fellowship — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Official Scholarship Schemes, Financial Aid, Merit-cum-Means, Earn While You Learn (EWYL), Attendance Based Merit, Divyang Student aid, and Research Fellowships at CUSB.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .scholarship-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .scholarship-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .scholarship-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .scholarship-crumb a:hover {
+      color: var(--acc-blue);
+    }
+    .scholarship-header-area {
+      margin-bottom: 24px;
+    }
+    .scholarship-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #0b6cb8;
+      background: rgba(11, 108, 184, 0.08);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    [data-theme="dark"] .scholarship-badge {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+    }
+    .scholarship-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .scholarship-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+    .scholarship-lead-desc {
+      font-size: 0.96rem;
+      color: var(--tx-secondary);
+      line-height: 1.6;
+      margin: 0;
+      max-width: 880px;
+    }
+
+    /* Live Search Input */
+    .scholarship-search-wrap {
+      width: 100%;
+      max-width: 520px;
+      margin: 20px 0 28px;
+      position: relative;
+    }
+    .scholarship-search-input {
+      width: 100%;
+      padding: 12px 42px 12px 18px;
+      font-size: 0.92rem;
+      border-radius: 24px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      color: var(--tx-primary);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s ease;
+    }
+    .scholarship-search-input:focus {
+      outline: none;
+      border-color: #0b6cb8;
+      box-shadow: 0 4px 14px rgba(11, 108, 184, 0.15);
+    }
+
+    /* Section Banner Card */
+    .scholarship-section-bar {
+      background: #7a0c0c;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px 8px 0 0;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    [data-theme="dark"] .scholarship-section-bar {
+      background: #881337;
+    }
+
+    /* Scheme Card Block */
+    .scholarship-card-block {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      padding: 22px 24px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
+    }
+
+    .scheme-desc-text {
+      font-size: 0.93rem;
+      color: var(--tx-secondary);
+      line-height: 1.68;
+      margin: 0 0 16px;
+    }
+
+    .scholarship-tree {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .scholarship-tree > li {
+      position: relative;
+      padding-left: 24px;
+      font-size: 0.92rem;
+      color: var(--tx-primary);
+      line-height: 1.6;
+    }
+    .scholarship-tree > li::before {
+      content: '■';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #7a0c0c;
+      font-size: 0.75rem;
+    }
+    [data-theme="dark"] .scholarship-tree > li::before {
+      color: #f43f5e;
+    }
+
+    .scholarship-link {
+      color: #0b6cb8;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+    .scholarship-link:hover {
+      color: #004b9b;
+      text-decoration: underline;
+      transform: translateX(3px);
+    }
+    [data-theme="dark"] .scholarship-link {
+      color: #38bdf8;
+    }
+    [data-theme="dark"] .scholarship-link:hover {
+      color: #7dd3fc;
+    }
+
+    .scholarship-type-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #0369a1;
+      background: rgba(2, 132, 199, 0.08);
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    [data-theme="dark"] .scholarship-type-pill {
+      color: #7dd3fc;
+      background: rgba(56, 189, 248, 0.12);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="scholarship-page-wrapper">
+    <div class="container">
+      
+      <!-- Clean Breadcrumb -->
+      <nav class="scholarship-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="courses.html" data-en="Student Corner" data-hi="छात्र अनुभाग">Student Corner</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Scholarship and Fellowship</span>
+      </nav>
+
+      <!-- Theme Aligned Header Area -->
+      <div class="scholarship-header-area">
+        <span class="scholarship-badge">💰 Student Financial Aid &amp; Fellowships</span>
+        <h1 class="scholarship-main-title" data-en="Scholarship And Fellowship" data-hi="छात्रवृत्ति और फेलोशिप">
+          Scholarship And Fellowship
+        </h1>
+        <h2 style="font-size: 1.3rem; font-weight: 800; color: var(--tx-primary); margin: 0 0 6px;" data-en="Scholarships Scheme" data-hi="छात्रवृत्ति योजनाएं">Scholarships Scheme</h2>
+        <p class="scholarship-lead-desc" data-en="A number of scholarship schemes, as given below, are available for deserving and needy students:" data-hi="योग्य और जरूरतमंद छात्रों के लिए कई छात्रवृत्ति योजनाएं उपलब्ध हैं:">
+          A number of scholarship schemes, as given below, are available for deserving and needy students:
+        </p>
+      </div>
+
+      <!-- Live Search Box -->
+      <div class="scholarship-search-wrap">
+        <input type="search" id="scholarshipSearchInput" class="scholarship-search-input" placeholder="Search scholarship schemes, forms, regulations or circulars..." aria-label="Search scholarships">
+        <span style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: var(--tx-muted);">🔍</span>
+      </div>
+
+      <!-- ════════ SCHEME A: MERIT-CUM-MEANS SCHOLARSHIP ════════ -->
+      <div class="scholarship-section-container" data-section="merit-cum-means">
+        <div class="scholarship-section-bar">
+          <span>🎓</span>
+          <span data-en="A. Merit-Cum-Means Scholarship" data-hi="A. मेरिट-कम-मीन्स छात्रवृत्ति">A. Merit-Cum-Means Scholarship</span>
+        </div>
+        
+        <div class="scholarship-card-block">
+          <p class="scheme-desc-text">
+            The University encourages and supports the meritorious students who are in need of financial assistance to pursue their studies smoothly through Merit-cum-Means Scholarship. The scholarship is awarded in the form of waiver of tuition fee up to 20% of students in each programme.
+          </p>
+          <ul class="scholarship-tree">
+            <li>
+              <a href="assets/documents/academics/regulation-merit-cum-means-scholarship.pdf" target="_blank" class="scholarship-link">
+                Regulation for Merit-cum-Means Scholarship ↗
+              </a>
+              <span class="scholarship-type-pill">Regulation</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/form-merit-cum-means-scholarship.pdf" target="_blank" class="scholarship-link">
+                Application Form for Merit-cum-Means Scholarship ↗
+              </a>
+              <span class="scholarship-type-pill">Application Form</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ════════ SCHEME B: EARN WHILE YOU LEARN SCHEME ════════ -->
+      <div class="scholarship-section-container" data-section="ewyl">
+        <div class="scholarship-section-bar">
+          <span>💼</span>
+          <span data-en="B. Scholarship Under Earn While You Learn Scheme" data-hi="B. अर्न व्हाइल यू लर्न योजना के तहत छात्रवृत्ति">B. Scholarship Under Earn While You Learn Scheme</span>
+        </div>
+        
+        <div class="scholarship-card-block">
+          <p class="scheme-desc-text">
+            EWYL is a unique scheme of the University aimed to encourage and support students to make them self-reliant and also develop better cooperation and leadership skills. Under the scheme, a student with relevant qualification/experience may be assigned a task for a maximum of 10 hours per week. This includes assistance in library, computer lab, laboratory, faculty, centre/department, office, placement section and other specific requirements.
+          </p>
+          <ul class="scholarship-tree">
+            <li>
+              <a href="assets/documents/academics/regulation-earn-while-you-learn.pdf" target="_blank" class="scholarship-link">
+                Regulation for Scholarship under Earn While You Learn_scheme ↗
+              </a>
+              <span class="scholarship-type-pill">Regulation</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/format-earn-while-you-learn.pdf" target="_blank" class="scholarship-link">
+                Formats for Scholarship under Earn While You Learn Scheme ↗
+              </a>
+              <span class="scholarship-type-pill">Format</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ════════ SCHEME C: ATTENDANCE BASED MERIT SCHOLARSHIP ════════ -->
+      <div class="scholarship-section-container" data-section="attendance-merit">
+        <div class="scholarship-section-bar">
+          <span>📅</span>
+          <span data-en="C. Attendance Based Merit Scholarship" data-hi="C. उपस्थिति आधारित मेरिट छात्रवृत्ति">C. Attendance Based Merit Scholarship</span>
+        </div>
+        
+        <div class="scholarship-card-block">
+          <p class="scheme-desc-text">
+            An innovative scheme to increase classroom attendance is available for the students. Students achieving 100% attendance during a semester are provided book(s) of their choice/need or reimbursed up to Rs. 1,000 at once.
+          </p>
+          <ul class="scholarship-tree">
+            <li>
+              <a href="assets/documents/academics/regulation-attendance-merit-scholarship.pdf" target="_blank" class="scholarship-link">
+                Regulation for Attendance Based Merit Scholarship ↗
+              </a>
+              <span class="scholarship-type-pill">Regulation</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/form-attendance-merit-scholarship.pdf" target="_blank" class="scholarship-link">
+                Application Form for Attendance Based Merit Scholarship ↗
+              </a>
+              <span class="scholarship-type-pill">Application Form</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ════════ SCHEME D: COMMON ENTRANCE TEST / SEMESTER TOPPERS MERIT SCHOLARSHIP ════════ -->
+      <div class="scholarship-section-container" data-section="toppers-merit">
+        <div class="scholarship-section-bar">
+          <span>🏆</span>
+          <span data-en="D. Common Entrance Test / Semester Toppers Merit Scholarship" data-hi="D. संयुक्त प्रवेश परीक्षा / सेमेस्टर टॉपर मेरिट छात्रवृत्ति">D. Common Entrance Test / Semester Toppers Merit Scholarship</span>
+        </div>
+        
+        <div class="scholarship-card-block">
+          <p class="scheme-desc-text">
+            The University encourages and supports students having secured 1st Position/Rank in the Entrance Test / Semester Examination.
+          </p>
+          <ul class="scholarship-tree">
+            <li>
+              <a href="assets/documents/academics/cusb-regulation-toppers.pdf" target="_blank" class="scholarship-link">
+                CUSB Regulation ↗
+              </a>
+              <span class="scholarship-type-pill">CUSB Regulation</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/regulation-entrance-semester-topper.pdf" target="_blank" class="scholarship-link">
+                Regulation for Entrance Semester Topper Scholarship ↗
+              </a>
+              <span class="scholarship-type-pill">Regulation</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/form-entrance-semester-topper.pdf" target="_blank" class="scholarship-link">
+                Application form for Entrance Semester Topper Scholarship ↗
+              </a>
+              <span class="scholarship-type-pill">Application Form</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ════════ SCHEME E: SCHOLARSHIP TO DIVYANG STUDENTS ════════ -->
+      <div class="scholarship-section-container" data-section="divyang-scholarship">
+        <div class="scholarship-section-bar">
+          <span>♿</span>
+          <span data-en="E. Scholarship To Divyang Students" data-hi="E. दिव्यांग छात्रों के लिए छात्रवृत्ति">E. Scholarship To Divyang Students</span>
+        </div>
+        
+        <div class="scholarship-card-block">
+          <p class="scheme-desc-text">
+            The University encourages its whole time Divyang students especially those belonging to economically weaker sections of the society to carry on their studies by offering them special financial assistance in the form of scholarship through which they may meet their extra expenses on transport.
+          </p>
+          <ul class="scholarship-tree">
+            <li>
+              <a href="assets/documents/academics/regulation-divyang-scholarship.pdf" target="_blank" class="scholarship-link">
+                Regulation for Scholarship to Divyang Students ↗
+              </a>
+              <span class="scholarship-type-pill">Regulation</span>
+            </li>
+            <li>
+              <a href="assets/documents/academics/form-divyang-scholarship.pdf" target="_blank" class="scholarship-link">
+                Application Form for Scholarship to Divyang Students ↗
+              </a>
+              <span class="scholarship-type-pill">Application Form</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ════════ SCHEME F: AZIM PREMJI SCHOLARSHIP ════════ -->
+      <div class="scholarship-section-container" data-section="azim-premji">
+        <div class="scholarship-section-bar">
+          <span>🌟</span>
+          <span data-en="F. Azim Premji Scholarship" data-hi="F. अज़ीम प्रेमजी छात्रवृत्ति">F. Azim Premji Scholarship</span>
+        </div>
+        
+        <div class="scholarship-card-block">
+          <ul class="scholarship-tree">
+            <li>
+              <a href="assets/documents/academics/azim-premji-scholarship-leaflet.pdf" target="_blank" class="scholarship-link">
+                Azim Premji Scholarship Leaflet ↗
+              </a>
+              <span class="scholarship-type-pill">Information Leaflet</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION: SCHOLARSHIP RELATED OTHER NOTICE ════════ -->
+      <div class="scholarship-section-container" data-section="other-notices">
+        <div class="scholarship-section-bar">
+          <span>📢</span>
+          <span data-en="Scholarship Related Other Notice" data-hi="छात्रवृत्ति से संबंधित अन्य सूचनाएं">Scholarship Related Other Notice</span>
+        </div>
+        
+        <div class="scholarship-card-block">
+          <ul class="scholarship-tree">
+            <li><a href="assets/documents/academics/notif-scholarship-cell-2026.pdf" target="_blank" class="scholarship-link">Constitution of Scholarship Cell dated: 25.02.2026 ↗</a> <span class="scholarship-type-pill">Order</span></li>
+            <li><a href="assets/documents/academics/notice-cucet-toppers-2021.pdf" target="_blank" class="scholarship-link">Notice: Applications invited from eligible students for scholarship (CUSB/Dev./Scholarship/CUCET Toppers 2018/2019/3403 dated 18/12/2021) ↗</a> <span class="scholarship-type-pill">Notice</span></li>
+            <li><a href="assets/documents/academics/notice-cucet-attendance-scholarship.pdf" target="_blank" class="scholarship-link">Notice: CUCET Toppers, Semester topper and Attendance based Scholarship ↗</a> <span class="scholarship-type-pill">Notice</span></li>
+            <li><a href="assets/documents/academics/list-eligible-candidates-scholarship.pdf" target="_blank" class="scholarship-link">List of Eligible Candidates under Various Scholarship Schemes of the University ↗</a> <span class="scholarship-type-pill">List</span></li>
+            <li><a href="assets/documents/academics/notice-interview-scholarship.pdf" target="_blank" class="scholarship-link">Notice: Schedule of Interview regarding Scholarship ↗</a> <span class="scholarship-type-pill">Notice</span></li>
+            <li><a href="assets/documents/academics/notice-regarding-scholarships.pdf" target="_blank" class="scholarship-link">Notice regarding Scholarships ↗</a> <span class="scholarship-type-pill">Notice</span></li>
+            <li><a href="assets/documents/academics/office-order-eligible-scholarship-2019.pdf" target="_blank" class="scholarship-link">Office Order : List of eligible candidates under various Scholarship Schemes of the University (CUSB/Acad (Dev)/8-4/2013/08/2019 dated 03/01/2019) ↗</a> <span class="scholarship-type-pill">Office Order</span></li>
+            <li><a href="assets/documents/academics/notice-semester-topper-attendance-2019.pdf" target="_blank" class="scholarship-link">Notice: Applications are invited from all eligible students for Semester Topper and Attendance Based Merit Scholarship. (CUSB/Dev./Scholarship/205/2019 dated 22/04/2019) ↗</a> <span class="scholarship-type-pill">Notice</span></li>
+            <li><a href="assets/documents/academics/list-eligible-schemes-2019.pdf" target="_blank" class="scholarship-link">List of eligible candidates under various scholarship schemes (Merit-cum-Means Scholarship, Earn while You Learn Scheme and Scholarship for Divyang) Office Order: CUSB/Acad (Dec)/8-4/2013/08/2019 dated 03.01.2019) ↗</a> <span class="scholarship-type-pill">List</span></li>
+            <li><a href="assets/documents/academics/interview-for-scholarships.pdf" target="_blank" class="scholarship-link">Interview for Scholarships ↗</a> <span class="scholarship-type-pill">Notice</span></li>
+            <li><a href="assets/documents/academics/notice-scholarship-2018.pdf" target="_blank" class="scholarship-link">Notice for Scholarship (CUSB/Dev/2050/2018 dated 29/08/2018) ↗</a> <span class="scholarship-type-pill">Notice</span></li>
+            <li><a href="assets/documents/academics/office-order-attendance-merit-2018.pdf" target="_blank" class="scholarship-link">Office Order: Attendance Based Merit Scholarship Regarding (CUSB/Dev/1846/2018 dated 24/07/2018) ↗</a> <span class="scholarship-type-pill">Office Order</span></li>
+            <li><a href="assets/documents/academics/office-order-mcm-ewyl-2018.pdf" target="_blank" class="scholarship-link">Office order (CUSB/Dev/1475 dated 07/06/2018): Merit cum Means Scholarship and Earn While You Learn Scheme ↗</a> <span class="scholarship-type-pill">Office Order</span></li>
+            <li><a href="assets/documents/academics/ncri-summer-internship-circular.pdf" target="_blank" class="scholarship-link">National Council of Rural Institutes: Summer Internship Circular ↗</a> <span class="scholarship-type-pill">Circular</span></li>
+            <li><a href="assets/documents/academics/notice-financial-assistance-2018.pdf" target="_blank" class="scholarship-link">Notice (CUSB/647/2018 dated 13/03/2018): Submission of application for Scholarship / Financial Assistance ↗</a> <span class="scholarship-type-pill">Notice</span></li>
+            <li><a href="assets/documents/academics/notif-ncri-phd-fellowship.pdf" target="_blank" class="scholarship-link">Notification: National Council of Rural Institutes Ph.D Research Fellowship ↗</a> <span class="scholarship-type-pill">Notification</span></li>
+            <li><a href="assets/documents/academics/guidelines-app-ncri-fellowship.pdf" target="_blank" class="scholarship-link">Guidelines and Application for National Council of Rural Institutes Ph.D Research Fellowship ↗</a> <span class="scholarship-type-pill">Guidelines</span></li>
+            <li><a href="assets/documents/academics/notice-aadhar-bank-link-2016.pdf" target="_blank" class="scholarship-link">Notice: Submission of self-attested Aadhar card and Aadhar link Bank Account detail (CUB/Acad/47-1/4462/2016 dated 07/10/2016) ↗</a> <span class="scholarship-type-pill">Notice</span></li>
+            <li><a href="assets/documents/academics/public-notice-aadhar-seeding-ugc.pdf" target="_blank" class="scholarship-link">Public Notice: Aadhar Seeding for Applying Under UGC Scholarships / Fellowships ↗</a> <span class="scholarship-type-pill">Public Notice</span></li>
+            <li><a href="assets/documents/academics/gate-gpat-aicte-portal-steps.pdf" target="_blank" class="scholarship-link">PG (GATE/GPAT) Scholarship - Simple Steps for Students and Institutes for Updating / Uploading Aadhar Card Seeded Bank Details in AICTE Web-portal ↗</a> <span class="scholarship-type-pill">Guide</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ════════ SECTION: CUSB REGULATIONS MONITORING ════════ -->
+      <div class="scholarship-section-container" data-section="monitoring-regulations">
+        <div class="scholarship-section-bar">
+          <span>📜</span>
+          <span data-en="CUSB Regulations Relating to Execution and Monitoring of Scholarship Schemes" data-hi="छात्रवृत्ति योजनाओं के निष्पादन और निगरानी से संबंधित सीयूएसबी विनियम">CUSB Regulations Relating to Execution and Monitoring of Scholarship Schemes</span>
+        </div>
+        
+        <div class="scholarship-card-block">
+          <ul class="scholarship-tree">
+            <li>
+              <a href="assets/documents/academics/cusb-regulations-monitoring-scholarship-schemes-2017.pdf" target="_blank" class="scholarship-link">
+                CUSB Regulations Relating to Execution and monitoring of Scholarship Schemes – 2017 ↗
+              </a>
+              <span class="scholarship-type-pill">Official Regulation (2017)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+  
+  <script>
+    // Live Search Filter for Scholarship Page
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('scholarshipSearchInput');
+      const allSections = document.querySelectorAll('.scholarship-section-container');
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+
+          allSections.forEach(section => {
+            let sectionHasVisibleItem = false;
+            const items = section.querySelectorAll('.scholarship-tree li, .scheme-desc-text');
+
+            items.forEach(el => {
+              const text = el.textContent.toLowerCase();
+              if (!query || text.includes(query)) {
+                if (el.tagName === 'LI') el.style.display = '';
+                sectionHasVisibleItem = true;
+              } else {
+                if (el.tagName === 'LI') el.style.display = 'none';
+              }
+            });
+
+            if (!query || sectionHasVisibleItem) {
+              section.style.display = '';
+            } else {
+              section.style.display = 'none';
+            }
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

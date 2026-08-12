@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="NCC Contact — National Cadet Corps — Central University of South Bihar" data-hi="एनसीसी संपर्क सूत्र — दक्षिण बिहार केंद्रीय विश्वविद्यालय">NCC Contact — Central University of South Bihar</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Contact Details and Programme Coordinator Information of National Cadet Corps (NCC) Unit at Central University of South Bihar.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .ncc-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .ncc-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .ncc-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .ncc-crumb a:hover {
+      color: var(--acc-blue);
+    }
+
+    /* 2-Column Layout with Side Menu */
+    .ncc-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .ncc-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Side Menu */
+    .ncc-sidebar {
+      position: sticky;
+      top: 120px;
+    }
+    .ncc-menu-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+    .ncc-menu-header {
+      background: #00569b;
+      color: #ffffff;
+      padding: 14px 18px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+    [data-theme="dark"] .ncc-menu-header {
+      background: #0284c7;
+    }
+    .ncc-menu-list {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+    }
+    .ncc-menu-btn {
+      display: block;
+      width: 100%;
+      padding: 11px 16px;
+      background: #0b6cb8;
+      color: #ffffff !important;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(11, 108, 184, 0.25);
+      transition: all 0.2s ease;
+      line-height: 1.35;
+    }
+    .ncc-menu-btn:hover {
+      background: #004b9b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(11, 108, 184, 0.35);
+    }
+    .ncc-menu-btn.active {
+      background: #004b9b;
+      box-shadow: inset 0 0 0 2px #ffd950;
+    }
+    [data-theme="dark"] .ncc-menu-btn {
+      background: #0284c7;
+    }
+    [data-theme="dark"] .ncc-menu-btn:hover {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+    [data-theme="dark"] .ncc-menu-btn.active {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+
+    /* Main Content Styling */
+    .ncc-header-area {
+      margin-bottom: 20px;
+    }
+    .ncc-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .ncc-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* Contact Card */
+    .ncc-contact-card {
+      background: var(--bg-primary);
+      border: 1.5px solid var(--border-color);
+      border-radius: 12px;
+      padding: 36px 32px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      max-width: 680px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .coord-img-box {
+      width: 100px;
+      height: 110px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #00569b;
+      margin: 0 auto 18px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+    [data-theme="dark"] .coord-img-box {
+      border-color: #38bdf8;
+    }
+    .coord-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .coord-name-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #00569b;
+      margin: 0 0 6px;
+    }
+    [data-theme="dark"] .coord-name-title {
+      color: #38bdf8;
+    }
+
+    .coord-role {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--tx-primary);
+      margin: 0 0 8px;
+    }
+
+    .coord-address {
+      font-size: 0.95rem;
+      color: var(--tx-secondary);
+      line-height: 1.68;
+      margin: 0 0 24px;
+    }
+
+    .coord-contact-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .contact-item {
+      font-size: 1rem;
+      color: var(--tx-primary);
+    }
+    .contact-item a {
+      color: #0b6cb8;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .contact-item a:hover {
+      text-decoration: underline;
+      color: #004b9b;
+    }
+    [data-theme="dark"] .contact-item a {
+      color: #38bdf8;
+    }
+
+    /* Action buttons */
+    .contact-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn-ncc-call {
+      background: #00569b;
+      color: #ffffff !important;
+    }
+    .btn-ncc-call:hover {
+      background: #004b9b;
+      transform: translateY(-2px);
+    }
+    .btn-ncc-mail {
+      background: #7a0c0c;
+      color: #ffffff !important;
+    }
+    .btn-ncc-mail:hover {
+      background: #5b0909;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="ncc-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="ncc-crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="courses.html">Student Corner</a>
+        <span>/</span>
+        <a href="student-ncc.html">NCC</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Contact Us</span>
+      </nav>
+
+      <!-- 2-Column Layout with Side Menu -->
+      <div class="ncc-layout">
+        
+        <!-- Left Side Menu (NCC) -->
+        <aside class="ncc-sidebar" aria-label="NCC Side Navigation">
+          <div class="ncc-menu-card">
+            <div class="ncc-menu-header">NCC</div>
+            <ul class="ncc-menu-list">
+              <li>
+                <a href="student-ncc.html" class="ncc-menu-btn">About NCC</a>
+              </li>
+              <li>
+                <a href="student-ncc-join.html" class="ncc-menu-btn">Join NCC</a>
+              </li>
+              <li>
+                <a href="student-ncc-activities.html" class="ncc-menu-btn">Activities &amp; Others</a>
+              </li>
+              <li>
+                <a href="student-ncc-members.html" class="ncc-menu-btn">Members</a>
+              </li>
+              <li>
+                <a href="student-ncc-gallery.html" class="ncc-menu-btn">Gallery</a>
+              </li>
+              <li>
+                <a href="student-ncc-contacts.html" class="ncc-menu-btn active">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Right Main Content Area (Verbatim Transcription) -->
+        <div class="ncc-main-col">
+
+          <div class="ncc-header-area">
+            <h1 class="ncc-main-title" data-en="NCC Contact" data-hi="एनसीसी संपर्क सूत्र">
+              NCC Contact
+            </h1>
+          </div>
+
+          <!-- Contact Card -->
+          <div class="ncc-contact-card">
+            <div class="coord-img-box">
+              <img src="assets/images/ncc-members/pragya-gupta.png" alt="Dr. Pragya Gupta - NCC Programme Co-ordinator CUSB" class="coord-img">
+            </div>
+
+            <h2 class="coord-name-title">Dr. Pragya Gupta</h2>
+            <div class="coord-role">NCC, Programme Co-ordinator</div>
+
+            <p class="coord-address">
+              Central University of South Bihar Unit<br>
+              SH-7, Gaya Panchanpur Road<br>
+              Post: Fatehpur, PS: Tekari, Gaya–824236
+            </p>
+
+            <div class="coord-contact-row">
+              <div class="contact-item">
+                <strong>Number:</strong> <a href="tel:06312229000">0631-2229-000</a>
+              </div>
+              <div class="contact-item">
+                <strong>Email ID:</strong> <a href="mailto:ncc@cusb.ac.in">ncc@cusb.ac.in</a>
+              </div>
+            </div>
+
+            <div class="contact-actions">
+              <a href="tel:06312229000" class="contact-btn btn-ncc-call">
+                📞 Call (0631-2229-000)
+              </a>
+              <a href="mailto:ncc@cusb.ac.in" class="contact-btn btn-ncc-mail">
+                ✉️ Email (ncc@cusb.ac.in)
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-en="NSS Gallery — National Service Scheme — Central University of South Bihar" data-hi="एनएसएस गैलरी — दक्षिण बिहार केंद्रीय विश्वविद्यालय">NSS Gallery — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="NSS Photo & Video Gallery at Central University of South Bihar. Community outreach, yoga day, health campaigns, village visits, and university events.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .nss-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+    }
+    .nss-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--tx-muted);
+      margin-bottom: 20px;
+    }
+    .nss-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+    }
+    .nss-crumb a:hover {
+      color: var(--acc-blue);
+    }
+
+    /* 2-Column Layout with Side Menu */
+    .nss-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .nss-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Side Menu */
+    .nss-sidebar {
+      position: sticky;
+      top: 120px;
+    }
+    .nss-menu-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+    .nss-menu-header {
+      background: #00569b;
+      color: #ffffff;
+      padding: 14px 18px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+    [data-theme="dark"] .nss-menu-header {
+      background: #0284c7;
+    }
+    .nss-menu-list {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+    }
+    .nss-menu-btn {
+      display: block;
+      width: 100%;
+      padding: 11px 16px;
+      background: #0b6cb8;
+      color: #ffffff !important;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(11, 108, 184, 0.25);
+      transition: all 0.2s ease;
+      line-height: 1.35;
+    }
+    .nss-menu-btn:hover {
+      background: #004b9b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(11, 108, 184, 0.35);
+    }
+    .nss-menu-btn.active {
+      background: #004b9b;
+      box-shadow: inset 0 0 0 2px #ffd950;
+    }
+    [data-theme="dark"] .nss-menu-btn {
+      background: #0284c7;
+    }
+    [data-theme="dark"] .nss-menu-btn:hover {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+    [data-theme="dark"] .nss-menu-btn.active {
+      background: #38bdf8;
+      color: #0f172a !important;
+    }
+
+    /* Main Content Styling */
+    .nss-header-area {
+      margin-bottom: 20px;
+    }
+    .nss-main-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 10px;
+    }
+    [data-theme="dark"] .nss-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .nss-section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--tx-primary);
+      margin: 24px 0 14px;
+    }
+
+    /* YouTube Video Link Cards */
+    .yt-links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .yt-link-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #0b6cb8 !important;
+      font-weight: 700;
+      font-size: 0.88rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+      word-break: break-all;
+    }
+    .yt-link-card:hover {
+      background: rgba(220, 38, 38, 0.08);
+      border-color: #dc2626;
+      color: #dc2626 !important;
+      transform: translateY(-2px);
+    }
+    .yt-icon {
+      color: #dc2626;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    /* Big Gallery Grid (>=300px) */
+    .gallery-images-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 16px;
+    }
+    .gallery-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      cursor: pointer;
+    }
+    .gallery-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+      border-color: #0b6cb8;
+    }
+    .gallery-img-wrap {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      background: #f1f5f9;
+    }
+    [data-theme="dark"] .gallery-img-wrap {
+      background: #0f172a;
+    }
+    .gallery-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .gallery-card:hover .gallery-img {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+
+  <main id="mainContent" class="nss-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="nss-crumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="courses.html">Student Corner</a>
+        <span>/</span>
+        <a href="student-nss.html">NSS</a>
+        <span>/</span>
+        <span style="color: var(--tx-primary); font-weight: 700;">Gallery</span>
+      </nav>
+
+      <!-- 2-Column Layout with Side Menu -->
+      <div class="nss-layout">
+        
+        <!-- Left Side Menu (NSS) -->
+        <aside class="nss-sidebar" aria-label="NSS Side Navigation">
+          <div class="nss-menu-card">
+            <div class="nss-menu-header">NSS</div>
+            <ul class="nss-menu-list">
+              <li>
+                <a href="student-nss-vbyp.html" class="nss-menu-btn">About VBYP</a>
+              </li>
+              <li>
+                <a href="student-nss.html" class="nss-menu-btn">About Us</a>
+              </li>
+              <li>
+                <a href="student-nss-objectives.html" class="nss-menu-btn">Aim and Objective</a>
+              </li>
+              <li>
+                <a href="student-nss-symbol.html" class="nss-menu-btn">NSS Symbol and Badge</a>
+              </li>
+              <li>
+                <a href="student-nss-join.html" class="nss-menu-btn">Join NSS ( Registration For 2025-26 )</a>
+              </li>
+              <li>
+                <a href="student-nss-programmes.html" class="nss-menu-btn">NSS Programme Classification/ Implementation</a>
+              </li>
+              <li>
+                <a href="student-nss-activities.html" class="nss-menu-btn">Activities &amp; Others</a>
+              </li>
+              <li>
+                <a href="student-nss-members.html" class="nss-menu-btn">Member</a>
+              </li>
+              <li>
+                <a href="student-nss-gallery.html" class="nss-menu-btn active">Gallery</a>
+              </li>
+              <li>
+                <a href="student-nss-contacts.html" class="nss-menu-btn">Contact Details</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Right Main Content Area (Verbatim Transcription) -->
+        <div class="nss-main-col">
+
+          <div class="nss-header-area">
+            <h1 class="nss-main-title" data-en="NSS Gallery" data-hi="एनएसएस गैलरी">
+              NSS Gallery
+            </h1>
+          </div>
+
+          <!-- Section: YouTube -->
+          <h2 class="nss-section-title">YouTube</h2>
+          <div class="yt-links-grid">
+            <a href="https://youtu.be/8jbyELOYIKQ" target="_blank" rel="noopener noreferrer" class="yt-link-card">
+              <span class="yt-icon">▶</span>
+              <span>https://youtu.be/8jbyELOYIKQ ↗</span>
+            </a>
+            <a href="https://youtu.be/RhgdaSO4EdI" target="_blank" rel="noopener noreferrer" class="yt-link-card">
+              <span class="yt-icon">▶</span>
+              <span>https://youtu.be/RhgdaSO4EdI ↗</span>
+            </a>
+            <a href="https://youtu.be/_jI74mXwP1c" target="_blank" rel="noopener noreferrer" class="yt-link-card">
+              <span class="yt-icon">▶</span>
+              <span>https://youtu.be/_jI74mXwP1c ↗</span>
+            </a>
+          </div>
+
+          <!-- Section: Gallery -->
+          <h2 class="nss-section-title">Gallery</h2>
+          <div class="gallery-images-grid">
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-1.png" alt="NSS Event Photo 1" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-2.png" alt="NSS Event Photo 2" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-3.png" alt="NSS Event Photo 3" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-4.png" alt="NSS Event Photo 4" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-5.png" alt="NSS Event Photo 5" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-6.png" alt="NSS Event Photo 6" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-7.png" alt="NSS Event Photo 7" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-8.png" alt="NSS Event Photo 8" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-9.png" alt="NSS Event Photo 9" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-10.png" alt="NSS Event Photo 10" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-11.png" alt="NSS Event Photo 11" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-12.png" alt="NSS Event Photo 12" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-13.png" alt="NSS Event Photo 13" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-14.png" alt="NSS Event Photo 14" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-15.png" alt="NSS Event Photo 15" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-16.png" alt="NSS Event Photo 16" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-17.png" alt="NSS Event Photo 17" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-18.png" alt="NSS Event Photo 18" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-19.png" alt="NSS Event Photo 19" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-20.png" alt="NSS Event Photo 20" class="gallery-img" loading="lazy"></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-img-wrap"><img src="assets/images/nss-gallery/nss-gallery-21.png" alt="NSS Event Photo 21" class="gallery-img" loading="lazy"></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <cusb-chatbot></cusb-chatbot>
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
