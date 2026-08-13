@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="IQAC Audit Report — Central University of South Bihar" data-hi="आईक्यूएसी ऑडिट रिपोर्ट — दक्षिण बिहार केंद्रीय विश्वविद्यालय">IQAC Audit Report — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Official IQAC Audit Reports of Central University of South Bihar (CUSB) covering Administrative, Academic, Laboratory, and Research audits.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .iqac-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .iqac-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .iqac-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .iqac-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .iqac-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 24px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .iqac-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* 2-Column Split Grid */
+    .iqac-layout-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* Left Sidebar Navigation */
+    .iqac-sidebar-box {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+      position: sticky;
+      top: 20px;
+    }
+    [data-theme="dark"] .iqac-sidebar-box {
+      background: #111827;
+      border-color: #1e293b;
+    }
+    .iqac-sidebar-header {
+      background: linear-gradient(135deg, #003a6a, #0b6cb8);
+      color: #ffffff;
+      padding: 12px 16px;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      border-bottom: 2px solid var(--acc-gold, #f59e0b);
+    }
+    [data-theme="dark"] .iqac-sidebar-header {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+    }
+    .iqac-sidebar-list {
+      list-style: none;
+      padding: 10px 12px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .iqac-sidebar-link {
+      display: block;
+      padding: 9px 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #0b6cb8;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      text-align: left;
+      border-left: 4px solid transparent;
+    }
+    .iqac-sidebar-link:hover {
+      background: #004d8c;
+      transform: translateX(3px);
+      color: #ffffff;
+    }
+    .iqac-sidebar-link.active {
+      background: #002244;
+      border-left-color: var(--acc-gold, #f59e0b);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 34, 68, 0.3);
+    }
+    [data-theme="dark"] .iqac-sidebar-link {
+      background: #1e293b;
+      color: #cbd5e1;
+    }
+    [data-theme="dark"] .iqac-sidebar-link:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+    [data-theme="dark"] .iqac-sidebar-link.active {
+      background: rgba(56, 189, 248, 0.18);
+      color: #38bdf8;
+      border-left-color: #38bdf8;
+    }
+
+    /* Main Content Card */
+    .iqac-content-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="dark"] .iqac-content-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Audit Section Block */
+    .audit-category-block {
+      background: var(--bg-primary, #f8fafc);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-left: 4px solid #0b6cb8;
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      transition: all 0.2s ease;
+    }
+    .audit-category-block:hover {
+      border-color: #0b6cb8;
+      box-shadow: 0 4px 14px rgba(0, 58, 106, 0.07);
+    }
+    [data-theme="dark"] .audit-category-block {
+      background: #1e293b;
+      border-color: #334155;
+      border-left-color: #38bdf8;
+    }
+
+    .audit-cat-heading {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #003a6a;
+      margin: 0 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    [data-theme="dark"] .audit-cat-heading {
+      color: #38bdf8;
+    }
+
+    .audit-report-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 12px 18px;
+      transition: all 0.2s ease;
+    }
+    .audit-report-item:hover {
+      border-color: #0b6cb8;
+      transform: translateX(3px);
+    }
+    [data-theme="dark"] .audit-report-item {
+      background: #0f172a;
+      border-color: #334155;
+    }
+
+    .audit-report-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0b6cb8;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    [data-theme="dark"] .audit-report-title {
+      color: #38bdf8;
+    }
+
+    .audit-btn {
+      padding: 6px 14px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #0b6cb8;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s ease;
+    }
+    .audit-btn:hover {
+      background: #003a6a;
+    }
+    [data-theme="dark"] .audit-btn {
+      background: #0284c7;
+    }
+    [data-theme="dark"] .audit-btn:hover {
+      background: #0369a1;
+    }
+
+    @media (max-width: 880px) {
+      .iqac-layout-grid {
+        grid-template-columns: 1fr;
+      }
+      .iqac-content-card {
+        padding: 22px 18px;
+      }
+      .iqac-main-title {
+        font-size: 1.7rem;
+      }
+      .audit-report-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .audit-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
+
+  <main id="mainContent" class="iqac-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="iqac-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="iqac.html" data-en="IQAC Cell" data-hi="आईक्यूएसी सेल">IQAC Cell</a>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="IQAC Audit Report" data-hi="आईक्यूएसी ऑडिट रिपोर्ट">IQAC Audit Report</span>
+      </nav>
+
+      <h1 class="iqac-main-title" data-en="IQAC Audit Report" data-hi="आईक्यूएसी ऑडिट रिपोर्ट">IQAC Audit Report</h1>
+
+      <!-- Split 2-Column Grid -->
+      <div class="iqac-layout-grid">
+        
+        <!-- Left Sidebar Navigation Menu -->
+        <aside class="iqac-sidebar-box">
+          <div class="iqac-sidebar-header" data-en="IQAC" data-hi="आईक्यूएसी">
+            IQAC
+          </div>
+          <ul class="iqac-sidebar-list">
+            <li><a href="iqac.html" class="iqac-sidebar-link" data-en="Home" data-hi="होम">Home</a></li>
+            <li><a href="iqac-naac.html" class="iqac-sidebar-link" data-en="NAAC" data-hi="नैक">NAAC</a></li>
+            <li><a href="iqac-ranking.html" class="iqac-sidebar-link" data-en="Ranking" data-hi="रैंकिंग">Ranking</a></li>
+            <li><a href="iqac.html#about" class="iqac-sidebar-link" data-en="NAAC (Cycle-II)" data-hi="नैक (चक्र-II)">NAAC (Cycle-II)</a></li>
+            <li><a href="iqac-aqar.html" class="iqac-sidebar-link" data-en="AQAR" data-hi="एक्यूएआर">AQAR</a></li>
+            <li><a href="iqac-meetings.html" class="iqac-sidebar-link" data-en="Meetings" data-hi="बैठकें">Meetings</a></li>
+            <li><a href="iqac-report.html" class="iqac-sidebar-link" data-en="IQAC Report" data-hi="आईक्यूएसी रिपोर्ट">IQAC Report</a></li>
+            <li><a href="iqac-audit.html" class="iqac-sidebar-link active" data-en="Audit" data-hi="ऑडिट">Audit</a></li>
+            <li><a href="iqac-feedback.html" class="iqac-sidebar-link" data-en="Feedback" data-hi="प्रतिक्रिया">Feedback</a></li>
+            <li><a href="iqac-contact.html" class="iqac-sidebar-link" data-en="Contact Us" data-hi="संपर्क करें">Contact Us</a></li>
+          </ul>
+        </aside>
+
+        <!-- Right Main Content Area -->
+        <article class="iqac-content-card">
+
+          <!-- 1. Administrative Audit -->
+          <div class="audit-category-block">
+            <h2 class="audit-cat-heading" data-en="Administrative Audit:" data-hi="प्रशासनिक ऑडिट:">
+              Administrative Audit:
+            </h2>
+            <div class="audit-report-item">
+              <div class="audit-report-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                <span data-en="Administrative Audit Report" data-hi="प्रशासनिक ऑडिट रिपोर्ट">Administrative Audit Report</span>
+              </div>
+              <a href="https://www.cusb.ac.in/images/iqac/feedback/admin_audit_report.pdf" target="_blank" rel="noopener noreferrer" class="audit-btn" data-en="View Report" data-hi="रिपोर्ट देखें">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <span>View Report</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 2. Academic Audit -->
+          <div class="audit-category-block">
+            <h2 class="audit-cat-heading" data-en="Academic Audit:" data-hi="शैक्षणिक ऑडिट:">
+              Academic Audit:
+            </h2>
+            <div class="audit-report-item">
+              <div class="audit-report-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                <span data-en="Academic Audit Report" data-hi="शैक्षणिक ऑडिट रिपोर्ट">Academic Audit Report</span>
+              </div>
+              <a href="https://www.cusb.ac.in/images/iqac/feedback/internal_academic_audit_soc_sc_07_schools.pdf" target="_blank" rel="noopener noreferrer" class="audit-btn" data-en="View Report" data-hi="रिपोर्ट देखें">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <span>View Report</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 3. Laboratory Audit -->
+          <div class="audit-category-block">
+            <h2 class="audit-cat-heading" data-en="Laboratory Audit:" data-hi="प्रयोगशाला ऑडिट:">
+              Laboratory Audit:
+            </h2>
+            <div class="audit-report-item">
+              <div class="audit-report-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                <span data-en="Laboratory Audit Report" data-hi="प्रयोगशाला ऑडिट रिपोर्ट">Laboratory Audit Report</span>
+              </div>
+              <a href="https://www.cusb.ac.in/images/iqac/feedback/laboratory_audit.pdf" target="_blank" rel="noopener noreferrer" class="audit-btn" data-en="View Report" data-hi="रिपोर्ट देखें">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <span>View Report</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 4. Research Audit -->
+          <div class="audit-category-block">
+            <h2 class="audit-cat-heading" data-en="Research Audit:" data-hi="अनुसंधान ऑडिट:">
+              Research Audit:
+            </h2>
+            <div class="audit-report-item">
+              <div class="audit-report-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                <span data-en="Research Audit Report" data-hi="अनुसंधान ऑडिट रिपोर्ट">Research Audit Report</span>
+              </div>
+              <a href="https://www.cusb.ac.in/images/iqac/feedback/cusb_research_audit_report_2020_21.pdf" target="_blank" rel="noopener noreferrer" class="audit-btn" data-en="View Report" data-hi="रिपोर्ट देखें">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <span>View Report</span>
+              </a>
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="IQAC Home — Central University of South Bihar" data-hi="आईक्यूएसी मुख्य पृष्ठ — दक्षिण बिहार केंद्रीय विश्वविद्यालय">IQAC Home — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Internal Quality Assurance Cell (IQAC) of Central University of South Bihar (CUSB). Objectives, quality benchmarks, academic excellence, and NAAC quality assurance.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .iqac-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .iqac-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .iqac-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .iqac-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .iqac-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 24px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .iqac-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* 2-Column Split Grid */
+    .iqac-layout-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* Left Sidebar Navigation */
+    .iqac-sidebar-box {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="dark"] .iqac-sidebar-box {
+      background: #111827;
+      border-color: #1e293b;
+    }
+    .iqac-sidebar-header {
+      background: linear-gradient(135deg, #003a6a, #0b6cb8);
+      color: #ffffff;
+      padding: 12px 16px;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      border-bottom: 2px solid var(--acc-gold, #f59e0b);
+    }
+    [data-theme="dark"] .iqac-sidebar-header {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+    }
+    .iqac-sidebar-list {
+      list-style: none;
+      padding: 10px 12px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .iqac-sidebar-link {
+      display: block;
+      padding: 9px 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #0b6cb8;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      text-align: left;
+      border-left: 4px solid transparent;
+    }
+    .iqac-sidebar-link:hover {
+      background: #004d8c;
+      transform: translateX(3px);
+      color: #ffffff;
+    }
+    .iqac-sidebar-link.active {
+      background: #002244;
+      border-left-color: var(--acc-gold, #f59e0b);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 34, 68, 0.3);
+    }
+    [data-theme="dark"] .iqac-sidebar-link {
+      background: #1e293b;
+      color: #cbd5e1;
+    }
+    [data-theme="dark"] .iqac-sidebar-link:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+    [data-theme="dark"] .iqac-sidebar-link.active {
+      background: rgba(56, 189, 248, 0.18);
+      color: #38bdf8;
+      border-left-color: #38bdf8;
+    }
+
+    /* Main Content Card */
+    .iqac-content-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="dark"] .iqac-content-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Top Action Buttons / Tabs */
+    .iqac-top-tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .iqac-tab-btn {
+      flex: 1;
+      min-width: 130px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 0.94rem;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .iqac-tab-btn.active {
+      background: rgba(11, 108, 184, 0.08);
+      color: #0b6cb8;
+      border: 1px solid rgba(11, 108, 184, 0.25);
+    }
+    [data-theme="dark"] .iqac-tab-btn.active {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+    .iqac-tab-btn.primary {
+      background: #0b6cb8;
+      color: #ffffff;
+      border: 1px solid #0b6cb8;
+    }
+    .iqac-tab-btn.primary:hover {
+      background: #004d8c;
+      transform: translateY(-1px);
+    }
+    [data-theme="dark"] .iqac-tab-btn.primary {
+      background: #0284c7;
+      border-color: #0284c7;
+    }
+    [data-theme="dark"] .iqac-tab-btn.primary:hover {
+      background: #0369a1;
+    }
+
+    .iqac-text {
+      font-size: 0.98rem;
+      color: var(--tx-primary, #0f172a);
+      line-height: 1.8;
+      margin-bottom: 18px;
+      text-align: justify;
+    }
+
+    /* Numbered Action Points */
+    .iqac-num-list {
+      margin: 18px 0 24px;
+      padding-left: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 0.96rem;
+      line-height: 1.75;
+      color: var(--tx-primary, #1e293b);
+    }
+    [data-theme="dark"] .iqac-num-list {
+      color: #e2e8f0;
+    }
+
+    /* Pledge / Highlight Card */
+    .iqac-pledge-box {
+      background: linear-gradient(135deg, rgba(11, 108, 184, 0.05), rgba(0, 58, 106, 0.02));
+      border: 1px solid rgba(11, 108, 184, 0.16);
+      border-left: 4px solid #0b6cb8;
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin-top: 24px;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--tx-primary, #0f172a);
+    }
+    [data-theme="dark"] .iqac-pledge-box {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.06), rgba(2, 132, 199, 0.03));
+      border-color: rgba(56, 189, 248, 0.2);
+      border-left-color: #38bdf8;
+      color: #f8fafc;
+    }
+
+    /* Members / Contact Collapsible View */
+    .iqac-section-view {
+      display: none;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color, #e2e8f0);
+    }
+    .iqac-section-view.is-visible {
+      display: block;
+    }
+
+    @media (max-width: 880px) {
+      .iqac-layout-grid {
+        grid-template-columns: 1fr;
+      }
+      .iqac-content-card {
+        padding: 22px 18px;
+      }
+      .iqac-main-title {
+        font-size: 1.7rem;
+      }
+      .iqac-text {
+        font-size: 0.92rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
+
+  <main id="mainContent" class="iqac-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="iqac-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <span data-en="IQAC Cell" data-hi="आईक्यूएसी सेल">IQAC Cell</span>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="IQAC Home" data-hi="आईक्यूएसी मुख्य पृष्ठ">IQAC Home</span>
+      </nav>
+
+      <h1 class="iqac-main-title" data-en="IQAC Home" data-hi="आईक्यूएसी मुख्य पृष्ठ">IQAC Home</h1>
+
+      <!-- Split 2-Column Grid -->
+      <div class="iqac-layout-grid">
+        
+        <!-- Left Sidebar Navigation Menu -->
+        <aside class="iqac-sidebar-box">
+          <div class="iqac-sidebar-header" data-en="IQAC" data-hi="आईक्यूएसी">
+            IQAC
+          </div>
+          <ul class="iqac-sidebar-list">
+            <li><a href="iqac.html" class="iqac-sidebar-link active" data-en="Home" data-hi="होम">Home</a></li>
+            <li><a href="iqac-naac.html" class="iqac-sidebar-link" data-en="NAAC" data-hi="नैक">NAAC</a></li>
+            <li><a href="iqac-ranking.html" class="iqac-sidebar-link" data-en="Ranking" data-hi="रैंकिंग">Ranking</a></li>
+            <li><a href="iqac.html#about" class="iqac-sidebar-link" data-en="NAAC (Cycle-II)" data-hi="नैक (चक्र-II)">NAAC (Cycle-II)</a></li>
+            <li><a href="iqac-aqar.html" class="iqac-sidebar-link" data-en="AQAR" data-hi="एक्यूएआर">AQAR</a></li>
+            <li><a href="iqac-meetings.html" class="iqac-sidebar-link" data-en="Meetings" data-hi="बैठकें">Meetings</a></li>
+            <li><a href="iqac-report.html" class="iqac-sidebar-link" data-en="IQAC Report" data-hi="आईक्यूएसी रिपोर्ट">IQAC Report</a></li>
+            <li><a href="iqac-audit.html" class="iqac-sidebar-link" data-en="Audit" data-hi="ऑडिट">Audit</a></li>
+            <li><a href="iqac-feedback.html" class="iqac-sidebar-link" data-en="Feedback" data-hi="प्रतिक्रिया">Feedback</a></li>
+            <li><a href="iqac-contact.html" class="iqac-sidebar-link" data-en="Contact Us" data-hi="संपर्क करें">Contact Us</a></li>
+          </ul>
+        </aside>
+
+        <!-- Right Main Content Area -->
+        <article class="iqac-content-card">
+
+          <!-- Top Navigation Tabs -->
+          <div class="iqac-top-tabs">
+            <a href="#about" class="iqac-tab-btn active" data-en="About IQAC" data-hi="आईक्यूएसी के बारे में">About IQAC</a>
+            <a href="#members" class="iqac-tab-btn primary" data-en="Members" data-hi="सदस्य">Members</a>
+            <a href="iqac-contact.html" class="iqac-tab-btn primary" data-en="Contact Us" data-hi="संपर्क करें">Contact Us</a>
+          </div>
+
+          <!-- Section: About IQAC Main Text -->
+          <div id="about">
+            <p class="iqac-text" data-en="Education means to draw out. The Central University of South Bihar believes on this philosophy that every individual is capable of becoming anything and achieving any milestone. Education is a means to transform nation, society, family &amp; individuals. To inculcate values in human relations and cherish the nature; the IQAC Cell conduct towards quality of content, updating with scientific and humane temperament and upgrading each unit of nation, society and family." data-hi="शिक्षा का अर्थ अंतर्निहित क्षमताओं को उजागर करना है। दक्षिण बिहार केंद्रीय विश्वविद्यालय इस दर्शन में विश्वास करता है कि प्रत्येक व्यक्ति कुछ भी बनने और किसी भी मील के पत्थर को प्राप्त करने में सक्षम है। शिक्षा राष्ट्र, समाज, परिवार और व्यक्तियों को बदलने का एक साधन है। मानवीय संबंधों में मूल्यों को स्थापित करने और प्रकृति को संजोने के लिए; आईक्यूएसी सेल वैज्ञानिक और मानवीय स्वभाव के साथ सामग्री की गुणवत्ता, अद्यतन करने और राष्ट्र, समाज और परिवार की प्रत्येक इकाई के उन्नयन की दिशा में कार्य करता है।">
+              Education means to draw out. The Central University of South Bihar believes on this philosophy that every individual is capable of becoming anything and achieving any milestone. Education is a means to transform nation, society, family &amp; individuals. To inculcate values in human relations and cherish the nature; the IQAC Cell conduct towards quality of content, updating with scientific and humane temperament and upgrading each unit of nation, society and family.
+            </p>
+
+            <p class="iqac-text" data-en="Higher education system plays a key role in the development of nation, with a great deal of responsibility to cadre a quality education environment for the benefit of society and interns, the nation. Thus, setting up a benchmark for quality standard and practices along with a regular assessment has become an integral part of any institution and/or University. It is to make sure that a sustainable quality benchmark and best practices is being adhere in academic and administrative activity. In this regard, the role played by an Internal Quality Assurance Cell (IQAC) becomes of high importance and crucial. The IQAC cell, here in CUSB is actively working to enable all state holders to eliminate all threats and concerns responsible for restricting their goals to follow. For this a highly motivated and passion filled team has been constituted who, with sincerity and dedication are participating in the consistent and incremental growth of the University. With active participation of all the members, we make concrete steps for the improvement and overall development of the University on NAAC performance and quality scale. Our team is responsible for pipelining of various measures and efforts which has to be taken for" data-hi="उच्च शिक्षा प्रणाली राष्ट्र के विकास में महत्वपूर्ण भूमिका निभाती है, जिसमें समाज और राष्ट्र के लाभ के लिए गुणवत्तापूर्ण शिक्षा वातावरण तैयार करने की बड़ी जिम्मेदारी होती है। इस प्रकार, नियमित मूल्यांकन के साथ गुणवत्ता मानक और प्रथाओं के लिए एक बेंचमार्क स्थापित करना किसी भी संस्थान और/या विश्वविद्यालय का एक अभिन्न अंग बन गया है। यह सुनिश्चित करना है कि शैक्षणिक और प्रशासनिक गतिविधियों में एक स्थायी गुणवत्ता बेंचमार्क और सर्वोत्तम प्रथाओं का पालन किया जा रहा है। इस संबंध में, आंतरिक गुणवत्ता आश्वासन प्रकोष्ठ (आईक्यूएसी) द्वारा निभाई जाने वाली भूमिका अत्यंत महत्वपूर्ण हो जाती है। सीयूएसबी में आईक्यूएसी सेल सभी हितधारकों को उनके लक्ष्यों को प्राप्त करने में बाधा डालने वाले सभी खतरों और चिंताओं को समाप्त करने में सक्षम बनाने के लिए सक्रिय रूप से काम कर रहा है। इसके लिए एक अत्यधिक प्रेरित और समर्पण से भरी टीम का गठन किया गया है जो ईमानदारी और निष्ठा के साथ विश्वविद्यालय के निरंतर और क्रमिक विकास में भाग ले रही है। सभी सदस्यों की सक्रिय भागीदारी के साथ, हम प्रदर्शन और गुणवत्ता पैमाने पर विश्वविद्यालय के सुधार और समग्र विकास के लिए ठोस कदम उठाते हैं।">
+              Higher education system plays a key role in the development of nation, with a great deal of responsibility to cadre a quality education environment for the benefit of society and interns, the nation. Thus, setting up a benchmark for quality standard and practices along with a regular assessment has become an integral part of any institution and/or University. It is to make sure that a sustainable quality benchmark and best practices is being adhere in academic and administrative activity. In this regard, the role played by an Internal Quality Assurance Cell (IQAC) becomes of high importance and crucial. The IQAC cell, here in CUSB is actively working to enable all state holders to eliminate all threats and concerns responsible for restricting their goals to follow. For this a highly motivated and passion filled team has been constituted who, with sincerity and dedication are participating in the consistent and incremental growth of the University. With active participation of all the members, we make concrete steps for the improvement and overall development of the University on NAAC performance and quality scale. Our team is responsible for pipelining of various measures and efforts which has to be taken for:
+            </p>
+
+            <ol class="iqac-num-list">
+              <li data-en="Promoting our University towards achieving academic and research excellence through consistent action plans for improving Academic and Administrative performance benchmarks." data-hi="शैक्षणिक और प्रशासनिक प्रदर्शन बेंचमार्क में सुधार के लिए सुसंगत कार्य योजनाओं के माध्यम से शैक्षणिक और अनुसंधान उत्कृष्टता प्राप्त करने की दिशा में हमारे विश्वविद्यालय को बढ़ावा देना।">
+                Promoting our University towards achieving academic and research excellence through consistent action plans for improving Academic and Administrative performance benchmarks.
+              </li>
+              <li data-en="For facilitating quality enhancement, a planned interventionist strategy required to overcome our deficiencies and make use of our strength in a circumstantial way." data-hi="गुणवत्ता वृद्धि की सुविधा के लिए, हमारी कमियों को दूर करने और परिस्थितियों के अनुसार हमारी ताकत का उपयोग करने के लिए आवश्यक एक सुनियोजित रणनीतिक योजना।">
+                For facilitating quality enhancement, a planned interventionist strategy required to overcome our deficiencies and make use of our strength in a circumstantial way.
+              </li>
+              <li data-en="Promoting best practices and developing a quality culture for incremental development of CUSB." data-hi="सीयूएसबी के क्रमिक विकास के लिए सर्वोत्तम प्रथाओं को बढ़ावा देना और एक गुणवत्ता संस्कृति विकसित करना।">
+                Promoting best practices and developing a quality culture for incremental development of CUSB.
+              </li>
+            </ol>
+
+            <div class="iqac-pledge-box" data-en="We are fortunate to have a great work environment with a bunch full of dedicated, sincere and experienced workforce to play such a role. The IQAC committee is dedicated to adhere to such activity and in turns play a crucial role in the development CUSB with a pledge to achieve an excellence in all the aspects and criterion as per the NAAC guideline." data-hi="हम इस तरह की भूमिका निभाने के लिए समर्पित, ईमानदार और अनुभवी कार्यबल के साथ एक शानदार कार्य वातावरण पाकर भाग्यशाली हैं। आईक्यूएसी समिति ऐसी गतिविधियों का पालन करने के लिए समर्पित है और बदले में दिशानिर्देशों के अनुसार सभी पहलुओं और मानदंडों में उत्कृष्टता प्राप्त करने के संकल्प के साथ सीयूएसबी के विकास में महत्वपूर्ण भूमिका निभाती है।">
+              We are fortunate to have a great work environment with a bunch full of dedicated, sincere and experienced workforce to play such a role. The IQAC committee is dedicated to adhere to such activity and in turns play a crucial role in the development CUSB with a pledge to achieve an excellence in all the aspects and criterion as per the NAAC guideline.
+            </div>
+          </div>
+
+          <!-- Section: Members & Committee -->
+          <div id="members" style="margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--border-color);">
+            <h2 style="font-size: 1.3rem; font-weight: 800; color: #0b6cb8; margin: 0 0 16px;" data-en="IQAC Committee &amp; Key Officials" data-hi="आईक्यूएसी समिति एवं मुख्य अधिकारी">
+              IQAC Committee &amp; Key Officials
+            </h2>
+            <p class="iqac-text" data-en="The IQAC Committee of CUSB is chaired by the Hon'ble Vice-Chancellor and comprises senior faculty members, administrative officers, and external quality experts." data-hi="सीयूएसबी की आईक्यूएसी समिति की अध्यक्षता माननीय कुलपति द्वारा की जाती है और इसमें वरिष्ठ संकाय सदस्य, प्रशासनिक अधिकारी और बाहरी गुणवत्ता विशेषज्ञ शामिल हैं।">
+              The IQAC Committee of CUSB is chaired by the Hon'ble Vice-Chancellor and comprises senior faculty members, administrative officers, and external quality experts.
+            </p>
+          </div>
+
+          <!-- Section: Contact Us -->
+          <div id="contact" style="margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--border-color);">
+            <h2 style="font-size: 1.3rem; font-weight: 800; color: #0b6cb8; margin: 0 0 16px;" data-en="Contact IQAC Cell" data-hi="आईक्यूएसी सेल से संपर्क करें">
+              Contact IQAC Cell
+            </h2>
+            <p class="iqac-text" data-en="Internal Quality Assurance Cell (IQAC), Administrative Building, Central University of South Bihar, SH-7, Gaya Panchanpur Road, Gaya - 824236 (Bihar). Email: iqac@cub.ac.in" data-hi="आंतरिक गुणवत्ता आश्वासन प्रकोष्ठ (आईक्यूएसी), प्रशासनिक भवन, दक्षिण बिहार केंद्रीय विश्वविद्यालय, गया - 824236 (बिहार)। ईमेल: iqac@cub.ac.in">
+              Internal Quality Assurance Cell (IQAC), Administrative Building, Central University of South Bihar, SH-7, Gaya Panchanpur Road, Gaya - 824236 (Bihar).<br>
+              <strong>Email:</strong> <a href="mailto:iqac@cub.ac.in" style="color: #0b6cb8; font-weight: 700;">iqac@cub.ac.in</a> | <strong>Phone:</strong> 0631 - 2229 530
+            </p>
+          </div>
+
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

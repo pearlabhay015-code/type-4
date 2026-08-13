@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="NAAC Accreditation — IQAC Cell — Central University of South Bihar" data-hi="नैक मान्यता — आईक्यूएसी सेल — दक्षिण बिहार केंद्रीय विश्वविद्यालय">NAAC Accreditation — IQAC Cell — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="NAAC Accreditation details, Grade A++ certificate, CGPA 3.58, Peer Team Reports, and Quality Metrics under IQAC Cell at Central University of South Bihar (CUSB).">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .iqac-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .iqac-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .iqac-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .iqac-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .iqac-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 24px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .iqac-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* 2-Column Split Grid */
+    .iqac-layout-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* Left Sidebar Navigation */
+    .iqac-sidebar-box {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="dark"] .iqac-sidebar-box {
+      background: #111827;
+      border-color: #1e293b;
+    }
+    .iqac-sidebar-header {
+      background: linear-gradient(135deg, #003a6a, #0b6cb8);
+      color: #ffffff;
+      padding: 12px 16px;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      border-bottom: 2px solid var(--acc-gold, #f59e0b);
+    }
+    [data-theme="dark"] .iqac-sidebar-header {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+    }
+    .iqac-sidebar-list {
+      list-style: none;
+      padding: 10px 12px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .iqac-sidebar-link {
+      display: block;
+      padding: 9px 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #0b6cb8;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      text-align: left;
+      border-left: 4px solid transparent;
+    }
+    .iqac-sidebar-link:hover {
+      background: #004d8c;
+      transform: translateX(3px);
+      color: #ffffff;
+    }
+    .iqac-sidebar-link.active {
+      background: #002244;
+      border-left-color: var(--acc-gold, #f59e0b);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 34, 68, 0.3);
+    }
+    [data-theme="dark"] .iqac-sidebar-link {
+      background: #1e293b;
+      color: #cbd5e1;
+    }
+    [data-theme="dark"] .iqac-sidebar-link:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+    [data-theme="dark"] .iqac-sidebar-link.active {
+      background: rgba(56, 189, 248, 0.18);
+      color: #38bdf8;
+      border-left-color: #38bdf8;
+    }
+
+    /* Main Content Card */
+    .iqac-content-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="dark"] .iqac-content-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    /* NAAC Badge Banner */
+    .naac-hero-badge {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 24px 28px;
+      background: linear-gradient(135deg, rgba(0, 58, 106, 0.05), rgba(11, 108, 184, 0.08));
+      border: 1px solid rgba(11, 108, 184, 0.2);
+      border-radius: 12px;
+      margin-bottom: 28px;
+    }
+    [data-theme="dark"] .naac-hero-badge {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(2, 132, 199, 0.04));
+      border-color: rgba(56, 189, 248, 0.25);
+    }
+    .naac-badge-info h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #003a6a;
+      margin: 0 0 6px;
+    }
+    [data-theme="dark"] .naac-badge-info h2 {
+      color: #38bdf8;
+    }
+    .naac-badge-info p {
+      font-size: 0.95rem;
+      color: var(--tx-secondary, #475569);
+      margin: 0;
+      line-height: 1.6;
+    }
+    .naac-logo-img {
+      max-height: 90px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.08));
+    }
+
+    /* Key Metric Chips */
+    .naac-metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .naac-metric-card {
+      background: var(--bg-primary, #f8fafc);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 10px;
+      padding: 18px 20px;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .naac-metric-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 58, 106, 0.08);
+      border-color: #0b6cb8;
+    }
+    [data-theme="dark"] .naac-metric-card {
+      background: #1e293b;
+      border-color: #334155;
+    }
+    .naac-metric-val {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #0b6cb8;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    [data-theme="dark"] .naac-metric-val {
+      color: #38bdf8;
+    }
+    .naac-metric-label {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--tx-secondary, #64748b);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* Documents / Reports Table */
+    .naac-doc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .naac-doc-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 18px;
+      background: var(--bg-primary, #f8fafc);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+    .naac-doc-item:hover {
+      border-color: #0b6cb8;
+      background: rgba(11, 108, 184, 0.03);
+    }
+    [data-theme="dark"] .naac-doc-item {
+      background: #1e293b;
+      border-color: #334155;
+    }
+    .naac-doc-title {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--tx-primary, #0f172a);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .naac-doc-btn {
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #0b6cb8;
+      border-radius: 5px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s ease;
+    }
+    .naac-doc-btn:hover {
+      background: #003a6a;
+    }
+
+    @media (max-width: 880px) {
+      .iqac-layout-grid {
+        grid-template-columns: 1fr;
+      }
+      .naac-hero-badge {
+        flex-direction: column;
+        text-align: center;
+      }
+      .iqac-content-card {
+        padding: 22px 18px;
+      }
+      .iqac-main-title {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
+
+  <main id="mainContent" class="iqac-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="iqac-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="iqac.html" data-en="IQAC Cell" data-hi="आईक्यूएसी सेल">IQAC Cell</a>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="NAAC Accreditation" data-hi="नैक मान्यता">NAAC Accreditation</span>
+      </nav>
+
+      <h1 class="iqac-main-title" data-en="NAAC Accreditation" data-hi="नैक मान्यता">NAAC Accreditation</h1>
+
+      <!-- Split 2-Column Grid -->
+      <div class="iqac-layout-grid">
+        
+        <!-- Left Sidebar Navigation Menu -->
+        <aside class="iqac-sidebar-box">
+          <div class="iqac-sidebar-header" data-en="IQAC" data-hi="आईक्यूएसी">
+            IQAC
+          </div>
+          <ul class="iqac-sidebar-list">
+            <li><a href="iqac.html" class="iqac-sidebar-link" data-en="Home" data-hi="होम">Home</a></li>
+            <li><a href="iqac-naac.html" class="iqac-sidebar-link active" data-en="NAAC" data-hi="नैक">NAAC</a></li>
+            <li><a href="iqac-ranking.html" class="iqac-sidebar-link" data-en="Ranking" data-hi="रैंकिंग">Ranking</a></li>
+            <li><a href="iqac.html#about" class="iqac-sidebar-link" data-en="NAAC (Cycle-II)" data-hi="नैक (चक्र-II)">NAAC (Cycle-II)</a></li>
+            <li><a href="iqac-aqar.html" class="iqac-sidebar-link" data-en="AQAR" data-hi="एक्यूएआर">AQAR</a></li>
+            <li><a href="iqac-meetings.html" class="iqac-sidebar-link" data-en="Meetings" data-hi="बैठकें">Meetings</a></li>
+            <li><a href="iqac-report.html" class="iqac-sidebar-link" data-en="IQAC Report" data-hi="आईक्यूएसी रिपोर्ट">IQAC Report</a></li>
+            <li><a href="iqac-audit.html" class="iqac-sidebar-link" data-en="Audit" data-hi="ऑडिट">Audit</a></li>
+            <li><a href="iqac-feedback.html" class="iqac-sidebar-link" data-en="Feedback" data-hi="प्रतिक्रिया">Feedback</a></li>
+            <li><a href="iqac-contact.html" class="iqac-sidebar-link" data-en="Contact Us" data-hi="संपर्क करें">Contact Us</a></li>
+          </ul>
+        </aside>
+
+        <!-- Right Main Content Area -->
+        <article class="iqac-content-card">
+
+          <!-- NAAC Hero Badge Banner -->
+          <div class="naac-hero-badge">
+            <div class="naac-badge-info">
+              <h2 data-en="Accredited Grade 'A++' with CGPA 3.58" data-hi="'A++' ग्रेड और 3.58 सीजीपीए के साथ मान्यता प्राप्त">'A++' Grade Accreditation with CGPA 3.58</h2>
+              <p data-en="Central University of South Bihar has been awarded the prestigious NAAC A++ accreditation (Cycle-1) by the National Assessment and Accreditation Council (UGC)." data-hi="दक्षिण बिहार केंद्रीय विश्वविद्यालय को राष्ट्रीय मूल्यांकन एवं प्रत्यायन परिषद (यूजीसी) द्वारा प्रतिष्ठित नैक A++ मान्यता (चक्र-1) से सम्मानित किया गया है।">
+                Central University of South Bihar has achieved the highest standard of academic, pedagogical, and administrative excellence, accredited with Grade <strong>A++</strong> (CGPA 3.58 on a 4-point scale) by the National Assessment and Accreditation Council (NAAC).
+              </p>
+            </div>
+            <img src="assets/NAAC.png" alt="NAAC A++ Accreditation Logo" class="naac-logo-img">
+          </div>
+
+          <!-- Key Metrics -->
+          <div class="naac-metric-grid">
+            <div class="naac-metric-card">
+              <div class="naac-metric-val">A++</div>
+              <div class="naac-metric-label" data-en="NAAC Grade" data-hi="नैक ग्रेड">NAAC Grade</div>
+            </div>
+            <div class="naac-metric-card">
+              <div class="naac-metric-val">3.58</div>
+              <div class="naac-metric-label" data-en="CGPA (4.0 Scale)" data-hi="सीजीपीए (4.0 पैमाना)">CGPA (4.0 Scale)</div>
+            </div>
+            <div class="naac-metric-card">
+              <div class="naac-metric-val">Cycle 1</div>
+              <div class="naac-metric-label" data-en="Accreditation Cycle" data-hi="मान्यता चक्र">Accreditation Cycle</div>
+            </div>
+          </div>
+
+          <!-- Overview & Quality Framework -->
+          <h2 style="font-size: 1.25rem; font-weight: 800; color: #003a6a; margin: 28px 0 14px;" data-en="Quality Framework &amp; Seven Assessment Criteria" data-hi="गुणवत्ता ढांचा एवं सात मूल्यांकन मानदंड">
+            Quality Framework &amp; Seven Assessment Criteria
+          </h2>
+          <p style="font-size: 0.96rem; line-height: 1.75; color: var(--tx-primary, #0f172a); margin-bottom: 20px; text-align: justify;" data-en="The assessment process by NAAC evaluates institutions across seven rigorous criteria: Curricular Aspects, Teaching-Learning and Evaluation, Research and Innovations, Infrastructure and Learning Resources, Student Support and Progression, Governance and Leadership, and Institutional Values and Best Practices." data-hi="नैक द्वारा मूल्यांकन प्रक्रिया सात कठोर मानदंडों पर संस्थानों का मूल्यांकन करती है: पाठ्यचर्या पहलू, शिक्षण-अधिगम और मूल्यांकन, अनुसंधान और नवाचार, बुनियादी ढांचा और शिक्षण संसाधन, छात्र सहायता और प्रगति, शासन और नेतृत्व, और संस्थागत मूल्य और सर्वोत्तम प्रथाएं।">
+            The assessment process by NAAC evaluates institutions across seven rigorous criteria: Curricular Aspects, Teaching-Learning and Evaluation, Research and Innovations, Infrastructure and Learning Resources, Student Support and Progression, Governance and Leadership, and Institutional Values and Best Practices. The IQAC cell coordinates all continuous internal quality mechanisms ensuring ongoing enhancement across each criterion.
+          </p>
+
+          <!-- Key NAAC Documents & Certificates -->
+          <h2 style="font-size: 1.25rem; font-weight: 800; color: #003a6a; margin: 28px 0 14px;" data-en="Official NAAC Documents &amp; Reports" data-hi="आधिकारिक नैक दस्तावेज एवं रिपोर्ट">
+            Official NAAC Documents &amp; Reports
+          </h2>
+          <div class="naac-doc-list">
+            <div class="naac-doc-item">
+              <div class="naac-doc-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b6cb8" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <span data-en="NAAC Certificate of Accreditation (Grade A++)" data-hi="नैक प्रत्यायन प्रमाण पत्र (ग्रेड A++)">NAAC Certificate of Accreditation (Grade A++)</span>
+              </div>
+              <a href="assets/NAAC.png" target="_blank" class="naac-doc-btn" data-en="View Certificate" data-hi="प्रमाण पत्र देखें">View Certificate</a>
+            </div>
+
+            <div class="naac-doc-item">
+              <div class="naac-doc-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b6cb8" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <span data-en="NAAC Peer Team Report (Cycle-1)" data-hi="नैक पीयर टीम रिपोर्ट (चक्र-1)">NAAC Peer Team Report (Cycle-1)</span>
+              </div>
+              <a href="iqac.html" class="naac-doc-btn" data-en="View Report" data-hi="रिपोर्ट देखें">View Report</a>
+            </div>
+
+            <div class="naac-doc-item">
+              <div class="naac-doc-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b6cb8" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <span data-en="Institutional Self-Study Report (SSR)" data-hi="संस्थागत स्व-अध्ययन रिपोर्ट (एसएसआर)">Institutional Self-Study Report (SSR)</span>
+              </div>
+              <a href="iqac.html" class="naac-doc-btn" data-en="View SSR" data-hi="एसएसआर देखें">View SSR</a>
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

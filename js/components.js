@@ -224,9 +224,9 @@ class CusbTopbar extends HTMLElement {
         <div class="topbar-actions">
           <a href="https://rtionline.gov.in/" target="_blank" rel="noopener noreferrer" data-en="RTI" data-hi="सूचना का अधिकार (RTI)">RTI</a>
           <span class="topbar-divider">|</span>
-          <a href="#" data-en="Disclosure" data-hi="प्रकटीकरण">Disclosure</a>
+          <a href="https://www.cusb.ac.in/index.php?Itemid=101&amp;catid=16&amp;id=732&amp;option=com_content&amp;view=article" target="_blank" rel="noopener noreferrer" data-en="Disclosure" data-hi="प्रकटीकरण">Disclosure</a>
           <span class="topbar-divider">|</span>
-          <a href="#" data-en="Feedback" data-hi="प्रतिक्रिया">Feedback</a>
+          <a href="mailto:webmaster@cusb.ac.in" data-en="Feedback" data-hi="प्रतिक्रिया">Feedback</a>
           <span class="topbar-divider">|</span>
           <a href="admin.html" data-en="Admin Login" data-hi="एडमिन लॉगिन" class="topbar-icon-text">${iconSvg('admin-key')}<span data-en="Admin Login" data-hi="एडमिन लॉगिन">Admin Login</span></a>
         </div>
@@ -404,7 +404,7 @@ class CusbNavbar extends HTMLElement {
                   <ul class="megamenu-list">
                     <li class="megamenu-item"><a href="about.html"><span class="megamenu-icon">🏛️</span><span data-en="Overview & History" data-hi="अवलोकन एवं इतिहास">Overview & History</span></a></li>
                     <li class="megamenu-item"><a href="about.html#vision"><span class="megamenu-icon">👁️</span><span data-en="Vision & Mission" data-hi="दृष्टिकोण और लक्ष्य">Vision & Mission</span></a></li>
-                    <li class="megamenu-item"><a href="about.html#accreditation"><span class="megamenu-icon">📜</span><span data-en="Accreditations & NAAC" data-hi="मान्यता और नैक">Accreditations & NAAC</span></a></li>
+                    <li class="megamenu-item"><a href="about.html#acts"><span class="megamenu-icon">📜</span><span data-en="Acts & Statutes" data-hi="अधिनियम और संविधियां">Acts & Statutes</span></a></li>
                   </ul>
                 </div>
                 <div class="megamenu-column">
@@ -708,7 +708,7 @@ class CusbNavbar extends HTMLElement {
     if (navMenu) {
       navMenu.insertAdjacentHTML('beforeend', `
         <li class="navbar-item" data-menu="infrastructure">
-          <a href="javascript:void(0)" class="navbar-link"><span data-en="Infrastructure" data-hi="बुनियादी ढांचा">Infrastructure</span></a>
+          <a href="facilities.html" class="navbar-link"><span data-en="Infrastructure" data-hi="बुनियादी ढांचा">Infrastructure</span></a>
           <div class="megamenu" id="infrastructureMegamenu" role="region" aria-label="Infrastructure Links">
             <div class="megamenu-column">
               <div class="megamenu-heading" data-en="PHYSICAL INFRA" data-hi="भौतिक अवसंरचना">PHYSICAL INFRA</div>
@@ -735,7 +735,7 @@ class CusbNavbar extends HTMLElement {
               <div class="megamenu-heading" data-en="SECURITY SYSTEM" data-hi="सुरक्षा प्रणाली">SECURITY SYSTEM</div>
               <ul class="megamenu-list">
                 <li class="megamenu-item"><a href="security-system.html"><span data-en="Integrated Security System" data-hi="एकीकृत सुरक्षा प्रणाली">Integrated Security System</span></a></li>
-                <li class="megamenu-item"><a href="biometric-attendance.html"><span data-en="Biometric Attendance" data-hi="बायोमेट्रिक उपस्थिति">Biometric Attendance</span></a></li>
+                <li class="megamenu-item"><a href="https://www.cusb.ac.in/index.php?Itemid=224&amp;id=109&amp;option=com_content&amp;view=article" target="_blank" rel="noopener noreferrer"><span data-en="Biometric Attendance" data-hi="बायोमेट्रिक उपस्थिति">Biometric Attendance</span></a></li>
               </ul>
             </div>
             <div class="megamenu-column">
@@ -743,7 +743,7 @@ class CusbNavbar extends HTMLElement {
               <ul class="megamenu-list">
                 <li class="megamenu-item"><a href="engineering-wing.html"><span data-en="Engineering Wing" data-hi="इंजीनियरिंग विंग">Engineering Wing</span></a></li>
                 <li class="megamenu-item"><a href="lightning-network.html"><span data-en="Lightning Location Network" data-hi="तड़ित स्थान नेटवर्क">Lightning Location Network</span></a></li>
-                <li class="megamenu-item"><a href="day-care-centre.html"><span data-en="Day Care Centre" data-hi="डे केयर सेंटर">Day Care Centre</span></a></li>
+                <li class="megamenu-item"><a href="https://www.cusb.ac.in/index.php?Itemid=227&amp;id=112&amp;option=com_content&amp;view=article" target="_blank" rel="noopener noreferrer"><span data-en="Day Care Centre" data-hi="डे केयर सेंटर">Day Care Centre</span></a></li>
                 <li class="megamenu-item"><a href="bank-atm.html"><span data-en="Bank/ATM" data-hi="बैंक/एटीएम">Bank/ATM</span></a></li>
                 <li class="megamenu-item"><a href="dhanvantari-vatika.html"><span data-en="Dhanvantari Arogya Vatika" data-hi="धन्वंतरि आरोग्य वाटिका">Dhanvantari Arogya Vatika</span></a></li>
               </ul>
@@ -988,7 +988,7 @@ class CusbQuickActions extends HTMLElement {
           <a href="https://cuet.samarth.ac.in/" target="_blank" class="qa-card">
             <span class="qa-ico">📝</span><span data-en="Apply Now" data-hi="अभी आवेदन करें">Apply Now</span>
           </a>
-          <a href="#" class="qa-card">
+          <a href="student-semester-results.html" class="qa-card">
             <span class="qa-ico">🏆</span><span data-en="Check Results" data-hi="परिणाम देखें">Check Results</span>
           </a>
           <a href="https://cusb.samarth.edu.in/index.php/site/login" target="_blank" class="qa-card">
@@ -1195,17 +1195,15 @@ class CusbSidebar extends HTMLElement {
         <ul class="sidebar-menu-list">
           <li><a href="tenders.html" class="sidebar-link"><span class="sidebar-icon-box icon-emerald">${iconSvg('shield')}</span><span data-en="Active Tenders" data-hi="सक्रिय निविदाएं">Active Tenders</span></a></li>
           <li><a href="https://www.antiragging.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-rose">${iconSvg('lock')}</span><span data-en="Anti-Ragging Cell" data-hi="रैगिंग रोधी">Anti-Ragging Cell</span></a></li>
-          <li><a href="news-events.html?type=events" class="sidebar-link"><span class="sidebar-icon-box icon-purple">${iconSvg('graduation')}</span><span data-en="Convocation" data-hi="दीक्षांत समारोह">Convocation</span></a></li>
+          <li><a href="student-convocation.html" class="sidebar-link"><span class="sidebar-icon-box icon-purple">${iconSvg('graduation')}</span><span data-en="Convocation" data-hi="दीक्षांत समारोह">Convocation</span></a></li>
           <li><a href="https://webmail.cusb.ac.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-blue">${iconSvg('globe')}</span><span data-en="CUSB Webmail" data-hi="वेबमेल">CUSB Webmail</span></a></li>
           <li><a href="downloads.html" class="sidebar-link"><span class="sidebar-icon-box icon-indigo">${iconSvg('download')}</span><span data-en="Download Center" data-hi="डाउनलोड केंद्र">Download Center</span></a></li>
           <li><a href="student-semester-results.html" class="sidebar-link"><span class="sidebar-icon-box icon-fuchsia">${iconSvg('graduation')}</span><span data-en="Exams & Grades" data-hi="परीक्षाएं">Exams & Grades</span></a></li>
           <li><a href="enquiry.html" class="sidebar-link"><span class="sidebar-icon-box icon-amber">${iconSvg('phone')}</span><span data-en="Help Desk & Enquiry" data-hi="सहायता डेस्क">Help Desk & Enquiry</span></a></li>
           <li><a href="hostel.html" class="sidebar-link"><span class="sidebar-icon-box icon-orange">${iconSvg('home')}</span><span data-en="Hostels & Housing" data-hi="छात्रावास">Hostels & Housing</span></a></li>
-          <li><a href="about.html#iqac" class="sidebar-link"><span class="sidebar-icon-box icon-teal">${iconSvg('building')}</span><span data-en="IQAC Cell" data-hi="आईक्यूएसी सेल">IQAC Cell</span></a></li>
+          <li><a href="iqac.html" class="sidebar-link"><span class="sidebar-icon-box icon-teal">${iconSvg('building')}</span><span data-en="IQAC Cell" data-hi="आईक्यूएसी सेल">IQAC Cell</span></a></li>
           <li><a href="careers.html" class="sidebar-link"><span class="sidebar-icon-box icon-green">${iconSvg('briefcase')}</span><span data-en="Job Openings" data-hi="भर्ती / नौकरियां">Job Openings</span></a></li>
-          <li><a href="about.html#accreditation" class="sidebar-link"><span class="sidebar-icon-box icon-blue">${iconSvg('file')}</span><span data-en="NAAC Accreditation" data-hi="नेक मान्यता">NAAC Accreditation</span></a></li>
-          <li><a href="about.html#nirf" class="sidebar-link"><span class="sidebar-icon-box icon-violet">${iconSvg('chart')}</span><span data-en="NIRF Cell" data-hi="एनआईआरएफ सेल">NIRF Cell</span></a></li>
-          <li><a href="leaders.html" class="sidebar-link"><span class="sidebar-icon-box icon-amber">${iconSvg('briefcase')}</span><span data-en="Officers & Deans" data-hi="अधिकारी">Officers & Deans</span></a></li>
+          <li><a href="admin-dean-head.html" class="sidebar-link"><span class="sidebar-icon-box icon-amber">${iconSvg('briefcase')}</span><span data-en="Officers & Deans" data-hi="अधिकारी एवं डीन">Officers & Deans</span></a></li>
           <li><a href="about.html" class="sidebar-link"><span class="sidebar-icon-box icon-crimson">${iconSvg('file')}</span><span data-en="Prospectus 2026" data-hi="विवरणिका 2026">Prospectus 2026</span></a></li>
           <li><a href="pyq.html" class="sidebar-link"><span class="sidebar-icon-box icon-purple">${iconSvg('file')}</span><span data-en="PYQ Portal" data-hi="पुराने पेपर">PYQ Portal</span></a></li>
           <li><a href="https://rtionline.gov.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-cyan">${iconSvg('globe')}</span><span data-en="RTI Online Portal" data-hi="आरटीआई ऑनलाइन">RTI Online Portal</span></a></li>
@@ -1217,11 +1215,11 @@ class CusbSidebar extends HTMLElement {
       </aside>
     `;
     const priorityLinks = [
-      'leaders.html', 'about.html#iqac', 'about.html#accreditation', 'about.html#nirf',
+      'admin-dean-head.html', 'iqac.html',
       'tenders.html', 'careers.html', 'https://webmail.cusb.ac.in/', 'https://cusb.samarth.ac.in/',
       'https://cusb.samarth.edu.in/', 'student-semester-results.html', 'hostel.html', 'enquiry.html',
-      'https://scholarships.gov.in/', 'downloads.html', 'courses.html', 'about.html',
-      'https://www.antiragging.in/', 'https://rtionline.gov.in/', 'news-events.html?type=events', 'pyq.html'
+      'https://scholarships.gov.in/', 'downloads.html', 'courses.html', 'student-prospectus.html',
+      'https://www.antiragging.in/', 'https://rtionline.gov.in/', 'student-convocation.html', 'pyq.html'
     ];
     const menu = this.querySelector('.sidebar-menu-list');
     if (menu) {

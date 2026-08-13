@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="IQAC Report — Central University of South Bihar" data-hi="आईक्यूएसी रिपोर्ट — दक्षिण बिहार केंद्रीय विश्वविद्यालय">IQAC Report — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Comprehensive IQAC Report of Central University of South Bihar (CUSB) detailing Academic Updations, Research & Development, Outreach, Infrastructure, Library ILMS, and Gender Sensitization.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .iqac-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .iqac-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .iqac-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .iqac-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .iqac-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 24px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .iqac-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* 2-Column Split Grid */
+    .iqac-layout-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* Left Sidebar Navigation */
+    .iqac-sidebar-box {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+      position: sticky;
+      top: 20px;
+    }
+    [data-theme="dark"] .iqac-sidebar-box {
+      background: #111827;
+      border-color: #1e293b;
+    }
+    .iqac-sidebar-header {
+      background: linear-gradient(135deg, #003a6a, #0b6cb8);
+      color: #ffffff;
+      padding: 12px 16px;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      border-bottom: 2px solid var(--acc-gold, #f59e0b);
+    }
+    [data-theme="dark"] .iqac-sidebar-header {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+    }
+    .iqac-sidebar-list {
+      list-style: none;
+      padding: 10px 12px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .iqac-sidebar-link {
+      display: block;
+      padding: 9px 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #0b6cb8;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      text-align: left;
+      border-left: 4px solid transparent;
+    }
+    .iqac-sidebar-link:hover {
+      background: #004d8c;
+      transform: translateX(3px);
+      color: #ffffff;
+    }
+    .iqac-sidebar-link.active {
+      background: #002244;
+      border-left-color: var(--acc-gold, #f59e0b);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 34, 68, 0.3);
+    }
+    [data-theme="dark"] .iqac-sidebar-link {
+      background: #1e293b;
+      color: #cbd5e1;
+    }
+    [data-theme="dark"] .iqac-sidebar-link:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+    [data-theme="dark"] .iqac-sidebar-link.active {
+      background: rgba(56, 189, 248, 0.18);
+      color: #38bdf8;
+      border-left-color: #38bdf8;
+    }
+
+    /* Main Content Card */
+    .iqac-content-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="dark"] .iqac-content-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Section Subheaders */
+    .report-sec-head {
+      font-size: 1.28rem;
+      font-weight: 800;
+      color: #003a6a;
+      margin: 36px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid rgba(11, 108, 184, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    [data-theme="dark"] .report-sec-head {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.2);
+    }
+
+    .report-p {
+      font-size: 0.96rem;
+      color: var(--tx-primary, #0f172a);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+    .report-list {
+      margin: 12px 0 20px;
+      padding-left: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.94rem;
+      line-height: 1.7;
+      color: var(--tx-primary, #1e293b);
+    }
+    [data-theme="dark"] .report-list {
+      color: #e2e8f0;
+    }
+
+    .report-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      background: rgba(11, 108, 184, 0.1);
+      color: #0b6cb8;
+      margin: 6px 0;
+    }
+    [data-theme="dark"] .report-badge {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+    }
+
+    .report-highlight-box {
+      background: var(--bg-primary, #f8fafc);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-left: 4px solid #0b6cb8;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 0.94rem;
+      line-height: 1.75;
+    }
+    [data-theme="dark"] .report-highlight-box {
+      background: #1e293b;
+      border-color: #334155;
+      border-left-color: #38bdf8;
+    }
+
+    /* Jump Bar */
+    .report-jump-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+      padding: 12px;
+      background: var(--bg-primary, #f8fafc);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 8px;
+    }
+    [data-theme="dark"] .report-jump-bar {
+      background: #1e293b;
+      border-color: #334155;
+    }
+    .report-jump-link {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #0b6cb8;
+      background: #ffffff;
+      padding: 5px 12px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .report-jump-link:hover {
+      background: #0b6cb8;
+      color: #ffffff;
+      border-color: #0b6cb8;
+    }
+    [data-theme="dark"] .report-jump-link {
+      background: #0f172a;
+      border-color: #334155;
+      color: #38bdf8;
+    }
+    [data-theme="dark"] .report-jump-link:hover {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+
+    @media (max-width: 880px) {
+      .iqac-layout-grid {
+        grid-template-columns: 1fr;
+      }
+      .iqac-content-card {
+        padding: 22px 18px;
+      }
+      .iqac-main-title {
+        font-size: 1.7rem;
+      }
+      .iqac-sidebar-box {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
+
+  <main id="mainContent" class="iqac-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="iqac-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="iqac.html" data-en="IQAC Cell" data-hi="आईक्यूएसी सेल">IQAC Cell</a>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="IQAC Report" data-hi="आईक्यूएसी रिपोर्ट">IQAC Report</span>
+      </nav>
+
+      <h1 class="iqac-main-title" data-en="IQAC Report" data-hi="आईक्यूएसी रिपोर्ट">IQAC Report</h1>
+
+      <!-- Split 2-Column Grid -->
+      <div class="iqac-layout-grid">
+        
+        <!-- Left Sidebar Navigation Menu -->
+        <aside class="iqac-sidebar-box">
+          <div class="iqac-sidebar-header" data-en="IQAC" data-hi="आईक्यूएसी">
+            IQAC
+          </div>
+          <ul class="iqac-sidebar-list">
+            <li><a href="iqac.html" class="iqac-sidebar-link" data-en="Home" data-hi="होम">Home</a></li>
+            <li><a href="iqac-naac.html" class="iqac-sidebar-link" data-en="NAAC" data-hi="नैक">NAAC</a></li>
+            <li><a href="iqac-ranking.html" class="iqac-sidebar-link" data-en="Ranking" data-hi="रैंकिंग">Ranking</a></li>
+            <li><a href="iqac.html#about" class="iqac-sidebar-link" data-en="NAAC (Cycle-II)" data-hi="नैक (चक्र-II)">NAAC (Cycle-II)</a></li>
+            <li><a href="iqac-aqar.html" class="iqac-sidebar-link" data-en="AQAR" data-hi="एक्यूएआर">AQAR</a></li>
+            <li><a href="iqac-meetings.html" class="iqac-sidebar-link" data-en="Meetings" data-hi="बैठकें">Meetings</a></li>
+            <li><a href="iqac-report.html" class="iqac-sidebar-link active" data-en="IQAC Report" data-hi="आईक्यूएसी रिपोर्ट">IQAC Report</a></li>
+            <li><a href="iqac-audit.html" class="iqac-sidebar-link" data-en="Audit" data-hi="ऑडिट">Audit</a></li>
+            <li><a href="iqac-feedback.html" class="iqac-sidebar-link" data-en="Feedback" data-hi="प्रतिक्रिया">Feedback</a></li>
+            <li><a href="iqac-contact.html" class="iqac-sidebar-link" data-en="Contact Us" data-hi="संपर्क करें">Contact Us</a></li>
+          </ul>
+        </aside>
+
+        <!-- Right Main Content Area -->
+        <article class="iqac-content-card">
+
+          <!-- Jump Links Bar -->
+          <nav class="report-jump-bar" aria-label="Section shortcuts">
+            <a href="#academic" class="report-jump-link">Academic Updation</a>
+            <a href="#rdc" class="report-jump-link">Research &amp; Innovation</a>
+            <a href="#consultancy" class="report-jump-link">Consultancy &amp; Outreach</a>
+            <a href="#extension" class="report-jump-link">Extension Activities</a>
+            <a href="#infra" class="report-jump-link">Infrastructure &amp; Facilities</a>
+            <a href="#sports" class="report-jump-link">Sports &amp; Games</a>
+            <a href="#yoga" class="report-jump-link">Yoga &amp; Culture</a>
+            <a href="#library" class="report-jump-link">Library ILMS</a>
+            <a href="#gender" class="report-jump-link">Gender Sensitization &amp; Safety</a>
+          </nav>
+
+          <!-- Introductory Narrative -->
+          <p class="report-p">
+            CUSB has established an Internal Quality Assurance Cell (IQAC), as per UGC Guidelines, to implement quality improvement strategies, incorporate self and external evaluation, quality promotion/ sustenance/awareness initiatives. The IQAC was set up in the year 2015; since then, it has taken numerous steps for assessing and enhancing the quality of teaching, learning, research and governance at the University level. IQAC has been proactively engaged in planning and execution of the various academic, administrative measures adopted in its periodic meetings for an overall development of the University. The members took note of the 14 points raised in its recommendations by the Peer Team for the 1st Cycle of NAAC Accreditation. It was resolved that the IQAC shall take initiative to maintain the momentum achieved during the 1st cycle of NAAC Accreditation process and evolve positive strategies for achieving better results during the 2nd Cycle Re-accreditation process. Ideas and inputs for further qualitative improvement based on the same should be obtained from each member of IQAC and a Task Force was formed to discuss and evolve measures for achieving each parameter before the next visit of the NAAC.
+          </p>
+
+          <p class="report-p" style="font-weight: 700; color: #003a6a;">
+            The major qualitative achievement can be enumerated as follows:
+          </p>
+
+          <!-- 1. Academic Updation -->
+          <h2 id="academic" class="report-sec-head">1. Academic Updation</h2>
+          <p class="report-p">
+            IQAC has been steadfast in its resolve to make CUSB as one of the fastest growing central universities and its aspirations to become a top tier university globally. In pursuit of this the curriculum of CUSB is aligned with the vision, mission and objectives of the university as given in the ordinance published in Gazette notification. As such, academic programmes have been redesigned according to the National Education Policy 2020 to make the higher education more meaningful.
+          </p>
+          <p class="report-p">
+            The university is committed to improving its teaching, learning and research capabilities further by modifying the syllabus of the offered courses to create a pool of highly skilled workforce capable of dealing holistically with the local, national and global challenges of an ever-changing society.
+          </p>
+          <p class="report-p">
+            The syllabus of offered courses clearly defines the learning objectives and outcomes. The teaching pedagogy and the assessment/ evaluation patterns are accordingly designed and aligned for these courses to fulfill the requirements of these courses in terms of the learning objectives and outcomes. Each programme is defined in terms of credits that reflects the quantum of syllabus and the number of hours of teaching per week. All the programmes have been cast in an interdisciplinary choice based credit system framework. The courses are designed, developed and frequently revised in the light of stakeholder feedback analysis by the departmental committees. Curricula are designed to give an in-depth theoretical and applied knowledge with an empowerment-oriented approach with well-defined Programme Outcomes (POs), Course Outcomes (COs) and contemporary relevance. The multi-disciplinary approach offers an optional basket of courses. The curriculum is designed/regularly updated keeping in view the needs of the various stakeholders involved which include:
+          </p>
+          <ul class="report-list">
+            <li>Aligning the curriculum with the requirements of relevant statutory, regulatory and accreditation bodies like UGC, CSIR, AICTE, NCTE, Pharmacy Council of India, Bar Council of India, etc.</li>
+            <li>Demand of the industry through trend analysis of market demand in new and existing areas</li>
+            <li>Feedback from students, alumni, employees, faculty etc.</li>
+            <li>Suggestion from the members of Board of Studies, and informal feedback from academia and industry</li>
+            <li>Benchmarking with reputed universities – both nationally and internationally.</li>
+            <li>Writing pad has been provided to each and every teacher for academic use including online classes.</li>
+          </ul>
+
+          <!-- 2. Research & Innovation -->
+          <h2 id="rdc" class="report-sec-head">2. Research and Development Cell &amp; Innovative Practices</h2>
+          <p class="report-p">
+            RDC has been established with a vision to promote innovative and interactive cross-cutting research Centers focusing on market demand and making connect with societal needs. The CUSB has a commitment towards making itself an intensively research oriented institution of higher learning. In order to enrich the ecosystem of research and innovation it has been prodding the departments to constantly work towards strengthening the areas of collaboration with industries, universities and scientific institutions of eminence both in the country and abroad. There is a mechanism for continuous upgradation for research infrastructure for which state of the art equipment are procured and arrangements are also made for augmentation of technical expertise of the faculty and exposure to the students to the advanced research practices. The Central Instrumentation Facility (CIF) comprising a range of high end instruments for pushing the frontiers of research in science and technology has been set up in the University to facilitate faculty, research scholars and students to carry out globally competitive research in basic and applied sciences.
+          </p>
+          <p class="report-p">
+            New laboratories such as drug manufacturing lab, nuclear lab, condensed matter lab, plant, animal and mammalian tissue culture labs, animal house, green house and poly house have been added to the emerging areas of testing, characterization and manufacturing. All the labs are open to the students conducting research so as to provide them with the maximum exposure to the laboratory testing and characterization methodologies.
+          </p>
+          <p class="report-p">
+            At the initiative of IQAC the institution has developed a structured guideline for research and its promotion in consonance with the research policy document which includes policies for research ethics and plagiarism to ensure that quality standards are maintained. Frequent workshops on research methodology, talks on updated research techniques, in case of delay in receiving project grants, institution facilitates faculty member by providing funds to initiate the research projects. The University has a well-defined policy to incentivize and encourage the intensive researcher by way of providing seed money, best research paper award, commendation letter, publication in the University newsletter and the website. The policy documents covering all these provisions are listed as follows:
+          </p>
+          <ul class="report-list">
+            <li>Handbook of Project Manual</li>
+            <li>Seed Money Grant Policy for research and development</li>
+            <li>SOP of Central Instrumentation Facility (CIF)</li>
+          </ul>
+
+          <div class="report-highlight-box">
+            <strong>Key Research Highlights:</strong>
+            <ul style="margin: 6px 0 0; padding-left: 20px;">
+              <li><strong>Percentage of departments with UGC-SAP, CAS, DST-FIST, DBT, ICSSR and other recognitions stands at 25%.</strong></li>
+              <li><strong>Incubation Center &amp; IIC:</strong> Established Institution's Innovation Council (IIC) to nurture young minds, transforming ideas into functional prototypes and hosting expert entrepreneurship sessions.</li>
+              <li><strong>Innovation Pedagogy:</strong> Completed Workshop cum Training under Pandit Madan Mohan Malaviya National Mission on Teachers and Teaching (PMMMNMTT), Ministry of Education, incubating several startups.</li>
+              <li><strong>Societal Knowledge Creation:</strong> Active projects under Center for Community Knowledge, Center for Early Child Development, and Oral History Project.</li>
+              <li><strong>Intellectual Property Rights:</strong> CUSB IPR Policy (2020) and active IPR Cell for patenting and knowledge management.</li>
+            </ul>
+          </div>
+
+          <!-- 3. Consultancy and Outreach -->
+          <h2 id="consultancy" class="report-sec-head">3. Consultancy and Outreach</h2>
+          <p class="report-p">
+            At CUSB, consultancy is seen as a service to the community and to the industry as well as an outreach activity of the institution. The University has framed a policy for ensuring consultancy for revenue sharing between institution and the individuals for the purpose of generating revenue. The consultancy and related activities have been carried out by the faculty in the departments of Statistics, Life Science, Environmental Science, Biotechnology, Mass Communication and Media. Faculty, research scientists and post-doctoral scholars at the University are constantly encouraged to expand and fortify the research profile of the University and to widen and expand current knowledge and experience. In doing so, the goal is to imbibe best practices and engage with external organizations for exchange of knowledge.
+          </p>
+
+          <!-- 4. Extension Activities -->
+          <h2 id="extension" class="report-sec-head">4. Extension Activities</h2>
+          <p class="report-p">
+            Extension activities organized by the University to develop the enlightened citizenship of a knowledge society for peace and prosperity of individuals, nation and the world are as follows:
+          </p>
+          <ul class="report-list">
+            <li>Unnat Bharat Abhiyaan</li>
+            <li>Legal Aid Clinic</li>
+            <li>Pro-BONO Club</li>
+            <li>Blood Donation Camp</li>
+            <li>Smile Group</li>
+            <li>Study Circle</li>
+            <li>Nukkad Natak for sensitizing villagers</li>
+            <li>Clothes donation by students for the community</li>
+            <li>CUSB rendered support to the flood affected people of Bihar (30th August, 2017)</li>
+            <li>CUSB adopted 05 Villages of Gaya</li>
+            <li>Development Studies students spent six days with rural people under 'Rural Immersion Programme' (Feb. 7th – 12th, 2018)</li>
+          </ul>
+
+          <!-- 5. Infrastructure and Facilities -->
+          <h2 id="infra" class="report-sec-head">5. Infrastructure and Facilities</h2>
+          <p class="report-p">
+            For imparting holistic teaching/learning experience to the students, adequate number of state of art classrooms, laboratories and seminar halls are provided in the respective departments. For online teaching learning processes, interactive classroom environment with appropriate technological gadgets have been deployed. Classrooms are equipped with interactive smart board with Wifi connectivity.
+          </p>
+          <p class="report-p">
+            The University has developed a dedicated facility of "MOOCs Studio" for online learning resource development. Media centre and studio also has latest equipment for development and use of audio visual materials. In line with the requirement of various courses offered in the University the respective departments have well equipped laboratories for conducting routine academic activities and also furthering research and advanced studies. For example, Moot Court of the Department of Law &amp; Governance, Studio and Media Centre of Department of Mass Communication and Media, XRD and STM in the department of Physics, Central Instrumentation Facility etc. Separate rooms for research scholars, equipped with modern facilities, are available for each department in order to facilitate their research work smoothly.
+          </p>
+          <p class="report-p">
+            <strong>Fast Wi-Fi internet and intranet facilities</strong> have been put in place across the campus to offer students, teachers and the supporting staff a seamless surfing experience. Erudite and motivated faculty members put in unremitting effort to create an ideal teaching learning environment, enabling access to videos and online courses. A common user facility in form of Vivekanand Lecture Complex is readily available to all the faculties/departments for organizing seminars, lectures, symposia, conferences, workshops. The University offers a rich and variegated coursewares for programmes in different streams / disciplines.
+          </p>
+          <p class="report-p">
+            With a view to providing a satisfying browsing experience various dedicated computer lab, with <strong>5:1 Student computer ratio</strong>, have been established in each building. The installed computers are equipped with the latest technology with sophisticated and state of the art operating systems and software, annually updated, for the purposeful use of students. Additional funds are allocated to the Departments for unhindered upgradation/maintenance/repairs of the teaching/research facilities.
+          </p>
+          <p class="report-p">
+            The campus has two hostels with a housing capacity of 500 for the boys and 300 for girls with modern amenities cater to their accommodation needs. The contiguous location of the hostels helps students access labs, library consultations at their convenience. A playground with a basket of indoor/outdoor sports facilities is available and is maintained for the development of physical, mental and social health of students.
+          </p>
+          <p class="report-p">
+            Green transportation facilities are made available for the students. To commute within the sprawling campus, bicycles are parked at strategic location for use by teachers, students and staff of the University.
+          </p>
+
+          <!-- 6. Sports & Games -->
+          <h2 id="sports" class="report-sec-head">6. Sports &amp; Games</h2>
+          <p class="report-p">
+            The University has strong belief in the slogan <em>"Khelega Bharat, Khilega Bharat"</em> (<strong>खेलेगा भारत, खिलेगा भारत</strong>). The university has provided adequate infrastructure for outdoor &amp; indoor sports activities. The play grounds are well laid out along with the creation of facilities for the indoor games on the campus. The open area playground, named <strong>Milkha Singh Sports Complex</strong> consists of multiple features:
+          </p>
+          <ul class="report-list">
+            <li>Athletics track of 400 meters</li>
+            <li>Two Basketball courts (one synthetic and another hard)</li>
+            <li>One cricket ground</li>
+            <li>Football ground</li>
+            <li>Hockey ground</li>
+            <li>Handball ground</li>
+            <li>One Kabaddi Court &amp; Kho Kho Court</li>
+            <li>Two volleyball courts (one of which is synthetic)</li>
+            <li>Changing Rooms and Washrooms separately for Boys and Girls</li>
+            <li>High mast Light for Day/Night matches</li>
+            <li>Games and Sports Equipment Store &amp; Viewers Gallery</li>
+            <li>Stage for prize distribution ceremony &amp; First Aid Facility</li>
+          </ul>
+          <p class="report-p" style="font-weight: 700; margin-top: 10px;">
+            Indoor Sports Facilities:
+          </p>
+          <ul class="report-list">
+            <li>Five Badminton Courts in Hostels: three in the Boys' and two in the Girls' hostel</li>
+            <li>Four Table-tennis courts: two in the Boys', one in the Girls' hostel and one in the Department of Physical Education at Malviya Bhawan</li>
+            <li>The gymnasium in Malviya Bhawan with modern equipment for workout</li>
+          </ul>
+
+          <!-- 7. Yoga & Cultural Activities -->
+          <h2 id="yoga" class="report-sec-head">7. Yoga, Meditation &amp; Cultural Facilities</h2>
+          <p class="report-p">
+            For the holistic development of the human personality and to provide stress free learning environment, the Yoga Hall accommodates 50 participants in Malviya Bhawan, alongside a unique meditation centre inside the Stupa.
+          </p>
+          <p class="report-p">
+            For cultural activities, Vivekananda Hall (250 seating capacity) and Open Air Theatres (approx. 400 seating capacity) host regular plays, musical programmes, and skits. The Cultural Committee and CUSB Heritage Club nurture creative talent and celebrate Indian cultural heritage.
+          </p>
+
+          <!-- 8. Library ILMS -->
+          <h2 id="library" class="report-sec-head">8. ILMS in the Library</h2>
+          <p class="report-p">
+            The University has installed Library automation service <strong>KOHA Integrated Library Management System (ILMS)</strong> with RFID integration throughout the whole library. KOHA and RFID facility support biometric registration allowing users to self-issue books and check their account details using KIOSK system. Gate antennas act as anti-theft checkpoints, and books can be returned 24x7 via the smart Dropbox facility. Web OPAC is accessible on every campus terminal, with daily average library footfall of <strong>964 users</strong>.
+          </p>
+          <p class="report-p">
+            The library provides <strong>MyLOFT Remote Access</strong> for 24x7 off-campus access to E-resources on smartphones, tablets, and laptops. Subscriptions include over 7,000 online e-journals through eSS INFLIBNET, National Digital Library, e-PG Pathshala, SCC Online Platinum Plus, Hein Online Academic Core, AIR Online, ISID, World E-Book Library, South Asia Archive, Manupatra, and JSTOR.
+          </p>
+
+          <!-- 9. Gender Sensitization & Safety -->
+          <h2 id="gender" class="report-sec-head">9. Gender Sensitization, Safety and Security</h2>
+          <p class="report-p">
+            CUSB ensures a secure, inclusive, and empowering environment across the campus through active initiatives:
+          </p>
+          <ul class="report-list">
+            <li>Constitution of Internal Complaint Committee under SPARSH to address and sensitize gender-related issues.</li>
+            <li>Trained women security guards equipped with walkie-talkies deputed in girl's hostels for round-the-clock safety.</li>
+            <li>Women's Empowerment Programmes conducted by ICC in association with Bihar Police.</li>
+            <li>Self-defence training programme for adolescent girls in association with Royal Commonwealth Society for the Blind (Sightsavers India).</li>
+            <li>Installation of sanitary napkin vending machines in girl's hostels.</li>
+            <li>Implementation of Gender Champion programme of Government of India.</li>
+            <li>Sensitization and awareness programmes on women and nutrition ("Poshan Maah") under NNM of GoI.</li>
+            <li>24x7 full CCTV surveillance across campus premises and common areas.</li>
+            <li>Female medical staff in dispensary &amp; female faculty in Proctorial Board.</li>
+            <li>Awareness campaigns on menstrual hygiene in neighbouring schools.</li>
+            <li><strong>Students' Counselling and Well-being Centre</strong> for psychotherapeutic support.</li>
+            <li>Mentor-mentee system functioning in every department.</li>
+            <li>Induction programs at the start of every academic semester.</li>
+            <li>Grievance Redressal Cell to resolve student issues promptly.</li>
+            <li>Dedicated reading rooms and common rooms in each academic building and girls' hostels.</li>
+            <li>Day Care Centre for the wards of university employees and students.</li>
+          </ul>
+
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

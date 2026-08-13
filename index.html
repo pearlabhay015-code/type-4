@@ -417,7 +417,7 @@
       }, new Map());
 
       schoolGrid.innerHTML = Array.from(schoolMap.entries()).map(([school, schoolDepartments], index) => `
-        <article class="program-school-card" style="--card-index:${index % 4}">
+        <article class="program-school-card">
           <button class="program-school-heading" type="button" aria-expanded="false">
             <span class="program-select-icon"><svg class="svg-icon" viewBox="0 0 24 24"><use href="#icon-building"></use></svg></span>
             <div>

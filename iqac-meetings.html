@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="Minutes Of IQAC Meetings — Central University of South Bihar" data-hi="आईक्यूएसी बैठकों का कार्यवृत्त — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Minutes Of IQAC Meetings — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Official minutes of the 1st through 26th Internal Quality Assurance Cell (IQAC) meetings of Central University of South Bihar (CUSB).">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .iqac-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .iqac-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .iqac-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .iqac-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .iqac-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 24px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .iqac-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* 2-Column Split Grid */
+    .iqac-layout-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* Left Sidebar Navigation */
+    .iqac-sidebar-box {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="dark"] .iqac-sidebar-box {
+      background: #111827;
+      border-color: #1e293b;
+    }
+    .iqac-sidebar-header {
+      background: linear-gradient(135deg, #003a6a, #0b6cb8);
+      color: #ffffff;
+      padding: 12px 16px;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      border-bottom: 2px solid var(--acc-gold, #f59e0b);
+    }
+    [data-theme="dark"] .iqac-sidebar-header {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+    }
+    .iqac-sidebar-list {
+      list-style: none;
+      padding: 10px 12px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .iqac-sidebar-link {
+      display: block;
+      padding: 9px 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #0b6cb8;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      text-align: left;
+      border-left: 4px solid transparent;
+    }
+    .iqac-sidebar-link:hover {
+      background: #004d8c;
+      transform: translateX(3px);
+      color: #ffffff;
+    }
+    .iqac-sidebar-link.active {
+      background: #002244;
+      border-left-color: var(--acc-gold, #f59e0b);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 34, 68, 0.3);
+    }
+    [data-theme="dark"] .iqac-sidebar-link {
+      background: #1e293b;
+      color: #cbd5e1;
+    }
+    [data-theme="dark"] .iqac-sidebar-link:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+    [data-theme="dark"] .iqac-sidebar-link.active {
+      background: rgba(56, 189, 248, 0.18);
+      color: #38bdf8;
+      border-left-color: #38bdf8;
+    }
+
+    /* Main Content Card */
+    .iqac-content-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="dark"] .iqac-content-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .meetings-intro {
+      font-size: 0.96rem;
+      color: var(--tx-secondary, #475569);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    /* 4-Column Meetings Grid */
+    .meetings-table-container {
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .meetings-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      width: 100%;
+    }
+    .meeting-cell {
+      padding: 16px 12px;
+      text-align: center;
+      border-right: 1px solid var(--border-color, #e2e8f0);
+      border-bottom: 1px solid var(--border-color, #e2e8f0);
+      background: #ffffff;
+      transition: all 0.2s ease;
+    }
+    .meeting-cell:nth-child(8n+1),
+    .meeting-cell:nth-child(8n+2),
+    .meeting-cell:nth-child(8n+3),
+    .meeting-cell:nth-child(8n+4) {
+      background: #f8fafc;
+    }
+    .meeting-cell:nth-child(4n) {
+      border-right: none;
+    }
+    .meeting-cell.empty {
+      background: #f1f5f9;
+    }
+    [data-theme="dark"] .meeting-cell {
+      background: #111827;
+      border-color: #1e293b;
+    }
+    [data-theme="dark"] .meeting-cell:nth-child(8n+1),
+    [data-theme="dark"] .meeting-cell:nth-child(8n+2),
+    [data-theme="dark"] .meeting-cell:nth-child(8n+3),
+    [data-theme="dark"] .meeting-cell:nth-child(8n+4) {
+      background: #1e293b;
+    }
+    [data-theme="dark"] .meeting-cell.empty {
+      background: #0f172a;
+    }
+
+    .meeting-link {
+      color: #0b6cb8;
+      font-weight: 800;
+      font-size: 1.05rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 6px 16px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    .meeting-link:hover {
+      background: #0b6cb8;
+      color: #ffffff;
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(11, 108, 184, 0.2);
+    }
+    [data-theme="dark"] .meeting-link {
+      color: #38bdf8;
+    }
+    [data-theme="dark"] .meeting-link:hover {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+
+    @media (max-width: 880px) {
+      .iqac-layout-grid {
+        grid-template-columns: 1fr;
+      }
+      .iqac-content-card {
+        padding: 22px 18px;
+      }
+      .iqac-main-title {
+        font-size: 1.7rem;
+      }
+      .meetings-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .meeting-cell:nth-child(4n) {
+        border-right: 1px solid var(--border-color, #e2e8f0);
+      }
+      .meeting-cell:nth-child(2n) {
+        border-right: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
+
+  <main id="mainContent" class="iqac-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="iqac-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="iqac.html" data-en="IQAC Cell" data-hi="आईक्यूएसी सेल">IQAC Cell</a>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="Minutes Of IQAC Meetings" data-hi="आईक्यूएसी बैठकों का कार्यवृत्त">Minutes Of IQAC Meetings</span>
+      </nav>
+
+      <h1 class="iqac-main-title" data-en="Minutes Of IQAC Meetings" data-hi="आईक्यूएसी बैठकों का कार्यवृत्त">Minutes Of IQAC Meetings</h1>
+
+      <!-- Split 2-Column Grid -->
+      <div class="iqac-layout-grid">
+        
+        <!-- Left Sidebar Navigation Menu -->
+        <aside class="iqac-sidebar-box">
+          <div class="iqac-sidebar-header" data-en="IQAC" data-hi="आईक्यूएसी">
+            IQAC
+          </div>
+          <ul class="iqac-sidebar-list">
+            <li><a href="iqac.html" class="iqac-sidebar-link" data-en="Home" data-hi="होम">Home</a></li>
+            <li><a href="iqac-naac.html" class="iqac-sidebar-link" data-en="NAAC" data-hi="नैक">NAAC</a></li>
+            <li><a href="iqac-ranking.html" class="iqac-sidebar-link" data-en="Ranking" data-hi="रैंकिंग">Ranking</a></li>
+            <li><a href="iqac.html#about" class="iqac-sidebar-link" data-en="NAAC (Cycle-II)" data-hi="नैक (चक्र-II)">NAAC (Cycle-II)</a></li>
+            <li><a href="iqac-aqar.html" class="iqac-sidebar-link" data-en="AQAR" data-hi="एक्यूएआर">AQAR</a></li>
+            <li><a href="iqac-meetings.html" class="iqac-sidebar-link active" data-en="Meetings" data-hi="बैठकें">Meetings</a></li>
+            <li><a href="iqac-report.html" class="iqac-sidebar-link" data-en="IQAC Report" data-hi="आईक्यूएसी रिपोर्ट">IQAC Report</a></li>
+            <li><a href="iqac-audit.html" class="iqac-sidebar-link" data-en="Audit" data-hi="ऑडिट">Audit</a></li>
+            <li><a href="iqac-feedback.html" class="iqac-sidebar-link" data-en="Feedback" data-hi="प्रतिक्रिया">Feedback</a></li>
+            <li><a href="iqac-contact.html" class="iqac-sidebar-link" data-en="Contact Us" data-hi="संपर्क करें">Contact Us</a></li>
+          </ul>
+        </aside>
+
+        <!-- Right Main Content Area -->
+        <article class="iqac-content-card">
+
+          <p class="meetings-intro" data-en="Official proceedings and resolutions of the Internal Quality Assurance Cell (IQAC) meetings convened under the chairmanship of the Hon'ble Vice-Chancellor." data-hi="माननीय कुलपति की अध्यक्षता में आयोजित आंतरिक गुणवत्ता आश्वासन प्रकोष्ठ (आईक्यूएसी) की बैठकों की आधिकारिक कार्यवाही और संकल्प।">
+            Official proceedings and recorded resolutions of the Internal Quality Assurance Cell (IQAC) meetings convened under the chairmanship of the Hon'ble Vice-Chancellor.
+          </p>
+
+          <!-- 4-Column Table Grid of 26 Meetings -->
+          <div class="meetings-table-container">
+            <div class="meetings-grid">
+              
+              <!-- Row 1 -->
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/1.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">1st</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/2.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">2nd</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/3.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">3rd</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/4.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">4th</a></div>
+
+              <!-- Row 2 -->
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/5.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">5th</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/6.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">6th</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/7.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">7th</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/8.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">8th</a></div>
+
+              <!-- Row 3 -->
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/9.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">9th</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/10.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">10th</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/11.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">11th</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/12.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">12th</a></div>
+
+              <!-- Row 4 -->
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/13.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">13th</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/14.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">14th</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/15.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">15th</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/16.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">16th</a></div>
+
+              <!-- Row 5 -->
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/17.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">17th</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/18.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">18th</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/19.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">19th</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/20.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">20th</a></div>
+
+              <!-- Row 6 -->
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/21.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">21st</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/22.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">22nd</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/23.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">23rd</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/24.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">24th</a></div>
+
+              <!-- Row 7 -->
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/25.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">25th</a></div>
+              <div class="meeting-cell"><a href="https://www.cusb.ac.in/images/iqac/meeting_minutes/26.pdf" target="_blank" rel="noopener noreferrer" class="meeting-link">26th</a></div>
+              <div class="meeting-cell empty"></div>
+              <div class="meeting-cell empty"></div>
+
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

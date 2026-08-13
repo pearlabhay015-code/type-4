@@ -306,16 +306,21 @@ cusb-ticker {
   align-items: center;
 }
 .ticker-track {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   white-space: nowrap;
-  animation: marquee 35s linear infinite;
+  animation: marquee 30s linear infinite;
+  -webkit-animation: marquee 30s linear infinite;
   padding-left: 20px;
   min-width: max-content;
   color: white;
   will-change: transform;
 }
-.ticker-track:hover {
-  animation-play-state: paused;
+@media (hover: hover) and (pointer: fine) {
+  .ticker-track:hover {
+    animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+  }
 }
 .ticker-item {
   color: white;
@@ -346,9 +351,13 @@ cusb-ticker {
   color: white;
   font-weight: 700;
 }
+@-webkit-keyframes marquee {
+  0% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
+  100% { -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); }
+}
 @keyframes marquee {
-  0% { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-50%, 0, 0); }
+  0% { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
+  100% { -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); }
 }
 
 /* 2. TOPBAR */
@@ -2115,7 +2124,8 @@ cusb-footer {
   height: 40px;
   align-items:center;
   justify-content: center;
-  transition: transform 0.25s ease, background-color 0.25s ease;
+  transition: none !important;
+  transform: none !important;
 }
 .mobile-quicklinks-toggle {
   display: none;
@@ -2147,10 +2157,11 @@ cusb-footer {
   color: #111111;
 }
 .mobile-nav-toggle.is-open {
-  transform: rotate(90deg);
+  transform: none !important;
 }
 .mobile-nav-toggle .svg-icon {
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  transition: none !important;
+  transform: none !important;
 }
 .text-fade-out {
   opacity: 0;
@@ -2357,7 +2368,8 @@ cusb-footer {
     cursor: pointer !important;
     margin: 8px 0 !important;
     padding: 0 !important;
-    transition: all 0.2s ease !important;
+    transition: none !important;
+    transform: none !important;
     order: 2;
   }
   .mobile-nav-toggle:hover,
@@ -2365,6 +2377,7 @@ cusb-footer {
     background: #ffd950 !important;
     color: #000000 !important;
     border-color: #ffd950 !important;
+    transform: none !important;
   }
   .navbar-nav {
     width: 100% !important;
@@ -2374,7 +2387,7 @@ cusb-footer {
     padding: 0 !important;
   }
   .navbar-menu {
-    display: flex !important;
+    display: none !important;
     flex-direction: column !important;
     flex-wrap: nowrap !important;
     align-items: stretch !important;
@@ -2385,21 +2398,40 @@ cusb-footer {
     border-radius: 0 0 12px 12px !important;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
     overflow: hidden !important;
-    max-height: 0 !important;
-    opacity: 0 !important;
-    transform: translateY(-6px) !important;
-    transition: max-height 0.32s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.22s ease, transform 0.22s ease !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
     margin: 0 !important;
     padding: 0 !important;
     z-index: 10000 !important;
   }
   .navbar-menu.active {
+    display: flex !important;
     max-height: calc(85vh - 60px) !important;
     opacity: 1 !important;
-    transform: translateY(0) !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
     margin-bottom: 8px !important;
+  }
+  .ticker-marquee {
+    overflow: hidden !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  .ticker-track {
+    display: inline-flex !important;
+    align-items: center !important;
+    white-space: nowrap !important;
+    animation: marquee 20s linear infinite !important;
+    -webkit-animation: marquee 20s linear infinite !important;
+    animation-play-state: running !important;
+    -webkit-animation-play-state: running !important;
+    will-change: transform !important;
   }
   .navbar-item {
     width: 100% !important;

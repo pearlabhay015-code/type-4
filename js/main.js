@@ -311,7 +311,7 @@ const searchIndex = [
   { title: "Home Page", tags: "home main landing", desc: "CUSB Main Homepage, Announcements, Gallery", url: "index.html" },
   { title: "About CUSB", tags: "about university overview history statutes accreditation", desc: "Overview, history, vision, mission, and stats of CUSB", url: "about.html" },
   { title: "Vision & Mission", tags: "vision mission motto core values", desc: "Core values, mission statements, and motto of CUSB", url: "about.html#vision" },
-  { title: "NAAC Accreditation", tags: "naac a++ nirf accreditation ugc recognition", desc: "Accreditation status, NIRF rankings, and UGC certifications", url: "about.html#accreditation" },
+  { title: "IQAC Cell", tags: "iqac quality assurance audit cell", desc: "Internal Quality Assurance Cell of Central University of South Bihar", url: "iqac.html" },
   { title: "University Leadership", tags: "administration leaders president chancellor vice chancellor vc registrar governance", desc: "University officers, Visitor, Chancellor, and Vice-Chancellor details", url: "leaders.html" },
   { title: "Vice-Chancellor's Desk", tags: "vc profile message administration", desc: "Profile and greeting from Vice-Chancellor Prof. K.N. Singh", url: "leaders.html#vc" },
   { title: "Courses & Programmes", tags: "courses programs academics degrees admission undergraduate postgraduate phd", desc: "List of schools, departments, and course curricula", url: "courses.html" },

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="Institutional Ranking — IQAC Cell — Central University of South Bihar" data-hi="संस्थागत रैंकिंग — आईक्यूएसी सेल — दक्षिण बिहार केंद्रीय विश्वविद्यालय">Ranking — IQAC Cell — CUSB</title>
+  <link rel="icon" href="assets/culog.png">
+  <meta name="description" content="Institutional Rankings of Central University of South Bihar (CUSB) including NIRF, ARIIA, and MDRA India Today ranking reports and data submission archives.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .iqac-page-wrapper {
+      padding: 24px 0 64px;
+      min-height: calc(100vh - 200px);
+      background-color: var(--bg-primary);
+    }
+    .iqac-crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      color: var(--tx-muted);
+      margin-bottom: 24px;
+    }
+    .iqac-crumb a {
+      color: var(--tx-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .iqac-crumb a:hover {
+      color: var(--acc-blue);
+      text-decoration: underline;
+    }
+
+    .iqac-main-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0b6cb8;
+      margin: 0 0 24px;
+      letter-spacing: -0.02em;
+      border-bottom: 2px dashed rgba(11, 108, 184, 0.3);
+      padding-bottom: 12px;
+    }
+    [data-theme="dark"] .iqac-main-title {
+      color: #38bdf8;
+      border-bottom-color: rgba(56, 189, 248, 0.3);
+    }
+
+    /* 2-Column Split Grid */
+    .iqac-layout-grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* Left Sidebar Navigation */
+    .iqac-sidebar-box {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="dark"] .iqac-sidebar-box {
+      background: #111827;
+      border-color: #1e293b;
+    }
+    .iqac-sidebar-header {
+      background: linear-gradient(135deg, #003a6a, #0b6cb8);
+      color: #ffffff;
+      padding: 12px 16px;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      border-bottom: 2px solid var(--acc-gold, #f59e0b);
+    }
+    [data-theme="dark"] .iqac-sidebar-header {
+      background: linear-gradient(135deg, #0369a1, #0284c7);
+    }
+    .iqac-sidebar-list {
+      list-style: none;
+      padding: 10px 12px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .iqac-sidebar-link {
+      display: block;
+      padding: 9px 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #0b6cb8;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      text-align: left;
+      border-left: 4px solid transparent;
+    }
+    .iqac-sidebar-link:hover {
+      background: #004d8c;
+      transform: translateX(3px);
+      color: #ffffff;
+    }
+    .iqac-sidebar-link.active {
+      background: #002244;
+      border-left-color: var(--acc-gold, #f59e0b);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 34, 68, 0.3);
+    }
+    [data-theme="dark"] .iqac-sidebar-link {
+      background: #1e293b;
+      color: #cbd5e1;
+    }
+    [data-theme="dark"] .iqac-sidebar-link:hover {
+      background: #334155;
+      color: #38bdf8;
+    }
+    [data-theme="dark"] .iqac-sidebar-link.active {
+      background: rgba(56, 189, 248, 0.18);
+      color: #38bdf8;
+      border-left-color: #38bdf8;
+    }
+
+    /* Main Content Card */
+    .iqac-content-card {
+      background: var(--bg-surface, #ffffff);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+    [data-theme="dark"] .iqac-content-card {
+      background: #111827;
+      border-color: #1e293b;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Section Category Headings */
+    .ranking-sec-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #003a6a;
+      margin: 32px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ranking-sec-title:first-of-type {
+      margin-top: 0;
+    }
+    [data-theme="dark"] .ranking-sec-title {
+      color: #38bdf8;
+    }
+    .ranking-divider-bar {
+      height: 4px;
+      background: linear-gradient(90deg, #0b6cb8 0%, rgba(11, 108, 184, 0.2) 100%);
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    [data-theme="dark"] .ranking-divider-bar {
+      background: linear-gradient(90deg, #38bdf8 0%, rgba(56, 189, 248, 0.2) 100%);
+    }
+
+    /* Ranking Year Card */
+    .ranking-year-card {
+      background: var(--bg-primary, #f8fafc);
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-left: 4px solid #0b6cb8;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+      transition: all 0.2s ease;
+    }
+    .ranking-year-card:hover {
+      border-color: #0b6cb8;
+      box-shadow: 0 4px 12px rgba(0, 58, 106, 0.06);
+    }
+    [data-theme="dark"] .ranking-year-card {
+      background: #1e293b;
+      border-color: #334155;
+      border-left-color: #38bdf8;
+    }
+    .ranking-year-header {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #003a6a;
+      margin-bottom: 12px;
+    }
+    [data-theme="dark"] .ranking-year-header {
+      color: #f8fafc;
+    }
+
+    .ranking-item-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 12px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .ranking-doc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      color: #0b6cb8;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .ranking-doc-link:hover {
+      background: #0b6cb8;
+      color: #ffffff;
+      border-color: #0b6cb8;
+      transform: translateY(-1px);
+    }
+    [data-theme="dark"] .ranking-doc-link {
+      background: #0f172a;
+      border-color: #334155;
+      color: #38bdf8;
+    }
+    [data-theme="dark"] .ranking-doc-link:hover {
+      background: #38bdf8;
+      color: #0f172a;
+      border-color: #38bdf8;
+    }
+
+    .ranking-feedback-email {
+      font-size: 0.86rem;
+      color: var(--tx-secondary, #64748b);
+      margin-top: 8px;
+    }
+    .ranking-feedback-email a {
+      color: #0b6cb8;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .ranking-feedback-email a:hover {
+      text-decoration: underline;
+    }
+    [data-theme="dark"] .ranking-feedback-email a {
+      color: #38bdf8;
+    }
+
+    /* Nested Multi-level List for MDRA */
+    .mdra-tree-list {
+      margin: 0;
+      padding-left: 20px;
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: var(--tx-primary, #0f172a);
+    }
+    .mdra-tree-list a {
+      color: #0b6cb8;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .mdra-tree-list a:hover {
+      text-decoration: underline;
+    }
+    [data-theme="dark"] .mdra-tree-list {
+      color: #e2e8f0;
+    }
+    [data-theme="dark"] .mdra-tree-list a {
+      color: #38bdf8;
+    }
+
+    @media (max-width: 880px) {
+      .iqac-layout-grid {
+        grid-template-columns: 1fr;
+      }
+      .iqac-content-card {
+        padding: 22px 18px;
+      }
+      .iqac-main-title {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#mainContent" class="skip-link" data-en="Skip to main content" data-hi="मुख्य सामग्री पर जाएँ">Skip to main content</a>
+  <cusb-ticker></cusb-ticker>
+  <cusb-topbar></cusb-topbar>
+  <cusb-header></cusb-header>
+  <cusb-accessibility-bar></cusb-accessibility-bar>
+  <cusb-navbar></cusb-navbar>
+  <cusb-sidebar></cusb-sidebar>
+
+  <main id="mainContent" class="iqac-page-wrapper">
+    <div class="container">
+      
+      <!-- Breadcrumb -->
+      <nav class="iqac-crumb" aria-label="Breadcrumb">
+        <a href="index.html" data-en="Home" data-hi="होम">Home</a>
+        <span>/</span>
+        <a href="iqac.html" data-en="IQAC Cell" data-hi="आईक्यूएसी सेल">IQAC Cell</a>
+        <span>/</span>
+        <span style="color: #0b6cb8; font-weight: 700;" data-en="Ranking" data-hi="रैंकिंग">Ranking</span>
+      </nav>
+
+      <h1 class="iqac-main-title" data-en="Ranking" data-hi="संस्थागत रैंकिंग">Ranking</h1>
+
+      <!-- Split 2-Column Grid -->
+      <div class="iqac-layout-grid">
+        
+        <!-- Left Sidebar Navigation Menu -->
+        <aside class="iqac-sidebar-box">
+          <div class="iqac-sidebar-header" data-en="IQAC" data-hi="आईक्यूएसी">
+            IQAC
+          </div>
+          <ul class="iqac-sidebar-list">
+            <li><a href="iqac.html" class="iqac-sidebar-link" data-en="Home" data-hi="होम">Home</a></li>
+            <li><a href="iqac-naac.html" class="iqac-sidebar-link" data-en="NAAC" data-hi="नैक">NAAC</a></li>
+            <li><a href="iqac-ranking.html" class="iqac-sidebar-link active" data-en="Ranking" data-hi="रैंकिंग">Ranking</a></li>
+            <li><a href="iqac.html#about" class="iqac-sidebar-link" data-en="NAAC (Cycle-II)" data-hi="नैक (चक्र-II)">NAAC (Cycle-II)</a></li>
+            <li><a href="iqac-aqar.html" class="iqac-sidebar-link" data-en="AQAR" data-hi="एक्यूएआर">AQAR</a></li>
+            <li><a href="iqac-meetings.html" class="iqac-sidebar-link" data-en="Meetings" data-hi="बैठकें">Meetings</a></li>
+            <li><a href="iqac-report.html" class="iqac-sidebar-link" data-en="IQAC Report" data-hi="आईक्यूएसी रिपोर्ट">IQAC Report</a></li>
+            <li><a href="iqac-audit.html" class="iqac-sidebar-link" data-en="Audit" data-hi="ऑडिट">Audit</a></li>
+            <li><a href="iqac-feedback.html" class="iqac-sidebar-link" data-en="Feedback" data-hi="प्रतिक्रिया">Feedback</a></li>
+            <li><a href="iqac-contact.html" class="iqac-sidebar-link" data-en="Contact Us" data-hi="संपर्क करें">Contact Us</a></li>
+          </ul>
+        </aside>
+
+        <!-- Right Main Content Area -->
+        <article class="iqac-content-card">
+
+          <!-- 1. ARIIA SECTION -->
+          <h2 class="ranking-sec-title">
+            <span>ARIIA :</span>
+          </h2>
+          <div class="ranking-divider-bar"></div>
+          <div class="ranking-year-card">
+            <div class="ranking-item-list">
+              <a href="#" class="ranking-doc-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                <span>ARIIA 2021</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 2. MDRA SECTION -->
+          <h2 class="ranking-sec-title" style="margin-top: 36px;">
+            <span>MDRA :</span>
+          </h2>
+          <div class="ranking-divider-bar"></div>
+          
+          <div class="ranking-year-card">
+            <div class="ranking-year-header" data-en="MDRA (India Today):" data-hi="एमडीआरए (इंडिया टुडे):">
+              MDRA (India Today):
+            </div>
+            <p style="font-weight: 700; color: #0b6cb8; margin-bottom: 8px;">
+              Marketing and Development Research Associate (MDRA 2021)
+            </p>
+            <p style="font-weight: 700; color: var(--tx-secondary); margin: 6px 0 10px;">
+              Relevant Documents:
+            </p>
+            <ul class="mdra-tree-list">
+              <li><a href="#">List of Academic Advisory Body</a></li>
+              <li><a href="#">Grant from UGC</a></li>
+              <li><a href="#">Annual Report for 2019-20</a></li>
+              <li><a href="#">Latest Annual Quality Assessment Report</a></li>
+              <li><a href="#">List of Books Published in last 2 years</a></li>
+              <li><a href="#">List of faculty</a></li>
+              <li><a href="#">List of Governing Board Members</a></li>
+              <li><a href="#">List of IPR and Patents</a></li>
+              <li><a href="#">List of members in NSS, ICC and Anti-ragging</a></li>
+              <li><a href="#">List of prestigious awards by faculty</a></li>
+              <li><a href="assets/NAAC.png" target="_blank">NAAC accreditation certificate</a></li>
+            </ul>
+          </div>
+
+          <!-- 3. NIRF SECTION -->
+          <h2 class="ranking-sec-title" style="margin-top: 36px;">
+            <span>NIRF :</span>
+          </h2>
+          <div class="ranking-divider-bar"></div>
+
+          <!-- NIRF 2026 -->
+          <div class="ranking-year-card">
+            <div class="ranking-year-header">National Institutional Ranking Framework (NIRF - 2026)</div>
+            <div class="ranking-item-list">
+              <a href="#" class="ranking-doc-link"><span>NIRF 2026 (Overall)</span></a>
+              <a href="#" class="ranking-doc-link"><span>NIRF 2026 (Pharmacy)</span></a>
+              <a href="#" class="ranking-doc-link"><span>NIRF 2026 (Law)</span></a>
+              <a href="#" class="ranking-doc-link"><span>NIRF 2026 (SDG INSTITUTION)</span></a>
+            </div>
+            <div class="ranking-feedback-email">
+              Email id for comments and feedback: <a href="mailto:iqac@cusb.ac.in">iqac@cusb.ac.in</a>
+            </div>
+          </div>
+
+          <!-- NIRF 2025 -->
+          <div class="ranking-year-card">
+            <div class="ranking-year-header">National Institutional Ranking Framework (NIRF - 2025)</div>
+            <div class="ranking-item-list">
+              <a href="#" class="ranking-doc-link"><span>NIRF 2025 (Overall)</span></a>
+              <a href="#" class="ranking-doc-link"><span>NIRF 2025 (Pharmacy)</span></a>
+              <a href="#" class="ranking-doc-link"><span>NIRF 2025 (Law)</span></a>
+              <a href="#" class="ranking-doc-link"><span>NIRF 2025 (SDG INSTITUTION)</span></a>
+            </div>
+            <div class="ranking-feedback-email">
+              Email id for comments and feedback: <a href="mailto:iqac@cusb.ac.in">iqac@cusb.ac.in</a>
+            </div>
+          </div>
+
+          <!-- NIRF 2024 -->
+          <div class="ranking-year-card">
+            <div class="ranking-year-header">National Institutional Ranking Framework (NIRF - 2024)</div>
+            <div class="ranking-item-list">
+              <a href="#" class="ranking-doc-link"><span>NIRF 2024 (Overall)</span></a>
+              <a href="#" class="ranking-doc-link"><span>NIRF 2024 (Innovation)</span></a>
+              <a href="#" class="ranking-doc-link"><span>NIRF 2024 (Law)</span></a>
+            </div>
+            <div class="ranking-feedback-email">
+              Email id for comments and feedback: <a href="mailto:iqac@cusb.ac.in">iqac@cusb.ac.in</a>
+            </div>
+          </div>
+
+          <!-- NIRF 2022 -->
+          <div class="ranking-year-card">
+            <div class="ranking-year-header">National Institutional Ranking Framework (NIRF - 2022)</div>
+            <div class="ranking-item-list">
+              <a href="#" class="ranking-doc-link"><span>NIRF 2022</span></a>
+            </div>
+            <div class="ranking-feedback-email">
+              Email id for comments and feedback: <a href="mailto:iqac@cusb.ac.in">iqac@cusb.ac.in</a>
+            </div>
+          </div>
+
+          <!-- NIRF 2021 -->
+          <div class="ranking-year-card">
+            <div class="ranking-year-header">National Institutional Ranking Framework (NIRF - 2021)</div>
+            <div class="ranking-item-list">
+              <a href="#" class="ranking-doc-link"><span>NIRF 2021</span></a>
+            </div>
+            <div class="ranking-feedback-email">
+              Email id for comments and feedback: <a href="mailto:iqac@cusb.ac.in">iqac@cusb.ac.in</a>
+            </div>
+          </div>
+
+          <!-- NIRF 2020 -->
+          <div class="ranking-year-card">
+            <div class="ranking-year-header">National Institutional Ranking Framework (NIRF - 2020)</div>
+            <div class="ranking-item-list">
+              <a href="#" class="ranking-doc-link"><span>NIRF 2020</span></a>
+            </div>
+            <div class="ranking-feedback-email">
+              Email id for comments and feedback: <a href="mailto:iqac@cusb.ac.in">iqac@cusb.ac.in</a>
+            </div>
+          </div>
+
+          <!-- NIRF 2019 -->
+          <div class="ranking-year-card">
+            <div class="ranking-year-header">National Institutional Ranking Framework (NIRF - 2019)</div>
+            <div class="ranking-item-list">
+              <a href="#" class="ranking-doc-link"><span>NIRF 2019</span></a>
+            </div>
+            <div class="ranking-feedback-email">
+              Email id for comments and feedback: <a href="mailto:iqac@cusb.ac.in">iqac@cusb.ac.in</a>
+            </div>
+          </div>
+
+          <!-- NIRF 2018 -->
+          <div class="ranking-year-card">
+            <div class="ranking-year-header">National Institutional Ranking Framework (NIRF - 2018)</div>
+            <div class="ranking-item-list">
+              <a href="#" class="ranking-doc-link"><span>NIRF 2018 DCS filled in data</span></a>
+            </div>
+            <div class="ranking-feedback-email">
+              Email id for comments and feedback: <a href="mailto:iqac@cusb.ac.in">iqac@cusb.ac.in</a>
+            </div>
+          </div>
+
+          <!-- NIRF 2017 -->
+          <div class="ranking-year-card">
+            <div class="ranking-year-header">National Institutional Ranking Framework (NIRF - 2017)</div>
+            <div class="ranking-item-list">
+              <a href="#" class="ranking-doc-link"><span>NIRF 2017 DCS filled in data</span></a>
+              <a href="#" class="ranking-doc-link"><span>Placement</span></a>
+              <a href="#" class="ranking-doc-link"><span>Details of top Universities where your graduates has been admitted for higher studies</span></a>
+              <a href="#" class="ranking-doc-link"><span>Students opting for higher studies</span></a>
+              <a href="#" class="ranking-doc-link"><span>Sponsored Research Projects</span></a>
+              <a href="#" class="ranking-doc-link"><span>Entrepreneurship</span></a>
+              <a href="#" class="ranking-doc-link"><span>Details of top Universities from where students have enrolled in your institution to pursue higher studies</span></a>
+              <a href="#" class="ranking-doc-link"><span>Full time Executive Programs of one year duration</span></a>
+              <a href="#" class="ranking-doc-link"><span>Consultancy Projects</span></a>
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <cusb-footer></cusb-footer>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

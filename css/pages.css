@@ -1072,14 +1072,14 @@
   box-shadow: var(--shadow-md);
 }
 .program-school-card {
-  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-  border: 1px solid #cbd5e1;
-  border-top: 5px solid #0b2545 !important;
-  border-radius: 14px;
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-top: 4px solid #003a6a !important;
+  border-radius: 12px;
   padding: 0;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
   min-width: 0;
-  min-height: 136px;
+  min-height: 128px;
   position: relative;
   overflow: visible;
   transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
@@ -1087,62 +1087,12 @@
   touch-action: manipulation;
 }
 
-/* Dynamic Govt-Card Style Top Borders for Homepage Schools */
-.program-school-card:nth-child(12n+1) {
-  background: linear-gradient(145deg, #ffffff 0%, #edf4fc 100%);
-  border-top-color: #0b2545 !important;
-}
-.program-school-card:nth-child(12n+2) {
-  background: linear-gradient(145deg, #ffffff 0%, #f0fdf4 100%);
-  border-top-color: #0d7a5f !important;
-}
-.program-school-card:nth-child(12n+3) {
-  background: linear-gradient(145deg, #ffffff 0%, #faf5ff 100%);
-  border-top-color: #6b21a8 !important;
-}
-.program-school-card:nth-child(12n+4) {
-  background: linear-gradient(145deg, #ffffff 0%, #fff7ed 100%);
-  border-top-color: #c2410c !important;
-}
-.program-school-card:nth-child(12n+5) {
-  background: linear-gradient(145deg, #ffffff 0%, #fffbe6 100%);
-  border-top-color: #d4a017 !important;
-}
-.program-school-card:nth-child(12n+6) {
-  background: linear-gradient(145deg, #ffffff 0%, #fff1f2 100%);
-  border-top-color: #991b1b !important;
-}
-.program-school-card:nth-child(12n+7) {
-  background: linear-gradient(145deg, #ffffff 0%, #eef2ff 100%);
-  border-top-color: #3730a3 !important;
-}
-.program-school-card:nth-child(12n+8) {
-  background: linear-gradient(145deg, #ffffff 0%, #fdf2f8 100%);
-  border-top-color: #be185d !important;
-}
-.program-school-card:nth-child(12n+9) {
-  background: linear-gradient(145deg, #ffffff 0%, #f0fdf4 100%);
-  border-top-color: #15803d !important;
-}
-.program-school-card:nth-child(12n+10) {
-  background: linear-gradient(145deg, #ffffff 0%, #f0f9ff 100%);
-  border-top-color: #0284c7 !important;
-}
-.program-school-card:nth-child(12n+11) {
-  background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
-  border-top-color: #1e293b !important;
-}
-.program-school-card:nth-child(12n+12) {
-  background: linear-gradient(145deg, #ffffff 0%, #eff6ff 100%);
-  border-top-color: #1e40af !important;
-}
-
 .program-school-card::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(0, 75, 155, 0.05), transparent 54%);
+  background: linear-gradient(135deg, rgba(0, 58, 106, 0.03), transparent 60%);
   opacity: 0;
   transition: opacity 0.2s ease;
   pointer-events: none;
@@ -1150,17 +1100,19 @@
 
 @media (hover: hover) and (pointer: fine) {
   .program-school-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(214, 155, 23, 0.8);
-    box-shadow: 0 22px 46px rgba(8, 38, 83, 0.16);
+    transform: translateY(-3px);
+    border-color: #0b6cb8;
+    border-top-color: #0b6cb8 !important;
+    box-shadow: 0 12px 28px rgba(0, 58, 106, 0.1);
     z-index: 20;
   }
   .program-school-card:hover::before {
     opacity: 1;
   }
   .program-school-card:hover .program-school-arrow {
-    transform: translateX(5px);
-    background: rgb(67, 146, 250);
+    background: #003a6a;
+    color: #ffffff;
+    transform: translateX(3px);
   }
   .program-school-card:hover .program-dept-list {
     max-height: 320px;
@@ -1174,8 +1126,9 @@
 
 .program-school-card.is-open {
   transform: translateY(-2px);
-  border-color: rgba(214, 155, 23, 0.8);
-  box-shadow: 0 18px 38px rgba(8, 38, 83, 0.14);
+  border-color: #003a6a;
+  border-top-color: #003a6a !important;
+  box-shadow: 0 14px 32px rgba(0, 58, 106, 0.12);
   z-index: 20;
 }
 .program-school-card.is-open::before {
@@ -1185,11 +1138,11 @@
 .program-school-heading {
   display: flex;
   width: 100%;
-  min-height: 136px;
+  min-height: 128px;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   min-width: 0;
-  padding: 20px;
+  padding: 20px 22px;
   border: 0;
   background: transparent;
   color: inherit;
@@ -1201,68 +1154,74 @@
   -webkit-tap-highlight-color: transparent;
 }
 .program-school-heading:focus-visible {
-  outline: 3px solid rgba(214, 155, 23, 0.55);
-  outline-offset: -6px;
+  outline: 2px solid #0b6cb8;
+  outline-offset: -4px;
 }
 .program-school-heading h3 {
   margin: 0;
   font-family: var(--ff-body);
-  font-size: 1rem;
+  font-size: 1.02rem;
   font-weight: 800;
   line-height: 1.35;
-  color: var(--tx-primary);
+  color: var(--tx-primary, #0f172a);
   overflow-wrap: anywhere;
 }
 .program-school-heading p {
-  margin: 5px 0 0;
-  color: var(--tx-muted);
-  font-size: 0.76rem;
+  margin: 6px 0 0;
+  color: #0b6cb8;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
+  background: rgba(11, 108, 184, 0.07);
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
 }
 .program-school-arrow {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   margin-left: auto;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 38px;
-  background: #e6e8ea;
-  color: #1f2933;
-  font-size: 1.28rem;
+  flex: 0 0 36px;
+  background: #f1f5f9;
+  color: #003a6a;
+  font-size: 1.15rem;
   line-height: 1;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  border: 1px solid var(--border-color, #e2e8f0);
 }
 .program-school-card.is-open .program-school-arrow {
   transform: rotate(90deg);
-  background: rgb(67, 146, 250);
+  background: #003a6a;
   color: #ffffff;
+  border-color: #003a6a;
 }
 .program-dept-list {
   display: grid;
-  gap: 9px;
+  gap: 8px;
   position: absolute;
-  left: 14px;
-  right: 14px;
-  top: calc(100% - 10px);
+  left: 10px;
+  right: 10px;
+  top: calc(100% - 6px);
   max-height: 0;
   padding: 0 12px;
-  border: 1px solid rgba(216, 228, 243, 0.98);
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 24px 48px rgba(8, 38, 83, 0.18);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 10px;
+  background: var(--bg-surface, #ffffff);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
   opacity: 0;
   visibility: hidden;
   overflow-y: auto;
   pointer-events: none;
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   transition: max-height 0.24s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.18s ease, padding 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
-  z-index: 5;
+  z-index: 50;
   scrollbar-width: thin;
-  scrollbar-color: rgba(0, 75, 155, 0.35) transparent;
+  scrollbar-color: #003a6a transparent;
   will-change: transform, opacity, max-height;
 }
 .program-dept-list::before {
@@ -1280,39 +1239,30 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  min-height: 40px;
-  padding: 9px 13px;
-  border: 1px solid #cbd5e1;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  color: #0f172a;
+  min-height: 38px;
+  padding: 8px 12px;
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 6px;
+  background: var(--bg-primary, #f8fafc);
+  color: var(--tx-primary, #1e293b);
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.86rem;
   font-weight: 700;
   line-height: 1.3;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
   position: relative;
 }
 
-.program-dept-link:nth-child(4n+1) {
-  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
-  color: #0369a1;
-  border-color: #7dd3fc;
+.program-dept-link:hover {
+  background: #003a6a;
+  color: #ffffff !important;
+  border-color: #003a6a;
+  transform: translateX(3px);
+  box-shadow: 0 4px 10px rgba(0, 58, 106, 0.2);
 }
-.program-dept-link:nth-child(4n+2) {
-  background: linear-gradient(135deg, #f0fdf4 0%, #bbf7d0 100%);
-  color: #15803d;
-  border-color: #86efac;
-}
-.program-dept-link:nth-child(4n+3) {
-  background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
-  color: #7a0c0c;
-  border-color: #fecdd3;
-}
-.program-dept-link:nth-child(4n+4) {
-  background: linear-gradient(135deg, #fae8ff 0%, #f5d0fe 100%);
-  color: #86198f;
-  border-color: #f0abfc;
+.program-dept-link:hover .program-dept-icon {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
 }
 
 .program-dept-link::before {
@@ -1324,46 +1274,74 @@
   color: inherit;
   background: none;
   order: 3;
+  font-size: 0.95rem;
+  transition: transform 0.2s ease;
 }
-.program-dept-link:hover {
-  transform: translateX(4px) scale(1.02);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+.program-dept-link:hover::before {
+  transform: translateX(2px);
 }
+
 .program-dept-icon {
   width: 26px;
   height: 26px;
-  border-radius: 7px;
+  border-radius: 6px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 75, 155, 0.08);
-  color: var(--acc-navy);
+  background: rgba(11, 108, 184, 0.08);
+  color: #003a6a;
   flex: 0 0 26px;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
 }
 
 [data-theme="dark"] .program-map-hub,
 [data-theme="dark"] .program-browser-step,
 [data-theme="dark"] .program-school-card {
-  background: #0d0d0d;
-  border-color: rgba(142, 142, 142, 0.42);
+  background: #111827;
+  border-color: #1e293b;
+  border-top-color: #0284c7 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 }
-[data-theme="dark"] .program-dept-link {
-  background: #121212;
-  border-color: rgba(142, 142, 142, 0.34);
-  color: #f5f5f5;
+[data-theme="dark"] .program-school-heading h3 {
+  color: #f8fafc;
+}
+[data-theme="dark"] .program-school-heading p {
+  background: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+}
+[data-theme="dark"] .program-school-arrow {
+  background: #1e293b;
+  color: #38bdf8;
+  border-color: #334155;
+}
+[data-theme="dark"] .program-school-card.is-open .program-school-arrow {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
 }
 [data-theme="dark"] .program-dept-list {
-  background: rgba(13, 13, 13, 0.98);
-  border-color: rgba(142, 142, 142, 0.42);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+  background: #111827;
+  border-color: #334155;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+[data-theme="dark"] .program-dept-link {
+  background: #1e293b;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+[data-theme="dark"] .program-dept-link:hover {
+  background: #0284c7;
+  border-color: #0284c7;
+  color: #ffffff !important;
 }
 [data-theme="dark"] .program-dept-icon {
-  background: rgba(142, 142, 142, 0.2);
-  color: #ffffff;
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
 }
 [data-theme="dark"] .program-select-icon {
-  background: rgba(142, 142, 142, 0.18);
-  color: #ffffff;
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
 }
 
 @media (max-width: 768px) {
