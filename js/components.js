@@ -45,7 +45,16 @@ const iconDefs = `
     <symbol id="icon-medical" viewBox="0 0 24 24"><path d="M10 3h4v6h6v4h-6v6h-4v-6H4V9h6V3Z"/></symbol>
     <symbol id="icon-send" viewBox="0 0 24 24"><path d="M3 20 21 12 3 4v6l11 2-11 2v6Z"/></symbol>
     <symbol id="icon-arrow-up" viewBox="0 0 24 24"><path d="M11 20V7.8l-5.6 5.6L4 12 12 4l8 8-1.4 1.4L13 7.8V20h-2Z"/></symbol>
-    <symbol id="icon-robot-chat" viewBox="0 0 24 24"><path d="M11 2h2v3h3.5A3.5 3.5 0 0 1 20 8.5V15a3.5 3.5 0 0 1-3.5 3.5h-1.7L12 22l-2.8-3.5H7.5A3.5 3.5 0 0 1 4 15V8.5A3.5 3.5 0 0 1 7.5 5H11V2Zm-3.5 5A1.5 1.5 0 0 0 6 8.5V15a1.5 1.5 0 0 0 1.5 1.5h2.7l1.8 2.2 1.8-2.2h2.7A1.5 1.5 0 0 0 18 15V8.5A1.5 1.5 0 0 0 16.5 7h-9ZM8 11a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm5 0a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm-3.5 3H15v2H9.5v-2Z"/></symbol>
+    <symbol id="icon-robot-chat" viewBox="0 0 24 24" fill="none">
+      <rect x="3.5" y="8" width="17" height="12" rx="4" fill="rgba(255,255,255,0.18)" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="8.5" cy="13.5" r="1.5" fill="currentColor"/>
+      <circle cx="15.5" cy="13.5" r="1.5" fill="currentColor"/>
+      <path d="M10 16.5c.5.6 1.2 1 2 1s1.5-.4 2-1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="12" y1="8" x2="12" y2="4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="12" cy="3.5" r="1.5" fill="#f59e0b" stroke="currentColor" stroke-width="1.2"/>
+      <rect x="1.5" y="11.5" width="2" height="5" rx="1" fill="currentColor"/>
+      <rect x="20.5" y="11.5" width="2" height="5" rx="1" fill="currentColor"/>
+    </symbol>
     <symbol id="icon-moon" viewBox="0 0 24 24"><path d="M21 14.5A8.5 8.5 0 0 1 9.5 3 9.5 9.5 0 1 0 21 14.5Z"/></symbol>
     <symbol id="icon-sun" viewBox="0 0 24 24"><path d="M12 5a7 7 0 1 0 0 14 7 7 0 0 0 0-14Zm0-4h2v3h-2V1Zm0 19h2v3h-2v-3ZM1 11h3v2H1v-2Zm19 0h3v2h-3v-2ZM4.2 2.8l2.1 2.1-1.4 1.4-2.1-2.1 1.4-1.4Zm14.9 14.9 2.1 2.1-1.4 1.4-2.1-2.1 1.4-1.4Zm0-12.8 2.1-2.1 1.4 1.4-2.1 2.1-1.4-1.4ZM4.9 17.7l1.4 1.4-2.1 2.1-1.4-1.4 2.1-2.1Z"/></symbol>
     <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M4 4h16v12H8l-4 4V4Zm2 2v9.2L7.2 14H18V6H6Z"/></symbol>
@@ -222,6 +231,14 @@ class CusbTopbar extends HTMLElement {
           <a href="mailto:admission@cusb.ac.in" class="topbar-icon-text">${iconSvg('mail')}<span>admission@cusb.ac.in</span></a>
         </div>
         <div class="topbar-actions">
+          <div class="topbar-socials" style="display:inline-flex; align-items:center; gap:8px; margin-right:4px;">
+            <a href="https://www.facebook.com/CentralUniversityOfSouthBihar" target="_blank" rel="noopener noreferrer" title="Facebook - Central University of South Bihar" aria-label="Facebook">${iconSvg('facebook')}</a>
+            <a href="https://x.com/CUSB_official" target="_blank" rel="noopener noreferrer" title="X (Twitter) - @CUSB_official" aria-label="X (Twitter)">${iconSvg('x')}</a>
+            <a href="https://www.youtube.com/@CentralUniversityofSouthBihar" target="_blank" rel="noopener noreferrer" title="YouTube - Central University of South Bihar" aria-label="YouTube">${iconSvg('youtube')}</a>
+            <a href="https://www.linkedin.com/school/central-university-of-south-bihar/" target="_blank" rel="noopener noreferrer" title="LinkedIn - Central University of South Bihar" aria-label="LinkedIn">${iconSvg('linkedin')}</a>
+            <a href="https://www.instagram.com/cusb_official/" target="_blank" rel="noopener noreferrer" title="Instagram - @cusb_official" aria-label="Instagram">${iconSvg('instagram')}</a>
+          </div>
+          <span class="topbar-divider">|</span>
           <a href="https://rtionline.gov.in/" target="_blank" rel="noopener noreferrer" data-en="RTI" data-hi="सूचना का अधिकार (RTI)">RTI</a>
           <span class="topbar-divider">|</span>
           <a href="https://www.cusb.ac.in/index.php?Itemid=101&amp;catid=16&amp;id=732&amp;option=com_content&amp;view=article" target="_blank" rel="noopener noreferrer" data-en="Disclosure" data-hi="प्रकटीकरण">Disclosure</a>
@@ -1208,7 +1225,7 @@ class CusbSidebar extends HTMLElement {
           <li><a href="iqac.html" class="sidebar-link"><span class="sidebar-icon-box icon-teal">${iconSvg('building')}</span><span data-en="IQAC Cell" data-hi="आईक्यूएसी सेल">IQAC Cell</span></a></li>
           <li><a href="careers.html" class="sidebar-link"><span class="sidebar-icon-box icon-green">${iconSvg('briefcase')}</span><span data-en="Job Openings" data-hi="भर्ती / नौकरियां">Job Openings</span></a></li>
           <li><a href="admin-dean-head.html" class="sidebar-link"><span class="sidebar-icon-box icon-amber">${iconSvg('briefcase')}</span><span data-en="Officers & Deans" data-hi="अधिकारी एवं डीन">Officers & Deans</span></a></li>
-          <li><a href="about.html" class="sidebar-link"><span class="sidebar-icon-box icon-crimson">${iconSvg('file')}</span><span data-en="Prospectus 2026" data-hi="विवरणिका 2026">Prospectus 2026</span></a></li>
+          <li><a href="student-prospectus.html" class="sidebar-link"><span class="sidebar-icon-box icon-crimson">${iconSvg('file')}</span><span data-en="Prospectus 2026" data-hi="विवरणिका 2026">Prospectus 2026</span></a></li>
           <li><a href="pyq.html" class="sidebar-link"><span class="sidebar-icon-box icon-purple">${iconSvg('file')}</span><span data-en="PYQ Portal" data-hi="पुराने पेपर">PYQ Portal</span></a></li>
           <li><a href="https://rtionline.gov.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-cyan">${iconSvg('globe')}</span><span data-en="RTI Online Portal" data-hi="आरटीआई ऑनलाइन">RTI Online Portal</span></a></li>
           <li><a href="https://cusb.samarth.ac.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-sky">${iconSvg('users')}</span><span data-en="Samarth Employee Portal" data-hi="समर्थ कर्मचारी पोर्टल">Samarth Employee Portal</span></a></li>
