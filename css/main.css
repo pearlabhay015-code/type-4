@@ -3174,25 +3174,13 @@ cusb-footer {
   text-orientation: initial;
 }
 
-/* When Chatbot Opens: Reposition Floating Enquiry Button Directly Below Chatbot Box */
+/* When Chatbot Opens: Hide the external floating enquiry button to avoid overlapping the scroll-to-top button (the chatbot already contains an official enquiry button inside) */
 body.chatbot-active .floating-enquiry-btn {
-  position: fixed;
-  right: 20px;
-  top: auto;
-  bottom: 24px;
-  transform: none !important;
-  z-index: 10000;
-  border-radius: 25px;
-  padding: 10px 18px;
-  background: linear-gradient(135deg, #0b2545 0%, #134074 100%);
-  border: 1px solid var(--acc-gold);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
-}
-
-body.chatbot-active .floating-enquiry-btn:hover {
-  transform: translateY(-3px) !important;
-  background: linear-gradient(135deg, #134074 0%, #1e5699 100%);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(-50%) scale(0.8) !important;
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
 }
 
 /* Chatbot Inner Enquiry Bar Style */

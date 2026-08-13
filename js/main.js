@@ -1050,6 +1050,21 @@ function initChatbot() {
 
   closeBtn.addEventListener('click', closeChat);
 
+  // Close chatbot when tapping/clicking anywhere outside on the screen
+  document.addEventListener('pointerdown', (event) => {
+    if (!windowEl.classList.contains('active')) return;
+    if (!windowEl.contains(event.target) && !toggleBtn.contains(event.target)) {
+      closeChat();
+    }
+  });
+
+  // Close chatbot on Escape key
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && windowEl.classList.contains('active')) {
+      closeChat();
+    }
+  });
+
   const innerEnquiryBtn = document.getElementById('chatbotEnquiryBtnInner');
   if (innerEnquiryBtn) {
     innerEnquiryBtn.addEventListener('click', () => {
