@@ -71,18 +71,20 @@ def init_db():
 
     homepage_stats_seed = json.dumps({
         "metrics": [
-            {"label": "Students", "value": "5,699", "change": "+12.4% vs last year", "icon": "users"},
-            {"label": "Lecturers & Faculty", "value": "297", "change": "+5.1% vs last year", "icon": "graduation"},
-            {"label": "Research Grants & Awards", "value": "368", "change": "+18.2% vs last year", "icon": "chart"},
-            {"label": "Revenue / Budget", "value": "₹8.74 Cr", "change": "+24.0% vs last year", "icon": "briefcase"}
+            {"label": "Students", "value": "3,520+", "change": "+8.4% vs last year", "icon": "users"},
+            {"label": "Lecturers & Faculty", "value": "175+", "change": "+6.2% vs last year", "icon": "graduation"},
+            {"label": "Research Grants & Awards", "value": "₹18.5+ Cr", "change": "+15.8% vs last year", "icon": "chart"},
+            {"label": "Revenue / Budget", "value": "₹142.5+ Cr", "change": "+12.0% vs last year", "icon": "briefcase"}
         ],
-        "academicPerformance": {"title": "Academic Performance", "period": "Last 4 Years", "data": [{"label": "2024", "value": 33}, {"label": "2025", "value": 45}, {"label": "2026", "value": 70}, {"label": "2027", "value": 64}]},
-        "monthlyAdmissions": {"title": "Monthly Admissions", "period": "Last Semester", "data": [{"label": "Jan", "primary": 44, "secondary": 25}, {"label": "Feb", "primary": 60, "secondary": 40}, {"label": "Mar", "primary": 52, "secondary": 35}, {"label": "Apr", "primary": 70, "secondary": 55}, {"label": "May", "primary": 65, "secondary": 45}, {"label": "Jun", "primary": 80, "secondary": 60}]},
-        "studentsByState": {"title": "Students by State", "scope": "All States & UTs", "totalLabel": "Enrolled Students", "data": [{"label": "Bihar", "share": 62, "value": 3533, "colour": "#1c77ff"}, {"label": "Uttar Pradesh", "share": 15, "value": 855, "colour": "#22a447"}, {"label": "Jharkhand", "share": 10, "value": 570, "colour": "#ffd950"}, {"label": "West Bengal", "share": 7, "value": 399, "colour": "#10a9bb"}, {"label": "Other", "share": 6, "value": 342, "colour": "#7a4bc2"}]}
+        "academicPerformance": {"title": "Academic Performance", "period": "Last 4 Years", "data": [{"label": "2023", "value": 78}, {"label": "2024", "value": 84}, {"label": "2025", "value": 91}, {"label": "2026", "value": 94}]},
+        "yearlyAdmissions": {"title": "Yearly Admissions", "period": "Last 5 Years", "data": [{"label": "2021-22", "primary": 980, "secondary": 620}, {"label": "2022-23", "primary": 1150, "secondary": 780}, {"label": "2023-24", "primary": 1320, "secondary": 940}, {"label": "2024-25", "primary": 1480, "secondary": 1120}, {"label": "2025-26", "primary": 1650, "secondary": 1340}]},
+        "studentsByState": {"title": "Students by State", "scope": "All States & UTs", "totalLabel": "Enrolled Students", "data": [{"label": "Bihar", "share": 62, "value": 2182, "colour": "#1c77ff"}, {"label": "Uttar Pradesh", "share": 15, "value": 528, "colour": "#22a447"}, {"label": "Jharkhand", "share": 10, "value": 352, "colour": "#ffd950"}, {"label": "West Bengal", "share": 7, "value": 246, "colour": "#10a9bb"}, {"label": "Other", "share": 6, "value": 212, "colour": "#7a4bc2"}]}
     }, ensure_ascii=False)
     c.execute('SELECT 1 FROM homepage_stats WHERE stat_key = ?', ('homepage_dashboard',))
     if not c.fetchone():
         c.execute('INSERT INTO homepage_stats (stat_key, stats_json) VALUES (?, ?)', ('homepage_dashboard', homepage_stats_seed))
+    else:
+        c.execute('UPDATE homepage_stats SET stats_json = ? WHERE stat_key = ?', (homepage_stats_seed, 'homepage_dashboard'))
     
     c.execute('''
         CREATE TABLE IF NOT EXISTS audit_logs (

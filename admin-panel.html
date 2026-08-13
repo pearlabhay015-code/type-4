@@ -443,8 +443,8 @@
           <div class="kpi-card">
             <div>
               <span class="kpi-info-label">Students</span>
-              <div class="kpi-value">5,699</div>
-              <span style="font-size: 0.72rem; color: #28a745; font-weight: 700;">↑ +12.4% vs last year</span>
+              <div class="kpi-value">3,520+</div>
+              <span style="font-size: 0.72rem; color: #28a745; font-weight: 700;">↑ +8.4% vs last year</span>
             </div>
             <button class="kpi-arrow-btn" onclick="switchTab('admissions')" title="View Student Admissions">→</button>
           </div>
@@ -452,17 +452,17 @@
           <div class="kpi-card">
             <div>
               <span class="kpi-info-label">Lecturers & Faculty</span>
-              <div class="kpi-value">297</div>
-              <span style="font-size: 0.72rem; color: #28a745; font-weight: 700;">↑ +5.1% vs last year</span>
+              <div class="kpi-value">175+</div>
+              <span style="font-size: 0.72rem; color: #28a745; font-weight: 700;">↑ +6.2% vs last year</span>
             </div>
             <button class="kpi-arrow-btn" onclick="switchTab('recruitment')" title="View Faculty Directory">→</button>
           </div>
 
           <div class="kpi-card">
             <div>
-              <span class="kpi-info-label">Research Grants & Awards</span>
-              <div class="kpi-value">368</div>
-              <span style="font-size: 0.72rem; color: #28a745; font-weight: 700;">↑ +18.2% vs last year</span>
+              <span class="kpi-info-label">Research Grants & Projects</span>
+              <div class="kpi-value">₹18.5+ Cr</div>
+              <span style="font-size: 0.72rem; color: #28a745; font-weight: 700;">↑ +15.8% vs last year</span>
             </div>
             <button class="kpi-arrow-btn" onclick="switchTab('announcements')" title="View Grants & Awards">→</button>
           </div>
@@ -470,8 +470,8 @@
           <div class="kpi-card">
             <div>
               <span class="kpi-info-label">Revenue / Budget</span>
-              <div class="kpi-value">₹8.74 Cr</div>
-              <span style="font-size: 0.72rem; color: #28a745; font-weight: 700;">↑ +24.0% vs last year</span>
+              <div class="kpi-value">₹142.5+ Cr</div>
+              <span style="font-size: 0.72rem; color: #28a745; font-weight: 700;">↑ +12.0% vs last year</span>
             </div>
             <button class="kpi-arrow-btn" onclick="switchTab('tenders')" title="View Budget & Procurement">→</button>
           </div>
@@ -493,13 +493,13 @@
             </div>
           </div>
 
-          <!-- Chart 2: Monthly Enrolments vs Applications (Bar Chart) -->
+          <!-- Chart 2: Yearly Admissions vs Applications (Bar Chart) -->
           <div class="analytics-card">
             <div class="analytics-card-header">
-              <h3 class="analytics-card-title">Monthly Admissions</h3>
+              <h3 class="analytics-card-title">Yearly Admissions</h3>
               <select class="analytics-filter-select">
-                <option>Last Semester</option>
-                <option>Full Year 2026</option>
+                <option>Last 5 Years</option>
+                <option>All Academic Years</option>
               </select>
             </div>
             <div class="chart-canvas-container">
@@ -524,25 +524,25 @@
               <canvas id="studentsDonutChart"></canvas>
             </div>
             <div class="donut-center-stat">
-              <div class="donut-center-number" id="stateTotalNumber">5,699</div>
+              <div class="donut-center-number" id="stateTotalNumber">3,520+</div>
               <div class="donut-center-label" id="stateTotalLabel">Enrolled Students</div>
             </div>
             <div class="donut-legend-list" id="stateLegendList">
               <div class="donut-legend-item">
                 <div class="donut-legend-left"><span class="donut-legend-dot" style="background-color:#004b9b;"></span> Bihar (62%)</div>
-                <span class="donut-legend-count">3,533 students</span>
+                <span class="donut-legend-count">2,182 students</span>
               </div>
               <div class="donut-legend-item">
                 <div class="donut-legend-left"><span class="donut-legend-dot" style="background-color:#28a745;"></span> Uttar Pradesh (15%)</div>
-                <span class="donut-legend-count">855 students</span>
+                <span class="donut-legend-count">528 students</span>
               </div>
               <div class="donut-legend-item">
                 <div class="donut-legend-left"><span class="donut-legend-dot" style="background-color:#ffc107;"></span> Jharkhand (10%)</div>
-                <span class="donut-legend-count">570 students</span>
+                <span class="donut-legend-count">352 students</span>
               </div>
               <div class="donut-legend-item">
                 <div class="donut-legend-left"><span class="donut-legend-dot" style="background-color:#17a2b8;"></span> West Bengal (7%)</div>
-                <span class="donut-legend-count">399 students</span>
+                <span class="donut-legend-count">246 students</span>
               </div>
             </div>
           </div>
@@ -1828,7 +1828,7 @@
         });
       }
 
-      // 2. Monthly Enrolments & Applications Bar Chart
+      // 2. Yearly Admissions & Applications Bar Chart
       const earnCanvas = document.getElementById('monthlyEarningsChart');
       if (earnCanvas) {
         const earnCtx = earnCanvas.getContext('2d');
@@ -1837,17 +1837,17 @@
         earningsChartInstance = new Chart(earnCtx, {
           type: 'bar',
           data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            labels: ['2021-22', '2022-23', '2023-24', '2024-25', '2025-26'],
             datasets: [
               {
-                label: 'Enrolments',
-                data: [45, 60, 52, 70, 65, 80],
+                label: 'Admitted Students',
+                data: [980, 1150, 1320, 1480, 1650],
                 backgroundColor: '#004b9b',
                 borderRadius: 4
               },
               {
-                label: 'Applications',
-                data: [25, 40, 35, 55, 45, 60],
+                label: 'Applications (Hundreds)',
+                data: [620, 780, 940, 1120, 1340],
                 backgroundColor: '#28a745',
                 borderRadius: 4
               }
@@ -1878,7 +1878,7 @@
           data: {
             labels: ['Bihar', 'Uttar Pradesh', 'Jharkhand', 'West Bengal', 'Other States'],
             datasets: [{
-              data: [3533, 855, 570, 399, 342],
+              data: [2182, 528, 352, 246, 212],
               backgroundColor: ['#004b9b', '#28a745', '#ffc107', '#17a2b8', '#6f42c1'],
               borderWidth: 0,
               hoverOffset: 4
@@ -1897,12 +1897,12 @@
     }
 
     const stateDataSets = {
-      all: { labels: ['Bihar', 'Uttar Pradesh', 'Jharkhand', 'West Bengal', 'Other States'], data: [3533, 855, 570, 399, 342], total: '5,699', label: 'Enrolled Students' },
-      bihar: { labels: ['Patna', 'Gaya', 'Muzaffarpur', 'Bhagalpur', 'Darbhanga'], data: [1200, 950, 600, 450, 333], total: '3,533', label: 'Bihar Students' },
-      up: { labels: ['Varanasi', 'Gorakhpur', 'Lucknow', 'Prayagraj', 'Others'], data: [300, 220, 180, 105, 50], total: '855', label: 'UP Students' },
-      jharkhand: { labels: ['Ranchi', 'Dhanbad', 'Jamshedpur', 'Bokaro', 'Others'], data: [210, 150, 110, 60, 40], total: '570', label: 'Jharkhand Students' },
-      wb: { labels: ['Kolkata', 'Asansol', 'Siliguri', 'Durgapur', 'Others'], data: [150, 100, 75, 45, 29], total: '399', label: 'WB Students' },
-      others: { labels: ['Delhi NCR', 'MP & CG', 'NE States', 'Southern States', 'Union Terr.'], data: [120, 90, 60, 42, 30], total: '342', label: 'Other Regions' }
+      all: { labels: ['Bihar', 'Uttar Pradesh', 'Jharkhand', 'West Bengal', 'Other States'], data: [2182, 528, 352, 246, 212], total: '3,520+', label: 'Enrolled Students' },
+      bihar: { labels: ['Patna', 'Gaya', 'Muzaffarpur', 'Bhagalpur', 'Darbhanga'], data: [740, 590, 370, 280, 202], total: '2,182+', label: 'Bihar Students' },
+      up: { labels: ['Varanasi', 'Gorakhpur', 'Lucknow', 'Prayagraj', 'Others'], data: [185, 135, 110, 65, 33], total: '528+', label: 'UP Students' },
+      jharkhand: { labels: ['Ranchi', 'Dhanbad', 'Jamshedpur', 'Bokaro', 'Others'], data: [130, 95, 68, 37, 22], total: '352+', label: 'Jharkhand Students' },
+      wb: { labels: ['Kolkata', 'Asansol', 'Siliguri', 'Durgapur', 'Others'], data: [92, 62, 46, 28, 18], total: '246+', label: 'WB Students' },
+      others: { labels: ['Delhi NCR', 'MP & CG', 'NE States', 'Southern States', 'Union Terr.'], data: [75, 55, 38, 26, 18], total: '212+', label: 'Other Regions' }
     };
 
     function updateStateGraph() {

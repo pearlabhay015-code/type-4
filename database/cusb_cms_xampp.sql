@@ -63,14 +63,14 @@ CREATE TABLE IF NOT EXISTS cms_homepage_stats (
 INSERT INTO cms_homepage_stats (stat_key, stats_json)
 SELECT 'homepage_dashboard', JSON_OBJECT(
   'metrics', JSON_ARRAY(
-    JSON_OBJECT('label','Students','value','5,699','change','+12.4% vs last year','icon','users'),
-    JSON_OBJECT('label','Lecturers & Faculty','value','297','change','+5.1% vs last year','icon','graduation'),
-    JSON_OBJECT('label','Research Grants & Awards','value','368','change','+18.2% vs last year','icon','chart'),
-    JSON_OBJECT('label','Revenue / Budget','value','₹8.74 Cr','change','+24.0% vs last year','icon','briefcase')
+    JSON_OBJECT('label','Students','value','3,520+','change','+8.4% vs last year','icon','users'),
+    JSON_OBJECT('label','Lecturers & Faculty','value','175+','change','+6.2% vs last year','icon','graduation'),
+    JSON_OBJECT('label','Research Grants & Awards','value','₹18.5+ Cr','change','+15.8% vs last year','icon','chart'),
+    JSON_OBJECT('label','Revenue / Budget','value','₹142.5+ Cr','change','+12.0% vs last year','icon','briefcase')
   ),
-  'academicPerformance', JSON_OBJECT('title','Academic Performance','period','Last 4 Years','data',JSON_ARRAY(JSON_OBJECT('label','2024','value',33),JSON_OBJECT('label','2025','value',45),JSON_OBJECT('label','2026','value',70),JSON_OBJECT('label','2027','value',64))),
-  'monthlyAdmissions', JSON_OBJECT('title','Monthly Admissions','period','Last Semester','data',JSON_ARRAY(JSON_OBJECT('label','Jan','primary',44,'secondary',25),JSON_OBJECT('label','Feb','primary',60,'secondary',40),JSON_OBJECT('label','Mar','primary',52,'secondary',35),JSON_OBJECT('label','Apr','primary',70,'secondary',55),JSON_OBJECT('label','May','primary',65,'secondary',45),JSON_OBJECT('label','Jun','primary',80,'secondary',60))),
-  'studentsByState', JSON_OBJECT('title','Students by State','scope','All States & UTs','totalLabel','Enrolled Students','data',JSON_ARRAY(JSON_OBJECT('label','Bihar','share',62,'value',3533,'colour','#1c77ff'),JSON_OBJECT('label','Uttar Pradesh','share',15,'value',855,'colour','#22a447'),JSON_OBJECT('label','Jharkhand','share',10,'value',570,'colour','#ffd950'),JSON_OBJECT('label','West Bengal','share',7,'value',399,'colour','#10a9bb'),JSON_OBJECT('label','Other','share',6,'value',342,'colour','#7a4bc2')))
+  'academicPerformance', JSON_OBJECT('title','Academic Performance','period','Last 4 Years','data',JSON_ARRAY(JSON_OBJECT('label','2023','value',78),JSON_OBJECT('label','2024','value',84),JSON_OBJECT('label','2025','value',91),JSON_OBJECT('label','2026','value',94))),
+  'yearlyAdmissions', JSON_OBJECT('title','Yearly Admissions','period','Last 5 Years','data',JSON_ARRAY(JSON_OBJECT('label','2021-22','primary',980,'secondary',620),JSON_OBJECT('label','2022-23','primary',1150,'secondary',780),JSON_OBJECT('label','2023-24','primary',1320,'secondary',940),JSON_OBJECT('label','2024-25','primary',1480,'secondary',1120),JSON_OBJECT('label','2025-26','primary',1650,'secondary',1340))),
+  'studentsByState', JSON_OBJECT('title','Students by State','scope','All States & UTs','totalLabel','Enrolled Students','data',JSON_ARRAY(JSON_OBJECT('label','Bihar','share',62,'value',2182,'colour','#1c77ff'),JSON_OBJECT('label','Uttar Pradesh','share',15,'value',528,'colour','#22a447'),JSON_OBJECT('label','Jharkhand','share',10,'value',352,'colour','#ffd950'),JSON_OBJECT('label','West Bengal','share',7,'value',246,'colour','#10a9bb'),JSON_OBJECT('label','Other','share',6,'value',212,'colour','#7a4bc2')))
 )
 WHERE NOT EXISTS (SELECT 1 FROM cms_homepage_stats WHERE stat_key = 'homepage_dashboard');
 

@@ -68,6 +68,7 @@ const iconDefs = `
     <symbol id="icon-flag" viewBox="0 0 24 24"><path d="M4 2v20M4 4h12l-3 4 3 4H4"/></symbol>
     <symbol id="icon-chevron-left" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></symbol>
     <symbol id="icon-chevron-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="icon-accessibility" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="6.5" r="1.6" fill="currentColor"/><path d="M6.5 10.5h11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 11.5v5.5M9.5 20.5 12 16.5l2.5 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="icon-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
     <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></symbol>
@@ -1203,54 +1204,117 @@ class CusbChatbot extends HTMLElement {
 }
 customElements.define('cusb-chatbot', CusbChatbot);
 
-// 8. Fixed Quick Links Sidebar Component
+// 8. Fixed Quick Links Sidebar Component (Segregated into Administration, Faculty, Students)
 class CusbSidebar extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <aside class="fixed-quicklinks-sidebar" role="navigation" aria-label="Quick Links Sidebar">
         <div class="sidebar-heading">
-          ${iconSvg('target')}
-          <span data-en="QUICK LINKS" data-hi="त्वरित लिंक्स">QUICK LINKS</span>
+          <div style="display:flex; align-items:center; gap:8px;">
+            ${iconSvg('target')}
+            <span data-en="QUICK LINKS" data-hi="त्वरित लिंक्स">QUICK LINKS</span>
+          </div>
           <button class="sidebar-close" id="quickLinksCloseBtn" type="button" aria-label="Close Quick Links">${iconSvg('close')}</button>
         </div>
-        <ul class="sidebar-menu-list">
-          <li><a href="tenders.html" class="sidebar-link"><span class="sidebar-icon-box icon-emerald">${iconSvg('shield')}</span><span data-en="Active Tenders" data-hi="सक्रिय निविदाएं">Active Tenders</span></a></li>
-          <li><a href="https://www.antiragging.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-rose">${iconSvg('lock')}</span><span data-en="Anti-Ragging Cell" data-hi="रैगिंग रोधी">Anti-Ragging Cell</span></a></li>
-          <li><a href="student-convocation.html" class="sidebar-link"><span class="sidebar-icon-box icon-purple">${iconSvg('graduation')}</span><span data-en="Convocation" data-hi="दीक्षांत समारोह">Convocation</span></a></li>
-          <li><a href="https://webmail.cusb.ac.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-blue">${iconSvg('globe')}</span><span data-en="CUSB Webmail" data-hi="वेबमेल">CUSB Webmail</span></a></li>
-          <li><a href="downloads.html" class="sidebar-link"><span class="sidebar-icon-box icon-indigo">${iconSvg('download')}</span><span data-en="Download Center" data-hi="डाउनलोड केंद्र">Download Center</span></a></li>
-          <li><a href="student-semester-results.html" class="sidebar-link"><span class="sidebar-icon-box icon-fuchsia">${iconSvg('graduation')}</span><span data-en="Exams & Grades" data-hi="परीक्षाएं">Exams & Grades</span></a></li>
-          <li><a href="enquiry.html" class="sidebar-link"><span class="sidebar-icon-box icon-amber">${iconSvg('phone')}</span><span data-en="Help Desk & Enquiry" data-hi="सहायता डेस्क">Help Desk & Enquiry</span></a></li>
-          <li><a href="hostel.html" class="sidebar-link"><span class="sidebar-icon-box icon-orange">${iconSvg('home')}</span><span data-en="Hostels & Housing" data-hi="छात्रावास">Hostels & Housing</span></a></li>
-          <li><a href="iqac.html" class="sidebar-link"><span class="sidebar-icon-box icon-teal">${iconSvg('building')}</span><span data-en="IQAC Cell" data-hi="आईक्यूएसी सेल">IQAC Cell</span></a></li>
-          <li><a href="careers.html" class="sidebar-link"><span class="sidebar-icon-box icon-green">${iconSvg('briefcase')}</span><span data-en="Job Openings" data-hi="भर्ती / नौकरियां">Job Openings</span></a></li>
-          <li><a href="admin-dean-head.html" class="sidebar-link"><span class="sidebar-icon-box icon-amber">${iconSvg('briefcase')}</span><span data-en="Officers & Deans" data-hi="अधिकारी एवं डीन">Officers & Deans</span></a></li>
-          <li><a href="student-prospectus.html" class="sidebar-link"><span class="sidebar-icon-box icon-crimson">${iconSvg('file')}</span><span data-en="Prospectus 2026" data-hi="विवरणिका 2026">Prospectus 2026</span></a></li>
-          <li><a href="pyq.html" class="sidebar-link"><span class="sidebar-icon-box icon-purple">${iconSvg('file')}</span><span data-en="PYQ Portal" data-hi="पुराने पेपर">PYQ Portal</span></a></li>
-          <li><a href="https://rtionline.gov.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-cyan">${iconSvg('globe')}</span><span data-en="RTI Online Portal" data-hi="आरटीआई ऑनलाइन">RTI Online Portal</span></a></li>
-          <li><a href="https://cusb.samarth.ac.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-sky">${iconSvg('users')}</span><span data-en="Samarth Employee Portal" data-hi="समर्थ कर्मचारी पोर्टल">Samarth Employee Portal</span></a></li>
-          <li><a href="https://cusb.samarth.edu.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-indigo">${iconSvg('graduation')}</span><span data-en="Samarth Student Portal" data-hi="समर्थ छात्र पोर्टल">Samarth Student Portal</span></a></li>
-          <li><a href="https://scholarships.gov.in/" target="_blank" class="sidebar-link"><span class="sidebar-icon-box icon-gold">${iconSvg('briefcase')}</span><span data-en="Scholarship Portal" data-hi="छात्रवृत्ति">Scholarship Portal</span></a></li>
-          <li><a href="courses.html" class="sidebar-link"><span class="sidebar-icon-box icon-teal">${iconSvg('file')}</span><span data-en="Syllabus & Courses" data-hi="पाठ्यक्रम">Syllabus & Courses</span></a></li>
-        </ul>
+
+        <div class="sidebar-accordion-wrapper" id="sidebarQuickLinksAccordion">
+          
+          <!-- 1. ADMINISTRATION DROPDOWN -->
+          <div class="sidebar-accordion-item" data-category="administration">
+            <button class="sidebar-accordion-toggle" type="button" aria-expanded="false" aria-controls="ql-admin-list">
+              <span class="sidebar-accordion-label">
+                <span class="sidebar-category-icon icon-amber">${iconSvg('building')}</span>
+                <span class="sidebar-category-text" data-en="Administration" data-hi="प्रशासन">Administration</span>
+              </span>
+              <span class="sidebar-chevron">${iconSvg('chevron-down')}</span>
+            </button>
+            <div class="sidebar-accordion-content" id="ql-admin-list">
+              <ul class="sidebar-menu-list">
+                <li><a href="admin-dean-head.html" class="sidebar-link"><span class="sidebar-icon-box icon-amber">${iconSvg('briefcase')}</span><span data-en="Officers & Deans" data-hi="अधिकारी एवं डीन">Officers & Deans</span></a></li>
+                <li><a href="tenders.html" class="sidebar-link"><span class="sidebar-icon-box icon-emerald">${iconSvg('shield')}</span><span data-en="Active Tenders" data-hi="सक्रिय निविदाएं">Active Tenders</span></a></li>
+                <li><a href="careers.html" class="sidebar-link"><span class="sidebar-icon-box icon-green">${iconSvg('briefcase')}</span><span data-en="Job Openings" data-hi="भर्ती / नौकरियां">Job Openings</span></a></li>
+                <li><a href="https://rtionline.gov.in/" target="_blank" rel="noopener noreferrer" class="sidebar-link"><span class="sidebar-icon-box icon-cyan">${iconSvg('globe')}</span><span data-en="RTI Online Portal" data-hi="आरटीआई ऑनलाइन">RTI Online Portal</span></a></li>
+                <li><a href="iqac.html" class="sidebar-link"><span class="sidebar-icon-box icon-teal">${iconSvg('building')}</span><span data-en="IQAC Cell" data-hi="आईक्यूएसी सेल">IQAC Cell</span></a></li>
+                <li><a href="https://cusb.samarth.ac.in/" target="_blank" rel="noopener noreferrer" class="sidebar-link"><span class="sidebar-icon-box icon-sky">${iconSvg('users')}</span><span data-en="Samarth Employee Portal" data-hi="समर्थ कर्मचारी पोर्टल">Samarth Employee Portal</span></a></li>
+                <li><a href="https://webmail.cusb.ac.in/" target="_blank" rel="noopener noreferrer" class="sidebar-link"><span class="sidebar-icon-box icon-blue">${iconSvg('globe')}</span><span data-en="CUSB Webmail" data-hi="वेबमेल">CUSB Webmail</span></a></li>
+                <li><a href="downloads.html" class="sidebar-link"><span class="sidebar-icon-box icon-indigo">${iconSvg('download')}</span><span data-en="Download Center" data-hi="डाउनलोड केंद्र">Download Center</span></a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 2. FACULTY DROPDOWN -->
+          <div class="sidebar-accordion-item" data-category="faculty">
+            <button class="sidebar-accordion-toggle" type="button" aria-expanded="false" aria-controls="ql-faculty-list">
+              <span class="sidebar-accordion-label">
+                <span class="sidebar-category-icon icon-blue">${iconSvg('users')}</span>
+                <span class="sidebar-category-text" data-en="Faculty" data-hi="संकाय / शिक्षक">Faculty</span>
+              </span>
+              <span class="sidebar-chevron">${iconSvg('chevron-down')}</span>
+            </button>
+            <div class="sidebar-accordion-content" id="ql-faculty-list">
+              <ul class="sidebar-menu-list">
+                <li><a href="https://cusb.samarth.ac.in/" target="_blank" rel="noopener noreferrer" class="sidebar-link"><span class="sidebar-icon-box icon-sky">${iconSvg('users')}</span><span data-en="Samarth Faculty Portal" data-hi="समर्थ संकाय पोर्टल">Samarth Faculty Portal</span></a></li>
+                <li><a href="https://webmail.cusb.ac.in/" target="_blank" rel="noopener noreferrer" class="sidebar-link"><span class="sidebar-icon-box icon-blue">${iconSvg('globe')}</span><span data-en="CUSB Webmail" data-hi="वेबमेल">CUSB Webmail</span></a></li>
+                <li><a href="courses.html" class="sidebar-link"><span class="sidebar-icon-box icon-teal">${iconSvg('file')}</span><span data-en="Syllabus & Courses" data-hi="पाठ्यक्रम">Syllabus & Courses</span></a></li>
+                <li><a href="iqac.html" class="sidebar-link"><span class="sidebar-icon-box icon-teal">${iconSvg('building')}</span><span data-en="IQAC Quality Cell" data-hi="आईक्यूएसी सेल">IQAC Quality Cell</span></a></li>
+                <li><a href="admin-dean-head.html" class="sidebar-link"><span class="sidebar-icon-box icon-amber">${iconSvg('briefcase')}</span><span data-en="Officers & Deans" data-hi="अधिकारी एवं डीन">Officers & Deans</span></a></li>
+                <li><a href="downloads.html" class="sidebar-link"><span class="sidebar-icon-box icon-indigo">${iconSvg('download')}</span><span data-en="Academic Downloads" data-hi="डाउनलोड केंद्र">Academic Downloads</span></a></li>
+                <li><a href="enquiry.html" class="sidebar-link"><span class="sidebar-icon-box icon-amber">${iconSvg('phone')}</span><span data-en="Help Desk & Support" data-hi="सहायता डेस्क">Help Desk & Support</span></a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 3. STUDENTS DROPDOWN -->
+          <div class="sidebar-accordion-item" data-category="students">
+            <button class="sidebar-accordion-toggle" type="button" aria-expanded="false" aria-controls="ql-students-list">
+              <span class="sidebar-accordion-label">
+                <span class="sidebar-category-icon icon-purple">${iconSvg('graduation')}</span>
+                <span class="sidebar-category-text" data-en="Students" data-hi="छात्र / विद्यार्थी">Students</span>
+              </span>
+              <span class="sidebar-chevron">${iconSvg('chevron-down')}</span>
+            </button>
+            <div class="sidebar-accordion-content" id="ql-students-list">
+              <ul class="sidebar-menu-list">
+                <li><a href="https://cusb.samarth.edu.in/" target="_blank" rel="noopener noreferrer" class="sidebar-link"><span class="sidebar-icon-box icon-indigo">${iconSvg('graduation')}</span><span data-en="Samarth Student Portal" data-hi="समर्थ छात्र पोर्टल">Samarth Student Portal</span></a></li>
+                <li><a href="student-semester-results.html" class="sidebar-link"><span class="sidebar-icon-box icon-fuchsia">${iconSvg('graduation')}</span><span data-en="Exams & Grades" data-hi="परीक्षाएं व परिणाम">Exams & Grades</span></a></li>
+                <li><a href="student-prospectus.html" class="sidebar-link"><span class="sidebar-icon-box icon-crimson">${iconSvg('file')}</span><span data-en="Prospectus 2026" data-hi="विवरणिका 2026">Prospectus 2026</span></a></li>
+                <li><a href="courses.html" class="sidebar-link"><span class="sidebar-icon-box icon-teal">${iconSvg('file')}</span><span data-en="Syllabus & Courses" data-hi="पाठ्यक्रम">Syllabus & Courses</span></a></li>
+                <li><a href="pyq.html" class="sidebar-link"><span class="sidebar-icon-box icon-purple">${iconSvg('file')}</span><span data-en="PYQ Portal" data-hi="पुराने प्रश्न पत्र">PYQ Portal</span></a></li>
+                <li><a href="hostel.html" class="sidebar-link"><span class="sidebar-icon-box icon-orange">${iconSvg('home')}</span><span data-en="Hostels & Housing" data-hi="छात्रावास">Hostels & Housing</span></a></li>
+                <li><a href="https://scholarships.gov.in/" target="_blank" rel="noopener noreferrer" class="sidebar-link"><span class="sidebar-icon-box icon-gold">${iconSvg('briefcase')}</span><span data-en="Scholarship Portal" data-hi="छात्रवृत्ति पोर्टल">Scholarship Portal</span></a></li>
+                <li><a href="student-convocation.html" class="sidebar-link"><span class="sidebar-icon-box icon-purple">${iconSvg('graduation')}</span><span data-en="Convocation Portal" data-hi="दीक्षांत समारोह">Convocation Portal</span></a></li>
+                <li><a href="https://www.antiragging.in/" target="_blank" rel="noopener noreferrer" class="sidebar-link"><span class="sidebar-icon-box icon-rose">${iconSvg('lock')}</span><span data-en="Anti-Ragging Cell" data-hi="रैगिंग रोधी">Anti-Ragging Cell</span></a></li>
+                <li><a href="enquiry.html" class="sidebar-link"><span class="sidebar-icon-box icon-amber">${iconSvg('phone')}</span><span data-en="Help Desk & Enquiry" data-hi="सहायता डेस्क">Help Desk & Enquiry</span></a></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
       </aside>
     `;
-    const priorityLinks = [
-      'admin-dean-head.html', 'iqac.html',
-      'tenders.html', 'careers.html', 'https://webmail.cusb.ac.in/', 'https://cusb.samarth.ac.in/',
-      'https://cusb.samarth.edu.in/', 'student-semester-results.html', 'hostel.html', 'enquiry.html',
-      'https://scholarships.gov.in/', 'downloads.html', 'courses.html', 'student-prospectus.html',
-      'https://www.antiragging.in/', 'https://rtionline.gov.in/', 'student-convocation.html', 'pyq.html'
-    ];
-    const menu = this.querySelector('.sidebar-menu-list');
-    if (menu) {
-      const links = [...menu.querySelectorAll(':scope > li')];
-      links.sort((a, b) => {
-        const aIndex = priorityLinks.indexOf(a.querySelector('a')?.getAttribute('href'));
-        const bIndex = priorityLinks.indexOf(b.querySelector('a')?.getAttribute('href'));
-        return (aIndex < 0 ? Number.MAX_SAFE_INTEGER : aIndex) - (bIndex < 0 ? Number.MAX_SAFE_INTEGER : bIndex);
-      }).forEach(item => menu.appendChild(item));
-    }
+
+    // Interactive Accordion Toggle Handlers (Exclusive: opening one closes all other dropdowns)
+    const accordionItems = this.querySelectorAll('.sidebar-accordion-item');
+    accordionItems.forEach(item => {
+      const toggle = item.querySelector('.sidebar-accordion-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const isOpen = item.classList.contains('is-open');
+          // Close all other accordion dropdowns
+          accordionItems.forEach(otherItem => {
+            if (otherItem !== item) {
+              otherItem.classList.remove('is-open');
+              const otherToggle = otherItem.querySelector('.sidebar-accordion-toggle');
+              if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
+            }
+          });
+          // Toggle clicked accordion dropdown
+          item.classList.toggle('is-open', !isOpen);
+          toggle.setAttribute('aria-expanded', String(!isOpen));
+        });
+      }
+    });
+
     replaceEmojiIcons(this);
 
     const updatePosition = () => {
