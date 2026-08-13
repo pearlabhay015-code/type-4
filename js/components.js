@@ -321,10 +321,14 @@ class CusbHeader extends HTMLElement {
         </a>
         
         <div class="header-controls">
-          <!-- NAAC and Viksit Bharat Badges -->
+          <!-- NAAC and Viksit Bharat Badges with official links -->
           <div class="header-badges">
-            <img src="assets/NAAC.png" alt="NAAC A++ Badge" class="header-badge-img" loading="lazy" decoding="async">
-            <img src="assets/viksit.png" alt="Viksit Bharat Banner" class="header-badge-img" loading="lazy" decoding="async">
+            <a href="https://www.naac.gov.in/" target="_blank" rel="noopener noreferrer" class="header-badge-link" title="National Assessment and Accreditation Council (NAAC) - Official Website" aria-label="NAAC Official Website">
+              <img src="assets/NAAC.png" alt="NAAC A++ Badge" class="header-badge-img" loading="lazy" decoding="async">
+            </a>
+            <a href="https://viksitbharat2047.gov.in/" target="_blank" rel="noopener noreferrer" class="header-badge-link" title="Viksit Bharat @2047 - Official Government Portal" aria-label="Viksit Bharat Official Portal">
+              <img src="assets/viksit.png" alt="Viksit Bharat Banner" class="header-badge-img" loading="lazy" decoding="async">
+            </a>
           </div>
         </div>
       </div>
