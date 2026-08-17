@@ -1416,6 +1416,7 @@ function initEnquiryModal() {
   const modalOverlay = document.getElementById('enquiryModalOverlay');
   const closeBtn = document.getElementById('enquiryModalCloseBtn');
   const form = document.getElementById('enquiryForm');
+  const recipientSelect = document.getElementById('enquiryRecipientSelect');
   const categoryChips = document.querySelectorAll('#enquiryCategoryChips .enquiry-chip');
   const categoryInput = document.getElementById('enquiryCategoryInput');
   const programSelect = document.getElementById('enquiryProgramLevel');
@@ -1458,13 +1459,22 @@ function initEnquiryModal() {
     }
   });
 
-  // Category Selector Chips
+  // Category Selector Chips & Automatic Recipient Email Mapping
   categoryChips.forEach(chip => {
     chip.addEventListener('click', () => {
       categoryChips.forEach(c => c.classList.remove('active'));
       chip.classList.add('active');
       const cat = chip.getAttribute('data-category');
       if (categoryInput) categoryInput.value = cat;
+
+      // Sync recipient dropdown with category
+      if (recipientSelect) {
+        if (cat === 'admissions') recipientSelect.value = 'admissions@cusb.ac.in';
+        else if (cat === 'courses') recipientSelect.value = 'coe@cub.ac.in';
+        else if (cat === 'hostel') recipientSelect.value = 'warden@cusb.ac.in';
+        else if (cat === 'scholarship') recipientSelect.value = 'dsw@cusb.ac.in';
+        else if (cat === 'general') recipientSelect.value = 'registrar@cub.ac.in';
+      }
 
       // Customize placeholders based on category
       if (messageArea) {

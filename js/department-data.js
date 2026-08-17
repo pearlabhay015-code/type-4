@@ -8,7 +8,7 @@ window.cusbDepartments = {
     vision: 'The department focuses on mathematical reasoning, modelling, analysis, and problem solving. Students engage with classical theory and modern applications across computation, finance, data analysis, and interdisciplinary research.',
     established: '2009',
     programmes: ['Integrated B.Sc. + M.Sc. Mathematics', 'M.Sc. Mathematics', 'Ph.D. Mathematics'],
-    research: ['Algebra and Number Theory', 'Differential Equations', 'Mathematical Modelling', 'Numerical Analysis']
+    research: ['Algebra and Number Theory', 'Combinatorics and Coding Theory', 'Sequence and Code Design for Wireless Communications', 'Boolean Functions and Cryptography', 'Differential Equations', 'Mathematical Modelling', 'Numerical Analysis']
   },
   statistics: {
     name: 'Statistics',
@@ -410,7 +410,7 @@ window.cusbDepartmentCatalogue = {
   sociological_studies: { programmes: [{ name: '5 Years Integrated UG-PG in Political Studies & IR', level: 'Integrated', duration: '5 years' }, { name: 'M.A. in Sociology', level: 'Postgraduate', duration: '2 years' }, { name: 'M.A. in Social Work', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in Sociology', level: 'Doctoral', duration: 'As per ordinance' }] },
   library_science: { name: 'Library & Information Science', established: '2025–26 (integrated programme launch)', programmes: [{ name: '2 Years Integrated B.Lib.I.Sc.–M.Lib.I.Sc.', level: 'Integrated', duration: '2 years' }] },
   mathematics: {
-    facultyStrength: 'Faculty 07 · Staff 01',
+    facultyStrength: 'Faculty 09 · Staff 01',
     programmes: [{ name: '5 Years Integrated UG-PG in Mathematics', level: 'Integrated', duration: '5 years' }, { name: 'M.Sc. in Mathematics', level: 'Postgraduate', duration: '2 years' }, { name: 'Ph.D. in Mathematics', level: 'Doctoral', duration: 'As per ordinance' }],
     faculty: ['Prof. H.K. Nigam', 'Prof. Roushan Kumar', 'Prof. Jay Prakash Singh', 'Prof. Vivek Kumar Jain', 'Dr. Rajesh Pratap Singh', 'Dr. Shubh Narayan Singh', 'Dr. Pankaj Mishra', 'Dr. Chandra Shekher Singh', 'Dr. Palash Sarkar']
   },

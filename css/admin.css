@@ -1029,10 +1029,11 @@
 }
 
 .calendar-grid-table td.active-day {
-  background: #004b9b;
-  color: #fff;
+  background: linear-gradient(135deg, #e11d48, #dc2626) !important;
+  color: #fff !important;
   font-weight: 700;
-
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
 }
 
 .calendar-grid-table td.muted-day {

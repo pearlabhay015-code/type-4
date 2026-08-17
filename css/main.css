@@ -3526,8 +3526,22 @@ body.chatbot-active .floating-enquiry-btn {
 }
 
 .enquiry-hint {
-  font-size: 0.78rem;
+  display: block;
+  font-size: 0.76rem;
   color: var(--tx-muted);
+  margin-top: 4px;
+  line-height: 1.35;
+  opacity: 0.88;
+  transition: opacity var(--transition-fast), color var(--transition-fast);
+}
+
+.enquiry-field-group:focus-within .enquiry-hint {
+  opacity: 1;
+  color: var(--acc-navy);
+}
+
+[data-theme="dark"] .enquiry-field-group:focus-within .enquiry-hint {
+  color: #38bdf8;
 }
 
 /* Category Selection Chips */

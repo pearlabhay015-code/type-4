@@ -142,16 +142,20 @@
     if (facultyGrid) {
       facultyGrid.innerHTML = faculty.length ? faculty.map((person) => {
         const profileUrl = (person.profile_url && person.profile_url !== '#') ? person.profile_url : 'https://people.samarth.edu.in/';
+        const isExternal = /^https?:\/\//i.test(profileUrl);
+        const targetAttr = isExternal ? ' target="_blank" rel="noopener"' : '';
+        const btnTextEn = isExternal ? 'View Profile ↗' : 'View Profile';
+        const btnTextHi = isExternal ? 'प्रोफ़ाइल देखें ↗' : 'प्रोफ़ाइल देखें';
         return `
         <article class="faculty-card department-faculty-card">
-          ${person.image_url ? `<img class="faculty-img" src="${escapeHtml(person.image_url)}" alt="${escapeHtml(person.name)}" loading="lazy">` : `<div class="department-faculty-avatar" aria-hidden="true">${escapeHtml(initials(person.name))}</div>`}
+          ${person.image_url ? `<img class="faculty-img" src="${escapeHtml(person.image_url)}" alt="${escapeHtml(person.name)}" loading="lazy" onerror="this.onerror=null;this.src='assets/culog.png';">` : `<div class="department-faculty-avatar" aria-hidden="true">${escapeHtml(initials(person.name))}</div>`}
           <h3 class="faculty-name">${escapeHtml(person.name)}</h3>
           <p class="faculty-designation">${escapeHtml(person.designation)}</p>
           <p class="faculty-specialization">${escapeHtml(person.specialization)}</p>
           ${person.qualification ? `<p class="faculty-specialization"><strong>Qualification:</strong> ${escapeHtml(person.qualification)}</p>` : ''}
           ${person.email ? `<a class="department-email" href="mailto:${escapeHtml(person.email)}">${escapeHtml(person.email)}</a>` : ''}
           <div class="faculty-profile-box">
-            <a href="${escapeHtml(profileUrl)}" target="_blank" rel="noopener" class="faculty-profile-btn" data-en="View Profile ↗" data-hi="प्रोफ़ाइल देखें ↗">View Profile ↗</a>
+            <a href="${escapeHtml(profileUrl)}"${targetAttr} class="faculty-profile-btn" data-en="${btnTextEn}" data-hi="${btnTextHi}">${btnTextEn}</a>
           </div>
         </article>`;
       }).join('') : `

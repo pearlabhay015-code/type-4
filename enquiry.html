@@ -55,18 +55,61 @@
             <form id="pageEnquiryForm" class="enquiry-form-grid" novalidate>
               <input type="hidden" id="pageEnquiryCategoryInput" name="category" value="admissions">
 
+              <div class="enquiry-field-group enquiry-form-full">
+                <label for="pageEnquiryRecipientSelect" class="enquiry-field-label">
+                  <span data-en="Send Query To (Concerned Officer / Cell)" data-hi="पूछताछ भेजें (संबंधित अधिकारी / प्रकोष्ठ)">Send Query To (Concerned Officer / Cell)</span> <span class="req">*</span>
+                </label>
+                <select id="pageEnquiryRecipientSelect" name="recipientEmail" class="enquiry-select" required>
+                  <optgroup label="🎓 Admissions & Academic Programs">
+                    <option value="admissions@cusb.ac.in" selected>admissions@cusb.ac.in — Central Admission Helpdesk & CUET Cell</option>
+                    <option value="coe@cub.ac.in">coe@cub.ac.in — Controller of Examinations (Dr. Santigopal Pain)</option>
+                  </optgroup>
+                  <optgroup label="🏠 Hostels & Campus Accommodation">
+                    <option value="warden@cusb.ac.in">warden@cusb.ac.in — Hostel Administration & Chief Warden</option>
+                    <option value="patoproctor@cusb.ac.in">patoproctor@cusb.ac.in — Proctorial Board (Prof. Pranav Kumar)</option>
+                  </optgroup>
+                  <optgroup label="💰 Scholarships & Student Welfare">
+                    <option value="dsw@cusb.ac.in">dsw@cusb.ac.in — Dean Students' Welfare (Prof. Pawan Kumar Mishra)</option>
+                    <option value="abhishekgupta@cusb.ac.in">abhishekgupta@cusb.ac.in — DSW Office & Scholarships</option>
+                  </optgroup>
+                  <optgroup label="💳 Fees, Accounts & Finance">
+                    <option value="fo@cusb.ac.in">fo@cusb.ac.in — Finance Officer (Smt. Rashmi Tripathi)</option>
+                    <option value="fee@cusb.ac.in">fee@cusb.ac.in — University Fee & Accounts Section</option>
+                  </optgroup>
+                  <optgroup label="🏛️ General Administration & Support">
+                    <option value="registrar@cub.ac.in">registrar@cub.ac.in — Registrar Office (Prof. Narendra Kumar Rana)</option>
+                    <option value="icthelpdesk@cusb.ac.in">icthelpdesk@cusb.ac.in — ICT & Web Support Cell</option>
+                    <option value="centrallibrary@cusb.ac.in">centrallibrary@cusb.ac.in — Central Library (Dr. Pramod Kumar Singh)</option>
+                    <option value="iqac@cusb.ac.in">iqac@cusb.ac.in — IQAC Quality Assurance Cell</option>
+                  </optgroup>
+                  <optgroup label="🏫 Departmental Heads & School Deans">
+                    <option value="hod.csc@cusb.ac.in">hod.csc@cusb.ac.in — HoD, Computer Science (Prof. Jainath Yadav)</option>
+                    <option value="dean.smscs@cusb.ac.in">dean.smscs@cusb.ac.in — Dean, Math, Stats & CS (Prof. Jay Prakash Singh)</option>
+                    <option value="dean.slg@cusb.ac.in">dean.slg@cusb.ac.in — Dean, Law & Governance (Prof. Ashok Kumar)</option>
+                    <option value="dean.soe@cusb.ac.in">dean.soe@cusb.ac.in — Dean, Education (Prof. Ravi Kant)</option>
+                    <option value="dean.som@cusb.ac.in">dean.som@cusb.ac.in — Dean, Management (Prof. Subramanian Shanmugam)</option>
+                    <option value="dean.sebes@cusb.ac.in">dean.sebes@cusb.ac.in — Dean, Earth & Life Sciences (Prof. Rizwanul Haque)</option>
+                    <option value="dean.spcs@cusb.ac.in">dean.spcs@cusb.ac.in — Dean, Physical Sciences (Prof. Atul Pratap Singh)</option>
+                    <option value="hod.cms@cusb.ac.in">hod.cms@cusb.ac.in — HoD, Mass Communication (Prof. Atish Prashar)</option>
+                  </optgroup>
+                </select>
+                <span class="enquiry-hint" data-en="Select the designated university officer or cell dealing with your inquiry area" data-hi="अपनी पूछताछ से संबंधित विश्वविद्यालय अधिकारी या प्रकोष्ठ का चयन करें">Select the designated university officer or cell dealing with your inquiry area</span>
+              </div>
+
               <div class="enquiry-field-group">
                 <label for="pageEnquiryFullName" class="enquiry-field-label">
                   <span data-en="Full Name" data-hi="पूरा नाम">Full Name</span> <span class="req">*</span>
                 </label>
                 <input type="text" id="pageEnquiryFullName" name="fullName" class="enquiry-input" placeholder="e.g. Rahul Kumar" required>
+                <span class="enquiry-hint" data-en="Enter your official full name as per your 10th/12th certificate or Govt ID" data-hi="अपने 10वीं/12वीं प्रमाण पत्र या सरकारी पहचान पत्र के अनुसार अपना आधिकारिक नाम दर्ज करें">Enter your official full name as per your 10th/12th certificate or Govt ID</span>
               </div>
 
               <div class="enquiry-field-group">
                 <label for="pageEnquiryEmail" class="enquiry-field-label">
-                  <span data-en="Email Address" data-hi="ईमेल पता">Email Address</span> <span class="req">*</span>
+                  <span data-en="Your Email Address" data-hi="आपका ईमेल पता">Your Email Address</span> <span class="req">*</span>
                 </label>
                 <input type="email" id="pageEnquiryEmail" name="email" class="enquiry-input" placeholder="name@example.com" required>
+                <span class="enquiry-hint" data-en="Enter your active personal email address where official replies and reference ticket will be delivered" data-hi="अपना सक्रिय ईमेल पता दर्ज करें जहां आधिकारिक उत्तर और संदर्भ टिकट भेजा जाएगा">Enter your active personal email address where official replies and reference ticket will be delivered</span>
               </div>
 
               <div class="enquiry-field-group">
@@ -74,6 +117,7 @@
                   <span data-en="Mobile / WhatsApp No." data-hi="मोबाइल / व्हाट्सएप नंबर">Mobile / WhatsApp No.</span> <span class="req">*</span>
                 </label>
                 <input type="tel" id="pageEnquiryPhone" name="phone" class="enquiry-input" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                <span class="enquiry-hint" data-en="Enter your active 10-digit mobile number for instant SMS alerts and verification" data-hi="त्वरित एसएमएस अलर्ट और सत्यापन के लिए अपना 10-अंकीय मोबाइल नंबर दर्ज करें">Enter your active 10-digit mobile number for instant SMS alerts and verification</span>
               </div>
 
               <div class="enquiry-field-group">
@@ -87,6 +131,7 @@
                   <option value="phd" data-en="Ph.D. / Research" data-hi="पीएचडी / अनुसंधान">Ph.D. / Research</option>
                   <option value="diploma" data-en="Diploma / Certificate" data-hi="डिप्लोमा / प्रमाणपत्र">Diploma / Certificate</option>
                 </select>
+                <span class="enquiry-hint" data-en="Select your targeted level of study (UG, PG, Ph.D., or Diploma) for tailored guidance" data-hi="सटीक मार्गदर्शन के लिए अपने अध्ययन का स्तर (यूजी, पीजी, पीएचडी या डिप्लोमा) चुनें">Select your targeted level of study (UG, PG, Ph.D., or Diploma) for tailored guidance</span>
               </div>
 
               <div class="enquiry-field-group enquiry-form-full">
@@ -105,6 +150,7 @@
                   <option value="education">Department of Teacher Education</option>
                   <option value="economics">Department of Economics</option>
                 </select>
+                <span class="enquiry-hint" data-en="Select the specific academic department or curriculum your inquiry relates to" data-hi="उस विशिष्ट विभाग या पाठ्यक्रम का चयन करें जिससे आपकी पूछताछ संबंधित है">Select the specific academic department or curriculum your inquiry relates to</span>
               </div>
 
               <div class="enquiry-field-group enquiry-form-full">
@@ -112,6 +158,7 @@
                   <span data-en="CUET Application No. (Optional)" data-hi="सीयूईटी आवेदन संख्या (वैकल्पिक)">CUET Application No. (Optional)</span>
                 </label>
                 <input type="text" id="pageEnquiryCuetNo" name="cuetNo" class="enquiry-input" placeholder="e.g. 263510098765">
+                <span class="enquiry-hint" data-en="Provide your 12-digit NTA CUET application number if already registered for faster admission tracking" data-hi="त्वरित प्रवेश ट्रैकिंग के लिए अपना 12-अंकीय एनटीए सीयूईटी आवेदन नंबर दर्ज करें (यदि लागू हो)">Provide your 12-digit NTA CUET application number if already registered for faster admission tracking</span>
               </div>
 
               <div class="enquiry-field-group enquiry-form-full">
@@ -120,6 +167,7 @@
                   <small id="pageCharCounter" style="font-weight: 400; font-size: 0.78rem; color: var(--tx-muted);">0 / 500</small>
                 </label>
                 <textarea id="pageEnquiryMessage" name="message" class="enquiry-textarea" rows="4" maxlength="500" placeholder="Type your inquiry details here... (e.g. admission eligibility, hostel allotment date, fee submission)" required></textarea>
+                <span class="enquiry-hint" data-en="Describe your question or grievance clearly in detail (minimum 10 characters, maximum 500 characters)" data-hi="अपने प्रश्न या शिकायत का विस्तार से स्पष्ट विवरण दें (न्यूनतम 10 अक्षर, अधिकतम 500 अक्षर)">Describe your question or grievance clearly in detail (minimum 10 characters, maximum 500 characters)</span>
               </div>
 
               <div class="enquiry-form-full" style="text-align: right; margin-top: 10px;">
@@ -249,6 +297,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       const pageChips = document.querySelectorAll('#pageEnquiryCategoryChips .enquiry-chip');
       const pageCatInput = document.getElementById('pageEnquiryCategoryInput');
+      const pageRecipientSelect = document.getElementById('pageEnquiryRecipientSelect');
       const pageProgSelect = document.getElementById('pageEnquiryProgramLevel');
       const pageDeptSelect = document.getElementById('pageEnquiryDepartment');
       const pageMsgArea = document.getElementById('pageEnquiryMessage');
@@ -263,7 +312,17 @@
           chip.addEventListener('click', () => {
             pageChips.forEach(c => c.classList.remove('active'));
             chip.classList.add('active');
-            if (pageCatInput) pageCatInput.value = chip.getAttribute('data-category');
+            const cat = chip.getAttribute('data-category');
+            if (pageCatInput) pageCatInput.value = cat;
+
+            // Sync recipient dropdown with category
+            if (pageRecipientSelect) {
+              if (cat === 'admissions') pageRecipientSelect.value = 'admissions@cusb.ac.in';
+              else if (cat === 'courses') pageRecipientSelect.value = 'coe@cub.ac.in';
+              else if (cat === 'hostel') pageRecipientSelect.value = 'warden@cusb.ac.in';
+              else if (cat === 'scholarship') pageRecipientSelect.value = 'dsw@cusb.ac.in';
+              else if (cat === 'general') pageRecipientSelect.value = 'registrar@cub.ac.in';
+            }
           });
         });
       }
@@ -298,6 +357,7 @@
 
           const fullName = document.getElementById('pageEnquiryFullName').value.trim();
           const userEmail = document.getElementById('pageEnquiryEmail').value.trim();
+          const recipientEmail = pageRecipientSelect ? pageRecipientSelect.value.trim() : 'admissions@cusb.ac.in';
           const phone = document.getElementById('pageEnquiryPhone').value.trim();
           const category = pageCatInput.value || 'General Admission Enquiry';
           const level = pageProgSelect.value || 'N/A';
@@ -312,6 +372,7 @@ Thank you for submitting your enquiry to Central University of South Bihar (CUSB
 
 --- OFFICIAL ENQUIRY DETAILS ---
 Ticket Reference: ${ticketCode}
+Recipient Officer / Cell: ${recipientEmail}
 Full Name: ${fullName}
 Email Address: ${userEmail}
 Phone Number: ${phone}
@@ -327,11 +388,12 @@ Central University of South Bihar (CUSB)
 SH-7, Panchanpur, Gaya, Bihar 824236
 Helpdesk: admissions@cusb.ac.in | registrar@cusb.ac.in`;
 
-          // 1. Dispatch real HTTP POST email to user via FormSubmit API
+          // 1. Dispatch real HTTP POST email to user and authority via FormSubmit API
           try {
             const formData = new FormData();
             formData.append('_subject', emailSubject);
             formData.append('Ticket Code', ticketCode);
+            formData.append('Assigned Officer', recipientEmail);
             formData.append('Full Name', fullName);
             formData.append('User Email', userEmail);
             formData.append('Phone Number', phone);
@@ -347,8 +409,8 @@ Helpdesk: admissions@cusb.ac.in | registrar@cusb.ac.in`;
             }).catch(err => console.log('FormSubmit notification error:', err));
           } catch (err) {}
 
-          // 2. Set mailto link for direct client launch
-          const mailtoUrl = `mailto:${encodeURIComponent(userEmail)}?cc=admissions@cusb.ac.in&subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+          // 2. Set mailto link with destination recipient
+          const mailtoUrl = `mailto:${encodeURIComponent(recipientEmail)}?cc=${encodeURIComponent(userEmail)}&subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
           
           if (pageTicket) pageTicket.textContent = ticketCode;
           pageForm.style.display = 'none';

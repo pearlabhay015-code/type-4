@@ -1482,8 +1482,9 @@
     // ==========================================
     // DYNAMIC CALENDAR MONTH NAVIGATION
     // ==========================================
-    let currentCalYear = 2026;
-    let currentCalMonth = 2; // 0-indexed: 2 = March
+    const nowCalDate = new Date();
+    let currentCalYear = nowCalDate.getFullYear();
+    let currentCalMonth = nowCalDate.getMonth(); // 0-indexed current month
     const monthNamesList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     function navigateCalendarMonth(dir) {
@@ -1523,6 +1524,7 @@
       }
 
       // Month days
+      const realToday = new Date();
       for (let day = 1; day <= totalDays; day++) {
         if (row.children.length === 7) {
           tbody.appendChild(row);
@@ -1532,7 +1534,7 @@
         const td = document.createElement('td');
         td.textContent = day;
         td.style.cursor = 'pointer';
-        if (day === 15 && month === 9 && year === 2026) {
+        if (day === realToday.getDate() && month === realToday.getMonth() && year === realToday.getFullYear()) {
           td.className = 'active-day';
         }
         td.onclick = () => openCalendarDateModal(day, month, year);
@@ -2024,6 +2026,7 @@
     async function loadDashboardData() {
       // Initialize analytics charts
       initAnalyticsCharts();
+      renderCalendarGrid(currentCalYear, currentCalMonth);
       
       const profileName = document.getElementById('sidebarProfileName');
       if (profileName && activeUser) {

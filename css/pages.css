@@ -4615,15 +4615,28 @@
 }
 
 .calendar-day-cell.today {
-  background-color: var(--bg-secondary);
+  background: linear-gradient(135deg, #e11d48, #dc2626) !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  border: 2px solid #b91c1c !important;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.38), inset 0 0 0 1px rgba(255, 255, 255, 0.25) !important;
+  position: relative;
+}
+
+.calendar-day-cell.today .calendar-day-number {
+  color: #ffffff !important;
   font-weight: 800;
-  color: var(--tx-secondary);
-  box-shadow: inset 0 0 0 1px var(--border-color);
 }
 
 .calendar-day-cell.selected.today {
-  background-color: #005bd8;
-  color: white !important;
+  background: linear-gradient(135deg, #b91c1c, #dc2626) !important;
+  color: #ffffff !important;
+  border-color: #ffd950 !important;
+  box-shadow: 0 0 0 3px rgba(255, 217, 80, 0.7), 0 8px 20px rgba(220, 38, 38, 0.45) !important;
+}
+
+.calendar-day-cell.selected.today::after {
+  background-color: #ffd950 !important;
 }
 
 /* Event side panel styling */
@@ -4833,9 +4846,17 @@
   background: #121212;
   color: var(--tx-primary);
 }
-[data-theme="dark"] .calendar-day-cell:hover,
-[data-theme="dark"] .calendar-day-cell.today {
+[data-theme="dark"] .calendar-day-cell:hover {
   background: #1d1d1d;
+}
+[data-theme="dark"] .calendar-day-cell.today {
+  background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+  color: #ffffff !important;
+  border: 2px solid #ef4444 !important;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.2) !important;
+}
+[data-theme="dark"] .calendar-day-cell.today .calendar-day-number {
+  color: #ffffff !important;
 }
 [data-theme="dark"] .calendar-day-cell.selected {
   background-color: #ffd950;
@@ -4844,8 +4865,10 @@
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5), 0 8px 22px rgba(255, 217, 80, 0.22);
 }
 [data-theme="dark"] .calendar-day-cell.selected.today {
-  background-color: #ffd950;
-  color: #050505 !important;
+  background: linear-gradient(135deg, #dc2626, #991b1b) !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6), 0 8px 22px rgba(239, 68, 68, 0.45) !important;
 }
 [data-theme="dark"] .calendar-day-cell.selected::after {
   background-color: #050505;

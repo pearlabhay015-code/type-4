@@ -207,20 +207,21 @@ document.addEventListener('DOMContentLoaded', () => {
     setInitialSelection();
     renderCalendar();
     
+    // Start by displaying today's current date
+    displaySelectedEvents();
+
     if (allEventsList.length > 0) {
-      // Find event closest to today
+      // Find event closest to or on today to begin auto-rotation
       const today = new Date();
+      today.setHours(0, 0, 0, 0);
       const closestIndex = allEventsList.findIndex(e => e.parsed_date >= today);
       currentCarouselIndex = closestIndex !== -1 ? closestIndex : 0;
-      displayEventAtIndex(currentCarouselIndex);
-    } else {
-      displaySelectedEvents();
     }
 
     startAutoSlide();
   }
 
-  // Auto-Slide Engine at 4-second intervals
+  // Auto-Slide Engine: auto changes dates/events every 5 seconds (5000ms)
   function startAutoSlide() {
     if (autoSlideInterval) clearInterval(autoSlideInterval);
     autoSlideInterval = setInterval(() => {
@@ -228,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentCarouselIndex = (currentCarouselIndex + 1) % allEventsList.length;
         displayEventAtIndex(currentCarouselIndex, true);
       }
-    }, 4000);
+    }, 5000);
   }
 
   function pauseAutoSlideTemporarily(durationMs = 7000) {
@@ -361,12 +362,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const events = eventsMap[selectedDateStr] || [];
     
     if (events.length === 0) {
+      const today = new Date();
+      const isToday = today.getDate() === d && today.getMonth() === m && today.getFullYear() === y;
 
-      eventDetailsList.innerHTML = `
-        <div class="no-events-msg" data-en="No events scheduled for this date." data-hi="इस तिथि के लिए कोई कार्यक्रम निर्धारित नहीं है।">
-          ${lang === 'en' ? 'No events scheduled for this date.' : 'इस तिथि के लिए कोई कार्यक्रम निर्धारित नहीं है。'}
-        </div>
-      `;
+      const title = isToday 
+        ? (lang === 'en' ? "Today's Academic Session" : "आज का शैक्षणिक सत्र")
+        : (lang === 'en' ? "University Working Day" : "विश्वविद्यालय कार्य दिवस");
+      const desc = isToday
+        ? (lang === 'en' ? "Regular academic lectures, departmental research, and campus library hours are in session today." : "आज नियमित शैक्षणिक कक्षाएं, विभागीय अनुसंधान और केंद्रीय पुस्तकालय सत्र जारी हैं।")
+        : (lang === 'en' ? "No public holiday or university event is scheduled for this selected date." : "इस चयनित तिथि के लिए कोई सार्वजनिक अवकाश या विशेष कार्यक्रम निर्धारित नहीं है।");
+
+      eventDetailsList.style.opacity = '0';
+      eventDetailsList.style.transition = 'opacity 0.25s ease';
+
+      setTimeout(() => {
+        eventDetailsList.innerHTML = `
+          <div class="panel-event-card">
+            <div class="panel-event-media">
+              <img src="assets/images/audimg.jpg" alt="${escapeHTML(title)}" loading="lazy">
+              <div class="panel-event-date-badge">${escapeHTML(formattedDate)}</div>
+            </div>
+            <div class="panel-event-body">
+              <div class="panel-event-meta">${isToday ? (lang === 'en' ? 'Active Today' : 'आज सक्रिय') : (lang === 'en' ? 'Campus Schedule' : 'परिसर कार्यक्रम')}</div>
+              <h4 class="panel-event-title">${escapeHTML(title)}</h4>
+              <p class="panel-event-desc">${escapeHTML(desc)}</p>
+              <div class="panel-event-info">
+                <span>${escapeHTML(formattedDate)}</span>
+                <span>CUSB Gaya Campus</span>
+              </div>
+              <a class="panel-event-link" href="news-events.html?type=event">${lang === 'en' ? 'Browse All Events & Calendar' : 'सभी कार्यक्रम एवं कैलेंडर देखें'}</a>
+            </div>
+          </div>
+        `;
+        eventDetailsList.style.opacity = '1';
+      }, 120);
       return;
     }
 
@@ -539,8 +568,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Fetch and initialize on load
   loadEvents();
-
-  startDateSync();
 
   // Watch for language change triggers
   window.addEventListener('storage', (e) => {
