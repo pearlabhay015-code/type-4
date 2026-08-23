@@ -1289,6 +1289,42 @@ class CusbSidebar extends HTMLElement {
             </div>
           </div>
 
+          <!-- 4. CAMPUS FACILITIES DROPDOWN -->
+          <div class="sidebar-accordion-item" data-category="facilities">
+            <button class="sidebar-accordion-toggle" type="button" aria-expanded="false" aria-controls="ql-facilities-list">
+              <span class="sidebar-accordion-label">
+                <span class="sidebar-category-icon icon-emerald">${iconSvg('building')}</span>
+                <span class="sidebar-category-text" data-en="Campus Facilities" data-hi="परिसर सुविधाएं">Campus Facilities</span>
+              </span>
+              <span class="sidebar-chevron">${iconSvg('chevron-down')}</span>
+            </button>
+            <div class="sidebar-accordion-content" id="ql-facilities-list">
+              <ul class="sidebar-menu-list">
+                <li><a href="facilities.html" class="sidebar-link"><span class="sidebar-icon-box icon-emerald">${iconSvg('building')}</span><span data-en="All Campus Facilities" data-hi="सभी परिसर सुविधाएं">All Campus Facilities</span></a></li>
+                <li><a href="library.html" class="sidebar-link"><span class="sidebar-icon-box icon-teal">${iconSvg('file')}</span><span data-en="Central Library" data-hi="केंद्रीय पुस्तकालय">Central Library</span></a></li>
+                <li><a href="computer-centre.html" class="sidebar-link"><span class="sidebar-icon-box icon-sky">${iconSvg('globe')}</span><span data-en="University Computer Centre" data-hi="विश्वविद्यालय कंप्यूटर केंद्र">University Computer Centre</span></a></li>
+                <li><a href="computer-lab.html" class="sidebar-link"><span class="sidebar-icon-box icon-blue">${iconSvg('users')}</span><span data-en="University Computer Lab" data-hi="विश्वविद्यालय कंप्यूटर लैब">University Computer Lab</span></a></li>
+                <li><a href="media-studio.html" class="sidebar-link"><span class="sidebar-icon-box icon-indigo">${iconSvg('globe')}</span><span data-en="Media Studio" data-hi="मीडिया स्टूडियो">Media Studio</span></a></li>
+                <li><a href="smart-classroom.html" class="sidebar-link"><span class="sidebar-icon-box icon-purple">${iconSvg('building')}</span><span data-en="Smart Classrooms" data-hi="स्मार्ट क्लास रूम">Smart Classrooms</span></a></li>
+                <li><a href="wifi-campus.html" class="sidebar-link"><span class="sidebar-icon-box icon-sky">${iconSvg('globe')}</span><span data-en="Wi-Fi Campus" data-hi="वाई-फाई परिसर">Wi-Fi Campus</span></a></li>
+                <li><a href="hostel.html" class="sidebar-link"><span class="sidebar-icon-box icon-orange">${iconSvg('home')}</span><span data-en="Hostels & Housing" data-hi="छात्रावास">Hostels & Housing</span></a></li>
+                <li><a href="health-care.html" class="sidebar-link"><span class="sidebar-icon-box icon-crimson">${iconSvg('shield')}</span><span data-en="Health Care Center" data-hi="स्वास्थ्य सेवा केंद्र">Health Care Center</span></a></li>
+                <li><a href="sports.html" class="sidebar-link"><span class="sidebar-icon-box icon-green">${iconSvg('target')}</span><span data-en="Sports Complex" data-hi="खेल परिसर">Sports Complex</span></a></li>
+                <li><a href="guest-house.html" class="sidebar-link"><span class="sidebar-icon-box icon-amber">${iconSvg('home')}</span><span data-en="Guest House" data-hi="अतिथि गृह">Guest House</span></a></li>
+                <li><a href="auditorium.html" class="sidebar-link"><span class="sidebar-icon-box icon-purple">${iconSvg('building')}</span><span data-en="Auditorium" data-hi="सभागार">Auditorium</span></a></li>
+                <li><a href="conference-hall.html" class="sidebar-link"><span class="sidebar-icon-box icon-indigo">${iconSvg('users')}</span><span data-en="Conference Hall" data-hi="सम्मेलन कक्ष">Conference Hall</span></a></li>
+                <li><a href="cafeteria.html" class="sidebar-link"><span class="sidebar-icon-box icon-gold">${iconSvg('building')}</span><span data-en="Cafeteria" data-hi="कैफेटेरिया">Cafeteria</span></a></li>
+                <li><a href="biodiversity-park.html" class="sidebar-link"><span class="sidebar-icon-box icon-emerald">${iconSvg('shield')}</span><span data-en="Biodiversity Park" data-hi="जैव विविधता पार्क">Biodiversity Park</span></a></li>
+                <li><a href="dhanvantari-vatika.html" class="sidebar-link"><span class="sidebar-icon-box icon-teal">${iconSvg('shield')}</span><span data-en="Dhanvantari Arogya Vatika" data-hi="धन्वंतरि आरोग्य वाटिका">Dhanvantari Arogya Vatika</span></a></li>
+                <li><a href="bank-atm.html" class="sidebar-link"><span class="sidebar-icon-box icon-amber">${iconSvg('briefcase')}</span><span data-en="Bank & ATM" data-hi="बैंक एवं एटीएम">Bank & ATM</span></a></li>
+                <li><a href="security-system.html" class="sidebar-link"><span class="sidebar-icon-box icon-crimson">${iconSvg('lock')}</span><span data-en="Integrated Security System" data-hi="एकीकृत सुरक्षा प्रणाली">Integrated Security System</span></a></li>
+                <li><a href="engineering-wing.html" class="sidebar-link"><span class="sidebar-icon-box icon-blue">${iconSvg('building')}</span><span data-en="Engineering Wing" data-hi="इंजीनियरिंग विंग">Engineering Wing</span></a></li>
+                <li><a href="lightning-network.html" class="sidebar-link"><span class="sidebar-icon-box icon-cyan">${iconSvg('globe')}</span><span data-en="Lightning Location Network" data-hi="तड़ित स्थान नेटवर्क">Lightning Location Network</span></a></li>
+                <li><a href="cif.html" class="sidebar-link"><span class="sidebar-icon-box icon-indigo">${iconSvg('shield')}</span><span data-en="Central Instrumental Facility (CIF)" data-hi="केंद्रीय उपकरण सुविधा">Central Instrumental Facility (CIF)</span></a></li>
+              </ul>
+            </div>
+          </div>
+
         </div>
       </aside>
     `;

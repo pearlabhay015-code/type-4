@@ -794,79 +794,14 @@ function initActivePageHighlight() {
   const navbar = document.querySelector('cusb-navbar');
   if (!navbar) return;
 
-  // Clear previous active states
+  // Clear previous active states across all navbar items and sublinks
   navbar.querySelectorAll('.is-current-page-tab, .is-current-page-item, .is-current-page-link, [aria-current="page"]').forEach(el => {
     el.classList.remove('is-current-page-tab', 'is-current-page-item', 'is-current-page-link');
     el.removeAttribute('aria-current');
     el.querySelectorAll('.nav-active-dot, .megamenu-current-badge').forEach(b => b.remove());
   });
 
-  // Determine top-level menu category
-  let activeMenuCategory = null;
-
-  if (currentFile === 'index.html' || currentFile === '') {
-    activeMenuCategory = 'home';
-  } else if (
-    currentFile.includes('student') || 
-    ['hostel.html', 'hostels.html', 'library.html', 'ncc.html', 'nss.html', 'sports.html', 'anti-ragging.html', 'grievance.html', 'scholarships.html', 'placement.html', 'placements.html', 'alumni.html', 'icc.html', 'pyq.html', 'samarth.html', 'clubs.html'].includes(currentFile)
-  ) {
-    activeMenuCategory = 'students';
-  } else if (
-    currentFile.includes('admin') || 
-    ['visitor.html', 'chancellor.html', 'vice-chancellor.html', 'vc.html', 'deans.html', 'heads.html'].includes(currentFile)
-  ) {
-    activeMenuCategory = 'admin';
-  } else if (
-    currentFile.includes('admission') || 
-    ['cuet.html', 'fee-structure.html', 'prospectus.html'].includes(currentFile)
-  ) {
-    activeMenuCategory = 'admissions';
-  } else if (
-    currentFile.includes('research') || 
-    ['rdc.html', 'projects.html', 'publications.html', 'patents.html', 'mou.html', 'labs.html', 'cif.html'].includes(currentFile)
-  ) {
-    activeMenuCategory = 'research';
-  } else if (
-    currentFile.includes('school') || 
-    currentFile.includes('department') || 
-    ['courses.html', 'programs.html', 'academic-calendar.html', 'syllabus.html', 'curriculum.html', 'faculties.html', 'faculty.html'].includes(currentFile)
-  ) {
-    activeMenuCategory = 'academics';
-  } else if (
-    currentFile.includes('facilit') || 
-    currentFile.includes('infrastruct')
-  ) {
-    activeMenuCategory = 'infrastructure';
-  } else if (
-    currentFile.startsWith('about') || 
-    ['policies.html', 'executive-council.html', 'academic-council.html', 'finance-committee.html', 'tenders.html', 'upcoming-events.html', 'archived-events.html', 'archive-events.html', 'careers.html', 'recruitment.html', 'downloads.html', 'recent-events.html', 'recent-event.html', 'academic-highlights.html', 'how-to-reach.html'].includes(currentFile)
-  ) {
-    activeMenuCategory = 'about';
-  }
-
-  // 1. Highlight matching parent navbar tab
-  if (activeMenuCategory) {
-    const parentItem = navbar.querySelector(`.navbar-item[data-menu="${activeMenuCategory}"]`);
-    if (parentItem) {
-      parentItem.classList.add('is-current-page-tab');
-      const topLink = parentItem.querySelector(':scope > .navbar-link');
-      if (topLink) {
-        topLink.setAttribute('aria-current', 'page');
-        if (!topLink.querySelector('.nav-active-dot')) {
-          const dot = document.createElement('span');
-          dot.className = 'nav-active-dot';
-          dot.setAttribute('aria-hidden', 'true');
-          topLink.appendChild(dot);
-        }
-      }
-    }
-  }
-
-  // 2. Highlight specific child link inside megamenus
-  const megamenuLinks = navbar.querySelectorAll('.megamenu a');
-  const matchedChildLinks = [];
-
-  // Direct alias and canonical map for pages
+  // Page aliases and canonical mappings
   const pageAliases = {
     'hostels.html': 'hostel.html',
     'anti-ragging.html': 'student-anti-ragging.html',
@@ -887,7 +822,155 @@ function initActivePageHighlight() {
 
   const targetFile = pageAliases[currentFile] || currentFile;
 
-  // First attempt: exact match with page + hash / query
+  // Canonical mapping of pages to their single primary top-level navbar tab
+  const primaryCategoryMap = {
+    'index.html': 'home',
+    // Infrastructure & Facilities
+    'facilities.html': 'infrastructure',
+    'computer-centre.html': 'infrastructure',
+    'computer-lab.html': 'infrastructure',
+    'media-studio.html': 'infrastructure',
+    'wifi-campus.html': 'infrastructure',
+    'smart-classroom.html': 'infrastructure',
+    'smart-classrooms.html': 'infrastructure',
+    'guest-house.html': 'infrastructure',
+    'guesthouse.html': 'infrastructure',
+    'library.html': 'infrastructure',
+    'hostel.html': 'infrastructure',
+    'hostel-boys.html': 'infrastructure',
+    'hostel-girls.html': 'infrastructure',
+    'health-care.html': 'infrastructure',
+    'healthcare.html': 'infrastructure',
+    'medical.html': 'infrastructure',
+    'sports.html': 'infrastructure',
+    'sports-complex.html': 'infrastructure',
+    'sports-infrastructure.html': 'infrastructure',
+    'biodiversity-park.html': 'infrastructure',
+    'security-system.html': 'infrastructure',
+    'integrated-security-system.html': 'infrastructure',
+    'engineering-wing.html': 'infrastructure',
+    'lightning-network.html': 'infrastructure',
+    'lightning-location-network.html': 'infrastructure',
+    'bank-atm.html': 'infrastructure',
+    'bank.html': 'infrastructure',
+    'dhanvantari-vatika.html': 'infrastructure',
+    'dhanvantri-aarogya-vatika.html': 'infrastructure',
+    'auditorium.html': 'infrastructure',
+    'conference-hall.html': 'infrastructure',
+    'cafeteria.html': 'infrastructure',
+    // Research
+    'research.html': 'research',
+    'research-highlights.html': 'research',
+    'research-publications.html': 'research',
+    'research-partnership.html': 'research',
+    'cif.html': 'research',
+    'inca-congress.html': 'research',
+    'iic-innovation-council.html': 'research',
+    'iic.html': 'research',
+    'ipr-cell.html': 'research',
+    'rd-cell.html': 'research',
+    'rdc.html': 'research',
+    'fpac-iaec-rdc-cell.html': 'research',
+    'legal-cell.html': 'research',
+    'iecbhr-ibsc-cell.html': 'research',
+    'faculty-grants.html': 'research',
+    'research-grants-faculties.html': 'research',
+    // Student Corner
+    'student-academic-notices.html': 'students',
+    'student-exam-schedule.html': 'students',
+    'student-ordinance-regulations.html': 'students',
+    'student-semester-results.html': 'students',
+    'student-prospectus.html': 'students',
+    'student-convocation.html': 'students',
+    'student-formats-performa.html': 'students',
+    'student-course-structure.html': 'students',
+    'student-scholarships.html': 'students',
+    'student-anti-ragging.html': 'students',
+    'student-anti-ragging-committee.html': 'students',
+    'student-anti-ragging-contacts.html': 'students',
+    'student-anti-ragging-notices.html': 'students',
+    'student-alumni.html': 'students',
+    'student-dace.html': 'students',
+    'student-dace-admission.html': 'students',
+    'student-capacity-development.html': 'students',
+    'student-placement-cell.html': 'students',
+    'student-counselling.html': 'students',
+    'student-nss.html': 'students',
+    'student-nss-activities.html': 'students',
+    'student-ncc.html': 'students',
+    'student-extracurricular.html': 'students',
+    'student-code-of-ethics.html': 'students',
+    'student-grievance-redressal.html': 'students',
+    'student-grievances.html': 'students',
+    'students.html': 'students',
+    // Academics
+    'courses.html': 'academics',
+    'department.html': 'academics',
+    'cs.html': 'academics',
+    // Admissions
+    'admissions.html': 'admissions',
+    'admission-2026-27.html': 'admissions',
+    'international-students.html': 'admissions',
+    'international-student.html': 'admissions',
+    'help-desk.html': 'admissions',
+    'helpdesk.html': 'admissions',
+    // Governance / Administration
+    'administration-resources.html': 'admin',
+    'admin-detail.html': 'admin',
+    'visitor.html': 'admin',
+    'admin-visitor.html': 'admin',
+    'chancellor.html': 'admin',
+    'admin-chancellor.html': 'admin',
+    'vice-chancellor.html': 'admin',
+    'vc.html': 'admin',
+    'admin-vice-chancellor.html': 'admin',
+    'admin-pro-vice-chancellor.html': 'admin',
+    'admin-dean-student-welfare.html': 'admin',
+    'admin-proctorial-board.html': 'admin',
+    'admin-dean-head.html': 'admin',
+    'admin-registrar.html': 'admin',
+    'admin-finance-officer.html': 'admin',
+    'admin-controller-examination.html': 'admin',
+    'admin-librarian.html': 'admin',
+    'admin-section-staff.html': 'admin',
+    'admin-committee-cell.html': 'admin',
+    'admin-organogram.html': 'admin',
+    'leaders.html': 'admin',
+    // About
+    'about.html': 'about',
+    'about-the-university.html': 'about',
+    'about-vision-mission.html': 'about',
+    'about-history-development.html': 'about',
+    'about-central-universities-act.html': 'about',
+    'about-statutes-ordinances.html': 'about',
+    'about-executive-council.html': 'about',
+    'about-academic-council.html': 'about',
+    'about-finance-committee.html': 'about',
+    'about-the-court.html': 'about',
+    'about-policies-documents.html': 'about',
+    'about-best-practices.html': 'about',
+    'about-annual-reports.html': 'about',
+    'about-cusb-logo.html': 'about',
+    'about-university-kulgeet.html': 'about',
+    'about-how-to-reach.html': 'about',
+    'about-resources.html': 'about',
+    'policies.html': 'about',
+    'tenders.html': 'about',
+    'careers.html': 'about',
+    'recruitment.html': 'about',
+    'downloads.html': 'about',
+    'news-events.html': 'about',
+    'recent-events.html': 'about',
+    'upcoming-events.html': 'about',
+    'archived-events.html': 'about',
+    'academic-highlights.html': 'about'
+  };
+
+  // Search all megamenu sublinks for matches against current URL / targetFile
+  const megamenuLinks = navbar.querySelectorAll('.megamenu a');
+  const matchedChildLinks = [];
+
+  // Attempt 1: match page + hash / query
   for (const link of megamenuLinks) {
     const href = (link.getAttribute('href') || '').toLowerCase();
     if (!href || href === '#' || href.startsWith('javascript:')) continue;
@@ -903,7 +986,7 @@ function initActivePageHighlight() {
     }
   }
 
-  // Second attempt: match exact file name
+  // Attempt 2: match exact file name
   if (matchedChildLinks.length === 0 && targetFile) {
     for (const link of megamenuLinks) {
       const href = (link.getAttribute('href') || '').toLowerCase();
@@ -915,39 +998,86 @@ function initActivePageHighlight() {
     }
   }
 
-  // Apply active classes to all matched child links
-  matchedChildLinks.forEach(matchedChildLink => {
-    matchedChildLink.classList.add('is-current-page-link');
-    matchedChildLink.setAttribute('aria-current', 'page');
-    const parentLi = matchedChildLink.closest('li');
-    if (parentLi) parentLi.classList.add('is-current-page-item');
+  // Determine single active top-level menu category
+  let activeMenuCategory = primaryCategoryMap[targetFile] || primaryCategoryMap[currentFile] || null;
 
-    // Ensure parent navbar tab is also activated
-    const parentNavbarItem = matchedChildLink.closest('.navbar-item');
-    if (parentNavbarItem) {
-      parentNavbarItem.classList.add('is-current-page-tab');
-      const topLink = parentNavbarItem.querySelector(':scope > .navbar-link');
-      if (topLink) {
-        topLink.setAttribute('aria-current', 'page');
-        if (!topLink.querySelector('.nav-active-dot')) {
-          const dot = document.createElement('span');
-          dot.className = 'nav-active-dot';
-          dot.setAttribute('aria-hidden', 'true');
-          topLink.appendChild(dot);
-        }
+  if (!activeMenuCategory) {
+    if (currentFile === 'index.html' || currentFile === '') activeMenuCategory = 'home';
+    else if (currentFile.includes('student')) activeMenuCategory = 'students';
+    else if (currentFile.includes('admin')) activeMenuCategory = 'admin';
+    else if (currentFile.includes('admission')) activeMenuCategory = 'admissions';
+    else if (currentFile.includes('research')) activeMenuCategory = 'research';
+    else if (currentFile.includes('school') || currentFile.includes('department')) activeMenuCategory = 'academics';
+    else if (currentFile.includes('facilit') || currentFile.includes('infrastruct')) activeMenuCategory = 'infrastructure';
+    else if (currentFile.startsWith('about')) activeMenuCategory = 'about';
+  }
+
+  // Choose EXACTLY ONE matched sublink and EXACTLY ONE parent navbar tab
+  let activeParentItem = null;
+  let activeChildLink = null;
+
+  if (matchedChildLinks.length > 0) {
+    if (activeMenuCategory) {
+      activeChildLink = matchedChildLinks.find(link => {
+        const parent = link.closest('.navbar-item');
+        return parent && parent.getAttribute('data-menu') === activeMenuCategory;
+      }) || matchedChildLinks[0];
+    } else {
+      activeChildLink = matchedChildLinks[0];
+    }
+
+    if (activeChildLink) {
+      activeParentItem = activeChildLink.closest('.navbar-item');
+    }
+  }
+
+  // Fallback to activeMenuCategory if no megamenu sublink matched
+  if (!activeParentItem && activeMenuCategory) {
+    activeParentItem = navbar.querySelector(`.navbar-item[data-menu="${activeMenuCategory}"]`);
+  }
+
+  // HIGHLIGHT ONLY THAT SINGLE TOP-LEVEL NAVBAR ITEM
+  if (activeParentItem) {
+    activeParentItem.classList.add('is-current-page-tab');
+    const topLink = activeParentItem.querySelector(':scope > .navbar-link');
+    if (topLink) {
+      topLink.setAttribute('aria-current', 'page');
+      if (!topLink.querySelector('.nav-active-dot')) {
+        const dot = document.createElement('span');
+        dot.className = 'nav-active-dot';
+        dot.setAttribute('aria-hidden', 'true');
+        topLink.appendChild(dot);
       }
     }
-  });
+  }
 
-  // 3. Highlight active sidebar links in quicklinks drawer
+  // HIGHLIGHT THE SPECIFIC SUBLINK INSIDE THE ACTIVATED MEGAMENU
+  if (activeChildLink) {
+    activeChildLink.classList.add('is-current-page-link');
+    activeChildLink.setAttribute('aria-current', 'page');
+    const parentLi = activeChildLink.closest('li');
+    if (parentLi) parentLi.classList.add('is-current-page-item');
+  }
+
+  // Highlight active sidebar links in quicklinks drawer & auto-expand active accordion
   const sidebar = document.querySelector('.fixed-quicklinks-sidebar');
   if (sidebar) {
+    let activeSidebarFound = false;
     sidebar.querySelectorAll('a').forEach(link => {
       const href = (link.getAttribute('href') || '').toLowerCase();
       const hrefFile = href.split('#')[0].split('?')[0].split('/').pop();
-      if (hrefFile === currentFile) {
+      if (hrefFile === currentFile || hrefFile === targetFile) {
         link.classList.add('is-current-page-link');
         link.setAttribute('aria-current', 'page');
+        if (!activeSidebarFound) {
+          activeSidebarFound = true;
+          const parentAccordion = link.closest('.sidebar-accordion-item');
+          if (parentAccordion && !sidebar.querySelector('.sidebar-accordion-item.is-open')) {
+            parentAccordion.classList.add('is-open');
+            const toggle = parentAccordion.querySelector('.sidebar-accordion-toggle');
+            if (toggle) toggle.setAttribute('aria-expanded', 'true');
+          }
+        }
       }
     });
   }
